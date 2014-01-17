@@ -17,5 +17,13 @@ DerivedData
 *.hmap
 *.xccheckout
 
+# See https://gist.github.com/adamgit/3786883 for discussion of alternatives
+xcuserdata
+
 #CocoaPods
 Pods
+
+#Editors
+*.swo
+*.swp
+~*
