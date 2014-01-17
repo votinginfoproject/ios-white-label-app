@@ -19,3 +19,8 @@ DerivedData
 
 #CocoaPods
 Pods
+
+#Editors
+*.swo
+*.swp
+~*
