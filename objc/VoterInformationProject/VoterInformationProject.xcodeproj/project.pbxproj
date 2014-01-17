@@ -451,6 +451,7 @@
 				53D3A7B71889A05B00920A70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VoterInformationProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +460,7 @@
 				53D3A7BA1889A05B00920A70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
