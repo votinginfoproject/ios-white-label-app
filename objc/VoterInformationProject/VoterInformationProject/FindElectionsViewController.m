@@ -7,10 +7,13 @@
 //
 
 #import "FindElectionsViewController.h"
+#import "AFNetworking/AFNetworking.h"
 #import "Election.h"
 
 @interface FindElectionsViewController ()
 @property (strong, nonatomic) NSMutableArray *elections;
+@property (strong, nonatomic) NSDictionary *appSettings;
+
 @end
 
 @implementation FindElectionsViewController
@@ -20,6 +23,14 @@
         _elections = [[NSMutableArray alloc] init];
     }
     return _elections;
+}
+
+- (NSDictionary *) appSettings {
+    if (!_appSettings) {
+        NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+        _appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    }
+    return _appSettings;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -45,23 +56,48 @@
 }
 
 - (void) loadElectionData {
-    NSError *deserializingError;
-    // TODO: Set pathForResource from config file
-    // TODO: Load json from network request
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"elections" ofType:@"json"];
-    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:NSJSONReadingAllowFragments
-                                                               error:&deserializingError];
-    if (!jsonDict) {
-        return;
-    }
-    NSArray *electionData = [jsonDict valueForKey:@"data"];
-    for (NSDictionary *entry in electionData) {
-        Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
-                                                  andName:[entry valueForKey:@"name"]
-                                                  andDate:[entry valueForKey:@"date"]];
-        [self.elections addObject:election];
+
+    // Setup request manager
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
+    NSLog(@"URL: %@", requestUrl);
+    NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
+
+    [manager GET:requestUrl
+      parameters:requestParams
+         success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+
+        // On Success
+        NSArray *electionData = [responseObject objectForKey:@"elections"];
+        if (!electionData) {
+            return;
+        }
+        for (NSDictionary *entry in electionData) {
+            Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
+                                                      andName:[entry valueForKey:@"name"]
+                                                      andDate:[entry valueForKey:@"electionDay"]];
+            [self.elections addObject:election];
+        }
+        [self.tableView reloadData];
+
+       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+        // On Failure
+        // TODO: Better handle errors once UI finalized
+        NSLog(@"Error: %@", error);
+
+    }];
+}
+
+// If an API Key exists and the url matches the Civic Info API url, then add key to request params
+- (NSDictionary*) getElectionDataParams:(NSString*) url {
+    NSString *civicInfoElectionQueryURL = [self.appSettings objectForKey:@"GoogleCivicInfoElectionQueryURL"];
+    NSString *apiKey = [self.appSettings objectForKey:@"GoogleCivicInfoAPIKey"];
+    if (civicInfoElectionQueryURL && apiKey && [url isEqualToString:civicInfoElectionQueryURL]) {
+        return @{@"key": apiKey};
+    } else {
+        return nil;
     }
 }
 
@@ -75,7 +111,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
