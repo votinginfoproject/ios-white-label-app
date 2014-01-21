@@ -64,14 +64,14 @@
     // bogota url: http://bogota.internal.azavea.com:9999/elections.json
     NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
     [manager GET:requestUrl parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        NSArray *electionData = [responseObject objectForKey:@"data"];
+        NSArray *electionData = [responseObject objectForKey:@"elections"];
         if (!electionData) {
             return;
         }
         for (NSDictionary *entry in electionData) {
             Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
                                                       andName:[entry valueForKey:@"name"]
-                                                      andDate:[entry valueForKey:@"date"]];
+                                                      andDate:[entry valueForKey:@"electionDay"]];
             [self.elections addObject:election];
         }
         [self.tableView reloadData];
