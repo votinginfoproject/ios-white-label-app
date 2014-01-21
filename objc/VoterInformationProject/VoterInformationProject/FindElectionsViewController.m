@@ -46,6 +46,8 @@
 
 - (void) loadElectionData {
     NSError *deserializingError;
+    // TODO: Set pathForResource from config file
+    // TODO: Load json from network request
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"elections" ofType:@"json"];
     NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData

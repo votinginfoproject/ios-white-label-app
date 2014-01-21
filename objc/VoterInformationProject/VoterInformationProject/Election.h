@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSString *electionId;
 @property (nonatomic) NSString *name;
+// TODO: Use NSDate to parse string of format YYYY-MM-DD
 @property (nonatomic) NSString *date;
 
 // designated initializer
