@@ -51,8 +51,8 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"elections" ofType:@"json"];
     NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                options:NSJSONReadingAllowFragments
-                                                  error:&deserializingError];
+                                                             options:NSJSONReadingAllowFragments
+                                                               error:&deserializingError];
     if (!jsonDict) {
         return;
     }

@@ -22,6 +22,6 @@
 
 - (id) initWithId: (NSString*) electionID;
 
-- (BOOL) isInactive;
+- (BOOL) isActive;
 
 @end

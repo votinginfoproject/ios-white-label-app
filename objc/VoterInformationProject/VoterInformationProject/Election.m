@@ -12,8 +12,8 @@
 
 - (id) initWithId:(NSString *)electionID {
     return [self initWithId:electionID
-                    andName:@""
-                    andDate:@"1970-01-01"];
+                    andName:nil
+                    andDate:nil];
 }
 
 - (id) initWithId:(NSString *)electionID andName:(NSString *)name andDate:(NSString *)date {
@@ -26,9 +26,9 @@
     return self;
 }
 
-- (BOOL) isInactive {
+- (BOOL) isActive {
     // TODO: Implement
-    return NO;
+    return YES;
 }
 
 @end
