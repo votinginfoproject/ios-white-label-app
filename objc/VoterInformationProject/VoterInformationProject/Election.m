@@ -27,8 +27,16 @@
 }
 
 - (BOOL) isActive {
-    // TODO: Implement
-    return YES;
+    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
+    [dayFormatter setDateFormat:@"YYYY-MM-DD"];
+    NSString *today = [dayFormatter stringFromDate:[NSDate date]];
+    switch ([today compare:self.date]) {
+        case NSOrderedAscending:
+        case NSOrderedSame:
+            return YES;
+        case NSOrderedDescending:
+            return NO;
+    }
 }
 
 @end
