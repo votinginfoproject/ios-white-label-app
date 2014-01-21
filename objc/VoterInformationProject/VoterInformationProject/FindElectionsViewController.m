@@ -81,6 +81,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
         // On Failure
+        // TODO: Better handle errors once UI finalized
         NSLog(@"Error: %@", error);
     }];
 }
