@@ -55,15 +55,17 @@
 }
 
 - (void) loadElectionData {
-    // TODO: Set pathForResource from config file
-    // TODO: Load json from network request
 
+    // Setup request manager
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    // s3 url: https://s3.amazonaws.com/vip-ios-configs/development/elections.json
-    // bogota url: http://bogota.internal.azavea.com:9999/elections.json
     NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
-    [manager GET:requestUrl parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    NSLog(@"URL: %@", requestUrl);
+    NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
+
+    [manager GET:requestUrl parameters:requestParams success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+
+        // On Success
         NSArray *electionData = [responseObject objectForKey:@"elections"];
         if (!electionData) {
             return;
@@ -75,9 +77,23 @@
             [self.elections addObject:election];
         }
         [self.tableView reloadData];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+        // On Failure
         NSLog(@"Error: %@", error);
     }];
+}
+
+// If an API Key exists and the url matches the Civic Info API url, then add key to request params
+- (NSDictionary*) getElectionDataParams:(NSString*) url {
+    NSString *civicInfoElectionQueryURL = [self.appSettings objectForKey:@"GoogleCivicInfoElectionQueryURL"];
+    NSString *apiKey = [self.appSettings objectForKey:@"GoogleCivicInfoAPIKey"];
+    if (civicInfoElectionQueryURL && apiKey && [url isEqualToString:civicInfoElectionQueryURL]) {
+        return @{@"key": apiKey};
+    } else {
+        return nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,7 +106,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }

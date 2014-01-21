@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>GoogleCivicInfoElectionQueryURL</key>
+	<string>https://www.googleapis.com/civicinfo/us_v1/elections</string>
+	<key>GoogleCivicInfoAPIKey</key>
+	<string></string>
 	<key>ElectionListURL</key>
 	<string>http://192.168.96.245:9999/elections.json</string>
 </dict>
