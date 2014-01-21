@@ -7,6 +7,7 @@
 //
 
 #import "FindElectionsViewController.h"
+#import "AFNetworking/AFNetworking.h"
 #import "Election.h"
 
 @interface FindElectionsViewController ()
@@ -45,24 +46,28 @@
 }
 
 - (void) loadElectionData {
-    NSError *deserializingError;
     // TODO: Set pathForResource from config file
     // TODO: Load json from network request
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"elections" ofType:@"json"];
-    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:NSJSONReadingAllowFragments
-                                                               error:&deserializingError];
-    if (!jsonDict) {
-        return;
-    }
-    NSArray *electionData = [jsonDict valueForKey:@"data"];
-    for (NSDictionary *entry in electionData) {
-        Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
-                                                  andName:[entry valueForKey:@"name"]
-                                                  andDate:[entry valueForKey:@"date"]];
-        [self.elections addObject:election];
-    }
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    // s3 url: https://s3.amazonaws.com/vip-ios-configs/development/elections.json
+    // bogota url: http://bogota.internal.azavea.com:9999/elections.json
+    [manager GET:@"http://192.168.96.245:9999/elections.json" parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        NSArray *electionData = [responseObject objectForKey:@"data"];
+        if (!electionData) {
+            return;
+        }
+        for (NSDictionary *entry in electionData) {
+            Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
+                                                      andName:[entry valueForKey:@"name"]
+                                                      andDate:[entry valueForKey:@"date"]];
+            [self.elections addObject:election];
+        }
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
