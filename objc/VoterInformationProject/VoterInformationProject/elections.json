@@ -1,0 +1,11 @@
+{
+    "data": [{
+        "id": "2000",
+        "name": "2016 Presidential",
+        "date": "2016-11-08"
+    },{
+        "id": "2001",
+        "name": "Silly Election",
+        "date": "2020-01-01"
+    }]
+}
