@@ -162,7 +162,6 @@
         <!--Find Elections View Controller - Find Elections-->
         <scene sceneID="U8f-na-ZUT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wok-0d-qpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="ilS-n4-gjw" customClass="FindElectionsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xyY-pn-TlG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -187,6 +186,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zqx-En-nBP"/>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wok-0d-qpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="965" y="352"/>
         </scene>
