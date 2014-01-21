@@ -12,6 +12,7 @@
 
 @interface FindElectionsViewController ()
 @property (strong, nonatomic) NSMutableArray *elections;
+@property (strong, nonatomic) NSDictionary *appSettings;
 @end
 
 @implementation FindElectionsViewController
@@ -21,6 +22,14 @@
         _elections = [[NSMutableArray alloc] init];
     }
     return _elections;
+}
+
+- (NSDictionary *) appSettings {
+    if (!_appSettings) {
+        NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+        _appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    }
+    return _appSettings;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -53,7 +62,8 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     // s3 url: https://s3.amazonaws.com/vip-ios-configs/development/elections.json
     // bogota url: http://bogota.internal.azavea.com:9999/elections.json
-    [manager GET:@"http://192.168.96.245:9999/elections.json" parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
+    [manager GET:requestUrl parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSArray *electionData = [responseObject objectForKey:@"data"];
         if (!electionData) {
             return;
