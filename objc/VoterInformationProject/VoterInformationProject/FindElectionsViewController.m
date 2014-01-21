@@ -13,6 +13,7 @@
 @interface FindElectionsViewController ()
 @property (strong, nonatomic) NSMutableArray *elections;
 @property (strong, nonatomic) NSDictionary *appSettings;
+
 @end
 
 @implementation FindElectionsViewController
@@ -63,7 +64,9 @@
     NSLog(@"URL: %@", requestUrl);
     NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
 
-    [manager GET:requestUrl parameters:requestParams success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager GET:requestUrl
+      parameters:requestParams
+         success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
 
         // On Success
         NSArray *electionData = [responseObject objectForKey:@"elections"];
@@ -78,11 +81,12 @@
         }
         [self.tableView reloadData];
 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
         // On Failure
         // TODO: Better handle errors once UI finalized
         NSLog(@"Error: %@", error);
+
     }];
 }
 
