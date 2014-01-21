@@ -7,12 +7,20 @@
 //
 
 #import "FindElectionsViewController.h"
+#import "Election.h"
 
 @interface FindElectionsViewController ()
-@property (strong, nonatomic) NSArray *elections;
+@property (strong, nonatomic) NSMutableArray *elections;
 @end
 
 @implementation FindElectionsViewController
+
+- (NSMutableArray *) elections {
+    if (!_elections) {
+        _elections = [[NSMutableArray alloc] init];
+    }
+    return _elections;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,7 +41,26 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    self.elections = [NSArray arrayWithObjects:@"2016 Presidential", @"Philadelphia County", @"Philadelphia City", nil];
+    [self loadElectionData];
+}
+
+- (void) loadElectionData {
+    NSError *deserializingError;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"elections" ofType:@"json"];
+    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                options:NSJSONReadingAllowFragments
+                                                  error:&deserializingError];
+    if (!jsonDict) {
+        return;
+    }
+    NSArray *electionData = [jsonDict valueForKey:@"data"];
+    for (NSDictionary *entry in electionData) {
+        Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
+                                                  andName:[entry valueForKey:@"name"]
+                                                  andDate:[entry valueForKey:@"date"]];
+        [self.elections addObject:election];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +93,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    cell.textLabel.text = [self.elections objectAtIndex:indexPath.row];
+    Election *election = [self.elections objectAtIndex:indexPath.row];
+    if (election) {
+        cell.textLabel.text = election.name;
+    } else {
+        cell.textLabel.text = @"Nil";
+    }
     return cell;
 }
 
