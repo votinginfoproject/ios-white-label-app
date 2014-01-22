@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="543" y="555"/>
         </scene>
-        <!--View Controller - Nearby Polling Locations-->
+        <!--Nearby Polling View Controller - Nearby Polling Locations-->
         <scene sceneID="vau-lL-Dmt">
             <objects>
-                <viewController id="5h8-J8-eZD" sceneMemberID="viewController">
+                <viewController id="5h8-J8-eZD" customClass="NearbyPollingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TWf-K2-fuw"/>
                         <viewControllerLayoutGuide type="bottom" id="nTU-4R-KE5"/>
