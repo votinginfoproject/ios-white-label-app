@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B2CFFD32E415181767B53 /* libPods.a */; };
+		4903245718905AB700FD9828 /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903245618905AB700FD9828 /* FindElectionsCell.m */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
 		4927347E188DA6BE00B25554 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */; };
 		49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49273485188DBEF000B25554 /* FindElectionsViewController.m */; };
@@ -45,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		1AF4C57983EC49409AF897E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		4903245518905AB700FD9828 /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsCell.h; sourceTree = "<group>"; };
+		4903245618905AB700FD9828 /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsCell.m; sourceTree = "<group>"; };
 		491EE5AE188EE0600018A060 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VIPStoryBoard.storyboard; sourceTree = "<group>"; };
 		49273484188DBEF000B25554 /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsViewController.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 			children = (
 				4927348C188DDD4700B25554 /* Election.h */,
 				4927348D188DDD4700B25554 /* Election.m */,
+				4903245518905AB700FD9828 /* FindElectionsCell.h */,
+				4903245618905AB700FD9828 /* FindElectionsCell.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4903245718905AB700FD9828 /* FindElectionsCell.m in Sources */,
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				4927348E188DDD4700B25554 /* Election.m in Sources */,
