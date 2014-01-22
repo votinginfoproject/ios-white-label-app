@@ -23,14 +23,14 @@
 		53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7911889A05B00920A70 /* InfoPlist.strings */; };
 		53D3A7951889A05B00920A70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7941889A05B00920A70 /* main.m */; };
 		53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7981889A05B00920A70 /* AppDelegate.m */; };
-		53D3A79C1889A05B00920A70 /* VoterInformationProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A79A1889A05B00920A70 /* VoterInformationProject.xcdatamodeld */; };
+		53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */; };
 		53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A79D1889A05B00920A70 /* Images.xcassets */; };
 		53D3A7A51889A05B00920A70 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7A41889A05B00920A70 /* XCTest.framework */; };
 		53D3A7A61889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
 		53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
 		53D3A7B01889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7AE1889A05B00920A70 /* InfoPlist.strings */; };
-		53D3A7B21889A05B00920A70 /* VoterInformationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7B11889A05B00920A70 /* VoterInformationProjectTests.m */; };
+		53D3A7B21889A05B00920A70 /* VotingInformationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,7 @@
 			containerPortal = 53D3A77B1889A05B00920A70 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 53D3A7821889A05B00920A70;
-			remoteInfo = VoterInformationProject;
+			remoteInfo = VotingInformationProject;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -56,24 +56,24 @@
 		4937CFA5189027610093A742 /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
 		494133FC188F0BD3006F7D0F /* ElectionModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionModelTests.m; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
-		53D3A7831889A05B00920A70 /* VoterInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoterInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D3A7861889A05B00920A70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53D3A7881889A05B00920A70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		53D3A78A1889A05B00920A70 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53D3A78C1889A05B00920A70 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		53D3A7901889A05B00920A70 /* VoterInformationProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VoterInformationProject-Info.plist"; sourceTree = "<group>"; };
+		53D3A7901889A05B00920A70 /* VotingInformationProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProject-Info.plist"; sourceTree = "<group>"; };
 		53D3A7921889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53D3A7941889A05B00920A70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		53D3A7961889A05B00920A70 /* VoterInformationProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VoterInformationProject-Prefix.pch"; sourceTree = "<group>"; };
+		53D3A7961889A05B00920A70 /* VotingInformationProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VotingInformationProject-Prefix.pch"; sourceTree = "<group>"; };
 		53D3A7971889A05B00920A70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		53D3A7981889A05B00920A70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		53D3A79B1889A05B00920A70 /* VoterInformationProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VoterInformationProject.xcdatamodel; sourceTree = "<group>"; };
+		53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VotingInformationProject.xcdatamodel; sourceTree = "<group>"; };
 		53D3A79D1889A05B00920A70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		53D3A7A31889A05B00920A70 /* VoterInformationProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoterInformationProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VotingInformationProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D3A7A41889A05B00920A70 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		53D3A7AD1889A05B00920A70 /* VoterInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VoterInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
+		53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
 		53D3A7AF1889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		53D3A7B11889A05B00920A70 /* VoterInformationProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VoterInformationProjectTests.m; sourceTree = "<group>"; };
+		53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VotingInformationProjectTests.m; sourceTree = "<group>"; };
 		548B2CFFD32E415181767B53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,8 +136,8 @@
 		53D3A77A1889A05B00920A70 = {
 			isa = PBXGroup;
 			children = (
-				53D3A78E1889A05B00920A70 /* VoterInformationProject */,
-				53D3A7AB1889A05B00920A70 /* VoterInformationProjectTests */,
+				53D3A78E1889A05B00920A70 /* VotingInformationProject */,
+				53D3A7AB1889A05B00920A70 /* VotingInformationProjectTests */,
 				53D3A7851889A05B00920A70 /* Frameworks */,
 				53D3A7841889A05B00920A70 /* Products */,
 				1AF4C57983EC49409AF897E4 /* Pods.xcconfig */,
@@ -147,8 +147,8 @@
 		53D3A7841889A05B00920A70 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				53D3A7831889A05B00920A70 /* VoterInformationProject.app */,
-				53D3A7A31889A05B00920A70 /* VoterInformationProjectTests.xctest */,
+				53D3A7831889A05B00920A70 /* VotingInformationProject.app */,
+				53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		53D3A78E1889A05B00920A70 /* VoterInformationProject */ = {
+		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
 				4927348B188DDD1200B25554 /* Controllers */,
@@ -174,40 +174,40 @@
 				53D3A7971889A05B00920A70 /* AppDelegate.h */,
 				53D3A7981889A05B00920A70 /* AppDelegate.m */,
 				53D3A79D1889A05B00920A70 /* Images.xcassets */,
-				53D3A79A1889A05B00920A70 /* VoterInformationProject.xcdatamodeld */,
+				53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */,
 				53D3A78F1889A05B00920A70 /* Supporting Files */,
 				4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */,
 				49273491188DE8DA00B25554 /* Resources */,
 			);
-			path = VoterInformationProject;
+			path = VotingInformationProject;
 			sourceTree = "<group>";
 		};
 		53D3A78F1889A05B00920A70 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				53D3A7901889A05B00920A70 /* VoterInformationProject-Info.plist */,
+				53D3A7901889A05B00920A70 /* VotingInformationProject-Info.plist */,
 				53D3A7911889A05B00920A70 /* InfoPlist.strings */,
 				53D3A7941889A05B00920A70 /* main.m */,
-				53D3A7961889A05B00920A70 /* VoterInformationProject-Prefix.pch */,
+				53D3A7961889A05B00920A70 /* VotingInformationProject-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		53D3A7AB1889A05B00920A70 /* VoterInformationProjectTests */ = {
+		53D3A7AB1889A05B00920A70 /* VotingInformationProjectTests */ = {
 			isa = PBXGroup;
 			children = (
 				494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */,
 				494133FC188F0BD3006F7D0F /* ElectionModelTests.m */,
-				53D3A7B11889A05B00920A70 /* VoterInformationProjectTests.m */,
+				53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */,
 				53D3A7AC1889A05B00920A70 /* Supporting Files */,
 			);
-			path = VoterInformationProjectTests;
+			path = VotingInformationProjectTests;
 			sourceTree = "<group>";
 		};
 		53D3A7AC1889A05B00920A70 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				53D3A7AD1889A05B00920A70 /* VoterInformationProjectTests-Info.plist */,
+				53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */,
 				53D3A7AE1889A05B00920A70 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -216,9 +216,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		53D3A7821889A05B00920A70 /* VoterInformationProject */ = {
+		53D3A7821889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VoterInformationProject" */;
+			buildConfigurationList = 53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */;
 			buildPhases = (
 				33D2B89B7A4A4EBD8C746FC8 /* Check Pods Manifest.lock */,
 				53D3A77F1889A05B00920A70 /* Sources */,
@@ -230,14 +230,14 @@
 			);
 			dependencies = (
 			);
-			name = VoterInformationProject;
-			productName = VoterInformationProject;
-			productReference = 53D3A7831889A05B00920A70 /* VoterInformationProject.app */;
+			name = VotingInformationProject;
+			productName = VotingInformationProject;
+			productReference = 53D3A7831889A05B00920A70 /* VotingInformationProject.app */;
 			productType = "com.apple.product-type.application";
 		};
-		53D3A7A21889A05B00920A70 /* VoterInformationProjectTests */ = {
+		53D3A7A21889A05B00920A70 /* VotingInformationProjectTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VoterInformationProjectTests" */;
+			buildConfigurationList = 53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProjectTests" */;
 			buildPhases = (
 				53D3A79F1889A05B00920A70 /* Sources */,
 				53D3A7A01889A05B00920A70 /* Frameworks */,
@@ -248,9 +248,9 @@
 			dependencies = (
 				53D3A7AA1889A05B00920A70 /* PBXTargetDependency */,
 			);
-			name = VoterInformationProjectTests;
-			productName = VoterInformationProjectTests;
-			productReference = 53D3A7A31889A05B00920A70 /* VoterInformationProjectTests.xctest */;
+			name = VotingInformationProjectTests;
+			productName = VotingInformationProjectTests;
+			productReference = 53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 53D3A77E1889A05B00920A70 /* Build configuration list for PBXProject "VoterInformationProject" */;
+			buildConfigurationList = 53D3A77E1889A05B00920A70 /* Build configuration list for PBXProject "VotingInformationProject" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -279,8 +279,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				53D3A7821889A05B00920A70 /* VoterInformationProject */,
-				53D3A7A21889A05B00920A70 /* VoterInformationProjectTests */,
+				53D3A7821889A05B00920A70 /* VotingInformationProject */,
+				53D3A7A21889A05B00920A70 /* VotingInformationProjectTests */,
 			);
 		};
 /* End PBXProject section */
@@ -347,7 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
-				53D3A79C1889A05B00920A70 /* VoterInformationProject.xcdatamodeld in Sources */,
+				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				4927348E188DDD4700B25554 /* Election.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
 				49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */,
@@ -361,7 +361,7 @@
 			files = (
 				494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */,
 				494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */,
-				53D3A7B21889A05B00920A70 /* VoterInformationProjectTests.m in Sources */,
+				53D3A7B21889A05B00920A70 /* VotingInformationProjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +370,7 @@
 /* Begin PBXTargetDependency section */
 		53D3A7AA1889A05B00920A70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 53D3A7821889A05B00920A70 /* VoterInformationProject */;
+			target = 53D3A7821889A05B00920A70 /* VotingInformationProject */;
 			targetProxy = 53D3A7A91889A05B00920A70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -474,9 +474,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VoterInformationProject/VoterInformationProject-Prefix.pch";
-				INFOPLIST_FILE = "VoterInformationProject/VoterInformationProject-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
+				PRODUCT_NAME = VotingInformationProject;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -488,9 +488,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VoterInformationProject/VoterInformationProject-Prefix.pch";
-				INFOPLIST_FILE = "VoterInformationProject/VoterInformationProject-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
+				PRODUCT_NAME = VotingInformationProject;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -499,20 +499,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VoterInformationProject.app/VoterInformationProject";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VotingInformationProject.app/VotingInformationProject";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VoterInformationProject/VoterInformationProject-Prefix.pch";
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "VoterInformationProjectTests/VoterInformationProjectTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "VotingInformationProjectTests/VotingInformationProjectTests-Info.plist";
+				PRODUCT_NAME = VotingInformationProjectTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -522,16 +522,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VoterInformationProject.app/VoterInformationProject";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VotingInformationProject.app/VotingInformationProject";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VoterInformationProject/VoterInformationProject-Prefix.pch";
-				INFOPLIST_FILE = "VoterInformationProjectTests/VoterInformationProjectTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				INFOPLIST_FILE = "VotingInformationProjectTests/VotingInformationProjectTests-Info.plist";
+				PRODUCT_NAME = VotingInformationProjectTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -540,7 +540,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		53D3A77E1889A05B00920A70 /* Build configuration list for PBXProject "VoterInformationProject" */ = {
+		53D3A77E1889A05B00920A70 /* Build configuration list for PBXProject "VotingInformationProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				53D3A7B31889A05B00920A70 /* Debug */,
@@ -549,7 +549,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VoterInformationProject" */ = {
+		53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				53D3A7B61889A05B00920A70 /* Debug */,
@@ -558,7 +558,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VoterInformationProjectTests" */ = {
+		53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProjectTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				53D3A7B91889A05B00920A70 /* Debug */,
@@ -570,13 +570,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		53D3A79A1889A05B00920A70 /* VoterInformationProject.xcdatamodeld */ = {
+		53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				53D3A79B1889A05B00920A70 /* VoterInformationProject.xcdatamodel */,
+				53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */,
 			);
-			currentVersion = 53D3A79B1889A05B00920A70 /* VoterInformationProject.xcdatamodel */;
-			path = VoterInformationProject.xcdatamodeld;
+			currentVersion = 53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */;
+			path = VotingInformationProject.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

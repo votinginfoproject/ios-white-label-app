@@ -1,7 +1,7 @@
 ios7-white-label-app
 ====================
 
-Voter Information Project
+Voting Information Project
 
 Building the App
 ----------------
@@ -18,7 +18,7 @@ sudo gem install cocoapods
 pod install
 ```
 
-4. Open xcode with the VoterInformationProject.xcworkspace file, rather
+4. Open xcode with the VotingInformationProject.xcworkspace file, rather
     than the xcodeproj file
 
 5. In settings.plist, configure the following keys:
