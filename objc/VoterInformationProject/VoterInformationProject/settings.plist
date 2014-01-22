@@ -7,6 +7,6 @@
 	<key>GoogleCivicInfoAPIKey</key>
 	<string></string>
 	<key>ElectionListURL</key>
-	<string>http://192.168.96.245:9999/elections.json</string>
+	<string>https://raw2.github.com/votinginfoproject/ios7-white-label-app/develop/objc/VoterInformationProject/VoterInformationProject/elections.json</string>
 </dict>
 </plist>

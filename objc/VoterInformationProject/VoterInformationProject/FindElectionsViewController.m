@@ -58,8 +58,12 @@
 - (void) loadElectionData {
 
     // Setup request manager
+    // TODO: Refactor into separate class if multiple requests are made
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
+                                                         setByAddingObjectsFromSet:[NSSet setWithObject:@"text/plain"]];
+
     NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
     NSLog(@"URL: %@", requestUrl);
     NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
