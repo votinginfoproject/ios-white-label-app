@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GoogleMaps/GoogleMaps.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,9 @@
     // Override point for customization after application launch.
     //self.window.backgroundColor = [UIColor whiteColor];
     //[self.window makeKeyAndVisible];
+
+    // set google maps key
+    [GMSServices provideAPIKey:@"AIzaSyCofvpITYMfzDZjCJdn4jN3kXtl5gX8n80"];
     return YES;
 }
 

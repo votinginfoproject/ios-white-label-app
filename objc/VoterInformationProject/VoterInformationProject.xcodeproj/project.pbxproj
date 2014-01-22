@@ -13,6 +13,7 @@
 		49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49273485188DBEF000B25554 /* FindElectionsViewController.m */; };
 		4927348E188DDD4700B25554 /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927348D188DDD4700B25554 /* Election.m */; };
 		49273490188DE80000B25554 /* elections.json in Resources */ = {isa = PBXBuildFile; fileRef = 4927348F188DE80000B25554 /* elections.json */; };
+		4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4937CFA5189027610093A742 /* NearbyPollingViewController.m */; };
 		494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FC188F0BD3006F7D0F /* ElectionModelTests.m */; };
 		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
@@ -51,6 +52,8 @@
 		4927348C188DDD4700B25554 /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Election.h; sourceTree = "<group>"; };
 		4927348D188DDD4700B25554 /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
 		4927348F188DE80000B25554 /* elections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elections.json; sourceTree = "<group>"; };
+		4937CFA4189027610093A742 /* NearbyPollingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPollingViewController.h; sourceTree = "<group>"; };
+		4937CFA5189027610093A742 /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
 		494133FC188F0BD3006F7D0F /* ElectionModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionModelTests.m; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
 		53D3A7831889A05B00920A70 /* VoterInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoterInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +118,8 @@
 			children = (
 				49273484188DBEF000B25554 /* FindElectionsViewController.h */,
 				49273485188DBEF000B25554 /* FindElectionsViewController.m */,
+				4937CFA4189027610093A742 /* NearbyPollingViewController.h */,
+				4937CFA5189027610093A742 /* NearbyPollingViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				4927348E188DDD4700B25554 /* Election.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
 				49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */,
+				4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
