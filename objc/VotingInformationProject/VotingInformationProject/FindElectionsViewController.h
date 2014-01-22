@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FindElectionsViewController : UITableViewController
+
 @end
