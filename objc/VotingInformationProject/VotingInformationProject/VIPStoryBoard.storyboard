@@ -33,7 +33,7 @@
             </objects>
             <point key="canvasLocation" x="965" y="-512"/>
         </scene>
-        <!--View Controller - Voter Information Project-->
+        <!--View Controller - Voting Information Project-->
         <scene sceneID="yA2-Pp-ibd">
             <objects>
                 <viewController id="NFr-cT-tr7" sceneMemberID="viewController">
@@ -103,7 +103,7 @@
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="CXU-KT-uFF" secondAttribute="bottom" constant="20" id="v0F-RP-iBd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Voter Information Project" id="gBY-hG-QTh"/>
+                    <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hV-DV-Ify" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

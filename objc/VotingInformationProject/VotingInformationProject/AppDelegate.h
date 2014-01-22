@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  VoterInformationProject
+//  VotingInformationProject
 //
 //  Created by Bennet Huber on 1/17/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
