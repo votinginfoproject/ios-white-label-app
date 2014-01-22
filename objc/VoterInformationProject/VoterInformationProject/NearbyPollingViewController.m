@@ -15,22 +15,11 @@
 
 @implementation NearbyPollingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 
-    // Create a GMSCameraPosition that tells the map to display the
-    // coordinate -33.86,151.20 at zoom level 6.
+    // Set map view and display
     double centerLat = 39.9522;
     double centerLon = -75.1639;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:centerLat

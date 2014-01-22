@@ -17,11 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    //self.window.backgroundColor = [UIColor whiteColor];
-    //[self.window makeKeyAndVisible];
-
     // Load GoogleMaps API Key from file
     // Default key provided in repo is azaveadev@azavea.com key
     // Instructions on using your own key are in the README: necessary if you change the app bundle identifier
