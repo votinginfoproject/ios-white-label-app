@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>GoogleMapsAPIKey</key>
+	<string>AIzaSyB9eioWAZVuhgg1ZxKs3luTCtMyE3KvZ8s</string>
 	<key>GoogleCivicInfoElectionQueryURL</key>
 	<string>https://www.googleapis.com/civicinfo/us_v1/elections</string>
 	<key>GoogleCivicInfoAPIKey</key>

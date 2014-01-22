@@ -22,8 +22,13 @@
     //self.window.backgroundColor = [UIColor whiteColor];
     //[self.window makeKeyAndVisible];
 
-    // set google maps key
-    [GMSServices provideAPIKey:@"AIzaSyCofvpITYMfzDZjCJdn4jN3kXtl5gX8n80"];
+    // Load GoogleMaps API Key from file
+    // Default key provided in repo is azaveadev@azavea.com key
+    // Instructions on using your own key are in the README: necessary if you change the app bundle identifier
+    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    [GMSServices provideAPIKey:[appSettings objectForKey:@"GoogleMapsAPIKey"]];
+
     return YES;
 }
 
