@@ -18,13 +18,20 @@ PODS:
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - Google-Maps-iOS-SDK (1.6.2)
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/XCTest (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Google-Maps-iOS-SDK (~> 1.6)
+  - Kiwi/XCTest
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   Google-Maps-iOS-SDK: ce1cffe3dca21af85c4bf9d9cb2778083d8fd6f5
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
 
 COCOAPODS: 0.29.0

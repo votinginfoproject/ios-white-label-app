@@ -1,1546 +1,640 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>1AF4C57983EC49409AF897E4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Pods.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2D641A22ED5044C8BE72A960</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-VotingInformationProjectTests.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Pods-VotingInformationProjectTests.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>33D2B89B7A4A4EBD8C746FC8</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>37C724F9F45D4275A4F10097</key>
-		<dict>
-			<key>fileRef</key>
-			<string>548B2CFFD32E415181767B53</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>49032458189060AF00FD9828</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>ContactsSearchViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>49032459189060AF00FD9828</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>ContactsSearchViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4903245A189060AF00FD9828</key>
-		<dict>
-			<key>fileRef</key>
-			<string>49032459189060AF00FD9828</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>4903245B1890650A00FD9828</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>AddressBook.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/AddressBook.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>4903245C1890650A00FD9828</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>AddressBookUI.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/AddressBookUI.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>4903245D1890650A00FD9828</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4903245B1890650A00FD9828</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>4903245E1890650A00FD9828</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4903245C1890650A00FD9828</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>491EE5AE188EE0600018A060</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>settings.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>491EE5AF188EE0600018A060</key>
-		<dict>
-			<key>fileRef</key>
-			<string>491EE5AE188EE0600018A060</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>4927347D188DA6BE00B25554</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>path</key>
-			<string>VIPStoryBoard.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4927347E188DA6BE00B25554</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4927347D188DA6BE00B25554</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>49273484188DBEF000B25554</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>FindElectionsViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>49273485188DBEF000B25554</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>FindElectionsViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>49273486188DBEF000B25554</key>
-		<dict>
-			<key>fileRef</key>
-			<string>49273485188DBEF000B25554</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>4927348A188DDD0000B25554</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4927348C188DDD4700B25554</string>
-				<string>4927348D188DDD4700B25554</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Models</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4927348B188DDD1200B25554</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>49273484188DBEF000B25554</string>
-				<string>49273485188DBEF000B25554</string>
-				<string>4937CFA4189027610093A742</string>
-				<string>4937CFA5189027610093A742</string>
-				<string>49032458189060AF00FD9828</string>
-				<string>49032459189060AF00FD9828</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Controllers</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4927348C188DDD4700B25554</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Election.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4927348D188DDD4700B25554</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Election.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4927348E188DDD4700B25554</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4927348D188DDD4700B25554</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>4927348F188DE80000B25554</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.json</string>
-			<key>path</key>
-			<string>elections.json</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>49273490188DE80000B25554</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4927348F188DE80000B25554</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>49273491188DE8DA00B25554</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>491EE5AE188EE0600018A060</string>
-				<string>4927348F188DE80000B25554</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Resources</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4937CFA4189027610093A742</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>NearbyPollingViewController.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4937CFA5189027610093A742</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>NearbyPollingViewController.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4937CFA6189027610093A742</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4937CFA5189027610093A742</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>494133FC188F0BD3006F7D0F</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>ElectionModelTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>494133FD188F0BD3006F7D0F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>494133FC188F0BD3006F7D0F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>494133FE188F137D006F7D0F</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>FindElectionsViewControllerTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>494133FF188F137D006F7D0F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>494133FE188F137D006F7D0F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>49B46AE818916E7D00ADC9F9</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>ContactsSearchViewControllerTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>49B46AE918916E7D00ADC9F9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>49B46AE818916E7D00ADC9F9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A77A1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A78E1889A05B00920A70</string>
-				<string>53D3A7AB1889A05B00920A70</string>
-				<string>53D3A7851889A05B00920A70</string>
-				<string>53D3A7841889A05B00920A70</string>
-				<string>1AF4C57983EC49409AF897E4</string>
-				<string>2D641A22ED5044C8BE72A960</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A77B1889A05B00920A70</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastUpgradeCheck</key>
-				<string>0500</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>Bennet Huber</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>53D3A7A21889A05B00920A70</key>
-					<dict>
-						<key>TestTargetID</key>
-						<string>53D3A7821889A05B00920A70</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>53D3A77E1889A05B00920A70</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>53D3A77A1889A05B00920A70</string>
-			<key>productRefGroup</key>
-			<string>53D3A7841889A05B00920A70</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>53D3A7821889A05B00920A70</string>
-				<string>53D3A7A21889A05B00920A70</string>
-			</array>
-		</dict>
-		<key>53D3A77E1889A05B00920A70</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>53D3A7B31889A05B00920A70</string>
-				<string>53D3A7B41889A05B00920A70</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>53D3A77F1889A05B00920A70</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>53D3A7991889A05B00920A70</string>
-				<string>53D3A79C1889A05B00920A70</string>
-				<string>4927348E188DDD4700B25554</string>
-				<string>53D3A7951889A05B00920A70</string>
-				<string>4903245A189060AF00FD9828</string>
-				<string>49273486188DBEF000B25554</string>
-				<string>4937CFA6189027610093A742</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>53D3A7801889A05B00920A70</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>4903245D1890650A00FD9828</string>
-				<string>4903245E1890650A00FD9828</string>
-				<string>53D3A7891889A05B00920A70</string>
-				<string>53D3A78D1889A05B00920A70</string>
-				<string>53D3A78B1889A05B00920A70</string>
-				<string>53D3A7871889A05B00920A70</string>
-				<string>37C724F9F45D4275A4F10097</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>53D3A7811889A05B00920A70</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>49273490188DE80000B25554</string>
-				<string>53D3A7931889A05B00920A70</string>
-				<string>53D3A79E1889A05B00920A70</string>
-				<string>4927347E188DA6BE00B25554</string>
-				<string>491EE5AF188EE0600018A060</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>53D3A7821889A05B00920A70</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>53D3A7B51889A05B00920A70</string>
-			<key>buildPhases</key>
-			<array>
-				<string>33D2B89B7A4A4EBD8C746FC8</string>
-				<string>53D3A77F1889A05B00920A70</string>
-				<string>53D3A7801889A05B00920A70</string>
-				<string>53D3A7811889A05B00920A70</string>
-				<string>A0CB2A31F74F4903BB61FBFA</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>VotingInformationProject</string>
-			<key>productName</key>
-			<string>VotingInformationProject</string>
-			<key>productReference</key>
-			<string>53D3A7831889A05B00920A70</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>53D3A7831889A05B00920A70</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>VotingInformationProject.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>53D3A7841889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A7831889A05B00920A70</string>
-				<string>53D3A7A31889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7851889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4903245B1890650A00FD9828</string>
-				<string>4903245C1890650A00FD9828</string>
-				<string>53D3A7861889A05B00920A70</string>
-				<string>53D3A7881889A05B00920A70</string>
-				<string>53D3A78A1889A05B00920A70</string>
-				<string>53D3A78C1889A05B00920A70</string>
-				<string>53D3A7A41889A05B00920A70</string>
-				<string>548B2CFFD32E415181767B53</string>
-				<string>EF4987FA570B47C7AABCBCC9</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7861889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>53D3A7871889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7861889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7881889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>CoreGraphics.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/CoreGraphics.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>53D3A7891889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7881889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A78A1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>UIKit.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/UIKit.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>53D3A78B1889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A78A1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A78C1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>CoreData.framework</string>
-			<key>path</key>
-			<string>System/Library/Frameworks/CoreData.framework</string>
-			<key>sourceTree</key>
-			<string>SDKROOT</string>
-		</dict>
-		<key>53D3A78D1889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A78C1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A78E1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4927348B188DDD1200B25554</string>
-				<string>4927348A188DDD0000B25554</string>
-				<string>53D3A7971889A05B00920A70</string>
-				<string>53D3A7981889A05B00920A70</string>
-				<string>53D3A79D1889A05B00920A70</string>
-				<string>53D3A79A1889A05B00920A70</string>
-				<string>53D3A78F1889A05B00920A70</string>
-				<string>4927347D188DA6BE00B25554</string>
-				<string>49273491188DE8DA00B25554</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>VotingInformationProject</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A78F1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A7901889A05B00920A70</string>
-				<string>53D3A7911889A05B00920A70</string>
-				<string>53D3A7941889A05B00920A70</string>
-				<string>53D3A7961889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7901889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>VotingInformationProject-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7911889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A7921889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7921889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7931889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7911889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7941889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>main.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7951889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7941889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7961889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>VotingInformationProject-Prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7971889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>AppDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7981889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>AppDelegate.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7991889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7981889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A79A1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A79B1889A05B00920A70</string>
-			</array>
-			<key>currentVersion</key>
-			<string>53D3A79B1889A05B00920A70</string>
-			<key>isa</key>
-			<string>XCVersionGroup</string>
-			<key>path</key>
-			<string>VotingInformationProject.xcdatamodeld</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-			<key>versionGroupType</key>
-			<string>wrapper.xcdatamodel</string>
-		</dict>
-		<key>53D3A79B1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.xcdatamodel</string>
-			<key>path</key>
-			<string>VotingInformationProject.xcdatamodel</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A79C1889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A79A1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A79D1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Images.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A79E1889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A79D1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A79F1889A05B00920A70</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>494133FD188F0BD3006F7D0F</string>
-				<string>49B46AE918916E7D00ADC9F9</string>
-				<string>494133FF188F137D006F7D0F</string>
-				<string>53D3A7B21889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>53D3A7A01889A05B00920A70</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>53D3A7A51889A05B00920A70</string>
-				<string>53D3A7A81889A05B00920A70</string>
-				<string>53D3A7A71889A05B00920A70</string>
-				<string>53D3A7A61889A05B00920A70</string>
-				<string>9DD78D93039F4A87BC8E023B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>53D3A7A11889A05B00920A70</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>53D3A7B01889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>53D3A7A21889A05B00920A70</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>53D3A7B81889A05B00920A70</string>
-			<key>buildPhases</key>
-			<array>
-				<string>F0ECAF3628FE4D6AB79B9B9D</string>
-				<string>53D3A79F1889A05B00920A70</string>
-				<string>53D3A7A01889A05B00920A70</string>
-				<string>53D3A7A11889A05B00920A70</string>
-				<string>9586831A4358476CBE146CA9</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>53D3A7AA1889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>VotingInformationProjectTests</string>
-			<key>productName</key>
-			<string>VotingInformationProjectTests</string>
-			<key>productReference</key>
-			<string>53D3A7A31889A05B00920A70</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>53D3A7A31889A05B00920A70</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>VotingInformationProjectTests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>53D3A7A41889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>XCTest.framework</string>
-			<key>path</key>
-			<string>Library/Frameworks/XCTest.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>53D3A7A51889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7A41889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7A61889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7861889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7A71889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A78A1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7A81889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A78C1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7A91889A05B00920A70</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>53D3A77B1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>53D3A7821889A05B00920A70</string>
-			<key>remoteInfo</key>
-			<string>VotingInformationProject</string>
-		</dict>
-		<key>53D3A7AA1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>53D3A7821889A05B00920A70</string>
-			<key>targetProxy</key>
-			<string>53D3A7A91889A05B00920A70</string>
-		</dict>
-		<key>53D3A7AB1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>49B46AE818916E7D00ADC9F9</string>
-				<string>494133FE188F137D006F7D0F</string>
-				<string>494133FC188F0BD3006F7D0F</string>
-				<string>53D3A7B11889A05B00920A70</string>
-				<string>53D3A7AC1889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>VotingInformationProjectTests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7AC1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A7AD1889A05B00920A70</string>
-				<string>53D3A7AE1889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7AD1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>VotingInformationProjectTests-Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7AE1889A05B00920A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>53D3A7AF1889A05B00920A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7AF1889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.strings</string>
-			<key>name</key>
-			<string>en</string>
-			<key>path</key>
-			<string>en.lproj/InfoPlist.strings</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7B01889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7AE1889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7B11889A05B00920A70</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>VotingInformationProjectTests.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>53D3A7B21889A05B00920A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>53D3A7B11889A05B00920A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>53D3A7B31889A05B00920A70</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>53D3A7B41889A05B00920A70</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>53D3A7B51889A05B00920A70</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>53D3A7B61889A05B00920A70</string>
-				<string>53D3A7B71889A05B00920A70</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>53D3A7B61889A05B00920A70</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>1AF4C57983EC49409AF897E4</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
-				<string>LaunchImage</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>VotingInformationProject/VotingInformationProject-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>VotingInformationProject/VotingInformationProject-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>VotingInformationProject</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>53D3A7B71889A05B00920A70</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>1AF4C57983EC49409AF897E4</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon</string>
-				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
-				<string>LaunchImage</string>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>VotingInformationProject/VotingInformationProject-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>VotingInformationProject/VotingInformationProject-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>VotingInformationProject</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>app</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>53D3A7B81889A05B00920A70</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>53D3A7B91889A05B00920A70</string>
-				<string>53D3A7BA1889A05B00920A70</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>53D3A7B91889A05B00920A70</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>2D641A22ED5044C8BE72A960</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/VotingInformationProject.app/VotingInformationProject</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>VotingInformationProject/VotingInformationProject-Prefix.pch</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>INFOPLIST_FILE</key>
-				<string>VotingInformationProjectTests/VotingInformationProjectTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>VotingInformationProjectTests</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>53D3A7BA1889A05B00920A70</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>2D641A22ED5044C8BE72A960</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ARCHS</key>
-				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
-				<key>BUNDLE_LOADER</key>
-				<string>$(BUILT_PRODUCTS_DIR)/VotingInformationProject.app/VotingInformationProject</string>
-				<key>FRAMEWORK_SEARCH_PATHS</key>
-				<array>
-					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
-					<string>$(inherited)</string>
-					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
-				</array>
-				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>VotingInformationProject/VotingInformationProject-Prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>VotingInformationProjectTests/VotingInformationProjectTests-Info.plist</string>
-				<key>PRODUCT_NAME</key>
-				<string>VotingInformationProjectTests</string>
-				<key>TEST_HOST</key>
-				<string>$(BUNDLE_LOADER)</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>xctest</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>548B2CFFD32E415181767B53</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>9586831A4358476CBE146CA9</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Pods-VotingInformationProjectTests-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>9DD78D93039F4A87BC8E023B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>EF4987FA570B47C7AABCBCC9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>A0CB2A31F74F4903BB61FBFA</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Pods-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>EF4987FA570B47C7AABCBCC9</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-VotingInformationProjectTests.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>F0ECAF3628FE4D6AB79B9B9D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>53D3A77B1889A05B00920A70</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B2CFFD32E415181767B53 /* libPods.a */; };
+		4903245A189060AF00FD9828 /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49032459189060AF00FD9828 /* ContactsSearchViewController.m */; };
+		4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245B1890650A00FD9828 /* AddressBook.framework */; };
+		4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245C1890650A00FD9828 /* AddressBookUI.framework */; };
+		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
+		4927347E188DA6BE00B25554 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */; };
+		49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49273485188DBEF000B25554 /* FindElectionsViewController.m */; };
+		4927348E188DDD4700B25554 /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927348D188DDD4700B25554 /* Election.m */; };
+		49273490188DE80000B25554 /* elections.json in Resources */ = {isa = PBXBuildFile; fileRef = 4927348F188DE80000B25554 /* elections.json */; };
+		4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4937CFA5189027610093A742 /* NearbyPollingViewController.m */; };
+		494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FC188F0BD3006F7D0F /* ElectionModelTests.m */; };
+		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
+		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
+		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
+		53D3A78B1889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
+		53D3A78D1889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
+		53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7911889A05B00920A70 /* InfoPlist.strings */; };
+		53D3A7951889A05B00920A70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7941889A05B00920A70 /* main.m */; };
+		53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7981889A05B00920A70 /* AppDelegate.m */; };
+		53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */; };
+		53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A79D1889A05B00920A70 /* Images.xcassets */; };
+		53D3A7A51889A05B00920A70 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7A41889A05B00920A70 /* XCTest.framework */; };
+		53D3A7A61889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
+		53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
+		53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
+		53D3A7B01889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7AE1889A05B00920A70 /* InfoPlist.strings */; };
+		53D3A7B21889A05B00920A70 /* VotingInformationProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */; };
+		9DD78D93039F4A87BC8E023B /* libPods-VotingInformationProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		53D3A7A91889A05B00920A70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53D3A77B1889A05B00920A70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53D3A7821889A05B00920A70;
+			remoteInfo = VotingInformationProject;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1AF4C57983EC49409AF897E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.xcconfig"; path = "Pods/Pods-VotingInformationProjectTests.xcconfig"; sourceTree = "<group>"; };
+		49032458189060AF00FD9828 /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsSearchViewController.h; sourceTree = "<group>"; };
+		49032459189060AF00FD9828 /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewController.m; sourceTree = "<group>"; };
+		4903245B1890650A00FD9828 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		491EE5AE188EE0600018A060 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VIPStoryBoard.storyboard; sourceTree = "<group>"; };
+		49273484188DBEF000B25554 /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsViewController.h; sourceTree = "<group>"; };
+		49273485188DBEF000B25554 /* FindElectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewController.m; sourceTree = "<group>"; };
+		4927348C188DDD4700B25554 /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Election.h; sourceTree = "<group>"; };
+		4927348D188DDD4700B25554 /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
+		4927348F188DE80000B25554 /* elections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elections.json; sourceTree = "<group>"; };
+		4937CFA4189027610093A742 /* NearbyPollingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPollingViewController.h; sourceTree = "<group>"; };
+		4937CFA5189027610093A742 /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
+		494133FC188F0BD3006F7D0F /* ElectionModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionModelTests.m; sourceTree = "<group>"; };
+		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
+		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		53D3A7861889A05B00920A70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		53D3A7881889A05B00920A70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		53D3A78A1889A05B00920A70 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		53D3A78C1889A05B00920A70 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		53D3A7901889A05B00920A70 /* VotingInformationProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProject-Info.plist"; sourceTree = "<group>"; };
+		53D3A7921889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		53D3A7941889A05B00920A70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		53D3A7961889A05B00920A70 /* VotingInformationProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VotingInformationProject-Prefix.pch"; sourceTree = "<group>"; };
+		53D3A7971889A05B00920A70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		53D3A7981889A05B00920A70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VotingInformationProject.xcdatamodel; sourceTree = "<group>"; };
+		53D3A79D1889A05B00920A70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VotingInformationProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		53D3A7A41889A05B00920A70 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
+		53D3A7AF1889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VotingInformationProjectTests.m; sourceTree = "<group>"; };
+		548B2CFFD32E415181767B53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VotingInformationProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		53D3A7801889A05B00920A70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */,
+				4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */,
+				53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */,
+				53D3A78D1889A05B00920A70 /* CoreData.framework in Frameworks */,
+				53D3A78B1889A05B00920A70 /* UIKit.framework in Frameworks */,
+				53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */,
+				37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53D3A7A01889A05B00920A70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53D3A7A51889A05B00920A70 /* XCTest.framework in Frameworks */,
+				53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */,
+				53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */,
+				53D3A7A61889A05B00920A70 /* Foundation.framework in Frameworks */,
+				9DD78D93039F4A87BC8E023B /* libPods-VotingInformationProjectTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4927348A188DDD0000B25554 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4927348C188DDD4700B25554 /* Election.h */,
+				4927348D188DDD4700B25554 /* Election.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4927348B188DDD1200B25554 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49273484188DBEF000B25554 /* FindElectionsViewController.h */,
+				49273485188DBEF000B25554 /* FindElectionsViewController.m */,
+				4937CFA4189027610093A742 /* NearbyPollingViewController.h */,
+				4937CFA5189027610093A742 /* NearbyPollingViewController.m */,
+				49032458189060AF00FD9828 /* ContactsSearchViewController.h */,
+				49032459189060AF00FD9828 /* ContactsSearchViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		49273491188DE8DA00B25554 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				491EE5AE188EE0600018A060 /* settings.plist */,
+				4927348F188DE80000B25554 /* elections.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		53D3A77A1889A05B00920A70 = {
+			isa = PBXGroup;
+			children = (
+				53D3A78E1889A05B00920A70 /* VotingInformationProject */,
+				53D3A7AB1889A05B00920A70 /* VotingInformationProjectTests */,
+				53D3A7851889A05B00920A70 /* Frameworks */,
+				53D3A7841889A05B00920A70 /* Products */,
+				1AF4C57983EC49409AF897E4 /* Pods.xcconfig */,
+				2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		53D3A7841889A05B00920A70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				53D3A7831889A05B00920A70 /* VotingInformationProject.app */,
+				53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		53D3A7851889A05B00920A70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4903245B1890650A00FD9828 /* AddressBook.framework */,
+				4903245C1890650A00FD9828 /* AddressBookUI.framework */,
+				53D3A7861889A05B00920A70 /* Foundation.framework */,
+				53D3A7881889A05B00920A70 /* CoreGraphics.framework */,
+				53D3A78A1889A05B00920A70 /* UIKit.framework */,
+				53D3A78C1889A05B00920A70 /* CoreData.framework */,
+				53D3A7A41889A05B00920A70 /* XCTest.framework */,
+				548B2CFFD32E415181767B53 /* libPods.a */,
+				EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
+			isa = PBXGroup;
+			children = (
+				4927348B188DDD1200B25554 /* Controllers */,
+				4927348A188DDD0000B25554 /* Models */,
+				53D3A7971889A05B00920A70 /* AppDelegate.h */,
+				53D3A7981889A05B00920A70 /* AppDelegate.m */,
+				53D3A79D1889A05B00920A70 /* Images.xcassets */,
+				53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */,
+				53D3A78F1889A05B00920A70 /* Supporting Files */,
+				4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */,
+				49273491188DE8DA00B25554 /* Resources */,
+			);
+			path = VotingInformationProject;
+			sourceTree = "<group>";
+		};
+		53D3A78F1889A05B00920A70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				53D3A7901889A05B00920A70 /* VotingInformationProject-Info.plist */,
+				53D3A7911889A05B00920A70 /* InfoPlist.strings */,
+				53D3A7941889A05B00920A70 /* main.m */,
+				53D3A7961889A05B00920A70 /* VotingInformationProject-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		53D3A7AB1889A05B00920A70 /* VotingInformationProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */,
+				494133FC188F0BD3006F7D0F /* ElectionModelTests.m */,
+				53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */,
+				53D3A7AC1889A05B00920A70 /* Supporting Files */,
+			);
+			path = VotingInformationProjectTests;
+			sourceTree = "<group>";
+		};
+		53D3A7AC1889A05B00920A70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */,
+				53D3A7AE1889A05B00920A70 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		53D3A7821889A05B00920A70 /* VotingInformationProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */;
+			buildPhases = (
+				33D2B89B7A4A4EBD8C746FC8 /* Check Pods Manifest.lock */,
+				53D3A77F1889A05B00920A70 /* Sources */,
+				53D3A7801889A05B00920A70 /* Frameworks */,
+				53D3A7811889A05B00920A70 /* Resources */,
+				A0CB2A31F74F4903BB61FBFA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VotingInformationProject;
+			productName = VotingInformationProject;
+			productReference = 53D3A7831889A05B00920A70 /* VotingInformationProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+		53D3A7A21889A05B00920A70 /* VotingInformationProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProjectTests" */;
+			buildPhases = (
+				F0ECAF3628FE4D6AB79B9B9D /* Check Pods Manifest.lock */,
+				53D3A79F1889A05B00920A70 /* Sources */,
+				53D3A7A01889A05B00920A70 /* Frameworks */,
+				53D3A7A11889A05B00920A70 /* Resources */,
+				9586831A4358476CBE146CA9 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				53D3A7AA1889A05B00920A70 /* PBXTargetDependency */,
+			);
+			name = VotingInformationProjectTests;
+			productName = VotingInformationProjectTests;
+			productReference = 53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		53D3A77B1889A05B00920A70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Bennet Huber";
+				TargetAttributes = {
+					53D3A7A21889A05B00920A70 = {
+						TestTargetID = 53D3A7821889A05B00920A70;
+					};
+				};
+			};
+			buildConfigurationList = 53D3A77E1889A05B00920A70 /* Build configuration list for PBXProject "VotingInformationProject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 53D3A77A1889A05B00920A70;
+			productRefGroup = 53D3A7841889A05B00920A70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				53D3A7821889A05B00920A70 /* VotingInformationProject */,
+				53D3A7A21889A05B00920A70 /* VotingInformationProjectTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		53D3A7811889A05B00920A70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49273490188DE80000B25554 /* elections.json in Resources */,
+				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,
+				53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */,
+				4927347E188DA6BE00B25554 /* VIPStoryBoard.storyboard in Resources */,
+				491EE5AF188EE0600018A060 /* settings.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53D3A7A11889A05B00920A70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53D3A7B01889A05B00920A70 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33D2B89B7A4A4EBD8C746FC8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9586831A4358476CBE146CA9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-VotingInformationProjectTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0CB2A31F74F4903BB61FBFA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0ECAF3628FE4D6AB79B9B9D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		53D3A77F1889A05B00920A70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
+				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
+				4927348E188DDD4700B25554 /* Election.m in Sources */,
+				53D3A7951889A05B00920A70 /* main.m in Sources */,
+				4903245A189060AF00FD9828 /* ContactsSearchViewController.m in Sources */,
+				49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */,
+				4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53D3A79F1889A05B00920A70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */,
+				494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */,
+				53D3A7B21889A05B00920A70 /* VotingInformationProjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		53D3A7AA1889A05B00920A70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53D3A7821889A05B00920A70 /* VotingInformationProject */;
+			targetProxy = 53D3A7A91889A05B00920A70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		53D3A7911889A05B00920A70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				53D3A7921889A05B00920A70 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		53D3A7AE1889A05B00920A70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				53D3A7AF1889A05B00920A70 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		53D3A7B31889A05B00920A70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		53D3A7B41889A05B00920A70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		53D3A7B61889A05B00920A70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AF4C57983EC49409AF897E4 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
+				PRODUCT_NAME = VotingInformationProject;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		53D3A7B71889A05B00920A70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AF4C57983EC49409AF897E4 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
+				PRODUCT_NAME = VotingInformationProject;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		53D3A7B91889A05B00920A70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VotingInformationProject.app/VotingInformationProject";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "VotingInformationProjectTests/VotingInformationProjectTests-Info.plist";
+				PRODUCT_NAME = VotingInformationProjectTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		53D3A7BA1889A05B00920A70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VotingInformationProject.app/VotingInformationProject";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
+				INFOPLIST_FILE = "VotingInformationProjectTests/VotingInformationProjectTests-Info.plist";
+				PRODUCT_NAME = VotingInformationProjectTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		53D3A77E1889A05B00920A70 /* Build configuration list for PBXProject "VotingInformationProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53D3A7B31889A05B00920A70 /* Debug */,
+				53D3A7B41889A05B00920A70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53D3A7B61889A05B00920A70 /* Debug */,
+				53D3A7B71889A05B00920A70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53D3A7B91889A05B00920A70 /* Debug */,
+				53D3A7BA1889A05B00920A70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */,
+			);
+			currentVersion = 53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */;
+			path = VotingInformationProject.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 53D3A77B1889A05B00920A70 /* Project object */;
+}

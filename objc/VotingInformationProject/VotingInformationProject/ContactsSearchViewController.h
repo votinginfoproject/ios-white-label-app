@@ -13,4 +13,6 @@
 
 - (IBAction) showPeoplePicker:(id)sender;
 
+- (NSString *) getAddress: (ABRecordRef) person atIdentifier:(ABMultiValueIdentifier) identifier;
+
 @end
