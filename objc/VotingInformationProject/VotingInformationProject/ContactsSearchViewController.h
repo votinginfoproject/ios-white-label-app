@@ -11,6 +11,4 @@
 
 @interface ContactsSearchViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
 
-@property (strong, nonatomic) NSMutableArray *contactsList;
-
 @end

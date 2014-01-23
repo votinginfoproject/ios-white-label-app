@@ -10,7 +10,6 @@
 
 @interface ContactsSearchViewController ()
 
-@property (weak, nonatomic) IBOutlet UISearchBar *addressSearchBar;
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
 @property (weak, nonatomic) IBOutlet UILabel *selectedAddressLabel;
 
@@ -21,10 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-
-    // Load contacts from Address Book on view load
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,40 +28,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) saveAddress: (ABRecordRef) person {
-    NSString* address = nil;
-    ABMultiValueRef addresses = ABRecordCopyValue(person,
-                                                     kABPersonAddressProperty);
-    if (ABMultiValueGetCount(addresses) > 0) {
-        address = (__bridge_transfer NSString*)
-        ABMultiValueCopyValueAtIndex(addresses, 0);
-    } else {
-        address = @"[None]";
-    }
-    self.selectedAddressLabel.text = address;
-    CFRelease(addresses);
-}
-
-
-- (IBAction)showPeoplePicker:(id)sender {
+- (IBAction)showPeoplePicker:(id)sender
+{
     ABPeoplePickerNavigationController *picker =
     [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
+    // Only want to allow the user to select address entries
+    picker.displayedProperties = @[[NSNumber numberWithInt:kABPersonAddressProperty]];
 
-    [self presentModalViewController:picker animated:YES];
+    [self presentViewController:picker animated:YES completion:nil];
 }
-
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-
-    [self saveAddress:person];
-    [self dismissModalViewControllerAnimated:YES];
-    return NO;
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    // return YES shows contact details view with list of contact properties
+    return YES;
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
@@ -74,7 +51,35 @@
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier
 {
-    return NO;
+    if (property == kABPersonAddressProperty) {
+        self.selectedAddressLabel.text = [self getAddress:person atIdentifier:identifier];
+        [peoplePicker dismissViewControllerAnimated:YES completion:nil];
+        return NO;
+    }
+
+    return YES;
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [peoplePicker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSString *) getAddress: (ABRecordRef) person
+          atIdentifier: (ABMultiValueIdentifier) identifier
+{
+    ABMultiValueRef addresses = ABRecordCopyValue(person, kABPersonAddressProperty);
+    NSArray *addressesArray = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(addresses);
+    const NSUInteger addressIndex = ABMultiValueGetIndexForIdentifier(addresses, identifier);
+    NSDictionary *addressDict = [addressesArray objectAtIndex:addressIndex];
+    NSString *address = [NSString stringWithFormat:@"%@, %@, %@, %@ %@",
+                         [addressDict objectForKey:(NSString *) kABPersonAddressStreetKey],
+                         [addressDict objectForKey:(NSString *) kABPersonAddressCityKey],
+                         [addressDict objectForKey:(NSString *) kABPersonAddressStateKey],
+                         [addressDict objectForKey:(NSString *) kABPersonAddressZIPKey],
+                         [addressDict objectForKey:(NSString *) kABPersonAddressCountryKey]];
+    CFRelease(addresses);
+    return address;
 }
 
 @end
