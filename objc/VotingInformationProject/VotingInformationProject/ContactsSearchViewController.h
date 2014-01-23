@@ -11,4 +11,6 @@
 
 @interface ContactsSearchViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
 
+- (IBAction) showPeoplePicker:(id)sender;
+
 @end
