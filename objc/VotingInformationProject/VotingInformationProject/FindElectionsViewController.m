@@ -9,8 +9,10 @@
 #import "FindElectionsViewController.h"
 #import "AFNetworking/AFNetworking.h"
 #import "Election.h"
+#import "FindElectionsCell.h"
 
 @interface FindElectionsViewController ()
+
 @property (strong, nonatomic) NSMutableArray *elections;
 @property (strong, nonatomic) NSDictionary *appSettings;
 
@@ -128,18 +130,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ElectionCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    FindElectionsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     Election *election = [self.elections objectAtIndex:indexPath.row];
-    if (election) {
-        cell.textLabel.text = election.name;
-    } else {
-        cell.textLabel.text = @"Nil";
-    }
+
+    cell.nameLabel.text = (election && election.name) ? election.name : @"N/A";
+    cell.dateStringLabel.text = (election && election.date) ? election.date : @"";
+
     return cell;
 }
 
