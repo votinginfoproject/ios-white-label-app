@@ -4,39 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Search Address-->
-        <scene sceneID="mGV-cN-eop">
-            <objects>
-                <viewController id="S3G-0A-Zkf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iFd-Uc-Jo1"/>
-                        <viewControllerLayoutGuide type="bottom" id="YK1-MS-R5y"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="a27-YE-LUR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search Address View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGY-Vp-eej">
-                                <rect key="frame" x="20" y="273" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Search Address" id="2bv-UT-mru">
-                        <barButtonItem key="backBarButtonItem" title="Home" id="d26-hx-Fcx"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RHn-6J-a6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="965" y="-512"/>
-        </scene>
-        <!--View Controller - Voting Information Project-->
+        <!--Contacts Search View Controller - Voting Information Project-->
         <scene sceneID="yA2-Pp-ibd">
             <objects>
-                <viewController id="NFr-cT-tr7" sceneMemberID="viewController">
+                <viewController id="NFr-cT-tr7" customClass="ContactsSearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vPq-SJ-gnq"/>
                         <viewControllerLayoutGuide type="bottom" id="SbJ-3I-o0Y"/>
@@ -84,17 +55,24 @@
                                     <segue destination="5h8-J8-eZD" kind="push" id="anU-9c-2vF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncj-Og-HCR">
-                                <rect key="frame" x="20" y="162" width="285" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
+                                <rect key="frame" x="20" y="162" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Search Addresses">
+                                <state key="normal" title="Show Contacts Picker">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="S3G-0A-Zkf" kind="push" id="yJr-ci-MHx"/>
+                                    <action selector="showPeoplePicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="KBP-jV-WvW"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chosen Address..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88Q-c7-Ca9">
+                                <rect key="frame" x="20" y="335" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -104,8 +82,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="3MZ-vv-Y3L" id="SUR-pT-NRP"/>
+                        <outlet property="selectedAddressLabel" destination="88Q-c7-Ca9" id="HAQ-VD-zXo"/>
+                        <outlet property="showPeoplePicker" destination="76u-cC-uxA" id="5I8-sC-c35"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hV-DV-Ify" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="3MZ-vv-Y3L">
+                    <connections>
+                        <outlet property="delegate" destination="NFr-cT-tr7" id="rse-mE-x5E"/>
+                        <outlet property="searchContentsController" destination="NFr-cT-tr7" id="1hY-TK-WEp"/>
+                        <outlet property="searchResultsDataSource" destination="NFr-cT-tr7" id="7iq-a2-VhR"/>
+                        <outlet property="searchResultsDelegate" destination="NFr-cT-tr7" id="Ey4-KR-lF1"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="6" y="59"/>
         </scene>
@@ -158,6 +149,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsg-MQ-szX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="543" y="-275"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="Nsc-hJ-r3a">
+            <objects>
+                <tableViewController id="iKj-dY-AuP" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PCo-qJ-59V">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="efq-0M-0qc">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="efq-0M-0qc" id="lLU-S0-a6k">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iKj-dY-AuP" id="CB0-vV-vgq"/>
+                            <outlet property="delegate" destination="iKj-dY-AuP" id="DXo-8a-c0D"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Plu-Aa-pKl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgt-8Y-hmt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965" y="-466"/>
         </scene>
         <!--Find Elections View Controller - Find Elections-->
         <scene sceneID="U8f-na-ZUT">

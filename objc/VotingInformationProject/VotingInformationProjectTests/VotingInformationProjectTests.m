@@ -7,23 +7,16 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Kiwi.h"
 
-@interface VotingInformationProjectTests : XCTestCase
+SPEC_BEGIN(VotingInformationProjectTests)
 
-@end
+describe(@"SAMPLE TEST: Kiwi", ^{
+    it(@"is pretty cool", ^{
+        NSUInteger a = 16;
+        NSUInteger b = 26;
+        [[theValue(a + b) should] equal:theValue(42)];
+    });
+});
 
-@implementation VotingInformationProjectTests
-
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-@end
+SPEC_END
