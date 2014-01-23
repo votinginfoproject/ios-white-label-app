@@ -74,12 +74,12 @@
     NSArray *addressesArray = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(addresses);
     const NSUInteger addressIndex = ABMultiValueGetIndexForIdentifier(addresses, identifier);
     NSDictionary *addressDict = [addressesArray objectAtIndex:addressIndex];
-    NSString *address = [NSString stringWithFormat:@"%@, %@, %@, %@ %@",
-                         [addressDict objectForKey:(NSString *) kABPersonAddressStreetKey],
-                         [addressDict objectForKey:(NSString *) kABPersonAddressCityKey],
-                         [addressDict objectForKey:(NSString *) kABPersonAddressStateKey],
-                         [addressDict objectForKey:(NSString *) kABPersonAddressZIPKey],
-                         [addressDict objectForKey:(NSString *) kABPersonAddressCountryKey]];
+    NSString *street = [addressDict objectForKey:(NSString *) kABPersonAddressStreetKey];
+    NSString *city = [addressDict objectForKey:(NSString *) kABPersonAddressCityKey];
+    NSString *state = [addressDict objectForKey:(NSString *) kABPersonAddressStateKey];
+    NSString *zip = [addressDict objectForKey:(NSString *) kABPersonAddressZIPKey];
+    NSString *country = [addressDict objectForKey:(NSString *) kABPersonAddressCountryKey];
+    NSString *address = [NSString stringWithFormat:@"%@, %@, %@, %@ %@", street, city, state, zip, country];
     CFRelease(addresses);
     return address;
 }

@@ -19,6 +19,7 @@
 		4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4937CFA5189027610093A742 /* NearbyPollingViewController.m */; };
 		494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FC188F0BD3006F7D0F /* ElectionModelTests.m */; };
 		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
+		4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
 		53D3A78B1889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
@@ -65,6 +66,7 @@
 		4937CFA5189027610093A742 /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
 		494133FC188F0BD3006F7D0F /* ElectionModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionModelTests.m; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
+		4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewControllerTests.m; sourceTree = "<group>"; };
 		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D3A7861889A05B00920A70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53D3A7881889A05B00920A70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +217,7 @@
 		53D3A7AB1889A05B00920A70 /* VotingInformationProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */,
 				494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */,
 				494133FC188F0BD3006F7D0F /* ElectionModelTests.m */,
 				53D3A7B11889A05B00920A70 /* VotingInformationProjectTests.m */,
@@ -412,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */,
+				4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */,
 				494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */,
 				53D3A7B21889A05B00920A70 /* VotingInformationProjectTests.m in Sources */,
 			);
