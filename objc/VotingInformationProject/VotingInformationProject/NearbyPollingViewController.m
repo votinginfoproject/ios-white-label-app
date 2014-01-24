@@ -7,16 +7,12 @@
 //
 
 #import "NearbyPollingViewController.h"
-#import "GoogleMaps/GoogleMaps.h"
 
 @interface NearbyPollingViewController ()
 @property (strong, nonatomic) GMSMapView * mapView;
 @end
 
 @implementation NearbyPollingViewController
-
-NSString *const USER_DEFAULTS_LATITUDE_KEY = @"mapLatitude";
-NSString *const USER_DEFAULTS_LONGITUDE_KEY = @"mapLongitude";
 
 NSUserDefaults *_userDefaults;
 NSString *_address;
@@ -46,7 +42,11 @@ NSString *_address;
     self.mapView.myLocationEnabled = YES;
     self.view = self.mapView;
     
-    // Set marker to user selected address if available
+    [self geocodeAddress];
+};
+
+- (void) geocodeAddress
+{
     _address = [_userDefaults objectForKey:@"storedAddress"];
     if (_address) {
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -54,15 +54,15 @@ NSString *_address;
                      completionHandler:^(NSArray* placemarks, NSError* error){
             for (CLPlacemark* placemark in placemarks)
             {
-                [self setPlacemark:placemark];
+                [self setPlacemark:placemark andAnimate:YES];
             }
         }];
         
     }
-
 }
 
-- (void) setPlacemark:(CLPlacemark *)placemark {
+- (void) setPlacemark:(CLPlacemark *)placemark
+              andAnimate: (BOOL) animate {
     // Process the placemark.
     double latitude = placemark.location.coordinate.latitude;
     double longitude = placemark.location.coordinate.longitude;
@@ -76,8 +76,10 @@ NSString *_address;
     marker.title = _address;
     marker.snippet = _address;
     marker.map = self.mapView;
-    
-    [self.mapView animateToLocation:position];
+   
+    if (animate) {
+        [self.mapView animateToLocation:position];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -6,11 +6,15 @@
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
+#import "VIPUserDefaultsKeys.h"
 #import <UIKit/UIKit.h>
+#import "GoogleMaps/GoogleMaps.h"
 
 @interface NearbyPollingViewController : UIViewController
 
-extern NSString *const USER_DEFAULTS_LATITUDE_KEY;
-extern NSString *const USER_DEFAULTS_LONGITUDE_KEY;
+-(void) setPlacemark:(CLPlacemark *) placemark
+          andAnimate:(BOOL)animate;
+
+- (void) geocodeAddress;
 
 @end
