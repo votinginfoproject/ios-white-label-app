@@ -22,26 +22,21 @@ NSString *_address;
     [super viewDidLoad];
 
     _userDefaults = [NSUserDefaults standardUserDefaults];
+
+    // Set map view and display
     double latitude = [_userDefaults doubleForKey:USER_DEFAULTS_LATITUDE_KEY];
     double longitude = [_userDefaults doubleForKey:USER_DEFAULTS_LONGITUDE_KEY];
-    
-    // Set map view and display
-    double defaultLatitude = 39.9522;
-    double defaultLongitude = -75.1639;
-
-    if (!latitude) {
-        latitude = defaultLatitude;
-    }
-    if (!longitude) {
-        longitude = defaultLongitude;
-    }
+    double zoom = 13;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
-                                                                 zoom:13];
+                                                                 zoom:zoom];
+
+    // Initialize Map View
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.mapView.myLocationEnabled = YES;
     self.view = self.mapView;
-    
+
+    // Set map center to address if it exists
     _address = [_userDefaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
     [self geocode:_address];
 };
