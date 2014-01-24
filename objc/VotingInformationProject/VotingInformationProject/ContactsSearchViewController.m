@@ -54,7 +54,13 @@
                               identifier:(ABMultiValueIdentifier)identifier
 {
     if (property == kABPersonAddressProperty) {
-        self.selectedAddressLabel.text = [self getAddress:person atIdentifier:identifier];
+        NSString *address = [self getAddress:person atIdentifier:identifier];
+        self.selectedAddressLabel.text = address;
+
+        // TODO: Store address information in CoreData once implemented
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:address forKey:@"storedAddress"];
+
         [peoplePicker dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }

@@ -10,4 +10,7 @@
 
 @interface NearbyPollingViewController : UIViewController
 
+extern NSString *const USER_DEFAULTS_LATITUDE_KEY;
+extern NSString *const USER_DEFAULTS_LONGITUDE_KEY;
+
 @end
