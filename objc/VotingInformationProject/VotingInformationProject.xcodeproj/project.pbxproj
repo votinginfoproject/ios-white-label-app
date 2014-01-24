@@ -8,20 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B2CFFD32E415181767B53 /* libPods.a */; };
-		4903245718905AB700FD9828 /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903245618905AB700FD9828 /* FindElectionsCell.m */; };
-		4903245A189060AF00FD9828 /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49032459189060AF00FD9828 /* ContactsSearchViewController.m */; };
 		4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245B1890650A00FD9828 /* AddressBook.framework */; };
 		4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245C1890650A00FD9828 /* AddressBookUI.framework */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
 		4927347E188DA6BE00B25554 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */; };
-		49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49273485188DBEF000B25554 /* FindElectionsViewController.m */; };
-		4927348E188DDD4700B25554 /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927348D188DDD4700B25554 /* Election.m */; };
 		49273490188DE80000B25554 /* elections.json in Resources */ = {isa = PBXBuildFile; fileRef = 4927348F188DE80000B25554 /* elections.json */; };
-		4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4937CFA5189027610093A742 /* NearbyPollingViewController.m */; };
 		494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FC188F0BD3006F7D0F /* ElectionModelTests.m */; };
 		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
 		4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */; };
-		49B1B24A1892E0C20005E9C2 /* VIPUserDefaultsKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1B2491892E0C20005E9C2 /* VIPUserDefaultsKeys.m */; };
+		49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981431892F7F700E26C5D /* ContactsSearchViewController.m */; };
+		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
+		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
+		49E981521892F81600E26C5D /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814D1892F81600E26C5D /* Election.m */; };
+		49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814F1892F81600E26C5D /* FindElectionsCell.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
 		53D3A78B1889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
@@ -53,26 +52,25 @@
 /* Begin PBXFileReference section */
 		1AF4C57983EC49409AF897E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.xcconfig"; path = "Pods/Pods-VotingInformationProjectTests.xcconfig"; sourceTree = "<group>"; };
-		4903245518905AB700FD9828 /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsCell.h; sourceTree = "<group>"; };
-		4903245618905AB700FD9828 /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsCell.m; sourceTree = "<group>"; };
-		49032458189060AF00FD9828 /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsSearchViewController.h; sourceTree = "<group>"; };
-		49032459189060AF00FD9828 /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewController.m; sourceTree = "<group>"; };
 		4903245B1890650A00FD9828 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		491EE5AE188EE0600018A060 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VIPStoryBoard.storyboard; sourceTree = "<group>"; };
-		49273484188DBEF000B25554 /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsViewController.h; sourceTree = "<group>"; };
-		49273485188DBEF000B25554 /* FindElectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewController.m; sourceTree = "<group>"; };
-		4927348C188DDD4700B25554 /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Election.h; sourceTree = "<group>"; };
-		4927348D188DDD4700B25554 /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
 		4927348F188DE80000B25554 /* elections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elections.json; sourceTree = "<group>"; };
-		4937CFA4189027610093A742 /* NearbyPollingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPollingViewController.h; sourceTree = "<group>"; };
-		4937CFA5189027610093A742 /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
 		494133FC188F0BD3006F7D0F /* ElectionModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionModelTests.m; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
 		4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewControllerTests.m; sourceTree = "<group>"; };
-		49B1B2481892E0C20005E9C2 /* VIPUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPUserDefaultsKeys.h; sourceTree = "<group>"; };
-		49B1B2491892E0C20005E9C2 /* VIPUserDefaultsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPUserDefaultsKeys.m; sourceTree = "<group>"; };
+		49E981421892F7F700E26C5D /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsSearchViewController.h; sourceTree = "<group>"; };
+		49E981431892F7F700E26C5D /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewController.m; sourceTree = "<group>"; };
+		49E981441892F7F700E26C5D /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsViewController.h; sourceTree = "<group>"; };
+		49E981451892F7F700E26C5D /* FindElectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewController.m; sourceTree = "<group>"; };
+		49E981461892F7F700E26C5D /* NearbyPollingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPollingViewController.h; sourceTree = "<group>"; };
+		49E981471892F7F700E26C5D /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
+		49E9814C1892F81600E26C5D /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Election.h; sourceTree = "<group>"; };
+		49E9814D1892F81600E26C5D /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
+		49E9814E1892F81600E26C5D /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsCell.h; sourceTree = "<group>"; };
+		49E9814F1892F81600E26C5D /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsCell.m; sourceTree = "<group>"; };
+		49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPUserDefaultsKeys.h; sourceTree = "<group>"; };
 		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D3A7861889A05B00920A70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53D3A7881889A05B00920A70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -125,32 +123,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4927348A188DDD0000B25554 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4927348C188DDD4700B25554 /* Election.h */,
-				4927348D188DDD4700B25554 /* Election.m */,
-				4903245518905AB700FD9828 /* FindElectionsCell.h */,
-				4903245618905AB700FD9828 /* FindElectionsCell.m */,
-				49B1B2481892E0C20005E9C2 /* VIPUserDefaultsKeys.h */,
-				49B1B2491892E0C20005E9C2 /* VIPUserDefaultsKeys.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		4927348B188DDD1200B25554 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				49273484188DBEF000B25554 /* FindElectionsViewController.h */,
-				49273485188DBEF000B25554 /* FindElectionsViewController.m */,
-				4937CFA4189027610093A742 /* NearbyPollingViewController.h */,
-				4937CFA5189027610093A742 /* NearbyPollingViewController.m */,
-				49032458189060AF00FD9828 /* ContactsSearchViewController.h */,
-				49032459189060AF00FD9828 /* ContactsSearchViewController.m */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
 		49273491188DE8DA00B25554 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +130,31 @@
 				4927348F188DE80000B25554 /* elections.json */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		49E981411892F7F700E26C5D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49E981421892F7F700E26C5D /* ContactsSearchViewController.h */,
+				49E981431892F7F700E26C5D /* ContactsSearchViewController.m */,
+				49E981441892F7F700E26C5D /* FindElectionsViewController.h */,
+				49E981451892F7F700E26C5D /* FindElectionsViewController.m */,
+				49E981461892F7F700E26C5D /* NearbyPollingViewController.h */,
+				49E981471892F7F700E26C5D /* NearbyPollingViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49E9814B1892F81600E26C5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49E9814C1892F81600E26C5D /* Election.h */,
+				49E9814D1892F81600E26C5D /* Election.m */,
+				49E9814E1892F81600E26C5D /* FindElectionsCell.h */,
+				49E9814F1892F81600E26C5D /* FindElectionsCell.m */,
+				49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		53D3A77A1889A05B00920A70 = {
@@ -200,14 +197,14 @@
 		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
-				4927348B188DDD1200B25554 /* Controllers */,
-				4927348A188DDD0000B25554 /* Models */,
+				49E981411892F7F700E26C5D /* Controllers */,
+				49E9814B1892F81600E26C5D /* Models */,
 				53D3A7971889A05B00920A70 /* AppDelegate.h */,
 				53D3A7981889A05B00920A70 /* AppDelegate.m */,
-				53D3A79D1889A05B00920A70 /* Images.xcassets */,
-				53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */,
-				53D3A78F1889A05B00920A70 /* Supporting Files */,
 				4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */,
+				53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */,
+				53D3A79D1889A05B00920A70 /* Images.xcassets */,
+				53D3A78F1889A05B00920A70 /* Supporting Files */,
 				49273491188DE8DA00B25554 /* Resources */,
 			);
 			path = VotingInformationProject;
@@ -410,15 +407,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4903245718905AB700FD9828 /* FindElectionsCell.m in Sources */,
-				49B1B24A1892E0C20005E9C2 /* VIPUserDefaultsKeys.m in Sources */,
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
+				49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
-				4927348E188DDD4700B25554 /* Election.m in Sources */,
+				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
-				4903245A189060AF00FD9828 /* ContactsSearchViewController.m in Sources */,
-				49273486188DBEF000B25554 /* FindElectionsViewController.m in Sources */,
-				4937CFA6189027610093A742 /* NearbyPollingViewController.m in Sources */,
+				49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */,
+				49E981521892F81600E26C5D /* Election.m in Sources */,
+				49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
