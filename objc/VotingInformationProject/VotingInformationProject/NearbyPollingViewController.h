@@ -12,9 +12,9 @@
 
 @interface NearbyPollingViewController : UIViewController
 
--(void) setPlacemark:(CLPlacemark *) placemark
+-(void) setPlacemark:(CLPlacemark *)placemark
           andAnimate:(BOOL)animate;
 
-- (void) geocodeAddress;
+- (void) geocode:(NSString *)address;
 
 @end

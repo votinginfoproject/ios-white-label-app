@@ -42,12 +42,12 @@ NSString *_address;
     self.mapView.myLocationEnabled = YES;
     self.view = self.mapView;
     
-    [self geocodeAddress];
+    _address = [_userDefaults objectForKey:@"storedAddress"];
+    [self geocode:_address];
 };
 
-- (void) geocodeAddress
+- (void) geocode:(NSString *)address
 {
-    _address = [_userDefaults objectForKey:@"storedAddress"];
     if (_address) {
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         [geocoder geocodeAddressString:_address
