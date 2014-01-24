@@ -8,6 +8,7 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
+#import "VIPUserDefaultsKeys.h"
 #import "ContactsSearchViewController.h"
 
 @interface ContactsSearchViewController ()
@@ -19,9 +20,17 @@
 
 @implementation ContactsSearchViewController
 
+NSUserDefaults* _userDefaults;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _userDefaults = [NSUserDefaults standardUserDefaults];
+   
+    NSString *storedAddress = [_userDefaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
+    if (storedAddress) {
+        self.selectedAddressLabel.text = storedAddress;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +63,12 @@
                               identifier:(ABMultiValueIdentifier)identifier
 {
     if (property == kABPersonAddressProperty) {
-        self.selectedAddressLabel.text = [self getAddress:person atIdentifier:identifier];
+        NSString *address = [self getAddress:person atIdentifier:identifier];
+        self.selectedAddressLabel.text = address;
+
+        // TODO: Store address information in CoreData once implemented
+        [_userDefaults setObject:address forKey:USER_DEFAULTS_STORED_ADDRESS];
+
         [peoplePicker dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }
