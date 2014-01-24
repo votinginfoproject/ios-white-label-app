@@ -42,7 +42,7 @@ NSString *_address;
     self.mapView.myLocationEnabled = YES;
     self.view = self.mapView;
     
-    _address = [_userDefaults objectForKey:@"storedAddress"];
+    _address = [_userDefaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
     [self geocode:_address];
 };
 

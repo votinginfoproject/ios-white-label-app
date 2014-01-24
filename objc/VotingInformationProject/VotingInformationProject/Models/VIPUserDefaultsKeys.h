@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VIPUserDefaultsKeys : NSObject
-
-extern NSString *const USER_DEFAULTS_STORED_ADDRESS;
-extern NSString *const USER_DEFAULTS_LATITUDE_KEY;
-extern NSString *const USER_DEFAULTS_LONGITUDE_KEY;
-
-@end
+#define USER_DEFAULTS_STORED_ADDRESS @"StoredAddress"
+#define USER_DEFAULTS_LATITUDE_KEY @"mapLatitude"
+#define USER_DEFAULTS_LONGITUDE_KEY @"mapLongitude"
