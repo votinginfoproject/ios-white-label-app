@@ -16,7 +16,6 @@ SPEC_BEGIN(ContactsSearchViewControllerTests)
 describe(@"ContactsSearchViewController", ^{
     it(@"should return an address of the form '<street>, <city>, <state>, <zip> <country>'", ^{
         CFErrorRef error = NULL;
-        ABAddressBookRef ab = ABAddressBookCreateWithOptions(NULL, &error);
         ABRecordRef contact = ABPersonCreate();
         BOOL didSet;
 
@@ -37,7 +36,6 @@ describe(@"ContactsSearchViewController", ^{
         didSet = ABMultiValueAddValueAndLabel(multi, CFBridgingRetain(address1), kABWorkLabel, &multiValueId);
 
         didSet = ABRecordSetValue(contact, kABPersonAddressProperty, multi, &error);
-        ABAddressBookAddRecord(ab, contact, &error);
 
         NSString *address = nil;
         if (error)
@@ -54,7 +52,6 @@ describe(@"ContactsSearchViewController", ^{
         }
         CFRelease(multi);
         CFRelease(contact);
-        CFRelease(ab);
 
     });
 });
