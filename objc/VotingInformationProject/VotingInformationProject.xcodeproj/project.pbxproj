@@ -10,8 +10,8 @@
 		37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B2CFFD32E415181767B53 /* libPods.a */; };
 		4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245B1890650A00FD9828 /* AddressBook.framework */; };
 		4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245C1890650A00FD9828 /* AddressBookUI.framework */; };
+		49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
-		4927347E188DA6BE00B25554 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */; };
 		49273490188DE80000B25554 /* elections.json in Resources */ = {isa = PBXBuildFile; fileRef = 4927348F188DE80000B25554 /* elections.json */; };
 		494133FD188F0BD3006F7D0F /* ElectionModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FC188F0BD3006F7D0F /* ElectionModelTests.m */; };
 		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
@@ -55,16 +55,17 @@
 		2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.xcconfig"; path = "Pods/Pods-VotingInformationProjectTests.xcconfig"; sourceTree = "<group>"; };
 		4903245B1890650A00FD9828 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		49196B90189AED9D007DCBD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/VIPStoryBoard.storyboard; sourceTree = "<group>"; };
+		49196B93189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/VIPStoryBoard.strings; sourceTree = "<group>"; };
+		49196B94189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49196B95189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		49196B96189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		491EE5AE188EE0600018A060 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
-		4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VIPStoryBoard.storyboard; sourceTree = "<group>"; };
 		4927348F188DE80000B25554 /* elections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elections.json; sourceTree = "<group>"; };
 		494133FC188F0BD3006F7D0F /* ElectionModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionModelTests.m; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
 		4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewControllerTests.m; sourceTree = "<group>"; };
-		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		498225E3189AEAF700FB8FC4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		498225E4189AEAF700FB8FC4 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		498225E5189AEAF700FB8FC4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		49E981421892F7F700E26C5D /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsSearchViewController.h; sourceTree = "<group>"; };
 		49E981431892F7F700E26C5D /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewController.m; sourceTree = "<group>"; };
 		49E981441892F7F700E26C5D /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsViewController.h; sourceTree = "<group>"; };
@@ -207,7 +208,7 @@
 				49E9814B1892F81600E26C5D /* Models */,
 				53D3A7971889A05B00920A70 /* AppDelegate.h */,
 				53D3A7981889A05B00920A70 /* AppDelegate.m */,
-				4927347D188DA6BE00B25554 /* VIPStoryBoard.storyboard */,
+				49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */,
 				53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */,
 				53D3A79D1889A05B00920A70 /* Images.xcassets */,
 				53D3A78F1889A05B00920A70 /* Supporting Files */,
@@ -311,6 +312,7 @@
 			knownRegions = (
 				en,
 				es,
+				Base,
 			);
 			mainGroup = 53D3A77A1889A05B00920A70;
 			productRefGroup = 53D3A7841889A05B00920A70 /* Products */;
@@ -332,7 +334,7 @@
 				498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */,
 				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,
 				53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */,
-				4927347E188DA6BE00B25554 /* VIPStoryBoard.storyboard in Resources */,
+				49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */,
 				491EE5AF188EE0600018A060 /* settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,11 +450,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49196B90189AED9D007DCBD9 /* Base */,
+				49196B93189AEE33007DCBD9 /* es */,
+			);
+			name = VIPStoryBoard.storyboard;
+			sourceTree = "<group>";
+		};
 		498225E2189AEADC00FB8FC4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				498225E1189AEADC00FB8FC4 /* en */,
-				498225E4189AEAF700FB8FC4 /* es */,
+				49196B95189AEE33007DCBD9 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -461,7 +472,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				53D3A7921889A05B00920A70 /* en */,
-				498225E3189AEAF700FB8FC4 /* es */,
+				49196B94189AEE33007DCBD9 /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -470,7 +481,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				53D3A7AF1889A05B00920A70 /* en */,
-				498225E5189AEAF700FB8FC4 /* es */,
+				49196B96189AEE33007DCBD9 /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
