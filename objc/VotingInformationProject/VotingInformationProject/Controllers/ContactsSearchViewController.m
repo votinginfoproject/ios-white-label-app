@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
 @property (weak, nonatomic) IBOutlet UILabel *selectedAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *localizationLabel;
 
 @end
 
@@ -31,6 +32,27 @@ NSUserDefaults* _userDefaults;
     if (storedAddress) {
         self.selectedAddressLabel.text = storedAddress;
     }
+
+    /* i18n Sample Demo
+     Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
+        Settings.app->General->International->Region Format
+     Control language settings via:
+        Settings.app->General->International->Language
+     
+    Second argument to NSLocalizedString is a comment to be provided in the Localizable.strings file
+        for translator context
+    
+    genstrings is an xcode command line tool for generating a Localizable.strings file from
+     all NSLocalizedString calls in your app.
+     https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/genstrings.1.html
+     http://blog.spritebandits.com/2012/01/25/ios-iphone-app-localization-genstrings-tips/
+    */
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+    NSString *oneMillion = [numberFormatter stringFromNumber:@(1000000)];
+    self.localizationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NUMBER: %@", nil), oneMillion];
+
 }
 
 - (void)didReceiveMemoryWarning

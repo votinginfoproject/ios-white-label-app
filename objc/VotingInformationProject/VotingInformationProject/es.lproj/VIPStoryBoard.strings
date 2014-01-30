@@ -1,0 +1,50 @@
+/* Note that when these strings are created/updated, you should delete the app from the simulator to
+    force the strings to reload. A clean build doesn't do it... */
+
+/* Class = "IBUIBarButtonItem"; title = "Home"; ObjectID = "3WV-9A-YoC"; */
+"3WV-9A-YoC.title" = "Home";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "4e7-kZ-rvO"; */
+"4e7-kZ-rvO.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Show Contacts Picker"; ObjectID = "76u-cC-uxA"; */
+"76u-cC-uxA.normalTitle" = "Show Contacts Picker";
+
+/* Class = "IBUILabel"; text = "Chosen Address..."; ObjectID = "88Q-c7-Ca9"; */
+"88Q-c7-Ca9.text" = "Chosen Address...";
+
+/* Class = "IBUIButton"; normalTitle = "Find Elections"; ObjectID = "Bu1-33-kDi"; */
+"Bu1-33-kDi.normalTitle" = "Encuentra Elecciones";
+
+/* Class = "IBUIButton"; normalTitle = "About This App"; ObjectID = "CXU-KT-uFF"; */
+"CXU-KT-uFF.normalTitle" = "About This App";
+
+/* Class = "IBUINavigationItem"; title = "About This App"; ObjectID = "LXX-B7-fPZ"; */
+"LXX-B7-fPZ.title" = "About This App";
+
+/* Class = "IBUINavigationItem"; title = "Nearby Polling Locations"; ObjectID = "Xfu-rg-ES2"; */
+"Xfu-rg-ES2.title" = "Nearby Polling Locations";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "Zqx-En-nBP"; */
+"Zqx-En-nBP.title" = "Retroceder";
+
+/* Class = "IBUINavigationItem"; title = "Voting Information Project"; ObjectID = "gBY-hG-QTh"; */
+"gBY-hG-QTh.title" = "La Votación del Proyecto";
+
+/* Class = "IBUINavigationItem"; title = "Find Elections"; ObjectID = "m4i-zl-0oB"; */
+"m4i-zl-0oB.title" = "Encuentra Elecciones";
+
+/* Class = "IBUILabel"; text = "About This App"; ObjectID = "pM1-8C-qBg"; */
+"pM1-8C-qBg.text" = "About This App";
+
+/* Class = "IBUIBarButtonItem"; title = "Home"; ObjectID = "t1D-at-fSt"; */
+"t1D-at-fSt.title" = "Home";
+
+/* Class = "IBUILabel"; text = "Branding Placeholder"; ObjectID = "u9S-9H-o10"; */
+"u9S-9H-o10.text" = "Branding Placeholder";
+
+/* Class = "IBUIButton"; normalTitle = "Nearby Polling"; ObjectID = "wSR-zO-bF0"; */
+"wSR-zO-bF0.normalTitle" = "Nearby Polling";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "wXf-gH-Jj8"; */
+"wXf-gH-Jj8.text" = "Label";
