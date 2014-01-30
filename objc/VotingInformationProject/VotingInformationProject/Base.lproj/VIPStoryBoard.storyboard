@@ -73,6 +73,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="i18n Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqn-aj-wFI">
+                                <rect key="frame" x="20" y="376" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -83,6 +90,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
                     <connections>
+                        <outlet property="localizationLabel" destination="Nqn-aj-wFI" id="D56-ke-fgj"/>
                         <outlet property="searchDisplayController" destination="3MZ-vv-Y3L" id="SUR-pT-NRP"/>
                         <outlet property="selectedAddressLabel" destination="88Q-c7-Ca9" id="HAQ-VD-zXo"/>
                         <outlet property="showPeoplePicker" destination="76u-cC-uxA" id="5I8-sC-c35"/>
