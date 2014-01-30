@@ -1,3 +1,11 @@
 language: objective-c
-before_install: cd objc/VotingInformationProject
-script: xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject VotingInformationProjectTests
+
+before_install:
+    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+    - brew update
+    - brew uninstall xctool && brew install xctool --HEAD
+install:
+    - cd objc/VotingInformationProject && pod install
+
+xcode_project: VotingInformationProject.xcworkspace
+xcode_scheme: VotingInformationProjectTests
