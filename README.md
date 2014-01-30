@@ -3,6 +3,10 @@ ios7-white-label-app
 
 Voting Information Project
 
+Build Status
+------------
+Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-label-app.png?branch=develop)](https://travis-ci.org/votinginfoproject/ios7-white-label-app)
+
 Building the App
 ----------------
 
