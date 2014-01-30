@@ -1,5 +1,3 @@
 language: objective-c
-before_install:
-    - brew update
-    - brew install xctool
-script: cd objc/VotingInformationProject && xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject VotingInformationProjectTests
+before_install: cd objc/VotingInformationProject
+script: xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject VotingInformationProjectTests
