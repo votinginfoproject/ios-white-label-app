@@ -7,5 +7,4 @@ before_install:
 install:
     - cd objc/VotingInformationProject && pod install
 
-xcode_project: VotingInformationProject.xcworkspace
-xcode_scheme: VotingInformationProjectTests
+script: xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject test
