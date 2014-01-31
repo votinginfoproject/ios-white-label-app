@@ -1,4 +1,118 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Candidate" representedClassName="Candidate" syncable="YES">
+        <attribute name="candidateURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="orderOnBallot" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="party" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photoURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <relationship name="contest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contest" inverseName="candidates" inverseEntity="Contest" syncable="YES"/>
+    </entity>
+    <entity name="Contest" representedClassName="Contest" syncable="YES">
+        <attribute name="ballotPlacement" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="contestId" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="electorateSpecifications" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="numberElected" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="numberVotingFor" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="office" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="primaryParty" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="referendumSubtitle" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="referendumTitle" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="referendumURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="special" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <relationship name="candidates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Candidate" inverseName="contest" inverseEntity="Candidate" syncable="YES"/>
+        <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="contest" inverseEntity="DataSource" syncable="YES"/>
+        <relationship name="district" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="District" inverseName="contests" inverseEntity="District" syncable="YES"/>
+        <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="contests" inverseEntity="Election" syncable="YES"/>
+    </entity>
+    <entity name="DataSource" representedClassName="DataSource" syncable="YES">
+        <attribute name="isOfficial" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" maxValueString="100" syncable="YES"/>
+        <relationship name="contest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contest" inverseName="dataSource" inverseEntity="Contest" syncable="YES"/>
+        <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="dataSource" inverseEntity="Election" syncable="YES"/>
+        <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="dataSource" inverseEntity="PollingLocation" syncable="YES"/>
+        <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="dataSource" inverseEntity="State" syncable="YES"/>
+    </entity>
+    <entity name="District" representedClassName="District" syncable="YES">
+        <attribute name="districtId" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="scope" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <relationship name="contests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contest" inverseName="district" inverseEntity="Contest" syncable="YES"/>
+    </entity>
+    <entity name="Election" representedClassName="Election" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="addressLat" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="addressLon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="electionId" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="electionName" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="locationName" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <relationship name="contests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contest" inverseName="election" inverseEntity="Contest" syncable="YES"/>
+        <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="election" inverseEntity="DataSource" syncable="YES"/>
+        <relationship name="pollingLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="election" inverseEntity="PollingLocation" syncable="YES"/>
+        <relationship name="states" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State" inverseName="election" inverseEntity="State" syncable="YES"/>
+    </entity>
+    <entity name="ElectionAdministrationBody" representedClassName="ElectionAdministrationBody" syncable="YES">
+        <attribute name="absenteeVotingInfoURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="ballotInfoURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="electionInfoURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="electionRegistrationConfirmationURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="electionRegistrationURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="electionRulesURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <attribute name="hoursOfOperation" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="mailingAddress" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="physicalAddress" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="voterServices" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="votingLocationFinderURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <relationship name="electionOfficials" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ElectionOfficial" inverseName="electionAdministrationBody" inverseEntity="ElectionOfficial" syncable="YES"/>
+        <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="electionAdministrationBody" inverseEntity="State" syncable="YES"/>
+    </entity>
+    <entity name="ElectionOfficial" representedClassName="ElectionOfficial" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="faxNumber" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="officePhoneNumber" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <relationship name="electionAdministrationBody" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ElectionAdministrationBody" inverseName="electionOfficials" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
+    </entity>
+    <entity name="PollingLocation" representedClassName="PollingLocation" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="addressLat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="addressLon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isEarlyVoteSite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" maxValueString="1024" syncable="YES"/>
+        <attribute name="pollingHours" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="pollingLocationId" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="voterServices" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="pollingLocation" inverseEntity="DataSource" syncable="YES"/>
+        <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="pollingLocations" inverseEntity="Election" syncable="YES"/>
+    </entity>
+    <entity name="State" representedClassName="State" syncable="YES">
+        <attribute name="localJurisdiction" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="name" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="stateId" attributeType="String" maxValueString="32" syncable="YES"/>
+        <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="state" inverseEntity="DataSource" syncable="YES"/>
+        <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="states" inverseEntity="Election" syncable="YES"/>
+        <relationship name="electionAdministrationBody" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ElectionAdministrationBody" inverseName="state" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Election" positionX="-63" positionY="-247" width="128" height="208"/>
+        <element name="PollingLocation" positionX="180" positionY="-184" width="128" height="238"/>
+        <element name="DataSource" positionX="-243" positionY="65" width="128" height="133"/>
+        <element name="Contest" positionX="207" positionY="98" width="128" height="298"/>
+        <element name="District" positionX="450" positionY="288" width="128" height="103"/>
+        <element name="Candidate" positionX="450" positionY="74" width="128" height="178"/>
+        <element name="State" positionX="277" positionY="-387" width="128" height="133"/>
+        <element name="ElectionAdministrationBody" positionX="459" positionY="-388" width="128" height="253"/>
+        <element name="ElectionOfficial" positionX="637" positionY="-385" width="128" height="133"/>
+    </elements>
 </model>
