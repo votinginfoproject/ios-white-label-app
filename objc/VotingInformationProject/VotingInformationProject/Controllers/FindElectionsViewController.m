@@ -8,7 +8,7 @@
 
 #import "FindElectionsViewController.h"
 #import "AFNetworking/AFNetworking.h"
-#import "Election.h"
+#import "Election+API.h"
 #import "FindElectionsCell.h"
 
 @interface FindElectionsViewController ()
@@ -19,7 +19,9 @@
 
 @end
 
-@implementation FindElectionsViewController
+@implementation FindElectionsViewController {
+    NSManagedObjectContext *_moc;
+}
 
 - (NSMutableArray *) elections {
     if (!_elections) {
@@ -56,6 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -90,12 +93,15 @@
              }
 
              for (NSDictionary *entry in electionData) {
-                 Election *election = [Election MR_createEntity];
-                 election.electionId = [entry valueForKey:@"id"];
+                 NSString *electionId = [entry valueForKey:@"id"];
+                 Election *election = [Election getOrCreate:electionId];
                  election.electionName = [entry valueForKey:@"name"];
                  election.date = [_yyyymmddFormatter dateFromString:[entry valueForKey:@"electionDay"]];
                  [self.elections addObject:election];
              }
+             [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                 NSLog(@"DataStore saved: %d", success);
+             }];
              [self.tableView reloadData];
              
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
