@@ -29,7 +29,6 @@
 		49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981431892F7F700E26C5D /* ContactsSearchViewController.m */; };
 		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
 		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
-		49E981521892F81600E26C5D /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814D1892F81600E26C5D /* Election.m */; };
 		49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814F1892F81600E26C5D /* FindElectionsCell.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
@@ -99,8 +98,6 @@
 		49E981451892F7F700E26C5D /* FindElectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewController.m; sourceTree = "<group>"; };
 		49E981461892F7F700E26C5D /* NearbyPollingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPollingViewController.h; sourceTree = "<group>"; };
 		49E981471892F7F700E26C5D /* NearbyPollingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPollingViewController.m; sourceTree = "<group>"; };
-		49E9814C1892F81600E26C5D /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Election.h; sourceTree = "<group>"; };
-		49E9814D1892F81600E26C5D /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
 		49E9814E1892F81600E26C5D /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsCell.h; sourceTree = "<group>"; };
 		49E9814F1892F81600E26C5D /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsCell.m; sourceTree = "<group>"; };
 		49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPUserDefaultsKeys.h; sourceTree = "<group>"; };
@@ -207,8 +204,6 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				49E9814C1892F81600E26C5D /* Election.h */,
-				49E9814D1892F81600E26C5D /* Election.m */,
 				49E9814E1892F81600E26C5D /* FindElectionsCell.h */,
 				49E9814F1892F81600E26C5D /* FindElectionsCell.m */,
 				49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */,
@@ -484,7 +479,6 @@
 				491BEA33189C0C0D00FCB21D /* District.m in Sources */,
 				491BEA2A189C0C0D00FCB21D /* ElectionOfficial.m in Sources */,
 				491BEA30189C0C0D00FCB21D /* PollingLocation.m in Sources */,
-				49E981521892F81600E26C5D /* Election.m in Sources */,
 				49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */,
 				491BEA27189C0C0D00FCB21D /* Contest.m in Sources */,
 			);

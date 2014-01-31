@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) NSMutableArray *elections;
 @property (strong, nonatomic) NSDictionary *appSettings;
+@property (strong, nonatomic) NSDateFormatter *yyyymmddFormatter;
 
 @end
 
@@ -33,6 +34,14 @@
         _appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
     }
     return _appSettings;
+}
+
+- (NSDateFormatter *) yyyymmddFormatter {
+    if (!_yyyymmddFormatter) {
+        _yyyymmddFormatter = [[NSDateFormatter alloc] init];
+        [_yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+    }
+    return _yyyymmddFormatter;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -73,27 +82,29 @@
     [manager GET:requestUrl
       parameters:requestParams
          success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+             
+             // On Success
+             NSArray *electionData = [responseObject objectForKey:@"elections"];
+             if (!electionData) {
+                 return;
+             }
 
-        // On Success
-        NSArray *electionData = [responseObject objectForKey:@"elections"];
-        if (!electionData) {
-            return;
-        }
-        for (NSDictionary *entry in electionData) {
-            Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
-                                                      andName:[entry valueForKey:@"name"]
-                                                      andDate:[entry valueForKey:@"electionDay"]];
-            [self.elections addObject:election];
-        }
-        [self.tableView reloadData];
-
-       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-        // On Failure
-        // TODO: Better handle errors once UI finalized
-        NSLog(@"Error: %@", error);
-
-    }];
+             for (NSDictionary *entry in electionData) {
+                 Election *election = [Election MR_createEntity];
+                 election.electionId = [entry valueForKey:@"id"];
+                 election.electionName = [entry valueForKey:@"name"];
+                 election.date = [_yyyymmddFormatter dateFromString:[entry valueForKey:@"electionDay"]];
+                 [self.elections addObject:election];
+             }
+             [self.tableView reloadData];
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+             // On Failure
+             // TODO: Better handle errors once UI finalized
+             NSLog(@"Error: %@", error);
+             
+         }];
 }
 
 // If an API Key exists and the url matches the Civic Info API url, then add key to request params
@@ -134,8 +145,8 @@
 
     Election *election = [self.elections objectAtIndex:indexPath.row];
 
-    cell.nameLabel.text = (election && election.name) ? election.name : @"N/A";
-    cell.dateStringLabel.text = (election && election.date) ? election.date : @"";
+    cell.nameLabel.text = (election && election.electionName) ? election.electionName : @"N/A";
+    cell.dateStringLabel.text = (election && election.date) ? [_yyyymmddFormatter stringFromDate:election.date] : @"N/A";
 
     return cell;
 }
