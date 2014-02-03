@@ -9,6 +9,7 @@
 #import "FindElectionsViewController.h"
 #import "AFNetworking/AFNetworking.h"
 #import "Election+API.h"
+#import "UserAddress+API.h"
 #import "FindElectionsCell.h"
 
 @interface FindElectionsViewController ()
@@ -89,6 +90,8 @@
              // On Success
              NSArray *electionData = [responseObject objectForKey:@"elections"];
              if (!electionData) {
+                 // table view will simply be empty
+                 NSLog(@"No Elections at json key 'elections'.");
                  return;
              }
 
@@ -98,14 +101,32 @@
                  election.electionName = [entry valueForKey:@"name"];
                  election.date = [self.yyyymmddFormatter dateFromString:[entry objectForKey:@"electionDay"]];
                  [self.elections addObject:election];
+
+                 // TODO: Properly move this into viewDidLoad on an Election Detail controller
+                 // The VIP Test Election
+                 if ([electionId isEqualToString:@"2000"]) {
+                     // Test address, apparently only Brooklyn addresses like to work.
+                     // 185 Erasmus Street Brooklyn NY 11226 USA
+                     // Attempted Philadelphia, DC, Manhattan
+                     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                                                  ascending:NO];
+                     [election getVoterInfoAt:userAddress.address
+                               isOfficialOnly:YES
+                                      success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
+                                          [election parseVoterInfoJSON:json];
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                          NSLog(@"%@", error);
+                                      }
+                      ];
+                 }
              }
              [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
                  NSLog(@"DataStore saved: %d", success);
              }];
              [self.tableView reloadData];
-             
+
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             
              // On Failure
              // TODO: Better handle errors once UI finalized
              NSLog(@"Error: %@", error);

@@ -7,9 +7,17 @@
 //
 
 #import "Election.h"
+#import "AFNetworking/AFNetworking.h"
 
 @interface Election (API)
 
 + (Election *) getOrCreate:(NSString*)electionId;
+
+- (void) getVoterInfoAt:(NSString*)address
+         isOfficialOnly:(BOOL)isOfficialOnly
+                success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+                failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+
+- (void) parseVoterInfoJSON:(NSDictionary*)json;
 
 @end

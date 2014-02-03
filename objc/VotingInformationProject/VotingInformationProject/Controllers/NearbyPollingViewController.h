@@ -9,12 +9,14 @@
 #import "VIPUserDefaultsKeys.h"
 #import <UIKit/UIKit.h>
 #import "GoogleMaps/GoogleMaps.h"
+#import "UserAddress+API.h"
 
 @interface NearbyPollingViewController : UIViewController
 
--(void) setPlacemark:(CLPlacemark *)placemark
+-(void) setPlacemark:(UserAddress *)userAddress
           andAnimate:(BOOL)animate;
 
-- (void) geocode:(NSString *)address;
+- (void) geocode:(UserAddress *)userAddress
+ andSetPlacemark:(BOOL)setPlacemark;
 
 @end

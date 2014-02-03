@@ -10,6 +10,7 @@
 
 #import "VIPUserDefaultsKeys.h"
 #import "ContactsSearchViewController.h"
+#import "UserAddress+API.h"
 
 @interface ContactsSearchViewController ()
 
@@ -19,19 +20,18 @@
 
 @end
 
-@implementation ContactsSearchViewController
-
-NSUserDefaults* _userDefaults;
+@implementation ContactsSearchViewController {
+    NSManagedObjectContext *_moc;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _userDefaults = [NSUserDefaults standardUserDefaults];
-   
-    NSString *storedAddress = [_userDefaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
-    if (storedAddress) {
-        self.selectedAddressLabel.text = storedAddress;
-    }
+    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
+
+    UserAddress *storedAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                                   ascending:NO];
+    self.selectedAddressLabel.text = storedAddress.address;
 
     /* i18n Sample Demo
      Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
@@ -86,10 +86,12 @@ NSUserDefaults* _userDefaults;
 {
     if (property == kABPersonAddressProperty) {
         NSString *address = [self getAddress:person atIdentifier:identifier];
-        self.selectedAddressLabel.text = address;
+        UserAddress *selectedAddress = [UserAddress getByAddress:address];
+        [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+            NSLog(@"DataStore saved: %d", success);
+        }];
 
-        // TODO: Store address information in CoreData once implemented
-        [_userDefaults setObject:address forKey:USER_DEFAULTS_STORED_ADDRESS];
+        self.selectedAddressLabel.text = selectedAddress.address;
 
         [peoplePicker dismissViewControllerAnimated:YES completion:nil];
         return NO;
@@ -110,12 +112,7 @@ NSUserDefaults* _userDefaults;
     NSArray *addressesArray = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(addresses);
     const NSUInteger addressIndex = ABMultiValueGetIndexForIdentifier(addresses, identifier);
     NSDictionary *addressDict = [addressesArray objectAtIndex:addressIndex];
-    NSString *street = [addressDict objectForKey:(NSString *) kABPersonAddressStreetKey];
-    NSString *city = [addressDict objectForKey:(NSString *) kABPersonAddressCityKey];
-    NSString *state = [addressDict objectForKey:(NSString *) kABPersonAddressStateKey];
-    NSString *zip = [addressDict objectForKey:(NSString *) kABPersonAddressZIPKey];
-    NSString *country = [addressDict objectForKey:(NSString *) kABPersonAddressCountryKey];
-    NSString *address = [NSString stringWithFormat:@"%@, %@, %@, %@ %@", street, city, state, zip, country];
+    NSString *address = ABCreateStringWithAddressDictionary(addressDict, NO);
     CFRelease(addresses);
     return address;
 }

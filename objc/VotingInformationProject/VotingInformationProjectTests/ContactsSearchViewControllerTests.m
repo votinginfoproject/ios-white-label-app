@@ -14,7 +14,7 @@
 SPEC_BEGIN(ContactsSearchViewControllerTests)
 
 describe(@"ContactsSearchViewController", ^{
-    it(@"should return an address of the form '<street>, <city>, <state>, <zip> <country>'", ^{
+    it(@"should return string address formatted using ABCreateStringWithAddressDictionary", ^{
         CFErrorRef error = NULL;
         ABRecordRef contact = ABPersonCreate();
         BOOL didSet;
@@ -48,7 +48,7 @@ describe(@"ContactsSearchViewController", ^{
             id testController = [[ContactsSearchViewController alloc] init];
             address = [testController getAddress:contact atIdentifier:multiValueId];
             NSLog(@"%@", address);
-            [[address should] equal:@"123 Test Drive, AnyTown, PA, 19107 United States"];
+            [[address should] equal:ABCreateStringWithAddressDictionary(address1, NO)];
         }
         CFRelease(multi);
         CFRelease(contact);
