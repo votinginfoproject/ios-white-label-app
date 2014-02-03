@@ -89,6 +89,8 @@
              // On Success
              NSArray *electionData = [responseObject objectForKey:@"elections"];
              if (!electionData) {
+                 // table view will simply be empty
+                 NSLog(@"No Elections at json key 'elections'.");
                  return;
              }
 
