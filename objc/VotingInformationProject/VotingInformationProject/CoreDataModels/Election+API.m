@@ -11,15 +11,19 @@
 @implementation Election (API)
 
 + (Election*) getOrCreate:(NSString*)electionId {
-    Election *election;
-    if (electionId) {
+    Election *election = nil;
+    if (electionId && [electionId length] > 0) {
         election = [Election MR_findFirstByAttribute:@"electionId" withValue:electionId];
         if (!election) {
             election = [Election MR_createEntity];
             election.electionId = electionId;
+#if DEBUG
             NSLog(@"Created new election with id: %@", electionId);
+#endif
         } else {
+#if DEBUG
             NSLog(@"Retrieved election %@ from data store", electionId);
+#endif
         }
     }
     return election;
