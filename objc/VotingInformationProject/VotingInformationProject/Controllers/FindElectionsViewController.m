@@ -96,7 +96,7 @@
                  NSString *electionId = [entry valueForKey:@"id"];
                  Election *election = [Election getOrCreate:electionId];
                  election.electionName = [entry valueForKey:@"name"];
-                 election.date = [_yyyymmddFormatter dateFromString:[entry valueForKey:@"electionDay"]];
+                 election.date = [self.yyyymmddFormatter dateFromString:[entry objectForKey:@"electionDay"]];
                  [self.elections addObject:election];
              }
              [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
@@ -152,7 +152,7 @@
     Election *election = [self.elections objectAtIndex:indexPath.row];
 
     cell.nameLabel.text = (election && election.electionName) ? election.electionName : @"N/A";
-    cell.dateStringLabel.text = (election && election.date) ? [_yyyymmddFormatter stringFromDate:election.date] : @"N/A";
+    cell.dateStringLabel.text = (election && election.date) ? [self.yyyymmddFormatter stringFromDate:election.date] : @"N/A";
 
     return cell;
 }
