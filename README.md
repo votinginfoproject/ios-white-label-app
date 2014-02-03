@@ -37,3 +37,10 @@ Updating the Google Maps API Key
 2. Go to: https://developers.google.com/maps/documentation/ios/start#getting_the_google_maps_sdk_for_ios
 3. Follow the instructions under the section "Obtaining an API Key"
 4. Open settings.plist in this xcodeproject and paste the key into the field "GoogleMapsAPIKey"
+
+Licenses
+--------
+
+The VIP App uses:
+  * MagicalRecord: MIT License
+  * AFNetworking: MIT License

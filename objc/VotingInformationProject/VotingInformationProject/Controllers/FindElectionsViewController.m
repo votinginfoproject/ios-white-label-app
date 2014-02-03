@@ -8,17 +8,20 @@
 
 #import "FindElectionsViewController.h"
 #import "AFNetworking/AFNetworking.h"
-#import "Election.h"
+#import "Election+API.h"
 #import "FindElectionsCell.h"
 
 @interface FindElectionsViewController ()
 
 @property (strong, nonatomic) NSMutableArray *elections;
 @property (strong, nonatomic) NSDictionary *appSettings;
+@property (strong, nonatomic) NSDateFormatter *yyyymmddFormatter;
 
 @end
 
-@implementation FindElectionsViewController
+@implementation FindElectionsViewController {
+    NSManagedObjectContext *_moc;
+}
 
 - (NSMutableArray *) elections {
     if (!_elections) {
@@ -35,6 +38,14 @@
     return _appSettings;
 }
 
+- (NSDateFormatter *) yyyymmddFormatter {
+    if (!_yyyymmddFormatter) {
+        _yyyymmddFormatter = [[NSDateFormatter alloc] init];
+        [_yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+    }
+    return _yyyymmddFormatter;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -47,6 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,27 +85,32 @@
     [manager GET:requestUrl
       parameters:requestParams
          success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+             
+             // On Success
+             NSArray *electionData = [responseObject objectForKey:@"elections"];
+             if (!electionData) {
+                 return;
+             }
 
-        // On Success
-        NSArray *electionData = [responseObject objectForKey:@"elections"];
-        if (!electionData) {
-            return;
-        }
-        for (NSDictionary *entry in electionData) {
-            Election *election = [[Election alloc] initWithId:[entry valueForKey:@"id"]
-                                                      andName:[entry valueForKey:@"name"]
-                                                      andDate:[entry valueForKey:@"electionDay"]];
-            [self.elections addObject:election];
-        }
-        [self.tableView reloadData];
-
-       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-        // On Failure
-        // TODO: Better handle errors once UI finalized
-        NSLog(@"Error: %@", error);
-
-    }];
+             for (NSDictionary *entry in electionData) {
+                 NSString *electionId = [entry valueForKey:@"id"];
+                 Election *election = [Election getOrCreate:electionId];
+                 election.electionName = [entry valueForKey:@"name"];
+                 election.date = [self.yyyymmddFormatter dateFromString:[entry objectForKey:@"electionDay"]];
+                 [self.elections addObject:election];
+             }
+             [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                 NSLog(@"DataStore saved: %d", success);
+             }];
+             [self.tableView reloadData];
+             
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+             // On Failure
+             // TODO: Better handle errors once UI finalized
+             NSLog(@"Error: %@", error);
+             
+         }];
 }
 
 // If an API Key exists and the url matches the Civic Info API url, then add key to request params
@@ -134,8 +151,8 @@
 
     Election *election = [self.elections objectAtIndex:indexPath.row];
 
-    cell.nameLabel.text = (election && election.name) ? election.name : @"N/A";
-    cell.dateStringLabel.text = (election && election.date) ? election.date : @"";
+    cell.nameLabel.text = (election && election.electionName) ? election.electionName : @"N/A";
+    cell.dateStringLabel.text = (election && election.date) ? [self.yyyymmddFormatter stringFromDate:election.date] : @"N/A";
 
     return cell;
 }
