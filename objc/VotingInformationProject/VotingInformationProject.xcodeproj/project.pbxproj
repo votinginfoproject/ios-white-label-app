@@ -27,6 +27,8 @@
 		4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */; };
 		498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 498225E2189AEADC00FB8FC4 /* Localizable.strings */; };
 		49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */; };
+		49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0118A0254C00C5E889 /* UserAddress+API.m */; };
+		49A57B0518A02F7F00C5E889 /* UserAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0418A02F7F00C5E889 /* UserAddress.m */; };
 		49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981431892F7F700E26C5D /* ContactsSearchViewController.m */; };
 		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
 		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
@@ -95,6 +97,10 @@
 		4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewControllerTests.m; sourceTree = "<group>"; };
 		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModelTests.m; sourceTree = "<group>"; };
+		49A57B0018A0254C00C5E889 /* UserAddress+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UserAddress+API.h"; path = "CoreDataModels/UserAddress+API.h"; sourceTree = "<group>"; };
+		49A57B0118A0254C00C5E889 /* UserAddress+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UserAddress+API.m"; path = "CoreDataModels/UserAddress+API.m"; sourceTree = "<group>"; };
+		49A57B0318A02F7F00C5E889 /* UserAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserAddress.h; path = CoreDataModels/UserAddress.h; sourceTree = "<group>"; };
+		49A57B0418A02F7F00C5E889 /* UserAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAddress.m; path = CoreDataModels/UserAddress.m; sourceTree = "<group>"; };
 		49E981421892F7F700E26C5D /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsSearchViewController.h; sourceTree = "<group>"; };
 		49E981431892F7F700E26C5D /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewController.m; sourceTree = "<group>"; };
 		49E981441892F7F700E26C5D /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindElectionsViewController.h; sourceTree = "<group>"; };
@@ -159,6 +165,10 @@
 		491BEA03189C0B5F00FCB21D /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				49A57B0318A02F7F00C5E889 /* UserAddress.h */,
+				49A57B0418A02F7F00C5E889 /* UserAddress.m */,
+				49A57B0018A0254C00C5E889 /* UserAddress+API.h */,
+				49A57B0118A0254C00C5E889 /* UserAddress+API.m */,
 				491BEA40189C588D00FCB21D /* Election+API.h */,
 				491BEA41189C588D00FCB21D /* Election+API.m */,
 				491BEA37189C0C0E00FCB21D /* DataSource.h */,
@@ -474,6 +484,7 @@
 				491BEA2D189C0C0D00FCB21D /* State.m in Sources */,
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
 				49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */,
+				49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				491BEA24189C0C0D00FCB21D /* Election.m in Sources */,
 				491BEA21189C0C0C00FCB21D /* Candidate.m in Sources */,
@@ -482,6 +493,7 @@
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
 				49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */,
 				491BEA33189C0C0D00FCB21D /* District.m in Sources */,
+				49A57B0518A02F7F00C5E889 /* UserAddress.m in Sources */,
 				491BEA2A189C0C0D00FCB21D /* ElectionOfficial.m in Sources */,
 				491BEA30189C0C0D00FCB21D /* PollingLocation.m in Sources */,
 				49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */,

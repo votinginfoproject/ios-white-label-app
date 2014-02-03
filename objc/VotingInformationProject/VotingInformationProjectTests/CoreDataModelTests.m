@@ -16,7 +16,6 @@ SPEC_BEGIN(CoreDataModelsTests)
 describe(@"CoreDataModels", ^{
     
     beforeEach(^{
-        //[MagicalRecord setupDefaultModelWithClass:[self class]];
         [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
@@ -44,12 +43,6 @@ describe(@"CoreDataModels", ^{
         Election *election2 = [Election getOrCreate:@""];
         [election2 shouldBeNil];
     });
-    
-    //describe(@"Election+API getOrCreate should return existing instance if it exists", ^{
-        //NSString * id1 = @"id1";
-        //Election *election1 = [Election getOrCreate:id1];
-        //id subject =
-    //});
     
 });
 
