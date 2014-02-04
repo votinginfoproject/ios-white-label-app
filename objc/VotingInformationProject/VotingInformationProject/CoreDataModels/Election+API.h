@@ -15,7 +15,6 @@
 + (Election *) getUnique:(NSString*)electionId;
 
 - (void) getVoterInfoAt:(NSString*)address
-         isOfficialOnly:(BOOL)isOfficialOnly
                 success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
                 failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
 

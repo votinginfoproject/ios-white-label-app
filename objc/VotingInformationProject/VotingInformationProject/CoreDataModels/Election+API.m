@@ -32,7 +32,6 @@
 }
 
 - (void) getVoterInfoAt:(NSString*)address
-         isOfficialOnly:(BOOL)isOfficialOnly
                 success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
                 failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure
 {
@@ -48,13 +47,13 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
-    NSString *officialOnly = (isOfficialOnly) ? @"True" : @"False";
     NSDictionary *params = @{ @"address": address };
 
     // Add query params to the url since AFNetworking serializes these internally anyway
     //  and the parameters parameter below attaches only to the http body for POST
-    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=%@";
-    NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey, officialOnly];
+    // Always use officialOnly = True
+    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True";
+    NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey];
     [manager POST:url
        parameters:params
           success:success

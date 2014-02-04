@@ -111,7 +111,6 @@
                      UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                                                   ascending:NO];
                      [election getVoterInfoAt:userAddress.address
-                               isOfficialOnly:YES
                                       success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
                                           [election parseVoterInfoJSON:json withUserAddress:userAddress];
                                       }
