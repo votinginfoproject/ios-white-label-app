@@ -7,25 +7,27 @@
 //
 
 #import "NearbyPollingViewController.h"
+#import "UserAddress+API.h"
 
 @interface NearbyPollingViewController ()
 @property (strong, nonatomic) GMSMapView * mapView;
 @end
 
-@implementation NearbyPollingViewController
-
-NSUserDefaults *_userDefaults;
-NSString *_address;
+@implementation NearbyPollingViewController {
+    NSManagedObjectContext *_moc;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
-    _userDefaults = [NSUserDefaults standardUserDefaults];
-
+    // Set map center to address if it exists
+    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                 ascending:NO];
     // Set map view and display
-    double latitude = [_userDefaults doubleForKey:USER_DEFAULTS_LATITUDE_KEY];
-    double longitude = [_userDefaults doubleForKey:USER_DEFAULTS_LONGITUDE_KEY];
+    double latitude = [userAddress.latitude doubleValue];
+    double longitude = [userAddress.longitude doubleValue];
     double zoom = 13;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
@@ -36,40 +38,41 @@ NSString *_address;
     self.mapView.myLocationEnabled = YES;
     self.view = self.mapView;
 
-    // Set map center to address if it exists
-    _address = [_userDefaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
-    [self geocode:_address];
+    [self geocode:userAddress andSetPlacemark:YES];
 };
 
-- (void) geocode:(NSString *)address
+- (void) geocode:(UserAddress *)userAddress
+ andSetPlacemark:(BOOL) setPlacemark
 {
-    if (_address) {
+    if (userAddress) {
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        [geocoder geocodeAddressString:_address
+        [geocoder geocodeAddressString:userAddress.address
                      completionHandler:^(NSArray* placemarks, NSError* error){
-            for (CLPlacemark* placemark in placemarks)
-            {
-                [self setPlacemark:placemark andAnimate:YES];
-            }
+                         CLPlacemark* placemark = placemarks[0];
+                         userAddress.latitude = @(placemark.location.coordinate.latitude);
+                         userAddress.longitude = @(placemark.location.coordinate.longitude);
+                         [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                             NSLog(@"DataStore saved: %d", success);
+                         }];
+                         
+                         if (setPlacemark) {
+                             [self setPlacemark:userAddress andAnimate:YES];
+                         }
         }];
-        
     }
 }
 
-- (void) setPlacemark:(CLPlacemark *)placemark
-              andAnimate: (BOOL) animate {
-    // Process the placemark.
-    double latitude = placemark.location.coordinate.latitude;
-    double longitude = placemark.location.coordinate.longitude;
-    [_userDefaults setDouble:latitude forKey:USER_DEFAULTS_LATITUDE_KEY];
-    [_userDefaults setDouble:longitude forKey:USER_DEFAULTS_LONGITUDE_KEY];
-    
+- (void) setPlacemark:(UserAddress *)userAddress
+              andAnimate: (BOOL) animate
+{
     // Creates a marker at the placemark location
     GMSMarker *marker = [[GMSMarker alloc] init];
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(latitude, longitude);
+    double lat = [userAddress.latitude doubleValue];
+    double lon = [userAddress.longitude doubleValue];
+    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat, lon);
     marker.position = position;
-    marker.title = _address;
-    marker.snippet = _address;
+    marker.title = userAddress.address;
+    marker.snippet = userAddress.address;
     marker.map = self.mapView;
    
     if (animate) {
