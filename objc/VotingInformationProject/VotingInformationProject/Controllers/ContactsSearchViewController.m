@@ -86,7 +86,7 @@
 {
     if (property == kABPersonAddressProperty) {
         NSString *address = [self getAddress:person atIdentifier:identifier];
-        UserAddress *selectedAddress = [UserAddress getByAddress:address];
+        UserAddress *selectedAddress = [UserAddress getUnique:address];
         [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"DataStore saved: %d", success);
         }];

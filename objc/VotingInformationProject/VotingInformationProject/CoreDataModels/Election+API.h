@@ -11,7 +11,7 @@
 
 @interface Election (API)
 
-+ (Election *) getOrCreate:(NSString*)electionId;
++ (Election *) getUnique:(NSString*)electionId;
 
 - (void) getVoterInfoAt:(NSString*)address
          isOfficialOnly:(BOOL)isOfficialOnly

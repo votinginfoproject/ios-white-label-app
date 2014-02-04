@@ -7,10 +7,11 @@
 //
 
 #import "Election+API.h"
+#import "PollingLocation+API.h"
 
 @implementation Election (API)
 
-+ (Election*) getOrCreate:(NSString*)electionId
++ (Election*) getUnique:(NSString*)electionId
 {
     Election *election = nil;
     if (electionId && [electionId length] > 0) {
@@ -56,9 +57,25 @@
           failure:failure];
 }
 
-- (void) parseVoterInfoJSON:(NSDictionary *)json
+- (void) parseVoterInfoJSON:(NSDictionary*)json
 {
-    // TODO: Implement
+    NSString *status = json[@"status"];
+    if (![status isEqualToString:@"success"]) {
+        NSLog(@"Invalid voterInfo JSON status: %@", status);
+        return;
+    }
+
+    [self parsePollingLocations:json[@"pollingLocations"]];
+
+}
+
+- (void) parsePollingLocations:(NSArray*)pollingLocations
+{
+    for (NSDictionary *location in pollingLocations) {
+        NSString *plId = location[@"address"][@"locationName"];
+        PollingLocation *pollingLocation = [PollingLocation getUnique:plId];
+        [self addPollingLocationsObject:pollingLocation];
+    }
 }
 
 @end

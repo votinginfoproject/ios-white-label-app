@@ -97,7 +97,7 @@
 
              for (NSDictionary *entry in electionData) {
                  NSString *electionId = [entry valueForKey:@"id"];
-                 Election *election = [Election getOrCreate:electionId];
+                 Election *election = [Election getUnique:electionId];
                  election.electionName = [entry valueForKey:@"name"];
                  election.date = [self.yyyymmddFormatter dateFromString:[entry objectForKey:@"electionDay"]];
                  [self.elections addObject:election];
