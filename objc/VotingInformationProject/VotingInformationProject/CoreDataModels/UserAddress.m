@@ -7,7 +7,6 @@
 //
 
 #import "UserAddress.h"
-#import "Election.h"
 
 
 @implementation UserAddress
@@ -16,6 +15,5 @@
 @dynamic lastUsed;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic elections;
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ElectionOfficial, State;
+@class ElectionOfficial, State, VIPAddress;
 
 @interface ElectionAdministrationBody : NSManagedObject
 
@@ -20,13 +20,12 @@
 @property (nonatomic, retain) NSString * electionRegistrationURL;
 @property (nonatomic, retain) NSString * electionRulesURL;
 @property (nonatomic, retain) NSString * hoursOfOperation;
-@property (nonatomic, retain) NSString * mailingAddress;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * physicalAddress;
 @property (nonatomic, retain) NSString * voterServices;
 @property (nonatomic, retain) NSString * votingLocationFinderURL;
 @property (nonatomic, retain) NSSet *electionOfficials;
 @property (nonatomic, retain) State *state;
+@property (nonatomic, retain) NSSet *addresses;
 @end
 
 @interface ElectionAdministrationBody (CoreDataGeneratedAccessors)
@@ -35,5 +34,10 @@
 - (void)removeElectionOfficialsObject:(ElectionOfficial *)value;
 - (void)addElectionOfficials:(NSSet *)values;
 - (void)removeElectionOfficials:(NSSet *)values;
+
+- (void)addAddressesObject:(VIPAddress *)value;
+- (void)removeAddressesObject:(VIPAddress *)value;
+- (void)addAddresses:(NSSet *)values;
+- (void)removeAddresses:(NSSet *)values;
 
 @end

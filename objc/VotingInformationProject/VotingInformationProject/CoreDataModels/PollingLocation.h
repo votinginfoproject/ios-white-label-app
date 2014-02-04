@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DataSource, Election;
+@class DataSource, Election, VIPAddress;
 
 @interface PollingLocation : NSManagedObject
 
-@property (nonatomic, retain) NSString * address;
-@property (nonatomic, retain) NSNumber * addressLat;
-@property (nonatomic, retain) NSNumber * addressLon;
 @property (nonatomic, retain) NSDate * endDate;
 @property (nonatomic, retain) NSNumber * isEarlyVoteSite;
 @property (nonatomic, retain) NSString * name;
@@ -26,6 +23,7 @@
 @property (nonatomic, retain) NSString * voterServices;
 @property (nonatomic, retain) NSSet *dataSource;
 @property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) VIPAddress *address;
 @end
 
 @interface PollingLocation (CoreDataGeneratedAccessors)

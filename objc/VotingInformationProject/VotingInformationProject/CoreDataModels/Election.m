@@ -11,7 +11,7 @@
 #import "DataSource.h"
 #import "PollingLocation.h"
 #import "State.h"
-#import "UserAddress.h"
+#import "VIPAddress.h"
 
 
 @implementation Election
@@ -24,6 +24,6 @@
 @dynamic dataSource;
 @dynamic pollingLocations;
 @dynamic states;
-@dynamic userAddress;
+@dynamic searchedAddress;
 
 @end

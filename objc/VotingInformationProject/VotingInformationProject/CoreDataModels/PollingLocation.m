@@ -9,13 +9,11 @@
 #import "PollingLocation.h"
 #import "DataSource.h"
 #import "Election.h"
+#import "VIPAddress.h"
 
 
 @implementation PollingLocation
 
-@dynamic address;
-@dynamic addressLat;
-@dynamic addressLon;
 @dynamic endDate;
 @dynamic isEarlyVoteSite;
 @dynamic name;
@@ -26,5 +24,6 @@
 @dynamic voterServices;
 @dynamic dataSource;
 @dynamic election;
+@dynamic address;
 
 @end

@@ -52,8 +52,8 @@
         <relationship name="contests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contest" inverseName="election" inverseEntity="Contest" syncable="YES"/>
         <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="election" inverseEntity="DataSource" syncable="YES"/>
         <relationship name="pollingLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="election" inverseEntity="PollingLocation" syncable="YES"/>
+        <relationship name="searchedAddress" maxCount="1" deletionRule="Nullify" destinationEntity="VIPAddress" inverseName="election" inverseEntity="VIPAddress" syncable="YES"/>
         <relationship name="states" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State" inverseName="election" inverseEntity="State" syncable="YES"/>
-        <relationship name="userAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAddress" inverseName="elections" inverseEntity="UserAddress" syncable="YES"/>
     </entity>
     <entity name="ElectionAdministrationBody" representedClassName="ElectionAdministrationBody" syncable="YES">
         <attribute name="absenteeVotingInfoURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
@@ -63,11 +63,10 @@
         <attribute name="electionRegistrationURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="electionRulesURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="hoursOfOperation" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
-        <attribute name="mailingAddress" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
-        <attribute name="physicalAddress" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="voterServices" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="votingLocationFinderURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
+        <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VIPAddress" inverseName="eab" inverseEntity="VIPAddress" syncable="YES"/>
         <relationship name="electionOfficials" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ElectionOfficial" inverseName="electionAdministrationBody" inverseEntity="ElectionOfficial" syncable="YES"/>
         <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="electionAdministrationBody" inverseEntity="State" syncable="YES"/>
     </entity>
@@ -80,9 +79,6 @@
         <relationship name="electionAdministrationBody" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ElectionAdministrationBody" inverseName="electionOfficials" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
     </entity>
     <entity name="PollingLocation" representedClassName="PollingLocation" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
-        <attribute name="addressLat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="addressLon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isEarlyVoteSite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" maxValueString="100" syncable="YES"/>
@@ -91,6 +87,7 @@
         <attribute name="pollingLocationId" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="voterServices" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VIPAddress" inverseName="pollingLocation" inverseEntity="VIPAddress" syncable="YES"/>
         <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="pollingLocation" inverseEntity="DataSource" syncable="YES"/>
         <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="pollingLocations" inverseEntity="Election" syncable="YES"/>
     </entity>
@@ -107,18 +104,30 @@
         <attribute name="lastUsed" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="elections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Election" inverseName="userAddress" inverseEntity="Election" syncable="YES"/>
+    </entity>
+    <entity name="VIPAddress" representedClassName="VIPAddress" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="line1" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="line2" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="line3" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
+        <relationship name="eab" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ElectionAdministrationBody" inverseName="addresses" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
+        <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="searchedAddress" inverseEntity="Election" syncable="YES"/>
+        <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="address" inverseEntity="PollingLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="450" positionY="74" width="128" height="178"/>
-        <element name="Contest" positionX="207" positionY="98" width="128" height="298"/>
-        <element name="DataSource" positionX="-243" positionY="65" width="128" height="133"/>
+        <element name="Candidate" positionX="450" positionY="80" width="126" height="163"/>
+        <element name="Contest" positionX="162" positionY="116" width="128" height="298"/>
+        <element name="DataSource" positionX="-252" positionY="74" width="128" height="133"/>
         <element name="District" positionX="450" positionY="288" width="128" height="103"/>
-        <element name="Election" positionX="-63" positionY="-247" width="128" height="178"/>
-        <element name="ElectionAdministrationBody" positionX="459" positionY="-388" width="128" height="253"/>
+        <element name="Election" positionX="-81" positionY="-243" width="128" height="178"/>
+        <element name="ElectionAdministrationBody" positionX="459" positionY="-388" width="128" height="238"/>
         <element name="ElectionOfficial" positionX="637" positionY="-385" width="128" height="133"/>
-        <element name="PollingLocation" positionX="180" positionY="-184" width="128" height="298"/>
+        <element name="PollingLocation" positionX="223" positionY="-207" width="128" height="208"/>
         <element name="State" positionX="277" positionY="-387" width="128" height="133"/>
-        <element name="UserAddress" positionX="-290" positionY="-244" width="128" height="118"/>
+        <element name="UserAddress" positionX="-297" positionY="-319" width="128" height="103"/>
+        <element name="VIPAddress" positionX="-344" positionY="-139" width="128" height="193"/>
     </elements>
 </model>

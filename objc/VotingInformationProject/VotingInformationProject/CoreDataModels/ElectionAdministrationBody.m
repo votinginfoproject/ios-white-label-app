@@ -9,6 +9,7 @@
 #import "ElectionAdministrationBody.h"
 #import "ElectionOfficial.h"
 #import "State.h"
+#import "VIPAddress.h"
 
 
 @implementation ElectionAdministrationBody
@@ -20,12 +21,11 @@
 @dynamic electionRegistrationURL;
 @dynamic electionRulesURL;
 @dynamic hoursOfOperation;
-@dynamic mailingAddress;
 @dynamic name;
-@dynamic physicalAddress;
 @dynamic voterServices;
 @dynamic votingLocationFinderURL;
 @dynamic electionOfficials;
 @dynamic state;
+@dynamic addresses;
 
 @end

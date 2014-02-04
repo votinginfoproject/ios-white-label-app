@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Contest, DataSource, PollingLocation, State, UserAddress;
+@class Contest, DataSource, PollingLocation, State, VIPAddress;
 
 @interface Election : NSManagedObject
 
@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSSet *dataSource;
 @property (nonatomic, retain) NSSet *pollingLocations;
 @property (nonatomic, retain) NSSet *states;
-@property (nonatomic, retain) UserAddress *userAddress;
+@property (nonatomic, retain) VIPAddress *searchedAddress;
 @end
 
 @interface Election (CoreDataGeneratedAccessors)
