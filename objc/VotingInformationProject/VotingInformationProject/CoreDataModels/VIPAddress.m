@@ -7,7 +7,6 @@
 //
 
 #import "VIPAddress.h"
-#import "Election.h"
 #import "ElectionAdministrationBody.h"
 #import "PollingLocation.h"
 
@@ -18,11 +17,10 @@
 @dynamic line1;
 @dynamic line2;
 @dynamic line3;
-@dynamic name;
+@dynamic locationName;
 @dynamic state;
 @dynamic zip;
-@dynamic election;
-@dynamic pollingLocation;
 @dynamic eab;
+@dynamic pollingLocation;
 
 @end

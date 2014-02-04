@@ -10,7 +10,7 @@
 #import "Contest.h"
 #import "PollingLocation.h"
 #import "State.h"
-#import "VIPAddress.h"
+#import "UserAddress.h"
 
 
 @implementation Election
@@ -22,6 +22,6 @@
 @dynamic contests;
 @dynamic pollingLocations;
 @dynamic states;
-@dynamic searchedAddress;
+@dynamic userAddress;
 
 @end

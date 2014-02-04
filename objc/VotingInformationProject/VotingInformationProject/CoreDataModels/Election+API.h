@@ -19,6 +19,7 @@
                 failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
 
 - (void) parseVoterInfoJSON:(NSDictionary*)json
-            withUserAddress:(UserAddress*)userAddress;
+            withUserAddress:(UserAddress*)userAddress
+                     update:(BOOL)update;
 
 @end

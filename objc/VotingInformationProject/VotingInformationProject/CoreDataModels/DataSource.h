@@ -13,8 +13,8 @@
 
 @interface DataSource : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * isOfficial;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * official;
 @property (nonatomic, retain) Contest *contest;
 @property (nonatomic, retain) PollingLocation *pollingLocation;
 @property (nonatomic, retain) State *state;

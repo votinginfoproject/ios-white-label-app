@@ -13,17 +13,17 @@
 
 @interface PollingLocation : NSManagedObject
 
-@property (nonatomic, retain) NSDate * endDate;
+@property (nonatomic, retain) NSString * endDate;
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSNumber * isEarlyVoteSite;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSString * pollingHours;
-@property (nonatomic, retain) NSString * pollingLocationId;
-@property (nonatomic, retain) NSDate * startDate;
+@property (nonatomic, retain) NSString * startDate;
 @property (nonatomic, retain) NSString * voterServices;
+@property (nonatomic, retain) VIPAddress *address;
 @property (nonatomic, retain) NSSet *dataSources;
 @property (nonatomic, retain) Election *election;
-@property (nonatomic, retain) VIPAddress *address;
 @end
 
 @interface PollingLocation (CoreDataGeneratedAccessors)

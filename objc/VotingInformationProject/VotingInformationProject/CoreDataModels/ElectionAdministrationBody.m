@@ -24,8 +24,8 @@
 @dynamic name;
 @dynamic voterServices;
 @dynamic votingLocationFinderURL;
+@dynamic addresses;
 @dynamic electionOfficials;
 @dynamic state;
-@dynamic addresses;
 
 @end

@@ -7,7 +7,7 @@
 	<key>GoogleCivicInfoElectionQueryURL</key>
 	<string>https://www.googleapis.com/civicinfo/us_v1/elections</string>
 	<key>GoogleCivicInfoAPIKey</key>
-	<string></string>
+	<string>AIzaSyD9KMsSBz5IqpHV0pvl6j6FyJyn-7xNMGY</string>
 	<key>ElectionListURL</key>
 	<string>https://raw2.github.com/votinginfoproject/ios7-white-label-app/develop/objc/VotingInformationProject/VotingInformationProject/elections.json</string>
 </dict>

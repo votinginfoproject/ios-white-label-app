@@ -8,6 +8,7 @@
 
 #import "Election+API.h"
 #import "PollingLocation+API.h"
+#import "VIPAddress.h"
 
 @implementation Election (API)
 
@@ -60,6 +61,15 @@
           failure:failure];
 }
 
+// This election was already updated if electionId is set with nonzero length
+//  and userAddress is set
+- (BOOL) hasData {
+    if (self.electionId != nil && [self.electionId length] > 0 && self.userAddress != nil) {
+        return YES;
+    }
+    return NO;
+}
+
 /*
  A set of parsed data is unique on (electionId, UserAddress).
  Each time we pull down data for a unique entry and we want to update the reference data, we will first
@@ -78,6 +88,7 @@
 */
 - (void) parseVoterInfoJSON:(NSDictionary*)json
             withUserAddress:(UserAddress*)userAddress
+                     update:(BOOL)update
 {
     NSString *status = json[@"status"];
     if (![status isEqualToString:@"success"]) {
@@ -85,21 +96,34 @@
         return;
     }
 
-    [self parsePollingLocations:json[@"pollingLocations"]];
+    if ([self hasData] && !update) {
+        return;
+    }
 
+    self.userAddress = userAddress;
+    [self parsePollingLocations:json[@"pollingLocations"]
+                asEarlyVoteSite:NO];
+    [self parsePollingLocations:json[@"earlyVoteSites"]
+                asEarlyVoteSite:YES];
+
+    // Save ALL THE CHANGES
+    NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+    [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        NSLog(@"parseVoterInfoJSON saved: %d", success);
+    }];
 }
 
 - (void) parsePollingLocations:(NSArray*)pollingLocations
+               asEarlyVoteSite:(BOOL) isEarlyVoteSite
 {
     for (NSDictionary *location in pollingLocations) {
-        NSString *plId = location[@"address"][@"locationName"];
-        PollingLocation *pollingLocation = [PollingLocation getUnique:plId];
-        [pollingLocation setFromDictionary:@{
-                                             @"notes": location[@"notes"],
-                                             @"pollingHours": location[@"pollingHours"],
-                                             @"name": plId,
-                                             @"isEarlyVoteSite": @NO
-                                             }];
+        PollingLocation *pollingLocation = [PollingLocation MR_createEntity];
+        pollingLocation.isEarlyVoteSite = (isEarlyVoteSite) ? @YES : @NO;
+        NSMutableDictionary *attributes = [location mutableCopy];
+        [attributes removeObjectsForKeys:@[@"address", @"sources"]];
+        [pollingLocation setFromDictionary:attributes
+                               withAddress:location[@"address"]
+                           withDataSources:location[@"sources"]];
         [self addPollingLocationsObject:pollingLocation];
     }
 }

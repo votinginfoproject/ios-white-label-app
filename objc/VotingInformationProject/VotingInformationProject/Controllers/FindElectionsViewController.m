@@ -112,7 +112,9 @@
                                                                                   ascending:NO];
                      [election getVoterInfoAt:userAddress.address
                                       success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
-                                          [election parseVoterInfoJSON:json withUserAddress:userAddress];
+                                          [election parseVoterInfoJSON:json
+                                                       withUserAddress:userAddress
+                                                                update:YES];
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"%@", error);

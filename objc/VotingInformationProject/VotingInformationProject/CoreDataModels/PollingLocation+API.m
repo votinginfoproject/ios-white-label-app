@@ -7,32 +7,26 @@
 //
 
 #import "PollingLocation+API.h"
+#import "DataSource.h"
+#import "VIPAddress.h"
 
 @implementation PollingLocation (API)
 
 - (void) setFromDictionary:(NSDictionary *)attributes
+               withAddress:(NSDictionary*)address
+            withDataSources:(NSArray*)dataSources
 {
     [self setValuesForKeysWithDictionary:attributes];
-}
 
-+ (PollingLocation*) getUnique:(NSString*)locationName
-{
-    PollingLocation *objectInstance = nil;
-    if (locationName && [locationName length] > 0) {
-        objectInstance = [PollingLocation MR_findFirstByAttribute:@"pollingLocationId" withValue:locationName];
-        if (!objectInstance) {
-            objectInstance = [PollingLocation MR_createEntity];
-            objectInstance.pollingLocationId = locationName;
-#if DEBUG
-            NSLog(@"PollingLocation: NEW %@", locationName);
-#endif
-        } else {
-#if DEBUG
-            NSLog(@"PollingLocation: FETCH CoreData %@", locationName);
-#endif
-        }
+    for (NSDictionary *ds in dataSources) {
+        DataSource *dataSource = [DataSource MR_createEntity];
+        [dataSource setValuesForKeysWithDictionary:ds];
+        [self addDataSourcesObject:dataSource];
     }
-    return objectInstance;
+
+    VIPAddress *vipAddress = [VIPAddress MR_createEntity];
+    [vipAddress setValuesForKeysWithDictionary:address];
+    self.address = vipAddress;
 }
 
 @end

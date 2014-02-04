@@ -14,8 +14,8 @@
 
 @implementation DataSource
 
-@dynamic isOfficial;
 @dynamic name;
+@dynamic official;
 @dynamic contest;
 @dynamic pollingLocation;
 @dynamic state;
