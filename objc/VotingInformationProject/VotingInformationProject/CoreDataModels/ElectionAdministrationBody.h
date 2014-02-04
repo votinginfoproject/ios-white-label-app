@@ -2,7 +2,7 @@
 //  ElectionAdministrationBody.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 1/31/14.
+//  Created by Andrew Fink on 2/4/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -13,20 +13,20 @@
 
 @interface ElectionAdministrationBody : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * electionInfoURL;
-@property (nonatomic, retain) NSString * electionRegistrationURL;
-@property (nonatomic, retain) NSString * electionRegistrationConfirmationURL;
 @property (nonatomic, retain) NSString * absenteeVotingInfoURL;
-@property (nonatomic, retain) NSString * votingLocationFinderURL;
 @property (nonatomic, retain) NSString * ballotInfoURL;
+@property (nonatomic, retain) NSString * electionInfoURL;
+@property (nonatomic, retain) NSString * electionRegistrationConfirmationURL;
+@property (nonatomic, retain) NSString * electionRegistrationURL;
 @property (nonatomic, retain) NSString * electionRulesURL;
-@property (nonatomic, retain) NSString * voterServices;
 @property (nonatomic, retain) NSString * hoursOfOperation;
-@property (nonatomic, retain) NSString * physicalAddress;
 @property (nonatomic, retain) NSString * mailingAddress;
-@property (nonatomic, retain) State *state;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * physicalAddress;
+@property (nonatomic, retain) NSString * voterServices;
+@property (nonatomic, retain) NSString * votingLocationFinderURL;
 @property (nonatomic, retain) NSSet *electionOfficials;
+@property (nonatomic, retain) State *state;
 @end
 
 @interface ElectionAdministrationBody (CoreDataGeneratedAccessors)

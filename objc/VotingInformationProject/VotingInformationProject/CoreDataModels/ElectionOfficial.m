@@ -2,7 +2,7 @@
 //  ElectionOfficial.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 1/31/14.
+//  Created by Andrew Fink on 2/4/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -12,11 +12,11 @@
 
 @implementation ElectionOfficial
 
-@dynamic name;
-@dynamic title;
-@dynamic officePhoneNumber;
-@dynamic faxNumber;
 @dynamic email;
+@dynamic faxNumber;
+@dynamic name;
+@dynamic officePhoneNumber;
+@dynamic title;
 @dynamic electionAdministrationBody;
 
 @end

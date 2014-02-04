@@ -33,10 +33,10 @@
     <entity name="DataSource" representedClassName="DataSource" syncable="YES">
         <attribute name="isOfficial" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" maxValueString="100" syncable="YES"/>
-        <relationship name="contest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contest" inverseName="dataSource" inverseEntity="Contest" syncable="YES"/>
-        <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="dataSource" inverseEntity="Election" syncable="YES"/>
-        <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="dataSource" inverseEntity="PollingLocation" syncable="YES"/>
-        <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="dataSource" inverseEntity="State" syncable="YES"/>
+        <relationship name="contest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contest" inverseName="dataSource" inverseEntity="Contest" syncable="YES"/>
+        <relationship name="election" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Election" inverseName="dataSource" inverseEntity="Election" syncable="YES"/>
+        <relationship name="pollingLocation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="dataSource" inverseEntity="PollingLocation" syncable="YES"/>
+        <relationship name="state" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State" inverseName="dataSource" inverseEntity="State" syncable="YES"/>
     </entity>
     <entity name="District" representedClassName="District" syncable="YES">
         <attribute name="districtId" attributeType="String" maxValueString="32" syncable="YES"/>
