@@ -8,7 +8,6 @@
 
 #import "DataSource.h"
 #import "Contest.h"
-#import "Election.h"
 #import "PollingLocation.h"
 #import "State.h"
 
@@ -18,7 +17,6 @@
 @dynamic isOfficial;
 @dynamic name;
 @dynamic contest;
-@dynamic election;
 @dynamic pollingLocation;
 @dynamic state;
 

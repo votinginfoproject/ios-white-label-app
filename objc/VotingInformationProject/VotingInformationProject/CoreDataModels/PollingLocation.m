@@ -22,7 +22,7 @@
 @dynamic pollingLocationId;
 @dynamic startDate;
 @dynamic voterServices;
-@dynamic dataSource;
+@dynamic dataSources;
 @dynamic election;
 @dynamic address;
 

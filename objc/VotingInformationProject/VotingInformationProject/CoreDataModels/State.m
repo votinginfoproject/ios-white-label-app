@@ -17,7 +17,7 @@
 @dynamic localJurisdiction;
 @dynamic name;
 @dynamic stateId;
-@dynamic dataSource;
+@dynamic dataSources;
 @dynamic election;
 @dynamic electionAdministrationBody;
 

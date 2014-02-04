@@ -16,16 +16,16 @@
 @property (nonatomic, retain) NSString * localJurisdiction;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * stateId;
-@property (nonatomic, retain) NSSet *dataSource;
+@property (nonatomic, retain) NSSet *dataSources;
 @property (nonatomic, retain) Election *election;
 @property (nonatomic, retain) ElectionAdministrationBody *electionAdministrationBody;
 @end
 
 @interface State (CoreDataGeneratedAccessors)
 
-- (void)addDataSourceObject:(DataSource *)value;
-- (void)removeDataSourceObject:(DataSource *)value;
-- (void)addDataSource:(NSSet *)values;
-- (void)removeDataSource:(NSSet *)values;
+- (void)addDataSourcesObject:(DataSource *)value;
+- (void)removeDataSourcesObject:(DataSource *)value;
+- (void)addDataSources:(NSSet *)values;
+- (void)removeDataSources:(NSSet *)values;
 
 @end

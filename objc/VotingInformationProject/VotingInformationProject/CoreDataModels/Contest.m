@@ -29,7 +29,7 @@
 @dynamic special;
 @dynamic type;
 @dynamic candidates;
-@dynamic dataSource;
+@dynamic dataSources;
 @dynamic district;
 @dynamic election;
 

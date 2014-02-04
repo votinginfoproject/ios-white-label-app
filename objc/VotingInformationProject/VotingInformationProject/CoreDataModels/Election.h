@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Contest, DataSource, PollingLocation, State, VIPAddress;
+@class Contest, PollingLocation, State, VIPAddress;
 
 @interface Election : NSManagedObject
 
@@ -18,7 +18,6 @@
 @property (nonatomic, retain) NSString * electionName;
 @property (nonatomic, retain) NSString * locationName;
 @property (nonatomic, retain) NSSet *contests;
-@property (nonatomic, retain) NSSet *dataSource;
 @property (nonatomic, retain) NSSet *pollingLocations;
 @property (nonatomic, retain) NSSet *states;
 @property (nonatomic, retain) VIPAddress *searchedAddress;
@@ -30,11 +29,6 @@
 - (void)removeContestsObject:(Contest *)value;
 - (void)addContests:(NSSet *)values;
 - (void)removeContests:(NSSet *)values;
-
-- (void)addDataSourceObject:(DataSource *)value;
-- (void)removeDataSourceObject:(DataSource *)value;
-- (void)addDataSource:(NSSet *)values;
-- (void)removeDataSource:(NSSet *)values;
 
 - (void)addPollingLocationsObject:(PollingLocation *)value;
 - (void)removePollingLocationsObject:(PollingLocation *)value;

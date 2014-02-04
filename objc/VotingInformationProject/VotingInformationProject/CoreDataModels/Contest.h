@@ -27,7 +27,7 @@
 @property (nonatomic, retain) NSString * special;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet *candidates;
-@property (nonatomic, retain) NSSet *dataSource;
+@property (nonatomic, retain) NSSet *dataSources;
 @property (nonatomic, retain) District *district;
 @property (nonatomic, retain) Election *election;
 @end
@@ -39,9 +39,9 @@
 - (void)addCandidates:(NSSet *)values;
 - (void)removeCandidates:(NSSet *)values;
 
-- (void)addDataSourceObject:(DataSource *)value;
-- (void)removeDataSourceObject:(DataSource *)value;
-- (void)addDataSource:(NSSet *)values;
-- (void)removeDataSource:(NSSet *)values;
+- (void)addDataSourcesObject:(DataSource *)value;
+- (void)removeDataSourcesObject:(DataSource *)value;
+- (void)addDataSources:(NSSet *)values;
+- (void)removeDataSources:(NSSet *)values;
 
 @end

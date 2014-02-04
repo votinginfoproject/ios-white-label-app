@@ -21,16 +21,16 @@
 @property (nonatomic, retain) NSString * pollingLocationId;
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSString * voterServices;
-@property (nonatomic, retain) NSSet *dataSource;
+@property (nonatomic, retain) NSSet *dataSources;
 @property (nonatomic, retain) Election *election;
 @property (nonatomic, retain) VIPAddress *address;
 @end
 
 @interface PollingLocation (CoreDataGeneratedAccessors)
 
-- (void)addDataSourceObject:(DataSource *)value;
-- (void)removeDataSourceObject:(DataSource *)value;
-- (void)addDataSource:(NSSet *)values;
-- (void)removeDataSource:(NSSet *)values;
+- (void)addDataSourcesObject:(DataSource *)value;
+- (void)removeDataSourcesObject:(DataSource *)value;
+- (void)addDataSources:(NSSet *)values;
+- (void)removeDataSources:(NSSet *)values;
 
 @end
