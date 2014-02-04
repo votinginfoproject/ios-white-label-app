@@ -10,4 +10,8 @@
 
 @interface DataSource (API)
 
+- (BOOL) deleteObject;
+
++ (DataSource*) getUnique:(NSString*)name;
+
 @end
