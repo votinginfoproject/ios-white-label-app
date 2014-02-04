@@ -10,14 +10,19 @@
 
 @implementation PollingLocation (API)
 
+- (void) setFromDictionary:(NSDictionary *)attributes
+{
+    [self setValuesForKeysWithDictionary:attributes];
+}
+
 + (PollingLocation*) getUnique:(NSString*)locationName
 {
     PollingLocation *objectInstance = nil;
     if (locationName && [locationName length] > 0) {
-        objectInstance = [PollingLocation MR_findFirstByAttribute:@"name" withValue:locationName];
+        objectInstance = [PollingLocation MR_findFirstByAttribute:@"pollingLocationId" withValue:locationName];
         if (!objectInstance) {
             objectInstance = [PollingLocation MR_createEntity];
-            objectInstance.name = locationName;
+            objectInstance.pollingLocationId = locationName;
 #if DEBUG
             NSLog(@"PollingLocation: NEW %@", locationName);
 #endif

@@ -36,6 +36,10 @@
                 success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
                 failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure
 {
+
+    if (!address || [address length] == 0) {
+        return;
+    }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
 
@@ -74,6 +78,12 @@
     for (NSDictionary *location in pollingLocations) {
         NSString *plId = location[@"address"][@"locationName"];
         PollingLocation *pollingLocation = [PollingLocation getUnique:plId];
+        [pollingLocation setFromDictionary:@{
+                                             @"notes": location[@"notes"],
+                                             @"pollingHours": location[@"pollingHours"],
+                                             @"name": plId,
+                                             @"isEarlyVoteSite": @NO
+                                            }];
         [self addPollingLocationsObject:pollingLocation];
     }
 }

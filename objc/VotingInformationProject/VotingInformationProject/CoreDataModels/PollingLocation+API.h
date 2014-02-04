@@ -10,6 +10,8 @@
 
 @interface PollingLocation (API)
 
+- (void) setFromDictionary:(NSDictionary*)attributes;
+
 + (PollingLocation*) getUnique:(NSString*)locationName;
 
 @end
