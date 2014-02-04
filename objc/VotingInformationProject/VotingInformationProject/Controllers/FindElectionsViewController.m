@@ -113,7 +113,7 @@
                      [election getVoterInfoAt:userAddress.address
                                isOfficialOnly:YES
                                       success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
-                                          [election parseVoterInfoJSON:json];
+                                          [election parseVoterInfoJSON:json withUserAddress:userAddress];
                                       }
                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                           NSLog(@"%@", error);

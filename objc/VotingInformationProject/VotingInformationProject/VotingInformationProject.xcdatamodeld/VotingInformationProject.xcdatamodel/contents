@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Candidate" representedClassName="Candidate" syncable="YES">
         <attribute name="candidateURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
@@ -45,9 +45,6 @@
         <relationship name="contests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contest" inverseName="district" inverseEntity="Contest" syncable="YES"/>
     </entity>
     <entity name="Election" representedClassName="Election" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
-        <attribute name="addressLat" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="addressLon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="electionId" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="electionName" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
@@ -56,6 +53,7 @@
         <relationship name="dataSource" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DataSource" inverseName="election" inverseEntity="DataSource" syncable="YES"/>
         <relationship name="pollingLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="election" inverseEntity="PollingLocation" syncable="YES"/>
         <relationship name="states" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State" inverseName="election" inverseEntity="State" syncable="YES"/>
+        <relationship name="userAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserAddress" inverseName="elections" inverseEntity="UserAddress" syncable="YES"/>
     </entity>
     <entity name="ElectionAdministrationBody" representedClassName="ElectionAdministrationBody" syncable="YES">
         <attribute name="absenteeVotingInfoURL" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
@@ -109,17 +107,18 @@
         <attribute name="lastUsed" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="elections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Election" inverseName="userAddress" inverseEntity="Election" syncable="YES"/>
     </entity>
     <elements>
         <element name="Candidate" positionX="450" positionY="74" width="128" height="178"/>
         <element name="Contest" positionX="207" positionY="98" width="128" height="298"/>
         <element name="DataSource" positionX="-243" positionY="65" width="128" height="133"/>
         <element name="District" positionX="450" positionY="288" width="128" height="103"/>
-        <element name="Election" positionX="-63" positionY="-247" width="128" height="208"/>
+        <element name="Election" positionX="-63" positionY="-247" width="128" height="178"/>
         <element name="ElectionAdministrationBody" positionX="459" positionY="-388" width="128" height="253"/>
         <element name="ElectionOfficial" positionX="637" positionY="-385" width="128" height="133"/>
         <element name="PollingLocation" positionX="180" positionY="-184" width="128" height="298"/>
         <element name="State" positionX="277" positionY="-387" width="128" height="133"/>
-        <element name="UserAddress" positionX="-297" positionY="-313" width="128" height="73"/>
+        <element name="UserAddress" positionX="-290" positionY="-244" width="128" height="118"/>
     </elements>
 </model>

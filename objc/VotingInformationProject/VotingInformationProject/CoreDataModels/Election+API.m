@@ -61,7 +61,24 @@
           failure:failure];
 }
 
+/*
+ A set of parsed data is unique on (electionId, UserAddress).
+ Each time we pull down data for a unique entry and we want to update the reference data, we will first
+    delete all previous data associated with the unique entry. This needs to be done because child objects
+    do not have a unique identifier and we don't want to update the wrong objects
+ 
+ Some pseudocode for the above notes:
+ Get list of objects with (electionId, userAddress)
+ if list length is 0:
+    create new entry and parse json
+ else if list length > 0 and we want to update:
+    delete old objects and reparse json
+ else if list length > 0 and we do not want to update:
+    do nothing
+
+*/
 - (void) parseVoterInfoJSON:(NSDictionary*)json
+            withUserAddress:(UserAddress*)userAddress
 {
     NSString *status = json[@"status"];
     if (![status isEqualToString:@"success"]) {
@@ -83,7 +100,7 @@
                                              @"pollingHours": location[@"pollingHours"],
                                              @"name": plId,
                                              @"isEarlyVoteSite": @NO
-                                            }];
+                                             }];
         [self addPollingLocationsObject:pollingLocation];
     }
 }
