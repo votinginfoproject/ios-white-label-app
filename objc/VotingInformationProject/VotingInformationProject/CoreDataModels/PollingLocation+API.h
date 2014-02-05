@@ -8,7 +8,7 @@
 
 #import "PollingLocation.h"
 #import "DataSource.h"
-#import "VIPAddress.h"
+#import "VIPAddress+API.h"
 
 @interface PollingLocation (API)
 

@@ -22,9 +22,7 @@
         [self addDataSourcesObject:dataSource];
     }
 
-    VIPAddress *vipAddress = [VIPAddress MR_createEntity];
-    [vipAddress setValuesForKeysWithDictionary:address];
-    self.address = vipAddress;
+    self.address = [VIPAddress createWith:address];
 }
 
 @end
