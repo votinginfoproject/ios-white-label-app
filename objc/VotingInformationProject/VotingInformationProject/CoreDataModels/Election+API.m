@@ -7,10 +7,6 @@
 //
 
 #import "Election+API.h"
-#import "PollingLocation+API.h"
-#import "VIPAddress.h"
-#import "Contest.h"
-#import "State.h"
 
 @implementation Election (API)
 

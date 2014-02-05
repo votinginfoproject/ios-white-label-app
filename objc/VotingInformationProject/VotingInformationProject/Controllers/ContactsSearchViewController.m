@@ -8,9 +8,7 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
-#import "VIPUserDefaultsKeys.h"
 #import "ContactsSearchViewController.h"
-#import "UserAddress+API.h"
 
 @interface ContactsSearchViewController ()
 

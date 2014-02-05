@@ -6,9 +6,14 @@
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
-#import "Election.h"
 #import "AFNetworking/AFNetworking.h"
+
+#import "Election.h"
 #import "UserAddress+API.h"
+#import "PollingLocation+API.h"
+#import "VIPAddress.h"
+#import "Contest.h"
+#import "State.h"
 
 @interface Election (API)
 
