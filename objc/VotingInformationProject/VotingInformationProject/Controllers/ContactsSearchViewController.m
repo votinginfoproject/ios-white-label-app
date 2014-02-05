@@ -8,9 +8,7 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
-#import "VIPUserDefaultsKeys.h"
 #import "ContactsSearchViewController.h"
-#import "UserAddress+API.h"
 
 @interface ContactsSearchViewController ()
 
@@ -86,7 +84,7 @@
 {
     if (property == kABPersonAddressProperty) {
         NSString *address = [self getAddress:person atIdentifier:identifier];
-        UserAddress *selectedAddress = [UserAddress getByAddress:address];
+        UserAddress *selectedAddress = [UserAddress getUnique:address];
         [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"DataStore saved: %d", success);
         }];

@@ -10,7 +10,7 @@
 
 @implementation UserAddress (API)
 
-+ (UserAddress*)getByAddress:(NSString *)address
++ (UserAddress*)getUnique:(NSString *)address
 {
     UserAddress* userAddress = nil;
     if (address && [address length] > 0) {
@@ -22,6 +22,11 @@
         userAddress.lastUsed = [NSDate date];
     }
     return userAddress;
+}
+
+- (BOOL) hasAddress
+{
+    return (self.address && [self.address length] > 0);
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "NearbyPollingViewController.h"
-#import "UserAddress+API.h"
 
 @interface NearbyPollingViewController ()
 @property (strong, nonatomic) GMSMapView * mapView;

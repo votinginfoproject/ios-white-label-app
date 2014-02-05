@@ -2,7 +2,7 @@
 //  Contest.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 1/31/14.
+//  Created by Andrew Fink on 2/4/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -15,22 +15,22 @@
 
 @implementation Contest
 
+@dynamic ballotPlacement;
 @dynamic contestId;
-@dynamic type;
-@dynamic primaryParty;
 @dynamic electorateSpecifications;
-@dynamic special;
-@dynamic office;
 @dynamic level;
 @dynamic numberElected;
 @dynamic numberVotingFor;
-@dynamic ballotPlacement;
-@dynamic referendumTitle;
+@dynamic office;
+@dynamic primaryParty;
 @dynamic referendumSubtitle;
+@dynamic referendumTitle;
 @dynamic referendumURL;
-@dynamic dataSource;
-@dynamic district;
+@dynamic special;
+@dynamic type;
 @dynamic candidates;
+@dynamic dataSources;
+@dynamic district;
 @dynamic election;
 
 @end

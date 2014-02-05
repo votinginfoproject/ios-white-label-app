@@ -2,7 +2,7 @@
 //  State.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 1/31/14.
+//  Created by Andrew Fink on 2/4/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -14,11 +14,11 @@
 
 @implementation State
 
-@dynamic stateId;
-@dynamic name;
 @dynamic localJurisdiction;
+@dynamic name;
+@dynamic stateId;
+@dynamic dataSources;
 @dynamic election;
 @dynamic electionAdministrationBody;
-@dynamic dataSource;
 
 @end

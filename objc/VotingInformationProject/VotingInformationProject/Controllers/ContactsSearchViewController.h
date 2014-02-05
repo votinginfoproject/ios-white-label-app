@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 
+#import "VIPUserDefaultsKeys.h"
+#import "UserAddress+API.h"
+
 @interface ContactsSearchViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
 
 - (IBAction) showPeoplePicker:(id)sender;
