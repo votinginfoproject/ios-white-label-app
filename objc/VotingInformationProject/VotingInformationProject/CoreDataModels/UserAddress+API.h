@@ -13,4 +13,6 @@
 // UNIQUE: UserAddress.address
 + (UserAddress*)getUnique:(NSString *)address;
 
+- (BOOL) hasAddress;
+
 @end

@@ -2,7 +2,7 @@
 //  Election.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
+//  Created by Andrew Fink on 2/5/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -18,7 +18,7 @@
 @dynamic date;
 @dynamic electionId;
 @dynamic electionName;
-@dynamic locationName;
+@dynamic lastUpdated;
 @dynamic contests;
 @dynamic pollingLocations;
 @dynamic states;

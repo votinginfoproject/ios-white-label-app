@@ -24,4 +24,9 @@
     return userAddress;
 }
 
+- (BOOL) hasAddress
+{
+    return (self.address && [self.address length] > 0);
+}
+
 @end

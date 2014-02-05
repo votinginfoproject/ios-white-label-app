@@ -83,6 +83,9 @@
     NSLog(@"URL: %@", requestUrl);
     NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
 
+    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                                 ascending:NO];
+
     [manager GET:requestUrl
       parameters:requestParams
          success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
@@ -97,9 +100,10 @@
 
              for (NSDictionary *entry in electionData) {
                  NSString *electionId = [entry valueForKey:@"id"];
-                 Election *election = [Election getUnique:electionId];
-                 election.electionName = [entry valueForKey:@"name"];
-                 election.date = [self.yyyymmddFormatter dateFromString:[entry objectForKey:@"electionDay"]];
+                 Election *election = [Election getUnique:electionId
+                                          withUserAddress:userAddress];
+                 election.electionName = entry[@"name"];
+                 election.date = [self.yyyymmddFormatter dateFromString:entry[@"electionDay"]];
                  [self.elections addObject:election];
 
                  // TODO: Properly move this into viewDidLoad on an Election Detail controller
@@ -108,18 +112,12 @@
                      // Test address, apparently only Brooklyn addresses like to work.
                      // 185 Erasmus Street Brooklyn NY 11226 USA
                      // Attempted Philadelphia, DC, Manhattan
-                     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                                                  ascending:NO];
-                     [election getVoterInfoAt:userAddress.address
-                                      success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
-                                          [election parseVoterInfoJSON:json
-                                                       withUserAddress:userAddress
-                                                                update:YES];
-                                      }
-                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                          NSLog(@"%@", error);
-                                      }
-                      ];
+                     [election getVoterInfoIfExpired:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
+                                        [election parseVoterInfoJSON:json];
+                                    }
+                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                        NSLog(@"%@", error);
+                                    }];
                  }
              }
              [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {

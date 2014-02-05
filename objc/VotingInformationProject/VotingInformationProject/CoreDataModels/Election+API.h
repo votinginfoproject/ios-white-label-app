@@ -12,14 +12,17 @@
 
 @interface Election (API)
 
-+ (Election *) getUnique:(NSString*)electionId;
++ (Election *) getUnique:(NSString*)electionId
+         withUserAddress:(UserAddress*)userAddress;
 
-- (void) getVoterInfoAt:(NSString*)address
-                success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
-                failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+- (BOOL) shouldUpdate;
 
-- (void) parseVoterInfoJSON:(NSDictionary*)json
-            withUserAddress:(UserAddress*)userAddress
-                     update:(BOOL)update;
+- (BOOL) getVoterInfoIfExpired:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+                       failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+
+- (void) getVoterInfo:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+              failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+
+- (void) parseVoterInfoJSON:(NSDictionary*)json;
 
 @end

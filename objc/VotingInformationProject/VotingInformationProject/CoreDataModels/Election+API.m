@@ -9,17 +9,23 @@
 #import "Election+API.h"
 #import "PollingLocation+API.h"
 #import "VIPAddress.h"
+#import "Contest.h"
+#import "State.h"
 
 @implementation Election (API)
 
 + (Election*) getUnique:(NSString*)electionId
+        withUserAddress:(UserAddress*)userAddress
 {
     Election *election = nil;
-    if (electionId && [electionId length] > 0) {
-        election = [Election MR_findFirstByAttribute:@"electionId" withValue:electionId];
+    if (electionId && [electionId length] > 0 && [userAddress hasAddress]) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"electionId == %@ && userAddress == %@", electionId, userAddress];
+        election = [Election MR_findFirstWithPredicate:predicate];
         if (!election) {
             election = [Election MR_createEntity];
             election.electionId = electionId;
+            election.userAddress = userAddress;
+            election.lastUpdated = [NSDate date];
 #if DEBUG
             NSLog(@"Created new election with id: %@", electionId);
 #endif
@@ -32,12 +38,43 @@
     return election;
 }
 
-- (void) getVoterInfoAt:(NSString*)address
-                success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
-                failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure
+// For now always yes to test delete/update on CoreData
+- (BOOL) shouldUpdate
 {
+    // Update if no last updated date
+    if (!self.lastUpdated) {
+        return YES;
+    }
+    // Update if all of these are empty
+    if (!(self.pollingLocations || self.contests || self.states)) {
+        return YES;
+    }
+    // Update if election data is more than x days old
+    int days = 7;
+    double secondsSinceUpdate = [self.lastUpdated timeIntervalSinceNow];
+    if (secondsSinceUpdate < -1 * 60 * 60 * 24 * days) {
+        return YES;
+    }
 
-    if (!address || [address length] == 0) {
+    return NO;
+}
+
+- (BOOL) getVoterInfoIfExpired:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+                       failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure
+{
+    if ([self shouldUpdate]) {
+        [self getVoterInfo:success failure:failure];
+        return YES;
+    } else {
+        return NO;
+    }
+
+}
+
+- (void) getVoterInfo:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+              failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure
+{
+    if (![self.userAddress hasAddress]) {
         return;
     }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
@@ -48,7 +85,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
-    NSDictionary *params = @{ @"address": address };
+    NSDictionary *params = @{ @"address": self.userAddress.address };
 
     // Add query params to the url since AFNetworking serializes these internally anyway
     //  and the parameters parameter below attaches only to the http body for POST
@@ -59,15 +96,6 @@
        parameters:params
           success:success
           failure:failure];
-}
-
-// This election was already updated if electionId is set with nonzero length
-//  and userAddress is set
-- (BOOL) hasData {
-    if (self.electionId != nil && [self.electionId length] > 0 && self.userAddress != nil) {
-        return YES;
-    }
-    return NO;
 }
 
 /*
@@ -87,8 +115,6 @@
 
 */
 - (void) parseVoterInfoJSON:(NSDictionary*)json
-            withUserAddress:(UserAddress*)userAddress
-                     update:(BOOL)update
 {
     NSString *status = json[@"status"];
     if (![status isEqualToString:@"success"]) {
@@ -96,16 +122,15 @@
         return;
     }
 
-    if ([self hasData] && !update) {
-        return;
-    }
+    // First delete all old data
+    [self deleteAllData];
 
-    self.userAddress = userAddress;
     [self parsePollingLocations:json[@"pollingLocations"]
                 asEarlyVoteSite:NO];
     [self parsePollingLocations:json[@"earlyVoteSites"]
                 asEarlyVoteSite:YES];
 
+    self.lastUpdated = [NSDate date];
     // Save ALL THE CHANGES
     NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
     [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
@@ -125,6 +150,37 @@
                                withAddress:location[@"address"]
                            withDataSources:location[@"sources"]];
         [self addPollingLocationsObject:pollingLocation];
+    }
+}
+
+- (void) deleteAllData {
+    [self deleteContests];
+    [self deletePollingLocations];
+    [self deleteStates];
+
+    NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+    // get this save off the main thread!
+    [moc MR_saveToPersistentStoreAndWait];
+}
+
+- (void) deleteStates
+{
+    for (State *state in self.states) {
+        [state MR_deleteEntity];
+    }
+}
+
+- (void) deletePollingLocations
+{
+    for (PollingLocation *pl in self.pollingLocations) {
+        [pl MR_deleteEntity];
+    }
+}
+
+- (void) deleteContests
+{
+    for (Contest *contest in self.contests) {
+        [contest MR_deleteEntity];
     }
 }
 

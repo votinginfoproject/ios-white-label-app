@@ -2,7 +2,7 @@
 //  Election.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
+//  Created by Andrew Fink on 2/5/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * electionId;
 @property (nonatomic, retain) NSString * electionName;
-@property (nonatomic, retain) NSString * locationName;
+@property (nonatomic, retain) NSDate * lastUpdated;
 @property (nonatomic, retain) NSSet *contests;
 @property (nonatomic, retain) NSSet *pollingLocations;
 @property (nonatomic, retain) NSSet *states;
