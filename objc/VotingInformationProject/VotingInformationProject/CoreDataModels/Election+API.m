@@ -25,7 +25,6 @@
             election = [Election MR_createEntity];
             election.electionId = electionId;
             election.userAddress = userAddress;
-            election.lastUpdated = [NSDate date];
 #if DEBUG
             NSLog(@"Created new election with id: %@", electionId);
 #endif

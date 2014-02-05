@@ -1,0 +1,113 @@
+//
+//  ElectionAPITests.m
+//  VotingInformationProject
+//
+//  Created by Andrew Fink on 2/5/14.
+//  Copyright (c) 2014 Bennet Huber. All rights reserved.
+//
+
+#import <XCTest/XCTest.h>
+#import "Kiwi.h"
+
+#import "Election+API.h"
+#import "UserAddress+API.h"
+#import "Contest.h"
+#import "State.h"
+#import "PollingLocation+API.h"
+
+SPEC_BEGIN(ElectionAPITests)
+
+describe(@"Election+API Tests", ^{
+
+    beforeEach(^{
+        [MagicalRecord setupCoreDataStackWithInMemoryStore];
+    });
+
+    afterEach(^{
+        [MagicalRecord cleanUp];
+    });
+
+    it(@"should ensure that getUnique returns a new election with electionId and userAddress set", ^{
+        UserAddress *userAddress = [UserAddress getUnique:@"123 Test Drive"];
+        Election *election1 = [Election getUnique:@"election1" withUserAddress:userAddress];
+        [[election1.userAddress should] equal:userAddress];
+        [[election1.electionId should] equal:@"election1"];
+    });
+
+    it(@"should ensure that getUnique returns a new election with lastUpdated not set", ^{
+        UserAddress *userAddress = [UserAddress getUnique:@"123 Test Drive"];
+        Election *election1 = [Election getUnique:@"election1" withUserAddress:userAddress];
+        [election1.lastUpdated shouldBeNil];
+    });
+
+    it(@"should ensure that shouldUpdate returns YES after creating a new election", ^{
+        UserAddress *userAddress = [UserAddress getUnique:@"123 Test Drive"];
+        Election *election1 = [Election getUnique:@"election1" withUserAddress:userAddress];
+        [[theValue([election1 shouldUpdate]) should] equal:theValue(YES)];
+    });
+
+    it(@"should ensure that shouldUpdate returns YES after setting lastUpdated but still no data", ^{
+        UserAddress *userAddress = [UserAddress getUnique:@"123 Test Drive"];
+        Election *election1 = [Election getUnique:@"election1" withUserAddress:userAddress];
+        election1.lastUpdated = [NSDate date];
+        [[theValue([election1 shouldUpdate]) should] equal:theValue(NO)];
+    });
+
+    it(@"should ensure that shouldUpdate returns NO after setting lastUpdated to now and at least one data point", ^{
+        UserAddress *userAddress = [UserAddress getUnique:@"123 Test Drive"];
+        Election *election1 = [Election getUnique:@"election1" withUserAddress:userAddress];
+        election1.lastUpdated = [NSDate date];
+        Contest *contest1 = [Contest MR_createEntity];
+        [election1 addContestsObject:contest1];
+        [[theValue([election1 shouldUpdate]) should] equal:theValue(NO)];
+    });
+
+    it(@"should ensure that deleteAllData deletes all contests from the election", ^{
+        Election *election1 = [Election MR_createEntity];
+        Contest *contest1 = [Contest MR_createEntity];
+        Contest *contest2 = [Contest MR_createEntity];
+        [election1 addContestsObject:contest1];
+        [election1 addContestsObject:contest2];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+        [[theValue([election1.contests count]) should] equal:theValue(2)];
+        [election1 deleteAllData];
+        [[theValue([election1.contests count]) should] equal:theValue(0)];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+    });
+
+    it(@"should ensure that deleteAllData deletes all states from the election", ^{
+        Election *election1 = [Election MR_createEntity];
+        State *state1 = [State MR_createEntity];
+        State *state2 = [State MR_createEntity];
+        [election1 addStatesObject:state1];
+        [election1 addStatesObject:state2];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+        [[theValue([election1.states count]) should] equal:theValue(2)];
+        [election1 deleteAllData];
+        [[theValue([election1.states count]) should] equal:theValue(0)];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+    });
+
+    it(@"should ensure that deleteAllData deletes all pollinglocations from the election", ^{
+        Election *election1 = [Election MR_createEntity];
+        PollingLocation *pl1 = [PollingLocation MR_createEntity];
+        PollingLocation *pl2 = [PollingLocation MR_createEntity];
+        [election1 addPollingLocationsObject:pl1];
+        [election1 addPollingLocationsObject:pl2];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+        [[theValue([election1.pollingLocations count]) should] equal:theValue(2)];
+        [election1 deleteAllData];
+        [[theValue([election1.pollingLocations count]) should] equal:theValue(0)];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+    });
+
+    it(@"getVoterInfoAt test ", ^{
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+    });
+
+    it(@"parseVoterInfoJSON test ", ^{
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
+    });
+});
+
+SPEC_END

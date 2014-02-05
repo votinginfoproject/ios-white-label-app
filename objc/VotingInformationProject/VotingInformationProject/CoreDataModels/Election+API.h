@@ -25,4 +25,6 @@
 
 - (void) parseVoterInfoJSON:(NSDictionary*)json;
 
+- (void) deleteAllData;
+
 @end

@@ -116,16 +116,16 @@
         <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="address" inverseEntity="PollingLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="441" positionY="89" width="126" height="163"/>
-        <element name="Contest" positionX="162" positionY="116" width="128" height="298"/>
-        <element name="DataSource" positionX="-252" positionY="74" width="128" height="118"/>
-        <element name="District" positionX="486" positionY="311" width="128" height="103"/>
-        <element name="Election" positionX="-81" positionY="-243" width="128" height="163"/>
-        <element name="ElectionAdministrationBody" positionX="459" positionY="-388" width="128" height="238"/>
-        <element name="ElectionOfficial" positionX="637" positionY="-385" width="128" height="133"/>
-        <element name="PollingLocation" positionX="223" positionY="-207" width="128" height="208"/>
-        <element name="State" positionX="277" positionY="-387" width="128" height="133"/>
-        <element name="UserAddress" positionX="-297" positionY="-319" width="128" height="118"/>
-        <element name="VIPAddress" positionX="-344" positionY="-139" width="128" height="178"/>
+        <element name="Candidate" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Contest" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DataSource" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="District" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Election" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ElectionOfficial" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PollingLocation" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="State" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="VIPAddress" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
