@@ -18,6 +18,7 @@
 
 @implementation FindElectionsViewController {
     NSManagedObjectContext *_moc;
+    UserAddress *_userAddress;
 }
 
 - (NSMutableArray *) elections {
@@ -63,10 +64,22 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+    _userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                                 ascending:NO];
     [self loadElectionData];
 }
 
 - (void) loadElectionData {
+
+    if (!_userAddress) {
+        UIAlertView *noAddressAlert = [[UIAlertView alloc] initWithTitle:nil
+                                                                 message:@"No Address Selected"
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+        [noAddressAlert show];
+        return;
+    }
 
     // Setup request manager
     // TODO: Refactor into separate class if multiple requests are made
@@ -78,9 +91,6 @@
     NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
     NSLog(@"URL: %@", requestUrl);
     NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
-
-    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                                 ascending:NO];
 
     [manager GET:requestUrl
       parameters:requestParams
@@ -97,7 +107,7 @@
              for (NSDictionary *entry in electionData) {
                  NSString *electionId = [entry valueForKey:@"id"];
                  Election *election = [Election getUnique:electionId
-                                          withUserAddress:userAddress];
+                                          withUserAddress:_userAddress];
                  election.electionName = entry[@"name"];
                  election.date = [self.yyyymmddFormatter dateFromString:entry[@"electionDay"]];
                  [self.elections addObject:election];
@@ -108,7 +118,7 @@
                      // Test address, apparently only Brooklyn addresses like to work.
                      // 185 Erasmus Street Brooklyn NY 11226 USA
                      // Attempted Philadelphia, DC, Manhattan
-                     [election getVoterInfoIfExpired:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
+                     [election getVoterInfo:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
                                         [election parseVoterInfoJSON:json];
                                     }
                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
