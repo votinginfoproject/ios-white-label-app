@@ -7,14 +7,11 @@
 //
 
 #import "ElectionAdministrationBody.h"
-#import "ElectionOfficial.h"
+#import "ElectionOfficial+API.h"
 #import "VIPAddress+API.h"
 
 @interface ElectionAdministrationBody (API)
 
-+ (ElectionAdministrationBody*) setFromDictionary:(NSDictionary*)attributes
-                                    withAddresses:(NSArray*)addresses
-                            withElectionOfficials:(NSArray*)officials;
-
++ (ElectionAdministrationBody*) setFromDictionary:(NSDictionary*)attributes;
 
 @end

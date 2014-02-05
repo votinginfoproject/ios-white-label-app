@@ -10,10 +10,9 @@
 
 #import "Election.h"
 #import "UserAddress+API.h"
+#import "Contest+API.h"
 #import "PollingLocation+API.h"
-#import "VIPAddress.h"
-#import "Contest.h"
-#import "State.h"
+#import "State+API.h"
 
 @interface Election (API)
 

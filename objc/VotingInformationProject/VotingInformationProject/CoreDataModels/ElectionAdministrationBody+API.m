@@ -11,20 +11,32 @@
 @implementation ElectionAdministrationBody (API)
 
 + (ElectionAdministrationBody*) setFromDictionary:(NSDictionary *)attributes
-                                    withAddresses:(NSArray *)addresses
-                            withElectionOfficials:(NSArray *)officials
 {
+    NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
+
+    NSString *officialsKey = @"electionOfficials";
+    NSArray *officials = attributes[officialsKey];
+    [mutableAttributes removeObjectForKey:officialsKey];
+
+    NSString *mailingAddressKey = @"correspondenceAddress";
+    NSDictionary *mailingAddressDict = attributes[mailingAddressKey];
+    [mutableAttributes removeObjectForKey:mailingAddressKey];
+
+    NSString *physicalAddressKey = @"physicalAddress";
+    NSDictionary *physicalAddressDict = attributes[physicalAddressKey];
+    [mutableAttributes removeObjectForKey:physicalAddressKey];
+
     ElectionAdministrationBody *eab = [ElectionAdministrationBody MR_createEntity];
-    [eab setValuesForKeysWithDictionary:attributes];
+    // Set attributes
+    [eab setValuesForKeysWithDictionary:mutableAttributes];
 
-    for (NSDictionary *address in addresses) {
-        [eab addAddressesObject:[VIPAddress createWith:address]];
-    }
+    // Set addresses
+    [eab addAddressesObject:[VIPAddress setFromDictionary:mailingAddressDict]];
+    [eab addAddressesObject:[VIPAddress setFromDictionary:physicalAddressDict]];
 
+    // Set Election officials
     for (NSDictionary *official in officials) {
-        ElectionOfficial *electionOfficial = [ElectionOfficial MR_createEntity];
-        [electionOfficial setValuesForKeysWithDictionary:official];
-        [eab addElectionOfficialsObject:electionOfficial];
+        [eab addElectionOfficialsObject:[ElectionOfficial setFromDictionary:official]];
     }
 
     return eab;

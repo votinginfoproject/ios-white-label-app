@@ -95,21 +95,9 @@
 
 /*
  A set of parsed data is unique on (electionId, UserAddress).
- Each time we pull down data for a unique entry and we want to update the reference data, we will first
-    delete all previous data associated with the unique entry. This needs to be done because child objects
-    do not have a unique identifier and we don't want to update the wrong objects
- 
- Some pseudocode for the above notes:
- Get list of objects with (electionId, userAddress)
- if list length is 0:
-    create new entry and parse json
- else if list length > 0 and we want to update:
-    delete old objects and reparse json
- else if list length > 0 and we do not want to update:
-    do nothing
-
 */
-- (void) parseVoterInfoJSON:(NSDictionary*)json
+
+- (void) parseVoterInfoJSON:(NSDictionary *)json
 {
     NSString *status = json[@"status"];
     if (![status isEqualToString:@"success"]) {
@@ -120,31 +108,37 @@
     // First delete all old data
     [self deleteAllData];
 
-    [self parsePollingLocations:json[@"pollingLocations"]
-                asEarlyVoteSite:NO];
-    [self parsePollingLocations:json[@"earlyVoteSites"]
-                asEarlyVoteSite:YES];
+    // Create the massive structure
+    [self setFromDictionary:json];
 
-    self.lastUpdated = [NSDate date];
     // Save ALL THE CHANGES
     NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
     [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         NSLog(@"parseVoterInfoJSON saved: %d", success);
     }];
 }
-
-- (void) parsePollingLocations:(NSArray*)pollingLocations
-               asEarlyVoteSite:(BOOL) isEarlyVoteSite
+- (void) setFromDictionary:(NSDictionary*)attributes
 {
-    for (NSDictionary *location in pollingLocations) {
-        PollingLocation *pollingLocation = [PollingLocation MR_createEntity];
-        pollingLocation.isEarlyVoteSite = (isEarlyVoteSite) ? @YES : @NO;
-        NSMutableDictionary *attributes = [location mutableCopy];
-        [attributes removeObjectsForKeys:@[@"address", @"sources"]];
-        [pollingLocation setFromDictionary:attributes
-                               withAddress:location[@"address"]
-                           withDataSources:location[@"sources"]];
-        [self addPollingLocationsObject:pollingLocation];
+    // Parse Polling Locations
+    NSArray *pollingLocations = attributes[@"pollingLocations"];
+    for (NSDictionary *pollingLocation in pollingLocations) {
+        PollingLocation *pl = [PollingLocation setFromDictionary:pollingLocation
+                                               asEarlyVotingSite:NO];
+        [self addPollingLocationsObject:pl];
+    }
+
+    // Parse polling locations
+    NSArray *earlyVoteSites = attributes[@"earlyVoteSites"];
+    for (NSDictionary *earlyVoteSite in earlyVoteSites) {
+        PollingLocation *evs = [PollingLocation setFromDictionary:earlyVoteSite
+                                                asEarlyVotingSite:YES];
+        [self addPollingLocationsObject:evs];
+    }
+
+    // Parse States
+    NSArray *states = attributes[@"state"];
+    for (NSDictionary *state in states){
+        [self addStatesObject:[State setFromDictionary:state]];
     }
 }
 

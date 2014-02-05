@@ -10,19 +10,30 @@
 
 @implementation PollingLocation (API)
 
-- (void) setFromDictionary:(NSDictionary *)attributes
-               withAddress:(NSDictionary*)address
-            withDataSources:(NSArray*)dataSources
++ (PollingLocation*) setFromDictionary:(NSDictionary *)attributes
+                     asEarlyVotingSite:(BOOL)isEarlyVotingSite;
 {
-    [self setValuesForKeysWithDictionary:attributes];
+    NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
 
-    for (NSDictionary *ds in dataSources) {
-        DataSource *dataSource = [DataSource MR_createEntity];
-        [dataSource setValuesForKeysWithDictionary:ds];
-        [self addDataSourcesObject:dataSource];
+    NSString *dataSourcesKey = @"sources";
+    NSArray *dataSources = attributes[dataSourcesKey];
+    [mutableAttributes removeObjectForKey:dataSourcesKey];
+
+    NSString *addressKey = @"address";
+    NSDictionary *address = attributes[addressKey];
+    [mutableAttributes removeObjectForKey:addressKey];
+
+    PollingLocation *pollingLocation = [PollingLocation MR_createEntity];
+    pollingLocation.isEarlyVoteSite = @(isEarlyVotingSite);
+    [pollingLocation setValuesForKeysWithDictionary:mutableAttributes];
+
+    pollingLocation.address = [VIPAddress setFromDictionary:address];
+
+    for (NSDictionary *dataSource in dataSources) {
+        [pollingLocation addDataSourcesObject:[DataSource setFromDictionary:dataSource]];
     }
 
-    self.address = [VIPAddress createWith:address];
+    return pollingLocation;
 }
 
 @end
