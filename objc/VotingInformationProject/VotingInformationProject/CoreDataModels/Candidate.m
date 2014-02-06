@@ -2,7 +2,7 @@
 //  Candidate.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 1/31/14.
+//  Created by Andrew Fink on 2/4/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -12,14 +12,14 @@
 
 @implementation Candidate
 
-@dynamic name;
-@dynamic party;
 @dynamic candidateURL;
-@dynamic phone;
-@dynamic photoURL;
 @dynamic email;
+@dynamic name;
 @dynamic orderOnBallot;
+@dynamic party;
+@dynamic phone;
 @dynamic photo;
+@dynamic photoURL;
 @dynamic contest;
 
 @end

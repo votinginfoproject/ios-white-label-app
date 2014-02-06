@@ -11,6 +11,8 @@
 @interface UserAddress (API)
 
 // UNIQUE: UserAddress.address
-+ (UserAddress*)getByAddress:(NSString *)address;
++ (UserAddress*)getUnique:(NSString *)address;
+
+- (BOOL) hasAddress;
 
 @end
