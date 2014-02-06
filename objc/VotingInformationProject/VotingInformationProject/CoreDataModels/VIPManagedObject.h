@@ -17,6 +17,4 @@
 
 + (VIPManagedObject *) setFromDictionary:(NSDictionary*)attributes;
 
-+ (VIPManagedObject *) setFromDictionary:(NSDictionary*)attributes;
-
 @end
