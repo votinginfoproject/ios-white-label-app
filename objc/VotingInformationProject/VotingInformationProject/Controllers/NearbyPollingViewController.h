@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
-#import "VIPUserDefaultsKeys.h"
 #import <UIKit/UIKit.h>
+
 #import "GoogleMaps/GoogleMaps.h"
+
+#import "VIPUserDefaultsKeys.h"
 #import "UserAddress+API.h"
 
 @interface NearbyPollingViewController : UIViewController

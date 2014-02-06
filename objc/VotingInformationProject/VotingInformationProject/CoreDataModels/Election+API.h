@@ -6,18 +6,30 @@
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
-#import "Election.h"
 #import "AFNetworking/AFNetworking.h"
+
+#import "Election.h"
+#import "UserAddress+API.h"
+#import "PollingLocation+API.h"
+#import "VIPAddress.h"
+#import "Contest.h"
+#import "State.h"
 
 @interface Election (API)
 
-+ (Election *) getOrCreate:(NSString*)electionId;
++ (Election *) getUnique:(NSString*)electionId
+         withUserAddress:(UserAddress*)userAddress;
 
-- (void) getVoterInfoAt:(NSString*)address
-         isOfficialOnly:(BOOL)isOfficialOnly
-                success:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
-                failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+- (BOOL) shouldUpdate;
+
+- (BOOL) getVoterInfoIfExpired:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+                       failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+
+- (void) getVoterInfo:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
+              failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
 
 - (void) parseVoterInfoJSON:(NSDictionary*)json;
+
+- (void) deleteAllData;
 
 @end
