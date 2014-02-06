@@ -11,7 +11,7 @@
 
 @class ElectionAdministrationBody;
 
-@interface ElectionOfficial : NSManagedObject
+@interface ElectionOfficial : VIPManagedObject
 
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * faxNumber;

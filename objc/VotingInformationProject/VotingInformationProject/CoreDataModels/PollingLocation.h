@@ -11,7 +11,7 @@
 
 @class DataSource, Election, VIPAddress;
 
-@interface PollingLocation : NSManagedObject
+@interface PollingLocation : VIPManagedObject
 
 @property (nonatomic, retain) NSString * endDate;
 @property (nonatomic, retain) NSString * id;

@@ -7,13 +7,12 @@
 //
 
 #import "PollingLocation.h"
-#import "DataSource.h"
-#import "VIPAddress.h"
+#import "DataSource+API.h"
+#import "VIPAddress+API.h"
 
 @interface PollingLocation (API)
 
-- (void) setFromDictionary:(NSDictionary*)attributes
-               withAddress:(NSDictionary*)address
-           withDataSources:(NSArray*)dataSources;
++ (PollingLocation*) setFromDictionary:(NSDictionary*)attributes
+                     asEarlyVotingSite:(BOOL)isEarlyVotingSite;
 
 @end

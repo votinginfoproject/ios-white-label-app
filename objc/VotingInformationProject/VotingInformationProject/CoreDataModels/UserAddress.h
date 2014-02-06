@@ -11,7 +11,7 @@
 
 @class Election;
 
-@interface UserAddress : NSManagedObject
+@interface UserAddress : VIPManagedObject
 
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSDate * lastUsed;
