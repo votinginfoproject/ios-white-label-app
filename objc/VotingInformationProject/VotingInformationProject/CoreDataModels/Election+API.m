@@ -97,7 +97,10 @@
           failure:failure];
 }
 
-- (void) parseVoterInfoJSON:(NSDictionary *)json
+/*
+ A set of parsed data is unique on (electionId, UserAddress).
+*/
+- (void) parseVoterInfoJSON:(NSDictionary*)json
 {
     NSString *status = json[@"status"];
     if (![status isEqualToString:@"success"]) {
