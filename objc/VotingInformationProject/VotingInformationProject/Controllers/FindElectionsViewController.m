@@ -95,7 +95,7 @@
              }
 
              for (NSDictionary *entry in electionData) {
-                 NSString *electionId = [entry valueForKey:@"id"];
+                 NSString *electionId = entry[@"id"];
                  Election *election = [Election getUnique:electionId
                                           withUserAddress:userAddress];
                  election.electionName = entry[@"name"];
