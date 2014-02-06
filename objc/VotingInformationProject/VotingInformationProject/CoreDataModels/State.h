@@ -11,7 +11,7 @@
 
 @class DataSource, Election, ElectionAdministrationBody;
 
-@interface State : NSManagedObject
+@interface State : VIPManagedObject
 
 @property (nonatomic, retain) NSString * localJurisdiction;
 @property (nonatomic, retain) NSString * name;

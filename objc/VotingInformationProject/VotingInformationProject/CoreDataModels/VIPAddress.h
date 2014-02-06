@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "VIPManagedObject.h"
+
 @class ElectionAdministrationBody, PollingLocation;
 
-@interface VIPAddress : NSManagedObject
+@interface VIPAddress : VIPManagedObject
 
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * line1;

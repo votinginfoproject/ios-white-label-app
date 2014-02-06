@@ -10,11 +10,4 @@
 
 @implementation ElectionOfficial (API)
 
-+ (ElectionOfficial*) setFromDictionary:(NSDictionary *)attributes
-{
-    ElectionOfficial *electionOfficial = [ElectionOfficial MR_createEntity];
-    [electionOfficial setValuesForKeysWithDictionary:attributes];
-    return electionOfficial;
-}
-
 @end

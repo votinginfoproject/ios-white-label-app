@@ -11,7 +11,7 @@
 
 @class Contest;
 
-@interface District : NSManagedObject
+@interface District : VIPManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * scope;

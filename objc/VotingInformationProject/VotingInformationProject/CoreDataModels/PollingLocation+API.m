@@ -27,10 +27,10 @@
     pollingLocation.isEarlyVoteSite = @(isEarlyVotingSite);
     [pollingLocation setValuesForKeysWithDictionary:mutableAttributes];
 
-    pollingLocation.address = [VIPAddress setFromDictionary:address];
+    pollingLocation.address = (VIPAddress*)[VIPAddress setFromDictionary:address];
 
     for (NSDictionary *dataSource in dataSources) {
-        [pollingLocation addDataSourcesObject:[DataSource setFromDictionary:dataSource]];
+        [pollingLocation addDataSourcesObject:(DataSource*)[DataSource setFromDictionary:dataSource]];
     }
 
     return pollingLocation;

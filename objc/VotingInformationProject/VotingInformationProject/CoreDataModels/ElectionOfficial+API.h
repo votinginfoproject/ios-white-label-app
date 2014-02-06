@@ -10,6 +10,4 @@
 
 @interface ElectionOfficial (API)
 
-+ (ElectionOfficial*) setFromDictionary:(NSDictionary*)attributes;
-
 @end

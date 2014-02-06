@@ -31,12 +31,16 @@
     [eab setValuesForKeysWithDictionary:mutableAttributes];
 
     // Set addresses
-    [eab addAddressesObject:[VIPAddress setFromDictionary:mailingAddressDict]];
-    [eab addAddressesObject:[VIPAddress setFromDictionary:physicalAddressDict]];
+    if (mailingAddressDict) {
+        [eab addAddressesObject:(VIPAddress*)[VIPAddress setFromDictionary:mailingAddressDict]];
+    }
+    if (physicalAddressDict) {
+        [eab addAddressesObject:(VIPAddress*)[VIPAddress setFromDictionary:physicalAddressDict]];
+    }
 
     // Set Election officials
     for (NSDictionary *official in officials) {
-        [eab addElectionOfficialsObject:[ElectionOfficial setFromDictionary:official]];
+        [eab addElectionOfficialsObject:(ElectionOfficial*)[ElectionOfficial setFromDictionary:official]];
     }
 
     return eab;

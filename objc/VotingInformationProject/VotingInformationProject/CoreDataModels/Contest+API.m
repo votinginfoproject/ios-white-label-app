@@ -31,11 +31,11 @@
     [contest setValuesForKeysWithDictionary:mutableAttributes];
 
     // Set district
-    contest.district = [District setFromDictionary:districtDict];
+    contest.district = (District*)[District setFromDictionary:districtDict];
 
     // Set DataSources
     for (NSDictionary *dataSource in dataSources) {
-        [contest addDataSourcesObject:[DataSource setFromDictionary:dataSource]];
+        [contest addDataSourcesObject:(DataSource*)[DataSource setFromDictionary:dataSource]];
     }
 
     // Set Candidates

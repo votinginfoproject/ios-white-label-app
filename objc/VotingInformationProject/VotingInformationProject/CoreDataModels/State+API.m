@@ -36,7 +36,7 @@
 
     // Set DataSources
     for (NSDictionary *dataSource in dataSourcesArray) {
-        [state addDataSourcesObject:[DataSource setFromDictionary:dataSource]];
+        [state addDataSourcesObject:(DataSource*)[DataSource setFromDictionary:dataSource]];
     }
 
     return state;

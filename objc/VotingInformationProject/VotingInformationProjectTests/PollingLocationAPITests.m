@@ -40,11 +40,15 @@ describe(@"PLAPITests", ^{
         NSString *namevalue = @"site 1";
         NSDictionary *attributes = @{
                                      @"notes": notesvalue,
-                                     @"name": namevalue
+                                     @"name": namevalue,
+                                     @"address": @{@"locationName": @"123 Test Drive"},
+                                     @"sources": @[@{@"name": @"Test DataSource"}]
                                      };
 
         PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:NO];
         [[pl.isEarlyVoteSite should] beNo];
+        [[theValue([pl.dataSources count]) should] equal:theValue(1)];
+        [[pl.address.locationName should] equal:@"123 Test Drive"];
         [[pl.notes should] equal:notesvalue];
         [[pl.name should] equal:namevalue];
     });

@@ -10,11 +10,4 @@
 
 @implementation District (API)
 
-+ (District*)   setFromDictionary:(NSDictionary *)attributes
-{
-    District *district = [District MR_createEntity];
-    [district setValuesForKeysWithDictionary:attributes];
-    return district;
-}
-
 @end

@@ -115,16 +115,16 @@
         <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="address" inverseEntity="PollingLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Contest" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DataSource" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="District" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Election" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ElectionOfficial" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PollingLocation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="State" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UserAddress" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="VIPAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Candidate" positionX="0" positionY="0" width="128" height="178"/>
+        <element name="Contest" positionX="0" positionY="0" width="128" height="300"/>
+        <element name="DataSource" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="District" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Election" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="ElectionOfficial" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PollingLocation" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="State" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="UserAddress" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="VIPAddress" positionX="0" positionY="0" width="128" height="180"/>
     </elements>
 </model>

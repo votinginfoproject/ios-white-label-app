@@ -10,6 +10,4 @@
 
 @interface District (API)
 
-+ (District *) setFromDictionary:(NSDictionary*)attributes;
-
 @end

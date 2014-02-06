@@ -10,10 +10,4 @@
 
 @interface VIPAddress (API)
 
-/*
- * keys in NSDictionary address should be the same as the 
- * properties of this class
- */
-+ (VIPAddress*) setFromDictionary:(NSDictionary*)address;
-
 @end

@@ -11,7 +11,7 @@
 
 @class Contest, PollingLocation, State, UserAddress;
 
-@interface Election : NSManagedObject
+@interface Election : VIPManagedObject
 
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * electionId;

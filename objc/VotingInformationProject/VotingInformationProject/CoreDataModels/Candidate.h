@@ -11,7 +11,7 @@
 
 @class Contest;
 
-@interface Candidate : NSManagedObject
+@interface Candidate : VIPManagedObject
 
 @property (nonatomic, retain) NSString * candidateUrl;
 @property (nonatomic, retain) NSString * email;

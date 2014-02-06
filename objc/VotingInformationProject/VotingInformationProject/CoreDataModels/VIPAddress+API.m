@@ -10,11 +10,4 @@
 
 @implementation VIPAddress (API)
 
-+ (VIPAddress*) setFromDictionary:(NSDictionary*)address
-{
-    VIPAddress *vipAddress = [VIPAddress MR_createEntity];
-    [vipAddress setValuesForKeysWithDictionary:address];
-    return vipAddress;
-}
-
 @end

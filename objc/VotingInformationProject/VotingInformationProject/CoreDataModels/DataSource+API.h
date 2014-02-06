@@ -10,6 +10,4 @@
 
 @interface DataSource (API)
 
-+ (DataSource*) setFromDictionary:(NSDictionary*)attributes;
-
 @end

@@ -11,7 +11,7 @@
 
 @class ElectionOfficial, State, VIPAddress;
 
-@interface ElectionAdministrationBody : NSManagedObject
+@interface ElectionAdministrationBody : VIPManagedObject
 
 @property (nonatomic, retain) NSString * absenteeVotingInfoUrl;
 @property (nonatomic, retain) NSString * ballotInfoUrl;

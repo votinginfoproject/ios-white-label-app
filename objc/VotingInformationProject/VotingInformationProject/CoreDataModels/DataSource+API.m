@@ -10,11 +10,4 @@
 
 @implementation DataSource (API)
 
-+ (DataSource*) setFromDictionary:(NSDictionary *)attributes
-{
-    DataSource *dataSource = [DataSource MR_createEntity];
-    [dataSource setValuesForKeysWithDictionary:attributes];
-    return dataSource;
-}
-
 @end

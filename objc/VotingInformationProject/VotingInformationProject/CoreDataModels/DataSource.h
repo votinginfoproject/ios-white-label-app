@@ -11,7 +11,7 @@
 
 @class Contest, PollingLocation, State;
 
-@interface DataSource : NSManagedObject
+@interface DataSource : VIPManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * official;

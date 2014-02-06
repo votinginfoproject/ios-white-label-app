@@ -11,7 +11,7 @@
 
 @class Candidate, DataSource, District, Election;
 
-@interface Contest : NSManagedObject
+@interface Contest : VIPManagedObject
 
 @property (nonatomic, retain) NSNumber * ballotPlacement;
 @property (nonatomic, retain) NSString * contestId;
