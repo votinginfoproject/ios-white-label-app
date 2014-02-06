@@ -66,10 +66,14 @@
 
 }
 
+/*
+ A set of parsed data is unique on (electionId, UserAddress).
+*/
 - (void) getVoterInfo:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
               failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure
 {
     if (![self.userAddress hasAddress]) {
+        NSLog(@"getVoterInfo requires valid userAddress property");
         return;
     }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
@@ -92,10 +96,6 @@
           success:success
           failure:failure];
 }
-
-/*
- A set of parsed data is unique on (electionId, UserAddress).
-*/
 
 - (void) parseVoterInfoJSON:(NSDictionary *)json
 {
@@ -139,6 +139,12 @@
     NSArray *states = attributes[@"state"];
     for (NSDictionary *state in states){
         [self addStatesObject:[State setFromDictionary:state]];
+    }
+
+    // Parse Contests
+    NSArray *contests = attributes[@"contests"];
+    for (NSDictionary *contest in contests){
+        [self addContestsObject:[Contest setFromDictionary:contest]];
     }
 }
 
