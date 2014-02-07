@@ -10,17 +10,17 @@
 
 #import "ContactsSearchViewController.h"
 
-@interface ContactsSearchViewController ()
+@interface ContactsSearchViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
-@property (weak, nonatomic) IBOutlet UILabel *selectedAddressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *localizationLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 
 @end
 
 @implementation ContactsSearchViewController {
     NSManagedObjectContext *_moc;
 }
+
 
 - (void)viewDidLoad
 {
@@ -29,7 +29,7 @@
 
     UserAddress *storedAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                                    ascending:NO];
-    self.selectedAddressLabel.text = storedAddress.address;
+    self.addressTextField.text = storedAddress.address;
 
     /* i18n Sample Demo
      Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
@@ -44,13 +44,29 @@
      all NSLocalizedString calls in your app.
      https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/genstrings.1.html
      http://blog.spritebandits.com/2012/01/25/ios-iphone-app-localization-genstrings-tips/
-    */
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 
     NSString *oneMillion = [numberFormatter stringFromNumber:@(1000000)];
     self.localizationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NUMBER: %@", nil), oneMillion];
+    */
 
+}
+
+
+#pragma mark - view appears
+
+//Hide nav bar on root view
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +74,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - contacts picker
 
 - (IBAction)showPeoplePicker:(id)sender
 {
@@ -89,7 +108,7 @@
             NSLog(@"DataStore saved: %d", success);
         }];
 
-        self.selectedAddressLabel.text = selectedAddress.address;
+        self.addressTextField.text = selectedAddress.address;
 
         [peoplePicker dismissViewControllerAnimated:YES completion:nil];
         return NO;
@@ -115,4 +134,20 @@
     return address;
 }
 
+
+#pragma mark - UITextField
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    // TODO: If textField.text != userAddress.address
+    //          create new userAddress and assign as current
+    //          optionally check if elections exist and indicate to user
+}
+
+// close the keyboard when user taps return
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
+}
 @end
