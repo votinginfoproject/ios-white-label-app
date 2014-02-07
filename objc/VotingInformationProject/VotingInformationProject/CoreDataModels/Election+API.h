@@ -14,10 +14,23 @@
 #import "PollingLocation+API.h"
 #import "State+API.h"
 
+#define ELECTIONSAPIErrorDomain @"Elections+API"
+#define ELECTIONSAPIErrorCodeInvalidUserAddress 101
+#define ELECTIONSAPIErrorDescriptionInvalidUserAddress @"A UserAddress Required"
+
 @interface Election (API)
 
 + (Election *) getUnique:(NSString*)electionId
          withUserAddress:(UserAddress*)userAddress;
+
+/*
+    Argument to block is an array of newly retrieved and saved Election* objects
+    Array will be empty if no elections were found
+ */
++ (void) getElectionsAt:(UserAddress*)userAddress
+                results:(void (^)(NSArray * elections, NSError * error))resultsBlock;
+
+- (void) setDateFromString:(NSString*)stringDate;
 
 - (BOOL) shouldUpdate;
 
