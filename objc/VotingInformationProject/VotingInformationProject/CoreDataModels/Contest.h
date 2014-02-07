@@ -2,7 +2,7 @@
 //  Contest.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
+//  Created by Andrew Fink on 2/6/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @class Candidate, DataSource, District, Election;
 
-@interface Contest : NSManagedObject
+@interface Contest : VIPManagedObject
 
 @property (nonatomic, retain) NSNumber * ballotPlacement;
 @property (nonatomic, retain) NSString * contestId;
@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSString * primaryParty;
 @property (nonatomic, retain) NSString * referendumSubtitle;
 @property (nonatomic, retain) NSString * referendumTitle;
-@property (nonatomic, retain) NSString * referendumURL;
+@property (nonatomic, retain) NSString * referendumUrl;
 @property (nonatomic, retain) NSString * special;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet *candidates;

@@ -2,7 +2,7 @@
 //  District.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
+//  Created by Andrew Fink on 2/6/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 
 @class Contest;
 
-@interface District : NSManagedObject
+@interface District : VIPManagedObject
 
-@property (nonatomic, retain) NSString * districtId;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * scope;
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSSet *contests;
 @end
 
