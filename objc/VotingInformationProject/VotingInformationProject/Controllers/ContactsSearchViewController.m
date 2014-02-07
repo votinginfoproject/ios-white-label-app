@@ -183,7 +183,7 @@
 {
     if ([segue.identifier isEqualToString:@"BallotView"]) {
         VIPTabBarController *vipTabBarController = segue.destinationViewController;
-        vipTabBarController.election = _currentElection;
+        vipTabBarController.elections = self.elections;
     }
 }
 

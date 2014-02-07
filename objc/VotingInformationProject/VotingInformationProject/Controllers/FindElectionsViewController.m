@@ -10,38 +10,10 @@
 
 @interface FindElectionsViewController ()
 
-@property (strong, nonatomic) NSMutableArray *elections;
-@property (strong, nonatomic) NSDictionary *appSettings;
-@property (strong, nonatomic) NSDateFormatter *yyyymmddFormatter;
-
 @end
 
 @implementation FindElectionsViewController {
-    NSManagedObjectContext *_moc;
-    UserAddress *_userAddress;
-}
-
-- (NSMutableArray *) elections {
-    if (!_elections) {
-        _elections = [[NSMutableArray alloc] init];
-    }
-    return _elections;
-}
-
-- (NSDictionary *) appSettings {
-    if (!_appSettings) {
-        NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-        _appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
-    }
-    return _appSettings;
-}
-
-- (NSDateFormatter *) yyyymmddFormatter {
-    if (!_yyyymmddFormatter) {
-        _yyyymmddFormatter = [[NSDateFormatter alloc] init];
-        [_yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
-    }
-    return _yyyymmddFormatter;
+    NSArray *_elections;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -57,17 +29,28 @@
 {
     [super viewDidLoad];
 
-    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    _userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                                 ascending:NO];
-    [self loadElectionData];
+    [self setOtherElections];
+}
+
+- (void) setOtherElections
+{
+    VIPTabBarController *parentTabBarController = (VIPTabBarController*) self.tabBarController;
+    NSArray *elections = parentTabBarController.elections;
+    NSUInteger numElections = [elections count];
+    if (numElections > 1) {
+        NSRange rangeForOtherElections;
+        rangeForOtherElections.location = 1;
+        rangeForOtherElections.length = [elections count] - 1;
+        _elections = [elections subarrayWithRange:rangeForOtherElections];
+    } else {
+        _elections = @[];
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -75,20 +58,6 @@
     [super viewWillAppear:animated];
     if (self.tabBarController) {
         self.tabBarController.title = NSLocalizedString(@"More Elections", nil);
-    }
-
-}
-
-- (void) loadElectionData {
-
-    if (!_userAddress) {
-        UIAlertView *noAddressAlert = [[UIAlertView alloc] initWithTitle:nil
-                                                                 message:@"No Address Selected"
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil];
-        [noAddressAlert show];
-        return;
     }
 
 }
@@ -110,7 +79,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.elections count];
+    return [_elections count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,10 +87,10 @@
     static NSString *CellIdentifier = @"ElectionCell";
     FindElectionsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    Election *election = [self.elections objectAtIndex:indexPath.row];
+    Election *election = [_elections objectAtIndex:indexPath.row];
 
-    cell.nameLabel.text = (election && election.electionName) ? election.electionName : @"N/A";
-    cell.dateStringLabel.text = (election && election.date) ? [self.yyyymmddFormatter stringFromDate:election.date] : @"N/A";
+    cell.nameLabel.text = election.electionName;
+    cell.dateStringLabel.text = [election getDateString];
 
     return cell;
 }

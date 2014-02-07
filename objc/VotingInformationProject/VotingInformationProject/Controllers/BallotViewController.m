@@ -47,7 +47,7 @@
     }
 
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
-    self.election = vipTabBarController.election;
+    self.election = (Election*) vipTabBarController.elections[0];
 
     [self updateUI];
 }

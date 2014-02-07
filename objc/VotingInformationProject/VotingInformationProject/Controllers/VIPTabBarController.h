@@ -13,6 +13,6 @@
 
 @interface VIPTabBarController : UITabBarController
 
-@property (strong, nonatomic) Election *election;
+@property (strong, nonatomic) NSArray *elections;
 
 @end
