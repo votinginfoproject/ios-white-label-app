@@ -30,6 +30,7 @@
 + (void) getElectionsAt:(UserAddress*)userAddress
                 results:(void (^)(NSArray * elections, NSError * error))resultsBlock;
 
+- (NSString *) getDateString;
 - (void) setDateFromString:(NSString*)stringDate;
 
 - (BOOL) shouldUpdate;

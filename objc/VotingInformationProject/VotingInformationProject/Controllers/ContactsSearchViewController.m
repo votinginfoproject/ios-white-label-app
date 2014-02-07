@@ -14,6 +14,10 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+@property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
+@property (strong, nonatomic) UserAddress *userAddress;
+@property (strong, nonatomic) NSArray *elections;
+@property (strong, nonatomic) Election *currentElection;
 
 @end
 
@@ -21,15 +25,49 @@
     NSManagedObjectContext *_moc;
 }
 
+- (void) setUserAddress:(UserAddress *)userAddress
+{
+    if ([userAddress.address isEqualToString:_userAddress.address]) {
+        return;
+    }
+    _userAddress = userAddress;
+    // update elections when we set a new userAddress
+    [Election getElectionsAt:_userAddress
+                     results:^(NSArray *elections, NSError *error){
+                         if (error || [elections count] == 0) {
+                             [self displayGetElectionsError:error];
+                         } else {
+                             self.elections = elections;
+                         }
+                     }];
+}
+
+- (void) setElections:(NSArray *)elections
+{
+    if (elections && [elections count] > 0) {
+        _elections = elections;
+        _currentElection = _elections[0];
+        [_currentElection
+         getVoterInfo:^(AFHTTPRequestOperation *operation, NSDictionary *json)
+         {
+             [_currentElection parseVoterInfoJSON:json];
+             self.showElectionButton.enabled = YES;
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             [self displayGetElectionsError:error];
+         }];
+    } else {
+        _elections = @[];
+        _currentElection = nil;
+    }
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
-
-    UserAddress *storedAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                                   ascending:NO];
-    self.addressTextField.text = storedAddress.address;
 
     /* i18n Sample Demo
      Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
@@ -61,6 +99,11 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+
+    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                     ascending:NO];
+    self.addressTextField.text = userAddress.address;
+    self.userAddress = userAddress;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -107,8 +150,7 @@
         [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"DataStore saved: %d", success);
         }];
-
-        self.addressTextField.text = selectedAddress.address;
+        self.userAddress = selectedAddress;
 
         [peoplePicker dismissViewControllerAnimated:YES completion:nil];
         return NO;
@@ -135,6 +177,17 @@
 }
 
 
+#pragma mark - Segues
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"BallotView"]) {
+        VIPTabBarController *vipTabBarController = segue.destinationViewController;
+        vipTabBarController.election = _currentElection;
+    }
+}
+
+
 #pragma mark - UITextField
 
 - (void) textFieldDidEndEditing:(UITextField *)textField
@@ -149,5 +202,13 @@
 {
     [textField resignFirstResponder];
     return NO;
+}
+
+
+#pragma mark - UI Error Handling
+- (void) displayGetElectionsError:(NSError*)error
+{
+    // TODO: implement
+    self.showElectionButton.enabled = NO;
 }
 @end

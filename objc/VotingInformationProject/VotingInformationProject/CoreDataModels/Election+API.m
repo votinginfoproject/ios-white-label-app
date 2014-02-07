@@ -43,6 +43,9 @@
         resultsBlock(@[], error);
     }
 
+    // TODO: Attempt to get stored elections from the cache and display those rather than
+    //          making a network request
+
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
     NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
     // Setup request manager
@@ -88,9 +91,16 @@
                  [election setDateFromString:entry[@"electionDay"]];
                  [elections addObject:election];
              }
+
+             // sort elections by date ascending now that theyre all in the future
+             NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
+                                                                              ascending:YES];
+             NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+             NSArray *sortedElections = [elections sortedArrayUsingDescriptors:sortDescriptors];
+
              NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
              [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                 resultsBlock(elections, error);
+                 resultsBlock(sortedElections, error);
              }];
 
          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -114,6 +124,17 @@
         return NO;
     }
     return YES;
+}
+
+- (NSString *) getDateString
+{
+    NSString *electionDateString = nil;
+    if (self.date) {
+        NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
+        [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+        electionDateString = [yyyymmddFormatter stringFromDate:self.date];
+    }
+    return electionDateString;
 }
 
 - (void) setDateFromString:(NSString *)stringDate

@@ -56,6 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -67,6 +68,15 @@
     _userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                                  ascending:NO];
     [self loadElectionData];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.tabBarController) {
+        self.tabBarController.title = NSLocalizedString(@"More Elections", nil);
+    }
+
 }
 
 - (void) loadElectionData {
@@ -81,73 +91,6 @@
         return;
     }
 
-    // Setup request manager
-    // TODO: Refactor into separate class if multiple requests are made
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
-                                                         setByAddingObjectsFromSet:[NSSet setWithObject:@"text/plain"]];
-
-    NSString *requestUrl = [self.appSettings objectForKey:@"ElectionListURL"];
-    NSLog(@"URL: %@", requestUrl);
-    NSDictionary *requestParams = [self getElectionDataParams:requestUrl];
-
-    [manager GET:requestUrl
-      parameters:requestParams
-         success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-             
-             // On Success
-             NSArray *electionData = [responseObject objectForKey:@"elections"];
-             if (!electionData) {
-                 // table view will simply be empty
-                 NSLog(@"No Elections at json key 'elections'.");
-                 return;
-             }
-
-             for (NSDictionary *entry in electionData) {
-                 NSString *electionId = entry[@"id"];
-                 Election *election = [Election getUnique:electionId
-                                          withUserAddress:_userAddress];
-                 election.electionName = entry[@"name"];
-                 election.date = [self.yyyymmddFormatter dateFromString:entry[@"electionDay"]];
-                 [self.elections addObject:election];
-
-                 // TODO: Properly move this into viewDidLoad on an Election Detail controller
-                 // The VIP Test Election
-                 if ([electionId isEqualToString:@"2000"]) {
-                     // Test address, apparently only Brooklyn addresses like to work.
-                     // 185 Erasmus Street Brooklyn NY 11226 USA
-                     // Attempted Philadelphia, DC, Manhattan
-                     [election getVoterInfo:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
-                                        [election parseVoterInfoJSON:json];
-                                    }
-                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                        NSLog(@"%@", error);
-                                    }];
-                 }
-             }
-             [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                 NSLog(@"DataStore saved: %d", success);
-             }];
-             [self.tableView reloadData];
-
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             // On Failure
-             // TODO: Better handle errors once UI finalized
-             NSLog(@"Error: %@", error);
-             
-         }];
-}
-
-// If an API Key exists and the url matches the Civic Info API url, then add key to request params
-- (NSDictionary*) getElectionDataParams:(NSString*) url {
-    NSString *civicInfoElectionQueryURL = [self.appSettings objectForKey:@"GoogleCivicInfoElectionQueryURL"];
-    NSString *apiKey = [self.appSettings objectForKey:@"GoogleCivicInfoAPIKey"];
-    if (civicInfoElectionQueryURL && apiKey && [url isEqualToString:civicInfoElectionQueryURL]) {
-        return @{@"key": apiKey};
-    } else {
-        return nil;
-    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,12 +7,17 @@
 //
 
 #import "BallotViewController.h"
+#import "Election+API.h"
+#import "Contest+API.h"
 
 @interface BallotViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
 @end
 
-@implementation BallotViewController
+@implementation BallotViewController {
+    NSArray *_contests;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,6 +39,34 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.tabBarController) {
+        self.tabBarController.title = NSLocalizedString(@"Ballot", nil);
+    }
+
+    VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
+    self.election = vipTabBarController.election;
+
+    [self updateUI];
+}
+
+- (void) updateUI
+{
+    if (!self.election) {
+        return;
+    }
+    self.electionNameLabel.text = self.election.electionName;
+    self.electionDateLabel.text = [self.election getDateString];
+
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"office"
+                                                                     ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
+    NSArray *contests = [self.election.contests allObjects];
+    _contests = [contests sortedArrayUsingDescriptors:sortDescriptors];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -44,25 +77,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [_contests count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ContestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    
+    Contest *contest = _contests[indexPath.item];
+    cell.textLabel.text = contest.office;
+    cell.detailTextLabel.text = contest.type;
     return cell;
 }
 

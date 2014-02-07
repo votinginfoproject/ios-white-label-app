@@ -1,18 +1,18 @@
 //
-//  BallotDetailsViewController.m
+//  VIPTabBarController.m
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/7/14.
 //  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
-#import "BallotDetailsViewController.h"
+#import "VIPTabBarController.h"
 
-@interface BallotDetailsViewController ()
+@interface VIPTabBarController ()
 
 @end
 
-@implementation BallotDetailsViewController
+@implementation VIPTabBarController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,16 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 	// Do any additional setup after loading the view.
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.tabBarController) {
-        self.tabBarController.title = NSLocalizedString(@"Details", nil);
-    }
 }
 
 - (void)didReceiveMemoryWarning

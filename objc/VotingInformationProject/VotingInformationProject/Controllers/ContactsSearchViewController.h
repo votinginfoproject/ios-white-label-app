@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 
+#import "VIPTabBarController.h"
+
 #import "VIPUserDefaultsKeys.h"
 #import "UserAddress+API.h"
+#import "Election+API.h"
 
 @interface ContactsSearchViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
 
