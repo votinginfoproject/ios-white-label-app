@@ -25,24 +25,25 @@
     NSManagedObjectContext *_moc;
 }
 
-- (void) setUserAddress:(UserAddress *)userAddress
+- (void)setUserAddress:(UserAddress *)userAddress
 {
     if ([userAddress.address isEqualToString:_userAddress.address]) {
         return;
     }
     _userAddress = userAddress;
     // update elections when we set a new userAddress
-    [Election getElectionsAt:_userAddress
-                     results:^(NSArray *elections, NSError *error){
-                         if (error || [elections count] == 0) {
-                             [self displayGetElectionsError:error];
-                         } else {
-                             self.elections = elections;
-                         }
-                     }];
+    [Election
+     getElectionsAt:_userAddress
+     results:^(NSArray *elections, NSError *error){
+         if (error || [elections count] == 0) {
+             [self displayGetElectionsError:error];
+         } else {
+             self.elections = elections;
+         }
+     }];
 }
 
-- (void) setElections:(NSArray *)elections
+- (void)setElections:(NSArray *)elections
 {
     if (elections && [elections count] > 0) {
         _elections = elections;
@@ -101,7 +102,7 @@
     [super viewWillAppear:animated];
 
     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                     ascending:NO];
+                                                                 ascending:NO];
     self.addressTextField.text = userAddress.address;
     self.userAddress = userAddress;
 }
