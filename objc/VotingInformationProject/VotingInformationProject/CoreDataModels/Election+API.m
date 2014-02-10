@@ -41,6 +41,7 @@
                                              code:ELECTIONSAPIErrorCodeInvalidUserAddress
                                          userInfo:@{@"detail": ELECTIONSAPIErrorDescriptionInvalidUserAddress}];
         resultsBlock(@[], error);
+        return;
     }
 
     // TODO: Attempt to get stored elections from the cache and display those rather than
@@ -71,6 +72,7 @@
                                                       code:NSKeyValueValidationError
                                                   userInfo:@{@"detail": @"Key elections does not exist"}];
                  resultsBlock(@[], error);
+                 return;
              }
 
              // Init elections array
