@@ -187,7 +187,7 @@
         NSLog(@"getVoterInfo requires valid userAddress property");
         return;
     }
-    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
