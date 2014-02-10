@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>GoogleCivicInfoAPIKey</key>
-	<string></string>
+    <string></string>
 </dict>
 </plist>
