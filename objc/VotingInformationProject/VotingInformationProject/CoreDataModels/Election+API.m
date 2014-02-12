@@ -34,7 +34,7 @@
 }
 
 + (void) getElectionsAt:(UserAddress*)userAddress
-                results:(void (^)(NSArray * elections, NSError * error))resultsBlock
+           resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock
 {
     if (![userAddress hasAddress]) {
         NSError *error = [NSError errorWithDomain:ELECTIONSAPIErrorDomain

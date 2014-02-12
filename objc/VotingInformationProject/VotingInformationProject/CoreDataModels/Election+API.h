@@ -41,7 +41,7 @@
  @param resultsBlock A block object to be executed when the operation completes. The block has no return value and takes two arguments: NSArray of elections return and an NSError that will contain any errors or nil if the operation completed successfully.
  */
 + (void) getElectionsAt:(UserAddress*)userAddress
-                results:(void (^)(NSArray * elections, NSError * error))resultsBlock;
+           resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock;
 
 /**
  @return NSString of the form yyyy-mm-dd
@@ -64,10 +64,10 @@
  Get election data for an election from the Google Civic Info API, only if the data is stale as determined by shouldUpdate
  
  @see getVoterInfo:failure:
+
 - (BOOL) getVoterInfoIfExpired:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
                        failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
 
-/**
  Get election data for an election from the Google Civic Info API
 
  https://developers.google.com/civic-information/docs/us_v1/elections/voterInfoQuery

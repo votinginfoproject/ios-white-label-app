@@ -13,22 +13,22 @@ Building the App
 1. Before opening xcode, paste your Google Civic API browser key into: CivicAPIKey.plist
 between the string tag
 
-1. Install cocoapods:
+2. Install cocoapods:
 ```
 sudo gem install cocoapods
 ```
 
-2. cd to directory with podfile
+3. cd to directory with podfile
 
-3. Run:
+4. Run:
 ```
 pod install
 ```
 
-4. Open xcode with the VotingInformationProject.xcworkspace file, rather
+5. Open xcode with the VotingInformationProject.xcworkspace file, rather
     than the xcodeproj file
 
-5. In settings.plist, configure the following keys:
+6. In settings.plist, configure the following keys:
   * ElectionListURL
     * URL to json file that matches the form of: https://developers.google.com/civic-information/docs/us_v1/elections/electionQuery
     * Sample elections.json in xcode project

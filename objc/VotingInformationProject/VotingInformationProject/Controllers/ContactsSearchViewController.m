@@ -34,7 +34,7 @@
     // update elections when we set a new userAddress
     [Election
      getElectionsAt:_userAddress
-     results:^(NSArray *elections, NSError *error){
+     resultsBlock:^(NSArray *elections, NSError *error){
          if (error || [elections count] == 0) {
              [self displayGetElectionsError:error];
          } else {

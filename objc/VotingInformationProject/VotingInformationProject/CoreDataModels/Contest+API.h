@@ -14,6 +14,13 @@
 
 @interface Contest (API)
 
+/**
+ Create and return an instance of Contest from a dictionary
+
+ @param attributes NSDictionary of the attributes to set
+ 
+ @see VIPManagedObject setFromDictionary:
+ */
 + (Contest*) setFromDictionary:(NSDictionary*)attributes;
 
 @end
