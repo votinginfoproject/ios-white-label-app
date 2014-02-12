@@ -14,7 +14,7 @@
 {
     NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
 
-    // TODO: Readd channels object if we want to store this info
+    // TODO: Remove this section if we want to store channels later 
     NSString *channelsKey = @"channels";
     [mutableAttributes removeObjectForKey:channelsKey];
 

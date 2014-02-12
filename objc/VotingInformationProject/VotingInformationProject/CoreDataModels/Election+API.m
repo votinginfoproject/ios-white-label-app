@@ -33,6 +33,119 @@
     return election;
 }
 
++ (void) getElectionsAt:(UserAddress*)userAddress
+           resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock
+{
+    if (![userAddress hasAddress]) {
+        NSError *error = [NSError errorWithDomain:ELECTIONSAPIErrorDomain
+                                             code:ELECTIONSAPIErrorCodeInvalidUserAddress
+                                         userInfo:@{@"detail": ELECTIONSAPIErrorDescriptionInvalidUserAddress}];
+        resultsBlock(@[], error);
+        return;
+    }
+
+    // TODO: Attempt to get stored elections from the cache and display those rather than
+    //          making a network request
+
+    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    // Setup request manager
+    // TODO: Refactor into separate class if multiple requests are made
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
+                                                         setByAddingObjectsFromSet:[NSSet setWithObject:@"text/plain"]];
+
+    NSString *requestUrl = [appSettings objectForKey:@"ElectionListURL"];
+    NSLog(@"URL: %@", requestUrl);
+    NSDictionary *requestParams = nil;
+
+    [manager GET:requestUrl
+      parameters:requestParams
+         success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+             
+             // On Success
+             NSArray *electionData = [responseObject objectForKey:@"elections"];
+             if (!electionData) {
+                 // table view will simply be empty
+                 NSError *error = [NSError errorWithDomain:ELECTIONSAPIErrorDomain
+                                                      code:NSKeyValueValidationError
+                                                  userInfo:@{@"detail": @"Key elections does not exist"}];
+                 resultsBlock(@[], error);
+                 return;
+             }
+
+             // Init elections array
+             NSUInteger numberOfElections = [electionData count];
+             NSMutableArray *elections = [[NSMutableArray alloc] initWithCapacity:numberOfElections];
+
+             // Loop elections and add valid ones to elections array
+             for (NSDictionary *entry in electionData) {
+                 // skip election if in the past
+                 if (![Election isElectionDictValid:entry]) {
+                     continue;
+                 }
+
+                 NSString *electionId = entry[@"id"];
+                 Election *election = [Election getUnique:electionId
+                                          withUserAddress:userAddress];
+                 election.electionName = entry[@"name"];
+                 [election setDateFromString:entry[@"electionDay"]];
+                 [elections addObject:election];
+             }
+
+             // sort elections by date ascending now that theyre all in the future
+             NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
+                                                                              ascending:YES];
+             NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+             NSArray *sortedElections = [elections sortedArrayUsingDescriptors:sortDescriptors];
+
+             NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+             [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+                 resultsBlock(sortedElections, error);
+             }];
+
+         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             resultsBlock(@[], error);
+         }];
+
+}
+
++ (BOOL) isElectionDictValid:(NSDictionary*)election {
+    if (!election[@"id"]) {
+        return NO;
+    }
+    if (!election[@"name"]) {
+        return NO;
+    }
+    // setup date formatter
+    NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
+    [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+    NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
+    if ([electionDate compare:[NSDate date]] != NSOrderedDescending) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSString *) getDateString
+{
+    NSString *electionDateString = nil;
+    if (self.date) {
+        NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
+        [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+        electionDateString = [yyyymmddFormatter stringFromDate:self.date];
+    }
+    return electionDateString;
+}
+
+- (void) setDateFromString:(NSString *)stringDate
+{
+    NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
+    [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+    self.date = [yyyymmddFormatter dateFromString:stringDate];
+}
+
 // For now always yes to test delete/update on CoreData
 - (BOOL) shouldUpdate
 {
@@ -76,7 +189,7 @@
         NSLog(@"getVoterInfo requires valid userAddress property");
         return;
     }
-    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -120,6 +233,7 @@
         NSLog(@"parseVoterInfoJSON saved: %d", success);
     }];
 }
+
 - (void) setFromDictionary:(NSDictionary*)attributes
 {
     // Parse Polling Locations
