@@ -19,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
     // Set map center to address if it exists
@@ -39,6 +40,14 @@
 
     [self geocode:userAddress andSetPlacemark:YES];
 };
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.tabBarController) {
+        self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
+    }
+}
 
 - (void) geocode:(UserAddress *)userAddress
  andSetPlacemark:(BOOL) setPlacemark

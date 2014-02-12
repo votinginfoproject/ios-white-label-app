@@ -101,6 +101,18 @@ describe(@"Election+API Tests", ^{
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
     });
 
+    it(@"should ensure that setDateFromString properly sets election date", ^{
+        Election *election = [Election MR_createEntity];
+        NSString *testDateString = @"2013-01-01";
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-mm-dd"];
+        NSDate *testDate = [df dateFromString:testDateString];
+
+        [election setDateFromString:testDateString];
+        [[testDate should] equal:election.date];
+        [[testDateString should] equal:[election getDateString]];
+    });
+
     it(@"getVoterInfoAt test ", ^{
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *context) {}];
     });
