@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 
+#import "UIWebViewController.h"
 #import "VIPTabBarController.h"
 
 #import "VIPUserDefaultsKeys.h"
