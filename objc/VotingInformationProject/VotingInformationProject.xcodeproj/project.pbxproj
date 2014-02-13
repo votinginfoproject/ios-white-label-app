@@ -45,6 +45,7 @@
 		499537F018A283F0009B678C /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537EF18A283F0009B678C /* Election.m */; };
 		499537F418A2B8C1009B678C /* ElectionAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F318A2B8C1009B678C /* ElectionAPITests.m */; };
 		499537F618A2BCCB009B678C /* UserAddressAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F518A2BCCB009B678C /* UserAddressAPITests.m */; };
+		49A04BD718AD261E00BCDB0D /* UIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD618AD261E00BCDB0D /* UIWebViewController.m */; };
 		49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */; };
 		49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0118A0254C00C5E889 /* UserAddress+API.m */; };
 		49A57B0B18A08E9200C5E889 /* PollingLocation+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */; };
@@ -147,6 +148,8 @@
 		499537EF18A283F0009B678C /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Election.m; path = CoreDataModels/Election.m; sourceTree = "<group>"; };
 		499537F318A2B8C1009B678C /* ElectionAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionAPITests.m; sourceTree = "<group>"; };
 		499537F518A2BCCB009B678C /* UserAddressAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressAPITests.m; sourceTree = "<group>"; };
+		49A04BD518AD261E00BCDB0D /* UIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebViewController.h; sourceTree = "<group>"; };
+		49A04BD618AD261E00BCDB0D /* UIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebViewController.m; sourceTree = "<group>"; };
 		49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModelTests.m; sourceTree = "<group>"; };
 		49A57B0018A0254C00C5E889 /* UserAddress+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UserAddress+API.h"; path = "CoreDataModels/UserAddress+API.h"; sourceTree = "<group>"; };
 		49A57B0118A0254C00C5E889 /* UserAddress+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UserAddress+API.m"; path = "CoreDataModels/UserAddress+API.m"; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 		49E981411892F7F700E26C5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				49A04BD518AD261E00BCDB0D /* UIWebViewController.h */,
+				49A04BD618AD261E00BCDB0D /* UIWebViewController.m */,
 				49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */,
 				49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */,
 				49CF34BB18A55BF100DDEE0E /* BallotViewController.h */,
@@ -591,6 +596,7 @@
 				49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */,
 				49CF34BD18A55BF100DDEE0E /* BallotViewController.m in Sources */,
 				494023CA18A3F2BD004FEF48 /* Candidate.m in Sources */,
+				49A04BD718AD261E00BCDB0D /* UIWebViewController.m in Sources */,
 				49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
