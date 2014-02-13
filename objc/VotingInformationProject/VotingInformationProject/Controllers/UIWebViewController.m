@@ -37,6 +37,10 @@
     }
 }
 
+/**
+ Show a simple alert message on error
+ of the form: "Unable to load URL: <self.urlString>"
+ */
 - (void) showErrorAlert
 {
     NSString *message = [NSString stringWithFormat:@"%@: %@",
