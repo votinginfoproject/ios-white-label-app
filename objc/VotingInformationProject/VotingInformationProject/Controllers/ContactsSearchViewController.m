@@ -185,6 +185,14 @@
     if ([segue.identifier isEqualToString:@"BallotView"]) {
         VIPTabBarController *vipTabBarController = segue.destinationViewController;
         vipTabBarController.elections = self.elections;
+    } else if ([segue.identifier isEqualToString:@"WebViewSegue"]) {
+#pragma mark - UIWebViewController example
+        NSString *urlString = @"http://hipsteripsum.me/?paras=4&type=hipster-centric";
+        UIWebViewController *webViewController = segue.destinationViewController;
+        // Set webView's navigation bar title
+        webViewController.title = @"HipsterIpsum";
+        // Set webView url to load
+        webViewController.urlString = urlString;
     }
 }
 
