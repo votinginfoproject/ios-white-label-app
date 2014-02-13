@@ -20,10 +20,9 @@
 @end
 
 @implementation ContestDetailsViewController {
-    NSDictionary *_displayProperties;
-    NSMutableArray *_tableData; // 2D array where first dimension is number of sections
-    NSArray *_properties;
-    NSArray *_candidates;
+    NSMutableArray *_tableData; // 2D array:    first dimension is an array for each section
+                                //              second dimension is data for that section
+    NSArray *_candidates;       // of Candidate*
 }
 
 - (void)viewDidLoad
@@ -35,6 +34,7 @@
 
     self.electionNameLabel.text = self.electionName;
 
+    // Sort by name
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                      ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
@@ -44,27 +44,17 @@
     _tableData = [[NSMutableArray alloc] initWithCapacity:2];
     [_tableData addObject:[self createPropertiesDataArray]];
     [_tableData addObject:_candidates];
-
-    self.tabBarItem.title = @"Ballot";
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return [_tableData count];
 }
 
@@ -89,7 +79,7 @@
     return cell;
 }
 
-- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == CDVC_TABLE_SECTION_PROPERTIES) {
         return NSLocalizedString(@"Contest Details", nil);
@@ -99,7 +89,11 @@
     return @"";
 }
 
-- (NSString*) cellIdentifierFor:(NSInteger) section
+/**
+ @param section Table section returned by the table view
+ @return NSString* cell identifier for the passed section
+ */
+- (NSString*)cellIdentifierFor:(NSInteger) section
 {
     if (section == CDVC_TABLE_SECTION_PROPERTIES) {
         return CDVC_TABLE_CELLID_PROPERTIES;
@@ -109,7 +103,12 @@
     return nil;
 }
 
-- (UITableViewCell*) configurePropertiesTableViewCell:(UITableViewCell*)cell
+/*
+ Configure one of the contest details cells
+ 
+ TODO: Add appropriate styling
+ */
+- (UITableViewCell*)configurePropertiesTableViewCell:(UITableViewCell*)cell
                                        withDictionary:(NSDictionary*)property
 {
     cell.textLabel.text = property[@"title"];
@@ -117,7 +116,13 @@
     return cell;
 }
 
-- (UITableViewCell*) configureCandidateTableViewCell:(UITableViewCell*)cell
+/**
+ Configure a Candidate cell
+ 
+ TODO: Add appropriate styling
+ TODO: Add UIImage for candidate
+ */
+- (UITableViewCell*)configureCandidateTableViewCell:(UITableViewCell*)cell
                                        withCandidate:(Candidate*)candidate
 {
     cell.textLabel.text = candidate.name;
@@ -125,45 +130,9 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
+/**
+ Creates the data array used in the first section of the table view
+ */
 - (NSArray*)createPropertiesDataArray
 {
     NSArray *properties = @[
@@ -188,19 +157,6 @@
                                 @"data": self.contest.ballotPlacement.stringValue
                             }];
     return properties;
-
 }
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end
