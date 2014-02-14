@@ -31,4 +31,21 @@
     return vipObject;
 }
 
+- (NSArray*)getSorted:(NSString*)property
+           byProperty:(NSString *)propertyKey
+            ascending:(BOOL)isAscending
+{
+    NSArray *results = nil;
+    NSSet *vipSet = [self valueForKey:property];
+    if (vipSet && [vipSet respondsToSelector:@selector(allObjects)]) {
+        NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:propertyKey
+                                                                         ascending:isAscending
+                                                                          selector:@selector(caseInsensitiveCompare:)];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
+        NSArray *unsortedResults = [[self valueForKey:property] allObjects];
+        results = [unsortedResults sortedArrayUsingDescriptors:sortDescriptors];
+    }
+    return results;
+}
+
 @end

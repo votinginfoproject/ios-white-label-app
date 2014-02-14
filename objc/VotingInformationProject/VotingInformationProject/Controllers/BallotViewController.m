@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/7/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "BallotViewController.h"
@@ -55,11 +54,9 @@
     self.electionNameLabel.text = self.election.electionName;
     self.electionDateLabel.text = [self.election getDateString];
 
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"office"
-                                                                     ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
-    NSArray *contests = [self.election.contests allObjects];
-    _contests = [contests sortedArrayUsingDescriptors:sortDescriptors];
+    _contests = [self.election getSorted:@"contests"
+                              byProperty:@"office"
+                               ascending:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,7 +84,6 @@
     static NSString *CellIdentifier = @"ContestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
     Contest *contest = _contests[indexPath.item];
     cell.textLabel.text = contest.office;
     cell.detailTextLabel.text = contest.type;

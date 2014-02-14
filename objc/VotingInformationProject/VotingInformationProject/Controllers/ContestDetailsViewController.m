@@ -22,7 +22,6 @@
 @implementation ContestDetailsViewController {
     NSMutableArray *_tableData; // 2D array:    first dimension is an array for each section
                                 //              second dimension is data for that section
-    NSArray *_candidates;       // of Candidate*
 }
 
 - (void)viewDidLoad
@@ -32,23 +31,26 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 
-    self.electionNameLabel.text = self.electionName;
-
-    // Sort by name
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                     ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
-    NSArray *candidates = [self.contest.candidates allObjects];
-    _candidates = [candidates sortedArrayUsingDescriptors:sortDescriptors];
-
-    _tableData = [[NSMutableArray alloc] initWithCapacity:2];
-    [_tableData addObject:[self createPropertiesDataArray]];
-    [_tableData addObject:_candidates];
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+/**
+ Refresh data displayed in the elements on this view
+ */
+- (void)updateUI
+{
+    self.electionNameLabel.text = self.electionName;
+
+    _tableData = [[NSMutableArray alloc] initWithCapacity:2];
+    [_tableData addObject:[self.contest getPropertiesDataArray]];
+    [_tableData addObject:[self.contest getSorted:@"candidates"
+                                       byProperty:@"name"
+                                        ascending:YES]];
 }
 
 #pragma mark - Table view data source
@@ -103,10 +105,10 @@
     return nil;
 }
 
-/*
+/**
  Configure one of the contest details cells
  
- TODO: Add appropriate styling
+ TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
 - (UITableViewCell*)configurePropertiesTableViewCell:(UITableViewCell*)cell
                                        withDictionary:(NSDictionary*)property
@@ -119,7 +121,7 @@
 /**
  Configure a Candidate cell
  
- TODO: Add appropriate styling
+ TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  TODO: Add UIImage for candidate
  */
 - (UITableViewCell*)configureCandidateTableViewCell:(UITableViewCell*)cell
@@ -128,35 +130,6 @@
     cell.textLabel.text = candidate.name;
     cell.detailTextLabel.text = candidate.party;
     return cell;
-}
-
-/**
- Creates the data array used in the first section of the table view
- */
-- (NSArray*)createPropertiesDataArray
-{
-    NSArray *properties = @[
-                            @{
-                                @"title": NSLocalizedString(@"Type", nil),
-                                @"data": self.contest.type
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Office", nil),
-                                @"data": self.contest.office
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Number Elected", nil),
-                                @"data": self.contest.numberElected.stringValue
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Number Voting For", nil),
-                                @"data": self.contest.numberVotingFor.stringValue
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Ballot Placement", nil),
-                                @"data": self.contest.ballotPlacement.stringValue
-                            }];
-    return properties;
 }
 
 @end

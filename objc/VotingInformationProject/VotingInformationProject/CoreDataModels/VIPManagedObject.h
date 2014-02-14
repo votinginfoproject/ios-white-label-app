@@ -31,4 +31,18 @@
  */
 + (VIPManagedObject *) setFromDictionary:(NSDictionary*)attributes;
 
+/**
+ Get a sorted array from an VIPManagedObject NSSet property
+ 
+ @warning passing an invalid propertyKey will return an array, but unsorted
+ 
+ @param property The NSSet property to sort
+ @param propertyKey The key of the property to sort on
+ @param ascending YES if sort ascending, NO sort descending
+ @return NSArray of the sorted objects, nil if bad property is provided
+ */
+- (NSArray*)getSorted:(NSString*)property
+           byProperty:(NSString *)propertyKey
+            ascending:(BOOL)isAscending;
+
 @end
