@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/5/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "Contest+API.h"
@@ -45,4 +44,32 @@
 
     return contest;
 }
+
+
+- (NSArray*)getPropertiesDataArray
+{
+    NSArray *properties = @[
+                            @{
+                                @"title": NSLocalizedString(@"Type", nil),
+                                @"data": self.type
+                            },
+                            @{
+                                @"title": NSLocalizedString(@"Office", nil),
+                                @"data": self.office
+                            },
+                            @{
+                                @"title": NSLocalizedString(@"Number Elected", nil),
+                                @"data": self.numberElected.stringValue
+                            },
+                            @{
+                                @"title": NSLocalizedString(@"Number Voting For", nil),
+                                @"data": self.numberVotingFor.stringValue
+                            },
+                            @{
+                                @"title": NSLocalizedString(@"Ballot Placement", nil),
+                                @"data": self.ballotPlacement.stringValue
+                            }];
+    return properties;
+}
+
 @end

@@ -16,6 +16,21 @@
 
 SPEC_BEGIN(VIPManagedObjectTests)
 
+/**
+ Helper function to create a contest with two candidates
+ */
+Contest* (^createMockContest) () = ^Contest* () {
+    Contest* contest = [Contest MR_createEntity];
+    contest.contestId = @"Lord of Winterfell";
+    Candidate* candidate = [Candidate MR_createEntity];
+    Candidate* candidate2 = [Candidate MR_createEntity];
+    candidate.name = @"Jon Snow";
+    candidate2.name = @"Bran Stark";
+    [contest addCandidatesObject:candidate];
+    [contest addCandidatesObject:candidate2];
+    return contest;
+};
+
 describe(@"VIPManagedObjectTests", ^{
     
     beforeEach(^{
@@ -44,7 +59,31 @@ describe(@"VIPManagedObjectTests", ^{
         DataSource *ds = (DataSource*)[DataSource setFromDictionary:attributes];
         [[ds.name should] equal:validName];
     });
-   
+
+    it(@"should ensure that getSorted:byProperty:ascending returns results", ^{
+        Contest* contest = createMockContest();
+        NSArray* candidates = [contest getSorted:@"candidates"
+                                      byProperty:@"name"
+                                       ascending:YES];
+        Candidate* bran = candidates[0];
+        [[bran.name should] equal:@"Bran Stark"];
+        [[theValue([candidates count]) should] equal:theValue(2)];
+
+        // sort again to force the sort to actually happen
+        candidates = [contest getSorted:@"candidates"
+                                      byProperty:@"name"
+                                       ascending:NO];
+        Candidate* jon = candidates[0];
+        [[jon.name should] equal:@"Jon Snow"];
+    });
+    
+    it(@"should ensure that getSorted returns nil with bad input", ^{
+        Contest* contest = createMockContest();
+        NSArray* candidatesBadProperty = [contest getSorted:@"badProperty"
+                                                 byProperty:@"name"
+                                                  ascending:NO];
+        [[candidatesBadProperty should] beNil];
+    });
 });
 
 SPEC_END
