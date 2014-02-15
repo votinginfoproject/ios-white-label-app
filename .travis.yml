@@ -7,4 +7,6 @@ before_install:
 install:
     - cd objc/VotingInformationProject && pod install
 
-script: xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator -arch i386 test
+script:
+    - xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator -arch i386 test
+    - ./scripts/ci/check_copyright.sh
