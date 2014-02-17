@@ -22,6 +22,32 @@
     // Set attributes
     [candidate setValuesForKeysWithDictionary:mutableAttributes];
 
+    // Download photo from url
+    if(candidate.photoUrl) {
+        NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
+        NSURL *url = [NSURL URLWithString:candidate.photoUrl];
+
+        // Create URL request
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        request.HTTPMethod = @"GET";
+
+        // Create data task
+        NSURLSessionDataTask *getPhotoDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+            if (error) {
+                NSLog(@"Candidate %@ error getting photo: %@", candidate.name, error);
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                candidate.photo = data;
+            });
+        }];
+        
+        // Execute request
+        [getPhotoDataTask resume];
+    }
+
     return candidate;
 }
 @end

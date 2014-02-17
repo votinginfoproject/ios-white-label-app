@@ -129,6 +129,7 @@
 {
     cell.textLabel.text = candidate.name;
     cell.detailTextLabel.text = candidate.party;
+    cell.imageView.image = [UIImage imageWithData:candidate.photo];
     return cell;
 }
 
