@@ -40,6 +40,12 @@
     [getPhotoDataTask resume];
 }
 
+- (NSArray*)getLinksDataArray
+{
+    // TODO: Implement
+    return @[];
+}
+
 + (Candidate*) setFromDictionary:(NSDictionary *)attributes
 {
     NSMutableDictionary *mutableAttributes = [attributes mutableCopy];

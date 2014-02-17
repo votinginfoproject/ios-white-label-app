@@ -10,7 +10,7 @@
 
 #import "Candidate+API.h"
 
-@interface CandidateDetailsViewController : UIViewController
+@interface CandidateDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Candidate* candidate;
 

@@ -25,4 +25,6 @@
  */
 - (void)getCandidatePhotoData;
 
+- (NSArray*)getLinksDataArray;
+
 @end
