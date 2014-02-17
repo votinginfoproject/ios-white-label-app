@@ -18,8 +18,7 @@
 
     NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
-    //NSURL *url = [NSURL URLWithString:self.photoUrl];
-    NSURL *url = [NSURL URLWithString:@"https://0.gravatar.com/avatar/58ce0433a3bcb9b5bd3982d5ea0b5399?d=https%3A%2F%2Fidenticons.github.com%2Fb26d4f913ad8b3e9282fe7ed953b211f.png&r=x&s=64"];
+    NSURL *url = [NSURL URLWithString:self.photoUrl];
 
     // Create URL request
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
