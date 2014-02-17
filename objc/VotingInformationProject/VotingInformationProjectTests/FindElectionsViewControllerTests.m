@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 1/21/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
