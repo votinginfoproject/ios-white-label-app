@@ -308,21 +308,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vvv-RZ-OMA">
-                                                    <rect key="frame" x="63" y="4" width="34" height="22"/>
+                                                    <rect key="frame" x="58" y="4" width="34" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R4j-vk-pLz">
-                                                    <rect key="frame" x="63" y="26" width="32" height="15"/>
+                                                    <rect key="frame" x="58" y="26" width="32" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_compass.png" id="slH-K0-UFP">
-                                                    <rect key="frame" x="15" y="5" width="33" height="33"/>
+                                                <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="769-male.png" id="slH-K0-UFP">
+                                                    <rect key="frame" x="15" y="8" width="28" height="28"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -533,7 +533,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button_compass.png" width="33" height="33"/>
+        <image name="769-male.png" width="28" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

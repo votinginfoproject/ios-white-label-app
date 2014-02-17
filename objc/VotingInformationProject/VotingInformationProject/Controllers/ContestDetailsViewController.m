@@ -122,7 +122,6 @@
  * Configure a Candidate cell
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
- * FIXME: Add default "blank" icon in storyboard, once we have our icons
  */
 - (UITableViewCell*)configureCandidateTableViewCell:(UITableViewCell*)cell
                                        withCandidate:(Candidate*)candidate
