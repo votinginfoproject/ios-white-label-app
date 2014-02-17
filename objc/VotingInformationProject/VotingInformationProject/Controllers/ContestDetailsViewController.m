@@ -7,6 +7,8 @@
 
 #import "ContestDetailsViewController.h"
 
+#import "CandidateDetailsViewController.h"
+
 #define CDVC_TABLE_SECTION_PROPERTIES 0
 #define CDVC_TABLE_CELLID_PROPERTIES @"ContestPropertiesCell"
 #define CDVC_TABLE_SECTION_CANDIDATES 1
@@ -46,8 +48,8 @@
  */
 - (void)updateUI
 {
-    self.electionNameLabel.text = self.electionName;
-    self.contestNameLabel.text = self.contest.office;
+    self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available", nil);
+    self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
 
     _tableData = [[NSMutableArray alloc] initWithCapacity:2];
     [_tableData addObject:[self.contest getPropertiesDataArray]];
@@ -136,6 +138,19 @@
         cell.imageView.image = candidateImage;
     }
     return cell;
+}
+
+#pragma mark - Segues
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CandidateDetailsSegue"]) {
+        CandidateDetailsViewController* cdvc =
+        (CandidateDetailsViewController*) segue.destinationViewController;
+
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        cdvc.candidate = _tableData[indexPath.section][indexPath.item];
+    }
 }
 
 @end
