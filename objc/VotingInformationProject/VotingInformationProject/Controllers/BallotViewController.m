@@ -3,10 +3,10 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/7/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "BallotViewController.h"
+#import "ContestDetailsViewController.h"
 #import "Election+API.h"
 #import "Contest+API.h"
 
@@ -54,11 +54,9 @@
     self.electionNameLabel.text = self.election.electionName;
     self.electionDateLabel.text = [self.election getDateString];
 
-    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"office"
-                                                                     ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
-    NSArray *contests = [self.election.contests allObjects];
-    _contests = [contests sortedArrayUsingDescriptors:sortDescriptors];
+    _contests = [self.election getSorted:@"contests"
+                              byProperty:@"office"
+                               ascending:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,23 +84,23 @@
     static NSString *CellIdentifier = @"ContestCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
     Contest *contest = _contests[indexPath.item];
     cell.textLabel.text = contest.office;
     cell.detailTextLabel.text = contest.type;
     return cell;
 }
 
-/*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContestDetailsSegue"]) {
+        ContestDetailsViewController *cdvc = (ContestDetailsViewController*) segue.destinationViewController;
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        cdvc.contest = _contests[indexPath.item];
+        cdvc.electionName = self.election.electionName;
+    }
 }
-
- */
 
 @end

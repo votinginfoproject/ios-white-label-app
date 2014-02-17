@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/5/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "Contest.h"
@@ -21,6 +20,19 @@
  
  @see VIPManagedObject setFromDictionary:
  */
-+ (Contest*) setFromDictionary:(NSDictionary*)attributes;
++ (Contest*)setFromDictionary:(NSDictionary*)attributes;
+
+/**
+ Gets a subset of the properties of contest and returns them as an array,
+ where each object in the array is an NSDictionary of hte following form:
+
+ @{
+   "title": <NSLocalizedString of the title to display for this property>
+   "data": <The data to display, usually NSInteger or NSString
+  }
+ 
+ @return NSArray of NSDictionaries of the form specified above
+ */
+- (NSArray*)getPropertiesDataArray;
 
 @end

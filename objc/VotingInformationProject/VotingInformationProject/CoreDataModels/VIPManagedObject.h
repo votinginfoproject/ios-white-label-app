@@ -3,7 +3,7 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/6/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
+//  
 //
 //  WARNING:
 
@@ -30,5 +30,19 @@
  Override if necessary to recurse through subclasses, see Contest+API for an example.
  */
 + (VIPManagedObject *) setFromDictionary:(NSDictionary*)attributes;
+
+/**
+ Get a sorted array from an VIPManagedObject NSSet property
+ 
+ @warning passing an invalid propertyKey will return an array, but unsorted
+ 
+ @param property The NSSet property to sort
+ @param propertyKey The key of the property to sort on
+ @param ascending YES if sort ascending, NO sort descending
+ @return NSArray of the sorted objects, nil if bad property is provided
+ */
+- (NSArray*)getSorted:(NSString*)property
+           byProperty:(NSString *)propertyKey
+            ascending:(BOOL)isAscending;
 
 @end
