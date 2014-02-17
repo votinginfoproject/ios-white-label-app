@@ -47,10 +47,19 @@
 {
     [self.tableData removeAllObjects];
     NSArray* links = [self.candidate getLinksDataArray];
-    if (links && [links count] > 0) {
-        [self.tableData addObject:links];
+    [self.tableData addObject:links];
+
+    // TODO: Remove after testing
+    if ([self.candidate.socialChannels count] == 0) {
+        SocialChannel *twitter =
+        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Twitter", @"id": @"@NHLFlyers"}];
+        [self.candidate addSocialChannelsObject:twitter];
+        SocialChannel *facebook =
+        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Facebook", @"id": @"philadelphiaflyers"}];
+        [self.candidate addSocialChannelsObject:facebook];
     }
-    NSArray* channels = [self.candidate getSorted:@"channels" byProperty:@"type" ascending:YES];
+
+    NSArray* channels = [self.candidate getSorted:@"socialChannels" byProperty:@"type" ascending:YES];
     if (channels && [channels count] > 0) {
         [self.tableData addObject:channels];
     }

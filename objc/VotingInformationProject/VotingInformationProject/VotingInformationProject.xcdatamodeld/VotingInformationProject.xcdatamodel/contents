@@ -10,6 +10,7 @@
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <relationship name="contest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contest" inverseName="candidates" inverseEntity="Contest" syncable="YES"/>
+        <relationship name="socialChannels" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SocialChannel" inverseName="candidate" inverseEntity="SocialChannel" syncable="YES"/>
     </entity>
     <entity name="Contest" representedClassName="Contest" syncable="YES">
         <attribute name="ballotPlacement" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -89,6 +90,11 @@
         <relationship name="dataSources" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DataSource" inverseName="pollingLocation" inverseEntity="DataSource" syncable="YES"/>
         <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="pollingLocations" inverseEntity="Election" syncable="YES"/>
     </entity>
+    <entity name="SocialChannel" representedClassName="SocialChannel" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Candidate" inverseName="socialChannels" inverseEntity="Candidate" syncable="YES"/>
+    </entity>
     <entity name="State" representedClassName="State" syncable="YES">
         <attribute name="localJurisdiction" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
         <attribute name="name" attributeType="String" maxValueString="64" syncable="YES"/>
@@ -115,16 +121,17 @@
         <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="address" inverseEntity="PollingLocation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="0" positionY="0" width="128" height="178"/>
-        <element name="Contest" positionX="0" positionY="0" width="128" height="300"/>
-        <element name="DataSource" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="District" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Election" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="128" height="240"/>
-        <element name="ElectionOfficial" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="PollingLocation" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="State" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="UserAddress" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="VIPAddress" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Candidate" positionX="603" positionY="-7" width="128" height="193"/>
+        <element name="Contest" positionX="405" positionY="87" width="128" height="300"/>
+        <element name="DataSource" positionX="-243" positionY="234" width="128" height="120"/>
+        <element name="District" positionX="-72" positionY="435" width="128" height="105"/>
+        <element name="Election" positionX="97" positionY="-198" width="128" height="165"/>
+        <element name="ElectionAdministrationBody" positionX="756" positionY="363" width="128" height="240"/>
+        <element name="ElectionOfficial" positionX="567" positionY="360" width="128" height="135"/>
+        <element name="PollingLocation" positionX="333" positionY="-225" width="128" height="210"/>
+        <element name="State" positionX="304" positionY="411" width="128" height="120"/>
+        <element name="UserAddress" positionX="-110" positionY="-396" width="128" height="120"/>
+        <element name="VIPAddress" positionX="-153" positionY="-234" width="128" height="180"/>
+        <element name="SocialChannel" positionX="781" positionY="-7" width="128" height="88"/>
     </elements>
 </model>

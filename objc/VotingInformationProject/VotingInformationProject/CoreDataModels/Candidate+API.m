@@ -40,23 +40,35 @@
     [getPhotoDataTask resume];
 }
 
-- (NSArray*)getLinksDataArray
+- (NSMutableArray*)getLinksDataArray
 {
-    // TODO: Implement
-    return @[];
+    NSArray *properties = @[@"candidateUrl", @"phone", @"email"];
+    NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:[properties count]];
+    for (NSString* property in properties) {
+        NSString* value = [self valueForKey:property];
+        if (value) {
+            [links addObject:@{property: value}];
+        }
+    }
+    return links;
 }
 
 + (Candidate*) setFromDictionary:(NSDictionary *)attributes
 {
     NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
 
-    // TODO: Remove this section if we want to store channels later 
     NSString *channelsKey = @"channels";
+    NSArray* channels = attributes[channelsKey];
     [mutableAttributes removeObjectForKey:channelsKey];
 
     Candidate *candidate = [Candidate MR_createEntity];
     // Set attributes
     [candidate setValuesForKeysWithDictionary:mutableAttributes];
+
+    // Set Social Channels
+    for (NSDictionary* channel in channels) {
+        [candidate addSocialChannelsObject:[SocialChannel setFromDictionary:channel]];
+    }
 
     // Download photo from url
     [candidate getCandidatePhotoData];

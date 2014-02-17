@@ -7,6 +7,7 @@
 //
 
 #import "Candidate.h"
+#import "SocialChannel.h"
 
 @interface Candidate (API)
 
@@ -25,6 +26,6 @@
  */
 - (void)getCandidatePhotoData;
 
-- (NSArray*)getLinksDataArray;
+- (NSMutableArray*)getLinksDataArray;
 
 @end

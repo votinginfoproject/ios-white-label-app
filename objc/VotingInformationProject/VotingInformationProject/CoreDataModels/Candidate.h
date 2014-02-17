@@ -2,8 +2,8 @@
 //  Candidate.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/6/14.
-//  
+//  Created by Andrew Fink on 2/17/14.
+//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -22,5 +22,14 @@
 @property (nonatomic, retain) NSData * photo;
 @property (nonatomic, retain) NSString * photoUrl;
 @property (nonatomic, retain) Contest *contest;
+@property (nonatomic, retain) NSSet *socialChannels;
+@end
+
+@interface Candidate (CoreDataGeneratedAccessors)
+
+- (void)addSocialChannelsObject:(NSManagedObject *)value;
+- (void)removeSocialChannelsObject:(NSManagedObject *)value;
+- (void)addSocialChannels:(NSSet *)values;
+- (void)removeSocialChannels:(NSSet *)values;
 
 @end
