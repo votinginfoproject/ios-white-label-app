@@ -10,6 +10,35 @@
 
 @implementation Candidate (API)
 
+- (void)getCandidatePhotoData
+{
+    if (!self.photoUrl) {
+        return;
+    }
+
+    NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    //NSURL *url = [NSURL URLWithString:self.photoUrl];
+    NSURL *url = [NSURL URLWithString:@"https://0.gravatar.com/avatar/58ce0433a3bcb9b5bd3982d5ea0b5399?d=https%3A%2F%2Fidenticons.github.com%2Fb26d4f913ad8b3e9282fe7ed953b211f.png&r=x&s=64"];
+
+    // Create URL request
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"GET";
+
+    // Create data task
+    NSURLSessionDataTask *getPhotoDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+        if (error) {
+            NSLog(@"Candidate %@ error getting photo: %@", self.name, error);
+            return;
+        }
+        self.photo = data;
+    }];
+
+    // Execute request
+    [getPhotoDataTask resume];
+}
+
 + (Candidate*) setFromDictionary:(NSDictionary *)attributes
 {
     NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
@@ -23,30 +52,7 @@
     [candidate setValuesForKeysWithDictionary:mutableAttributes];
 
     // Download photo from url
-    if(candidate.photoUrl) {
-        NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
-        NSURL *url = [NSURL URLWithString:candidate.photoUrl];
-
-        // Create URL request
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        request.HTTPMethod = @"GET";
-
-        // Create data task
-        NSURLSessionDataTask *getPhotoDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-            if (error) {
-                NSLog(@"Candidate %@ error getting photo: %@", candidate.name, error);
-                return;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                candidate.photo = data;
-            });
-        }];
-        
-        // Execute request
-        [getPhotoDataTask resume];
-    }
+    [candidate getCandidatePhotoData];
 
     return candidate;
 }

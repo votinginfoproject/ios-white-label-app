@@ -19,4 +19,10 @@
  */
 + (Candidate*) setFromDictionary:(NSDictionary*)attributes;
 
+/**
+ *  Set photo property from the photoUrl property if it exists
+ *  Value of photo is untouched if any errors occur
+ */
+- (void)getCandidatePhotoData;
+
 @end
