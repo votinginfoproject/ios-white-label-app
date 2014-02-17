@@ -25,8 +25,10 @@
     request.HTTPMethod = @"GET";
 
     // Create data task
-    NSURLSessionDataTask *getPhotoDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
+    NSURLSessionDataTask *getPhotoDataTask =
+    [session dataTaskWithRequest:request
+               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+    {
         if (error) {
             NSLog(@"Candidate %@ error getting photo: %@", self.name, error);
             return;

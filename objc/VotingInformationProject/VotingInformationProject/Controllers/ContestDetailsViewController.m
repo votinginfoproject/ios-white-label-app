@@ -20,8 +20,10 @@
 @end
 
 @implementation ContestDetailsViewController {
-    NSMutableArray *_tableData; // 2D array:    first dimension is an array for each section
-                                //              second dimension is data for that section
+    // 2D array:    first dimension is an array for each section
+    //              second dimension is data for that section
+    NSMutableArray *_tableData;
+
 }
 
 - (void)viewDidLoad
@@ -45,6 +47,7 @@
 - (void)updateUI
 {
     self.electionNameLabel.text = self.electionName;
+    self.contestNameLabel.text = self.contest.office;
 
     _tableData = [[NSMutableArray alloc] initWithCapacity:2];
     [_tableData addObject:[self.contest getPropertiesDataArray]];
