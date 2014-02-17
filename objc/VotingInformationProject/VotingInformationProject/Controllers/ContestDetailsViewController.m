@@ -92,8 +92,8 @@
 }
 
 /**
- @param section Table section returned by the table view
- @return NSString* cell identifier for the passed section
+ * @param section Table section returned by the table view
+ * @return NSString* cell identifier for the passed section
  */
 - (NSString*)cellIdentifierFor:(NSInteger) section
 {
@@ -106,9 +106,9 @@
 }
 
 /**
- Configure one of the contest details cells
- 
- TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
+ * Configure one of the contest details cells
+ *
+ * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
 - (UITableViewCell*)configurePropertiesTableViewCell:(UITableViewCell*)cell
                                        withDictionary:(NSDictionary*)property
@@ -119,16 +119,20 @@
 }
 
 /**
- Configure a Candidate cell
- 
- TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
- TODO: Add UIImage for candidate
+ * Configure a Candidate cell
+ *
+ * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
+ * FIXME: Add default "blank" icon in storyboard, once we have our icons
  */
 - (UITableViewCell*)configureCandidateTableViewCell:(UITableViewCell*)cell
                                        withCandidate:(Candidate*)candidate
 {
     cell.textLabel.text = candidate.name;
     cell.detailTextLabel.text = candidate.party;
+    UIImage* candidateImage = [UIImage imageWithData:candidate.photo];
+    if (candidateImage) {
+        cell.imageView.image = candidateImage;
+    }
     return cell;
 }
 
