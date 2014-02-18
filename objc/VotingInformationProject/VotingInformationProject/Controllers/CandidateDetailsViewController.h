@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "Candidate+API.h"
+#import "CandidateLinkCell.h"
+#import "CandidateSocialCell.h"
+#import "SocialChannel.h"
 
 @interface CandidateDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

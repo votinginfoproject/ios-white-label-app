@@ -11,6 +11,13 @@
 
 @interface Candidate (API)
 
+typedef enum {
+    kCandidateLinkTypeWebsite,
+    kCandidateLinkTypeEmail,
+    kCandidateLinkTypePhone,
+    kCandidateLinkTypeUnknown
+} CandidateLinkTypes;
+
 /**
  Create and return an instance of Candidate from a dictionary
 
@@ -26,6 +33,16 @@
  */
 - (void)getCandidatePhotoData;
 
+/**
+ *  An array of objects, where each object relates to a single property of Candidate.
+ *  The dictionary has the following keys:
+ *      description: Translated, NSString property description for use in UI
+ *      buttonTitle: Translated, NSString button title for use in UI
+ *      url: The url to load when the button is clicked on.
+ *      urlScheme: One of CandidateLinkTypes used to determine the url scheme
+ *
+ *  @return NSMutableArray of object properties
+ */
 - (NSMutableArray*)getLinksDataArray;
 
 @end

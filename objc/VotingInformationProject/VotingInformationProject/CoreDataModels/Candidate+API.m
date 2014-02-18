@@ -42,13 +42,30 @@
 
 - (NSMutableArray*)getLinksDataArray
 {
-    NSArray *properties = @[@"candidateUrl", @"phone", @"email"];
-    NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:[properties count]];
-    for (NSString* property in properties) {
-        NSString* value = [self valueForKey:property];
-        if (value) {
-            [links addObject:@{property: value}];
-        }
+    NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:3];
+    if (self.candidateUrl) {
+        [links addObject:@{
+                           @"buttonTitle": NSLocalizedString(@"Website", nil),
+                           @"description": NSLocalizedString(@"Website", nil),
+                           @"url": self.candidateUrl,
+                           @"urlScheme": @(kCandidateLinkTypeWebsite)
+                           }];
+    }
+    if (self.phone) {
+        [links addObject:@{
+                           @"buttonTitle": NSLocalizedString(@"Call", nil),
+                           @"description": NSLocalizedString(@"Phone", nil),
+                           @"url": self.phone,
+                           @"urlScheme": @(kCandidateLinkTypePhone)
+                           }];
+    }
+    if (self.email) {
+        [links addObject:@{
+                           @"buttonTitle": NSLocalizedString(@"Email", nil),
+                           @"description": NSLocalizedString(@"Email", nil),
+                           @"url": self.email,
+                           @"urlScheme": @(kCandidateLinkTypeEmail)
+                           }];
     }
     return links;
 }
@@ -69,10 +86,38 @@
     for (NSDictionary* channel in channels) {
         [candidate addSocialChannelsObject:[SocialChannel setFromDictionary:channel]];
     }
+    // FIXME: Remove on release
+    [candidate stubCandidateData];
 
     // Download photo from url
     [candidate getCandidatePhotoData];
 
     return candidate;
 }
+
+/**
+ *  Temporary method for stubbing a bit of candidate data for testing
+ *  Sets social channels and an email/phone
+ *  @warning Remove for final release
+ */
+- (void) stubCandidateData
+{
+#if DEBUG
+        SocialChannel *twitter =
+        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Twitter", @"id": @"VotingInfo"}];
+        [self addSocialChannelsObject:twitter];
+
+        SocialChannel *facebook =
+        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Facebook", @"id": @"VotingInfo"}];
+        [self addSocialChannelsObject:facebook];
+
+        SocialChannel *youtube =
+        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"YouTube", @"id": @"pew"}];
+        [self addSocialChannelsObject:youtube];
+
+        self.email = @"info@azavea.com";
+        self.phone = @"(123)456-7890";
+#endif
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import "CandidateDetailsViewController.h"
 
+#import "UIWebViewController.h"
+
 #define CDVC_TABLE_SECTION_LINKS 0
 #define CDVC_TABLE_CELLID_LINKS @"CandidateLinksCell"
 #define CDVC_TABLE_SECTION_SOCIAL 1
@@ -49,18 +51,8 @@
     NSArray* links = [self.candidate getLinksDataArray];
     [self.tableData addObject:links];
 
-    // TODO: Remove after testing
-    if ([self.candidate.socialChannels count] == 0) {
-        SocialChannel *twitter =
-        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Twitter", @"id": @"@NHLFlyers"}];
-        [self.candidate addSocialChannelsObject:twitter];
-        SocialChannel *facebook =
-        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Facebook", @"id": @"philadelphiaflyers"}];
-        [self.candidate addSocialChannelsObject:facebook];
-    }
-
     NSArray* channels = [self.candidate getSorted:@"socialChannels" byProperty:@"type" ascending:YES];
-    if (channels && [channels count] > 0) {
+    if (channels) {
         [self.tableData addObject:channels];
     }
 }
@@ -92,9 +84,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
     if (section == CDVC_TABLE_SECTION_LINKS) {
-        // TODO: Implement links table cell assignments
+        NSDictionary* link = self.tableData[indexPath.section][indexPath.item];
+        CandidateLinkCell* linkCell = (CandidateLinkCell*)cell;
+        [linkCell configure:link];
     } else if (section == CDVC_TABLE_SECTION_SOCIAL) {
-        // TODO: Implement social table cell assignments
+        SocialChannel* socialChannel = self.tableData[indexPath.section][indexPath.item];
+        CandidateSocialCell* socialCell = (CandidateSocialCell*)cell;
+        [socialCell configure:socialChannel];
     }
     return cell;
 }
@@ -122,5 +118,18 @@
     }
     return nil;
 }
+
+#pragma mark - Segues
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CandidateSocialSegue"]) {
+        // TODO: Open links in specific apps if available, rather than web browser
+        CandidateSocialCell *cell = (CandidateSocialCell*)sender;
+        UIWebViewController *webView = (UIWebViewController*)segue.destinationViewController;
+        webView.url = cell.url;
+        webView.title = NSLocalizedString(@"Social", nil);
+    }
+}
+
 
 @end
