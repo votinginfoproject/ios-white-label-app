@@ -65,6 +65,7 @@
 		49CF34BD18A55BF100DDEE0E /* BallotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CF34BC18A55BF100DDEE0E /* BallotViewController.m */; };
 		49CF34C018A55CEE00DDEE0E /* BallotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CF34BF18A55CEE00DDEE0E /* BallotDetailsViewController.m */; };
 		49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */; };
+		49E336C118B4028800C36337 /* SocialChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E336C018B4028800C36337 /* SocialChannelTests.m */; };
 		49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981431892F7F700E26C5D /* ContactsSearchViewController.m */; };
 		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
 		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
@@ -193,6 +194,7 @@
 		49CF34BF18A55CEE00DDEE0E /* BallotDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BallotDetailsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPTabBarController.h; sourceTree = "<group>"; };
 		49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPTabBarController.m; sourceTree = "<group>"; };
+		49E336C018B4028800C36337 /* SocialChannelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialChannelTests.m; sourceTree = "<group>"; };
 		49E981421892F7F700E26C5D /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ContactsSearchViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49E981431892F7F700E26C5D /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ContactsSearchViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49E981441892F7F700E26C5D /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FindElectionsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -450,6 +452,7 @@
 		53D3A7AB1889A05B00920A70 /* VotingInformationProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				49E336C018B4028800C36337 /* SocialChannelTests.m */,
 				495CB9BC18B26B1B00243ADB /* CandidateAPITests.m */,
 				494023E818A425AC004FEF48 /* StateAPITests.m */,
 				494023E618A4216D004FEF48 /* ElectionAdminBodyAPITests.m */,
@@ -528,6 +531,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Bennet Huber";
 				TargetAttributes = {
+					53D3A7821889A05B00920A70 = {
+						DevelopmentTeam = HX678UA6R2;
+					};
 					53D3A7A21889A05B00920A70 = {
 						TestTargetID = 53D3A7821889A05B00920A70;
 					};
@@ -709,6 +715,7 @@
 				494023E918A425AC004FEF48 /* StateAPITests.m in Sources */,
 				4940239D18A2D355004FEF48 /* PollingLocationAPITests.m in Sources */,
 				494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */,
+				49E336C118B4028800C36337 /* SocialChannelTests.m in Sources */,
 				49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -841,10 +848,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
 				PRODUCT_NAME = VotingInformationProject;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -855,10 +865,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
 				PRODUCT_NAME = VotingInformationProject;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
