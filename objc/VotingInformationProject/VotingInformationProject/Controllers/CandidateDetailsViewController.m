@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/17/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "CandidateDetailsViewController.h"
@@ -124,6 +123,7 @@
 {
     if ([segue.identifier isEqualToString:@"CandidateSocialSegue"]) {
         // TODO: Open links in specific apps if available, rather than web browser
+        //       http://wiki.akosma.com/IPhone_URL_Schemes
         CandidateSocialCell *cell = (CandidateSocialCell*)sender;
         UIWebViewController *webView = (UIWebViewController*)segue.destinationViewController;
         webView.url = cell.url;
