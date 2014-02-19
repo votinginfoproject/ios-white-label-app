@@ -33,6 +33,14 @@
     // Configure the view for the selected state
 }
 
+- (void)configure:(NSDictionary *)link
+{
+    self.descriptionLabel.text = link[@"description"];
+    [self.linkButton setTitle:link[@"buttonTitle"] forState:UIControlStateNormal];
+    self.linkType = [link[@"urlScheme"] integerValue];
+    self.url = link[@"url"];
+}
+
 /**
  *  Set url property from a string, detecting the url scheme from the linkType property
  *
@@ -70,14 +78,6 @@
     } else {
         NSLog(@"Unable to open URL: %@", url);
     }
-}
-
-- (void)configure:(NSDictionary *)link
-{
-    self.descriptionLabel.text = link[@"description"];
-    [self.linkButton setTitle:link[@"buttonTitle"] forState:UIControlStateNormal];
-    self.linkType = [link[@"urlScheme"] integerValue];
-    self.url = link[@"url"];
 }
 
 @end

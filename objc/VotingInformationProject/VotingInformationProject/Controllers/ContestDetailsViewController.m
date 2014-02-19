@@ -8,24 +8,37 @@
 #import "ContestDetailsViewController.h"
 
 #import "CandidateDetailsViewController.h"
+#import "UIWebViewController.h"
+#import "ContestUrlCell.h"
 
-#define CDVC_TABLE_SECTION_PROPERTIES 0
-#define CDVC_TABLE_CELLID_PROPERTIES @"ContestPropertiesCell"
-#define CDVC_TABLE_SECTION_CANDIDATES 1
-#define CDVC_TABLE_CELLID_CANDIDATES @"CandidateCell"
 
 @interface ContestDetailsViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *contestNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 
+// tableData is a 2d array where:
+//  first dimension is # of sections
+//  second dimension is data for each section
+@property (strong, nonatomic) NSMutableArray *tableData;
+
 @end
 
-@implementation ContestDetailsViewController {
-    // 2D array:    first dimension is an array for each section
-    //              second dimension is data for that section
-    NSMutableArray *_tableData;
+@implementation ContestDetailsViewController
 
+NSString * const CDVC_TABLE_CELLID_PROPERTIES = @"ContestPropertiesCell";
+NSUInteger const CDVC_TABLE_SECTION_PROPERTIES = 0;
+NSString * const CDVC_TABLE_CELLID_CANDIDATES = @"CandidateCell";
+NSUInteger const CDVC_TABLE_SECTION_CANDIDATES = 1;
+NSString * const REFERENDUM_API_ID = @"Referendum";
+
+- (NSMutableArray*)tableData
+{
+    if (!_tableData) {
+        _tableData = [[NSMutableArray alloc] initWithCapacity:2];
+    }
+    return _tableData;
 }
 
 - (void)viewDidLoad
@@ -44,51 +57,77 @@
 }
 
 /**
- Refresh data displayed in the elements on this view
+ * Refresh data displayed in the elements on this view
+ * Conditionally display Referendum elements if self.contest.type == REFERENDUM_API_ID
  */
 - (void)updateUI
 {
+    if (!self.contest) {
+        // TODO: Error handle this case?
+        return;
+    }
+    [self.tableData removeAllObjects];
     self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available", nil);
-    self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
+    [self.tableData addObject:[self.contest getContestProperties]];
 
-    _tableData = [[NSMutableArray alloc] initWithCapacity:2];
-    [_tableData addObject:[self.contest getPropertiesDataArray]];
-    [_tableData addObject:[self.contest getSorted:@"candidates"
-                                       byProperty:@"name"
-                                        ascending:YES]];
+    if ([self.contest.type isEqualToString:REFERENDUM_API_ID]) {
+        self.contestNameLabel.text = self.contest.referendumTitle;
+        self.title = NSLocalizedString(@"Referendum", nil);
+    } else {
+        self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
+        // Only add candidates for elections, not referenda
+        [self.tableData addObject:[self.contest getSorted:@"candidates"
+                                               byProperty:@"name"
+                                                ascending:YES]];
+    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_tableData count];
+    return [self.tableData count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_tableData[section] count];
+    return [self.tableData[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
-    NSString *cellIdentifier = [self cellIdentifierFor:section];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-
-    if (section == CDVC_TABLE_SECTION_PROPERTIES) {
-        NSDictionary *property = (NSDictionary *)_tableData[section][indexPath.item];
-        [self configurePropertiesTableViewCell:cell withDictionary:property];
-    } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
-        Candidate *candidate = (Candidate *)_tableData[section][indexPath.item];
-        [self configureCandidateTableViewCell:cell withCandidate:candidate];
+    NSDictionary *property = (NSDictionary *)self.tableData[section][indexPath.item];
+    // Check if we can make a url from the data property
+    NSURL *dataUrl = nil;
+    if ([property isKindOfClass:[NSDictionary class]]) {
+        dataUrl = [NSURL URLWithString:property[@"data"]];
     }
-    return cell;
+
+    // If we have a url, make this cell segue to UIWebViewController
+    if (section == CDVC_TABLE_SECTION_PROPERTIES && dataUrl.scheme && [dataUrl.scheme length] > 0) {
+        ContestUrlCell *cell = (ContestUrlCell*)[tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID forIndexPath:indexPath];
+        [self configureUrlTableViewCell:cell withDictionary:property];
+        return cell;
+    } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CDVC_TABLE_CELLID_PROPERTIES forIndexPath:indexPath];
+        [self configurePropertiesTableViewCell:cell withDictionary:property];
+        return cell;
+    } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CDVC_TABLE_CELLID_CANDIDATES forIndexPath:indexPath];
+        Candidate *candidate = (Candidate *)self.tableData[section][indexPath.item];
+        [self configureCandidateTableViewCell:cell withCandidate:candidate];
+        return cell;
+    } else {
+        return nil;
+    }
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == CDVC_TABLE_SECTION_PROPERTIES) {
+    if (section == CDVC_TABLE_SECTION_PROPERTIES && [self.contest.type isEqualToString:REFERENDUM_API_ID]) {
+        return NSLocalizedString(@"Referendum Details", nil);
+    } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
         return NSLocalizedString(@"Contest Details", nil);
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
         return NSLocalizedString(@"Candidates", nil);
@@ -115,12 +154,25 @@
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
-- (UITableViewCell*)configurePropertiesTableViewCell:(UITableViewCell*)cell
-                                       withDictionary:(NSDictionary*)property
+- (void)configurePropertiesTableViewCell:(UITableViewCell*)cell
+                          withDictionary:(NSDictionary*)property
 {
     cell.textLabel.text = property[@"title"];
     cell.detailTextLabel.text = property[@"data"];
-    return cell;
+}
+
+/**
+ *  Configure a ContestUrlCell
+ *
+ *  @param cell     ContestUrlCell to configure
+ *  @param property NSDictionary with keys title/data
+ */
+- (void)configureUrlTableViewCell:(ContestUrlCell*)cell
+                               withDictionary:(NSDictionary*)property
+{
+    cell.descriptionLabel.text = property[@"title"];
+    cell.urlLabel.text = property[@"data"];
+    cell.url = [NSURL URLWithString:property[@"data"]];
 }
 
 /**
@@ -128,7 +180,7 @@
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
-- (UITableViewCell*)configureCandidateTableViewCell:(UITableViewCell*)cell
+- (void)configureCandidateTableViewCell:(UITableViewCell*)cell
                                        withCandidate:(Candidate*)candidate
 {
     cell.textLabel.text = candidate.name;
@@ -137,10 +189,18 @@
     if (candidateImage) {
         cell.imageView.image = candidateImage;
     }
-    return cell;
 }
 
 #pragma mark - Segues
+
+/**
+ *  Segues for:
+ *      CandidateDetailsSegue to CandidateDetails view
+ *      ContestUrlCellSegue to UIWebViewController
+ *
+ *  @param segue  segue
+ *  @param sender sender object
+ */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"CandidateDetailsSegue"]) {
@@ -149,7 +209,13 @@
 
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        cdvc.candidate = _tableData[indexPath.section][indexPath.item];
+        cdvc.candidate = self.tableData[indexPath.section][indexPath.item];
+
+    } else if ([segue.identifier isEqualToString:@"ContestUrlCellSegue"]) {
+        UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
+        ContestUrlCell *cell = (ContestUrlCell*)sender;
+        webView.title = NSLocalizedString(@"Website", nil);
+        webView.url = cell.url;
     }
 }
 
