@@ -27,10 +27,9 @@
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
-    NSURL* url = [NSURL URLWithString:self.urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    if (url && request) {
-        NSLog(@"Loading: %@", self.urlString);
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
+    if (self.url && request) {
+        NSLog(@"Loading: %@", self.url);
         [_webView loadRequest:request];
     } else {
         [self showErrorAlert];
@@ -45,7 +44,7 @@
 {
     NSString *message = [NSString stringWithFormat:@"%@: %@",
                          NSLocalizedString(@"Unable to load URL", nil),
-                         self.urlString];
+                         self.url];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:message
                                                    delegate:nil

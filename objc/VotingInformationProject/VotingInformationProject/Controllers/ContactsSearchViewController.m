@@ -192,7 +192,7 @@
         // Set webView's navigation bar title
         webViewController.title = @"HipsterIpsum";
         // Set webView url to load
-        webViewController.urlString = urlString;
+        webViewController.url = [NSURL URLWithString:urlString];
     }
 }
 
