@@ -59,12 +59,17 @@
  */
 - (void)updateUI
 {
+    if (!self.contest) {
+        // TODO: Error handle this case?
+        return;
+    }
     [self.tableData removeAllObjects];
     self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available", nil);
     [self.tableData addObject:[self.contest getContestProperties]];
 
     if ([self.contest.type isEqualToString:@"Referendum"]) {
         self.contestNameLabel.text = self.contest.referendumTitle;
+        self.title = NSLocalizedString(@"Referendum", nil);
     } else {
         self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
         // Only add candidates for elections, not referenda
