@@ -47,6 +47,19 @@ describe(@"ContestAPITests", ^{
         [[testContest.type should] equal:@"Primary"];
     });
 
+    it(@"should ensure that getContestProperties returns array w/ dict w/ keys title & data", ^{
+        NSDictionary *attributes = @{@"type": @"Primary"};
+        Contest *testContest = [Contest setFromDictionary:attributes];
+
+        NSMutableArray *contestProperties = [testContest getContestProperties];
+        [[theValue([contestProperties count]) should] equal:theValue(1)];
+
+        NSDictionary *entry = contestProperties[0];
+        [[entry should] beKindOfClass:[NSDictionary class]];
+        [[entry[@"title"] should] beNonNil];
+        [[entry[@"data"] should] beNonNil];
+    });
+
 });
 
 SPEC_END

@@ -28,11 +28,11 @@
 
  @{
    "title": <NSLocalizedString of the title to display for this property>
-   "data": <The data to display, usually NSInteger or NSString
+   "data": <The data to display, as an NSString
   }
  
- @return NSArray of NSDictionaries of the form specified above
+ @return NSMutableArray of NSDictionaries of the form specified above
  */
-- (NSArray*)getPropertiesDataArray;
+- (NSMutableArray*)getContestProperties;
 
 @end

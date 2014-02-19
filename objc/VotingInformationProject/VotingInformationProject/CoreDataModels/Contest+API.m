@@ -45,30 +45,41 @@
     return contest;
 }
 
-
-- (NSArray*)getPropertiesDataArray
+- (NSMutableArray*)getContestProperties
 {
-    NSArray *properties = @[
-                            @{
-                                @"title": NSLocalizedString(@"Type", nil),
-                                @"data": self.type
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Office", nil),
-                                @"data": self.office
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Number Elected", nil),
-                                @"data": self.numberElected.stringValue
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Number Voting For", nil),
-                                @"data": self.numberVotingFor.stringValue
-                            },
-                            @{
-                                @"title": NSLocalizedString(@"Ballot Placement", nil),
-                                @"data": self.ballotPlacement.stringValue
-                            }];
+    // Define the properties we want to retrieve since it appears there is no way
+    //  to get this list in iOS, and we have to define the UI translated text anyways
+    NSDictionary *propertyList = @{
+                              @"type": NSLocalizedString(@"Contest Type", nil),
+                              @"primaryParty": NSLocalizedString(@"Primary Party", nil),
+                              @"district.name": NSLocalizedString(@"District Name", nil),
+                              @"district.id": NSLocalizedString(@"District ID", nil),
+                              @"electorateSpecifications": NSLocalizedString(@"Electorate Specifications", nil),
+                              @"special": NSLocalizedString(@"Special", nil),
+                              @"level": NSLocalizedString(@"Level", nil),
+                              @"numberElected": NSLocalizedString(@"Number Elected", nil),
+                              @"numberVotingFor": NSLocalizedString(@"Number Voting For", nil),
+                              @"ballotPlacement": NSLocalizedString(@"Ballot Placement", nil),
+                              @"referendumSubtitle": NSLocalizedString(@"Referendum Subtitle", nil),
+                              @"referendumUrl": NSLocalizedString(@"Referendum URL", nil),
+                              };
+    NSMutableArray *properties = [[NSMutableArray alloc] initWithCapacity:[propertyList count]];
+    for (NSString *property in propertyList) {
+        id data = [self valueForKeyPath:property];
+
+        // Only parse and add strings/numbers, these are the properties
+        if (data && [data isKindOfClass:[NSNumber class]]) {
+            NSNumber *integerData = (NSNumber*)data;
+            if (integerData.integerValue > 0) {
+                [properties addObject:@{@"title": propertyList[property],
+                                        @"data": integerData.stringValue}];
+            }
+        } else if (data && [data isKindOfClass:[NSString class]]) {
+            NSString *stringData = (NSString*)data;
+            [properties addObject:@{@"title": propertyList[property],
+                                    @"data": stringData}];
+        }
+    }
     return properties;
 }
 

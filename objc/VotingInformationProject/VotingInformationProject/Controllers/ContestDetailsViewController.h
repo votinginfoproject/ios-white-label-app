@@ -16,6 +16,8 @@
  */
 @interface ContestDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+extern NSString * const REFERENDUM_API_ID;
+
 /**
  The Contest* displayed by this view
  */
