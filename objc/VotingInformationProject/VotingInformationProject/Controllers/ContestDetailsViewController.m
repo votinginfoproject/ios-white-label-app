@@ -8,6 +8,8 @@
 #import "ContestDetailsViewController.h"
 
 #import "CandidateDetailsViewController.h"
+#import "UIWebViewController.h"
+#import "ContestUrlCell.h"
 
 #define CDVC_TABLE_SECTION_PROPERTIES 0
 #define CDVC_TABLE_CELLID_PROPERTIES @"ContestPropertiesCell"
@@ -87,17 +89,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
-    NSString *cellIdentifier = [self cellIdentifierFor:section];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    NSDictionary *property = (NSDictionary *)self.tableData[section][indexPath.item];
+    NSURL *dataUrl = nil;
+    if ([property isKindOfClass:[NSDictionary class]]) {
+        dataUrl = [NSURL URLWithString:property[@"data"]];
+    }
 
-    if (section == CDVC_TABLE_SECTION_PROPERTIES) {
-        NSDictionary *property = (NSDictionary *)self.tableData[section][indexPath.item];
+    if (section == CDVC_TABLE_SECTION_PROPERTIES && dataUrl.scheme && [dataUrl.scheme length] > 0) {
+        ContestUrlCell *cell = (ContestUrlCell*)[tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID forIndexPath:indexPath];
+        [self configureUrlTableViewCell:cell withDictionary:property];
+        return cell;
+    } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CDVC_TABLE_CELLID_PROPERTIES forIndexPath:indexPath];
         [self configurePropertiesTableViewCell:cell withDictionary:property];
+        return cell;
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CDVC_TABLE_CELLID_CANDIDATES forIndexPath:indexPath];
         Candidate *candidate = (Candidate *)self.tableData[section][indexPath.item];
         [self configureCandidateTableViewCell:cell withCandidate:candidate];
+        return cell;
+    } else {
+        return nil;
     }
-    return cell;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -129,12 +142,19 @@
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
-- (UITableViewCell*)configurePropertiesTableViewCell:(UITableViewCell*)cell
+- (void)configurePropertiesTableViewCell:(UITableViewCell*)cell
                                        withDictionary:(NSDictionary*)property
 {
     cell.textLabel.text = property[@"title"];
     cell.detailTextLabel.text = property[@"data"];
-    return cell;
+}
+
+- (void)configureUrlTableViewCell:(ContestUrlCell*)cell
+                               withDictionary:(NSDictionary*)property
+{
+    cell.descriptionLabel.text = property[@"title"];
+    cell.urlLabel.text = property[@"data"];
+    cell.url = [NSURL URLWithString:property[@"data"]];
 }
 
 /**
@@ -142,7 +162,7 @@
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
-- (UITableViewCell*)configureCandidateTableViewCell:(UITableViewCell*)cell
+- (void)configureCandidateTableViewCell:(UITableViewCell*)cell
                                        withCandidate:(Candidate*)candidate
 {
     cell.textLabel.text = candidate.name;
@@ -151,12 +171,12 @@
     if (candidateImage) {
         cell.imageView.image = candidateImage;
     }
-    return cell;
 }
 
 #pragma mark - Segues
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Segue to the CandidateDetails view
     if ([segue.identifier isEqualToString:@"CandidateDetailsSegue"]) {
         CandidateDetailsViewController* cdvc =
         (CandidateDetailsViewController*) segue.destinationViewController;
@@ -164,6 +184,13 @@
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         cdvc.candidate = self.tableData[indexPath.section][indexPath.item];
+
+    // Segue displays webview for a url contest property
+    } else if ([segue.identifier isEqualToString:@"ContestUrlCellSegue"]) {
+        UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
+        ContestUrlCell *cell = (ContestUrlCell*)sender;
+        webView.title = NSLocalizedString(@"Website", nil);
+        webView.url = cell.url;
     }
 }
 

@@ -66,6 +66,7 @@
 		49CF34C018A55CEE00DDEE0E /* BallotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CF34BF18A55CEE00DDEE0E /* BallotDetailsViewController.m */; };
 		49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */; };
 		49E336C118B4028800C36337 /* SocialChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E336C018B4028800C36337 /* SocialChannelTests.m */; };
+		49E9080518B515EF00E05ABC /* ContestUrlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9080418B515EF00E05ABC /* ContestUrlCell.m */; };
 		49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981431892F7F700E26C5D /* ContactsSearchViewController.m */; };
 		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
 		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
@@ -195,6 +196,8 @@
 		49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPTabBarController.h; sourceTree = "<group>"; };
 		49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPTabBarController.m; sourceTree = "<group>"; };
 		49E336C018B4028800C36337 /* SocialChannelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialChannelTests.m; sourceTree = "<group>"; };
+		49E9080318B515EF00E05ABC /* ContestUrlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestUrlCell.h; sourceTree = "<group>"; };
+		49E9080418B515EF00E05ABC /* ContestUrlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestUrlCell.m; sourceTree = "<group>"; };
 		49E981421892F7F700E26C5D /* ContactsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ContactsSearchViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49E981431892F7F700E26C5D /* ContactsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ContactsSearchViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49E981441892F7F700E26C5D /* FindElectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FindElectionsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -372,6 +375,8 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				49E9080318B515EF00E05ABC /* ContestUrlCell.h */,
+				49E9080418B515EF00E05ABC /* ContestUrlCell.m */,
 				496A2FFC18B3A9B90079996F /* CandidateSocialCell.h */,
 				496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */,
 				49C1FEDB18B3A20C00CF9DFE /* CandidateLinkCell.h */,
@@ -659,6 +664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				494023C118A3EEFB004FEF48 /* Candidate+API.m in Sources */,
+				49E9080518B515EF00E05ABC /* ContestUrlCell.m in Sources */,
 				494023A318A2EA74004FEF48 /* ElectionAdministrationBody+API.m in Sources */,
 				494023DF18A3F7A5004FEF48 /* VIPManagedObject.m in Sources */,
 				499537EA18A190DA009B678C /* ElectionOfficial.m in Sources */,
