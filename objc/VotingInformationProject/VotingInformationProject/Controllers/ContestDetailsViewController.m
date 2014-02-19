@@ -155,7 +155,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
 - (void)configurePropertiesTableViewCell:(UITableViewCell*)cell
-                                       withDictionary:(NSDictionary*)property
+                          withDictionary:(NSDictionary*)property
 {
     cell.textLabel.text = property[@"title"];
     cell.detailTextLabel.text = property[@"data"];
@@ -192,9 +192,17 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 }
 
 #pragma mark - Segues
+
+/**
+ *  Segues for:
+ *      CandidateDetailsSegue to CandidateDetails view
+ *      ContestUrlCellSegue to UIWebViewController
+ *
+ *  @param segue  segue
+ *  @param sender sender object
+ */
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Segue to the CandidateDetails view
     if ([segue.identifier isEqualToString:@"CandidateDetailsSegue"]) {
         CandidateDetailsViewController* cdvc =
         (CandidateDetailsViewController*) segue.destinationViewController;
@@ -203,7 +211,6 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         cdvc.candidate = self.tableData[indexPath.section][indexPath.item];
 
-    // Segue displays webview for a url contest property
     } else if ([segue.identifier isEqualToString:@"ContestUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
