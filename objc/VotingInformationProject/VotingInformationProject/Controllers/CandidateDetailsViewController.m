@@ -9,10 +9,6 @@
 
 #import "UIWebViewController.h"
 
-#define CDVC_TABLE_SECTION_LINKS 0
-#define CDVC_TABLE_CELLID_LINKS @"CandidateLinksCell"
-#define CDVC_TABLE_SECTION_SOCIAL 1
-#define CDVC_TABLE_CELLID_SOCIAL @"CandidateSocialCell"
 
 @interface CandidateDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *candidatePhoto;
@@ -24,6 +20,11 @@
 @end
 
 @implementation CandidateDetailsViewController
+
+NSUInteger const CDVC_TABLE_SECTION_LINKS = 0;
+NSUInteger const CDVC_TABLE_SECTION_SOCIAL = 1;
+NSString * const CDVC_TABLE_CELLID_LINKS = @"CandidateLinksCell";
+NSString * const CDVC_TABLE_CELLID_SOCIAL = @"CandidateSocialCell";
 
 - (NSMutableArray*)tableData
 {
@@ -44,6 +45,9 @@
     [self updateUI];
 }
 
+/**
+ *  Update the tableData array that sources the TableView
+ */
 - (void) updateData
 {
     [self.tableData removeAllObjects];
@@ -56,12 +60,18 @@
     }
 }
 
+/**
+ *  Update the UI with changes to the underlying data
+ */
 - (void) updateUI
 {
     [self updateData];
 
-    self.nameLabel.text = self.candidate.name ?: NSLocalizedString(@"Not Available", nil);
-    self.affiliationLabel.text = self.candidate.party ?: NSLocalizedString(@"No Party Information Available", nil);
+    self.nameLabel.text = self.candidate.name
+        ? self.candidate.name : NSLocalizedString(@"Not Available", nil);
+
+    self.affiliationLabel.text = self.candidate.party
+        ? self.candidate.party : NSLocalizedString(@"No Party Information Available", nil);
 }
 
 #pragma mark - Table view data source

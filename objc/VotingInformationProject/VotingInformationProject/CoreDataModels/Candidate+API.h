@@ -19,11 +19,11 @@ typedef enum {
 } CandidateLinkTypes;
 
 /**
- Create and return an instance of Candidate from a dictionary
-
- @param attributes NSDictionary of the attributes to set
-
- @see VIPManagedObject setFromDictionary:
+ * Create and return an instance of Candidate from a dictionary
+ *
+ * @param attributes NSDictionary of the attributes to set
+ *
+ * @see VIPManagedObject setFromDictionary:
  */
 + (Candidate*) setFromDictionary:(NSDictionary*)attributes;
 

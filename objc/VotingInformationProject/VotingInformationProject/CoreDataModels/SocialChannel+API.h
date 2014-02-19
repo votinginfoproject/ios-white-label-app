@@ -10,9 +10,9 @@
 @interface SocialChannel (API)
 
 /**
- Return the unique NSURL constructed from the social channel id/type
- 
- @return NSURL The url, e.g. "https://twitter.com/votinginfo for id: votinginfo, type: Twitter
+ * Return the unique NSURL constructed from the social channel id/type
+ *
+ * @return NSURL The url, e.g. "https://twitter.com/votinginfo for id: votinginfo, type: Twitter
  */
 - (NSURL*) uniqueUrl;
 
