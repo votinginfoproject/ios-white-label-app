@@ -85,7 +85,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Contest *contest = _contests[indexPath.item];
-    cell.textLabel.text = contest.office;
+    NSString *title = ([contest.type isEqualToString:@"Referendum"])
+        ? contest.referendumTitle : contest.office;
+    cell.textLabel.text = title;
     cell.detailTextLabel.text = contest.type;
     return cell;
 }

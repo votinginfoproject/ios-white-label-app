@@ -15,17 +15,26 @@
 #define CDVC_TABLE_CELLID_CANDIDATES @"CandidateCell"
 
 @interface ContestDetailsViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *contestNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 
+// tableData is a 2d array where:
+//  first dimension is # of sections
+//  second dimension is data for each section
+@property (strong, nonatomic) NSMutableArray *tableData;
+
 @end
 
-@implementation ContestDetailsViewController {
-    // 2D array:    first dimension is an array for each section
-    //              second dimension is data for that section
-    NSMutableArray *_tableData;
+@implementation ContestDetailsViewController
 
+- (NSMutableArray*)tableData
+{
+    if (!_tableData) {
+        _tableData = [[NSMutableArray alloc] initWithCapacity:2];
+    }
+    return _tableData;
 }
 
 - (void)viewDidLoad
@@ -48,26 +57,31 @@
  */
 - (void)updateUI
 {
+    [self.tableData removeAllObjects];
     self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available", nil);
-    self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
+    [self.tableData addObject:[self.contest getContestProperties]];
 
-    _tableData = [[NSMutableArray alloc] initWithCapacity:2];
-    [_tableData addObject:[self.contest getPropertiesDataArray]];
-    [_tableData addObject:[self.contest getSorted:@"candidates"
-                                       byProperty:@"name"
-                                        ascending:YES]];
+    if ([self.contest.type isEqualToString:@"Referendum"]) {
+        self.contestNameLabel.text = self.contest.referendumTitle;
+    } else {
+        self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
+        // Only add candidates for elections, not referenda
+        [self.tableData addObject:[self.contest getSorted:@"candidates"
+                                               byProperty:@"name"
+                                                ascending:YES]];
+    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_tableData count];
+    return [self.tableData count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_tableData[section] count];
+    return [self.tableData[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,10 +91,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
     if (section == CDVC_TABLE_SECTION_PROPERTIES) {
-        NSDictionary *property = (NSDictionary *)_tableData[section][indexPath.item];
+        NSDictionary *property = (NSDictionary *)self.tableData[section][indexPath.item];
         [self configurePropertiesTableViewCell:cell withDictionary:property];
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
-        Candidate *candidate = (Candidate *)_tableData[section][indexPath.item];
+        Candidate *candidate = (Candidate *)self.tableData[section][indexPath.item];
         [self configureCandidateTableViewCell:cell withCandidate:candidate];
     }
     return cell;
@@ -149,7 +163,7 @@
 
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        cdvc.candidate = _tableData[indexPath.section][indexPath.item];
+        cdvc.candidate = self.tableData[indexPath.section][indexPath.item];
     }
 }
 

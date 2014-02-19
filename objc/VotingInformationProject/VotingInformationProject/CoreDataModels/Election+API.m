@@ -263,6 +263,22 @@
     for (NSDictionary *contest in contests){
         [self addContestsObject:[Contest setFromDictionary:contest]];
     }
+
+    // FIXME: Remove for launch
+    [self stubReferendumData];
+}
+
+- (void)stubReferendumData
+{
+#if DEBUG
+    NSDictionary *referendumAttributes = @{@"type": @"Referendum",
+                                           @"level": @"county",
+                                           @"referendumTitle": @"Test Referendum",
+                                           @"referendumSubtitle": @"This is a test referendum...",
+                                           @"referendumUrl": @"http://votinginfoproject.org"};
+    Contest *referendum = [Contest setFromDictionary:referendumAttributes];
+    [self addContestsObject:referendum];
+#endif
 }
 
 - (void) deleteAllData {
