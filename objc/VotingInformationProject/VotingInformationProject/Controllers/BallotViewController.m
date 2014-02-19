@@ -46,6 +46,9 @@
     [self updateUI];
 }
 
+/**
+ *  Update UI with new contests
+ */
 - (void) updateUI
 {
     if (!self.election) {
@@ -85,7 +88,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Contest *contest = _contests[indexPath.item];
-    NSString *title = ([contest.type isEqualToString:@"Referendum"])
+    NSString *title = ([contest.type isEqualToString:REFERENDUM_API_ID])
         ? contest.referendumTitle : contest.office;
     cell.textLabel.text = title;
     cell.detailTextLabel.text = contest.type;
