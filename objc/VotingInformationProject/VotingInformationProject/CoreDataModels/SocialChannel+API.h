@@ -14,6 +14,13 @@
  *
  * @return NSURL The url, e.g. "https://twitter.com/votinginfo for id: votinginfo, type: Twitter
  */
-- (NSURL*) uniqueUrl;
+- (NSURL*)url;
+
+/**
+ Get the proper social media logo as UIImage based on type
+ *
+ * @return UIImage* The image, or nil if no type matches
+ */
+- (UIImage*)logo;
 
 @end

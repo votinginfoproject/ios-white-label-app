@@ -9,7 +9,7 @@
 
 @implementation SocialChannel (API)
 
-- (NSURL*)uniqueUrl
+- (NSURL*)url
 {
     NSURL *url = nil;
     NSString *urlTemplate = [self getUrlTemplate];
@@ -20,10 +20,27 @@
     return url;
 }
 
+- (UIImage*)logo
+{
+    UIImage *image = nil;
+    NSString *lowerCaseType = [self.type lowercaseString];
+    if ([lowerCaseType isEqualToString:@"facebook"]) {
+        image = [UIImage imageNamed:@"facebook-logo-blue"];
+    } else if ([lowerCaseType isEqualToString:@"twitter"]) {
+        image = [UIImage imageNamed:@"twitter-logo-blue"];
+    } else if ([lowerCaseType isEqualToString:@"googleplus"]) {
+        image = [UIImage imageNamed:@"googleplus-logo-red"];
+    } else if ([lowerCaseType isEqualToString:@"youtube"]) {
+        image = [UIImage imageNamed:@"youtube-logo-red"];
+    }
+    return image;
+}
+
 /**
  *  Gets the url template string that the social media id can be pasted into
  *
- *  @return NSString url template, e.g. @"https://twitter.com/%@" for type == twitter
+ *  @return NSString url template, e.g. @"https://twitter.com/%@" for type == twitter,
+ *          or nil if no type matches
  */
 - (NSString*) getUrlTemplate
 {
