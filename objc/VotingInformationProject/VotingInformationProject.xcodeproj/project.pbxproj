@@ -40,6 +40,7 @@
 		495CB9C518B2A10D00243ADB /* CandidateDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */; };
 		4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */; };
 		4967AB7A18A91D420079C9F1 /* CivicAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4967AB7918A91D420079C9F1 /* CivicAPIKey.plist */; };
+		4969787618B55E5A00B23CC6 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969787518B55E5A00B23CC6 /* AboutViewController.m */; };
 		496A2FFE18B3A9B90079996F /* CandidateSocialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */; };
 		496A300118B3B0F10079996F /* SocialChannel+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A300018B3B0F10079996F /* SocialChannel+API.m */; };
 		496A300518B3BFC10079996F /* facebook-logo-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 496A300418B3BFC10079996F /* facebook-logo-blue.png */; };
@@ -153,6 +154,8 @@
 		495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateDetailsViewController.m; sourceTree = "<group>"; };
 		4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewControllerTests.m; sourceTree = "<group>"; };
 		4967AB7918A91D420079C9F1 /* CivicAPIKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CivicAPIKey.plist; sourceTree = "<group>"; };
+		4969787418B55E5A00B23CC6 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		4969787518B55E5A00B23CC6 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		496A2FFC18B3A9B90079996F /* CandidateSocialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateSocialCell.h; sourceTree = "<group>"; };
 		496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateSocialCell.m; sourceTree = "<group>"; };
 		496A2FFF18B3B0F10079996F /* SocialChannel+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SocialChannel+API.h"; path = "CoreDataModels/SocialChannel+API.h"; sourceTree = "<group>"; };
@@ -350,6 +353,8 @@
 		49E981411892F7F700E26C5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4969787418B55E5A00B23CC6 /* AboutViewController.h */,
+				4969787518B55E5A00B23CC6 /* AboutViewController.m */,
 				49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */,
 				49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */,
 				49A04BD518AD261E00BCDB0D /* UIWebViewController.h */,
@@ -687,6 +692,7 @@
 				49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */,
 				495CB9C518B2A10D00243ADB /* CandidateDetailsViewController.m in Sources */,
 				499537D518A190DA009B678C /* UserAddress.m in Sources */,
+				4969787618B55E5A00B23CC6 /* AboutViewController.m in Sources */,
 				49C1FED718B2C6AE00CF9DFE /* Candidate.m in Sources */,
 				49C1FEDA18B2C6AF00CF9DFE /* SocialChannel.m in Sources */,
 				499537F018A283F0009B678C /* Election.m in Sources */,
