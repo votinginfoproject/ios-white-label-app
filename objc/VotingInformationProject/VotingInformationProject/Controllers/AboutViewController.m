@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 2/19/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "AboutViewController.h"
@@ -23,9 +22,9 @@
 {
     if (!_text) {
         _text = @[
-                  @"About this app. It is pretty cool and was built as a collaboration between VIP and Azavea. More hipster ipsum here: Plaid Neutra shabby chic, lomo deep v pop-up irony cornhole. Selvage YOLO single-origin coffee Neutra skateboard you probably haven't heard of them. Portland Intelligentsia distillery Marfa pickled authentic.",
-                  @"Terms of use: Share it with the whole friggin world!",
-                  @"Privacy policy: Be cool and don't steal stuff!"];
+                  NSLocalizedString(@"Plaid Neutra shabby chic, lomo deep v pop-up irony cornhole. Selvage YOLO single-origin coffee Neutra skateboard you probably haven't heard of them. Portland Intelligentsia distillery Marfa pickled authentic.", nil),
+                  NSLocalizedString(@"Fashion axe blog before they sold out art party, Austin selfies Shoreditch ugh photo booth. Kale chips messenger bag Neutra, leggings Helvetica yr paleo keffiyeh tote bag sartorial biodiesel pour-over Truffaut mixtape meggings.", nil),
+                  NSLocalizedString(@"Bacon ipsum dolor sit amet kielbasa strip steak bacon, salami prosciutto filet mignon tail drumstick spare ribs short ribs pork biltong beef ribs shankle turkey. Fatback jowl pork belly short ribs, andouille t-bone rump leberkas turducken tongue sirloin corned beef.", nil)];
     }
     return _text;
 }
@@ -64,7 +63,7 @@
                                        options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                     attributes:strAttributes
                                        context:nil];
-    return heightPadding + ceilf(strSize.size.height) + heightPadding;
+    return 2 * heightPadding + ceilf(strSize.size.height);
 }
 
 @end
