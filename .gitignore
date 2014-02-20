@@ -27,3 +27,5 @@ Pods
 *.swo
 *.swp
 ~*
+
+CivicAPIKey.plist
