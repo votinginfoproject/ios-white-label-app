@@ -6,6 +6,7 @@ before_install:
     - brew uninstall xctool && brew install xctool --HEAD
 install:
     - pushd objc/VotingInformationProject && pod install
+    - cp VotingInformationProject/CivicAPIKey.plist.template VotingInformationProject/CivicAPIKey.plist
 
 script:
     - xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator -arch i386 test
