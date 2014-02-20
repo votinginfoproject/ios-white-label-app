@@ -14,83 +14,112 @@
 #import "PollingLocation+API.h"
 #import "State+API.h"
 
-#define ELECTIONSAPIErrorDomain @"Elections+API"
-#define ELECTIONSAPIErrorCodeInvalidUserAddress 101
-#define ELECTIONSAPIErrorDescriptionInvalidUserAddress @"A UserAddress Required"
-
 /**
  Election+API is a category for Election that provides various convenience methods
  */
 
 @interface Election (API)
 
+// Error domain for this class for use in NSError
+extern NSString * const VIPErrorDomain;
+
+// Error codes used by this class and elsewhere in NSError
+extern NSUInteger const VIPNoValidElections;
+extern NSUInteger const VIPInvalidUserAddress;
+extern NSUInteger const VIPAddressUnparseable;
+extern NSUInteger const VIPNoAddress;
+extern NSUInteger const VIPElectionUnknown;
+extern NSUInteger const VIPElectionOver;
+extern NSUInteger const VIPGenericAPIError;
+
+// String descriptions of the above error codes
+extern NSString * const VIPAddressUnparseableDescription;
+extern NSString * const VIPNoAddressDescription;
+extern NSString * const VIPGenericAPIErrorDescription;
+extern NSString * const VIPElectionOverDescription;
+extern NSString * const VIPElectionUnknownDescription;
+extern NSString * const VIPInvalidUserAddressDescription;
+extern NSString * const VIPNoValidElectionsDescription;
+
+// Definitions for the various possible responses from the voterInfo API
+extern NSString * const APIResponseSuccess;
+extern NSString * const APIResponseElectionOver;
+extern NSString * const APIResponseElectionUnknown;
+extern NSString * const APIResponseNoStreetSegmentFound;
+extern NSString * const APIResponseMultipleStreetSegmentsFound;
+extern NSString * const APIResponseNoAddressParameter;
+
 /**
- Get a unique election from CoreData or create a new unique instance if it does not exist
- @warning The election instance is not automatically saved
- 
- @param electionId The string id of the election
- @param userAddress The user address instance to match an election response to
+ * Get a unique election from CoreData or create a new unique instance if it does not exist
+ * @warning The election instance is not automatically saved
+ *
+ * @param electionId The string id of the election
+ * @param userAddress The user address instance to match an election response to
  */
 + (Election *) getUnique:(NSString*)electionId
          withUserAddress:(UserAddress*)userAddress;
 
 /**
- Get a list of elections for the specified UserAddress
- 
- @param userAddress The userAddress to assign the election results to
- @param resultsBlock A block object to be executed when the operation completes. The block has no return value and takes two arguments: NSArray of elections return and an NSError that will contain any errors or nil if the operation completed successfully.
+ * Get a list of elections for the specified UserAddress
+ *
+ * @param userAddress The userAddress to assign the election results to
+ * @param resultsBlock A block object to be executed when the operation completes. 
+ *      The block has no return value and takes two arguments: NSArray of elections
+ *      return and an NSError that will contain any errors or nil if the operation completed successfully.
  */
 + (void) getElectionsAt:(UserAddress*)userAddress
            resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock;
 
 /**
- @return NSString of the form yyyy-mm-dd
+ * @return NSString of the form yyyy-mm-dd
  */
 - (NSString *) getDateString;
 
 /**
- @param stringDate NSString of the form yyyy-mm-dd
+ * @param stringDate NSString of the form yyyy-mm-dd
  */
 - (void) setDateFromString:(NSString*)stringDate;
 
 /**
- A helper function that determines if the election data contained in the Election object is stale. 
-
- @return YES if no valid election data or the data is stale, NO if the data is valid
+ * A helper function that determines if the election data contained in the Election object is stale.
+ *
+ * @return YES if no valid election data or the data is stale, NO if the data is valid
  */
 - (BOOL) shouldUpdate;
 
 /**
- Get election data for an election from the Google Civic Info API, only if the data is stale as determined by shouldUpdate
- 
- @see getVoterInfo:failure:
-
-- (BOOL) getVoterInfoIfExpired:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
-                       failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
-
- Get election data for an election from the Google Civic Info API
-
- https://developers.google.com/civic-information/docs/us_v1/elections/voterInfoQuery
- The API call is always made with officialOnly=True
- 
- TODO: Refactor this method and combine with parseVoterInfoJSON: with arguments similar to getElectionsAt:results:
- 
- @param success A block object to be executed when the operation completes. The block has no return value and takes two arguments that are the same as the success argument of the AFHTTPRequestOperationManager POST call.
- @param failure A block object to be executed when the operation completes with a failure. The block has no return value and takes two arguments that are the same as the failure argument of the AFHTTPRequestOperationManager POST call.
+ * Get election data for an election from the Google Civic Info API, only if the data is stale as determined by shouldUpdate
+ *
+ * @see getVoterInfo:
  */
-- (void) getVoterInfo:(void (^) (AFHTTPRequestOperation *operation, NSDictionary *json)) success
-              failure:(void (^) (AFHTTPRequestOperation *operation, NSError *error)) failure;
+
+- (void) getVoterInfoIfExpired:(void (^) (BOOL success, NSError *error)) statusBlock;
 
 /**
- Load election data from a dictionary
-
- @param json The dictionary to load data from. It should follow the key/value pairs of the voterInfo query response: https://developers.google.com/civic-information/docs/us_v1/elections/voterInfoQuery
+ * Get election data for an election from the Google Civic Info API
+ *
+ * https://developers.google.com/civic-information/docs/us_v1/elections/voterInfoQuery
+ * The API call is always made with officialOnly=True
+ *
+ * @param statusBlock A block object that executes when the operation completes, fills NSError param if success is NO
  */
-- (void) parseVoterInfoJSON:(NSDictionary*)json;
+- (void) getVoterInfo:(void (^) (BOOL success, NSError *error)) statusBlock;
 
 /**
- Delete local CoreData cache of all of the election object's children.
- electionId, electionName, date and userAddress remain intact
+ * Load election data from a dictionary
+ *
+ * Used internally by getVoterInfo:
+ *
+ * @param json The dictionary to load data from. It should follow the key/value pairs of the 
+ * voterInfo query response: https://developers.google.com/civic-information/docs/us_v1/elections/voterInfoQuery
+ *
+ * @return NSError with localizedDescription set if an error, otherwise nil
+ */
+- (NSError*) parseVoterInfoJSON:(NSDictionary*)json;
+
+/**
+ * Delete local CoreData cache of all of the election object's children.
+ * electionId, electionName, date and userAddress remain intact
  */
 - (void) deleteAllData;
 
