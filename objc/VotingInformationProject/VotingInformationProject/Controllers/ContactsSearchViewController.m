@@ -25,42 +25,68 @@
     NSManagedObjectContext *_moc;
 }
 
+/**
+ *  Setter for userAddress
+ * 
+ *  When we set hte userAddress, we want to kick off a refresh of hte election/voterinfo
+ *  data. This progress is indicated to the user
+ *
+ *  @param userAddress
+ */
 - (void)setUserAddress:(UserAddress *)userAddress
 {
     if ([userAddress.address isEqualToString:_userAddress.address]) {
+        NSLog(@"No change. New address %@ == old", _userAddress.address);
         return;
     }
     _userAddress = userAddress;
+
+    // Indicate an update is happening...
+    // TODO: Add delay so this only shows if requests are taking more than x seconds
+    self.showElectionButton.enabled = NO;
+    [self.showElectionButton setTitle:NSLocalizedString(@"Updating...", nil)
+                             forState:UIControlStateDisabled];
+
     // update elections when we set a new userAddress
     [Election
      getElectionsAt:_userAddress
      resultsBlock:^(NSArray *elections, NSError *error){
-         if (error || [elections count] == 0) {
-             [self displayGetElectionsError:error];
-         } else {
+         if (!error && [elections count] > 0) {
              self.elections = elections;
+         } else {
+             [self displayGetElectionsError:error];
          }
      }];
 }
 
+/**
+ *  Setter for elections
+ *
+ *  When elections are set, we also want ot update the currentElection and update its data
+ *  from the voterInfo query
+ *
+ *  @param elections
+ */
 - (void)setElections:(NSArray *)elections
 {
     if (elections && [elections count] > 0) {
         _elections = elections;
         _currentElection = _elections[0];
         [_currentElection
-         getVoterInfo:^(AFHTTPRequestOperation *operation, NSDictionary *json)
+         getVoterInfo:^(BOOL success, NSError *error)
          {
-             [_currentElection parseVoterInfoJSON:json];
-             self.showElectionButton.enabled = YES;
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             [self displayGetElectionsError:error];
+             if (success) {
+                 [self displayGetElections];
+             } else {
+                 [self displayGetElectionsError:error];
+             }
          }];
     } else {
         _elections = @[];
         _currentElection = nil;
+        NSDictionary * userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(VIPNoValidElectionsDescription, nil)};
+        NSError *error = [[NSError alloc] initWithDomain:VIPErrorDomain code:VIPNoValidElections userInfo:userInfo];
+        [self displayGetElectionsError:error];
     }
 }
 
@@ -185,14 +211,6 @@
     if ([segue.identifier isEqualToString:@"BallotView"]) {
         VIPTabBarController *vipTabBarController = segue.destinationViewController;
         vipTabBarController.elections = self.elections;
-    } else if ([segue.identifier isEqualToString:@"WebViewSegue"]) {
-#pragma mark - UIWebViewController example
-        NSString *urlString = @"http://hipsteripsum.me/?paras=4&type=hipster-centric";
-        UIWebViewController *webViewController = segue.destinationViewController;
-        // Set webView's navigation bar title
-        webViewController.title = @"HipsterIpsum";
-        // Set webView url to load
-        webViewController.url = [NSURL URLWithString:urlString];
     }
 }
 
@@ -201,9 +219,9 @@
 
 - (void) textFieldDidEndEditing:(UITextField *)textField
 {
-    // TODO: If textField.text != userAddress.address
-    //          create new userAddress and assign as current
-    //          optionally check if elections exist and indicate to user
+    if (![self.userAddress.address isEqualToString:textField.text]) {
+        self.userAddress = [UserAddress getUnique:textField.text];
+    }
 }
 
 // close the keyboard when user taps return
@@ -215,9 +233,30 @@
 
 
 #pragma mark - UI Error Handling
+
+/**
+ *  Enable button and display relevant text
+ */
+- (void)displayGetElections
+{
+    self.showElectionButton.enabled = YES;
+    [self.showElectionButton setTitle:NSLocalizedString(@"Show Upcoming Election", nil)
+                             forState:UIControlStateNormal];
+    [self.showElectionButton setHidden:NO];
+}
+
+/**
+ *  Error handle getting elections by displaying error as the text of the button
+ *  and setting state to disabled
+ *
+ *  @param error NSError to display, button text displayed from localizedDescription property
+ */
 - (void) displayGetElectionsError:(NSError*)error
 {
-    // TODO: implement
     self.showElectionButton.enabled = NO;
+    NSString *errorTitle = error.localizedDescription
+        ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", nil);
+    [self.showElectionButton setTitle:errorTitle forState:UIControlStateDisabled];
+    [self.showElectionButton setHidden:NO];
 }
 @end
