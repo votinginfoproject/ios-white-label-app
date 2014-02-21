@@ -33,7 +33,9 @@
             NSLog(@"Candidate %@ error getting photo: %@", self.name, error);
             return;
         }
-        self.photo = data;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.photo = data;
+        });
     }];
 
     // Execute request

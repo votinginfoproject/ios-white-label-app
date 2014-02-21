@@ -243,6 +243,7 @@
     [self.showElectionButton setTitle:NSLocalizedString(@"Show Upcoming Election", nil)
                              forState:UIControlStateNormal];
     [self.showElectionButton setHidden:NO];
+    [self performSegueWithIdentifier: @"BallotView" sender: self.showElectionButton];
 }
 
 /**

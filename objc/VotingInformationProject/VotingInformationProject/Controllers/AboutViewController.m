@@ -22,9 +22,9 @@
 {
     if (!_text) {
         _text = @[
-                  NSLocalizedString(@"Plaid Neutra shabby chic, lomo deep v pop-up irony cornhole. Selvage YOLO single-origin coffee Neutra skateboard you probably haven't heard of them. Portland Intelligentsia distillery Marfa pickled authentic.", nil),
-                  NSLocalizedString(@"Fashion axe blog before they sold out art party, Austin selfies Shoreditch ugh photo booth. Kale chips messenger bag Neutra, leggings Helvetica yr paleo keffiyeh tote bag sartorial biodiesel pour-over Truffaut mixtape meggings.", nil),
-                  NSLocalizedString(@"Bacon ipsum dolor sit amet kielbasa strip steak bacon, salami prosciutto filet mignon tail drumstick spare ribs short ribs pork biltong beef ribs shankle turkey. Fatback jowl pork belly short ribs, andouille t-bone rump leberkas turducken tongue sirloin corned beef.", nil)];
+                  NSLocalizedString(@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque semper nibh, nec tincidunt justo suscipit ac. Nunc quis nunc sit amet nunc blandit facilisis. Pellentesque lobortis felis vitae quam ultrices posuere. Nullam tristique neque vitae porttitor tempor. Aliquam erat volutpat. Sed mattis elit in elementum sollicitudin. Aenean ultricies, libero quis feugiat fringilla, magna justo suscipit nunc, in sodales dolor purus in lacus.", nil),
+                  NSLocalizedString(@"Proin viverra est dignissim sem ornare ultricies. Fusce leo sapien, bibendum nec ante non, lacinia porta massa. Ut eros urna, molestie et hendrerit ac, accumsan sit amet lectus. Vivamus pulvinar, lacus quis aliquet semper, ipsum nisi commodo leo, sed lobortis arcu urna eu erat.", nil),
+                  NSLocalizedString(@"Proin viverra est dignissim sem ornare ultricies. Fusce leo sapien, bibendum nec ante non, lacinia porta massa. Ut eros urna, molestie et hendrerit ac, accumsan sit amet lectus. Vivamus pulvinar, lacus quis aliquet semper, ipsum nisi commodo leo, sed lobortis arcu urna eu erat.", nil)];
     }
     return _text;
 }
