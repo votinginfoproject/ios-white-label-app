@@ -127,6 +127,7 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
 
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
     NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    BOOL appDebug = [[appSettings valueForKey:@"DEBUG"] boolValue];
     // Setup request manager
     // TODO: Refactor into separate class if multiple requests are made
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -159,8 +160,8 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
 
              // Loop elections and add valid ones to elections array
              for (NSDictionary *entry in electionData) {
-                 // skip election if in the past
-                 if (![Election isElectionDictValid:entry]) {
+                 // skip election if in the past and debug is disabled
+                 if (!appDebug && ![Election isElectionDictValid:entry]) {
                      continue;
                  }
 
@@ -268,6 +269,9 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
 
+    NSString *appSettingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:appSettingsPath];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // Serializes the http body POST parameters as JSON, which is what the Civic Info API expects
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -275,11 +279,16 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
     NSDictionary *params = @{ @"address": self.userAddress.address };
 
+    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True";
+
     // Add query params to the url since AFNetworking serializes these internally anyway
     //  and the parameters parameter below attaches only to the http body for POST
     // Always use officialOnly = True
-    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True";
+    if ([appSettings valueForKey:@"DEBUG"]) {
+        urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True&productionDataOnly=false";
+    }
     NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey];
+    NSLog(@"VoterInfo Query: %@", url);
     [manager POST:url
        parameters:params
           success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
