@@ -84,7 +84,7 @@
     } else {
         _elections = @[];
         _currentElection = nil;
-        NSDictionary * userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(VIPNoValidElectionsDescription, nil)};
+        NSDictionary * userInfo = @{NSLocalizedDescriptionKey: [Election localizedDescriptionForErrorCode:VIPNoValidElections]};
         NSError *error = [[NSError alloc] initWithDomain:VIPErrorDomain code:VIPNoValidElections userInfo:userInfo];
         [self displayGetElectionsError:error];
     }

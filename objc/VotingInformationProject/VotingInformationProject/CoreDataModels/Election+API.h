@@ -24,6 +24,8 @@
 extern NSString * const VIPErrorDomain;
 
 // Error codes used by this class and elsewhere in NSError
+// Get localized string descriptions with
+//  + (NSString*)localizedDescriptionForErrorCode:
 extern NSUInteger const VIPNoValidElections;
 extern NSUInteger const VIPInvalidUserAddress;
 extern NSUInteger const VIPAddressUnparseable;
@@ -31,15 +33,6 @@ extern NSUInteger const VIPNoAddress;
 extern NSUInteger const VIPElectionUnknown;
 extern NSUInteger const VIPElectionOver;
 extern NSUInteger const VIPGenericAPIError;
-
-// String descriptions of the above error codes
-extern NSString * const VIPAddressUnparseableDescription;
-extern NSString * const VIPNoAddressDescription;
-extern NSString * const VIPGenericAPIErrorDescription;
-extern NSString * const VIPElectionOverDescription;
-extern NSString * const VIPElectionUnknownDescription;
-extern NSString * const VIPInvalidUserAddressDescription;
-extern NSString * const VIPNoValidElectionsDescription;
 
 // Definitions for the various possible responses from the voterInfo API
 extern NSString * const APIResponseSuccess;
@@ -58,6 +51,14 @@ extern NSString * const APIResponseNoAddressParameter;
  */
 + (Election *) getUnique:(NSString*)electionId
          withUserAddress:(UserAddress*)userAddress;
+
+/**
+ *  Returns a statically allocated description for the errorCode
+ *
+ *  @param errorCode One of the VIP error codes defined in this header file
+ *  @return NSString localized description for the error. Returns VIPGenericAPIError if no match.
+ */
++ (NSString *)localizedDescriptionForErrorCode:(NSUInteger)errorCode;
 
 /**
  * Get a list of elections for the specified UserAddress
