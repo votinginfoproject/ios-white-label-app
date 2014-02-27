@@ -10,7 +10,9 @@ Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-lab
 Building the App
 ----------------
 
-1. Before opening xcode, copy VotingInformationProject/CivicAPIKey.plist.template to VotingInformationProject/CivicAPIKey.plist and paste your Google Civic API browser key between the <string></string> tag 
+1. Before opening xcode:
+    1. copy VotingInformationProject/CivicAPIKey.plist.template to VotingInformationProject/CivicAPIKey.plist and paste your Google Civic API browser key between the <string></string> tag 
+    2. copy VotingInformationProject/settings.plist.template to VotingInformationProject/settings.plist
 
 2. Install cocoapods:
 ```

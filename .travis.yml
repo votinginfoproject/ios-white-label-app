@@ -7,6 +7,7 @@ before_install:
 install:
     - pushd objc/VotingInformationProject && pod install
     - cp VotingInformationProject/CivicAPIKey.plist.template VotingInformationProject/CivicAPIKey.plist
+    - cp VotingInformationProject/settings.plist.template VotingInformationProject/settings.plist
 
 script:
     - xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator -arch i386 test
