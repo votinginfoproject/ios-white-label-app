@@ -32,6 +32,11 @@ pod install
     * URL to json file that matches the form of: https://developers.google.com/civic-information/docs/us_v1/elections/electionQuery
     * Sample elections.json in xcode project
 
+Regenerating Localized Strings File
+---------------------------------
+Used: http://www.delitestudio.com/app/localizable-strings-merge/
+The default genstrings tool does not recursively search .m files or handle merges well.
+
 Updating the Google Maps API Key
 --------------------------------
 
