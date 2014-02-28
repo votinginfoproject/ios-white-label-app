@@ -26,13 +26,12 @@
 - (void) setOtherElections
 {
     VIPTabBarController *parentTabBarController = (VIPTabBarController*) self.tabBarController;
-    NSArray *elections = parentTabBarController.elections;
+    NSMutableArray *elections = [parentTabBarController.elections mutableCopy];
+
     NSUInteger numElections = [elections count];
     if (numElections > 1) {
-        NSRange rangeForOtherElections;
-        rangeForOtherElections.location = 1;
-        rangeForOtherElections.length = [elections count] - 1;
-        _elections = [elections subarrayWithRange:rangeForOtherElections];
+        [elections removeObject:parentTabBarController.currentElection];
+        _elections = elections;
     } else {
         _elections = @[];
     }
