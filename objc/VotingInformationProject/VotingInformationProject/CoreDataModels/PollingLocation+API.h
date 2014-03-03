@@ -12,11 +12,17 @@
 
 @interface PollingLocation (API)
 
+/**
+ *  The types of polling locations.
+ *
+ *  The integer values explicitly defined here match to the indices
+ *  of the UISegmentedControl used on the PollingLocations page
+ */
 typedef enum {
-    kPollingLocationTypeAll = 0,
-    kPollingLocationTypeEarlyVote = 1,
-    kPollingLocationTypeNormal = 2
-} kPollingLocationType;
+    VIPPollingLocationTypeAll = 0,
+    VIPPollingLocationTypeEarlyVote = 1,
+    VIPPollingLocationTypeNormal = 2
+} VIPPollingLocationType;
 
 + (PollingLocation*) setFromDictionary:(NSDictionary*)attributes
                      asEarlyVotingSite:(BOOL)isEarlyVotingSite;

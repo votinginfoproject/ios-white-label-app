@@ -71,7 +71,7 @@
                                                                  zoom:zoom];
 
     // Set listener for segmented control
-    self.siteFilter.selectedSegmentIndex = kPollingLocationTypeAll;
+    self.siteFilter.selectedSegmentIndex = VIPPollingLocationTypeAll;
     [self.siteFilter addTarget:self
                         action:@selector(filterLocations:)
               forControlEvents:UIControlEventValueChanged];
