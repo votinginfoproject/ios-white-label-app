@@ -12,6 +12,12 @@
 
 @interface PollingLocation (API)
 
+typedef enum {
+    kPollingLocationTypeAll = 0,
+    kPollingLocationTypeEarlyVote = 1,
+    kPollingLocationTypeNormal = 2
+} kPollingLocationType;
+
 + (PollingLocation*) setFromDictionary:(NSDictionary*)attributes
                      asEarlyVotingSite:(BOOL)isEarlyVotingSite;
 

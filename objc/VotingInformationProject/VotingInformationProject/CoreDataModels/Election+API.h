@@ -82,6 +82,15 @@ extern NSString * const APIResponseNoAddressParameter;
 - (void) setDateFromString:(NSString*)stringDate;
 
 /**
+ *  Filter polling locations based on type
+ *
+ *  @param type One of enum kPollingLocationsType
+ *
+ *  @return NSArray of polling locations for this election that match the filter
+ */
+- (NSArray*)filterPollingLocations:(NSUInteger)type;
+
+/**
  * A helper function that determines if the election data contained in the Election object is stale.
  *
  * @return YES if no valid election data or the data is stale, NO if the data is valid

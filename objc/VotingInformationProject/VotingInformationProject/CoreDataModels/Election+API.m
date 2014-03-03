@@ -225,6 +225,23 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
     self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 
+- (NSArray*)filterPollingLocations:(NSUInteger)type
+{
+    NSArray *locations = [self getSorted:@"pollingLocations"
+                              byProperty:@"isEarlyVoteSite"
+                               ascending:NO];
+    NSArray *filteredLocations = locations;
+    if (type == kPollingLocationTypeEarlyVote) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isEarlyVoteSite == YES"];
+        filteredLocations = [locations filteredArrayUsingPredicate:predicate];
+    } else if (type == kPollingLocationTypeNormal) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isEarlyVoteSite == NO"];
+        filteredLocations = [locations filteredArrayUsingPredicate:predicate];
+
+    }
+    return filteredLocations;
+}
+
 // For now always yes to test delete/update on CoreData
 - (BOOL) shouldUpdate
 {

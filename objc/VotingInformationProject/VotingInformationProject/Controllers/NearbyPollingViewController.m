@@ -20,6 +20,13 @@
     NSManagedObjectContext *_moc;
 }
 
+- (void)setLocations:(NSArray *)locations
+{
+    _locations = locations;
+    [self updateUI];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,6 +47,12 @@
                                                             longitude:longitude
                                                                  zoom:zoom];
 
+    // Set listener for segmented control
+    self.siteFilter.selectedSegmentIndex = kPollingLocationTypeAll;
+    [self.siteFilter addTarget:self
+                        action:@selector(filterLocations:)
+              forControlEvents:UIControlEventValueChanged];
+
     // Initialize Map View
     self.mapView.camera = camera;
     self.mapView.myLocationEnabled = YES;
@@ -53,6 +66,11 @@
     [super viewWillAppear:animated];
 
     self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
+}
+
+- (void) updateUI
+{
+    NSLog(@"Polling Locations: %@", self.locations);
 }
 
 - (void) geocode:(UserAddress *)userAddress
@@ -76,11 +94,12 @@
     }
 }
 
-- (NSArray*)filterPollingLocations
+- (void)filterLocations:(id)sender
 {
-    // TODO: Implement filter for the UI filter
-
-    return nil;
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
+        self.locations = [self.election filterPollingLocations:siteFilter.selectedSegmentIndex];
+    }
 }
 
 - (void) setPlacemark:(UserAddress *)userAddress

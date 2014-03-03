@@ -16,6 +16,7 @@
 @interface NearbyPollingViewController : UIViewController
 
 @property (strong, nonatomic) Election *election;
+@property (strong, nonatomic) NSArray *locations;
 
 -(void) setPlacemark:(UserAddress *)userAddress
           andAnimate:(BOOL)animate;
