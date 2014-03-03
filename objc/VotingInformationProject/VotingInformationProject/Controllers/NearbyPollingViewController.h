@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "GoogleMaps/GoogleMaps.h"
 
-#import "VIPUserDefaultsKeys.h"
 #import "Election+API.h"
+#import "VIPUserDefaultsKeys.h"
 
-@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate>
+@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) Election *election;
 @property (strong, nonatomic) NSArray *locations;

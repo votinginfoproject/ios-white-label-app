@@ -477,6 +477,58 @@
             </objects>
             <point key="canvasLocation" x="2480" y="-606"/>
         </scene>
+        <!--Directions View Controller-->
+        <scene sceneID="C5a-wK-jHL">
+            <objects>
+                <viewController id="BTu-EQ-4cq" customClass="DirectionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oFX-c7-3Om"/>
+                        <viewControllerLayoutGuide type="bottom" id="1V6-XH-MTF"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" id="j8Q-0g-Pgk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZl-29-0md">
+                                <rect key="frame" x="20" y="518" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="BTu-EQ-4cq" eventType="touchUpInside" id="0Nw-3U-zBg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvh-Ag-PWM">
+                                <rect key="frame" x="20" y="480" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Directions From Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x14-aY-puw">
+                                <rect key="frame" x="20" y="449" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Directions To Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="XZl-29-0md" id="UCh-6w-Ktx"/>
+                        <outlet property="directionsFromButton" destination="Yvh-Ag-PWM" id="lx0-QV-kEu"/>
+                        <outlet property="directionsToButton" destination="x14-aY-puw" id="xWw-wZ-4z3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JXI-lt-j3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="572"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="1xV-W7-NP6">
             <objects>
@@ -635,6 +687,9 @@
                                     <segment title="Early Voting"/>
                                     <segment title="Polling Sites"/>
                                 </segments>
+                                <connections>
+                                    <segue destination="BTu-EQ-4cq" kind="modal" identifier="DirectionsModalSegue" id="10B-ox-2Pl"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DM-NM-eBM" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="50" width="320" height="361"/>

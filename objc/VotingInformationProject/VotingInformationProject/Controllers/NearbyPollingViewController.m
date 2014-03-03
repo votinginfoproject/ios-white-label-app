@@ -9,6 +9,9 @@
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
 
+#define AS_DIRECTIONS_TO_INDEX 0
+#define AS_DIRECTIONS_FROM_INDEX 1
+
 @interface NearbyPollingViewController ()
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -65,7 +68,7 @@
     // Set map view and display
     double latitude = [userAddress.latitude doubleValue];
     double longitude = [userAddress.longitude doubleValue];
-    double zoom = 13;
+    double zoom = 15;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
                                                                  zoom:zoom];
@@ -107,7 +110,7 @@
                                                          andAnimate:NO];
                              marker.map = self.mapView;
                              marker.snippet = address;
-                             marker.userData = location;
+                             marker.userData = location.address;
                              [self.markers addObject:marker];
                              
                          }
@@ -179,7 +182,30 @@
 #pragma mark - GMSMapView delegate
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    // TODO: Segue to modal overlay that displays directions to/from here buttons
+    NSString *directionsTo = NSLocalizedString(@"Directions To Here", nil);
+    NSString *directionsFrom = NSLocalizedString(@"Directions From Here", nil);
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:directionsTo, directionsFrom, nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark - ActionSheet Delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case AS_DIRECTIONS_TO_INDEX:
+            // TODO: Launch maps app w/ directions from userAddress --> marker
+            NSLog(@"Directions TO");
+            return;
+        case AS_DIRECTIONS_FROM_INDEX:
+            // TODO: Launch maps app w/ directions from marker --> userAddress
+            NSLog(@"Directions FROM");
+            return;
+    }
 }
 
 @end
