@@ -657,7 +657,7 @@
                         <barButtonItem key="backBarButtonItem" title="Home" id="3WV-9A-YoC"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="6DM-NM-eBM" id="AC4-dS-JgE"/>
+                        <outlet property="mapView" destination="6DM-NM-eBM" id="gHh-fx-ZZS"/>
                         <outlet property="siteFilter" destination="vGb-SD-759" id="Xy8-NS-vEb"/>
                     </connections>
                 </viewController>
