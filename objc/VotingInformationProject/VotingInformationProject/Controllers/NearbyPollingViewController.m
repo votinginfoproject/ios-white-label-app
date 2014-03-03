@@ -7,9 +7,13 @@
 //
 
 #import "NearbyPollingViewController.h"
+#import "VIPTabBarController.h"
 
 @interface NearbyPollingViewController ()
-@property (strong, nonatomic) GMSMapView * mapView;
+
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
+
 @end
 
 @implementation NearbyPollingViewController {
@@ -21,10 +25,13 @@
     [super viewDidLoad];
 
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
+    VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+    self.election = tabBarController.currentElection;
 
     // Set map center to address if it exists
     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                  ascending:NO];
+
     // Set map view and display
     double latitude = [userAddress.latitude doubleValue];
     double longitude = [userAddress.longitude doubleValue];
@@ -34,9 +41,9 @@
                                                                  zoom:zoom];
 
     // Initialize Map View
-    self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.mapView.camera = camera;
     self.mapView.myLocationEnabled = YES;
-    self.view = self.mapView;
+    //self.view = self.mapView;
 
     [self geocode:userAddress andSetPlacemark:YES];
 };
@@ -44,9 +51,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.tabBarController) {
-        self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
-    }
+
+    self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
 }
 
 - (void) geocode:(UserAddress *)userAddress
@@ -68,6 +74,13 @@
                          }
         }];
     }
+}
+
+- (NSArray*)filterPollingLocations
+{
+    // TODO: Implement filter for the UI filter
+
+    return nil;
 }
 
 - (void) setPlacemark:(UserAddress *)userAddress

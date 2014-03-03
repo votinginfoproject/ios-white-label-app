@@ -11,9 +11,11 @@
 #import "GoogleMaps/GoogleMaps.h"
 
 #import "VIPUserDefaultsKeys.h"
-#import "UserAddress+API.h"
+#import "Election+API.h"
 
 @interface NearbyPollingViewController : UIViewController
+
+@property (strong, nonatomic) Election *election;
 
 -(void) setPlacemark:(UserAddress *)userAddress
           andAnimate:(BOOL)animate;
