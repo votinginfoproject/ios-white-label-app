@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -626,12 +626,40 @@
                     <view key="view" contentMode="scaleToFill" id="OOX-4h-T5b">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vGb-SD-759">
+                                <rect key="frame" x="20" y="10" width="280" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="All Sites"/>
+                                    <segment title="Early Voting"/>
+                                    <segment title="Polling Sites"/>
+                                </segments>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DM-NM-eBM" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="50" width="320" height="361"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6DM-NM-eBM" firstAttribute="leading" secondItem="OOX-4h-T5b" secondAttribute="leading" id="0tE-bC-p3C"/>
+                            <constraint firstItem="6DM-NM-eBM" firstAttribute="top" secondItem="vGb-SD-759" secondAttribute="bottom" constant="12" id="4Hg-J2-zrJ"/>
+                            <constraint firstItem="6DM-NM-eBM" firstAttribute="top" secondItem="OOX-4h-T5b" secondAttribute="top" constant="50" id="F7x-wy-uTw"/>
+                            <constraint firstAttribute="trailing" secondItem="6DM-NM-eBM" secondAttribute="trailing" id="H4z-Lz-B97"/>
+                            <constraint firstItem="nTU-4R-KE5" firstAttribute="top" secondItem="6DM-NM-eBM" secondAttribute="bottom" constant="44" id="jtz-o5-6CP"/>
+                            <constraint firstItem="6DM-NM-eBM" firstAttribute="centerX" secondItem="vGb-SD-759" secondAttribute="centerX" id="rlT-HP-DIl"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Polling" id="Kxk-5f-oXy"/>
                     <navigationItem key="navigationItem" title="Polling Sites" id="Xfu-rg-ES2">
                         <barButtonItem key="backBarButtonItem" title="Home" id="3WV-9A-YoC"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="6DM-NM-eBM" id="gHh-fx-ZZS"/>
+                        <outlet property="siteFilter" destination="vGb-SD-759" id="Xy8-NS-vEb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsg-MQ-szX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

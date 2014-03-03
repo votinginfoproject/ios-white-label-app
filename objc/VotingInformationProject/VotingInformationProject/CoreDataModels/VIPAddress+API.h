@@ -10,4 +10,6 @@
 
 @interface VIPAddress (API)
 
+- (NSString*)toABAddressString:(BOOL)withNewlines;
+
 @end

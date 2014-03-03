@@ -38,9 +38,16 @@
     NSArray *results = nil;
     NSSet *vipSet = [self valueForKey:property];
     if (vipSet && [vipSet respondsToSelector:@selector(allObjects)]) {
+        SEL stringSelector = @selector(caseInsensitiveCompare:);
+        SEL keySelector = @selector(compare:);
+        // set selector -- caseInsensitiveCompare for NSString 
+        //  otherwise default to compare:
+        if ([[vipSet valueForKey:propertyKey] respondsToSelector:stringSelector]) {
+            keySelector = stringSelector;
+        }
         NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:propertyKey
                                                                          ascending:isAscending
-                                                                          selector:@selector(caseInsensitiveCompare:)];
+                                                                          selector:keySelector];
         NSArray *sortDescriptors = [NSArray arrayWithObject:nameDescriptor];
         NSArray *unsortedResults = [[self valueForKey:property] allObjects];
         results = [unsortedResults sortedArrayUsingDescriptors:sortDescriptors];

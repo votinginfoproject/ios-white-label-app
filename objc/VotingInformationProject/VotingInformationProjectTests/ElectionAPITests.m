@@ -61,6 +61,33 @@ describe(@"Election+API Tests", ^{
         [[theValue([election1 shouldUpdate]) should] equal:theValue(NO)];
     });
 
+    it(@"should ensure that filterPollingLocations returns only isEarlyVoteSite", ^{
+        PollingLocation *pl1 = [PollingLocation MR_createEntity];
+        pl1.name = @"pl1";
+        pl1.isEarlyVoteSite = @(YES);
+        PollingLocation *pl2 = [PollingLocation MR_createEntity];
+        pl2.name = @"pl2";
+        pl2.isEarlyVoteSite = @(YES);
+        PollingLocation *pl3 = [PollingLocation MR_createEntity];
+        pl3.name = @"pl3";
+        pl3.isEarlyVoteSite = @(NO);
+        Election *election = [Election MR_createEntity];
+        NSSet *locations = [NSSet setWithObjects:pl1, pl2, pl3,nil];
+        [election addPollingLocations:locations];
+
+        NSArray *allSites = [election filterPollingLocations:VIPPollingLocationTypeAll];
+        [[theValue([allSites count]) should] equal:theValue(3)];
+
+        NSArray *earlyVoteSites = [election filterPollingLocations:VIPPollingLocationTypeEarlyVote];
+        [[theValue([earlyVoteSites count]) should] equal:theValue(2)];
+
+        NSArray *normalSites = [election filterPollingLocations:VIPPollingLocationTypeNormal];
+        [[theValue([normalSites count]) should] equal:theValue(1)];
+        PollingLocation *site3 = normalSites[0];
+        [[site3.name should] equal:@"pl3"];
+
+    });
+
     it(@"should ensure that deleteAllData deletes all contests from the election", ^{
         Election *election1 = [Election MR_createEntity];
         Contest *contest1 = [Contest MR_createEntity];
