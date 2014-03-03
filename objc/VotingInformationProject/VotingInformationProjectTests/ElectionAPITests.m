@@ -75,13 +75,13 @@ describe(@"Election+API Tests", ^{
         NSSet *locations = [NSSet setWithObjects:pl1, pl2, pl3,nil];
         [election addPollingLocations:locations];
 
-        NSArray *allSites = [election filterPollingLocations:kPollingLocationTypeAll];
+        NSArray *allSites = [election filterPollingLocations:VIPPollingLocationTypeAll];
         [[theValue([allSites count]) should] equal:theValue(3)];
 
-        NSArray *earlyVoteSites = [election filterPollingLocations:kPollingLocationTypeEarlyVote];
+        NSArray *earlyVoteSites = [election filterPollingLocations:VIPPollingLocationTypeEarlyVote];
         [[theValue([earlyVoteSites count]) should] equal:theValue(2)];
 
-        NSArray *normalSites = [election filterPollingLocations:kPollingLocationTypeNormal];
+        NSArray *normalSites = [election filterPollingLocations:VIPPollingLocationTypeNormal];
         [[theValue([normalSites count]) should] equal:theValue(1)];
         PollingLocation *site3 = normalSites[0];
         [[site3.name should] equal:@"pl3"];

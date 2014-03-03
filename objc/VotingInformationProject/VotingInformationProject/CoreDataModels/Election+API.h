@@ -84,11 +84,11 @@ extern NSString * const APIResponseNoAddressParameter;
 /**
  *  Filter polling locations based on type
  *
- *  @param type One of enum kPollingLocationsType
+ *  @param type One of enum VIPPollingLocationsType
  *
  *  @return NSArray of polling locations for this election that match the filter
  */
-- (NSArray*)filterPollingLocations:(NSUInteger)type;
+- (NSArray*)filterPollingLocations:(VIPPollingLocationType)type;
 
 /**
  * A helper function that determines if the election data contained in the Election object is stale.

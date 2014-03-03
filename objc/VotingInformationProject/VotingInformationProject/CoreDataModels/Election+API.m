@@ -225,16 +225,16 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
     self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 
-- (NSArray*)filterPollingLocations:(NSUInteger)type
+- (NSArray*)filterPollingLocations:(VIPPollingLocationType)type
 {
     NSArray *locations = [self getSorted:@"pollingLocations"
                               byProperty:@"isEarlyVoteSite"
                                ascending:NO];
     NSArray *filteredLocations = locations;
-    if (type == kPollingLocationTypeEarlyVote) {
+    if (type == VIPPollingLocationTypeEarlyVote) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isEarlyVoteSite == YES"];
         filteredLocations = [locations filteredArrayUsingPredicate:predicate];
-    } else if (type == kPollingLocationTypeNormal) {
+    } else if (type == VIPPollingLocationTypeNormal) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isEarlyVoteSite == NO"];
         filteredLocations = [locations filteredArrayUsingPredicate:predicate];
 
