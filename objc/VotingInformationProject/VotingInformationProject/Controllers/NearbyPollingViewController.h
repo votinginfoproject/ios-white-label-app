@@ -10,7 +10,6 @@
 #import "GoogleMaps/GoogleMaps.h"
 
 #import "Election+API.h"
-#import "VIPUserDefaultsKeys.h"
 
 @interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate>
 

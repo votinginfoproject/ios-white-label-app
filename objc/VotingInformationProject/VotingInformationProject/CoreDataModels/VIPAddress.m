@@ -19,8 +19,6 @@
 @dynamic locationName;
 @dynamic state;
 @dynamic zip;
-@dynamic latitude;
-@dynamic longitude;
 @dynamic eab;
 @dynamic pollingLocation;
 

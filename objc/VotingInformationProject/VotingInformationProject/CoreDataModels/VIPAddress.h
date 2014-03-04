@@ -7,12 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
-#import "VIPManagedObject.h"
+#import "VIPManagedAddress.h"
 
 @class ElectionAdministrationBody, PollingLocation;
 
-@interface VIPAddress : VIPManagedObject
+@interface VIPAddress : VIPManagedAddress
 
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * line1;
@@ -21,8 +20,6 @@
 @property (nonatomic, retain) NSString * locationName;
 @property (nonatomic, retain) NSString * state;
 @property (nonatomic, retain) NSString * zip;
-@property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) ElectionAdministrationBody *eab;
 @property (nonatomic, retain) PollingLocation *pollingLocation;
 

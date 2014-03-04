@@ -102,25 +102,25 @@
         <relationship name="election" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Election" inverseName="states" inverseEntity="Election" syncable="YES"/>
         <relationship name="electionAdministrationBody" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ElectionAdministrationBody" inverseName="state" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
     </entity>
-    <entity name="UserAddress" representedClassName="UserAddress" syncable="YES">
-        <attribute name="address" attributeType="String" maxValueString="255" syncable="YES"/>
+    <entity name="UserAddress" representedClassName="UserAddress" parentEntity="VIPManagedAddress" syncable="YES">
         <attribute name="lastUsed" attributeType="Date" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
         <relationship name="elections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Election" inverseName="userAddress" inverseEntity="Election" syncable="YES"/>
     </entity>
-    <entity name="VIPAddress" representedClassName="VIPAddress" syncable="YES">
+    <entity name="VIPAddress" representedClassName="VIPAddress" parentEntity="VIPManagedAddress" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
         <attribute name="line1" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="line2" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="line3" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="zip" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
         <relationship name="eab" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ElectionAdministrationBody" inverseName="addresses" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
         <relationship name="pollingLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PollingLocation" inverseName="address" inverseEntity="PollingLocation" syncable="YES"/>
+    </entity>
+    <entity name="VIPManagedAddress" representedClassName="VIPManagedAddress" isAbstract="YES" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
     </entity>
     <elements>
         <element name="Candidate" positionX="603" positionY="-7" width="128" height="193"/>
@@ -135,5 +135,6 @@
         <element name="State" positionX="304" positionY="411" width="128" height="120"/>
         <element name="UserAddress" positionX="-110" positionY="-396" width="128" height="120"/>
         <element name="VIPAddress" positionX="-153" positionY="-234" width="128" height="208"/>
+        <element name="VIPManagedAddress" positionX="-308" positionY="-252" width="128" height="88"/>
     </elements>
 </model>
