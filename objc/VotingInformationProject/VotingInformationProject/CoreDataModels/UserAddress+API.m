@@ -8,6 +8,8 @@
 
 #import "UserAddress+API.h"
 
+#import "VIPError.h"
+
 @implementation UserAddress (API)
 
 + (UserAddress*)getUnique:(NSString *)address

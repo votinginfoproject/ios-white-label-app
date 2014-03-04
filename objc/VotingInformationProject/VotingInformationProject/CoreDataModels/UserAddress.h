@@ -2,21 +2,18 @@
 //  UserAddress.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 3/4/14.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VIPManagedAddress.h"
 
 @class Election;
 
-@interface UserAddress : VIPManagedObject
+@interface UserAddress : VIPManagedAddress
 
-@property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSDate * lastUsed;
-@property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSSet *elections;
 @end
 

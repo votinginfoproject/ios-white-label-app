@@ -4,8 +4,6 @@
 //
 //  Created by Andrew Fink on 2/6/14.
 //  
-//
-//  WARNING:
 
 #import <CoreData/CoreData.h>
 

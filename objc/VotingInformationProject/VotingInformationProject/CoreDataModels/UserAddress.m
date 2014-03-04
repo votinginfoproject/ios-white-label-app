@@ -2,8 +2,7 @@
 //  UserAddress.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 3/4/14.
 //
 
 #import "UserAddress.h"
@@ -12,10 +11,7 @@
 
 @implementation UserAddress
 
-@dynamic address;
 @dynamic lastUsed;
-@dynamic latitude;
-@dynamic longitude;
 @dynamic elections;
 
 @end
