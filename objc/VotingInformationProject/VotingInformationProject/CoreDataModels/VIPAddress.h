@@ -2,8 +2,7 @@
 //  VIPAddress.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 3/4/14.
 //
 
 #import <Foundation/Foundation.h>
@@ -22,6 +21,8 @@
 @property (nonatomic, retain) NSString * locationName;
 @property (nonatomic, retain) NSString * state;
 @property (nonatomic, retain) NSString * zip;
+@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) ElectionAdministrationBody *eab;
 @property (nonatomic, retain) PollingLocation *pollingLocation;
 

@@ -49,12 +49,13 @@
 		496A300B18B3C2BA0079996F /* youtube-logo-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 496A300A18B3C2BA0079996F /* youtube-logo-red.png */; };
 		498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 498225E2189AEADC00FB8FC4 /* Localizable.strings */; };
 		499537D518A190DA009B678C /* UserAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537D418A190DA009B678C /* UserAddress.m */; };
-		499537DB18A190DA009B678C /* VIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537DA18A190DA009B678C /* VIPAddress.m */; };
 		499537EA18A190DA009B678C /* ElectionOfficial.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537E918A190DA009B678C /* ElectionOfficial.m */; };
 		499537ED18A190DA009B678C /* PollingLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537EC18A190DA009B678C /* PollingLocation.m */; };
 		499537F018A283F0009B678C /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537EF18A283F0009B678C /* Election.m */; };
 		499537F418A2B8C1009B678C /* ElectionAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F318A2B8C1009B678C /* ElectionAPITests.m */; };
 		499537F618A2BCCB009B678C /* UserAddressAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F518A2BCCB009B678C /* UserAddressAPITests.m */; };
+		4997542C18C625B1002F97FE /* VIPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997542B18C625B1002F97FE /* VIPAddress.m */; };
+		4997542F18C6310A002F97FE /* VIPError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997542E18C6310A002F97FE /* VIPError.m */; };
 		49A04BD718AD261E00BCDB0D /* UIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD618AD261E00BCDB0D /* UIWebViewController.m */; };
 		49A04BDA18AD419000BCDB0D /* ContestDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */; };
 		49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */; };
@@ -167,8 +168,6 @@
 		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		499537D318A190DA009B678C /* UserAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = UserAddress.h; path = CoreDataModels/UserAddress.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		499537D418A190DA009B678C /* UserAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = UserAddress.m; path = CoreDataModels/UserAddress.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		499537D918A190DA009B678C /* VIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = VIPAddress.h; path = CoreDataModels/VIPAddress.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		499537DA18A190DA009B678C /* VIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = VIPAddress.m; path = CoreDataModels/VIPAddress.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		499537E818A190DA009B678C /* ElectionOfficial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ElectionOfficial.h; path = CoreDataModels/ElectionOfficial.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		499537E918A190DA009B678C /* ElectionOfficial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = ElectionOfficial.m; path = CoreDataModels/ElectionOfficial.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		499537EB18A190DA009B678C /* PollingLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = PollingLocation.h; path = CoreDataModels/PollingLocation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -177,6 +176,10 @@
 		499537EF18A283F0009B678C /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = Election.m; path = CoreDataModels/Election.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		499537F318A2B8C1009B678C /* ElectionAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionAPITests.m; sourceTree = "<group>"; };
 		499537F518A2BCCB009B678C /* UserAddressAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressAPITests.m; sourceTree = "<group>"; };
+		4997542A18C625B1002F97FE /* VIPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPAddress.h; path = CoreDataModels/VIPAddress.h; sourceTree = "<group>"; };
+		4997542B18C625B1002F97FE /* VIPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPAddress.m; path = CoreDataModels/VIPAddress.m; sourceTree = "<group>"; };
+		4997542D18C6310A002F97FE /* VIPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPError.h; sourceTree = "<group>"; };
+		4997542E18C6310A002F97FE /* VIPError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPError.m; sourceTree = "<group>"; };
 		49A04BD518AD261E00BCDB0D /* UIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebViewController.h; sourceTree = "<group>"; };
 		49A04BD618AD261E00BCDB0D /* UIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebViewController.m; sourceTree = "<group>"; };
 		49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestDetailsViewController.h; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 		491BEA03189C0B5F00FCB21D /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				4997542A18C625B1002F97FE /* VIPAddress.h */,
+				4997542B18C625B1002F97FE /* VIPAddress.m */,
 				49C1FED818B2C6AF00CF9DFE /* SocialChannel.h */,
 				49C1FED918B2C6AF00CF9DFE /* SocialChannel.m */,
 				49C1FED518B2C6AE00CF9DFE /* Candidate.h */,
@@ -286,8 +291,6 @@
 				494023B718A2FB99004FEF48 /* State.m */,
 				499537D318A190DA009B678C /* UserAddress.h */,
 				499537D418A190DA009B678C /* UserAddress.m */,
-				499537D918A190DA009B678C /* VIPAddress.h */,
-				499537DA18A190DA009B678C /* VIPAddress.m */,
 				494023DD18A3F7A5004FEF48 /* VIPManagedObject.h */,
 				494023DE18A3F7A5004FEF48 /* VIPManagedObject.m */,
 			);
@@ -380,6 +383,8 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4997542D18C6310A002F97FE /* VIPError.h */,
+				4997542E18C6310A002F97FE /* VIPError.m */,
 				49E9080318B515EF00E05ABC /* ContestUrlCell.h */,
 				49E9080418B515EF00E05ABC /* ContestUrlCell.m */,
 				496A2FFC18B3A9B90079996F /* CandidateSocialCell.h */,
@@ -676,6 +681,7 @@
 				494023B818A2FB99004FEF48 /* State.m in Sources */,
 				494023D618A3F2BE004FEF48 /* District.m in Sources */,
 				49A04BDA18AD419000BCDB0D /* ContestDetailsViewController.m in Sources */,
+				4997542C18C625B1002F97FE /* VIPAddress.m in Sources */,
 				499537ED18A190DA009B678C /* PollingLocation.m in Sources */,
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
 				49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */,
@@ -684,11 +690,11 @@
 				49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
+				4997542F18C6310A002F97FE /* VIPError.m in Sources */,
 				49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
 				494023D318A3F2BE004FEF48 /* Contest.m in Sources */,
 				494023AC18A2F146004FEF48 /* DataSource+API.m in Sources */,
-				499537DB18A190DA009B678C /* VIPAddress.m in Sources */,
 				49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */,
 				495CB9C518B2A10D00243ADB /* CandidateDetailsViewController.m in Sources */,
 				499537D518A190DA009B678C /* UserAddress.m in Sources */,

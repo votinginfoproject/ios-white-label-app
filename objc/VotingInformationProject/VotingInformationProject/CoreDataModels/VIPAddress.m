@@ -2,8 +2,8 @@
 //  VIPAddress.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 3/4/14.
+//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "VIPAddress.h"
@@ -20,6 +20,8 @@
 @dynamic locationName;
 @dynamic state;
 @dynamic zip;
+@dynamic latitude;
+@dynamic longitude;
 @dynamic eab;
 @dynamic pollingLocation;
 
