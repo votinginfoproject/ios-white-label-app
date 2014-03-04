@@ -17,11 +17,4 @@
 @property (strong, nonatomic) Election *election;
 @property (strong, nonatomic) NSArray *locations;
 
--(GMSMarker*) setPlacemark:(CLPlacemark*)userAddress
-                 withTitle:(NSString*)title
-                andAnimate:(BOOL)animate;
-
-- (void) geocode:(UserAddress *)userAddress
- andSetPlacemark:(BOOL)setPlacemark;
-
 @end

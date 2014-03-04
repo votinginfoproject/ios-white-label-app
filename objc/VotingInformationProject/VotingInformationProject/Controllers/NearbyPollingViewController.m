@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
 // TODO: Cache markers and reuse
 @property (strong, nonatomic) NSMutableArray *markers;
+@property (strong, nonatomic) UserAddress *userAddress;
 
 @end
 
@@ -64,6 +65,7 @@
     // Set map center to address if it exists
     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                  ascending:NO];
+    self.userAddress = userAddress;
 
     // Set map view and display
     double latitude = [userAddress.latitude doubleValue];
@@ -94,6 +96,11 @@
     self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
 }
 
+/**
+ *  Update the UI
+ *
+ *  Redraws all markers and gets the geocoded location for each PollingLocation address
+ */
 - (void) updateUI
 {
     self.markers = nil;
@@ -180,31 +187,86 @@
 }
 
 #pragma mark - GMSMapView delegate
+
+/**
+ *  Display an ActionSheet to allow the user to get directions when the marker
+ *  infoWindow is tapped
+ *
+ *  @param mapView mapView
+ *  @param marker  The marker that had its infowindow tapped
+ */
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
+    NSUInteger index = [self.markers indexOfObject:marker];
+    if (index == NSNotFound) {
+        return;
+    }
+
+    NSString *openInMaps = NSLocalizedString(@"Open in Maps", nil);
     NSString *directionsTo = NSLocalizedString(@"Directions To Here", nil);
     NSString *directionsFrom = NSLocalizedString(@"Directions From Here", nil);
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:directionsTo, directionsFrom, nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    actionSheet.tag = index;
     [actionSheet showInView:self.view];
 }
 
 #pragma mark - ActionSheet Delegate
+
+/**
+ *  Open links in maps app on response from ActionSheet
+ *
+ *  @param actionSheet The ActionSheet sending this message, should have tag set to index of
+ *                      marker that was originally clicked in actionSheet.tag
+ *  @param buttonIndex Button that was clicked, 0|1.
+ *
+ *  Displays a UIAlertView if the generated url cannot be opened in Apple Maps
+ */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:NSLocalizedString(@"Sorry, we are unable to get directions for this location.", nil)
+                                                   delegate:nil
+                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                          otherButtonTitles:nil];
+
+    NSString *mapsRootUrl = @"http://maps.apple.com/?saddr=%@&daddr=%@";
+    GMSMarker *marker = nil;
+    @try {
+        marker = (GMSMarker*)self.markers[actionSheet.tag];
+    } @catch (NSException *e) {
+        [alert show];
+        return;
+    }
+    VIPAddress *markerAddress = (VIPAddress*)marker.userData;
+    NSURL *url = nil;
+    NSString *userAddressString = [NSString stringWithFormat:@"%@,%@",
+                                   self.userAddress.latitude,
+                                   self.userAddress.longitude];
+    NSString *markerAddressString = [markerAddress toABAddressString:NO];
+    NSString *saddr, *daddr = nil;
     switch (buttonIndex) {
-        case AS_DIRECTIONS_TO_INDEX:
-            // TODO: Launch maps app w/ directions from userAddress --> marker
-            NSLog(@"Directions TO");
-            return;
-        case AS_DIRECTIONS_FROM_INDEX:
-            // TODO: Launch maps app w/ directions from marker --> userAddress
-            NSLog(@"Directions FROM");
-            return;
+        case AS_DIRECTIONS_TO_INDEX: {
+            saddr = userAddressString;
+            daddr = markerAddressString;
+            break;
+        }
+        case AS_DIRECTIONS_FROM_INDEX: {
+            saddr = markerAddressString;
+            daddr = userAddressString;
+            break;
+        }
+    }
+    NSString *urlString = [NSString stringWithFormat:mapsRootUrl, saddr, daddr];
+    url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    } else {
+        [alert show];
     }
 }
 
