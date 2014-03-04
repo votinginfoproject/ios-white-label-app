@@ -10,7 +10,9 @@ Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-lab
 Building the App
 ----------------
 
-1. Before opening xcode, copy VotingInformationProject/CivicAPIKey.plist.template to VotingInformationProject/CivicAPIKey.plist and paste your Google Civic API browser key between the <string></string> tag 
+1. Before opening xcode:
+    1. copy VotingInformationProject/CivicAPIKey.plist.template to VotingInformationProject/CivicAPIKey.plist and paste your Google Civic API browser key between the <string></string> tag 
+    2. copy VotingInformationProject/settings.plist.template to VotingInformationProject/settings.plist
 
 2. Install cocoapods:
 ```
@@ -31,6 +33,11 @@ pod install
   * ElectionListURL
     * URL to json file that matches the form of: https://developers.google.com/civic-information/docs/us_v1/elections/electionQuery
     * Sample elections.json in xcode project
+
+Regenerating Localized Strings File
+---------------------------------
+Used: http://www.delitestudio.com/app/localizable-strings-merge/
+The default genstrings tool does not recursively search .m files or handle merges well.
 
 Updating the Google Maps API Key
 --------------------------------

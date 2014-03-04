@@ -10,35 +10,6 @@
 
 @implementation Election (API)
 
-// Error domain for this class for use in NSError
-NSString * const VIPErrorDomain = @"com.votinginfoproject.whitelabel.error";
-
-// Error codes used by this class and elsewhere in NSError
-NSUInteger const VIPNoValidElections = 100;
-NSUInteger const VIPInvalidUserAddress = 101;
-NSUInteger const VIPAddressUnparseable = 102;
-NSUInteger const VIPNoAddress = 103;
-NSUInteger const VIPElectionUnknown = 104;
-NSUInteger const VIPElectionOver = 105;
-NSUInteger const VIPGenericAPIError = 200;
-
-// String description of the above error codes
-NSString * const VIPAddressUnparseableDescription = @"Address unparseable. Please reformat your address or provide more detail such as street name.";
-NSString * const VIPNoAddressDescription = @"No address provided.";
-NSString * const VIPGenericAPIErrorDescription = @"Unknown API error. Please try again soon";
-NSString * const VIPElectionOverDescription = @"This election is over.";
-NSString * const VIPElectionUnknownDescription = @"The selected election does not exist.";
-NSString * const VIPInvalidUserAddressDescription = @"Weird. It looks like we can't find your address. Maybe double check that it's right and try again.";
-NSString * const VIPNoValidElectionsDescription = @"Sorry, there is no information for an upcoming election near you. Information about elections is generally available two to four weeks before the election date.";
-
-// Definitions for the various possible responses from the voterInfo API
-NSString * const APIResponseSuccess = @"success";
-NSString * const APIResponseElectionOver = @"electionOver";
-NSString * const APIResponseElectionUnknown = @"electionUnknown";
-NSString * const APIResponseNoStreetSegmentFound = @"noStreetSegmentFound";
-NSString * const APIResponseMultipleStreetSegmentsFound = @"multipleStreetSegmentsFound";
-NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
-
 
 + (Election*) getUnique:(NSString*)electionId
         withUserAddress:(UserAddress*)userAddress
@@ -67,9 +38,7 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
            resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock
 {
     if (![userAddress hasAddress]) {
-        NSError *error = [NSError errorWithDomain:VIPErrorDomain
-                                             code:VIPInvalidUserAddress
-                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPInvalidUserAddressDescription, nil)}];
+        NSError *error = [VIPError errorWithCode:VIPInvalidUserAddress];
         resultsBlock(@[], error);
         return;
     }
@@ -79,6 +48,7 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
 
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
     NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    BOOL appDebug = [[appSettings valueForKey:@"DEBUG"] boolValue];
     // Setup request manager
     // TODO: Refactor into separate class if multiple requests are made
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -98,9 +68,7 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
              NSArray *electionData = [responseObject objectForKey:@"elections"];
              if (!electionData) {
                  // table view will simply be empty
-                 NSError *error = [NSError errorWithDomain:VIPErrorDomain
-                                                      code:VIPNoValidElections
-                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPNoValidElectionsDescription, nil)}];
+                 NSError *error = [VIPError errorWithCode:VIPNoValidElections];
                  resultsBlock(@[], error);
                  return;
              }
@@ -111,8 +79,8 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
 
              // Loop elections and add valid ones to elections array
              for (NSDictionary *entry in electionData) {
-                 // skip election if in the past
-                 if (![Election isElectionDictValid:entry]) {
+                 // skip election if in the past and debug is disabled
+                 if (!appDebug && ![Election isElectionDictValid:entry]) {
                      continue;
                  }
 
@@ -176,6 +144,23 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
     self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 
+- (NSArray*)filterPollingLocations:(VIPPollingLocationType)type
+{
+    NSArray *locations = [self getSorted:@"pollingLocations"
+                              byProperty:@"isEarlyVoteSite"
+                               ascending:NO];
+    NSArray *filteredLocations = locations;
+    if (type == VIPPollingLocationTypeEarlyVote) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isEarlyVoteSite == YES"];
+        filteredLocations = [locations filteredArrayUsingPredicate:predicate];
+    } else if (type == VIPPollingLocationTypeNormal) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isEarlyVoteSite == NO"];
+        filteredLocations = [locations filteredArrayUsingPredicate:predicate];
+
+    }
+    return filteredLocations;
+}
+
 // For now always yes to test delete/update on CoreData
 - (BOOL) shouldUpdate
 {
@@ -212,13 +197,14 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
 - (void) getVoterInfo:(void (^) (BOOL success, NSError *error)) statusBlock
 {
     if (![self.userAddress hasAddress]) {
-        NSError *error = [NSError errorWithDomain:VIPErrorDomain
-                                             code:VIPInvalidUserAddress
-                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPInvalidUserAddressDescription, nil)}];
+        NSError *error = [VIPError errorWithCode:VIPInvalidUserAddress];
         statusBlock(NO, error);
     }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+
+    NSString *appSettingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:appSettingsPath];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // Serializes the http body POST parameters as JSON, which is what the Civic Info API expects
@@ -227,11 +213,16 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
     NSDictionary *params = @{ @"address": self.userAddress.address };
 
+    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True";
+
     // Add query params to the url since AFNetworking serializes these internally anyway
     //  and the parameters parameter below attaches only to the http body for POST
     // Always use officialOnly = True
-    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True";
+    if ([appSettings valueForKey:@"DEBUG"]) {
+        urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True&productionDataOnly=false";
+    }
     NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey];
+    NSLog(@"VoterInfo Query: %@", url);
     [manager POST:url
        parameters:params
           success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
@@ -356,24 +347,21 @@ NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
 {
     if ([status isEqualToString:APIResponseSuccess]) {
         return nil;
+
     } else if ([status isEqualToString:APIResponseNoStreetSegmentFound] ||
                [status isEqualToString:APIResponseMultipleStreetSegmentsFound] ||
                [status isEqualToString:APIResponseNoAddressParameter]) {
-        return [[NSError alloc] initWithDomain:VIPErrorDomain
-                                          code:VIPInvalidUserAddress
-                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPInvalidUserAddressDescription, nil)}];
+        return [VIPError errorWithCode:VIPInvalidUserAddress];
+
     } else if ([status isEqualToString:APIResponseElectionOver]) {
-        return [[NSError alloc] initWithDomain:VIPErrorDomain
-                                          code:VIPElectionOver
-                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPElectionOverDescription, nil)}];
+        return [VIPError errorWithCode:VIPElectionOver];
+
     } else if ([status isEqualToString:APIResponseElectionUnknown]) {
-        return [[NSError alloc] initWithDomain:VIPErrorDomain
-                                          code:VIPElectionUnknown
-                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPElectionUnknownDescription, nil)}];
+        return [VIPError errorWithCode:VIPElectionUnknown];
+
     } else {
-        return [[NSError alloc] initWithDomain:VIPErrorDomain
-                                          code:VIPGenericAPIError
-                                      userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(VIPGenericAPIErrorDescription, nil)}];
+        return [VIPError errorWithCode:VIPGenericAPIError];
+
     }
 }
 

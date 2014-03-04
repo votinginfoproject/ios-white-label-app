@@ -7,18 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "GoogleMaps/GoogleMaps.h"
 
-#import "VIPUserDefaultsKeys.h"
-#import "UserAddress+API.h"
+#import "Election+API.h"
 
-@interface NearbyPollingViewController : UIViewController
+@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate>
 
--(void) setPlacemark:(UserAddress *)userAddress
-          andAnimate:(BOOL)animate;
-
-- (void) geocode:(UserAddress *)userAddress
- andSetPlacemark:(BOOL)setPlacemark;
+@property (strong, nonatomic) Election *election;
+@property (strong, nonatomic) NSArray *locations;
 
 @end

@@ -14,5 +14,6 @@
 @interface VIPTabBarController : UITabBarController
 
 @property (strong, nonatomic) NSArray *elections;
+@property (strong, nonatomic) Election *currentElection;
 
 @end

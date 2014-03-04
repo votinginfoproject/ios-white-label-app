@@ -69,27 +69,43 @@
  */
 - (void)setElections:(NSArray *)elections
 {
-    if (elections && [elections count] > 0) {
-        _elections = elections;
-        _currentElection = _elections[0];
-        [_currentElection
-         getVoterInfo:^(BOOL success, NSError *error)
-         {
-             if (success) {
-                 [self displayGetElections];
-             } else {
-                 [self displayGetElectionsError:error];
-             }
-         }];
-    } else {
+    _currentElection = nil;
+    // if elections is nil or no elections in NSArray, bail out
+    if ([elections count] == 0) {
         _elections = @[];
-        _currentElection = nil;
-        NSDictionary * userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(VIPNoValidElectionsDescription, nil)};
-        NSError *error = [[NSError alloc] initWithDomain:VIPErrorDomain code:VIPNoValidElections userInfo:userInfo];
+        NSError *error = [VIPError errorWithCode:VIPNoValidElections];
         [self displayGetElectionsError:error];
+        return;
     }
-}
 
+    _elections = elections;
+
+    // if ElectionID set in settings.plist set and is a valid election, set as current
+    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
+    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    NSString *electionId = [appSettings valueForKey:@"ElectionID"];
+    for (Election *e in _elections) {
+        if ([e.electionId isEqualToString:electionId]) {
+            _currentElection = e;
+            break;
+        }
+    }
+    // If no election got set above, default to first election in list
+    if (!_currentElection) {
+        _currentElection = _elections[0];
+    }
+
+    // Make request for _currentElection data
+    [_currentElection
+     getVoterInfo:^(BOOL success, NSError *error)
+     {
+         if (success) {
+             [self displayGetElections];
+         } else {
+             [self displayGetElectionsError:error];
+         }
+     }];
+}
 
 - (void)viewDidLoad
 {
@@ -211,6 +227,7 @@
     if ([segue.identifier isEqualToString:@"BallotView"]) {
         VIPTabBarController *vipTabBarController = segue.destinationViewController;
         vipTabBarController.elections = self.elections;
+        vipTabBarController.currentElection = self.currentElection;
     }
 }
 

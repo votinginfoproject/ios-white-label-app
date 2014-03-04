@@ -2,18 +2,16 @@
 //  VIPAddress.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 3/4/14.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
-#import "VIPManagedObject.h"
+#import "VIPManagedAddress.h"
 
 @class ElectionAdministrationBody, PollingLocation;
 
-@interface VIPAddress : VIPManagedObject
+@interface VIPAddress : VIPManagedAddress
 
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * line1;

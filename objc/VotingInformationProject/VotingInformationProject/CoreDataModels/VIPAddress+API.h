@@ -8,6 +8,13 @@
 
 #import "VIPAddress.h"
 
+#import <CoreLocation/CoreLocation.h>
+#import "VIPError.h"
+
 @interface VIPAddress (API)
+
++ (VIPAddress*)setFromDictionary:(NSDictionary*)attributes;
+
+- (NSString*)toABAddressString:(BOOL)withNewlines;
 
 @end
