@@ -13,7 +13,7 @@
 #import "VIPUserDefaultsKeys.h"
 #import "Election+API.h"
 
-@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate>
+@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) Election *election;
 @property (strong, nonatomic) NSArray *locations;
@@ -24,5 +24,7 @@
 
 - (void) geocode:(UserAddress *)userAddress
  andSetPlacemark:(BOOL)setPlacemark;
+
+- (IBAction)onViewSwitcherClicked:(id)sender;
 
 @end

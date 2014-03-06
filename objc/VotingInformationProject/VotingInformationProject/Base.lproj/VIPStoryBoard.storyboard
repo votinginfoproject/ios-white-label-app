@@ -627,7 +627,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vGb-SD-759">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vGb-SD-759">
                                 <rect key="frame" x="20" y="10" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -636,27 +636,56 @@
                                     <segment title="Polling Sites"/>
                                 </segments>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DM-NM-eBM" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="50" width="320" height="361"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qmB-pE-6NH">
+                                <rect key="frame" x="0.0" y="46" width="320" height="407"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6DM-NM-eBM" customClass="GMSMapView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OJL-jN-nx5">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="407"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PollingLocationCell" textLabel="TBC-1K-jcK" style="IBUITableViewCellStyleDefault" id="oLk-NC-Xe1">
+                                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oLk-NC-Xe1" id="xOD-2h-OFr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TBC-1K-jcK">
+                                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="5h8-J8-eZD" id="grq-zW-fcO"/>
+                                            <outlet property="delegate" destination="5h8-J8-eZD" id="xnP-Mt-3az"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6DM-NM-eBM" firstAttribute="leading" secondItem="OOX-4h-T5b" secondAttribute="leading" id="0tE-bC-p3C"/>
-                            <constraint firstItem="6DM-NM-eBM" firstAttribute="top" secondItem="vGb-SD-759" secondAttribute="bottom" constant="12" id="4Hg-J2-zrJ"/>
-                            <constraint firstItem="6DM-NM-eBM" firstAttribute="top" secondItem="OOX-4h-T5b" secondAttribute="top" constant="50" id="F7x-wy-uTw"/>
-                            <constraint firstAttribute="trailing" secondItem="6DM-NM-eBM" secondAttribute="trailing" id="H4z-Lz-B97"/>
-                            <constraint firstItem="nTU-4R-KE5" firstAttribute="top" secondItem="6DM-NM-eBM" secondAttribute="bottom" constant="44" id="jtz-o5-6CP"/>
-                            <constraint firstItem="6DM-NM-eBM" firstAttribute="centerX" secondItem="vGb-SD-759" secondAttribute="centerX" id="rlT-HP-DIl"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Polling" id="Kxk-5f-oXy"/>
                     <navigationItem key="navigationItem" title="Polling Sites" id="Xfu-rg-ES2">
                         <barButtonItem key="backBarButtonItem" title="Home" id="3WV-9A-YoC"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentView" destination="qmB-pE-6NH" id="lev-l9-aet"/>
+                        <outlet property="listView" destination="OJL-jN-nx5" id="Xbi-iH-MBY"/>
                         <outlet property="mapView" destination="6DM-NM-eBM" id="gHh-fx-ZZS"/>
                         <outlet property="siteFilter" destination="vGb-SD-759" id="Xy8-NS-vEb"/>
                     </connections>
@@ -746,6 +775,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Sg3-NH-JMz"/>
+        <segue reference="v9n-rt-NBh"/>
     </inferredMetricsTieBreakers>
 </document>

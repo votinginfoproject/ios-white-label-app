@@ -28,7 +28,7 @@
 /**
  *  Setter for userAddress
  * 
- *  When we set hte userAddress, we want to kick off a refresh of hte election/voterinfo
+ *  When we set the userAddress, we want to kick off a refresh of hte election/voterinfo
  *  data. This progress is indicated to the user
  *
  *  @param userAddress
