@@ -8,6 +8,7 @@
 
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
+#import "PollingLocationCell.h"
 
 @interface NearbyPollingViewController ()
 
@@ -129,10 +130,8 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (void) updateUI
 {
-    if (_currentView == MAP_VIEW) {
-        [self updateMap];
-    }
-    else {
+    [self updateMap];
+    if (_currentView == LIST_VIEW) {
         [self.listView reloadData];
     }
 }
@@ -140,6 +139,10 @@ UIBarButtonItem *_oldRightBarButtonItem;
 - (void) updateMap
 {
     self.markers = nil;
+    // This is so if we have geocode requests in flight and fire updateMap again the old requests
+    // don't overwrite data in the new array.
+    NSMutableArray *newMarkers = [[NSMutableArray alloc] init];
+    self.markers = newMarkers;
 
     // TODO: cache placemarks so we aren't constantly geocoding things
     for (PollingLocation *location in self.locations) {
@@ -155,7 +158,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
                              marker.map = self.mapView;
                              marker.snippet = address;
                              marker.userData = location;
-                             [self.markers addObject:marker];
+                             [newMarkers addObject:marker];
                              
                          }
                      }];
@@ -201,7 +204,6 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (void)onViewSwitcherClicked:(id)sender
 {
-
     UIView *currentView;                    // View we're currently looking at
     UIView *nextView;                       // View we're switching to
     UIViewAnimationTransition transition;   // Flip left/right
@@ -281,9 +283,16 @@ UIBarButtonItem *_oldRightBarButtonItem;
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"PollingLocationCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    PollingLocationCell *cell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     PollingLocation *location = (PollingLocation*)[self.locations objectAtIndex:indexPath.row];
-    cell.textLabel.text = location.address.locationName;
+
+    // TODO: This throws an exception because we get here before the geocoding requests complete
+    // CLLocationCoordinate2D position = ((GMSMarker*)self.markers[indexPath.row]).position;
+    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(0, 0);
+
+    // TODO: get real origin
+    CLLocationCoordinate2D origin = CLLocationCoordinate2DMake(0, 0);
+    [cell updateLocation:location withPosition:position andWithOrigin:origin];
     return cell;
 }
 

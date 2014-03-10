@@ -86,6 +86,7 @@
 		53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
 		53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
 		53D3A7B01889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7AE1889A05B00920A70 /* InfoPlist.strings */; };
+		53D41BCB18CE042600D01482 /* PollingLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D41BCA18CE042600D01482 /* PollingLocationCell.m */; };
 		9DD78D93039F4A87BC8E023B /* libPods-VotingInformationProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -227,6 +228,8 @@
 		53D3A7A41889A05B00920A70 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
 		53D3A7AF1889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		53D41BC918CE042600D01482 /* PollingLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationCell.h; sourceTree = "<group>"; };
+		53D41BCA18CE042600D01482 /* PollingLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationCell.m; sourceTree = "<group>"; };
 		548B2CFFD32E415181767B53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VotingInformationProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -389,6 +392,8 @@
 				49E9814E1892F81600E26C5D /* FindElectionsCell.h */,
 				49E9814F1892F81600E26C5D /* FindElectionsCell.m */,
 				49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */,
+				53D41BC918CE042600D01482 /* PollingLocationCell.h */,
+				53D41BCA18CE042600D01482 /* PollingLocationCell.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -672,6 +677,7 @@
 				49E9080518B515EF00E05ABC /* ContestUrlCell.m in Sources */,
 				494023A318A2EA74004FEF48 /* ElectionAdministrationBody+API.m in Sources */,
 				494023DF18A3F7A5004FEF48 /* VIPManagedObject.m in Sources */,
+				53D41BCB18CE042600D01482 /* PollingLocationCell.m in Sources */,
 				499537EA18A190DA009B678C /* ElectionOfficial.m in Sources */,
 				494023B818A2FB99004FEF48 /* State.m in Sources */,
 				494023D618A3F2BE004FEF48 /* District.m in Sources */,
