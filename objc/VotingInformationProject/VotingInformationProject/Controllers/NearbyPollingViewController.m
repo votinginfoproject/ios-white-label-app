@@ -11,10 +11,9 @@
 
 @interface NearbyPollingViewController ()
 
-@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
-@property (strong, nonatomic) IBOutlet UITableView *listView;
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIButton *viewSwitcher;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
 // TODO: Cache markers and reuse
 @property (strong, nonatomic) NSMutableArray *markers;
@@ -22,17 +21,23 @@
 
 @end
 
+
 @implementation NearbyPollingViewController {
     NSManagedObjectContext *_moc;
 }
 
 @synthesize markers = _markers;
+
+// Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @synthesize ourRightBarButtonItem = _ourRightBarButtonItem;
 
+// Identifies the type of view currently displayed (map or list)
+// Can ve either MAP_VIEW or LIST_VIEW
 int _currentView = 0;
-const int MAP_VIEW = 0;
-const int LIST_VIEW = 1;
+static const int MAP_VIEW = 0;
+static const int LIST_VIEW = 1;
 
+// Original value of self.tabBarController.navigationItem.rightBarButtonItem
 UIBarButtonItem *_oldRightBarButtonItem;
 
 
@@ -122,15 +127,21 @@ UIBarButtonItem *_oldRightBarButtonItem;
     self.tabBarController.navigationItem.rightBarButtonItem = _oldRightBarButtonItem;
 }
 
-- (void) viewDidDisappear:(BOOL)animated
+- (void) updateUI
 {
-    
+    if (_currentView == MAP_VIEW) {
+        [self updateMap];
+    }
+    else {
+        [self.listView reloadData];
+    }
 }
 
-- (void) updateUI
+- (void) updateMap
 {
     self.markers = nil;
 
+    // TODO: cache placemarks so we aren't constantly geocoding things
     for (PollingLocation *location in self.locations) {
         NSString *address = [location.address toABAddressString:YES];
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
@@ -190,21 +201,36 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (void)onViewSwitcherClicked:(id)sender
 {
+
+    UIView *currentView;                    // View we're currently looking at
+    UIView *nextView;                       // View we're switching to
+    UIViewAnimationTransition transition;   // Flip left/right
+
+    if (_currentView == MAP_VIEW) {
+        currentView = self.mapView;
+        nextView = self.listView;
+        self.ourRightBarButtonItem.title = @"Map";
+        transition = UIViewAnimationTransitionFlipFromLeft;
+        _currentView = LIST_VIEW;
+    }
+    else {
+        currentView = self.listView;
+        nextView = self.mapView;
+        self.ourRightBarButtonItem.title = @"List";
+        transition = UIViewAnimationTransitionFlipFromRight;
+        _currentView = MAP_VIEW;
+    }
+
+    [self updateUI];
+
     [UIView beginAnimations:@"View Flip" context:nil];
-    [UIView setAnimationDuration:1.25];
+    [UIView setAnimationDuration:1.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    
-    UIView *currentView = _currentView == MAP_VIEW ? self.mapView : self.listView;
-    UIView *nextView = _currentView == MAP_VIEW ? self.listView : self.mapView;
-    UIViewAnimationTransition transition = _currentView == MAP_VIEW ?UIViewAnimationTransitionFlipFromLeft : UIViewAnimationTransitionFlipFromRight;
-    
+
     
     [UIView setAnimationTransition: transition forView:self.contentView cache:YES];
-    //[currentView removeFromSuperview];
-    //[self.contentView insertSubview: nextView atIndex:0];
     currentView.hidden = YES;
     nextView.hidden = NO;
-    _currentView = _currentView == MAP_VIEW ? LIST_VIEW : MAP_VIEW;
     
     [UIView commitAnimations];
 }
@@ -263,22 +289,9 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Test String";
-}
-
-/**
- * @param section Table section returned by the table view
- * @return NSString* cell identifier for the passed section
- */
-- (NSString*)cellIdentifierFor:(NSInteger) section
-{
-    if (section == 0) {
-        return @"PollingLocationCell";
-    } else if (section == 1) {
-        return @"PollingLocationCell";
-    }
     return nil;
 }
+
 
 
 @end
