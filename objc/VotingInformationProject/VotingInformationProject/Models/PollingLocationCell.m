@@ -79,13 +79,12 @@ PollingLocation* _location;
     return sb;
 }
 
-// TODO: move to utilities class?
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
 {
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
     CLLocation *y = [[CLLocation alloc] initWithLatitude:b.latitude longitude:b.longitude];
     CLLocationDistance distance = fabs([x distanceFromLocation:y]);     // Meters
-    // TODO: flexible unit conversion
+    // TODO: flexible unit conversion?
     // meters * (100 cm / meter) * (1 inch / 2.54 cm) * (1 ft / 12 inch) * (1 mile / 5280')
     distance = distance * 100 / 2.54 / 12 / 5280;
     return [NSString stringWithFormat:@"%1.1fmi", distance];

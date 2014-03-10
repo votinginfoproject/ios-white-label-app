@@ -25,6 +25,8 @@
 - (void) geocode:(UserAddress *)userAddress
  andSetPlacemark:(BOOL)setPlacemark;
 
+/** Handler for when the view switcher button is pressed (upper right)
+ */
 - (IBAction)onViewSwitcherClicked:(id)sender;
 
 @end

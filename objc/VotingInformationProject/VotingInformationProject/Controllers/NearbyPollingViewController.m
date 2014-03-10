@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
-// TODO: Cache markers and reuse
 @property (strong, nonatomic) NSMutableArray *markers;
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 
