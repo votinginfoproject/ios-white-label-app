@@ -2,8 +2,7 @@
 //  VIPAddress.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 3/4/14.
 //
 
 #import "VIPAddress.h"

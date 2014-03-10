@@ -73,8 +73,7 @@
     // if elections is nil or no elections in NSArray, bail out
     if ([elections count] == 0) {
         _elections = @[];
-        NSDictionary * userInfo = @{NSLocalizedDescriptionKey: [Election localizedDescriptionForErrorCode:VIPNoValidElections]};
-        NSError *error = [[NSError alloc] initWithDomain:VIPErrorDomain code:VIPNoValidElections userInfo:userInfo];
+        NSError *error = [VIPError errorWithCode:VIPNoValidElections];
         [self displayGetElectionsError:error];
         return;
     }

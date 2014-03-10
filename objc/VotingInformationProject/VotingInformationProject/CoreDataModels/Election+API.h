@@ -8,6 +8,7 @@
 
 #import "AFNetworking/AFNetworking.h"
 
+#import "VIPError.h"
 #import "Election.h"
 #import "UserAddress+API.h"
 #import "Contest+API.h"
@@ -20,28 +21,6 @@
 
 @interface Election (API)
 
-// Error domain for this class for use in NSError
-extern NSString * const VIPErrorDomain;
-
-// Error codes used by this class and elsewhere in NSError
-// Get localized string descriptions with
-//  + (NSString*)localizedDescriptionForErrorCode:
-extern NSUInteger const VIPNoValidElections;
-extern NSUInteger const VIPInvalidUserAddress;
-extern NSUInteger const VIPAddressUnparseable;
-extern NSUInteger const VIPNoAddress;
-extern NSUInteger const VIPElectionUnknown;
-extern NSUInteger const VIPElectionOver;
-extern NSUInteger const VIPGenericAPIError;
-
-// Definitions for the various possible responses from the voterInfo API
-extern NSString * const APIResponseSuccess;
-extern NSString * const APIResponseElectionOver;
-extern NSString * const APIResponseElectionUnknown;
-extern NSString * const APIResponseNoStreetSegmentFound;
-extern NSString * const APIResponseMultipleStreetSegmentsFound;
-extern NSString * const APIResponseNoAddressParameter;
-
 /**
  * Get a unique election from CoreData or create a new unique instance if it does not exist
  * @warning The election instance is not automatically saved
@@ -51,14 +30,6 @@ extern NSString * const APIResponseNoAddressParameter;
  */
 + (Election *) getUnique:(NSString*)electionId
          withUserAddress:(UserAddress*)userAddress;
-
-/**
- *  Returns a statically allocated description for the errorCode
- *
- *  @param errorCode One of the VIP error codes defined in this header file
- *  @return NSString localized description for the error. Returns VIPGenericAPIError if no match.
- */
-+ (NSString *)localizedDescriptionForErrorCode:(NSUInteger)errorCode;
 
 /**
  * Get a list of elections for the specified UserAddress
