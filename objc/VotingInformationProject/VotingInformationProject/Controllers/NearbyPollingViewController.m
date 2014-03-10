@@ -194,15 +194,15 @@ UIBarButtonItem *_oldRightBarButtonItem;
     if (_currentView == MAP_VIEW) {
         currentView = self.mapView;
         nextView = self.listView;
-        self.ourRightBarButtonItem.title = @"Map";
-        transition = UIViewAnimationTransitionFlipFromLeft;
+        self.ourRightBarButtonItem.title = NSLocalizedString(@"Map", @"Nav button label");
+        transition = UIViewAnimationTransitionFlipFromRight;
         _currentView = LIST_VIEW;
     }
     else {
         currentView = self.listView;
         nextView = self.mapView;
-        self.ourRightBarButtonItem.title = @"List";
-        transition = UIViewAnimationTransitionFlipFromRight;
+        self.ourRightBarButtonItem.title = NSLocalizedString(@"List", @"Nav button label");
+        transition = UIViewAnimationTransitionFlipFromLeft;
         _currentView = MAP_VIEW;
     }
 
@@ -358,7 +358,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
     CLLocationCoordinate2D position = CLLocationCoordinate2DMake(0, 0);
 
     // TODO: get real origin
-    CLLocationCoordinate2D origin = CLLocationCoordinate2DMake(0, 0);
+    CLLocationCoordinate2D origin = self.userAddress.position;
     [cell updateLocation:location withPosition:position andWithOrigin:origin];
     return cell;
 }

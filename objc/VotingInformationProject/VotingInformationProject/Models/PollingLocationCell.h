@@ -30,14 +30,6 @@
  */
 - (void)updateLocation:(PollingLocation *)location withPosition:(CLLocationCoordinate2D)position andWithOrigin:(CLLocationCoordinate2D)origin;
 
-// TODO: move somewhere else, PollingLocation+API maybe?
-/** Parses a location object into an address string
- *
- * @param location: Location to get address from
- * @result Pretty address string
- */
-+ (NSString*)getAddressText:(PollingLocation* )location;
-
 // TODO: move to utilities class?
 /** Gets distance between two points as a pretty string
  */

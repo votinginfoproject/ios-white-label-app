@@ -7,6 +7,7 @@
 
 #import "PollingLocationCell.h"
 #import "VIPAddress.h"
+#import "VIPAddress+API.h"
 
 @implementation PollingLocationCell
 
@@ -35,7 +36,7 @@ PollingLocation* _location;
     _location = location;
     self.origin = origin;
     self.position = position;
-    self.address.text = [PollingLocationCell getAddressText:location];
+    self.address.text = [location.address toABAddressString:NO];
     self.distance.text = [PollingLocationCell getDistanceStringFromA:origin
                                                                  toB:position];
     self.name.text = location.name.length > 0 ? location.name : location.address.locationName;
@@ -44,39 +45,6 @@ PollingLocation* _location;
 - (PollingLocation*)getLocation
 {
     return _location;
-}
-
-+ (NSString*)getAddressText:(PollingLocation* )location
-{
-    if (location == nil || location.address == nil) {
-        return @"";
-    }
-
-    VIPAddress* address = location.address;
-    NSMutableString *sb = [NSMutableString stringWithCapacity:128];
-    [sb appendString:address.line1];
-
-    if (address.line2.length != 0) {
-        [sb appendFormat:@", %@", address.line2];
-    }
-
-    if (address.line3.length != 0) {
-        [sb appendFormat:@", %@", address.line3];
-    }
-
-    if (address.city.length != 0) {
-        [sb appendFormat:@", %@", address.city];
-    }
-
-    if (address.state.length != 0) {
-        [sb appendFormat:@", %@", address.state];
-    }
-
-    if (address.zip.length != 0) {
-        [sb appendFormat:@", %@", address.zip];
-    }
-
-    return sb;
 }
 
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
