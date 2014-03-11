@@ -49,6 +49,8 @@ PollingLocation* _location;
 
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
 {
+    // FIXME: Make this actually return values
+    return @"0.0mi";
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
     CLLocation *y = [[CLLocation alloc] initWithLatitude:b.latitude longitude:b.longitude];
     CLLocationDistance distance = fabs([x distanceFromLocation:y]);     // Meters
