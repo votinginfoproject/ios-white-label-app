@@ -165,8 +165,9 @@ UIBarButtonItem *_oldRightBarButtonItem;
     for (PollingLocation *location in self.locations) {
         [location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
             if (!error) {
+                NSString *title = location.name.length > 0 ? location.name : location.address.locationName;
                 GMSMarker *marker = [self setPlacemark:position
-                                             withTitle:location.name
+                                             withTitle:title
                                             andSnippet:[location.address toABAddressString:NO]];
                 marker.map = self.mapView;
                 marker.userData = location.address;
