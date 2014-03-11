@@ -9,6 +9,7 @@
 #import "VIPUserDefaultsKeys.h"
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
+#import "PollingLocationCell.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
@@ -16,18 +17,34 @@
 @interface NearbyPollingViewController ()
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *listView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
-// TODO: Cache markers and reuse
 @property (strong, nonatomic) NSMutableArray *markers;
+@property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 @property (strong, nonatomic) UserAddress *userAddress;
 
 @end
+
 
 @implementation NearbyPollingViewController {
     NSManagedObjectContext *_moc;
 }
 
 @synthesize markers = _markers;
+
+// Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
+@synthesize ourRightBarButtonItem = _ourRightBarButtonItem;
+
+// Identifies the type of view currently displayed (map or list)
+// Can ve either MAP_VIEW or LIST_VIEW
+int _currentView = 0;
+static const int MAP_VIEW = 0;
+static const int LIST_VIEW = 1;
+
+// Original value of self.tabBarController.navigationItem.rightBarButtonItem
+UIBarButtonItem *_oldRightBarButtonItem;
+
 
 - (void)setLocations:(NSArray *)locations
 {
@@ -54,10 +71,22 @@
     _markers = markers;
 }
 
+- (UIBarButtonItem*)ourRightBarButtonItem
+{
+    if (_ourRightBarButtonItem == nil) {
+        _ourRightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStyleBordered target:self action:@selector(onViewSwitcherClicked:)];
+    }
+    return _ourRightBarButtonItem;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.mapView.delegate = self;
+    
+    _currentView = LIST_VIEW;
+    [self onViewSwitcherClicked:nil];
 
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
@@ -103,6 +132,13 @@
     [super viewWillAppear:animated];
 
     self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
+    _oldRightBarButtonItem = self.tabBarController.navigationItem.rightBarButtonItem;
+    self.tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    self.tabBarController.navigationItem.rightBarButtonItem = _oldRightBarButtonItem;
 }
 
 /**
@@ -112,7 +148,20 @@
  */
 - (void) updateUI
 {
+    [self updateMap];
+    if (_currentView == LIST_VIEW) {
+        [self.listView reloadData];
+    }
+}
+
+- (void) updateMap
+{
     self.markers = nil;
+    // This is so if we have geocode requests in flight and fire updateMap again the old requests
+    // don't overwrite data in the new array.
+    NSMutableArray *newMarkers = [[NSMutableArray alloc] init];
+    self.markers = newMarkers;
+
     for (PollingLocation *location in self.locations) {
         [location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
             if (!error) {
@@ -121,8 +170,8 @@
                                             andSnippet:[location.address toABAddressString:NO]];
                 marker.map = self.mapView;
                 marker.userData = location.address;
+                [newMarkers addObject:marker];
             }
-
         }];
     }
     // TODO: Zoom map to locations when all are geocoded
@@ -136,6 +185,41 @@
     }
 }
 
+- (void)onViewSwitcherClicked:(id)sender
+{
+    UIView *currentView;                    // View we're currently looking at
+    UIView *nextView;                       // View we're switching to
+    UIViewAnimationTransition transition;   // Flip left/right
+
+    if (_currentView == MAP_VIEW) {
+        currentView = self.mapView;
+        nextView = self.listView;
+        self.ourRightBarButtonItem.title = NSLocalizedString(@"Map", @"Nav button label");
+        transition = UIViewAnimationTransitionFlipFromRight;
+        _currentView = LIST_VIEW;
+    }
+    else {
+        currentView = self.listView;
+        nextView = self.mapView;
+        self.ourRightBarButtonItem.title = NSLocalizedString(@"List", @"Nav button label");
+        transition = UIViewAnimationTransitionFlipFromLeft;
+        _currentView = MAP_VIEW;
+    }
+
+    [self updateUI];
+
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+
+    
+    [UIView setAnimationTransition: transition forView:self.contentView cache:YES];
+    currentView.hidden = YES;
+    nextView.hidden = NO;
+    
+    [UIView commitAnimations];
+}
+
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
                   withTitle:(NSString*)title
                  andSnippet:(NSString*)snippet
@@ -144,8 +228,6 @@
     GMSMarker *marker = [GMSMarker markerWithPosition:position];
     marker.title = title;
     marker.snippet = snippet;
-
-    [self.markers addObject:marker];
 
     return marker;
 }
@@ -251,5 +333,41 @@
         [alert show];
     }
 }
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.locations.count;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"PollingLocationCell";
+    PollingLocationCell *cell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    PollingLocation *location = (PollingLocation*)[self.locations objectAtIndex:indexPath.row];
+
+    // TODO: This throws an exception because we get here before the geocoding requests complete
+    // CLLocationCoordinate2D position = ((GMSMarker*)self.markers[indexPath.row]).position;
+    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(0, 0);
+
+    // TODO: get real origin
+    CLLocationCoordinate2D origin = self.userAddress.position;
+    [cell updateLocation:location withPosition:position andWithOrigin:origin];
+    return cell;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return nil;
+}
+
+
 
 @end

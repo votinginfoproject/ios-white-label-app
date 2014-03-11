@@ -14,6 +14,11 @@
 @dynamic longitude;
 @dynamic address;
 
+- (CLLocationCoordinate2D)position
+{
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
+}
+
 - (void)geocode:(void (^)(CLLocationCoordinate2D, NSError *))resultsBlock
 {
     double lat = [self.latitude doubleValue];

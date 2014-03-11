@@ -11,9 +11,13 @@
 
 #import "Election+API.h"
 
-@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate>
+@interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) Election *election;
 @property (strong, nonatomic) NSArray *locations;
+
+/** Handler for when the view switcher button is pressed (upper right)
+ */
+- (IBAction)onViewSwitcherClicked:(id)sender;
 
 @end

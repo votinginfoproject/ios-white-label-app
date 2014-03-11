@@ -74,6 +74,7 @@
 		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
 		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
 		49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814F1892F81600E26C5D /* FindElectionsCell.m */; };
+		5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5382558718CE61FA0026C82D /* PollingLocationCell.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
 		53D3A78B1889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
@@ -216,6 +217,8 @@
 		49E9814E1892F81600E26C5D /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FindElectionsCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49E9814F1892F81600E26C5D /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FindElectionsCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPUserDefaultsKeys.h; sourceTree = "<group>"; };
+		5382558618CE61FA0026C82D /* PollingLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationCell.h; sourceTree = "<group>"; };
+		5382558718CE61FA0026C82D /* PollingLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationCell.m; sourceTree = "<group>"; };
 		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D3A7861889A05B00920A70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53D3A7881889A05B00920A70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -363,24 +366,24 @@
 			children = (
 				4969787418B55E5A00B23CC6 /* AboutViewController.h */,
 				4969787518B55E5A00B23CC6 /* AboutViewController.m */,
-				49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */,
-				49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */,
-				49A04BD518AD261E00BCDB0D /* UIWebViewController.h */,
-				49A04BD618AD261E00BCDB0D /* UIWebViewController.m */,
-				49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */,
-				49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */,
+				49CF34BE18A55CEE00DDEE0E /* BallotDetailsViewController.h */,
+				49CF34BF18A55CEE00DDEE0E /* BallotDetailsViewController.m */,
 				49CF34BB18A55BF100DDEE0E /* BallotViewController.h */,
 				49CF34BC18A55BF100DDEE0E /* BallotViewController.m */,
+				495CB9C318B2A10D00243ADB /* CandidateDetailsViewController.h */,
+				495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */,
 				49E981421892F7F700E26C5D /* ContactsSearchViewController.h */,
 				49E981431892F7F700E26C5D /* ContactsSearchViewController.m */,
+				49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */,
+				49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */,
 				49E981441892F7F700E26C5D /* FindElectionsViewController.h */,
 				49E981451892F7F700E26C5D /* FindElectionsViewController.m */,
 				49E981461892F7F700E26C5D /* NearbyPollingViewController.h */,
 				49E981471892F7F700E26C5D /* NearbyPollingViewController.m */,
-				49CF34BE18A55CEE00DDEE0E /* BallotDetailsViewController.h */,
-				49CF34BF18A55CEE00DDEE0E /* BallotDetailsViewController.m */,
-				495CB9C318B2A10D00243ADB /* CandidateDetailsViewController.h */,
-				495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */,
+				49A04BD518AD261E00BCDB0D /* UIWebViewController.h */,
+				49A04BD618AD261E00BCDB0D /* UIWebViewController.m */,
+				49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */,
+				49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -388,6 +391,8 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5382558618CE61FA0026C82D /* PollingLocationCell.h */,
+				5382558718CE61FA0026C82D /* PollingLocationCell.m */,
 				4997542D18C6310A002F97FE /* VIPError.h */,
 				4997542E18C6310A002F97FE /* VIPError.m */,
 				49E9080318B515EF00E05ABC /* ContestUrlCell.h */,
@@ -693,6 +698,7 @@
 				49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				4991F3BB18C68425000023D6 /* VIPManagedAddress.m in Sources */,
+				5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
 				4997542F18C6310A002F97FE /* VIPError.m in Sources */,
 				49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */,
