@@ -7,6 +7,7 @@
 //
 
 #import "FindElectionsViewController.h"
+#import "VIPTabBarController.h"
 
 @interface FindElectionsViewController ()
 
@@ -77,6 +78,13 @@
     cell.dateStringLabel.text = [election getDateString];
 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+    tabBarController.currentElection = [_elections objectAtIndex:indexPath.row];
+    tabBarController.selectedIndex = 0;
 }
 
 @end
