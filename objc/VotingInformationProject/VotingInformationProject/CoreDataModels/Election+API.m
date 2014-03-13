@@ -38,7 +38,7 @@
            resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock
 {
     if (![userAddress hasAddress]) {
-        NSError *error = [VIPError errorWithCode:VIPError.VIPNoAddress];
+        NSError *error = [VIPError errorWithCode:VIPError.NoAddress];
         resultsBlock(@[], error);
         return;
     }
@@ -68,7 +68,7 @@
              NSArray *electionData = [responseObject objectForKey:@"elections"];
              if (!electionData) {
                  // table view will simply be empty
-                 NSError *error = [VIPError errorWithCode:VIPError.VIPNoValidElections];
+                 NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
                  resultsBlock(@[], error);
                  return;
              }
@@ -197,7 +197,7 @@
 - (void) getVoterInfo:(void (^) (BOOL success, NSError *error)) statusBlock
 {
     if (![self.userAddress hasAddress]) {
-        NSError *error = [VIPError errorWithCode:VIPError.VIPInvalidUserAddress];
+        NSError *error = [VIPError errorWithCode:VIPError.InvalidUserAddress];
         statusBlock(NO, error);
     }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];

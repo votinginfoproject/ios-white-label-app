@@ -36,33 +36,33 @@
 NSString * const VIPErrorDomain = @"com.votinginfoproject.whitelabel.error";
 
 
-VIPErrorCode * _VIPNoStreetSegmentFound;
-VIPErrorCode * _VIPAddressUnparseable;
-VIPErrorCode * _VIPNoAddress;
-VIPErrorCode * _VIPMultipleStreetSegmentsFound;
-VIPErrorCode * _VIPElectionOver;
-VIPErrorCode * _VIPElectionUnknown;
-VIPErrorCode * _VIPInternalLookupError;
+VIPErrorCode * _NoStreetSegmentFound;
+VIPErrorCode * _AddressUnparseable;
+VIPErrorCode * _NoAddress;
+VIPErrorCode * _MultipleStreetSegmentsFound;
+VIPErrorCode * _ElectionOver;
+VIPErrorCode * _ElectionUnknown;
+VIPErrorCode * _InternalLookupError;
 
-VIPErrorCode * _VIPGenericAPIError;
-VIPErrorCode * _VIPNoValidElections;
-VIPErrorCode * _VIPInvalidUserAddress;
+VIPErrorCode * _GenericAPIError;
+VIPErrorCode * _NoValidElections;
+VIPErrorCode * _InvalidUserAddress;
 
-VIPErrorCode * _VIPGeocoderError;
+VIPErrorCode * _GeocoderError;
 
-+ (VIPErrorCode*) VIPNoStreetSegmentFound { return _VIPNoStreetSegmentFound; }
-+ (VIPErrorCode*) VIPAddressUnparseable { return _VIPAddressUnparseable; }
-+ (VIPErrorCode*) VIPNoAddress { return _VIPNoAddress; }
-+ (VIPErrorCode*) VIPMultipleStreetSegmentsFound { return _VIPMultipleStreetSegmentsFound; }
-+ (VIPErrorCode*) VIPElectionOver { return _VIPElectionOver; }
-+ (VIPErrorCode*) VIPElectionUnknown { return _VIPElectionUnknown; }
-+ (VIPErrorCode*) VIPInternalLookupError { return _VIPInternalLookupError; }
++ (VIPErrorCode*) NoStreetSegmentFound { return _NoStreetSegmentFound; }
++ (VIPErrorCode*) AddressUnparseable { return _AddressUnparseable; }
++ (VIPErrorCode*) NoAddress { return _NoAddress; }
++ (VIPErrorCode*) MultipleStreetSegmentsFound { return _MultipleStreetSegmentsFound; }
++ (VIPErrorCode*) ElectionOver { return _ElectionOver; }
++ (VIPErrorCode*) ElectionUnknown { return _ElectionUnknown; }
++ (VIPErrorCode*) InternalLookupError { return _InternalLookupError; }
 
-+ (VIPErrorCode*) VIPGenericAPIError { return _VIPGenericAPIError; }
-+ (VIPErrorCode*) VIPNoValidElections { return _VIPNoValidElections; }
-+ (VIPErrorCode*) VIPInvalidUserAddress { return _VIPInvalidUserAddress; }
++ (VIPErrorCode*) GenericAPIError { return _GenericAPIError; }
++ (VIPErrorCode*) NoValidElections { return _NoValidElections; }
++ (VIPErrorCode*) InvalidUserAddress { return _InvalidUserAddress; }
 
-+ (VIPErrorCode*) VIPGeocoderError { return _VIPGeocoderError; }
++ (VIPErrorCode*) GeocoderError { return _GeocoderError; }
 
 
 // Definitions for the various possible responses from the voterInfo API
@@ -106,38 +106,38 @@ NSDictionary *_stringToErrorCode;
     NSString *geocoderError = NSLocalizedString(@"Sorry, there are no location matches for this address. Try reformatting it or type a new one.", nil);
 
 
-    _VIPNoStreetSegmentFound = [[VIPErrorCode alloc] initWithCode:101
+    _NoStreetSegmentFound = [[VIPErrorCode alloc] initWithCode:101
                                                   andDescription:noStreetSegmentFound];
-    _VIPAddressUnparseable = [[VIPErrorCode alloc] initWithCode:102
+    _AddressUnparseable = [[VIPErrorCode alloc] initWithCode:102
                                               andDescription:addressUnparseable];
-    _VIPNoAddress = [[VIPErrorCode alloc] initWithCode:103
+    _NoAddress = [[VIPErrorCode alloc] initWithCode:103
                                      andDescription:noAddress];
-    _VIPMultipleStreetSegmentsFound = [[VIPErrorCode alloc] initWithCode:104
+    _MultipleStreetSegmentsFound = [[VIPErrorCode alloc] initWithCode:104
                                                        andDescription:multipleStreetSegmentsFound];
-    _VIPElectionOver = [[VIPErrorCode alloc] initWithCode:105
+    _ElectionOver = [[VIPErrorCode alloc] initWithCode:105
                                         andDescription:electionOver];
-    _VIPElectionUnknown = [[VIPErrorCode alloc] initWithCode:106
+    _ElectionUnknown = [[VIPErrorCode alloc] initWithCode:106
                                            andDescription:electionUnknown];
-    _VIPInternalLookupError = [[VIPErrorCode alloc] initWithCode:107
+    _InternalLookupError = [[VIPErrorCode alloc] initWithCode:107
                                                andDescription:internalLookupError];
 
-    _VIPGenericAPIError = [[VIPErrorCode alloc] initWithCode:200
+    _GenericAPIError = [[VIPErrorCode alloc] initWithCode:200
                                            andDescription:genericAPIError];
-    _VIPNoValidElections = [[VIPErrorCode alloc] initWithCode:201
+    _NoValidElections = [[VIPErrorCode alloc] initWithCode:201
                                             andDescription:noValidElections];
-    _VIPInvalidUserAddress = [[VIPErrorCode alloc] initWithCode:202
+    _InvalidUserAddress = [[VIPErrorCode alloc] initWithCode:202
                                               andDescription:invalidUserAddress];
 
-    _VIPGeocoderError = [[VIPErrorCode alloc] initWithCode:300
+    _GeocoderError = [[VIPErrorCode alloc] initWithCode:300
                                          andDescription:geocoderError];
 
-    _stringToErrorCode = @{APIResponseNoStreetSegmentFound : _VIPNoStreetSegmentFound,
-                           APIAddressUnparseable : _VIPAddressUnparseable,
-                           APIResponseNoAddressParameter : _VIPNoAddress,
-                           APIResponseMultipleStreetSegmentsFound : _VIPMultipleStreetSegmentsFound,
-                           APIResponseElectionOver : _VIPElectionOver,
-                           APIResponseElectionUnknown : _VIPElectionUnknown,
-                           APIInternalLookupFailure : _VIPInternalLookupError};
+    _stringToErrorCode = @{APIResponseNoStreetSegmentFound : _NoStreetSegmentFound,
+                           APIAddressUnparseable : _AddressUnparseable,
+                           APIResponseNoAddressParameter : _NoAddress,
+                           APIResponseMultipleStreetSegmentsFound : _MultipleStreetSegmentsFound,
+                           APIResponseElectionOver : _ElectionOver,
+                           APIResponseElectionUnknown : _ElectionUnknown,
+                           APIInternalLookupFailure : _InternalLookupError};
 
 }
 
@@ -145,7 +145,7 @@ NSDictionary *_stringToErrorCode;
 {
     if (!errorCode) {
         NSLog(@"Warning: Got nil argument for errorCode, this shouldn't happen!");
-        errorCode = VIPError.VIPGenericAPIError;
+        errorCode = VIPError.GenericAPIError;
     }
     return [NSError errorWithDomain:VIPErrorDomain
                                code:errorCode.code.intValue

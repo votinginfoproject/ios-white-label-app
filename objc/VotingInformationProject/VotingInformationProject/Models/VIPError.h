@@ -27,19 +27,19 @@ extern NSString * const VIPErrorDomain;
 
 // These error codes directly correspond to responses from the Civic Info API
 // See https://developers.google.com/civic-information/docs/data_guidelines#status
-+ (VIPErrorCode*)VIPNoStreetSegmentFound;
-+ (VIPErrorCode*)VIPAddressUnparseable;
-+ (VIPErrorCode*)VIPNoAddress;
-+ (VIPErrorCode*)VIPMultipleStreetSegmentsFound;
-+ (VIPErrorCode*)VIPElectionOver;
-+ (VIPErrorCode*)VIPNoStreetSegmentFound;
-+ (VIPErrorCode*)VIPInternalLookupError;
++ (VIPErrorCode*)NoStreetSegmentFound;
++ (VIPErrorCode*)AddressUnparseable;
++ (VIPErrorCode*)NoAddress;
++ (VIPErrorCode*)MultipleStreetSegmentsFound;
++ (VIPErrorCode*)ElectionOver;
++ (VIPErrorCode*)NoStreetSegmentFound;
++ (VIPErrorCode*)InternalLookupError;
 
-+ (VIPErrorCode*)VIPGenericAPIError;
-+ (VIPErrorCode*)VIPNoValidElections;
-+ (VIPErrorCode*)VIPInvalidUserAddress;
++ (VIPErrorCode*)GenericAPIError;
++ (VIPErrorCode*)NoValidElections;
++ (VIPErrorCode*)InvalidUserAddress;
 
-+ (VIPErrorCode*)VIPGeocoderError;
++ (VIPErrorCode*)GeocoderError;
 
 // Definitions for the various possible responses from the voterInfo API
 extern NSString * const APIResponseSuccess;
@@ -58,7 +58,7 @@ extern NSString * const APIInternalLookupFailure;
  *  @param errorCode One of the VIPErrorCode objects defined in this header.
  *
  *  @return NSError* with domain, code and localizedDescription set.
- *          Defaults to VIPGenericAPIError errorCode not found.
+ *          Defaults to GenericAPIError errorCode not found.
  */
 + (NSError*)errorWithCode:(VIPErrorCode*)errorCode;
 
