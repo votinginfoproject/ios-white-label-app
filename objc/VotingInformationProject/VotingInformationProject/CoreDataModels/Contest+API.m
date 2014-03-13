@@ -45,11 +45,12 @@
     return contest;
 }
 
-- (NSMutableArray*)getContestProperties
++ (NSDictionary*)propertyList
 {
-    // Define the properties we want to retrieve since it appears there is no way
-    //  to get this list in iOS, and we have to define the UI translated text anyways
-    NSDictionary *propertyList = @{
+    static NSDictionary *propertyList = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        propertyList = @{
                               @"type": NSLocalizedString(@"Contest Type", nil),
                               @"primaryParty": NSLocalizedString(@"Primary Party", nil),
                               @"district.name": NSLocalizedString(@"District Name", nil),
@@ -62,25 +63,9 @@
                               @"ballotPlacement": NSLocalizedString(@"Ballot Placement", nil),
                               @"referendumSubtitle": NSLocalizedString(@"Referendum Subtitle", nil),
                               @"referendumUrl": NSLocalizedString(@"Referendum URL", nil),
-                              };
-    NSMutableArray *properties = [[NSMutableArray alloc] initWithCapacity:[propertyList count]];
-    for (NSString *property in propertyList) {
-        id data = [self valueForKeyPath:property];
-
-        // Only parse and add strings/numbers, these are the properties
-        if (data && [data isKindOfClass:[NSNumber class]]) {
-            NSNumber *integerData = (NSNumber*)data;
-            if (integerData.integerValue > 0) {
-                [properties addObject:@{@"title": propertyList[property],
-                                        @"data": integerData.stringValue}];
-            }
-        } else if (data && [data isKindOfClass:[NSString class]]) {
-            NSString *stringData = (NSString*)data;
-            [properties addObject:@{@"title": propertyList[property],
-                                    @"data": stringData}];
-        }
-    }
-    return properties;
+                         };
+    });
+    return propertyList;
 }
 
 @end

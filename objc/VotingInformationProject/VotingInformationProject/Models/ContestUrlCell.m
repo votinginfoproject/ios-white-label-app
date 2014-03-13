@@ -25,4 +25,11 @@
     // Configure the view for the selected state
 }
 
+- (void)configure:(NSString *)title withUrl:(NSString *)stringUrl
+{
+    self.descriptionLabel.text = title;
+    self.urlLabel.text = stringUrl;
+    self.url = [NSURL URLWithString:stringUrl];
+}
+
 @end

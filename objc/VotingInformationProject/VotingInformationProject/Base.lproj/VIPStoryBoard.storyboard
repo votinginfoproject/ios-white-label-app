@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Contacts Search View Controller - Voting Information Project-->
@@ -133,7 +133,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Bjz-KM-0gu" kind="relationship" relationship="viewControllers" id="rb7-aO-Oso"/>
-                        <segue destination="FSP-c8-d15" kind="relationship" relationship="viewControllers" id="3Ov-P7-wWa"/>
+                        <segue destination="HR7-5F-hsN" kind="relationship" relationship="viewControllers" id="73D-Zt-YjH"/>
                         <segue destination="5h8-J8-eZD" kind="relationship" relationship="viewControllers" id="eY4-Yu-9aR"/>
                         <segue destination="ilS-n4-gjw" kind="relationship" relationship="viewControllers" id="eiS-19-q7Y"/>
                     </connections>
@@ -143,23 +143,100 @@
             <point key="canvasLocation" x="550" y="-8"/>
         </scene>
         <!--Ballot Details View Controller - Details-->
-        <scene sceneID="Czb-J6-iFo">
+        <scene sceneID="gVU-cv-KoR">
             <objects>
-                <viewController id="FSP-c8-d15" customClass="BallotDetailsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bAW-cd-ypC"/>
-                        <viewControllerLayoutGuide type="bottom" id="PTE-al-UpP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LMH-L2-pm1">
+                <tableViewController id="HR7-5F-hsN" customClass="BallotDetailsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pgj-7U-1N2">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Details" id="utT-oI-T0d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hnz-cc-rn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="54a-gY-yDF">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1g-E7-fra">
+                                    <rect key="frame" x="20" y="0.0" width="280" height="55"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myh-79-KcO">
+                                    <rect key="frame" x="20" y="52" width="280" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ElectionDetailsCell" textLabel="Cj6-lZ-spM" detailTextLabel="02e-ig-Isb" style="IBUITableViewCellStyleValue1" id="Jsq-oz-nWt">
+                                <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jsq-oz-nWt" id="Gmn-vb-uaa">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cj6-lZ-spM">
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="02e-ig-Isb">
+                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestUrlPropertiesCell" id="nXY-2B-R5G" customClass="ContestUrlCell">
+                                <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nXY-2B-R5G" id="wdd-fJ-kd0">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAM-3N-7lx">
+                                            <rect key="frame" x="20" y="11" width="92" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXE-B6-sHs">
+                                            <rect key="frame" x="120" y="11" width="147" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="PAM-3N-7lx" id="Ps3-8j-whg"/>
+                                    <outlet property="urlLabel" destination="vXE-B6-sHs" id="3nz-MC-Snx"/>
+                                    <segue destination="LbF-1k-fvs" kind="push" identifier="BallotUrlCellSegue" id="xXd-r3-0ih"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HR7-5F-hsN" id="FKp-wO-5go"/>
+                            <outlet property="delegate" destination="HR7-5F-hsN" id="NGa-Qw-RVC"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Details" id="pC8-7J-EJ9"/>
+                    <connections>
+                        <outlet property="electionDateLabel" destination="Myh-79-KcO" id="WiR-eK-U5i"/>
+                        <outlet property="electionNameLabel" destination="k1g-E7-fra" id="kzY-J0-Scc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8a9-h5-vL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="-328"/>
+            <point key="canvasLocation" x="1094" y="-295"/>
         </scene>
         <!--Ballot View Controller - Ballot-->
         <scene sceneID="WL0-zb-gHw">
@@ -510,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SkN-uM-f2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="238"/>
+            <point key="canvasLocation" x="2392" y="234"/>
         </scene>
         <!--About View Controller - About This App-->
         <scene sceneID="gX1-Hu-63K">
@@ -826,6 +903,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="v9n-rt-NBh"/>
+        <segue reference="xXd-r3-0ih"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,6 +20,8 @@
 
 @interface VIPManagedObject : NSManagedObject
 
++ (NSDictionary*)propertyList;
+
 /**
  Set object data from a dictionary.
  
@@ -42,5 +44,22 @@
 - (NSArray*)getSorted:(NSString*)property
            byProperty:(NSString *)propertyKey
             ascending:(BOOL)isAscending;
+
+
+/**
+ Gets a subset of the properties of contest and returns them as an array,
+ where each object in the array is an NSDictionary of hte following form:
+ 
+ Default property list returns id and name (if available). Override in subclass,
+ See Contest+API for an example
+
+ @{
+   "title": <NSLocalizedString of the title to display for this property>
+   "data": <The data to display, as an NSString
+  }
+ 
+ @return NSMutableArray of NSDictionaries of the form specified above
+ */
+- (NSMutableArray*)getProperties;
 
 @end
