@@ -39,6 +39,8 @@
  * Keys in the dictionary that do not exist on the object will be safely skipped.
  * This method does not recurse through subclasses.
  *
+ * Ignores key with value "id" because this is a reserved objc type
+ *
  *  @param attributes Dict with keys matching obj property names to update
  */
 - (void) updateFromDictionary:(NSDictionary*)attributes;
