@@ -23,6 +23,9 @@
 @property (strong, nonatomic) NSMutableArray *markers;
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 @property (strong, nonatomic) UserAddress *userAddress;
+// Identifies the type of view currently displayed (map or list)
+// Can be either MAP_VIEW or LIST_VIEW
+@property (assign, nonatomic) NSUInteger currentView;
 
 @end
 
@@ -36,9 +39,6 @@
 // Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @synthesize ourRightBarButtonItem = _ourRightBarButtonItem;
 
-// Identifies the type of view currently displayed (map or list)
-// Can ve either MAP_VIEW or LIST_VIEW
-int _currentView = 0;
 static const int MAP_VIEW = 0;
 static const int LIST_VIEW = 1;
 
@@ -79,17 +79,27 @@ UIBarButtonItem *_oldRightBarButtonItem;
     return _ourRightBarButtonItem;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.mapView.delegate = self;
     
-    _currentView = LIST_VIEW;
-    [self onViewSwitcherClicked:nil];
-
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
+};
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+
+    tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
+    _oldRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
+    tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
+
+    // Set proper view from last known
+    _currentView = [[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_POLLING_VIEW_KEY];
+    [self switchView:_currentView animated:NO];
+
     self.election = tabBarController.currentElection;
 
     // Set map center to address if it exists
@@ -106,7 +116,8 @@ UIBarButtonItem *_oldRightBarButtonItem;
                                                                  zoom:zoom];
 
     // Set listener for segmented control
-    self.siteFilter.selectedSegmentIndex = VIPPollingLocationTypeAll;
+    self.siteFilter.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults]
+                                            integerForKey:USER_DEFAULTS_SITE_FILTER_KEY];
     [self.siteFilter addTarget:self
                         action:@selector(filterLocations:)
               forControlEvents:UIControlEventValueChanged];
@@ -125,20 +136,15 @@ UIBarButtonItem *_oldRightBarButtonItem;
         }
     }];
     self.locations = [self.election filterPollingLocations:self.siteFilter.selectedSegmentIndex];
-};
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
-    _oldRightBarButtonItem = self.tabBarController.navigationItem.rightBarButtonItem;
-    self.tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     self.tabBarController.navigationItem.rightBarButtonItem = _oldRightBarButtonItem;
+    [[NSUserDefaults standardUserDefaults] setInteger:_currentView
+                                               forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
+    [[NSUserDefaults standardUserDefaults] setInteger:self.siteFilter.selectedSegmentIndex
+                                               forKey:USER_DEFAULTS_SITE_FILTER_KEY];
 }
 
 /**
@@ -186,13 +192,20 @@ UIBarButtonItem *_oldRightBarButtonItem;
     }
 }
 
-- (void)onViewSwitcherClicked:(id)sender
+/**
+ *  Switch Map/List views
+ *
+ *  @param viewType The view to switch to, either MAP_VIEW or LIST_VIEW
+ *  @param animated
+ */
+- (void)switchView:(NSUInteger)viewType
+          animated:(BOOL)animated
 {
     UIView *currentView;                    // View we're currently looking at
     UIView *nextView;                       // View we're switching to
     UIViewAnimationTransition transition;   // Flip left/right
 
-    if (_currentView == MAP_VIEW) {
+    if (viewType == LIST_VIEW) {
         currentView = self.mapView;
         nextView = self.listView;
         self.ourRightBarButtonItem.title = NSLocalizedString(@"Map", @"Nav button label");
@@ -209,16 +222,31 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
     [self updateUI];
 
-    [UIView beginAnimations:@"View Flip" context:nil];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    if (animated) {
+        [UIView beginAnimations:@"View Flip" context:nil];
+        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 
-    
-    [UIView setAnimationTransition: transition forView:self.contentView cache:YES];
-    currentView.hidden = YES;
-    nextView.hidden = NO;
-    
-    [UIView commitAnimations];
+
+        [UIView setAnimationTransition: transition forView:self.contentView cache:YES];
+        currentView.hidden = YES;
+        nextView.hidden = NO;
+
+        [UIView commitAnimations];
+    } else {
+        currentView.hidden = YES;
+        nextView.hidden = NO;
+    }
+
+}
+
+- (void)onViewSwitcherClicked:(id)sender
+{
+    if (_currentView == MAP_VIEW) {
+        [self switchView:LIST_VIEW animated:YES];
+    } else if (_currentView == LIST_VIEW) {
+        [self switchView:MAP_VIEW animated:YES];
+    }
 }
 
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
@@ -368,7 +396,5 @@ UIBarButtonItem *_oldRightBarButtonItem;
 {
     return nil;
 }
-
-
 
 @end

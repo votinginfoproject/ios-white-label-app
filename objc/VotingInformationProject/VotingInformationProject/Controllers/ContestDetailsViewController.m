@@ -50,6 +50,11 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 
     [self updateUI];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateUI];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -80,6 +85,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
                                                byProperty:@"name"
                                                 ascending:YES]];
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
