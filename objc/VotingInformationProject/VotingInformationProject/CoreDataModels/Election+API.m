@@ -289,6 +289,8 @@
         [self addContestsObject:[Contest setFromDictionary:contest]];
     }
 
+    self.lastUpdated = [NSDate date];
+
     // FIXME: Remove for launch
     [self stubReferendumData];
 }

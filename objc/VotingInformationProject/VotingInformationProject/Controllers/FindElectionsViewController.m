@@ -20,8 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self setOtherElections];
 }
 
 - (void) setOtherElections
@@ -36,6 +34,7 @@
     } else {
         _elections = @[];
     }
+    [self.tableView reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -45,6 +44,7 @@
         self.tabBarController.title = NSLocalizedString(@"More Elections", nil);
     }
 
+    [self setOtherElections];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,6 +83,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+
     tabBarController.currentElection = [_elections objectAtIndex:indexPath.row];
     tabBarController.selectedIndex = 0;
 }

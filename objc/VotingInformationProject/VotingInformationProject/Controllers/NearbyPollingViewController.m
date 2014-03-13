@@ -89,7 +89,17 @@ UIBarButtonItem *_oldRightBarButtonItem;
     [self onViewSwitcherClicked:nil];
 
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
+};
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+
+    tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
+    _oldRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
+    tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
+
     self.election = tabBarController.currentElection;
 
     // Set map center to address if it exists
@@ -125,15 +135,6 @@ UIBarButtonItem *_oldRightBarButtonItem;
         }
     }];
     self.locations = [self.election filterPollingLocations:self.siteFilter.selectedSegmentIndex];
-};
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    self.tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
-    _oldRightBarButtonItem = self.tabBarController.navigationItem.rightBarButtonItem;
-    self.tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
