@@ -290,9 +290,6 @@
     }
 
     self.lastUpdated = [NSDate date];
-
-    // FIXME: Remove for launch
-    [self stubReferendumData];
 }
 
 - (void)stubReferendumData

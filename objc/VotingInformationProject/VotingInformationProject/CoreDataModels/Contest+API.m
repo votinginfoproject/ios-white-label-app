@@ -27,7 +27,7 @@
 
     Contest *contest = [Contest MR_createEntity];
     // Set attributes
-    [contest setValuesForKeysWithDictionary:mutableAttributes];
+    [contest updateFromDictionary:mutableAttributes];
 
     // Set district
     contest.district = (District*)[District setFromDictionary:districtDict];

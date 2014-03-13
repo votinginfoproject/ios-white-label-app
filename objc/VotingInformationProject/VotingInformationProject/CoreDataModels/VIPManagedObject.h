@@ -21,13 +21,27 @@
 @interface VIPManagedObject : NSManagedObject
 
 /**
- Set object data from a dictionary.
- 
- Keys in the dictionary that do not exist on the object will be safely skipped. This method does not recurse through subclasses.
- 
- Override if necessary to recurse through subclasses, see Contest+API for an example.
+ *  Init new object from a dictionary
+ *
+ *  Calls updateFromDictionary internally, see method docs for
+ *  more info.
+ *  Override if necessary to recurse through subclasses, see Contest+API for an example.
+ *
+ *  @param attributes Dict with keys to initialize
+ *
+ *  @return <#return value description#>
  */
 + (VIPManagedObject *) setFromDictionary:(NSDictionary*)attributes;
+
+/**
+ *  Update object attributes with the passed values
+ *
+ * Keys in the dictionary that do not exist on the object will be safely skipped.
+ * This method does not recurse through subclasses.
+ *
+ *  @param attributes Dict with keys matching obj property names to update
+ */
+- (void) updateFromDictionary:(NSDictionary*)attributes;
 
 /**
  Get a sorted array from an VIPManagedObject NSSet property
