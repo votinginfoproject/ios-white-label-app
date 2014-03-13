@@ -84,7 +84,8 @@
 {
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
-    tabBarController.currentElection = [_elections objectAtIndex:indexPath.row];
+    NSUInteger index = indexPath.row;
+    tabBarController.currentElection = [_elections objectAtIndex:index];
     tabBarController.selectedIndex = 0;
 }
 

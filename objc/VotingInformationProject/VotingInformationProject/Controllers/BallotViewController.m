@@ -43,13 +43,9 @@
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
     self.election = (Election*) vipTabBarController.currentElection;
     [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
-        if (!success) {
-            return;
-        }
+        // TODO: Error handle empty table here
         [self updateUI];
     }];
-
-    [self updateUI];
 }
 
 /**
