@@ -4,7 +4,7 @@
         <attribute name="candidateUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
-        <attribute name="orderOnBallot" optional="YES" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
+        <attribute name="orderOnBallot" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
         <attribute name="party" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -13,12 +13,12 @@
         <relationship name="socialChannels" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SocialChannel" inverseName="candidate" inverseEntity="SocialChannel" syncable="YES"/>
     </entity>
     <entity name="Contest" representedClassName="Contest" syncable="YES">
-        <attribute name="ballotPlacement" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="ballotPlacement" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="contestId" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="electorateSpecifications" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
-        <attribute name="numberElected" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="numberVotingFor" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="numberElected" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="numberVotingFor" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="office" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="primaryParty" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="referendumSubtitle" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>

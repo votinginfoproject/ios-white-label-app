@@ -29,7 +29,7 @@
     State *state = [State MR_createEntity];
 
     // Set State Attributes
-    [state setValuesForKeysWithDictionary:mutableAttributes];
+    [state updateFromDictionary:mutableAttributes];
 
     // Set EAB
     state.electionAdministrationBody = [ElectionAdministrationBody setFromDictionary:eabDictionary];

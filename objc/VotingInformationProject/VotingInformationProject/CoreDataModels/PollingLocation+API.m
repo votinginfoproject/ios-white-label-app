@@ -25,7 +25,7 @@
 
     PollingLocation *pollingLocation = [PollingLocation MR_createEntity];
     pollingLocation.isEarlyVoteSite = @(isEarlyVotingSite);
-    [pollingLocation setValuesForKeysWithDictionary:mutableAttributes];
+    [pollingLocation updateFromDictionary:mutableAttributes];
 
     pollingLocation.address = (VIPAddress*)[VIPAddress setFromDictionary:address];
 
