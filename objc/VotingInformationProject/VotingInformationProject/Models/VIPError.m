@@ -35,11 +35,6 @@
 // Error domain for this class for use in NSError
 NSString * const VIPErrorDomain = @"com.votinginfoproject.whitelabel.error";
 
-// Error codes used by this class and elsewhere in NSError
-
-// Error codes starting with 100 directly correspond to status responses returned by the API
-// See https://developers.google.com/civic-information/docs/data_guidelines#status
-
 
 VIPErrorCode * _VIPNoStreetSegmentFound;
 VIPErrorCode * _VIPAddressUnparseable;

@@ -7,9 +7,15 @@
 
 #import <Foundation/Foundation.h>
 
+/** Encapsulates an error code and description.
+ *  Every instance of this class is meant to be a built-in singleton, so all properties are readonly
+ */
 @interface VIPErrorCode : NSObject
 
+/** Descriptive string for the error (note "description" is defined by NSObject) */
 @property (nonatomic, readonly) NSString *descriptionString;
+
+/** Unique numeric identifier */
 @property (nonatomic, readonly) NSNumber *code;
 
 @end
@@ -19,28 +25,14 @@
 // Error domain for this class for use in NSError
 extern NSString * const VIPErrorDomain;
 
-//// Error codes used by this class and elsewhere in NSError
-//extern VIPErrorCode * VIPNoStreetSegmentFound;
-//extern VIPErrorCode * VIPAddressUnparseable;
-//extern VIPErrorCode * VIPNoAddress;
-//extern VIPErrorCode * VIPMultipleStreetSegmentsFound;
-//extern VIPErrorCode * VIPElectionOver;
-//extern VIPErrorCode * VIPElectionUnknown;
-//extern VIPErrorCode * VIPInternalLookupError;
-//
-//extern VIPErrorCode * VIPGenericAPIError;
-//extern VIPErrorCode * VIPNoValidElections;
-//extern VIPErrorCode * VIPInvalidUserAddress;
-//
-//extern VIPErrorCode * VIPGeocoderError;
-
-
+// These error codes directly correspond to responses from the Civic Info API
+// See https://developers.google.com/civic-information/docs/data_guidelines#status
 + (VIPErrorCode*)VIPNoStreetSegmentFound;
 + (VIPErrorCode*)VIPAddressUnparseable;
 + (VIPErrorCode*)VIPNoAddress;
 + (VIPErrorCode*)VIPMultipleStreetSegmentsFound;
 + (VIPErrorCode*)VIPElectionOver;
-+ (VIPErrorCode*)VIPElectionUnknown;
++ (VIPErrorCode*)VIPNoStreetSegmentFound;
 + (VIPErrorCode*)VIPInternalLookupError;
 
 + (VIPErrorCode*)VIPGenericAPIError;
