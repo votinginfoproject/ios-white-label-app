@@ -21,6 +21,14 @@
 
 @implementation BallotDetailsViewController
 
+- (NSMutableArray*)tableData
+{
+    if (!_tableData) {
+        _tableData = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return _tableData;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -52,12 +60,13 @@
     self.electionNameLabel.text = self.election.electionName;
     self.electionDateLabel.text = [self.election getDateString];
 
+    [self.tableData removeAllObjects];
     NSArray *states = [self.election.states allObjects];
     //TODO: Allow for multiple state selection. In US the states set will only ever have 0-1 entries
     if ([states count] == 1) {
         State *state = (State*)states[0];
-        [self.tableData addObject:[state.electionAdministrationBody getProperties]];
-        NSLog(@"EAB: %@", self.tableData[0]);
+        NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
+        [self.tableData addObject:eabProperties];
         [self.tableView reloadData];
     }
 }
