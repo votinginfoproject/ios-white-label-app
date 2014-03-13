@@ -13,6 +13,7 @@
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
+#define AS_DIRECTIONS_CANCEL 2
 
 @interface NearbyPollingViewController ()
 
@@ -293,7 +294,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
                                                     otherButtonTitles:directionsTo, directionsFrom, nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     actionSheet.tag = index;
-    [actionSheet showInView:self.view];
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 #pragma mark - ActionSheet Delegate
@@ -311,6 +312,9 @@ UIBarButtonItem *_oldRightBarButtonItem;
  */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (buttonIndex == AS_DIRECTIONS_CANCEL) {
+        return;
+    }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:NSLocalizedString(@"Sorry, we are unable to get directions for this location.", nil)
                                                    delegate:nil
@@ -336,9 +340,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
     }
     VIPAddress *markerAddress = (VIPAddress*)marker.userData;
     NSURL *url = nil;
-    NSString *userAddressString = [NSString stringWithFormat:@"%@,%@",
-                                   self.userAddress.latitude,
-                                   self.userAddress.longitude];
+    NSString *userAddressString = self.userAddress.address;
     NSString *markerAddressString = [markerAddress toABAddressString:NO];
     NSString *saddr, *daddr = nil;
     switch (buttonIndex) {
@@ -353,6 +355,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
             break;
         }
     }
+    NSLog(@"Source Addr: %@, Dest Addr: %@", saddr, daddr);
     NSString *urlString = [NSString stringWithFormat:mapsRootUrl, saddr, daddr];
     url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
