@@ -28,7 +28,7 @@
 
     ElectionAdministrationBody *eab = [ElectionAdministrationBody MR_createEntity];
     // Set attributes
-    [eab setValuesForKeysWithDictionary:mutableAttributes];
+    [eab updateFromDictionary:mutableAttributes];
 
     // Set addresses
     if (mailingAddressDict) {

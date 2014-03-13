@@ -7,89 +7,14 @@
             "electionDay": "2015-06-06"
         },
         {
-            "id": "4000",
-            "name": "U.S. 2012 General Election",
-            "electionDay": "2012-11-06"
+            "id": "4017",
+            "name": "DC 2014 Municipal Primary",
+            "electionDay": "2014-04-01"
         },
         {
-            "id": "4001",
-            "name": "Los Angeles City Primary",
-            "electionDay": "2013-03-05"
-        },
-        {
-            "id": "4002",
-            "name": "California Combined Special Elections",
-            "electionDay": "2013-03-12"
-        },
-        {
-            "id": "4003",
-            "name": "South Carolina HD-01 Special Primary",
-            "electionDay": "2013-03-19"
-        },
-        {
-            "id": "4004",
-            "name": "California Special Election SD-32",
-            "electionDay": "2013-05-14"
-        },
-        {
-            "id": "4005",
-            "name": "Los Angeles City Election",
-            "electionDay": "2013-05-21"
-        },
-        {
-            "id": "4006",
-            "name": "South Carolina HD-01",
-            "electionDay": "2013-05-07"
-        },
-        {
-            "id": "4007",
-            "name": "New Jersey Primary",
-            "electionDay": "2013-06-04"
-        },
-        {
-            "id": "4008",
-            "name": "Virginia Primary",
-            "electionDay": "2013-06-11"
-        },
-        {
-            "id": "4009",
-            "name": "Delaware Presidential Primary 2012",
-            "electionDay": "2013-09-01"
-        },
-        {
-            "id": "4010",
-            "name": "NYC 2013 Mayoral Primary",
-            "electionDay": "2013-09-10"
-        },
-        {
-            "id": "4011",
-            "name": "NYC 2013 Mayoral Primary Runoff",
-            "electionDay": "2013-10-01"
-        },
-        {
-            "id": "4012",
-            "name": "NJ 2013 U.S. Senate Special Election",
-            "electionDay": "2013-10-16"
-        },
-        {
-            "id": "4013",
-            "name": "NYC 2013 Mayoral Election",
-            "electionDay": "2013-11-05"
-        },
-        {
-            "id": "4014",
-            "name": "NJ State Election",
-            "electionDay": "2013-11-05"
-        },
-        {
-            "id": "4015",
-            "name": "VA State Election",
-            "electionDay": "2013-11-05"
-        },
-        {
-            "id": "4016",
-            "name": "MN 2013 Municipal General",
-            "electionDay": "2013-11-05"
+            "id": "4018",
+            "name": "RI 2014 Primary",
+            "electionDay": "2014-09-09"
         }
     ]
 }
