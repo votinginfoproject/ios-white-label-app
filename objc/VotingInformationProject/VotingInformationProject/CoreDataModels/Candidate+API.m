@@ -82,14 +82,12 @@
 
     Candidate *candidate = [Candidate MR_createEntity];
     // Set attributes
-    [candidate setValuesForKeysWithDictionary:mutableAttributes];
+    [candidate updateFromDictionary:mutableAttributes];
 
     // Set Social Channels
     for (NSDictionary* channel in channels) {
         [candidate addSocialChannelsObject:[SocialChannel setFromDictionary:channel]];
     }
-    // FIXME: Remove on release
-    [candidate stubCandidateData];
 
     // Download photo from url
     [candidate getCandidatePhotoData];

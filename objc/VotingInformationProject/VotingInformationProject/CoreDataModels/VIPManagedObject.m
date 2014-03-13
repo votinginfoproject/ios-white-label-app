@@ -43,6 +43,15 @@
     return vipObject;
 }
 
+- (void)updateFromDictionary:(NSDictionary *)attributes
+{
+    NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
+    if ([mutableAttributes objectForKey:@"id"]) {
+        [mutableAttributes removeObjectForKey:@"id"];
+    }
+    [self setValuesForKeysWithDictionary:mutableAttributes];
+}
+
 - (NSArray*)getSorted:(NSString*)property
            byProperty:(NSString *)propertyKey
             ascending:(BOOL)isAscending
