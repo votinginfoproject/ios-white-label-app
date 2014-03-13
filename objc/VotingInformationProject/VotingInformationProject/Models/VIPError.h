@@ -7,47 +7,76 @@
 
 #import <Foundation/Foundation.h>
 
+@interface VIPErrorCode : NSObject
+
+@property (nonatomic, readonly) NSString *descriptionString;
+@property (nonatomic, readonly) NSNumber *code;
+
+@end
+
 @interface VIPError : NSObject
 
 // Error domain for this class for use in NSError
 extern NSString * const VIPErrorDomain;
 
-// Error codes used by this class and elsewhere in NSError
-// Get localized string descriptions with
-//  + (NSString*)localizedDescriptionForErrorCode:
-extern NSUInteger const VIPNoValidElections;
-extern NSUInteger const VIPInvalidUserAddress;
-extern NSUInteger const VIPAddressUnparseable;
-extern NSUInteger const VIPNoAddress;
-extern NSUInteger const VIPElectionUnknown;
-extern NSUInteger const VIPElectionOver;
-extern NSUInteger const VIPGenericAPIError;
-extern NSUInteger const VIPGeocoderError;
+//// Error codes used by this class and elsewhere in NSError
+//extern VIPErrorCode * VIPNoStreetSegmentFound;
+//extern VIPErrorCode * VIPAddressUnparseable;
+//extern VIPErrorCode * VIPNoAddress;
+//extern VIPErrorCode * VIPMultipleStreetSegmentsFound;
+//extern VIPErrorCode * VIPElectionOver;
+//extern VIPErrorCode * VIPElectionUnknown;
+//extern VIPErrorCode * VIPInternalLookupError;
+//
+//extern VIPErrorCode * VIPGenericAPIError;
+//extern VIPErrorCode * VIPNoValidElections;
+//extern VIPErrorCode * VIPInvalidUserAddress;
+//
+//extern VIPErrorCode * VIPGeocoderError;
+
+
++ (VIPErrorCode*)VIPNoStreetSegmentFound;
++ (VIPErrorCode*)VIPAddressUnparseable;
++ (VIPErrorCode*)VIPNoAddress;
++ (VIPErrorCode*)VIPMultipleStreetSegmentsFound;
++ (VIPErrorCode*)VIPElectionOver;
++ (VIPErrorCode*)VIPElectionUnknown;
++ (VIPErrorCode*)VIPInternalLookupError;
+
++ (VIPErrorCode*)VIPGenericAPIError;
++ (VIPErrorCode*)VIPNoValidElections;
++ (VIPErrorCode*)VIPInvalidUserAddress;
+
++ (VIPErrorCode*)VIPGeocoderError;
 
 // Definitions for the various possible responses from the voterInfo API
 extern NSString * const APIResponseSuccess;
+extern NSString * const APIResponseNoStreetSegmentFound;
+extern NSString * const APIAddressUnparseable;
+extern NSString * const APIResponseNoAddressParameter;
+extern NSString * const APIResponseMultipleStreetSegmentsFound;
 extern NSString * const APIResponseElectionOver;
 extern NSString * const APIResponseElectionUnknown;
-extern NSString * const APIResponseNoStreetSegmentFound;
-extern NSString * const APIResponseMultipleStreetSegmentsFound;
-extern NSString * const APIResponseNoAddressParameter;
+extern NSString * const APIInternalLookupFailure;
 
-/**
- *  Returns a statically allocated description for the errorCode
- *
- *  @param errorCode One of the VIP error codes defined in this header file
- *  @return NSString localized description for the error. Returns VIPGenericAPIError if no match.
- */
-+ (NSString*)localizedDescriptionForAPIErrorCode:(NSUInteger)errorCode;
 
 /**
  *  Get an NSError object for the given errorCode
  *
- *  @param errorCode One of the extern NSUIntegers defined in this header.
+ *  @param errorCode One of the VIPErrorCode objects defined in this header.
  *
  *  @return NSError* with domain, code and localizedDescription set.
  *          Defaults to VIPGenericAPIError errorCode not found.
  */
-+ (NSError*)errorWithCode:(NSUInteger)errorCode;
++ (NSError*)errorWithCode:(VIPErrorCode*)errorCode;
+
+/**
+ *  Return an NSError object based on the status strings from the voterInfo API query
+ *
+ *  @param status NSString status from voterInfo API query
+ *  @return nil on success, or NSError with localizedDescription property set to a helpful message
+ *      if something went wrong
+ */
++ (NSError*) statusToError:(NSString*)status;
 
 @end

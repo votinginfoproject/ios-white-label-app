@@ -38,7 +38,7 @@
                          return;
                      }
                      if ([placemarks count] == 0) {
-                         NSError *geocoderError = [VIPError errorWithCode:VIPGeocoderError];
+                         NSError *geocoderError = [VIPError errorWithCode:VIPError.VIPGeocoderError];
                          resultsBlock(position, geocoderError);
                      }
 

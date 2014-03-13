@@ -73,7 +73,7 @@
     // if elections is nil or no elections in NSArray, bail out
     if ([elections count] == 0) {
         _elections = @[];
-        NSError *error = [VIPError errorWithCode:VIPNoValidElections];
+        NSError *error = [VIPError errorWithCode:VIPError.VIPNoValidElections];
         [self displayGetElectionsError:error];
         return;
     }
