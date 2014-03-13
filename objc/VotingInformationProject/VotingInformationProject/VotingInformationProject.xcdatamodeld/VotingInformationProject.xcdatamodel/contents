@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Candidate" representedClassName="Candidate" syncable="YES">
         <attribute name="candidateUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
         <attribute name="orderOnBallot" optional="YES" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
-        <attribute name="party" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
+        <attribute name="party" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" maxValueString="16" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
@@ -123,18 +123,18 @@
         <attribute name="longitude" attributeType="Double" defaultValueString="-1000" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Candidate" positionX="603" positionY="-7" width="128" height="193"/>
-        <element name="Contest" positionX="405" positionY="87" width="128" height="300"/>
-        <element name="DataSource" positionX="-243" positionY="234" width="128" height="120"/>
-        <element name="District" positionX="-72" positionY="435" width="128" height="105"/>
-        <element name="Election" positionX="97" positionY="-198" width="128" height="165"/>
-        <element name="ElectionAdministrationBody" positionX="756" positionY="363" width="128" height="240"/>
-        <element name="ElectionOfficial" positionX="567" positionY="360" width="128" height="135"/>
-        <element name="PollingLocation" positionX="333" positionY="-225" width="128" height="210"/>
-        <element name="SocialChannel" positionX="781" positionY="-7" width="128" height="88"/>
-        <element name="State" positionX="304" positionY="411" width="128" height="120"/>
-        <element name="UserAddress" positionX="-110" positionY="-396" width="128" height="120"/>
-        <element name="VIPAddress" positionX="-153" positionY="-234" width="128" height="208"/>
-        <element name="VIPManagedAddress" positionX="-308" positionY="-252" width="128" height="88"/>
+        <element name="Candidate" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Contest" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DataSource" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="District" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Election" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ElectionOfficial" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PollingLocation" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SocialChannel" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="State" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="VIPAddress" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="VIPManagedAddress" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

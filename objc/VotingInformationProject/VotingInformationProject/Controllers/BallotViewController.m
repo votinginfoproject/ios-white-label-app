@@ -42,8 +42,10 @@
 
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
     self.election = (Election*) vipTabBarController.currentElection;
-
-    [self updateUI];
+    [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
+        // TODO: Error handle empty table here
+        [self updateUI];
+    }];
 }
 
 /**
@@ -54,12 +56,14 @@
     if (!self.election) {
         return;
     }
+
     self.electionNameLabel.text = self.election.electionName;
     self.electionDateLabel.text = [self.election getDateString];
 
     _contests = [self.election getSorted:@"contests"
                               byProperty:@"office"
                                ascending:YES];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

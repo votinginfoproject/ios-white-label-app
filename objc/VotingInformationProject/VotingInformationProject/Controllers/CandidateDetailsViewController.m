@@ -72,6 +72,8 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL = @"CandidateSocialCell";
 
     self.affiliationLabel.text = self.candidate.party
         ? self.candidate.party : NSLocalizedString(@"No Party Information Available", nil);
+
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

@@ -223,6 +223,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Ballot" id="i8q-c5-xN2"/>
+                    <navigationItem key="navigationItem" id="QAa-gR-ZRz"/>
                     <connections>
                         <outlet property="electionDateLabel" destination="K4l-J3-RLN" id="XvU-AJ-vlC"/>
                         <outlet property="electionNameLabel" destination="mfT-v3-glH" id="pDm-IN-Fpa"/>
@@ -814,23 +815,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7f-2Q-UPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-512" y="-8"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="RuM-Af-mXW">
-            <objects>
-                <viewController id="4tw-6v-STi" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VE7-Ob-P1X"/>
-                        <viewControllerLayoutGuide type="bottom" id="n6t-9y-QZK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Yd5-AU-nVA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DSU-fY-hG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

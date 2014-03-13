@@ -7,6 +7,7 @@
 //
 
 #import "FindElectionsViewController.h"
+#import "VIPTabBarController.h"
 
 @interface FindElectionsViewController ()
 
@@ -19,8 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self setOtherElections];
 }
 
 - (void) setOtherElections
@@ -35,6 +34,7 @@
     } else {
         _elections = @[];
     }
+    [self.tableView reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -44,6 +44,7 @@
         self.tabBarController.title = NSLocalizedString(@"More Elections", nil);
     }
 
+    [self setOtherElections];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,6 +78,15 @@
     cell.dateStringLabel.text = [election getDateString];
 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+
+    NSUInteger index = indexPath.row;
+    tabBarController.currentElection = [_elections objectAtIndex:index];
+    tabBarController.selectedIndex = 0;
 }
 
 @end
