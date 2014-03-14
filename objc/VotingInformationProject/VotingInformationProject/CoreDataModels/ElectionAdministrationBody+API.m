@@ -46,4 +46,24 @@
     return eab;
 }
 
++ (NSDictionary*)propertyList
+{
+    static NSDictionary *propertyList = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        propertyList = @{
+                              @"name": NSLocalizedString(@"Name", nil),
+                              @"hoursOfOperation": NSLocalizedString(@"Hours", nil),
+                              @"state.name": NSLocalizedString(@"State", nil),
+                              @"electionInfoUrl": NSLocalizedString(@"Election Info", nil),
+                              @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info", nil),
+                              @"electionRegistrationUrl": NSLocalizedString(@"Election Registration", nil),
+                              @"electionRulesUrl": NSLocalizedString(@"Election Rules", nil),
+                              @"votingLocationFinderUrl": NSLocalizedString(@"Location Finder", nil),
+                              @"voterServices": NSLocalizedString(@"Voter Services", nil)
+                         };
+    });
+    return propertyList;
+}
+
 @end

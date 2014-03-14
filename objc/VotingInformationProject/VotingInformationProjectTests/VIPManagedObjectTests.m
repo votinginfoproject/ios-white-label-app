@@ -20,7 +20,7 @@ SPEC_BEGIN(VIPManagedObjectTests)
  */
 Contest* (^createMockContest) () = ^Contest* () {
     Contest* contest = [Contest MR_createEntity];
-    contest.contestId = @"Lord of Winterfell";
+    contest.id = @"Lord of Winterfell";
     Candidate* candidate = [Candidate MR_createEntity];
     Candidate* candidate2 = [Candidate MR_createEntity];
     candidate.name = @"Jon Snow";

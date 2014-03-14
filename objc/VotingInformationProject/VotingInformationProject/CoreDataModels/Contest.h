@@ -2,8 +2,7 @@
 //  Contest.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/6/14.
-//  
+//  Created by Andrew Fink on 3/14/14.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,12 +12,12 @@
 
 @interface Contest : VIPManagedObject
 
-@property (nonatomic, retain) NSNumber * ballotPlacement;
-@property (nonatomic, retain) NSString * contestId;
+@property (nonatomic, retain) NSString * ballotPlacement;
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * electorateSpecifications;
 @property (nonatomic, retain) NSString * level;
-@property (nonatomic, retain) NSNumber * numberElected;
-@property (nonatomic, retain) NSNumber * numberVotingFor;
+@property (nonatomic, retain) NSString * numberElected;
+@property (nonatomic, retain) NSString * numberVotingFor;
 @property (nonatomic, retain) NSString * office;
 @property (nonatomic, retain) NSString * primaryParty;
 @property (nonatomic, retain) NSString * referendumSubtitle;

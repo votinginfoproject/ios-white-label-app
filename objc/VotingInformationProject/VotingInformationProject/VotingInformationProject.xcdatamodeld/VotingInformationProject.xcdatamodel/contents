@@ -14,8 +14,8 @@
     </entity>
     <entity name="Contest" representedClassName="Contest" syncable="YES">
         <attribute name="ballotPlacement" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
-        <attribute name="contestId" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="electorateSpecifications" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="numberElected" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="numberVotingFor" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>

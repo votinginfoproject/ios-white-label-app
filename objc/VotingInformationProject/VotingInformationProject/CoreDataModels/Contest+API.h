@@ -22,17 +22,4 @@
  */
 + (Contest*)setFromDictionary:(NSDictionary*)attributes;
 
-/**
- Gets a subset of the properties of contest and returns them as an array,
- where each object in the array is an NSDictionary of hte following form:
-
- @{
-   "title": <NSLocalizedString of the title to display for this property>
-   "data": <The data to display, as an NSString
-  }
- 
- @return NSMutableArray of NSDictionaries of the form specified above
- */
-- (NSMutableArray*)getContestProperties;
-
 @end
