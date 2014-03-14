@@ -112,6 +112,15 @@
     [super viewDidLoad];
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
+    // Set background image, scaled to view size
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"Default_background"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
+
+
     /* i18n Sample Demo
      Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
         Settings.app->General->International->Region Format

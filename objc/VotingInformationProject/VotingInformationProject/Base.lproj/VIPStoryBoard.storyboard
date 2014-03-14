@@ -26,17 +26,11 @@
                                     <segue destination="fQj-HQ-I0g" kind="push" id="hs2-HV-Xyz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
-                                <rect key="frame" x="277" y="175" width="23" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
+                                <rect key="frame" x="277" y="178" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="+">
-                                            <attributes>
-                                                <font key="NSFont" size="30" name="HelveticaNeue"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                <state key="normal" image="Homepage_contact.png">
+                                    <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
                                     <action selector="showPeoplePicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="KBP-jV-WvW"/>
@@ -896,6 +890,7 @@
     </scenes>
     <resources>
         <image name="769-male.png" width="28" height="28"/>
+        <image name="Homepage_contact.png" width="23" height="20"/>
         <image name="TabBar_ballot.png" width="26" height="20"/>
         <image name="TabBar_details.png" width="26" height="20"/>
         <image name="TabBar_more.png" width="28" height="6"/>
