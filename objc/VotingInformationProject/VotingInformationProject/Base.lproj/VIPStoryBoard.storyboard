@@ -228,7 +228,7 @@
                             <outlet property="delegate" destination="HR7-5F-hsN" id="NGa-Qw-RVC"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Details" id="pC8-7J-EJ9"/>
+                    <tabBarItem key="tabBarItem" title="Details" image="TabBar_details.png" id="pC8-7J-EJ9"/>
                     <connections>
                         <outlet property="electionDateLabel" destination="Myh-79-KcO" id="WiR-eK-U5i"/>
                         <outlet property="electionNameLabel" destination="k1g-E7-fra" id="kzY-J0-Scc"/>
@@ -299,7 +299,7 @@
                             <outlet property="delegate" destination="Bjz-KM-0gu" id="CoU-c4-INX"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Ballot" id="i8q-c5-xN2"/>
+                    <tabBarItem key="tabBarItem" title="Ballot" image="TabBar_ballot.png" id="i8q-c5-xN2"/>
                     <navigationItem key="navigationItem" id="QAa-gR-ZRz"/>
                     <connections>
                         <outlet property="electionDateLabel" destination="K4l-J3-RLN" id="XvU-AJ-vlC"/>
@@ -807,7 +807,7 @@
                             <constraint firstItem="vGb-SD-759" firstAttribute="top" secondItem="TWf-K2-fuw" secondAttribute="bottom" constant="10" id="uGO-6y-qqx"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Polling" id="Kxk-5f-oXy"/>
+                    <tabBarItem key="tabBarItem" title="Polling" image="TabBar_polling.png" id="Kxk-5f-oXy"/>
                     <navigationItem key="navigationItem" title="Polling Sites" id="Xfu-rg-ES2">
                         <barButtonItem key="backBarButtonItem" title="Home" id="3WV-9A-YoC"/>
                     </navigationItem>
@@ -865,7 +865,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="More Elections" id="uAv-dm-Gkx"/>
+                    <tabBarItem key="tabBarItem" title="More Elections" image="TabBar_more.png" id="uAv-dm-Gkx"/>
                     <navigationItem key="navigationItem" title="More Elections" id="m4i-zl-0oB">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zqx-En-nBP"/>
                     </navigationItem>
@@ -896,6 +896,10 @@
     </scenes>
     <resources>
         <image name="769-male.png" width="28" height="28"/>
+        <image name="TabBar_ballot.png" width="26" height="20"/>
+        <image name="TabBar_details.png" width="26" height="20"/>
+        <image name="TabBar_more.png" width="28" height="6"/>
+        <image name="TabBar_polling.png" width="18" height="26"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
