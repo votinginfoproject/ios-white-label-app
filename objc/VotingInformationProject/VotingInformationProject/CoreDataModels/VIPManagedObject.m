@@ -39,17 +39,13 @@
 + (VIPManagedObject*) setFromDictionary:(NSDictionary *)attributes
 {
     VIPManagedObject *vipObject = [self MR_createEntity];
-    [vipObject setValuesForKeysWithDictionary:attributes];
+    [vipObject updateFromDictionary:attributes];
     return vipObject;
 }
 
 - (void)updateFromDictionary:(NSDictionary *)attributes
 {
-    NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
-    if ([mutableAttributes objectForKey:@"id"]) {
-        [mutableAttributes removeObjectForKey:@"id"];
-    }
-    [self setValuesForKeysWithDictionary:mutableAttributes];
+    [self setValuesForKeysWithDictionary:attributes];
 }
 
 - (NSArray*)getSorted:(NSString*)property

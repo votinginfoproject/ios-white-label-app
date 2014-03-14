@@ -51,7 +51,7 @@ describe(@"ContestAPITests", ^{
         NSDictionary *attributes = @{@"type": @"Primary"};
         Contest *testContest = [Contest setFromDictionary:attributes];
 
-        NSMutableArray *contestProperties = [testContest getContestProperties];
+        NSMutableArray *contestProperties = [testContest getProperties];
         [[theValue([contestProperties count]) should] equal:theValue(1)];
 
         NSDictionary *entry = contestProperties[0];
