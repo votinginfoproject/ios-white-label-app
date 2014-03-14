@@ -136,7 +136,8 @@ UIBarButtonItem *_oldRightBarButtonItem;
             [self.mapView animateToLocation:position];
         }
     }];
-    self.locations = [self.election filterPollingLocations:self.siteFilter.selectedSegmentIndex];
+    VIPPollingLocationType type = (VIPPollingLocationType)self.siteFilter.selectedSegmentIndex;
+    self.locations = [self.election filterPollingLocations:type];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -189,7 +190,8 @@ UIBarButtonItem *_oldRightBarButtonItem;
 {
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
-        self.locations = [self.election filterPollingLocations:siteFilter.selectedSegmentIndex];
+        VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
+        self.locations = [self.election filterPollingLocations:type];
     }
 }
 

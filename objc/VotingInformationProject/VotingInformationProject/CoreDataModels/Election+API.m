@@ -38,7 +38,7 @@
            resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock
 {
     if (![userAddress hasAddress]) {
-        NSError *error = [VIPError errorWithCode:VIPInvalidUserAddress];
+        NSError *error = [VIPError errorWithCode:VIPError.NoAddress];
         resultsBlock(@[], error);
         return;
     }
@@ -68,7 +68,7 @@
              NSArray *electionData = [responseObject objectForKey:@"elections"];
              if (!electionData) {
                  // table view will simply be empty
-                 NSError *error = [VIPError errorWithCode:VIPNoValidElections];
+                 NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
                  resultsBlock(@[], error);
                  return;
              }
@@ -197,7 +197,7 @@
 - (void) getVoterInfo:(void (^) (BOOL success, NSError *error)) statusBlock
 {
     if (![self.userAddress hasAddress]) {
-        NSError *error = [VIPError errorWithCode:VIPInvalidUserAddress];
+        NSError *error = [VIPError errorWithCode:VIPError.InvalidUserAddress];
         statusBlock(NO, error);
     }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
@@ -240,7 +240,7 @@
 */
 - (NSError*) parseVoterInfoJSON:(NSDictionary*)json
 {
-    NSError *error =[Election parseVoterInfoResponseStatus:json[@"status"]];
+    NSError *error =[VIPError statusToError:json[@"status"]];
     if (error) {
         return error;
     }
@@ -336,32 +336,5 @@
     }
 }
 
-/**
- *  Return an NSError object based on the status strings from the voterInfo API query
- *
- *  @param status NSString status from voterInfo API query
- *  @return NSError with localizedDescription property set to a helpful message
- */
-+(NSError*) parseVoterInfoResponseStatus:(NSString*)status
-{
-    if ([status isEqualToString:APIResponseSuccess]) {
-        return nil;
-
-    } else if ([status isEqualToString:APIResponseNoStreetSegmentFound] ||
-               [status isEqualToString:APIResponseMultipleStreetSegmentsFound] ||
-               [status isEqualToString:APIResponseNoAddressParameter]) {
-        return [VIPError errorWithCode:VIPInvalidUserAddress];
-
-    } else if ([status isEqualToString:APIResponseElectionOver]) {
-        return [VIPError errorWithCode:VIPElectionOver];
-
-    } else if ([status isEqualToString:APIResponseElectionUnknown]) {
-        return [VIPError errorWithCode:VIPElectionUnknown];
-
-    } else {
-        return [VIPError errorWithCode:VIPGenericAPIError];
-
-    }
-}
 
 @end
