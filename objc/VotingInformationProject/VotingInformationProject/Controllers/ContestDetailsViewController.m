@@ -47,8 +47,6 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-
-    [self updateUI];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -73,7 +71,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     }
     [self.tableData removeAllObjects];
     self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available", nil);
-    [self.tableData addObject:[self.contest getContestProperties]];
+    [self.tableData addObject:[self.contest getProperties]];
 
     if ([self.contest.type isEqualToString:REFERENDUM_API_ID]) {
         self.contestNameLabel.text = self.contest.referendumTitle;
@@ -113,7 +111,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     // If we have a url, make this cell segue to UIWebViewController
     if (section == CDVC_TABLE_SECTION_PROPERTIES && dataUrl.scheme && [dataUrl.scheme length] > 0) {
         ContestUrlCell *cell = (ContestUrlCell*)[tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID forIndexPath:indexPath];
-        [self configureUrlTableViewCell:cell withDictionary:property];
+        [cell configure:property[@"title"] withUrl:property[@"data"]];
         return cell;
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CDVC_TABLE_CELLID_PROPERTIES forIndexPath:indexPath];
@@ -165,20 +163,6 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 {
     cell.textLabel.text = property[@"title"];
     cell.detailTextLabel.text = property[@"data"];
-}
-
-/**
- *  Configure a ContestUrlCell
- *
- *  @param cell     ContestUrlCell to configure
- *  @param property NSDictionary with keys title/data
- */
-- (void)configureUrlTableViewCell:(ContestUrlCell*)cell
-                               withDictionary:(NSDictionary*)property
-{
-    cell.descriptionLabel.text = property[@"title"];
-    cell.urlLabel.text = property[@"data"];
-    cell.url = [NSURL URLWithString:property[@"data"]];
 }
 
 /**

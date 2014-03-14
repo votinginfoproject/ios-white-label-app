@@ -16,4 +16,13 @@
 
 @property (strong, nonatomic) NSURL *url;
 
+/**
+ *  Configure cell url and title
+ *
+ *  @param title Title for left detail section of cell
+ *  @param url   URL to click through to
+ */
+- (void)configure:(NSString*)title
+          withUrl:(NSString*)stringUrl;
+
 @end
