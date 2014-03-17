@@ -14,10 +14,12 @@
 @interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) Election *election;
-@property (strong, nonatomic) NSArray *locations;
+//@property (strong, nonatomic) NSArray *locations;
 
 /** Handler for when the view switcher button is pressed (upper right)
  */
 - (IBAction)onViewSwitcherClicked:(id)sender;
+
+//- (IBAction)onTableRowClicked:(id)sender;
 
 @end

@@ -9,37 +9,76 @@
 #import "VIPAddress.h"
 #import "VIPAddress+API.h"
 
-@implementation PollingLocationCell
+@implementation PollingLocationCell {
+    CLLocationCoordinate2D _mapOrigin;
+}
 
+const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 PollingLocation* _location;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void) awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    self.mapPosition = NullCoordinate;
+    self.mapOrigin = NullCoordinate;
+
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                          action:@selector(openOnMap:)];
+//    [cell.name addGestureRecognizer:tap];
+}
+
+- (void) reset
+{
+    self.location = nil;
+    self.marker = nil;
+    self.mapPosition = NullCoordinate;
+    self.mapOrigin = NullCoordinate;
+    self.distance.text = @"...";
+    if (self.marker) {
+        self.marker.map = nil;
     }
-    return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
-    // TODO: switch to map view, zoom to selected location?
+    if (self.onRowSelected) {
+        self.onRowSelected(self);
+    }
 }
 
-- (void)updateLocation:(PollingLocation *)location withPosition:(CLLocationCoordinate2D)position andWithOrigin:(CLLocationCoordinate2D)origin
+- (void)updateLocation:(PollingLocation *)location withMapOrigin:(CLLocationCoordinate2D)mapOrigin
 {
     // TODO: update distance when geocoding completes
     // position is not necessarily set to final value when this function is called
     _location = location;
-    self.origin = origin;
-    self.position = position;
+    self.mapOrigin = mapOrigin;
     self.address.text = [location.address toABAddressString:NO];
-    self.distance.text = [PollingLocationCell getDistanceStringFromA:origin
-                                                                 toB:position];
     self.name.text = location.name.length > 0 ? location.name : location.address.locationName;
+    self.distance.text = @"...";
+
+    [self.location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
+        if (!error) {
+            self.mapPosition = position;
+            self.distance.text = [PollingLocationCell getDistanceStringFromA:self.mapOrigin
+                                                                         toB:position];
+        }
+        if (self.onGeocodeComplete) {
+            [self.onGeocodeComplete self];
+        }
+    }];
+}
+
+- (void)setMapOrigin:(CLLocationCoordinate2D)mapOrigin
+{
+    _mapOrigin = mapOrigin;
+    self.distance.text = [PollingLocationCell getDistanceStringFromA:self.mapOrigin
+                                                                 toB:self.mapPosition];
+}
+
+- (CLLocationCoordinate2D)mapOrigin
+{
+    return _mapOrigin;
 }
 
 - (PollingLocation*)getLocation
@@ -47,10 +86,14 @@ PollingLocation* _location;
     return _location;
 }
 
+
+
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
 {
-    // FIXME: Make this actually return values
-    return @"0.0mi";
+    if ((a.latitude == NullCoordinate.latitude && a.longitude == NullCoordinate.longitude) ||
+        (b.latitude == NullCoordinate.latitude && b.longitude == NullCoordinate.longitude)) {
+        return @"...";
+    }
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
     CLLocation *y = [[CLLocation alloc] initWithLatitude:b.latitude longitude:b.longitude];
     CLLocationDistance distance = fabs([x distanceFromLocation:y]);     // Meters

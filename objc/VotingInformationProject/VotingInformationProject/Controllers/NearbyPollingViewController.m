@@ -21,12 +21,14 @@
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
-@property (strong, nonatomic) NSMutableArray *markers;
+//@property (strong, nonatomic) NSMutableArray *markers;
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 @property (strong, nonatomic) UserAddress *userAddress;
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
+
+@property (strong, nonatomic) NSMutableArray *cells;
 
 @end
 
@@ -35,7 +37,8 @@
     NSManagedObjectContext *_moc;
 }
 
-@synthesize markers = _markers;
+//@synthesize markers = _markers;
+@synthesize cells = _cells;
 
 // Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @synthesize ourRightBarButtonItem = _ourRightBarButtonItem;
@@ -47,29 +50,54 @@ static const int LIST_VIEW = 1;
 UIBarButtonItem *_oldRightBarButtonItem;
 
 
-- (void)setLocations:(NSArray *)locations
-{
-    _locations = locations;
-    [self updateUI];
-}
+//- (void)setLocations:(NSArray *)locations
+//{
+//    _locations = locations;
+//    [self updateUI];
+//}
 
-- (NSMutableArray*)markers
+//- (NSMutableArray*)markers
+//{
+//    if (!_markers) {
+//        _markers = [[NSMutableArray alloc] init];
+//    }
+//    return _markers;
+//}
+//
+//- (void)setMarkers:(NSMutableArray *)markers
+//{
+//    if (!markers) {
+//        // If we are clearing the markers array, remove them from the map as well
+//        for (GMSMarker *marker in _markers) {
+//            marker.map = nil;
+//        }
+//    }
+//    _markers = markers;
+//}
+
+- (NSMutableArray*)cells
 {
-    if (!_markers) {
-        _markers = [[NSMutableArray alloc] init];
+    if (!_cells) {
+        _cells = [[NSMutableArray alloc] init];
     }
-    return _markers;
+    return _cells;
 }
 
-- (void)setMarkers:(NSMutableArray *)markers
+- (void)setCells:(NSMutableArray *)cells
 {
-    if (!markers) {
-        // If we are clearing the markers array, remove them from the map as well
-        for (GMSMarker *marker in _markers) {
-            marker.map = nil;
+    if (!cells) {
+        for (PollingLocationCell *cell in _cells) {
+            [cell reset];
         }
     }
-    _markers = markers;
+    _cells = cells;
+}
+
+- (void)setCellsWithLocations:(NSMutableArray *)locations
+{
+    for (PollingLocation *location in locations) {
+        PollingLocationCell *cell = (PollingLocationCell*)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    }
 }
 
 - (UIBarButtonItem*)ourRightBarButtonItem
@@ -133,6 +161,9 @@ UIBarButtonItem *_oldRightBarButtonItem;
             marker.title = NSLocalizedString(@"Your Address", nil);
             marker.snippet = self.userAddress.address;
             marker.map = self.mapView;
+            for (PollingLocationCell *cell in self.cells) {
+                cell.mapOrigin = position;
+            }
             [self.mapView animateToLocation:position];
         }
     }];
@@ -387,13 +418,9 @@ UIBarButtonItem *_oldRightBarButtonItem;
     PollingLocationCell *cell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     PollingLocation *location = (PollingLocation*)[self.locations objectAtIndex:indexPath.row];
 
-    // TODO: This throws an exception because we get here before the geocoding requests complete
-    // CLLocationCoordinate2D position = ((GMSMarker*)self.markers[indexPath.row]).position;
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(0, 0);
-
-    // TODO: get real origin
     CLLocationCoordinate2D origin = self.userAddress.position;
-    [cell updateLocation:location withPosition:position andWithOrigin:origin];
+    [cell updateLocation:location withMapOrigin:origin];
+
     return cell;
 }
 

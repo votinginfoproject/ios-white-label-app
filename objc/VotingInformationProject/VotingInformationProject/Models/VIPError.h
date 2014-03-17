@@ -32,7 +32,7 @@ extern NSString * const VIPErrorDomain;
 + (VIPErrorCode*)NoAddress;
 + (VIPErrorCode*)MultipleStreetSegmentsFound;
 + (VIPErrorCode*)ElectionOver;
-+ (VIPErrorCode*)NoStreetSegmentFound;
++ (VIPErrorCode*)ElectionUnknown;
 + (VIPErrorCode*)InternalLookupError;
 
 + (VIPErrorCode*)GenericAPIError;
