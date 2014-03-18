@@ -286,7 +286,7 @@ static const int LIST_VIEW = 1;
     int index = -1;
     int i = 0;
     for (PollingLocationWrapper *cell in self.cells) {
-        if (cell.marker == marker) {
+        if ([cell.marker isEqual:marker]) {
             index = i;
             break;
         }

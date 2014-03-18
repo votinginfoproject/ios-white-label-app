@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Bennet Huber on 3/17/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "PollingLocationWrapper.h"
@@ -62,7 +61,12 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 - (NSString*) name
 {
     if (self.location) {
-        return self.location.name.length > 0 ? self.location.name : self.location.address.locationName;
+        if (self.location.name.length > 0) {
+            return self.location.name;
+        } else {
+            NSString *result = self.location.address.locationName;
+            return result.length > 0 ? result : @"";
+        }
     } else {
         return @"";
     }
@@ -149,9 +153,9 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
 - (void)_updateDistance
 {
-    _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
-                                                           toB:self.mapPosition];
     if (self.tableCell) {
+        _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
+                                                               toB:self.mapPosition];
         self.tableCell.distance.text = _distance;
     }
 }
