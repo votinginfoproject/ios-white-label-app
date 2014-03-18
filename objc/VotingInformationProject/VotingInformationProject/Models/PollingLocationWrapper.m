@@ -148,7 +148,13 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     // TODO: flexible unit conversion?
     // meters * (100 cm / meter) * (1 inch / 2.54 cm) * (1 ft / 12 inch) * (1 mile / 5280')
     CLLocationDistance distance = distanceInMeters * 100 / 2.54 / 12 / 5280;
-    return [NSString stringWithFormat:@"%1.1fmi", distance];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setLocale:[NSLocale currentLocale]];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setMaximumFractionDigits:1];
+    NSString *distString = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:distance]];
+    NSString *suffix = NSLocalizedString(@"mi", @"Abbreviation for miles");
+    return [distString stringByAppendingString:suffix];
 }
 
 - (void)_updateDistance
