@@ -23,7 +23,9 @@ PODS:
   - Kiwi/XCTest (2.2.3):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - MagicalRecord (2.2)
+  - MagicalRecord (2.2):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -35,6 +37,6 @@ SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   Google-Maps-iOS-SDK: ce1cffe3dca21af85c4bf9d9cb2778083d8fd6f5
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
+  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
 
 COCOAPODS: 0.29.0
