@@ -22,14 +22,18 @@
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
-//@property (strong, nonatomic) NSMutableArray *markers;
+
+// Original value of self.tabBarController.navigationItem.rightBarButtonItem
+@property (strong, nonatomic) UIBarButtonItem *originalRightBarButtonItem;
+
+// Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
+
 @property (strong, nonatomic) UserAddress *userAddress;
+
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
-
-@property (strong, nonatomic) NSMutableArray *cells;
 
 @end
 
@@ -37,44 +41,11 @@
 @implementation NearbyPollingViewController {
     NSManagedObjectContext *_moc;
     GMSMarker *_userAddressMarker;
-    // Original value of self.tabBarController.navigationItem.rightBarButtonItem
-    UIBarButtonItem *_oldRightBarButtonItem;
+    NSMutableArray *_cells;
 }
-
-//@synthesize markers = _markers;
-@synthesize cells = _cells;
-
-// Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
-@synthesize ourRightBarButtonItem = _ourRightBarButtonItem;
 
 static const int MAP_VIEW = 0;
 static const int LIST_VIEW = 1;
-
-
-//- (void)setLocations:(NSArray *)locations
-//{
-//    _locations = locations;
-//    [self updateUI];
-//}
-
-//- (NSMutableArray*)markers
-//{
-//    if (!_markers) {
-//        _markers = [[NSMutableArray alloc] init];
-//    }
-//    return _markers;
-//}
-//
-//- (void)setMarkers:(NSMutableArray *)markers
-//{
-//    if (!markers) {
-//        // If we are clearing the markers array, remove them from the map as well
-//        for (GMSMarker *marker in _markers) {
-//            marker.map = nil;
-//        }
-//    }
-//    _markers = markers;
-//}
 
 - (NSMutableArray*)cells
 {
@@ -140,7 +111,7 @@ static const int LIST_VIEW = 1;
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
     tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
-    _oldRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
+    self.originalRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
     tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 
     // Set proper view from last known
@@ -191,7 +162,7 @@ static const int LIST_VIEW = 1;
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    self.tabBarController.navigationItem.rightBarButtonItem = _oldRightBarButtonItem;
+    self.tabBarController.navigationItem.rightBarButtonItem = self.originalRightBarButtonItem;
     [[NSUserDefaults standardUserDefaults] setInteger:_currentView
                                                forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
     [[NSUserDefaults standardUserDefaults] setInteger:self.siteFilter.selectedSegmentIndex

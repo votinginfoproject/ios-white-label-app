@@ -15,11 +15,13 @@
     NSString *_distance;
     CLLocationCoordinate2D _mapOrigin;
     PollingLocationCell *_tableCell;
+    PollingLocation* _location;
     GMSMarker *_marker;
 }
 
 const CLLocationCoordinate2D NullCoordinate = {-999, -999};
-PollingLocation* _location;
+
+#pragma mark - Setup/Teardown
 
 - (PollingLocationWrapper*) init
 {
@@ -28,10 +30,6 @@ PollingLocation* _location;
         [self reset];
     }
     return self;
-
-    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-    //                                                                          action:@selector(openOnMap:)];
-    //    [cell.name addGestureRecognizer:tap];
 }
 
 - (PollingLocationWrapper*) initWithLocation:(PollingLocation*)location andGeocodeHandler:(void(^)(PollingLocationWrapper*, NSError*))onGeocodeComplete
@@ -54,6 +52,8 @@ PollingLocation* _location;
     self.marker = nil;
 }
 
+#pragma mark - Properties
+
 - (NSString*) address
 {
     return self.location && self.location.address ? [self.location.address toABAddressString:NO] : @"";
@@ -68,18 +68,18 @@ PollingLocation* _location;
     }
 }
 
+- (CLLocationCoordinate2D)mapOrigin
+{
+    return _mapOrigin;
+}
+
 - (void)setMapOrigin:(CLLocationCoordinate2D)mapOrigin
 {
     _mapOrigin = mapOrigin;
     [self _updateDistance];
 }
 
-- (CLLocationCoordinate2D)mapOrigin
-{
-    return _mapOrigin;
-}
-
-- (PollingLocation*)getLocation
+- (PollingLocation*)location
 {
     return _location;
 }
@@ -130,14 +130,6 @@ PollingLocation* _location;
     _marker = marker;
 }
 
-- (void)_updateDistance
-{
-    _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
-                                                           toB:self.mapPosition];
-    if (self.tableCell) {
-        self.tableCell.distance.text = _distance;
-    }
-}
 
 
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
@@ -155,5 +147,13 @@ PollingLocation* _location;
     return [NSString stringWithFormat:@"%1.1fmi", distance];
 }
 
+- (void)_updateDistance
+{
+    _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
+                                                           toB:self.mapPosition];
+    if (self.tableCell) {
+        self.tableCell.distance.text = _distance;
+    }
+}
 
 @end
