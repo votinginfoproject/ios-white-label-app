@@ -59,6 +59,7 @@ static const int LIST_VIEW = 1;
 {
     if (!cells) {
         for (PollingLocationWrapper *cell in _cells) {
+            // Releases all cell resources, including map markers and table cell views
             [cell reset];
         }
     }
@@ -88,6 +89,42 @@ static const int LIST_VIEW = 1;
     }
     self.cells = newCells;
 }
+
+
+/**
+ *  Update the UI
+ *
+ *  Redraws all markers and gets the geocoded location for each PollingLocation address
+ */
+- (void) updateUI
+{
+    if (_currentView == LIST_VIEW) {
+        [self.listView reloadData];
+    }
+}
+
+- (void)filterLocations:(id)sender
+{
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
+        VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
+        [self setCellsWithLocations:[self.election filterPollingLocations:type]];
+    }
+}
+
+- (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
+                  withTitle:(NSString*)title
+                 andSnippet:(NSString*)snippet
+{
+    // Creates a marker at the placemark location
+    GMSMarker *marker = [GMSMarker markerWithPosition:position];
+    marker.title = title;
+    marker.snippet = snippet;
+
+    return marker;
+}
+
+
 
 - (UIBarButtonItem*)ourRightBarButtonItem
 {
@@ -169,35 +206,14 @@ static const int LIST_VIEW = 1;
                                                forKey:USER_DEFAULTS_SITE_FILTER_KEY];
 }
 
-/**
- *  Update the UI
- *
- *  Redraws all markers and gets the geocoded location for each PollingLocation address
- */
-- (void) updateUI
-{
-    [self updateMap];
-    if (_currentView == LIST_VIEW) {
-        [self.listView reloadData];
-    }
-}
 
-- (void) updateMap
-{
-    for (PollingLocationWrapper *cell in self.cells) {
-        // Clear marker from map and trigger location refresh
-        cell.marker.map = nil;
-        cell.location = cell.location;
-    }
-    // TODO: Zoom map to locations when all are geocoded
-}
 
-- (void)filterLocations:(id)sender
+- (void)onViewSwitcherClicked:(id)sender
 {
-    if ([sender isKindOfClass:[UISegmentedControl class]]) {
-        UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
-        VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
-        [self setCellsWithLocations:[self.election filterPollingLocations:type]];
+    if (_currentView == MAP_VIEW) {
+        [self switchView:LIST_VIEW animated:YES];
+    } else if (_currentView == LIST_VIEW) {
+        [self switchView:MAP_VIEW animated:YES];
     }
 }
 
@@ -249,27 +265,6 @@ static const int LIST_VIEW = 1;
 
 }
 
-- (void)onViewSwitcherClicked:(id)sender
-{
-    if (_currentView == MAP_VIEW) {
-        [self switchView:LIST_VIEW animated:YES];
-    } else if (_currentView == LIST_VIEW) {
-        [self switchView:MAP_VIEW animated:YES];
-    }
-}
-
-- (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
-                  withTitle:(NSString*)title
-                 andSnippet:(NSString*)snippet
-{
-    // Creates a marker at the placemark location
-    GMSMarker *marker = [GMSMarker markerWithPosition:position];
-    marker.title = title;
-    marker.snippet = snippet;
-
-    return marker;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -287,6 +282,7 @@ static const int LIST_VIEW = 1;
  */
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
+    // Find cell with corresponding marker
     int index = -1;
     int i = 0;
     for (PollingLocationWrapper *cell in self.cells) {
