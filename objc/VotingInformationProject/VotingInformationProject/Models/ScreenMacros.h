@@ -12,7 +12,7 @@
 #import <UIKit/UIScreen.h>
 
 // for DBL_EPSILON
-#import <float.h>
+#include <float.h>
 
 #define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568) < DBL_EPSILON)
 #define IS_IPHONE ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"])
