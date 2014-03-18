@@ -9,6 +9,8 @@
 //  https://github.com/cristianbica/CBSimulatorSeed
 
 #import "ContactsSearchViewController.h"
+#import "AppSettings.h"
+#import "ScreenMacros.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
@@ -112,6 +114,18 @@
     [super viewDidLoad];
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
+    // Set background image, scaled to view size
+    NSString *imageName = @"Default_background";
+    if (IS_WIDESCREEN) {
+        imageName = @"Default_background-568";
+    }
+    NSLog(@"BGImage: %@", imageName);
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:imageName] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
     /* i18n Sample Demo
      Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
         Settings.app->General->International->Region Format
@@ -134,6 +148,9 @@
 
 }
 
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 #pragma mark - view appears
 
