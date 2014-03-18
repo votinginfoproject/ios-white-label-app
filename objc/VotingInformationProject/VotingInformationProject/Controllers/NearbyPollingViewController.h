@@ -14,7 +14,9 @@
 @interface NearbyPollingViewController : UIViewController <GMSMapViewDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) Election *election;
-@property (strong, nonatomic) NSArray *locations;
+
+/** List of PollingLocationWrapper objects representing currently viewed locations */
+@property (strong, nonatomic) NSMutableArray *cells;
 
 /** Handler for when the view switcher button is pressed (upper right)
  */

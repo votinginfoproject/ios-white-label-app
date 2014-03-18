@@ -10,6 +10,7 @@
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
 #import "PollingLocationCell.h"
+#import "PollingLocationWrapper.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
@@ -21,9 +22,15 @@
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
-@property (strong, nonatomic) NSMutableArray *markers;
+
+// Original value of self.tabBarController.navigationItem.rightBarButtonItem
+@property (strong, nonatomic) UIBarButtonItem *originalRightBarButtonItem;
+
+// Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
+
 @property (strong, nonatomic) UserAddress *userAddress;
+
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
@@ -33,44 +40,91 @@
 
 @implementation NearbyPollingViewController {
     NSManagedObjectContext *_moc;
+    GMSMarker *_userAddressMarker;
+    NSMutableArray *_cells;
 }
-
-@synthesize markers = _markers;
-
-// Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
-@synthesize ourRightBarButtonItem = _ourRightBarButtonItem;
 
 static const int MAP_VIEW = 0;
 static const int LIST_VIEW = 1;
 
-// Original value of self.tabBarController.navigationItem.rightBarButtonItem
-UIBarButtonItem *_oldRightBarButtonItem;
-
-
-- (void)setLocations:(NSArray *)locations
+- (NSMutableArray*)cells
 {
-    _locations = locations;
+    if (!_cells) {
+        _cells = [[NSMutableArray alloc] init];
+    }
+    return _cells;
+}
+
+- (void)setCells:(NSMutableArray *)cells
+{
+    if (!cells) {
+        for (PollingLocationWrapper *cell in _cells) {
+            // Releases all cell resources, including map markers and table cell views
+            [cell reset];
+        }
+    }
+    _cells = cells;
     [self updateUI];
 }
 
-- (NSMutableArray*)markers
+- (void)setCellsWithLocations:(NSArray *)locations
 {
-    if (!_markers) {
-        _markers = [[NSMutableArray alloc] init];
+    self.cells = nil;
+    NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
+    for (PollingLocation *location in locations) {
+        PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
+                if (!error) {
+                    GMSMarker *marker = [self setPlacemark:sender.mapPosition
+                                                 withTitle:sender.name
+                                                andSnippet:sender.address];
+                    marker.map = self.mapView;
+                    marker.userData = sender.location.address;
+                    sender.marker = marker;
+                }
+        }];
+        if (_userAddressMarker) {
+            cell.mapOrigin = _userAddressMarker.position;
+        }
+        [newCells addObject:cell];
     }
-    return _markers;
+    self.cells = newCells;
 }
 
-- (void)setMarkers:(NSMutableArray *)markers
+
+/**
+ *  Update the UI
+ *
+ *  Redraws all markers and gets the geocoded location for each PollingLocation address
+ */
+- (void) updateUI
 {
-    if (!markers) {
-        // If we are clearing the markers array, remove them from the map as well
-        for (GMSMarker *marker in _markers) {
-            marker.map = nil;
-        }
+    if (_currentView == LIST_VIEW) {
+        [self.listView reloadData];
     }
-    _markers = markers;
 }
+
+- (void)filterLocations:(id)sender
+{
+    if ([sender isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
+        VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
+        [self setCellsWithLocations:[self.election filterPollingLocations:type]];
+    }
+}
+
+- (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
+                  withTitle:(NSString*)title
+                 andSnippet:(NSString*)snippet
+{
+    // Creates a marker at the placemark location
+    GMSMarker *marker = [GMSMarker markerWithPosition:position];
+    marker.title = title;
+    marker.snippet = snippet;
+
+    return marker;
+}
+
+
 
 - (UIBarButtonItem*)ourRightBarButtonItem
 {
@@ -94,7 +148,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
     tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
-    _oldRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
+    self.originalRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
     tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 
     // Set proper view from last known
@@ -129,69 +183,37 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
-            GMSMarker *marker = [GMSMarker markerWithPosition:position];
-            marker.title = NSLocalizedString(@"Your Address", nil);
-            marker.snippet = self.userAddress.address;
-            marker.map = self.mapView;
+            _userAddressMarker = [GMSMarker markerWithPosition:position];
+            _userAddressMarker.title = NSLocalizedString(@"Your Address", nil);
+            _userAddressMarker.snippet = self.userAddress.address;
+            _userAddressMarker.map = self.mapView;
+            for (PollingLocationWrapper *cell in self.cells) {
+                cell.mapOrigin = position;
+            }
             [self.mapView animateToLocation:position];
         }
     }];
     VIPPollingLocationType type = (VIPPollingLocationType)self.siteFilter.selectedSegmentIndex;
-    self.locations = [self.election filterPollingLocations:type];
+    [self setCellsWithLocations:[self.election filterPollingLocations:type]];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    self.tabBarController.navigationItem.rightBarButtonItem = _oldRightBarButtonItem;
+    self.tabBarController.navigationItem.rightBarButtonItem = self.originalRightBarButtonItem;
     [[NSUserDefaults standardUserDefaults] setInteger:_currentView
                                                forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
     [[NSUserDefaults standardUserDefaults] setInteger:self.siteFilter.selectedSegmentIndex
                                                forKey:USER_DEFAULTS_SITE_FILTER_KEY];
 }
 
-/**
- *  Update the UI
- *
- *  Redraws all markers and gets the geocoded location for each PollingLocation address
- */
-- (void) updateUI
-{
-    [self updateMap];
-    if (_currentView == LIST_VIEW) {
-        [self.listView reloadData];
-    }
-}
 
-- (void) updateMap
-{
-    self.markers = nil;
-    // This is so if we have geocode requests in flight and fire updateMap again the old requests
-    // don't overwrite data in the new array.
-    NSMutableArray *newMarkers = [[NSMutableArray alloc] init];
-    self.markers = newMarkers;
 
-    for (PollingLocation *location in self.locations) {
-        [location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
-            if (!error) {
-                NSString *title = location.name.length > 0 ? location.name : location.address.locationName;
-                GMSMarker *marker = [self setPlacemark:position
-                                             withTitle:title
-                                            andSnippet:[location.address toABAddressString:NO]];
-                marker.map = self.mapView;
-                marker.userData = location.address;
-                [newMarkers addObject:marker];
-            }
-        }];
-    }
-    // TODO: Zoom map to locations when all are geocoded
-}
-
-- (void)filterLocations:(id)sender
+- (void)onViewSwitcherClicked:(id)sender
 {
-    if ([sender isKindOfClass:[UISegmentedControl class]]) {
-        UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
-        VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
-        self.locations = [self.election filterPollingLocations:type];
+    if (_currentView == MAP_VIEW) {
+        [self switchView:LIST_VIEW animated:YES];
+    } else if (_currentView == LIST_VIEW) {
+        [self switchView:MAP_VIEW animated:YES];
     }
 }
 
@@ -243,27 +265,6 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 }
 
-- (void)onViewSwitcherClicked:(id)sender
-{
-    if (_currentView == MAP_VIEW) {
-        [self switchView:LIST_VIEW animated:YES];
-    } else if (_currentView == LIST_VIEW) {
-        [self switchView:MAP_VIEW animated:YES];
-    }
-}
-
-- (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
-                  withTitle:(NSString*)title
-                 andSnippet:(NSString*)snippet
-{
-    // Creates a marker at the placemark location
-    GMSMarker *marker = [GMSMarker markerWithPosition:position];
-    marker.title = title;
-    marker.snippet = snippet;
-
-    return marker;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -281,8 +282,18 @@ UIBarButtonItem *_oldRightBarButtonItem;
  */
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    NSUInteger index = [self.markers indexOfObject:marker];
-    if (index == NSNotFound) {
+    // Find cell with corresponding marker
+    int index = -1;
+    int i = 0;
+    for (PollingLocationWrapper *cell in self.cells) {
+        if ([cell.marker isEqual:marker]) {
+            index = i;
+            break;
+        }
+        i++;
+    }
+
+    if (index < 0) {
         return;
     }
 
@@ -328,7 +339,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
     // Ensure actionSheet.tag is in range
     @try {
-        marker = (GMSMarker*)self.markers[actionSheet.tag];
+        marker = ((PollingLocationWrapper*)self.cells[actionSheet.tag]).marker;
     } @catch (NSException *e) {
         [alert show];
         NSLog(@"actionSheet clickedButtonAtIndex: - No marker %@ in self.markers", marker.title);
@@ -378,23 +389,17 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.locations.count;
+    return self.cells.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"PollingLocationCell";
-    PollingLocationCell *cell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    PollingLocation *location = (PollingLocation*)[self.locations objectAtIndex:indexPath.row];
-
-    // TODO: This throws an exception because we get here before the geocoding requests complete
-    // CLLocationCoordinate2D position = ((GMSMarker*)self.markers[indexPath.row]).position;
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(0, 0);
-
-    // TODO: get real origin
-    CLLocationCoordinate2D origin = self.userAddress.position;
-    [cell updateLocation:location withPosition:position andWithOrigin:origin];
-    return cell;
+    PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.row];
+    if (!cell.tableCell) {
+        NSString *cellIdentifier = @"PollingLocationCell";
+        cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    }
+    return cell.tableCell;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

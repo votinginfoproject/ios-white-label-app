@@ -11,28 +11,14 @@
 
 @interface PollingLocationCell : UITableViewCell
 
-@property (strong, nonatomic) PollingLocation *location;
-
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *type;       // TODO: display early voting type in UI?
 @property (weak, nonatomic) IBOutlet UILabel *address;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 
-@property CLLocationCoordinate2D origin;
-@property CLLocationCoordinate2D position;
-
-/** Main function for setting properties on this object
- *
- * @param location: Location object we're displaying
- * @param position: Coordinates of location object
- * @param origin: Coordinates of user address, used to calculate distance
+/** Handler for when the row is selected.  Gets passed self as its parameter.
  */
-- (void)updateLocation:(PollingLocation *)location withPosition:(CLLocationCoordinate2D)position andWithOrigin:(CLLocationCoordinate2D)origin;
-
-// TODO: move to utilities class?
-/** Gets distance between two points as a pretty string
- */
-+ (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b;
+@property (strong, nonatomic) void (^onRowSelected)(PollingLocationCell*);
 
 @end
