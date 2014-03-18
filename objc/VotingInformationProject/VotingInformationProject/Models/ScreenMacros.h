@@ -5,14 +5,14 @@
 //  Created by Andrew Fink on 3/14/14.
 //
 
+#ifndef VotingInformationProject_ScreenMacros_h
+#define VotingInformationProject_ScreenMacros_h
+
 #import <UIKit/UIDevice.h>
 #import <UIKit/UIScreen.h>
 
 // for DBL_EPSILON
 #import <float.h>
-
-#ifndef VotingInformationProject_ScreenMacros_h
-#define VotingInformationProject_ScreenMacros_h
 
 #define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568) < DBL_EPSILON)
 #define IS_IPHONE ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"])
