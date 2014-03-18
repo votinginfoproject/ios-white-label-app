@@ -83,9 +83,7 @@
     _elections = elections;
 
     // if ElectionID set in settings.plist set and is a valid election, set as current
-    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
-    NSString *electionId = [appSettings valueForKey:@"ElectionID"];
+    NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
     for (Election *e in _elections) {
         if ([e.electionId isEqualToString:electionId]) {
             _currentElection = e;

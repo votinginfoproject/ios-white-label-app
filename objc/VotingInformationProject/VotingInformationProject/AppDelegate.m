@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AppSettings.h"
 
 @implementation AppDelegate
 
@@ -18,9 +19,7 @@
     // Load GoogleMaps API Key from file
     // Default key provided in repo is azaveadev@azavea.com key
     // Instructions on using your own key are in the README: necessary if you change the app bundle identifier
-    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
-    [GMSServices provideAPIKey:[appSettings objectForKey:@"GoogleMapsAPIKey"]];
+    [GMSServices provideAPIKey:[[AppSettings settings] objectForKey:@"GoogleMapsAPIKey"]];
 
     return YES;
 }
