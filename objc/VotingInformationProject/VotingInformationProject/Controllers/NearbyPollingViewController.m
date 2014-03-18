@@ -12,6 +12,7 @@
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
 #import "VIPEmptyTableViewDataSource.h"
+#import "UIImage+Scale.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
@@ -74,6 +75,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (void)setCellsWithLocations:(NSArray *)locations
 {
+    // Preinit to reduce mapping overhead
+    // Also scale the images to the proper size
+    UIImage *earlyVoting = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_earlyvoting"] scaledToSize:CGSizeMake(25, 38)];
+    UIImage *polling = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_location"] scaledToSize:CGSizeMake(25, 38)];
+
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
@@ -82,10 +88,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
                                                  withTitle:sender.name
                                                 andSnippet:sender.address];
-                    if (location.isEarlyVoteSite) {
-                        marker.icon = [UIImage imageNamed:@"Polling_earlyvoting.png"];
+                    if ([location.isEarlyVoteSite boolValue]) {
+                        marker.icon = earlyVoting;
                     } else {
-                        marker.icon = [UIImage imageNamed:@"Polling_location.png"];
+                        marker.icon = polling;
                     }
                     marker.map = self.mapView;
                     marker.userData = sender.location.address;
@@ -171,6 +177,13 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
     self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    // Set table view fully transparent
+    self.listView.backgroundColor = [UIColor clearColor];
+    self.listView.opaque = NO;
+    self.listView.backgroundView = nil;
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.contentView.opaque = NO;
 };
 
 - (void) viewWillAppear:(BOOL)animated

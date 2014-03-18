@@ -10,7 +10,7 @@
 
 #import "ContactsSearchViewController.h"
 #import "AppSettings.h"
-#import "ScreenMacros.h"
+#import "VIPColor.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
@@ -20,12 +20,14 @@
 @property (strong, nonatomic) UserAddress *userAddress;
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) Election *currentElection;
+@property (weak, nonatomic) IBOutlet UILabel *brandNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gettingStartedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *aboutAppButton;
 
 @end
 
-@implementation ContactsSearchViewController {
-    NSManagedObjectContext *_moc;
-}
+@implementation ContactsSearchViewController
 
 /**
  *  Setter for userAddress
@@ -110,40 +112,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
 
-    // Set background image, scaled to view size
-    NSString *imageName = @"Default_background";
-    if (IS_WIDESCREEN) {
-        imageName = @"Default_background-568";
-    }
-    NSLog(@"BGImage: %@", imageName);
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:imageName] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-
-    /* i18n Sample Demo
-     Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
-        Settings.app->General->International->Region Format
-     Control language settings via:
-        Settings.app->General->International->Language
-     
-    Second argument to NSLocalizedString is a comment to be provided in the Localizable.strings file
-        for translator context
-    
-    genstrings is an xcode command line tool for generating a Localizable.strings file from
-     all NSLocalizedString calls in your app.
-     https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/genstrings.1.html
-     http://blog.spritebandits.com/2012/01/25/ios-iphone-app-localization-genstrings-tips/
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
-    NSString *oneMillion = [numberFormatter stringFromNumber:@(1000000)];
-    self.localizationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NUMBER: %@", nil), oneMillion];
-    */
-
+    self.vipLabel.textColor = [VIPColor primaryTextColor];
+    self.brandNameLabel.textColor = [VIPColor secondaryTextColor];
+    self.gettingStartedLabel.textColor = [VIPColor primaryTextColor];
+    [self.aboutAppButton setTitleColor:[VIPColor primaryTextColor]
+                              forState:UIControlStateNormal];
+    [self.showElectionButton setTitleColor:[VIPColor primaryTextColor]
+                                  forState:UIControlStateNormal];
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
@@ -205,7 +181,7 @@
     if (property == kABPersonAddressProperty) {
         NSString *address = [self getAddress:person atIdentifier:identifier];
         UserAddress *selectedAddress = [UserAddress getUnique:address];
-        [_moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        [self.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"DataStore saved: %d", success);
         }];
         self.userAddress = selectedAddress;

@@ -27,6 +27,13 @@
 {
     [super viewDidLoad];
     [self setupTabBarImages];
+
+    UIImage *homeImage = [UIImage imageNamed:@"NavigationBar_home"];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:homeImage
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(didTapBackButton:)];
+    self.navigationItem.leftBarButtonItem = homeButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,20 +44,33 @@
 
 - (void)setupTabBarImages
 {
-    NSArray *selectedImageNames = @[@"TabBar_ballot-active",
-                                    @"TabBar_details-active",
-                                    @"TabBar_polling-active",
-                                    @"TabBar_more-active"];
+    // Selected image names are at imageName + @"-active"
+    // Ex selected image for TabBar_ballot is TabBar_ballot-active
+    NSArray *imageNames = @[@"TabBar_ballot",
+                            @"TabBar_details",
+                            @"TabBar_polling",
+                            @"TabBar_more"];
     NSUInteger index = 0;
     UITabBar *tabBar = self.tabBar;
     for (UITabBarItem* tabBarItem in tabBar.items) {
-        NSString *selectedImageName = selectedImageNames[index];
+        NSString *imageName = imageNames[index];
+        UIImage *image = [UIImage imageNamed:imageName];
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+        NSString *selectedImageName = [imageName stringByAppendingString:@"-active"];
         UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
         selectedImage = [selectedImage
                          imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+        tabBarItem.image = image;
         tabBarItem.selectedImage = selectedImage;
         index++;
     }
+}
+
+- (void)didTapBackButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

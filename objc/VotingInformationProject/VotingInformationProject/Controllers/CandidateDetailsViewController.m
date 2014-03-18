@@ -8,6 +8,7 @@
 #import "CandidateDetailsViewController.h"
 
 #import "UIWebViewController.h"
+#import "VIPColor.h"
 
 
 @interface CandidateDetailsViewController ()
@@ -45,6 +46,9 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+
+    self.nameLabel.textColor = [VIPColor primaryTextColor];
+    self.affiliationLabel.textColor = [VIPColor secondaryTextColor];
 
     // Setting an empty footer removes extraneous empty cells from filling
     // the available view space

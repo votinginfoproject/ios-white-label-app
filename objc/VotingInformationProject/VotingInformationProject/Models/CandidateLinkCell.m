@@ -6,6 +6,7 @@
 //
 
 #import "CandidateLinkCell.h"
+#import "VIPColor.h"
 
 @interface CandidateLinkCell()
 
@@ -36,6 +37,7 @@
 - (void)configure:(NSDictionary *)link
 {
     self.descriptionLabel.text = link[@"description"];
+    self.descriptionLabel.textColor = [VIPColor secondaryTextColor];
     [self.linkButton setTitle:link[@"buttonTitle"] forState:UIControlStateNormal];
     self.linkType = [link[@"urlScheme"] integerValue];
     self.url = link[@"url"];

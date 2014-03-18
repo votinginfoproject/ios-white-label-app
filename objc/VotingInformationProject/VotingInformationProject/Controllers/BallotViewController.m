@@ -10,6 +10,7 @@
 #import "VIPEmptyTableViewDataSource.h"
 #import "Election+API.h"
 #import "Contest+API.h"
+#import "VIPColor.h"
 
 @interface BallotViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
@@ -39,6 +40,9 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
                             initWithEmptyMessage:NSLocalizedString(@"No Elections Available",
                                                                    @"Text displayed by the table view if there are no elections to display")];
+
+    self.electionNameLabel.textColor = [VIPColor primaryTextColor];
+    self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 

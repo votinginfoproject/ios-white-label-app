@@ -117,6 +117,9 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     if (self.tableCell && self.location) {
         tableCell.address.text = self.address;
         tableCell.name.text = self.name;
+        tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
+                                 ? [UIImage imageNamed:@"Polling_earlyvoting"]
+                                 : [UIImage imageNamed:@"Polling_location"];
         [self _updateDistance];
     }
 }

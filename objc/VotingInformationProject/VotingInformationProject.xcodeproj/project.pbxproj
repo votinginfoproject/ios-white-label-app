@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B2CFFD32E415181767B53 /* libPods.a */; };
+		4901591E18D8B6CE0088BA23 /* VIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901591D18D8B6CE0088BA23 /* VIPViewController.m */; };
+		4901592418D8BBD20088BA23 /* VIPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901592318D8BBD20088BA23 /* VIPTableViewController.m */; };
 		4901592C18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */; };
 		4901593018DA126E0088BA23 /* VIPEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901592E18DA126E0088BA23 /* VIPEmptyCell.m */; };
 		4901593118DA126E0088BA23 /* VIPEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */; };
 		4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245B1890650A00FD9828 /* AddressBook.framework */; };
 		4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245C1890650A00FD9828 /* AddressBookUI.framework */; };
+		49041DB118DB9677007A0F1D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 49041DB018DB9677007A0F1D /* UIImage+Scale.m */; };
 		49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */; };
 		491BEA42189C588D00FCB21D /* Election+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 491BEA41189C588D00FCB21D /* Election+API.m */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
+		49265ACC18DA473A00F21083 /* VIPColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACB18DA473A00F21083 /* VIPColor.m */; };
+		49265ACF18DA4C1200F21083 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACE18DA4C1200F21083 /* UIColor+Hex.m */; };
 		49273490188DE80000B25554 /* elections.json in Resources */ = {isa = PBXBuildFile; fileRef = 4927348F188DE80000B25554 /* elections.json */; };
 		4940239D18A2D355004FEF48 /* PollingLocationAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940239C18A2D355004FEF48 /* PollingLocationAPITests.m */; };
 		494023A018A2E961004FEF48 /* VIPAddress+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940239F18A2E961004FEF48 /* VIPAddress+API.m */; };
@@ -36,18 +41,12 @@
 		494023E918A425AC004FEF48 /* StateAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E818A425AC004FEF48 /* StateAPITests.m */; };
 		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
 		495CB9BD18B26B1B00243ADB /* CandidateAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CB9BC18B26B1B00243ADB /* CandidateAPITests.m */; };
-		495CB9C118B2721B00243ADB /* 769-male.png in Resources */ = {isa = PBXBuildFile; fileRef = 495CB9BF18B2721B00243ADB /* 769-male.png */; };
-		495CB9C218B2721B00243ADB /* 769-male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 495CB9C018B2721B00243ADB /* 769-male@2x.png */; };
 		495CB9C518B2A10D00243ADB /* CandidateDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */; };
 		4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */; };
 		4967AB7A18A91D420079C9F1 /* CivicAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4967AB7918A91D420079C9F1 /* CivicAPIKey.plist */; };
 		4969787618B55E5A00B23CC6 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969787518B55E5A00B23CC6 /* AboutViewController.m */; };
 		496A2FFE18B3A9B90079996F /* CandidateSocialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */; };
 		496A300118B3B0F10079996F /* SocialChannel+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A300018B3B0F10079996F /* SocialChannel+API.m */; };
-		496A300518B3BFC10079996F /* facebook-logo-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 496A300418B3BFC10079996F /* facebook-logo-blue.png */; };
-		496A300718B3C10F0079996F /* twitter-logo-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 496A300618B3C10F0079996F /* twitter-logo-blue.png */; };
-		496A300918B3C2340079996F /* googleplus-logo-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 496A300818B3C2340079996F /* googleplus-logo-red.png */; };
-		496A300B18B3C2BA0079996F /* youtube-logo-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 496A300A18B3C2BA0079996F /* youtube-logo-red.png */; };
 		4970E49718D227AB00104184 /* BallotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4970E49618D227AB00104184 /* BallotDetailsViewController.m */; };
 		4970E49A18D3453300104184 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4970E49918D3453300104184 /* Contest.m */; };
 		4970E54518D37E6200104184 /* AppIcon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E50818D37E6200104184 /* AppIcon-iPad.png */; };
@@ -168,6 +167,10 @@
 /* Begin PBXFileReference section */
 		1AF4C57983EC49409AF897E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.xcconfig"; path = "Pods/Pods-VotingInformationProjectTests.xcconfig"; sourceTree = "<group>"; };
+		4901591C18D8B6CE0088BA23 /* VIPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPViewController.h; sourceTree = "<group>"; };
+		4901591D18D8B6CE0088BA23 /* VIPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPViewController.m; sourceTree = "<group>"; };
+		4901592218D8BBD20088BA23 /* VIPTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPTableViewController.h; sourceTree = "<group>"; };
+		4901592318D8BBD20088BA23 /* VIPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPTableViewController.m; sourceTree = "<group>"; };
 		4901592A18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPEmptyTableViewDataSource.h; path = DataSources/VIPEmptyTableViewDataSource.h; sourceTree = "<group>"; };
 		4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPEmptyTableViewDataSource.m; path = DataSources/VIPEmptyTableViewDataSource.m; sourceTree = "<group>"; };
 		4901592D18DA126E0088BA23 /* VIPEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPEmptyCell.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 		4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VIPEmptyCell.xib; sourceTree = "<group>"; };
 		4903245B1890650A00FD9828 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		49041DAF18DB9677007A0F1D /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		49041DB018DB9677007A0F1D /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		49196B90189AED9D007DCBD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/VIPStoryBoard.storyboard; sourceTree = "<group>"; };
 		49196B93189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/VIPStoryBoard.strings; sourceTree = "<group>"; };
 		49196B94189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -183,6 +188,10 @@
 		491BEA40189C588D00FCB21D /* Election+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "Election+API.h"; path = "CoreDataModels/Election+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		491BEA41189C588D00FCB21D /* Election+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "Election+API.m"; path = "CoreDataModels/Election+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		491EE5AE188EE0600018A060 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		49265ACA18DA473A00F21083 /* VIPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPColor.h; sourceTree = "<group>"; };
+		49265ACB18DA473A00F21083 /* VIPColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPColor.m; sourceTree = "<group>"; };
+		49265ACD18DA4C1200F21083 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		49265ACE18DA4C1200F21083 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		4927348F188DE80000B25554 /* elections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elections.json; sourceTree = "<group>"; };
 		4940239C18A2D355004FEF48 /* PollingLocationAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationAPITests.m; sourceTree = "<group>"; };
 		4940239E18A2E961004FEF48 /* VIPAddress+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "VIPAddress+API.h"; path = "CoreDataModels/VIPAddress+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -215,8 +224,6 @@
 		494023E818A425AC004FEF48 /* StateAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateAPITests.m; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
 		495CB9BC18B26B1B00243ADB /* CandidateAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateAPITests.m; sourceTree = "<group>"; };
-		495CB9BF18B2721B00243ADB /* 769-male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "769-male.png"; sourceTree = "<group>"; };
-		495CB9C018B2721B00243ADB /* 769-male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "769-male@2x.png"; sourceTree = "<group>"; };
 		495CB9C318B2A10D00243ADB /* CandidateDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateDetailsViewController.h; sourceTree = "<group>"; };
 		495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateDetailsViewController.m; sourceTree = "<group>"; };
 		4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsSearchViewControllerTests.m; sourceTree = "<group>"; };
@@ -227,10 +234,6 @@
 		496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateSocialCell.m; sourceTree = "<group>"; };
 		496A2FFF18B3B0F10079996F /* SocialChannel+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SocialChannel+API.h"; path = "CoreDataModels/SocialChannel+API.h"; sourceTree = "<group>"; };
 		496A300018B3B0F10079996F /* SocialChannel+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SocialChannel+API.m"; path = "CoreDataModels/SocialChannel+API.m"; sourceTree = "<group>"; };
-		496A300418B3BFC10079996F /* facebook-logo-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo-blue.png"; sourceTree = "<group>"; };
-		496A300618B3C10F0079996F /* twitter-logo-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-logo-blue.png"; sourceTree = "<group>"; };
-		496A300818B3C2340079996F /* googleplus-logo-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "googleplus-logo-red.png"; sourceTree = "<group>"; };
-		496A300A18B3C2BA0079996F /* youtube-logo-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-logo-red.png"; sourceTree = "<group>"; };
 		4970E49518D227AB00104184 /* BallotDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotDetailsViewController.h; sourceTree = "<group>"; };
 		4970E49618D227AB00104184 /* BallotDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotDetailsViewController.m; sourceTree = "<group>"; };
 		4970E49818D3453300104184 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contest.h; path = CoreDataModels/Contest.h; sourceTree = "<group>"; };
@@ -464,12 +467,6 @@
 				4970E51218D37E6200104184 /* Background */,
 				4970E51618D37E6200104184 /* Graphics */,
 				4970E54118D37E6200104184 /* LaunchScreen */,
-				496A300A18B3C2BA0079996F /* youtube-logo-red.png */,
-				496A300818B3C2340079996F /* googleplus-logo-red.png */,
-				496A300618B3C10F0079996F /* twitter-logo-blue.png */,
-				496A300418B3BFC10079996F /* facebook-logo-blue.png */,
-				495CB9BF18B2721B00243ADB /* 769-male.png */,
-				495CB9C018B2721B00243ADB /* 769-male@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -598,6 +595,8 @@
 		49E981411892F7F700E26C5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4901591C18D8B6CE0088BA23 /* VIPViewController.h */,
+				4901591D18D8B6CE0088BA23 /* VIPViewController.m */,
 				4970E49518D227AB00104184 /* BallotDetailsViewController.h */,
 				4970E49618D227AB00104184 /* BallotDetailsViewController.m */,
 				4969787418B55E5A00B23CC6 /* AboutViewController.h */,
@@ -608,6 +607,8 @@
 				495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */,
 				49E981421892F7F700E26C5D /* ContactsSearchViewController.h */,
 				49E981431892F7F700E26C5D /* ContactsSearchViewController.m */,
+				4901592218D8BBD20088BA23 /* VIPTableViewController.h */,
+				4901592318D8BBD20088BA23 /* VIPTableViewController.m */,
 				49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */,
 				49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */,
 				49E981441892F7F700E26C5D /* FindElectionsViewController.h */,
@@ -625,6 +626,10 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				49265ACA18DA473A00F21083 /* VIPColor.h */,
+				49265ACB18DA473A00F21083 /* VIPColor.m */,
+				49265ACD18DA4C1200F21083 /* UIColor+Hex.h */,
+				49265ACE18DA4C1200F21083 /* UIColor+Hex.m */,
 				49F5D28518D3979700BB352C /* ScreenMacros.h */,
 				5382558618CE61FA0026C82D /* PollingLocationCell.h */,
 				5382558718CE61FA0026C82D /* PollingLocationCell.m */,
@@ -644,6 +649,8 @@
 				49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */,
 				530BD3E918D792BD00B845FA /* PollingLocationWrapper.h */,
 				530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */,
+				49041DAF18DB9677007A0F1D /* UIImage+Scale.h */,
+				49041DB018DB9677007A0F1D /* UIImage+Scale.m */,
 				49F5D28618D399D600BB352C /* AppSettings.h */,
 				49F5D28718D399D600BB352C /* AppSettings.m */,
 			);
@@ -839,14 +846,11 @@
 				4970E56918D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */,
 				4970E55918D37E6200104184 /* Candidate_google@2x.png in Resources */,
 				4970E57918D37E6200104184 /* TabBar_polling-active@2x.png in Resources */,
-				495CB9C118B2721B00243ADB /* 769-male.png in Resources */,
 				4970E57318D37E6200104184 /* TabBar_details@2x.png in Resources */,
 				4970E54E18D37E6200104184 /* SpotlightIcon@2x.png in Resources */,
 				4970E57D18D37E6200104184 /* Default_launch-screen.png in Resources */,
-				496A300518B3BFC10079996F /* facebook-logo-blue.png in Resources */,
 				498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */,
 				4970E55D18D37E6200104184 /* Candidate_twitter@2x.png in Resources */,
-				496A300718B3C10F0079996F /* twitter-logo-blue.png in Resources */,
 				4970E54B18D37E6200104184 /* SettingsIcon.png in Resources */,
 				4970E56D18D37E6200104184 /* TabBar_ballot-active@2x.png in Resources */,
 				4970E55118D37E6200104184 /* Default_background@2x.png in Resources */,
@@ -862,7 +866,6 @@
 				4970E55718D37E6200104184 /* Candidate_facebook@2x.png in Resources */,
 				4970E55518D37E6200104184 /* Candidate_email@2x.png in Resources */,
 				4970E55418D37E6200104184 /* Candidate_email.png in Resources */,
-				496A300918B3C2340079996F /* googleplus-logo-red.png in Resources */,
 				4970E57518D37E6200104184 /* TabBar_more-active@2x.png in Resources */,
 				4970E55F18D37E6200104184 /* Candidate_web@2x.png in Resources */,
 				4970E57A18D37E6200104184 /* TabBar_polling.png in Resources */,
@@ -889,13 +892,11 @@
 				4970E56018D37E6200104184 /* Candidate_youtube.png in Resources */,
 				4901593118DA126E0088BA23 /* VIPEmptyCell.xib in Resources */,
 				4970E57618D37E6200104184 /* TabBar_more.png in Resources */,
-				496A300B18B3C2BA0079996F /* youtube-logo-red.png in Resources */,
 				4970E56718D37E6200104184 /* NavigationBar_home@2x.png in Resources */,
 				49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */,
 				4970E56118D37E6200104184 /* Candidate_youtube@2x.png in Resources */,
 				4970E54A18D37E6200104184 /* iTunesArtwork@2x.png in Resources */,
 				4970E54618D37E6200104184 /* AppIcon-iPad@2x.png in Resources */,
-				495CB9C218B2721B00243ADB /* 769-male@2x.png in Resources */,
 				4970E56A18D37E6200104184 /* Polling_location.png in Resources */,
 				4970E54518D37E6200104184 /* AppIcon-iPad.png in Resources */,
 				4970E56318D37E6200104184 /* Homepage_about@2x.png in Resources */,
@@ -996,6 +997,7 @@
 				499537ED18A190DA009B678C /* PollingLocation.m in Sources */,
 				530BD3EB18D792BD00B845FA /* PollingLocationWrapper.m in Sources */,
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
+				4901592418D8BBD20088BA23 /* VIPTableViewController.m in Sources */,
 				49E981481892F7F700E26C5D /* ContactsSearchViewController.m in Sources */,
 				49CF34BD18A55BF100DDEE0E /* BallotViewController.m in Sources */,
 				49A04BD718AD261E00BCDB0D /* UIWebViewController.m in Sources */,
@@ -1006,6 +1008,7 @@
 				5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
 				4997542F18C6310A002F97FE /* VIPError.m in Sources */,
+				49041DB118DB9677007A0F1D /* UIImage+Scale.m in Sources */,
 				4901592C18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m in Sources */,
 				49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
@@ -1019,7 +1022,9 @@
 				49C1FED718B2C6AE00CF9DFE /* Candidate.m in Sources */,
 				49C1FEDA18B2C6AF00CF9DFE /* SocialChannel.m in Sources */,
 				499537F018A283F0009B678C /* Election.m in Sources */,
+				49265ACC18DA473A00F21083 /* VIPColor.m in Sources */,
 				494023B218A2F2EC004FEF48 /* ElectionOfficial+API.m in Sources */,
+				4901591E18D8B6CE0088BA23 /* VIPViewController.m in Sources */,
 				49A57B0B18A08E9200C5E889 /* PollingLocation+API.m in Sources */,
 				494023B518A2F8CB004FEF48 /* Contest+API.m in Sources */,
 				49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */,
@@ -1034,6 +1039,7 @@
 				49C1FEDD18B3A20C00CF9DFE /* CandidateLinkCell.m in Sources */,
 				4970E49A18D3453300104184 /* Contest.m in Sources */,
 				496A300118B3B0F10079996F /* SocialChannel+API.m in Sources */,
+				49265ACF18DA4C1200F21083 /* UIColor+Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

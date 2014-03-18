@@ -6,6 +6,7 @@
 //
 
 #import "AboutViewController.h"
+#import "VIPColor.h"
 
 @interface AboutViewController ()
 
@@ -64,6 +65,13 @@
                                     attributes:strAttributes
                                        context:nil];
     return 2 * heightPadding + ceilf(strSize.size.height);
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UIColor *textColor = [VIPColor primaryTextColor];
+    [[((UITableViewHeaderFooterView*) view) textLabel] setTextColor: textColor];
+    view.backgroundColor = [VIPColor color:textColor withAlpha:0.5];
 }
 
 @end
