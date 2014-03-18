@@ -10,6 +10,7 @@
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
 #import "PollingLocationCell.h"
+#import "PollingLocationWrapper.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
@@ -35,6 +36,9 @@
 
 @implementation NearbyPollingViewController {
     NSManagedObjectContext *_moc;
+    GMSMarker *_userAddressMarker;
+    // Original value of self.tabBarController.navigationItem.rightBarButtonItem
+    UIBarButtonItem *_oldRightBarButtonItem;
 }
 
 //@synthesize markers = _markers;
@@ -45,9 +49,6 @@
 
 static const int MAP_VIEW = 0;
 static const int LIST_VIEW = 1;
-
-// Original value of self.tabBarController.navigationItem.rightBarButtonItem
-UIBarButtonItem *_oldRightBarButtonItem;
 
 
 //- (void)setLocations:(NSArray *)locations
@@ -86,18 +87,35 @@ UIBarButtonItem *_oldRightBarButtonItem;
 - (void)setCells:(NSMutableArray *)cells
 {
     if (!cells) {
-        for (PollingLocationCell *cell in _cells) {
+        for (PollingLocationWrapper *cell in _cells) {
             [cell reset];
         }
     }
     _cells = cells;
+    [self updateUI];
 }
 
-- (void)setCellsWithLocations:(NSMutableArray *)locations
+- (void)setCellsWithLocations:(NSArray *)locations
 {
+    self.cells = nil;
+    NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
-        PollingLocationCell *cell = (PollingLocationCell*)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
+                if (!error) {
+                    GMSMarker *marker = [self setPlacemark:sender.mapPosition
+                                                 withTitle:sender.name
+                                                andSnippet:sender.address];
+                    marker.map = self.mapView;
+                    marker.userData = sender.location.address;
+                    sender.marker = marker;
+                }
+        }];
+        if (_userAddressMarker) {
+            cell.mapOrigin = _userAddressMarker.position;
+        }
+        [newCells addObject:cell];
     }
+    self.cells = newCells;
 }
 
 - (UIBarButtonItem*)ourRightBarButtonItem
@@ -157,18 +175,18 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
-            GMSMarker *marker = [GMSMarker markerWithPosition:position];
-            marker.title = NSLocalizedString(@"Your Address", nil);
-            marker.snippet = self.userAddress.address;
-            marker.map = self.mapView;
-            for (PollingLocationCell *cell in self.cells) {
+            _userAddressMarker = [GMSMarker markerWithPosition:position];
+            _userAddressMarker.title = NSLocalizedString(@"Your Address", nil);
+            _userAddressMarker.snippet = self.userAddress.address;
+            _userAddressMarker.map = self.mapView;
+            for (PollingLocationWrapper *cell in self.cells) {
                 cell.mapOrigin = position;
             }
             [self.mapView animateToLocation:position];
         }
     }];
     VIPPollingLocationType type = (VIPPollingLocationType)self.siteFilter.selectedSegmentIndex;
-    self.locations = [self.election filterPollingLocations:type];
+    [self setCellsWithLocations:[self.election filterPollingLocations:type]];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -195,24 +213,10 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (void) updateMap
 {
-    self.markers = nil;
-    // This is so if we have geocode requests in flight and fire updateMap again the old requests
-    // don't overwrite data in the new array.
-    NSMutableArray *newMarkers = [[NSMutableArray alloc] init];
-    self.markers = newMarkers;
-
-    for (PollingLocation *location in self.locations) {
-        [location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
-            if (!error) {
-                NSString *title = location.name.length > 0 ? location.name : location.address.locationName;
-                GMSMarker *marker = [self setPlacemark:position
-                                             withTitle:title
-                                            andSnippet:[location.address toABAddressString:NO]];
-                marker.map = self.mapView;
-                marker.userData = location.address;
-                [newMarkers addObject:marker];
-            }
-        }];
+    for (PollingLocationWrapper *cell in self.cells) {
+        // Clear marker from map and trigger location refresh
+        cell.marker.map = nil;
+        cell.location = cell.location;
     }
     // TODO: Zoom map to locations when all are geocoded
 }
@@ -222,7 +226,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
         VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
-        self.locations = [self.election filterPollingLocations:type];
+        [self setCellsWithLocations:[self.election filterPollingLocations:type]];
     }
 }
 
@@ -312,8 +316,17 @@ UIBarButtonItem *_oldRightBarButtonItem;
  */
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    NSUInteger index = [self.markers indexOfObject:marker];
-    if (index == NSNotFound) {
+    int index = -1;
+    int i = 0;
+    for (PollingLocationWrapper *cell in self.cells) {
+        if (cell.marker == marker) {
+            index = i;
+            break;
+        }
+        i++;
+    }
+
+    if (index < 0) {
         return;
     }
 
@@ -359,7 +372,7 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
     // Ensure actionSheet.tag is in range
     @try {
-        marker = (GMSMarker*)self.markers[actionSheet.tag];
+        marker = ((PollingLocationWrapper*)self.cells[actionSheet.tag]).marker;
     } @catch (NSException *e) {
         [alert show];
         NSLog(@"actionSheet clickedButtonAtIndex: - No marker %@ in self.markers", marker.title);
@@ -409,19 +422,17 @@ UIBarButtonItem *_oldRightBarButtonItem;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.locations.count;
+    return self.cells.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"PollingLocationCell";
-    PollingLocationCell *cell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    PollingLocation *location = (PollingLocation*)[self.locations objectAtIndex:indexPath.row];
-
-    CLLocationCoordinate2D origin = self.userAddress.position;
-    [cell updateLocation:location withMapOrigin:origin];
-
-    return cell;
+    PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.row];
+    if (!cell.tableCell) {
+        NSString *cellIdentifier = @"PollingLocationCell";
+        cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    }
+    return cell.tableCell;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
