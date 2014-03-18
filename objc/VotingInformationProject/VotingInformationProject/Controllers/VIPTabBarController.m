@@ -37,8 +37,7 @@
 
 - (void)setupTabBarImages
 {
-    NSArray *selectedImageNames = @[
-                                    @"TabBar_ballot-active",
+    NSArray *selectedImageNames = @[@"TabBar_ballot-active",
                                     @"TabBar_details-active",
                                     @"TabBar_polling-active",
                                     @"TabBar_more-active"];

@@ -3,14 +3,13 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 3/14/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "AppSettings.h"
 
 @implementation AppSettings
 
-+ (NSDictionary*)dict
++ (NSDictionary*)settings
 {
     static NSDictionary *appSettingsDict;
     static dispatch_once_t onceToken;

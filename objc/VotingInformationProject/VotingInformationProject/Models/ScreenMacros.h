@@ -5,6 +5,12 @@
 //  Created by Andrew Fink on 3/14/14.
 //
 
+#import <UIKit/UIDevice.h>
+#import <UIKit/UIScreen.h>
+
+// for DBL_EPSILON
+#import <float.h>
+
 #ifndef VotingInformationProject_ScreenMacros_h
 #define VotingInformationProject_ScreenMacros_h
 
