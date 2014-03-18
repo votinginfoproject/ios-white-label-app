@@ -11,10 +11,10 @@
 #import <UIKit/UIDevice.h>
 #import <UIKit/UIScreen.h>
 
-// for DBL_EPSILON
-#include <float.h>
-
-#define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568) < DBL_EPSILON)
+#define WIDESCREEN_HEIGHT 568
+// Quickfix because using the < DBL_EPSILON solution was failing the travis ci with DBL_EPSILON
+//  not found for some reason.
+#define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height > (double)WIDESCREEN_HEIGHT - 1))
 #define IS_IPHONE ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"])
 #define IS_IPOD   ([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"])
 
