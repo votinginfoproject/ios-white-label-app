@@ -11,10 +11,13 @@
 #import "VIPTabBarController.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
+#import "VIPEmptyTableViewDataSource.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
 #define AS_DIRECTIONS_CANCEL 2
+
+#define VIP_POLLING_TABLECELL_HEIGHT 76
 
 @interface NearbyPollingViewController ()
 
@@ -34,6 +37,8 @@
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
+
+@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 
 @end
 
@@ -95,6 +100,10 @@ static const int LIST_VIEW = 1;
     self.cells = newCells;
 }
 
+- (id<UITableViewDataSource>)configureDataSource
+{
+    return ([self.cells count] > 0) ? self : self.emptyDataSource;
+}
 
 /**
  *  Update the UI
@@ -104,6 +113,7 @@ static const int LIST_VIEW = 1;
 - (void) updateUI
 {
     if (_currentView == LIST_VIEW) {
+        self.listView.dataSource = [self configureDataSource];
         [self.listView reloadData];
     }
 }
@@ -113,8 +123,19 @@ static const int LIST_VIEW = 1;
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
         VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
+        [self setEmptyMessage:type];
         [self setCellsWithLocations:[self.election filterPollingLocations:type]];
     }
+}
+
+- (void)setEmptyMessage:(VIPPollingLocationType)type
+{
+    NSString *earlyVoteMessage = NSLocalizedString(@"No Nearby Early Vote Sites",
+                                                   @"Text to display if the table view has no early vote sites to display");
+    NSString *pollingMessage = NSLocalizedString(@"No Nearby Polling Locations",
+                                                 @"Text to display if the table view has no polling locations to display");
+    self.emptyDataSource.emptyMessage = (type == VIPPollingLocationTypeEarlyVote)
+                                        ? earlyVoteMessage : pollingMessage;
 }
 
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
@@ -134,7 +155,10 @@ static const int LIST_VIEW = 1;
 - (UIBarButtonItem*)ourRightBarButtonItem
 {
     if (_ourRightBarButtonItem == nil) {
-        _ourRightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStyleBordered target:self action:@selector(onViewSwitcherClicked:)];
+        _ourRightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"List"
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(onViewSwitcherClicked:)];
     }
     return _ourRightBarButtonItem;
 }
@@ -145,6 +169,8 @@ static const int LIST_VIEW = 1;
     self.mapView.delegate = self;
     
     _moc = [NSManagedObjectContext MR_contextForCurrentThread];
+    self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
+    self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 };
 
 - (void) viewWillAppear:(BOOL)animated
@@ -177,8 +203,10 @@ static const int LIST_VIEW = 1;
                                                                  zoom:zoom];
 
     // Set listener for segmented control
-    self.siteFilter.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults]
-                                            integerForKey:USER_DEFAULTS_SITE_FILTER_KEY];
+    VIPPollingLocationType type = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
+                                   integerForKey:USER_DEFAULTS_SITE_FILTER_KEY];
+    self.siteFilter.selectedSegmentIndex = type;
+    [self setEmptyMessage:type];
     [self.siteFilter addTarget:self
                         action:@selector(filterLocations:)
               forControlEvents:UIControlEventValueChanged];
@@ -201,7 +229,7 @@ static const int LIST_VIEW = 1;
             [self.mapView animateToLocation:position];
         }
     }];
-    VIPPollingLocationType type = (VIPPollingLocationType)self.siteFilter.selectedSegmentIndex;
+
     [self setCellsWithLocations:[self.election filterPollingLocations:type]];
 }
 
@@ -419,6 +447,11 @@ static const int LIST_VIEW = 1;
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
 @end
