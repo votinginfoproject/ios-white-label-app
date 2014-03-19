@@ -6,17 +6,21 @@
 //
 
 #import "BallotDetailsViewController.h"
+#import "VIPEmptyTableViewDataSource.h"
 #import "VIPTabBarController.h"
 #import "UIWebViewController.h"
 #import "State+API.h"
 
 #import "ContestUrlCell.h"
 
+#define VIP_DETAILS_TABLECELL_HEIGHT 44
+
 @interface BallotDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
 
 @property (strong, nonatomic) NSMutableArray *tableData;
+@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @end
 
 @implementation BallotDetailsViewController
@@ -41,6 +45,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
+                            initWithEmptyMessage:NSLocalizedString(@"No Election Details Available",
+                                                                   @"Text displayed by the table view if there are no election details to display")];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,6 +57,11 @@
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
     self.election = (Election*) vipTabBarController.currentElection;
     [self updateUI];
+}
+
+- (id<UITableViewDataSource>)configureDataSource
+{
+    return ([self.tableData[0] count] > 0) ? self : self.emptyDataSource;
 }
 
 - (void) updateUI
@@ -67,6 +80,7 @@
         State *state = (State*)states[0];
         NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
         [self.tableData addObject:eabProperties];
+        self.tableView.dataSource = [self configureDataSource];
         [self.tableView reloadData];
     }
 }
@@ -112,6 +126,12 @@
         cell.detailTextLabel.text = property[@"data"];
         return cell;
     }
+}
+
+#pragma mark - Table view delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([self.tableData[0] count] > 0) ? VIP_DETAILS_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
