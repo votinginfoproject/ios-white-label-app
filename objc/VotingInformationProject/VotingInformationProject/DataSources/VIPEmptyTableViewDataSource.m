@@ -3,10 +3,10 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 3/19/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "VIPEmptyTableViewDataSource.h"
+#import "VIPEmptyCell.h"
 
 @interface VIPEmptyTableViewDataSource()
 
@@ -29,6 +29,7 @@ NSString * const VIP_EMPTY_TABLECELL_ID = @"VIPEmptyTableCell";
     self = [super init];
     if (self) {
         self.emptyMessage = message;
+
     }
     return self;
 }
@@ -40,9 +41,12 @@ NSString * const VIP_EMPTY_TABLECELL_ID = @"VIPEmptyTableCell";
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: Make custom cell via xib with single label and extra height
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VIP_EMPTY_TABLECELL_ID forIndexPath:indexPath];
-    cell.textLabel.text = self.emptyMessage;
+    VIPEmptyCell *cell = (VIPEmptyCell*)[tableView dequeueReusableCellWithIdentifier:VIP_EMPTY_TABLECELL_ID];
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:@"VIPEmptyCell" bundle:nil] forCellReuseIdentifier:VIP_EMPTY_TABLECELL_ID];
+        cell = (VIPEmptyCell*)[tableView dequeueReusableCellWithIdentifier:VIP_EMPTY_TABLECELL_ID];
+    }
+    cell.messageLabel.text = self.emptyMessage;
     return cell;
 }
 
