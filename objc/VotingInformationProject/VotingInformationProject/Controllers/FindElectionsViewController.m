@@ -8,9 +8,13 @@
 
 #import "FindElectionsViewController.h"
 #import "VIPTabBarController.h"
+#import "VIPEmptyTableViewDataSource.h"
+
+#define VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT 44
 
 @interface FindElectionsViewController ()
 
+@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @end
 
 @implementation FindElectionsViewController {
@@ -20,6 +24,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
+                            initWithEmptyMessage:NSLocalizedString(@"No Additional Upcoming Elections", nil)];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (id<UITableViewDataSource>)configureDataSource
+{
+    return ([_elections count] > 0) ? self : self.emptyDataSource;
 }
 
 - (void) setOtherElections
@@ -34,6 +46,7 @@
     } else {
         _elections = @[];
     }
+    self.tableView.dataSource = [self configureDataSource];
     [self.tableView reloadData];
 }
 
@@ -87,6 +100,11 @@
     NSUInteger index = indexPath.row;
     tabBarController.currentElection = [_elections objectAtIndex:index];
     tabBarController.selectedIndex = 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([_elections count] > 0) ? VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
 @end
