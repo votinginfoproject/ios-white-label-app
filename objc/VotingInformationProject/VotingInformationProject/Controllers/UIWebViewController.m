@@ -50,7 +50,7 @@
                                                     message:message
                                                    delegate:nil
                                           cancelButtonTitle:NSLocalizedString(@"Ok",
-                                                @"Label for button to exit error message alert window")
+                                                                              @"Label for button to exit error message alert window")
                                           otherButtonTitles:nil];
     [alert show];
 }

@@ -47,30 +47,24 @@
     NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:3];
     if (self.candidateUrl) {
         [links addObject:@{
-                           @"buttonTitle": NSLocalizedString(@"Website",
-                                                             @"Button name for candidate's website"),
-                           @"description": NSLocalizedString(@"Website",
-                                                            @"Link description for candidate's website"),
+                           @"buttonTitle": NSLocalizedString(@"Website", @"Button name for candidate's website"),
+                           @"description": NSLocalizedString(@"Website", @"Link description for candidate's website"),
                            @"url": self.candidateUrl,
                            @"urlScheme": @(kCandidateLinkTypeWebsite)
                            }];
     }
     if (self.phone) {
         [links addObject:@{
-                           @"buttonTitle": NSLocalizedString(@"Call",
-                                                            @"Button name for candidate's phone number"),
-                           @"description": NSLocalizedString(@"Phone",
-                                                    @"Link description for candidate's phone number"),
+                           @"buttonTitle": NSLocalizedString(@"Call", @"Button name for candidate's phone number"),
+                           @"description": NSLocalizedString(@"Phone", @"Link description for candidate's phone number"),
                            @"url": self.phone,
                            @"urlScheme": @(kCandidateLinkTypePhone)
                            }];
     }
     if (self.email) {
         [links addObject:@{
-                           @"buttonTitle": NSLocalizedString(@"Email",
-                                                        @"Button name for candidate's email address"),
-                           @"description": NSLocalizedString(@"Email",
-                                                    @"Link description for candidate's email address"),
+                           @"buttonTitle": NSLocalizedString(@"Email", @"Button name for candidate's email address"),
+                           @"description": NSLocalizedString(@"Email", @"Link description for candidate's email address"),
                            @"url": self.email,
                            @"urlScheme": @(kCandidateLinkTypeEmail)
                            }];

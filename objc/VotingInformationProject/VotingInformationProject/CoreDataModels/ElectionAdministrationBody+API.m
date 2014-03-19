@@ -52,24 +52,15 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         propertyList = @{
-                              @"name": NSLocalizedString(@"Name",
-                                        @"Label for election administration body's name"),
-                              @"hoursOfOperation": NSLocalizedString(@"Hours",
-                                        @"Label for election administration body's hours of operation"),
-                              @"state.name": NSLocalizedString(@"State",
-                                        @"Label for election administration body's state"),
-                              @"electionInfoUrl": NSLocalizedString(@"Election Info",
-                                        @"Label for election adnimistration body's information link"),
-                              @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info",
-                                        @"Label for election administration body's absentee voting information link"),
-                              @"electionRegistrationUrl": NSLocalizedString(@"Election Registration",
-                                        @"Label for election administration body's registration information link"),
-                              @"electionRulesUrl": NSLocalizedString(@"Election Rules",
-                                        @"Label for election administration body's election rules link"),
-                              @"votingLocationFinderUrl": NSLocalizedString(@"Location Finder",
-                                    @"Label for election administration body's location finder link"),
-                              @"voterServices": NSLocalizedString(@"Voter Services",
-                                        @"Label for election administration body's voter services")
+                              @"name": NSLocalizedString(@"Name", @"Label for election administration body's name"),
+                              @"hoursOfOperation": NSLocalizedString(@"Hours", @"Label for election administration body's hours of operation"),
+                              @"state.name": NSLocalizedString(@"State", @"Label for election administration body's state"),
+                              @"electionInfoUrl": NSLocalizedString(@"Election Info", @"Label for election adnimistration body's information link"),
+                              @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info", @"Label for election administration body's absentee voting information link"),
+                              @"electionRegistrationUrl": NSLocalizedString(@"Election Registration", @"Label for election administration body's registration information link"),
+                              @"electionRulesUrl": NSLocalizedString(@"Election Rules", @"Label for election administration body's election rules link"),
+                              @"votingLocationFinderUrl": NSLocalizedString(@"Location Finder", @"Label for election administration body's location finder link"),
+                              @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services")
                          };
     });
     return propertyList;

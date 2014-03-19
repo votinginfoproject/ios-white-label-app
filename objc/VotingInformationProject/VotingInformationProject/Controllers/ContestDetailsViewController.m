@@ -71,7 +71,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     }
     [self.tableData removeAllObjects];
     self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available",
-                                @"Contest details text displayed when election name not available");
+                                                                         @"Contest details text displayed when election name not available");
     [self.tableData addObject:[self.contest getProperties]];
 
     if ([self.contest.type isEqualToString:REFERENDUM_API_ID]) {
@@ -79,7 +79,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         self.title = NSLocalizedString(@"Referendum", @"Contest details referendum section title");
     } else {
         self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available",
-                            @"Contest details text displayed when office name not available");
+                                                                              @"Contest details text displayed when office name not available");
         // Only add candidates for elections, not referenda
         [self.tableData addObject:[self.contest getSorted:@"candidates"
                                                byProperty:@"name"

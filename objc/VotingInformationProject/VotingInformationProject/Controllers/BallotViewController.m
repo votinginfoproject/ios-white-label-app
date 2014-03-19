@@ -37,8 +37,7 @@
 {
     [super viewWillAppear:animated];
     if (self.tabBarController) {
-        self.tabBarController.title = NSLocalizedString(@"Ballot",
-                                                        "Name for bottom-left tab (ballot)");
+        self.tabBarController.title = NSLocalizedString(@"Ballot", "Name for bottom-left tab (ballot)");
     }
 
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
