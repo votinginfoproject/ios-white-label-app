@@ -28,6 +28,8 @@
 
 extern NSString * const VIP_EMPTY_TABLECELL_ID;
 
+@property (strong, nonatomic) NSString *emptyMessage;
+
 /*
  * Designated Initializer
  *

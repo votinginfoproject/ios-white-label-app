@@ -10,8 +10,6 @@
 
 @interface VIPEmptyTableViewDataSource()
 
-@property (strong, nonatomic) NSString *emptyMessage;
-
 @end
 
 @implementation VIPEmptyTableViewDataSource
