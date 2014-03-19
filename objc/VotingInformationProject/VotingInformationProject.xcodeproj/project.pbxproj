@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37C724F9F45D4275A4F10097 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 548B2CFFD32E415181767B53 /* libPods.a */; };
+		4901592C18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */; };
 		4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245B1890650A00FD9828 /* AddressBook.framework */; };
 		4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245C1890650A00FD9828 /* AddressBookUI.framework */; };
 		49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */; };
@@ -132,8 +133,8 @@
 		49E981491892F7F700E26C5D /* FindElectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981451892F7F700E26C5D /* FindElectionsViewController.m */; };
 		49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E981471892F7F700E26C5D /* NearbyPollingViewController.m */; };
 		49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814F1892F81600E26C5D /* FindElectionsCell.m */; };
-		530BD3EB18D792BD00B845FA /* PollingLocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */; };
 		49F5D28818D399D600BB352C /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D28718D399D600BB352C /* AppSettings.m */; };
+		530BD3EB18D792BD00B845FA /* PollingLocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */; };
 		5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5382558718CE61FA0026C82D /* PollingLocationCell.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
@@ -165,6 +166,8 @@
 /* Begin PBXFileReference section */
 		1AF4C57983EC49409AF897E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		2D641A22ED5044C8BE72A960 /* Pods-VotingInformationProjectTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.xcconfig"; path = "Pods/Pods-VotingInformationProjectTests.xcconfig"; sourceTree = "<group>"; };
+		4901592A18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPEmptyTableViewDataSource.h; path = DataSources/VIPEmptyTableViewDataSource.h; sourceTree = "<group>"; };
+		4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPEmptyTableViewDataSource.m; path = DataSources/VIPEmptyTableViewDataSource.m; sourceTree = "<group>"; };
 		4903245B1890650A00FD9828 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		49196B90189AED9D007DCBD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/VIPStoryBoard.storyboard; sourceTree = "<group>"; };
@@ -335,11 +338,11 @@
 		49E9814E1892F81600E26C5D /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FindElectionsCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49E9814F1892F81600E26C5D /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FindElectionsCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPUserDefaultsKeys.h; sourceTree = "<group>"; };
-		530BD3E918D792BD00B845FA /* PollingLocationWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationWrapper.h; sourceTree = "<group>"; };
-		530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationWrapper.m; sourceTree = "<group>"; };
 		49F5D28518D3979700BB352C /* ScreenMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenMacros.h; sourceTree = "<group>"; };
 		49F5D28618D399D600BB352C /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		49F5D28718D399D600BB352C /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
+		530BD3E918D792BD00B845FA /* PollingLocationWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationWrapper.h; sourceTree = "<group>"; };
+		530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationWrapper.m; sourceTree = "<group>"; };
 		5382558618CE61FA0026C82D /* PollingLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationCell.h; sourceTree = "<group>"; };
 		5382558718CE61FA0026C82D /* PollingLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationCell.m; sourceTree = "<group>"; };
 		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +396,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4901592518D9E13D0088BA23 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				4901592A18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.h */,
+				4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */,
+			);
+			name = DataSources;
+			sourceTree = "<group>";
+		};
 		491BEA03189C0B5F00FCB21D /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +682,7 @@
 		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
+				4901592518D9E13D0088BA23 /* DataSources */,
 				49DD457218A17146003374A3 /* CoreDataModelsAPI */,
 				491BEA03189C0B5F00FCB21D /* CoreDataModels */,
 				49E981411892F7F700E26C5D /* Controllers */,
@@ -983,6 +996,7 @@
 				5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
 				4997542F18C6310A002F97FE /* VIPError.m in Sources */,
+				4901592C18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m in Sources */,
 				49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
 				4970E49718D227AB00104184 /* BallotDetailsViewController.m in Sources */,
