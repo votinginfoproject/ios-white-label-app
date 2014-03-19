@@ -186,6 +186,7 @@ static const int LIST_VIEW = 1;
             _userAddressMarker = [GMSMarker markerWithPosition:position];
             _userAddressMarker.title = NSLocalizedString(@"Your Address", nil);
             _userAddressMarker.snippet = self.userAddress.address;
+            _userAddressMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
             _userAddressMarker.map = self.mapView;
             for (PollingLocationWrapper *cell in self.cells) {
                 cell.mapOrigin = position;
