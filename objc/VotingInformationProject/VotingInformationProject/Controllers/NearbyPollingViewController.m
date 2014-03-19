@@ -130,11 +130,12 @@ static const int LIST_VIEW = 1;
 
 - (void)setEmptyMessage:(VIPPollingLocationType)type
 {
-    if (type == VIPPollingLocationTypeEarlyVote) {
-        self.emptyDataSource.emptyMessage = NSLocalizedString(@"No Nearby Early Vote Sites", nil);
-    } else {
-        self.emptyDataSource.emptyMessage = NSLocalizedString(@"No Nearby Polling Locations", nil);
-    }
+    NSString *earlyVoteMessage = NSLocalizedString(@"No Nearby Early Vote Sites",
+                                                   @"Text to display if the table view has no early vote sites to display");
+    NSString *pollingMessage = NSLocalizedString(@"No Nearby Polling Locations",
+                                                 @"Text to display if the table view has no polling locations to display");
+    self.emptyDataSource.emptyMessage = (type == VIPPollingLocationTypeEarlyVote)
+                                        ? earlyVoteMessage : pollingMessage;
 }
 
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position

@@ -18,7 +18,8 @@ NSString * const VIP_EMPTY_TABLECELL_ID = @"VIPEmptyTableCell";
 
 - (id) init
 {
-    return [self initWithEmptyMessage:NSLocalizedString(@"No Data Available", nil)];
+    return [self initWithEmptyMessage:NSLocalizedString(@"No Data Available",
+                                                        @"The default text to display in an empty table cell if no data is available.")];
 }
 
 // Designated Initializer

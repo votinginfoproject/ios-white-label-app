@@ -46,7 +46,8 @@
 {
     [super viewDidLoad];
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
-                            initWithEmptyMessage:NSLocalizedString(@"No Election Details Available", nil)];
+                            initWithEmptyMessage:NSLocalizedString(@"No Election Details Available",
+                                                                   @"Text displayed by the table view if there are no election details to display")];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
