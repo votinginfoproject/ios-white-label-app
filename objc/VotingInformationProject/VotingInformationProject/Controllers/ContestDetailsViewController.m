@@ -70,14 +70,16 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         return;
     }
     [self.tableData removeAllObjects];
-    self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available", nil);
+    self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available",
+                                                                         @"Contest details text displayed when election name not available");
     [self.tableData addObject:[self.contest getProperties]];
 
     if ([self.contest.type isEqualToString:REFERENDUM_API_ID]) {
         self.contestNameLabel.text = self.contest.referendumTitle;
-        self.title = NSLocalizedString(@"Referendum", nil);
+        self.title = NSLocalizedString(@"Referendum", @"Contest details referendum section title");
     } else {
-        self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available", nil);
+        self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available",
+                                                                              @"Contest details text displayed when office name not available");
         // Only add candidates for elections, not referenda
         [self.tableData addObject:[self.contest getSorted:@"candidates"
                                                byProperty:@"name"
@@ -130,11 +132,11 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == CDVC_TABLE_SECTION_PROPERTIES && [self.contest.type isEqualToString:REFERENDUM_API_ID]) {
-        return NSLocalizedString(@"Referendum Details", nil);
+        return NSLocalizedString(@"Referendum Details", @"Section title for referendum details");
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
-        return NSLocalizedString(@"Contest Details", nil);
+        return NSLocalizedString(@"Contest Details", @"Section title for contest details");
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
-        return NSLocalizedString(@"Candidates", nil);
+        return NSLocalizedString(@"Candidates", @"Section title for candidates' details");
     }
     return @"";
 }
@@ -204,7 +206,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     } else if ([segue.identifier isEqualToString:@"ContestUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
-        webView.title = NSLocalizedString(@"Website", nil);
+        webView.title = NSLocalizedString(@"Website", @"Title when viewing contest web page");
         webView.url = cell.url;
     }
 }

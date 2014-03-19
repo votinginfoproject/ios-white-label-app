@@ -46,7 +46,7 @@
     // Indicate an update is happening...
     // TODO: Add delay so this only shows if requests are taking more than x seconds
     self.showElectionButton.enabled = NO;
-    [self.showElectionButton setTitle:NSLocalizedString(@"Updating...", nil)
+    [self.showElectionButton setTitle:NSLocalizedString(@"Updating...", @"Message that displays while app loads election and voter info after user changes their address")
                              forState:UIControlStateDisabled];
 
     // update elections when we set a new userAddress
@@ -274,7 +274,7 @@
 - (void)displayGetElections
 {
     self.showElectionButton.enabled = YES;
-    [self.showElectionButton setTitle:NSLocalizedString(@"Show Upcoming Election", nil)
+    [self.showElectionButton setTitle:NSLocalizedString(@"Show Upcoming Election", @"Text for button on first screen to show upcoming election for user's address")
                              forState:UIControlStateNormal];
     [self.showElectionButton setHidden:NO];
     [self performSegueWithIdentifier: @"BallotView" sender: self.showElectionButton];
@@ -290,7 +290,7 @@
 {
     self.showElectionButton.enabled = NO;
     NSString *errorTitle = error.localizedDescription
-        ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", nil);
+        ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", @"Error message displayed in button on first screen when app cannot get election data");
     [self.showElectionButton setTitle:errorTitle forState:UIControlStateDisabled];
     [self.showElectionButton setHidden:NO];
 }

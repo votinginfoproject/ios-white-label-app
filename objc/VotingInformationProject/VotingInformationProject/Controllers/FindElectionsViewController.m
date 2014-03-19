@@ -41,7 +41,8 @@
 {
     [super viewWillAppear:animated];
     if (self.tabBarController) {
-        self.tabBarController.title = NSLocalizedString(@"More Elections", nil);
+        self.tabBarController.title = NSLocalizedString(@"More Elections",
+                                                        @"Label for bottom-right tab button to view more elections");
     }
 
     [self setOtherElections];

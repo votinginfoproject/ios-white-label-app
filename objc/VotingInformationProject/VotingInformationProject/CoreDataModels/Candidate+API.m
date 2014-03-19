@@ -47,24 +47,24 @@
     NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:3];
     if (self.candidateUrl) {
         [links addObject:@{
-                           @"buttonTitle": NSLocalizedString(@"Website", nil),
-                           @"description": NSLocalizedString(@"Website", nil),
+                           @"buttonTitle": NSLocalizedString(@"Website", @"Button name for candidate's website"),
+                           @"description": NSLocalizedString(@"Website", @"Link description for candidate's website"),
                            @"url": self.candidateUrl,
                            @"urlScheme": @(kCandidateLinkTypeWebsite)
                            }];
     }
     if (self.phone) {
         [links addObject:@{
-                           @"buttonTitle": NSLocalizedString(@"Call", nil),
-                           @"description": NSLocalizedString(@"Phone", nil),
+                           @"buttonTitle": NSLocalizedString(@"Call", @"Button name for candidate's phone number"),
+                           @"description": NSLocalizedString(@"Phone", @"Link description for candidate's phone number"),
                            @"url": self.phone,
                            @"urlScheme": @(kCandidateLinkTypePhone)
                            }];
     }
     if (self.email) {
         [links addObject:@{
-                           @"buttonTitle": NSLocalizedString(@"Email", nil),
-                           @"description": NSLocalizedString(@"Email", nil),
+                           @"buttonTitle": NSLocalizedString(@"Email", @"Button name for candidate's email address"),
+                           @"description": NSLocalizedString(@"Email", @"Link description for candidate's email address"),
                            @"url": self.email,
                            @"urlScheme": @(kCandidateLinkTypeEmail)
                            }];
