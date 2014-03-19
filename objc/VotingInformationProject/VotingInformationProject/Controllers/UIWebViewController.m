@@ -43,12 +43,14 @@
 - (void) showErrorAlert
 {
     NSString *message = [NSString stringWithFormat:@"%@: %@",
-                         NSLocalizedString(@"Unable to load URL", nil),
+                         NSLocalizedString(@"Unable to load URL",
+                                           @"Error message displayed when a web page doesn't load"),
                          self.url];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:message
                                                    delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"Ok", nil)
+                                          cancelButtonTitle:NSLocalizedString(@"Ok",
+                                                @"Label for button to exit error message alert window")
                                           otherButtonTitles:nil];
     [alert show];
 }

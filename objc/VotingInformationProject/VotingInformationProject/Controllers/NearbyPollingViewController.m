@@ -152,7 +152,8 @@ static const int LIST_VIEW = 1;
     [super viewWillAppear:animated];
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
-    tabBarController.title = NSLocalizedString(@"Polling Sites", nil);
+    tabBarController.title = NSLocalizedString(@"Polling Sites",
+                                               @"Label for polling sites tab button");
     self.originalRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
     tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 
@@ -189,7 +190,8 @@ static const int LIST_VIEW = 1;
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
             _userAddressMarker = [GMSMarker markerWithPosition:position];
-            _userAddressMarker.title = NSLocalizedString(@"Your Address", nil);
+            _userAddressMarker.title = NSLocalizedString(@"Your Address",
+                        @"Title for map marker pop-up on user's address");
             _userAddressMarker.snippet = self.userAddress.address;
             _userAddressMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
             _userAddressMarker.map = self.mapView;
@@ -303,12 +305,16 @@ static const int LIST_VIEW = 1;
         return;
     }
 
-    NSString *openInMaps = NSLocalizedString(@"Open in Maps", nil);
-    NSString *directionsTo = NSLocalizedString(@"Directions To Here", nil);
-    NSString *directionsFrom = NSLocalizedString(@"Directions From Here", nil);
+    NSString *openInMaps = NSLocalizedString(@"Open in Maps",
+                                @"Title in window to get directions when marker's pop-up gets clicked");
+    NSString *directionsTo = NSLocalizedString(@"Directions To Here",
+                                @"Label in window for directions destination");
+    NSString *directionsFrom = NSLocalizedString(@"Directions From Here",
+                                @"Label in window for directions origin");
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
                                                              delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",
+                                                        @"Label for directions cancel button")
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:directionsTo, directionsFrom, nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
@@ -335,9 +341,11 @@ static const int LIST_VIEW = 1;
         return;
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:NSLocalizedString(@"Sorry, we are unable to get directions for this location.", nil)
+                                                    message:NSLocalizedString(@"Sorry, we are unable to get directions for this location.",
+                                                        @"Error message when directions not found")
                                                    delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                          cancelButtonTitle:NSLocalizedString(@"OK",
+                                                        @"Label for button to exit directions window")
                                           otherButtonTitles:nil];
 
     NSString *mapsRootUrl = @"http://maps.apple.com/?saddr=%@&daddr=%@";
