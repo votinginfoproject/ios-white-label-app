@@ -99,8 +99,7 @@ NSDictionary *_stringToErrorCode;
     NSString *internalLookupError = NSLocalizedString(@"The server encountered an error while trying to retrieve your information. This is probably our fault, not yours.", @"Error message displayed when server error occurs while retrieving information");
     NSString *genericAPIError = NSLocalizedString(@"An unknown API error has occurred. Please try again later.", @"Error message displayed when generic API error encountered while looking up information");
     NSString *noValidElections = NSLocalizedString(@"Sorry, there is no information for an upcoming election near you. Information about elections is generally available two to four weeks before the election date.", @"Error message displayed when no valid elections found near address");
-    NSString *invalidUserAddress = NSLocalizedString(@"Weird. It looks like we can't find your address. Maybe double check that it's right and try again.",
-        @"Error message displayed when address user entered cannot be found");
+    NSString *invalidUserAddress = NSLocalizedString(@"Weird. It looks like we can't find your address. Maybe double check that it's right and try again.", @"Error message displayed when address user entered cannot be found");
     NSString *geocoderError = NSLocalizedString(@"Sorry, there are no location matches for this address. Try reformatting it or type a new one.", @"Error message displayed on geocoder error (address user entered cannot be found)");
 
 
