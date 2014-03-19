@@ -8,7 +8,6 @@
 #import "CandidateDetailsViewController.h"
 
 #import "UIWebViewController.h"
-#import "VIPEmptyCandidateDataSource.h"
 
 
 @interface CandidateDetailsViewController ()

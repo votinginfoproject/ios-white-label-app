@@ -7,12 +7,16 @@
 
 #import "BallotViewController.h"
 #import "ContestDetailsViewController.h"
+#import "VIPEmptyTableViewDataSource.h"
 #import "Election+API.h"
 #import "Contest+API.h"
+
+#define VIP_BALLOT_TABLECELL_HEIGHT 44
 
 @interface BallotViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
+@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @end
 
 @implementation BallotViewController {
@@ -31,6 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
+                            initWithEmptyMessage:NSLocalizedString(@"No Elections Available", nil)];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -48,6 +56,11 @@
     }];
 }
 
+- (id<UITableViewDataSource>)configureDataSource
+{
+    return ([_contests count] > 0) ? self : self.emptyDataSource;
+}
+
 /**
  *  Update UI with new contests
  */
@@ -63,6 +76,7 @@
     _contests = [self.election getSorted:@"contests"
                               byProperty:@"office"
                                ascending:YES];
+    self.tableView.dataSource = [self configureDataSource];
     [self.tableView reloadData];
 }
 
@@ -97,6 +111,13 @@
     cell.textLabel.text = title;
     cell.detailTextLabel.text = contest.type;
     return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([_contests count] > 0) ? VIP_BALLOT_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
 #pragma mark - Navigation
