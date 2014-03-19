@@ -77,7 +77,11 @@ static const int LIST_VIEW = 1;
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
                                                  withTitle:sender.name
                                                 andSnippet:sender.address];
-                    marker.icon = [UIImage imageNamed:@"Polling_earlyvoting.png"];
+                    if (location.isEarlyVoteSite) {
+                        marker.icon = [UIImage imageNamed:@"Polling_earlyvoting.png"];
+                    } else {
+                        marker.icon = [UIImage imageNamed:@"Polling_location.png"];
+                    }
                     marker.map = self.mapView;
                     marker.userData = sender.location.address;
                     sender.marker = marker;
@@ -187,7 +191,7 @@ static const int LIST_VIEW = 1;
             _userAddressMarker = [GMSMarker markerWithPosition:position];
             _userAddressMarker.title = NSLocalizedString(@"Your Address", nil);
             _userAddressMarker.snippet = self.userAddress.address;
-            _userAddressMarker.icon = [UIImage imageNamed:@"Polling_location.png"];
+            _userAddressMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
             _userAddressMarker.map = self.mapView;
             for (PollingLocationWrapper *cell in self.cells) {
                 cell.mapOrigin = position;
