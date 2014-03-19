@@ -16,8 +16,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         propertyList = @{
-                 @"id": NSLocalizedString(@"ID", nil),
-                 @"name": NSLocalizedString(@"Name", nil)
+                 @"id": NSLocalizedString(@"ID", @"Generic label for a property ID"),
+                 @"name": NSLocalizedString(@"Name", @"Generic label for a property name")
         };
     });
     return propertyList;

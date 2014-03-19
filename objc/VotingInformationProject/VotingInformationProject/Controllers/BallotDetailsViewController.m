@@ -137,7 +137,8 @@
 {
     switch (section) {
         case 0:
-            return NSLocalizedString(@"Election Administration Body", nil);
+            return NSLocalizedString(@"Election Administration Body",
+                                     @"List header for election 'Details' tab");
         default:
             return @"";
     }
@@ -148,7 +149,7 @@
     if ([segue.identifier isEqualToString:@"BallotUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
-        webView.title = NSLocalizedString(@"Website", nil);
+        webView.title = NSLocalizedString(@"Website", @"Link name for ballot's website");
         webView.url = cell.url;
     }
 }

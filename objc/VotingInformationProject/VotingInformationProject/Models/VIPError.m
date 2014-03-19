@@ -90,20 +90,17 @@ NSDictionary *_stringToErrorCode;
     //  NSString * const foo = @"foo";
     //  NSString *localizedFoo = NSLocalizedString(foo, nil);
     // are not picked up by the genstrings tool.
-    NSString *noStreetSegmentFound = NSLocalizedString(@"We found your address but we don't currently have any information about elections in your area.  Sorry :( .", nil);
-    NSString *addressUnparseable = NSLocalizedString(@"Sorry, we couldn't understand the address you entered. Please reformat your address or provide more detail such as street name.", nil);
-    NSString *noAddress = NSLocalizedString(@"No address provided", nil);
-    NSString *multipleStreetSegmentsFound = NSLocalizedString(@"We can't find information for your address, but we have some for nearby ones", nil);
-    NSString *electionOver = NSLocalizedString(@"This election is over.", nil);
-    NSString *electionUnknown = NSLocalizedString(@"Unknown election. Please try again later.", nil);
-    NSString *internalLookupError = NSLocalizedString(@"The server encountered an error while trying to retrieve your information. This is probably our fault, not yours.", nil);
-
-    NSString *genericAPIError = NSLocalizedString(@"An unknown API error has occurred. Please try again later.", nil);
-    NSString *noValidElections = NSLocalizedString(@"Sorry, there is no information for an upcoming election near you. Information about elections is generally available two to four weeks before the election date.", nil);
-    NSString *invalidUserAddress = NSLocalizedString(@"Weird. It looks like we can't find your address. Maybe double check that it's right and try again.", nil);
-
-
-    NSString *geocoderError = NSLocalizedString(@"Sorry, there are no location matches for this address. Try reformatting it or type a new one.", nil);
+    NSString *noStreetSegmentFound = NSLocalizedString(@"We found your address but we don't currently have any information about elections in your area.  Sorry :( .", @"Error message displayed when no elections information found for address");
+    NSString *addressUnparseable = NSLocalizedString(@"Sorry, we couldn't understand the address you entered. Please reformat your address or provide more detail such as street name.", @"Error message displayed when address cannot be read as entered");
+    NSString *noAddress = NSLocalizedString(@"No address provided", @"Error message displayed when no address entered by user");
+    NSString *multipleStreetSegmentsFound = NSLocalizedString(@"We can't find information for your address, but we have some for nearby ones", @"Error message displayed when address not found, but nearby locations were returned");
+    NSString *electionOver = NSLocalizedString(@"This election is over.", @"Error message displayed when election has ended");
+    NSString *electionUnknown = NSLocalizedString(@"Unknown election. Please try again later.", @"Error message displayed when selected election cannot be found");
+    NSString *internalLookupError = NSLocalizedString(@"The server encountered an error while trying to retrieve your information. This is probably our fault, not yours.", @"Error message displayed when server error occurs while retrieving information");
+    NSString *genericAPIError = NSLocalizedString(@"An unknown API error has occurred. Please try again later.", @"Error message displayed when generic API error encountered while looking up information");
+    NSString *noValidElections = NSLocalizedString(@"Sorry, there is no information for an upcoming election near you. Information about elections is generally available two to four weeks before the election date.", @"Error message displayed when no valid elections found near address");
+    NSString *invalidUserAddress = NSLocalizedString(@"Weird. It looks like we can't find your address. Maybe double check that it's right and try again.", @"Error message displayed when address user entered cannot be found");
+    NSString *geocoderError = NSLocalizedString(@"Sorry, there are no location matches for this address. Try reformatting it or type a new one.", @"Error message displayed on geocoder error (address user entered cannot be found)");
 
 
     _NoStreetSegmentFound = [[VIPErrorCode alloc] initWithCode:101

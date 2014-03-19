@@ -78,10 +78,10 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     [self updateData];
 
     self.nameLabel.text = self.candidate.name
-        ? self.candidate.name : NSLocalizedString(@"Not Available", nil);
+        ? self.candidate.name : NSLocalizedString(@"Not Available", @"Displays in place of candidate's name when candidate's name not found");
 
     self.affiliationLabel.text = self.candidate.party
-        ? self.candidate.party : NSLocalizedString(@"No Party Information Available", nil);
+        ? self.candidate.party : NSLocalizedString(@"No Party Information Available", @"Displays in place of candidate's party affiliation when candidate's party is not found");
 
     [self.tableView reloadData];
 }
@@ -135,9 +135,10 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == CDVC_TABLE_SECTION_LINKS) {
-        return NSLocalizedString(@"Candidate Details", nil);
+        return NSLocalizedString(@"Candidate Details", @"Section header for candidate's details");
     } else if (section == CDVC_TABLE_SECTION_SOCIAL) {
-        return NSLocalizedString(@"Social Media Channels", nil);
+        return NSLocalizedString(@"Social Media Channels",
+                                 @"Section header for candidate's social media information");
     }
     return @"";
 }
@@ -181,7 +182,7 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
         CandidateSocialCell *cell = (CandidateSocialCell*)sender;
         UIWebViewController *webView = (UIWebViewController*)segue.destinationViewController;
         webView.url = cell.url;
-        webView.title = NSLocalizedString(@"Social", nil);
+        webView.title = NSLocalizedString(@"Social", @"Title for browser window when viewing canditate's social media site");
     }
 }
 
