@@ -22,4 +22,7 @@
  */
 - (IBAction)onViewSwitcherClicked:(id)sender;
 
+/** Open action sheet to prompt for getting directions from either map or list */
+- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
+
 @end
