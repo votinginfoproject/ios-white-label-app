@@ -11,8 +11,6 @@
 #import "Election+API.h"
 #import "Contest+API.h"
 
-#define VIP_BALLOT_TABLECELL_HEIGHT 44
-
 @interface BallotViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
@@ -22,6 +20,8 @@
 @implementation BallotViewController {
     NSArray *_contests;
 }
+
+const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

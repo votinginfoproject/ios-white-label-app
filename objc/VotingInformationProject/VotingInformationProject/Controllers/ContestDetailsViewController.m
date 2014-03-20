@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *contestNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
-@property (assign, nonatomic) BOOL isPropertiesEmpty;
-@property (assign, nonatomic) BOOL isCandidatesEmpty;
 
 // tableData is a 2d array where:
 //  first dimension is # of sections
@@ -103,23 +101,21 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     return [self.tableData count];
 }
 
-- (void)setIsEmpty:(BOOL)isEmpty forSection:(NSInteger)section
+- (BOOL)isSectionEmpty:(NSInteger)section
 {
-    if (section == CDVC_TABLE_SECTION_PROPERTIES) {
-        self.isPropertiesEmpty = isEmpty;
-    } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
-        self.isCandidatesEmpty = isEmpty;
+    NSUInteger sections = [self.tableData count];
+    if (section >= sections || section < 0) {
+        return YES;
     }
+    return ([self.tableData[section] count] == 0);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSUInteger rows = [self.tableData[section] count];
     if (rows == 0) {
-        [self setIsEmpty:YES forSection:section];
         return 1;
     } else {
-        [self setIsEmpty:NO forSection:section];
         return rows;
     }
 }
@@ -142,13 +138,14 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     }
 
     // If we have a url, make this cell segue to UIWebViewController
+    BOOL isSectionEmpty = [self isSectionEmpty:section];
     if (section == CDVC_TABLE_SECTION_PROPERTIES && dataUrl.scheme && [dataUrl.scheme length] > 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID forIndexPath:indexPath];
         ContestUrlCell *urlCell = (ContestUrlCell*)cell;
         [urlCell configure:property[@"title"] withUrl:property[@"data"]];
-    } else if (section == CDVC_TABLE_SECTION_PROPERTIES && !self.isPropertiesEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_PROPERTIES && !isSectionEmpty) {
         [self configurePropertiesTableViewCell:cell withDictionary:property];
-    } else if (section == CDVC_TABLE_SECTION_CANDIDATES && !self.isCandidatesEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_CANDIDATES && !isSectionEmpty) {
         Candidate *candidate = (Candidate *)self.tableData[section][indexPath.item];
         [self configureCandidateTableViewCell:cell withCandidate:candidate];
     }
@@ -170,9 +167,10 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
-    if (section == CDVC_TABLE_SECTION_CANDIDATES && self.isCandidatesEmpty) {
+    BOOL isSectionEmpty = [self isSectionEmpty:section];
+    if (section == CDVC_TABLE_SECTION_CANDIDATES && isSectionEmpty) {
         return CODVC_TABLECELL_HEIGHT_EMPTY;
-    } else if (section == CDVC_TABLE_SECTION_PROPERTIES && self.isPropertiesEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_PROPERTIES && isSectionEmpty) {
         return CODVC_TABLECELL_HEIGHT_EMPTY;
     } else {
         return CODVC_TABLECELL_HEIGHT_DEFAULT;
@@ -185,11 +183,12 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
  */
 - (NSString*)cellIdentifierFor:(NSInteger) section
 {
-    if (section == CDVC_TABLE_SECTION_PROPERTIES && self.isPropertiesEmpty) {
+    BOOL isSectionEmpty = [self isSectionEmpty:section];
+    if (section == CDVC_TABLE_SECTION_PROPERTIES && isSectionEmpty) {
         return CDVC_TABLE_CELLID_PROPERTIES_EMPTY;
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
         return CDVC_TABLE_CELLID_PROPERTIES;
-    } else if (section == CDVC_TABLE_SECTION_CANDIDATES && self.isCandidatesEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_CANDIDATES && isSectionEmpty) {
         return CDVC_TABLE_CELLID_CANDIDATES_EMPTY;
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
         return CDVC_TABLE_CELLID_CANDIDATES;
