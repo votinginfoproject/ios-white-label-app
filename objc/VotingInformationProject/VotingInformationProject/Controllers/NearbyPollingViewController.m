@@ -38,6 +38,9 @@
 
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 
+/** Open action sheet to prompt for getting directions from either map or list */
+- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
+
 @end
 
 
