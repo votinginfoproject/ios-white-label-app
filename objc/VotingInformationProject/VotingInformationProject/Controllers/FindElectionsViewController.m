@@ -10,8 +10,6 @@
 #import "VIPTabBarController.h"
 #import "VIPEmptyTableViewDataSource.h"
 
-#define VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT 44
-
 @interface FindElectionsViewController ()
 
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
@@ -21,6 +19,7 @@
     NSArray *_elections;
 }
 
+const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
 - (void)viewDidLoad
 {
     [super viewDidLoad];

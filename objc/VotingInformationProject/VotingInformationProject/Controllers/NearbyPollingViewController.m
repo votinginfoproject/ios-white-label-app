@@ -17,8 +17,6 @@
 #define AS_DIRECTIONS_FROM_INDEX 1
 #define AS_DIRECTIONS_CANCEL 2
 
-#define VIP_POLLING_TABLECELL_HEIGHT 76
-
 @interface NearbyPollingViewController ()
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -51,6 +49,8 @@
 
 static const int MAP_VIEW = 0;
 static const int LIST_VIEW = 1;
+
+const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (NSMutableArray*)cells
 {

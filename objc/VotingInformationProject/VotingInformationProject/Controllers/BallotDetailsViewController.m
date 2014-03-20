@@ -13,8 +13,6 @@
 
 #import "ContestUrlCell.h"
 
-#define VIP_DETAILS_TABLECELL_HEIGHT 44
-
 @interface BallotDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
@@ -24,6 +22,8 @@
 @end
 
 @implementation BallotDetailsViewController
+
+const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
 
 - (NSMutableArray*)tableData
 {

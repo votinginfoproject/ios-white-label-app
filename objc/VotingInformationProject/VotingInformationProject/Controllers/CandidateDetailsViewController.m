@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *affiliationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* tableData;
-@property (assign, nonatomic) BOOL isCandidatesEmpty;
-@property (assign, nonatomic) BOOL isSocialEmpty;
 
 @end
 
@@ -93,24 +91,21 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     return [_tableData count];
 }
 
-- (void)setIsEmpty:(BOOL)isEmpty forSection:(NSInteger)section
+- (BOOL)isSectionEmpty:(NSInteger)section
 {
-    if (section == CDVC_TABLE_SECTION_LINKS) {
-        self.isCandidatesEmpty = isEmpty;
-    } else if (section == CDVC_TABLE_SECTION_SOCIAL) {
-        self.isSocialEmpty = isEmpty;
+    NSUInteger sections = [self.tableData count];
+    if (section >= sections || section < 0) {
+        return YES;
     }
+    return ([self.tableData[section] count] == 0);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSUInteger rows = [_tableData[section] count];
-    if (rows == 0) {
-        [self setIsEmpty:YES forSection:section];
+    if ([self isSectionEmpty:section]) {
         return 1;
     } else {
-        [self setIsEmpty:NO forSection:section];
-        return rows;
+        return [self.tableData[section] count];
     }
 }
 
@@ -120,11 +115,12 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     NSString *cellIdentifier = [self cellIdentifierFor:section];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
-    if (section == CDVC_TABLE_SECTION_LINKS && !self.isCandidatesEmpty) {
+    BOOL isSectionEmpty = [self isSectionEmpty:section];
+    if (section == CDVC_TABLE_SECTION_LINKS && !isSectionEmpty) {
         NSDictionary* link = self.tableData[indexPath.section][indexPath.item];
         CandidateLinkCell* linkCell = (CandidateLinkCell*)cell;
         [linkCell configure:link];
-    } else if (section == CDVC_TABLE_SECTION_SOCIAL && !self.isSocialEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_SOCIAL && !isSectionEmpty) {
         SocialChannel* socialChannel = self.tableData[indexPath.section][indexPath.item];
         CandidateSocialCell* socialCell = (CandidateSocialCell*)cell;
         [socialCell configure:socialChannel];
@@ -146,9 +142,10 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
-    if (section == CDVC_TABLE_SECTION_LINKS && self.isCandidatesEmpty) {
+    BOOL isSectionEmpty = [self isSectionEmpty:section];
+    if (section == CDVC_TABLE_SECTION_LINKS && isSectionEmpty) {
         return CDVC_TABLECELL_HEIGHT_EMPTY;
-    } else if (section == CDVC_TABLE_SECTION_SOCIAL && self.isSocialEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_SOCIAL && isSectionEmpty) {
         return CDVC_TABLECELL_HEIGHT_EMPTY;
     } else {
         return CDVC_TABLECELL_HEIGHT_DEFAULT;
@@ -161,11 +158,12 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
  */
 - (NSString*)cellIdentifierFor:(NSInteger) section
 {
-    if (section == CDVC_TABLE_SECTION_LINKS && self.isCandidatesEmpty) {
+    BOOL isSectionEmpty = [self isSectionEmpty:section];
+    if (section == CDVC_TABLE_SECTION_LINKS && isSectionEmpty) {
         return CDVC_TABLE_CELLID_LINKS_EMPTY;
     } else if (section == CDVC_TABLE_SECTION_LINKS) {
         return CDVC_TABLE_CELLID_LINKS;
-    } else if (section == CDVC_TABLE_SECTION_SOCIAL && self.isSocialEmpty) {
+    } else if (section == CDVC_TABLE_SECTION_SOCIAL && isSectionEmpty) {
         return CDVC_TABLE_CELLID_SOCIAL_EMPTY;
     } else if (section == CDVC_TABLE_SECTION_SOCIAL) {
         return CDVC_TABLE_CELLID_SOCIAL;
