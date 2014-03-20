@@ -311,7 +311,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
  *  Display an ActionSheet to allow the user to get directions
  *  when either polling location map marker or list entry is tapped
  *
- *  @param pollingLocationIndex the index of the polling location cell	
+ *  @param pollingLocationIndex the index of the polling location cell
  */
 - (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
 {
@@ -359,7 +359,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         return;
     }
 
-    // open action sheet
     [self openDirectionsActionSheet:index];
 }
 
@@ -464,9 +463,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger index = indexPath.row;
-    // open directions action sheet
-    [self openDirectionsActionSheet:index];
+    [self openDirectionsActionSheet:indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
