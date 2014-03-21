@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "VIPViewController.h"
 #import "Contest+API.h"
 
 /**
@@ -14,7 +15,7 @@
  Has two sections, first is key/value properties of the contest,
  second is a list of candidates for the contest
  */
-@interface ContestDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ContestDetailsViewController : VIPViewController <UITableViewDataSource, UITableViewDelegate>
 
 extern NSString * const REFERENDUM_API_ID;
 

@@ -25,13 +25,13 @@
     UIImage *image = nil;
     NSString *lowerCaseType = [self.type lowercaseString];
     if ([lowerCaseType isEqualToString:@"facebook"]) {
-        image = [UIImage imageNamed:@"facebook-logo-blue"];
+        image = [UIImage imageNamed:@"Candidate_facebook"];
     } else if ([lowerCaseType isEqualToString:@"twitter"]) {
-        image = [UIImage imageNamed:@"twitter-logo-blue"];
+        image = [UIImage imageNamed:@"Candidate_twitter"];
     } else if ([lowerCaseType isEqualToString:@"googleplus"]) {
-        image = [UIImage imageNamed:@"googleplus-logo-red"];
+        image = [UIImage imageNamed:@"Candidate_google"];
     } else if ([lowerCaseType isEqualToString:@"youtube"]) {
-        image = [UIImage imageNamed:@"youtube-logo-red"];
+        image = [UIImage imageNamed:@"Candidate_youtube"];
     }
     return image;
 }

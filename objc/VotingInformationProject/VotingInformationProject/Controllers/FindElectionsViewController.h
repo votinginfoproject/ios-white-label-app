@@ -10,10 +10,11 @@
 
 #import "AFNetworking/AFNetworking.h"
 
+#import "VIPTableViewController.h"
 #import "VIPTabBarController.h"
 #import "Election+API.h"
 #import "FindElectionsCell.h"
 
-@interface FindElectionsViewController : UITableViewController
+@interface FindElectionsViewController : VIPTableViewController
 
 @end

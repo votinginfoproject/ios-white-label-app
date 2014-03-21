@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "AppSettings.h"
+#import "VIPColor.h"
 
 @implementation AppDelegate
 
@@ -18,9 +20,32 @@
     // Load GoogleMaps API Key from file
     // Default key provided in repo is azaveadev@azavea.com key
     // Instructions on using your own key are in the README: necessary if you change the app bundle identifier
-    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
-    [GMSServices provideAPIKey:[appSettings objectForKey:@"GoogleMapsAPIKey"]];
+    [GMSServices provideAPIKey:[[AppSettings settings] objectForKey:@"GoogleMapsAPIKey"]];
+
+    // Sets color of navigation bars
+    self.window.tintColor = [VIPColor navBarTextColor];
+
+    // Global tab bar styling
+    //[[UITabBar appearance] setTranslucent:NO];
+    [[UITabBar appearance] setBarTintColor:[VIPColor tabBarBackgroundColor]];
+    UIColor *titleNormalColor = [VIPColor tabBarTextColor];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: titleNormalColor}
+                                             forState:UIControlStateNormal];
+    UIColor *titleHighlightedColor = [VIPColor tabBarSelectedTextColor];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: titleHighlightedColor}
+                                             forState:UIControlStateSelected];
+
+    // Table View Cell Appearance
+    [[UITableView appearance] setBackgroundColor:[UIColor clearColor]];
+    [[UITableViewCell appearance] setBackgroundColor:[VIPColor color:[VIPColor primaryTextColor] withAlpha:0.25]];
+
+    [[UILabel appearanceWhenContainedIn:[UITableViewCell class], nil] setTextColor:[VIPColor primaryTextColor]];
+    // Re-override the label background color in UITableViewCell. Apparently the call that sets
+    // the UITableViewCell background color above also sets it for child elements?
+    [[UILabel appearanceWhenContainedIn:[UITableViewCell class], nil] setBackgroundColor:[UIColor clearColor]];
+
+    // Segmented control Appearance
+    [[UISegmentedControl appearance] setTintColor:[VIPColor primaryTextColor]];
 
     return YES;
 }

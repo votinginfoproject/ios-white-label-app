@@ -7,6 +7,7 @@
 //
 
 #import "Election+API.h"
+#import "AppSettings.h"
 
 @implementation Election (API)
 
@@ -46,9 +47,7 @@
     // TODO: Attempt to get stored elections from the cache and display those rather than
     //          making a network request
 
-    NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
-    BOOL appDebug = [[appSettings valueForKey:@"DEBUG"] boolValue];
+    BOOL appDebug = [[[AppSettings settings] valueForKey:@"DEBUG"] boolValue];
     // Setup request manager
     // TODO: Refactor into separate class if multiple requests are made
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -56,7 +55,7 @@
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
                                                          setByAddingObjectsFromSet:[NSSet setWithObject:@"text/plain"]];
 
-    NSString *requestUrl = [appSettings objectForKey:@"ElectionListURL"];
+    NSString *requestUrl = [[AppSettings settings] objectForKey:@"ElectionListURL"];
     NSLog(@"URL: %@", requestUrl);
     NSDictionary *requestParams = nil;
 
@@ -203,9 +202,6 @@
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
 
-    NSString *appSettingsPath = [[NSBundle mainBundle] pathForResource:@"settings" ofType:@"plist"];
-    NSDictionary *appSettings = [[NSDictionary alloc] initWithContentsOfFile:appSettingsPath];
-
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // Serializes the http body POST parameters as JSON, which is what the Civic Info API expects
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -218,7 +214,7 @@
     // Add query params to the url since AFNetworking serializes these internally anyway
     //  and the parameters parameter below attaches only to the http body for POST
     // Always use officialOnly = True
-    if ([appSettings valueForKey:@"DEBUG"]) {
+    if ([[AppSettings settings] valueForKey:@"DEBUG"]) {
         urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True&productionDataOnly=false";
     }
     NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey];

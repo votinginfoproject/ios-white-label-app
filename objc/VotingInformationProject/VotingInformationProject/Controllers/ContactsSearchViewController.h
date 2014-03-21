@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 
+#import "VIPViewController.h"
 #import "UIWebViewController.h"
 #import "VIPTabBarController.h"
 
@@ -16,7 +17,7 @@
 #import "UserAddress+API.h"
 #import "Election+API.h"
 
-@interface ContactsSearchViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface ContactsSearchViewController : VIPViewController <ABPeoplePickerNavigationControllerDelegate>
 
 - (IBAction) showPeoplePicker:(id)sender;
 
