@@ -96,7 +96,9 @@ const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!_elections.count) return; // if no elections to select
+    if (!_elections.count) {
+        return; // if no elections to select
+    }
 
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
