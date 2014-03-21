@@ -39,6 +39,9 @@
 
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 
+/** Open action sheet to prompt for getting directions from either map or list */
+- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
+
 @end
 
 
@@ -320,6 +323,32 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ *  Display an ActionSheet to allow the user to get directions
+ *  when either polling location map marker or list entry is tapped
+ *
+ *  @param pollingLocationIndex the index of the polling location cell
+ */
+- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
+{
+    NSString *openInMaps = NSLocalizedString(@"Open in Maps",
+                                             @"Title in window to get directions when marker's pop-up gets clicked");
+    NSString *directionsTo = NSLocalizedString(@"Directions To Here",
+                                               @"Label in window for directions destination");
+    NSString *directionsFrom = NSLocalizedString(@"Directions From Here",
+                                                 @"Label in window for directions origin");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",
+                                                                                        @"Label for directions cancel button")
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:directionsTo, directionsFrom, nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    actionSheet.tag = pollingLocationIndex;
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+}
+
+
 #pragma mark - GMSMapView delegate
 
 /**
@@ -346,21 +375,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         return;
     }
 
-    NSString *openInMaps = NSLocalizedString(@"Open in Maps",
-                                             @"Title in window to get directions when marker's pop-up gets clicked");
-    NSString *directionsTo = NSLocalizedString(@"Directions To Here",
-                                               @"Label in window for directions destination");
-    NSString *directionsFrom = NSLocalizedString(@"Directions From Here",
-                                                 @"Label in window for directions origin");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",
-                                                                                        @"Label for directions cancel button")
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:directionsTo, directionsFrom, nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    actionSheet.tag = index;
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+    [self openDirectionsActionSheet:index];
 }
 
 #pragma mark - ActionSheet Delegate
@@ -460,6 +475,12 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.cells.count) return;  // do not give directions on empty list item
+    [self openDirectionsActionSheet:indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
