@@ -479,7 +479,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.cells.count) return;  // do not give directions on empty list item
+    if (!self.cells.count) {
+        return;  // do not give directions on empty list item
+    }
     [self openDirectionsActionSheet:indexPath.row];
 }
 
