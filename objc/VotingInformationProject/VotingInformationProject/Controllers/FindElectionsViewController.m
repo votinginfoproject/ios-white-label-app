@@ -9,6 +9,7 @@
 #import "FindElectionsViewController.h"
 #import "VIPTabBarController.h"
 #import "VIPEmptyTableViewDataSource.h"
+#import "VIPColor.h"
 
 @interface FindElectionsViewController ()
 

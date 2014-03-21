@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VIPTableViewController.h"
 #import "Election+API.h"
 
-@interface BallotDetailsViewController : UITableViewController
+@interface BallotDetailsViewController : VIPTableViewController
 
 @property (strong, nonatomic) Election *election;
 

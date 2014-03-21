@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VIPTableViewController.h"
 
-@interface AboutViewController : UITableViewController
+@interface AboutViewController : VIPTableViewController
 
 @end

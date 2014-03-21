@@ -7,12 +7,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "VIPViewController.h"
 #import "Candidate+API.h"
 #import "CandidateLinkCell.h"
 #import "CandidateSocialCell.h"
 #import "SocialChannel.h"
 
-@interface CandidateDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CandidateDetailsViewController : VIPViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Candidate* candidate;
 

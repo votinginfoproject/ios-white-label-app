@@ -10,6 +10,7 @@
 #import "CandidateDetailsViewController.h"
 #import "UIWebViewController.h"
 #import "ContestUrlCell.h"
+#import "VIPColor.h"
 
 
 @interface ContestDetailsViewController ()
@@ -51,6 +52,9 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+
+    self.contestNameLabel.textColor = [VIPColor primaryTextColor];
+    self.electionNameLabel.textColor = [VIPColor secondaryTextColor];
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -205,6 +209,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
                           withDictionary:(NSDictionary*)property
 {
     cell.textLabel.text = property[@"title"];
+    cell.textLabel.textColor = [VIPColor secondaryTextColor];
     cell.detailTextLabel.text = property[@"data"];
 }
 

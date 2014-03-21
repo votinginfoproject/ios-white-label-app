@@ -10,6 +10,7 @@
 #import "VIPTabBarController.h"
 #import "UIWebViewController.h"
 #import "State+API.h"
+#import "VIPColor.h"
 
 #import "ContestUrlCell.h"
 
@@ -48,6 +49,9 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
                             initWithEmptyMessage:NSLocalizedString(@"No Election Details Available",
                                                                    @"Text displayed by the table view if there are no election details to display")];
+    self.electionNameLabel.textColor = [VIPColor primaryTextColor];
+    self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
+
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -143,6 +147,12 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
         default:
             return @"";
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UIColor *textColor = [VIPColor primaryTextColor];
+    view.backgroundColor = [VIPColor color:textColor withAlpha:0.5];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
