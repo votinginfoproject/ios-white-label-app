@@ -20,4 +20,14 @@
     return appSettingsDict;
 }
 
++ (NSString*)UIStringForKey:(NSString *)key
+{
+    NSString *uiString = [[self settings] valueForKey:key];
+    if (!uiString) {
+        uiString = key;
+        NSLog(@"Add value for key %@ in settings.plist", key);
+    }
+    return uiString;
+}
+
 @end
