@@ -120,9 +120,16 @@
                               forState:UIControlStateNormal];
     [self.showElectionButton setTitleColor:[VIPColor primaryTextColor]
                                   forState:UIControlStateNormal];
+
+    self.brandNameLabel.text = [[AppSettings UIStringForKey:@"BrandNameText"] uppercaseString];
+    self.vipLabel.text = NSLocalizedString(@"Voting Information",
+                                           @"Localized brand name for the Voting Information Project");
+    self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to live.",
+                                                      @"App home page instruction text for the address text field and contacts picker");
 }
 
-- (UIStatusBarStyle) preferredStatusBarStyle {
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
