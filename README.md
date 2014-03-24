@@ -1,55 +1,95 @@
-ios7-white-label-app
-====================
+# ios7-white-label-app
 
-Voting Information Project
-
-Build Status
-------------
 Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-label-app.png?branch=develop)](https://travis-ci.org/votinginfoproject/ios7-white-label-app)
 
-Building the App
-----------------
 
-1. Before opening xcode:
-    1. copy VotingInformationProject/CivicAPIKey.plist.template to VotingInformationProject/CivicAPIKey.plist and paste your Google Civic API browser key between the <string></string> tag 
-    2. copy VotingInformationProject/settings.plist.template to VotingInformationProject/settings.plist
+## Building/Running the App
 
-2. Install cocoapods:
+
+### Project Dependencies
+
+First you must install the package manager CocoaPods on your Mac:
+http://cocoapods.org/
 ```
 sudo gem install cocoapods
 ```
 
-3. cd to directory with podfile
 
-4. Run:
+### Setting up the project
+
+First, clone the repository and cd to the project root directory (the directory with this README)
+
+Then, install the project's third party libraries via CocoaPods:
 ```
-pod install
+cd objc/VotingInformationProject && pod install
 ```
 
-5. Open xcode with the VotingInformationProject.xcworkspace file, rather
-    than the xcodeproj file
+The project uses two plist files for configuration and they need to be copied from their template
+files for use. From the objc/VotingInformationProject directory, do:
 
-6. In settings.plist, configure the following keys:
-  * ElectionListURL
-    * URL to json file that matches the form of: https://developers.google.com/civic-information/docs/us_v1/elections/electionQuery
-    * Sample elections.json in xcode project
+```
+cd VotingInformationProject
+// Your relative path should now be: 
+// objc/VotingInformationProject/VotingInformationProject
+cp CivicInfoAPIKey.plist.template CivicInfoAPIKey.plist
+cp settings.plist.template settings.plist
+```
 
-Regenerating Localized Strings File
----------------------------------
+The defaults for the settings.plist file should work, but can be configured.
+See SETTINGS.md file for details.
+
+In order to access the Google Voting Information API, you will need an API browser key.
+Follow the instructions below in the section 'Updating the Civic Info API Key'.
+
+
+### Running the project
+
+In the objc/VotingInformationProject, open the project in Xcode by opening the file:
+```
+VotingInformationProject.xcworkspace
+```
+WARNING: Because the project uses CocoaPods, you must always open the project with this
+.xcworkspace file. The project will not build correctly if you open the project using
+the standard .xcproject file.
+
+Once open in xcode, run the project and it will open in the simulator.
+
+
+### Troubleshooting
+
+If the project does not build or run:
+  - Ensure you opened the project using the .xcworkspace file
+  - Ensure you copied both the settings.plist and CivicInfoAPIKey.plist files from their templates
+
+If no data loads:
+  - Ensure you correctly copied your browser Civic Info API key to the proper location (between the <string> tags) in the CivicInfoAPIKey.plist file.
+
+
+## Regenerating Localized Strings File
+
 Used: http://www.delitestudio.com/app/localizable-strings-merge/
 The default genstrings tool does not recursively search .m files or handle merges well.
 
-Updating the Google Maps API Key
---------------------------------
 
-1. Login/create a google account
-2. Go to: https://developers.google.com/maps/documentation/ios/start#getting_the_google_maps_sdk_for_ios
-3. Follow the instructions under the section "Obtaining an API Key"
-4. Open settings.plist in this xcodeproject and paste the key into the field "GoogleMapsAPIKey"
+## Updating the Civic Info API Key
 
-Licenses
---------
+Follow the instructions in the section 'Acquiring and using an API Key' here:
+https://developers.google.com/civic-information/docs/using_api
+
+Ensure you select and generate a 'browser key'.
+
+
+## Updating the Google Maps API Key
+
+Login or create a google account, then go to:
+https://developers.google.com/maps/documentation/ios/start#getting_the_google_maps_sdk_for_ios
+
+Follow the instructions under the section "Obtaining an API Key"
+Copy the newly generated API key and paste between the string tags for the key GoogleMapsAPIKey in settings.plist
+
+
+## Licenses
 
 The VIP App uses:
-  * MagicalRecord: MIT License
-  * AFNetworking: MIT License
+  - MagicalRecord: MIT License
+  - AFNetworking: MIT License
