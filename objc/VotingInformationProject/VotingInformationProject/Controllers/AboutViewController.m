@@ -6,6 +6,7 @@
 //
 
 #import "AboutViewController.h"
+#import "AppSettings.h"
 #import "VIPColor.h"
 
 @interface AboutViewController ()
@@ -23,9 +24,9 @@
 {
     if (!_text) {
         _text = @[
-                  NSLocalizedString(@"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi scelerisque semper nibh, nec tincidunt justo suscipit ac. Nunc quis nunc sit amet nunc blandit facilisis. Pellentesque lobortis felis vitae quam ultrices posuere. Nullam tristique neque vitae porttitor tempor. Aliquam erat volutpat. Sed mattis elit in elementum sollicitudin. Aenean ultricies, libero quis feugiat fringilla, magna justo suscipit nunc, in sodales dolor purus in lacus.", @"'About' section in 'About this app'"),
-                  NSLocalizedString(@"Proin viverra est dignissim sem ornare ultricies. Fusce leo sapien, bibendum nec ante non, lacinia porta massa. Ut eros urna, molestie et hendrerit ac, accumsan sit amet lectus. Vivamus pulvinar, lacus quis aliquet semper, ipsum nisi commodo leo, sed lobortis arcu urna eu erat.", @"'Terms of use' section in 'About this app'"),
-                  NSLocalizedString(@"Fusce leo sapien, bibendum nec ante non, lacinia porta massa. Ut eros urna, molestie et hendrerit ac, accumsan sit amet lectus. Vivamus pulvinar, lacus quis aliquet semper, ipsum nisi commodo leo, sed lobortis arcu urna eu erat.", @"'Privacy policy' section in 'About this app'")];
+                  NSLocalizedString(@"AboutAppText", @"'About' section in 'About this app'"),
+                  NSLocalizedString(@"TermsOfUseText", @"'Terms of use' section in 'About this app'"),
+                  NSLocalizedString(@"PrivacyPolicyText", @"'Privacy policy' section in 'About this app'")];
     }
     return _text;
 }

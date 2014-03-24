@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>GoogleCivicInfoAPIKey</key>
-    <string></string>
+    <string>Insert your Civic Info API browser key here</string>
 </dict>
 </plist>
