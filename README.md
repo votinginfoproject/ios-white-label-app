@@ -8,8 +8,9 @@ Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-lab
 
 ### Project Dependencies
 
-First you must install the package manager CocoaPods on your Mac:
+First you must install the package manager CocoaPods on your Mac:  
 http://cocoapods.org/
+
 ```
 sudo gem install cocoapods
 ```
@@ -20,6 +21,7 @@ sudo gem install cocoapods
 First, clone the repository and cd to the project root directory (the directory with this README)
 
 Then, install the project's third party libraries via CocoaPods:
+
 ```
 cd objc/VotingInformationProject && pod install
 ```
@@ -35,19 +37,22 @@ cp CivicInfoAPIKey.plist.template CivicInfoAPIKey.plist
 cp settings.plist.template settings.plist
 ```
 
-The defaults for the settings.plist file should work, but can be configured.
+The defaults for the settings.plist file should work, but can be configured.  
 See SETTINGS.md file for details.
 
-In order to access the Google Voting Information API, you will need an API browser key.
-Follow the instructions below in the section 'Updating the Civic Info API Key'.
+In order to access the Google Voting Information API, you will need an API browser key.  
+Follow the instructions below in the section 'Updating the Civic Info API Key',  
+then paste the key into your CivicInfoAPIKey.plist file where indicated.
 
 
 ### Running the project
 
 In the objc/VotingInformationProject, open the project in Xcode by opening the file:
+
 ```
 VotingInformationProject.xcworkspace
 ```
+
 WARNING: Because the project uses CocoaPods, you must always open the project with this
 .xcworkspace file. The project will not build correctly if you open the project using
 the standard .xcproject file.
@@ -67,13 +72,13 @@ If no data loads:
 
 ## Regenerating Localized Strings File
 
-Used: http://www.delitestudio.com/app/localizable-strings-merge/
+Used: http://www.delitestudio.com/app/localizable-strings-merge/  
 The default genstrings tool does not recursively search .m files or handle merges well.
 
 
 ## Updating the Civic Info API Key
 
-Follow the instructions in the section 'Acquiring and using an API Key' here:
+Follow the instructions in the section 'Acquiring and using an API Key' here:  
 https://developers.google.com/civic-information/docs/using_api
 
 Ensure you select and generate a 'browser key'.
@@ -81,10 +86,10 @@ Ensure you select and generate a 'browser key'.
 
 ## Updating the Google Maps API Key
 
-Login or create a google account, then go to:
+Login or create a google account, then go to:  
 https://developers.google.com/maps/documentation/ios/start#getting_the_google_maps_sdk_for_ios
 
-Follow the instructions under the section "Obtaining an API Key"
+Follow the instructions under the section "Obtaining an API Key"  
 Copy the newly generated API key and paste between the string tags for the key GoogleMapsAPIKey in settings.plist
 
 
