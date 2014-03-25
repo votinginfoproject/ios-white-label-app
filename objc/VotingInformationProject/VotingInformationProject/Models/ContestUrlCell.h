@@ -12,7 +12,6 @@
 @interface ContestUrlCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, weak) IBOutlet UILabel *urlLabel;
 
 @property (strong, nonatomic) NSURL *url;
 

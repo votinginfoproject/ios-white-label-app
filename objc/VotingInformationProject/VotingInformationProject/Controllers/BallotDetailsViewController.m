@@ -160,7 +160,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     if ([segue.identifier isEqualToString:@"BallotUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
-        webView.title = NSLocalizedString(@"Website", @"Link name for ballot's website");
+        webView.title = cell.descriptionLabel.text;
         webView.url = cell.url;
     }
 }
