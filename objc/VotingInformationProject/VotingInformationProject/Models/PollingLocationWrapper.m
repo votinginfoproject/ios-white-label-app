@@ -47,6 +47,9 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     self.mapPosition = NullCoordinate;
     self.mapOrigin = NullCoordinate;
     _distance = @"...";
+    if (_tableCell.owner == self) {
+        _tableCell.owner = nil;
+    }
     _tableCell = nil;
     self.marker = nil;
 }
@@ -115,6 +118,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 {
     _tableCell = tableCell;
     if (self.tableCell && self.location) {
+        tableCell.owner = self;
         tableCell.address.text = self.address;
         tableCell.name.text = self.name;
         tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
@@ -162,7 +166,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
 - (void)_updateDistance
 {
-    if (self.tableCell) {
+    if (self.tableCell && self.tableCell.owner == self) {
         _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
                                                                toB:self.mapPosition];
         self.tableCell.distance.text = _distance;
