@@ -46,6 +46,15 @@
 
     // TODO: Attempt to get stored elections from the cache and display those rather than
     //          making a network request
+    NSArray *elections = [Election MR_findByAttribute:@"userAddress"
+                                            withValue:userAddress
+                                           andOrderBy:@"date"
+                                            ascending:YES];
+    if ([elections count] > 0) {
+        NSLog(@"Elections from cache for user address: %@", userAddress.address);
+        resultsBlock(elections, nil);
+        return;
+    }
 
     BOOL appDebug = [[[AppSettings settings] valueForKey:@"DEBUG"] boolValue];
     // Setup request manager
@@ -92,11 +101,10 @@
              }
 
              // sort elections by date ascending now that theyre all in the future
-             NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
+             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
                                                                               ascending:YES];
-             NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
              NSArray *sortedElections = [elections sortedArrayUsingDescriptors:sortDescriptors];
-
              NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
              [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
                  resultsBlock(sortedElections, error);
