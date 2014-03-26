@@ -87,7 +87,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
-                if (!error) {
+                if (error) {
+                    NSLog(@"Error encountered for marker %@: %@", sender.name, error.domain);
+                } else {
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
                                                  withTitle:sender.name
                                                 andSnippet:sender.address];
@@ -464,11 +466,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.row];
-    if (!cell.tableCell) {
-        NSString *cellIdentifier = @"PollingLocationCell";
-        cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    }
+    PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
+    NSString *cellIdentifier = @"PollingLocationCell";
+    cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     return cell.tableCell;
 }
 

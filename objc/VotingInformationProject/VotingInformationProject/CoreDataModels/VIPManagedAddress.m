@@ -45,6 +45,8 @@
                      CLPlacemark *placemark = placemarks[0];
                      double lat = placemark.location.coordinate.latitude;
                      double lon = placemark.location.coordinate.longitude;
+                     self.latitude = [[NSNumber alloc] initWithDouble:lat];
+                     self.longitude = [[NSNumber alloc] initWithDouble:lon];
                      position.latitude = lat;
                      position.longitude = lon;
                      resultsBlock(position, nil);
