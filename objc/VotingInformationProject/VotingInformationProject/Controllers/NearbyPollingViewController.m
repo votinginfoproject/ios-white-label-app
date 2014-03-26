@@ -467,10 +467,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
-    if (!cell.tableCell) {
-        NSString *cellIdentifier = @"PollingLocationCell";
-        cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    }
+    NSString *cellIdentifier = @"PollingLocationCell";
+    cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     return cell.tableCell;
 }
 

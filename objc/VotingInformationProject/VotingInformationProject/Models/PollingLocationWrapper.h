@@ -24,7 +24,13 @@
 /** Bogus map coordinate to denote unset values */
 extern const CLLocationCoordinate2D NullCoordinate;
 
-/** UITableViewCell corresponding to this object */
+/** UITableViewCell corresponding to this object.
+ *  As a side effect it updates all the display properties of the UITableViewCell to match
+ *  the pertinent properties of self.
+ *  Note: This MUST be reset every time
+ *  UITableViewController (UITableViewCell*)tableView:(UITableView *) cellForRowAtIndexPath:(NSIndexPath *)
+ *  is called, as the object may be stale by then.
+ */
 @property (weak, nonatomic) PollingLocationCell *tableCell;
 
 /** Location containing the data we're displaying.
