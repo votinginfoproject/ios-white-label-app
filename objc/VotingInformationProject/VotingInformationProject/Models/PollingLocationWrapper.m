@@ -35,8 +35,8 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 {
     self = [self init];
     if (self != nil) {
-        self.location = location;
         self.onGeocodeComplete = onGeocodeComplete;
+        self.location = location;
     }
     return self;
 }
