@@ -11,6 +11,7 @@
 #import "ContactsSearchViewController.h"
 #import "AppSettings.h"
 #import "VIPColor.h"
+#import "AppDelegate.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
@@ -86,15 +87,20 @@
 
     // if ElectionID set in settings.plist set and is a valid election, set as current
     NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
+    NSLog(@"Requesting election: %@", electionId);
+    NSLog(@"Available elections:");
     for (Election *e in _elections) {
+        NSLog(@"%@", e.electionId);
         if ([e.electionId isEqualToString:electionId]) {
             _currentElection = e;
             break;
         }
     }
-    // If no election got set above, default to first election in list
-    if (!_currentElection) {
-        _currentElection = _elections[0];
+    // If no election got set above, when specific election requested, error.
+    if (electionId && !_currentElection) {
+        [self displayGetElectionsError:[VIPError errorWithCode:[VIPError NoValidElections]]];
+        return;
+        //_currentElection = _elections[0];
     }
 
     // Make request for _currentElection data
@@ -188,7 +194,8 @@
     if (property == kABPersonAddressProperty) {
         NSString *address = [self getAddress:person atIdentifier:identifier];
         UserAddress *selectedAddress = [UserAddress getUnique:address];
-        [self.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"DataStore saved: %d", success);
         }];
         self.userAddress = selectedAddress;

@@ -179,7 +179,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [super viewDidLoad];
     self.mapView.delegate = self;
     
-    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
     self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 

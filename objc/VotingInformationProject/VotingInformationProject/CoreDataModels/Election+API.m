@@ -8,6 +8,7 @@
 
 #import "Election+API.h"
 #import "AppSettings.h"
+#import "AppDelegate.h"
 
 @implementation Election (API)
 
@@ -52,8 +53,21 @@
                                             ascending:YES];
     if ([elections count] > 0) {
         NSLog(@"Elections from cache for user address: %@", userAddress.address);
-        resultsBlock(elections, nil);
-        return;
+        BOOL foundRequested = NO;
+        NSString *requestedElectionId = [[AppSettings settings] valueForKey:@"ElectionID"];
+        for (Election *e in elections) {
+            if ([requestedElectionId isEqualToString:e.electionId]) {
+                foundRequested = YES;
+                break;
+            }
+        }
+        if (foundRequested) {
+            NSLog(@"Election %@ requested found in cache.", requestedElectionId);
+            resultsBlock(elections, nil);
+            return;
+        }
+        NSLog(@"Election %@ requested and not found in cache. Attempting to fetch from election list...",
+              requestedElectionId);
     }
 
     BOOL appDebug = [[[AppSettings settings] valueForKey:@"DEBUG"] boolValue];
@@ -105,8 +119,8 @@
                                                                               ascending:YES];
              NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
              NSArray *sortedElections = [elections sortedArrayUsingDescriptors:sortDescriptors];
-             NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
-             [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+             [appDelegate.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
                  resultsBlock(sortedElections, error);
              }];
 
@@ -125,7 +139,7 @@
     }
     // setup date formatter
     NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-    [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+    [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
     if ([electionDate compare:[NSDate date]] != NSOrderedDescending) {
         return NO;
@@ -180,7 +194,7 @@
         return YES;
     }
     // Update if election data is more than x days old
-    int days = [[[AppSettings settings] valueForKey:@"VoterInfoCacheDays"] intValue];
+    int days = [[[AppSettings settings] valueForKey:@"VotingInfoCacheDays"] intValue];
     double secondsSinceUpdate = [self.lastUpdated timeIntervalSinceNow];
     if (secondsSinceUpdate < -1 * 60 * 60 * 24 * days) {
         return YES;
@@ -256,8 +270,8 @@
     [self setFromDictionary:json];
 
     // Save ALL THE CHANGES
-    NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
-    [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         NSLog(@"parseVoterInfoJSON saved: %d", success);
     }];
     return error;
@@ -314,9 +328,9 @@
     [self deletePollingLocations];
     [self deleteStates];
 
-    NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
     // get this save off the main thread!
-    [moc MR_saveToPersistentStoreAndWait];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.moc MR_saveToPersistentStoreAndWait];
 }
 
 - (void) deleteStates
