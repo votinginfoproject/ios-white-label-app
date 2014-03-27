@@ -180,7 +180,7 @@
         return YES;
     }
     // Update if election data is more than x days old
-    int days = 7;
+    int days = [[[AppSettings settings] valueForKey:@"VoterInfoCacheDays"] intValue];
     double secondsSinceUpdate = [self.lastUpdated timeIntervalSinceNow];
     if (secondsSinceUpdate < -1 * 60 * 60 * 24 * days) {
         return YES;

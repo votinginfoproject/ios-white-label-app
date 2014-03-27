@@ -99,7 +99,7 @@
 
     // Make request for _currentElection data
     [_currentElection
-     getVoterInfo:^(BOOL success, NSError *error)
+     getVoterInfoIfExpired:^(BOOL success, NSError *error)
      {
          if (success) {
              [self displayGetElections];
