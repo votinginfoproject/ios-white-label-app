@@ -56,7 +56,6 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
     self.election = (Election*) vipTabBarController.currentElection;
     [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
-        // TODO: Error handle empty table here
         [self updateUI];
     }];
 }

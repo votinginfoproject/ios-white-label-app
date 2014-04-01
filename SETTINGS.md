@@ -12,3 +12,6 @@
 **Key:** BrandNameText  
 **Value:** *(String)* The brand name to display on the app homepage.
 
+**Key:** VotingInfoCacheDays  
+**Value:** *(Int)* The number of days to cache votingInfo queries. If not set, no caching is done.
+

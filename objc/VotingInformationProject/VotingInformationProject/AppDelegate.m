@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Bennet Huber on 1/17/14.
-//  
 //
 
 #import "AppDelegate.h"
