@@ -140,7 +140,12 @@
     NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
     [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
-    if ([electionDate compare:[NSDate date]] != NSOrderedDescending) {
+    // Show if election in future relative to current day midnight localtime
+    NSCalendarUnit units = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date]];
+    comps.day = comps.day - 1;
+    NSDate* todayMidnight = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    if ([electionDate compare:todayMidnight] != NSOrderedDescending) {
         return NO;
     }
     return YES;
