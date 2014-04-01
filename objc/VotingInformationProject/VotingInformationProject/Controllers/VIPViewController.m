@@ -28,8 +28,6 @@
 {
     [super viewDidLoad];
 
-    self.moc = [NSManagedObjectContext MR_contextForCurrentThread];
-
     // Set background image, scaled to view size
     NSString *imageName = @"Default_background";
     if (IS_WIDESCREEN) {

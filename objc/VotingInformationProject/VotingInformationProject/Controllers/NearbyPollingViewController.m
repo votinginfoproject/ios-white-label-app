@@ -88,7 +88,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     for (PollingLocation *location in locations) {
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
                 if (error) {
-                    NSLog(@"Error encountered for marker %@: %@", sender.name, error.domain);
+                    NSLog(@"Error encountered for marker %@: %@", sender.name, error);
                 } else {
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
                                                  withTitle:sender.name
@@ -179,7 +179,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [super viewDidLoad];
     self.mapView.delegate = self;
     
-    _moc = [NSManagedObjectContext MR_contextForCurrentThread];
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
     self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 

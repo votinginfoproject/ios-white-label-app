@@ -34,7 +34,11 @@
             return;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.photo = data;
+            @try {
+                self.photo = data;
+            } @catch (NSException *e) {
+                NSLog(@"Unable to save candidate photo data: %@", e.name);
+            }
         });
     }];
 

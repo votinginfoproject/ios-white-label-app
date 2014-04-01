@@ -49,7 +49,7 @@ describe(@"Election+API Tests", ^{
         UserAddress *userAddress = [UserAddress getUnique:@"123 Test Drive"];
         Election *election1 = [Election getUnique:@"election1" withUserAddress:userAddress];
         election1.lastUpdated = [NSDate date];
-        [[theValue([election1 shouldUpdate]) should] equal:theValue(NO)];
+        [[theValue([election1 shouldUpdate]) should] equal:theValue(YES)];
     });
 
     it(@"should ensure that shouldUpdate returns NO after setting lastUpdated to now and at least one data point", ^{

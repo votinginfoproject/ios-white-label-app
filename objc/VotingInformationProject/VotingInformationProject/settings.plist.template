@@ -10,5 +10,7 @@
     <string>https://raw2.github.com/votinginfoproject/ios7-white-label-app/develop/objc/VotingInformationProject/VotingInformationProject/elections.json</string>
     <key>BrandNameText</key>
     <string>Your Brand Name Here</string>
+	<key>VotingInfoCacheDays</key>
+	<integer>2</integer>
 </dict>
 </plist>
