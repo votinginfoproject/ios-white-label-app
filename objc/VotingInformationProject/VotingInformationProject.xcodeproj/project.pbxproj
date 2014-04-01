@@ -123,6 +123,7 @@
 		49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */; };
 		49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0118A0254C00C5E889 /* UserAddress+API.m */; };
 		49A57B0B18A08E9200C5E889 /* PollingLocation+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */; };
+		49B5B8AA18EB2C6900CCB11E /* GDDirectionsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5B8A918EB2C6900CCB11E /* GDDirectionsService.m */; };
 		49C1FED718B2C6AE00CF9DFE /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FED618B2C6AE00CF9DFE /* Candidate.m */; };
 		49C1FEDA18B2C6AF00CF9DFE /* SocialChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FED918B2C6AF00CF9DFE /* SocialChannel.m */; };
 		49C1FEDD18B3A20C00CF9DFE /* CandidateLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FEDC18B3A20C00CF9DFE /* CandidateLinkCell.m */; };
@@ -324,6 +325,8 @@
 		49A57B0118A0254C00C5E889 /* UserAddress+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "UserAddress+API.m"; path = "CoreDataModels/UserAddress+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49A57B0918A08E9200C5E889 /* PollingLocation+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "PollingLocation+API.h"; path = "CoreDataModels/PollingLocation+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "PollingLocation+API.m"; path = "CoreDataModels/PollingLocation+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		49B5B8A818EB2C6900CCB11E /* GDDirectionsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDDirectionsService.h; path = GoogleDirectionsAPI/GDDirectionsService.h; sourceTree = "<group>"; };
+		49B5B8A918EB2C6900CCB11E /* GDDirectionsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDDirectionsService.m; path = GoogleDirectionsAPI/GDDirectionsService.m; sourceTree = "<group>"; };
 		49C1FED518B2C6AE00CF9DFE /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Candidate.h; path = CoreDataModels/Candidate.h; sourceTree = "<group>"; };
 		49C1FED618B2C6AE00CF9DFE /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Candidate.m; path = CoreDataModels/Candidate.m; sourceTree = "<group>"; };
 		49C1FED818B2C6AF00CF9DFE /* SocialChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialChannel.h; path = CoreDataModels/SocialChannel.h; sourceTree = "<group>"; };
@@ -561,6 +564,15 @@
 			path = Images/LaunchScreen;
 			sourceTree = "<group>";
 		};
+		49B5B8A718EB2B0C00CCB11E /* GoogleDirectionsAPI */ = {
+			isa = PBXGroup;
+			children = (
+				49B5B8A818EB2C6900CCB11E /* GDDirectionsService.h */,
+				49B5B8A918EB2C6900CCB11E /* GDDirectionsService.m */,
+			);
+			name = GoogleDirectionsAPI;
+			sourceTree = "<group>";
+		};
 		49DD457218A17146003374A3 /* CoreDataModelsAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +709,7 @@
 		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
+				49B5B8A718EB2B0C00CCB11E /* GoogleDirectionsAPI */,
 				4901592518D9E13D0088BA23 /* DataSources */,
 				49DD457218A17146003374A3 /* CoreDataModelsAPI */,
 				491BEA03189C0B5F00FCB21D /* CoreDataModels */,
@@ -991,6 +1004,7 @@
 				49E9080518B515EF00E05ABC /* ContestUrlCell.m in Sources */,
 				494023A318A2EA74004FEF48 /* ElectionAdministrationBody+API.m in Sources */,
 				499537EA18A190DA009B678C /* ElectionOfficial.m in Sources */,
+				49B5B8AA18EB2C6900CCB11E /* GDDirectionsService.m in Sources */,
 				494023B818A2FB99004FEF48 /* State.m in Sources */,
 				494023D618A3F2BE004FEF48 /* District.m in Sources */,
 				49A04BDA18AD419000BCDB0D /* ContestDetailsViewController.m in Sources */,

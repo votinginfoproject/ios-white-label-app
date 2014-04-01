@@ -6,6 +6,7 @@
 //  
 //
 
+#import "GDDirectionsService.h"
 #import "VIPUserDefaultsKeys.h"
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
@@ -13,6 +14,7 @@
 #import "PollingLocationWrapper.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "UIImage+Scale.h"
+#import "AppSettings.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
@@ -32,6 +34,8 @@
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 
 @property (strong, nonatomic) UserAddress *userAddress;
+
+@property (strong, nonatomic) GMSPolyline *directionsPolyline;
 
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
@@ -405,7 +409,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                                               @"Label for button to exit directions window")
                                           otherButtonTitles:nil];
 
-    NSString *mapsRootUrl = @"http://maps.apple.com/?saddr=%@&daddr=%@";
     GMSMarker *marker = nil;
 
     // Ensure actionSheet.tag is in range
@@ -423,7 +426,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         return;
     }
     VIPAddress *markerAddress = (VIPAddress*)marker.userData;
-    NSURL *url = nil;
     NSString *userAddressString = self.userAddress.address;
     NSString *markerAddressString = [markerAddress toABAddressString:NO];
     NSString *saddr, *daddr = nil;
@@ -439,15 +441,39 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
             break;
         }
     }
+
     NSLog(@"Source Addr: %@, Dest Addr: %@", saddr, daddr);
-    NSString *urlString = [NSString stringWithFormat:mapsRootUrl, saddr, daddr];
-    url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url];
-    } else {
-        NSLog(@"actionSheet clickedButtonAtIndex: - Cannot open url %@ in Maps", url);
-        [alert show];
+    GDDirectionsService *gdService = [[GDDirectionsService alloc] init];
+    NSDictionary *gdOptions = @{@"sensor": @"true",
+                                @"key": [[AppSettings settings] valueForKey:@"GoogleDirectionsAPIKey"],
+                                @"origin": saddr,
+                                @"destination": daddr};
+    [gdService directionsQuery:gdOptions resultsBlock:^(NSDictionary *json, NSError *error) {
+        if (![[json valueForKey:@"status"] isEqualToString:@"OK"]) {
+            [alert show];
+            return;
+        }
+        [self addDirectionsToMap:json];
+    }];
+}
+
+/**
+ *  Draw GMSPolyline on map using json from a Google Directions API request
+ *
+ *  @param json NSDictionary of the json response from the Google Directions API
+ */
+- (void)addDirectionsToMap:(NSDictionary*)json
+{
+    NSDictionary *routes = [json objectForKey:@"routes"][0];
+
+    NSDictionary *route = [routes objectForKey:@"overview_polyline"];
+    NSString *overview_route = [route objectForKey:@"points"];
+    GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
+    if (self.directionsPolyline && self.directionsPolyline.map) {
+        self.directionsPolyline.map = nil;
     }
+    self.directionsPolyline = [GMSPolyline polylineWithPath:path];
+    self.directionsPolyline.map = self.mapView;
 }
 
 

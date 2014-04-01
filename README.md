@@ -44,6 +44,11 @@ In order to access the Google Voting Information API, you will need an API brows
 Follow the instructions below in the section 'Updating the Civic Info API Key',  
 then paste the key into your CivicInfoAPIKey.plist file where indicated.
 
+In order for the Google Directions service to work, you will need a Google Directions
+API key. Acquire a Google Directions API Key using these instructions:  
+https://developers.google.com/maps/documentation/directions/#api_key  
+Then, paste the key into the GoogleDirectionsAPIKey entry in your settings.plist
+
 
 ### Running the project
 
