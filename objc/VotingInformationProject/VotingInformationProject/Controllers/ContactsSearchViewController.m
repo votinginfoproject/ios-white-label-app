@@ -11,7 +11,6 @@
 #import "ContactsSearchViewController.h"
 #import "AppSettings.h"
 #import "VIPColor.h"
-#import "AppDelegate.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
@@ -96,11 +95,13 @@
             break;
         }
     }
+
     // If no election got set above, when specific election requested, error.
     if (electionId && !_currentElection) {
         [self displayGetElectionsError:[VIPError errorWithCode:[VIPError NoValidElections]]];
         return;
-        //_currentElection = _elections[0];
+    } else if (!_currentElection) {
+        _currentElection = elections[0];
     }
 
     // Make request for _currentElection data
@@ -194,8 +195,8 @@
     if (property == kABPersonAddressProperty) {
         NSString *address = [self getAddress:person atIdentifier:identifier];
         UserAddress *selectedAddress = [UserAddress getUnique:address];
-        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [appDelegate.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+        [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"DataStore saved: %d", success);
         }];
         self.userAddress = selectedAddress;

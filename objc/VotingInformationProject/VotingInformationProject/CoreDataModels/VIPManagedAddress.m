@@ -7,7 +7,6 @@
 
 #import "VIPManagedAddress.h"
 
-
 @implementation VIPManagedAddress
 
 @dynamic latitude;
@@ -49,6 +48,8 @@
                      self.longitude = [[NSNumber alloc] initWithDouble:lon];
                      position.latitude = lat;
                      position.longitude = lon;
+                     NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+                     [moc MR_saveOnlySelfAndWait];
                      resultsBlock(position, nil);
                  }];
 }

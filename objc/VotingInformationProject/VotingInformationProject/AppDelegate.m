@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Bennet Huber on 1/17/14.
-//  
 //
 
 #import "AppDelegate.h"
@@ -16,9 +15,6 @@
 {
     // Initialize Core Data Stack via MagicalRecord
     [MagicalRecord setupCoreDataStack];
-    // Use this reference for all MagicalRecord save operations to avoid race conditions
-    //  and other errors.
-    self.moc = [NSManagedObjectContext MR_defaultContext];
 
     // Load GoogleMaps API Key from file
     // Default key provided in repo is azaveadev@azavea.com key

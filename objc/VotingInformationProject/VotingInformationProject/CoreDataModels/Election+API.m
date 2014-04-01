@@ -8,7 +8,6 @@
 
 #import "Election+API.h"
 #import "AppSettings.h"
-#import "AppDelegate.h"
 
 @implementation Election (API)
 
@@ -119,8 +118,8 @@
                                                                               ascending:YES];
              NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
              NSArray *sortedElections = [elections sortedArrayUsingDescriptors:sortDescriptors];
-             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-             [appDelegate.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+             NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+             [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
                  resultsBlock(sortedElections, error);
              }];
 
@@ -190,7 +189,7 @@
         return YES;
     }
     // Update if all of these are empty
-    if (!(self.pollingLocations || self.contests || self.states)) {
+    if ([self.pollingLocations count] == 0 && [self.contests count] == 0 && [self.states count] == 0) {
         return YES;
     }
     // Update if election data is more than x days old
@@ -270,8 +269,8 @@
     [self setFromDictionary:json];
 
     // Save ALL THE CHANGES
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate.moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+    NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+    [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         NSLog(@"parseVoterInfoJSON saved: %d", success);
     }];
     return error;
@@ -329,8 +328,8 @@
     [self deleteStates];
 
     // get this save off the main thread!
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate.moc MR_saveToPersistentStoreAndWait];
+    NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+    [moc MR_saveToPersistentStoreAndWait];
 }
 
 - (void) deleteStates
