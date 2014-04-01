@@ -70,6 +70,15 @@ If no data loads:
   - Ensure you correctly copied your browser Civic Info API key to the proper location (between the <string> tags) in the CivicInfoAPIKey.plist file.
 
 
+## Adding Tracking via Google Analytics
+
+Generate a tracking ID for your app here:
+https://www.google.com/analytics/web/?hl=en
+
+Select new mobile application and follow the prompts.
+Once you have a Tracking ID (UA-XXXXXXXX-X) paste it into settings.plist as value for key GoogleAnalyticsTrackingID.
+
+
 ## Regenerating Localized Strings File
 
 Used: http://www.delitestudio.com/app/localizable-strings-merge/  

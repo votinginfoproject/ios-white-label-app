@@ -9,6 +9,9 @@
 **Key:** GoogleMapsAPIKey  
 **Value:** *(String)* The key to use to initialize the Google Maps API for the polling list map view.
 
+**Key:** GoogleAnalyticsTrackingID  
+**Value:** *(String)* The key to use to initialize the Google Analytics SDK for app tracking. 
+
 **Key:** BrandNameText  
 **Value:** *(String)* The brand name to display on the app homepage.
 
