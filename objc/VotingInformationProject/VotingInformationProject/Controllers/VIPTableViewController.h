@@ -9,4 +9,6 @@
 
 @interface VIPTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *screenName;
+
 @end

@@ -177,6 +177,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.screenName = @"Nearby Polling Screen";
     self.mapView.delegate = self;
     
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];

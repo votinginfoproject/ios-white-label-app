@@ -44,6 +44,8 @@
 {
     [super viewDidLoad];
 
+    self.screenName = @"About App Screen";
+
     self.aboutLabel.text = self.text[0];
     self.termsLabel.text = self.text[1];
     self.privacyLabel.text = self.text[2];

@@ -120,6 +120,8 @@
 {
     [super viewDidLoad];
 
+    self.screenName = @"Home Screen";
+
     self.vipLabel.textColor = [VIPColor primaryTextColor];
     self.brandNameLabel.textColor = [VIPColor secondaryTextColor];
     self.gettingStartedLabel.textColor = [VIPColor primaryTextColor];

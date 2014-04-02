@@ -27,6 +27,7 @@ const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
                             initWithEmptyMessage:NSLocalizedString(@"No Additional Upcoming Elections",
                                                                    @"Text to show if the table view has no elections to display.")];
+    self.screenName = @"Other Elections Screen";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 

@@ -49,6 +49,8 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
                             initWithEmptyMessage:NSLocalizedString(@"No Election Details Available",
                                                                    @"Text displayed by the table view if there are no election details to display")];
+
+    self.screenName = @"Ballot Details Screen";
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
     self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
 

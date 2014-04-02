@@ -8,6 +8,9 @@
 #import "VIPViewController.h"
 #import "ScreenMacros.h"
 #import "VIPColor.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface VIPViewController ()
 
@@ -41,27 +44,26 @@
 
     UIColor *navBarBGColor = [VIPColor navBarBackgroundColor];
     self.navigationController.navigationBar.barTintColor = navBarBGColor;
+}
 
-    /* i18n Sample Demo
-     Use number formatter/date formatter/etc for numbers, dates, etc. Controlled by:
-        Settings.app->General->International->Region Format
-     Control language settings via:
-        Settings.app->General->International->Language
-     
-    Second argument to NSLocalizedString is a comment to be provided in the Localizable.strings file
-        for translator context
-    
-    genstrings is an xcode command line tool for generating a Localizable.strings file from
-     all NSLocalizedString calls in your app.
-     https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/genstrings.1.html
-     http://blog.spritebandits.com/2012/01/25/ios-iphone-app-localization-genstrings-tips/
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 
-    NSString *oneMillion = [numberFormatter stringFromNumber:@(1000000)];
-    self.localizationLabel.text = [NSString stringWithFormat:NSLocalizedString(@"NUMBER: %@", nil), oneMillion];
-    */
+    [self sendGAScreenHit];
+}
 
+- (void)sendGAScreenHit
+{
+    if ([self.screenName length] > 0) {
+        id tracker = [[GAI sharedInstance] defaultTracker];
+        // This screen name value will remain set on the tracker and sent with
+        // hits until it is set to a new value or to nil.
+        [tracker set:kGAIScreenName
+               value:self.screenName];
+        
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,16 +71,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

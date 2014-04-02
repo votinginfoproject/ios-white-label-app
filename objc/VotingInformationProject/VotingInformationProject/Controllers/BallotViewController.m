@@ -41,6 +41,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
                             initWithEmptyMessage:NSLocalizedString(@"No Elections Available",
                                                                    @"Text displayed by the table view if there are no elections to display")];
 
+    self.screenName = @"Ballot Screen";
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
     self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
