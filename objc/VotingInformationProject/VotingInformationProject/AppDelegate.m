@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "AppSettings.h"
+#import "GAI.h"
 #import "VIPColor.h"
 
 @implementation AppDelegate
@@ -20,6 +21,14 @@
     // Default key provided in repo is azaveadev@azavea.com key
     // Instructions on using your own key are in the README: necessary if you change the app bundle identifier
     [GMSServices provideAPIKey:[[AppSettings settings] objectForKey:@"GoogleMapsAPIKey"]];
+
+    // Load GoogleAnalytics Tracking ID from file and init analytics if available
+    NSString *googleAnalyticsID = [[AppSettings settings] valueForKey:@"GoogleAnalyticsTrackingID"];
+    if (googleAnalyticsID != nil && ![googleAnalyticsID isEqualToString:@"Your Tracking ID Here"]) {
+        [GAI sharedInstance].trackUncaughtExceptions = YES;
+        [GAI sharedInstance].dispatchInterval = 120;
+        [[GAI sharedInstance] trackerWithTrackingId:googleAnalyticsID];
+    };
 
     // Sets color of navigation bars
     self.window.tintColor = [VIPColor navBarTextColor];

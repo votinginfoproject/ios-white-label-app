@@ -16,6 +16,12 @@
 		4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245B1890650A00FD9828 /* AddressBook.framework */; };
 		4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903245C1890650A00FD9828 /* AddressBookUI.framework */; };
 		49041DB118DB9677007A0F1D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 49041DB018DB9677007A0F1D /* UIImage+Scale.m */; };
+		4916406618EB653700233C1C /* Changelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4916403218EB653700233C1C /* Changelog.txt */; };
+		4916408518EB653700233C1C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916405D18EB653700233C1C /* libGoogleAnalyticsServices.a */; };
+		4916408618EB653700233C1C /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4916406518EB653700233C1C /* Readme.txt */; };
+		4916408B18EB656200233C1C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916408A18EB656200233C1C /* SystemConfiguration.framework */; };
+		4916408D18EB656B00233C1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916408C18EB656B00233C1C /* libz.dylib */; };
+		4916409118EB665700233C1C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916409018EB665700233C1C /* libsqlite3.dylib */; };
 		49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */; };
 		491BEA42189C588D00FCB21D /* Election+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 491BEA41189C588D00FCB21D /* Election+API.m */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
@@ -180,6 +186,19 @@
 		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		49041DAF18DB9677007A0F1D /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		49041DB018DB9677007A0F1D /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		4916403218EB653700233C1C /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
+		4916405D18EB653700233C1C /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		4916405F18EB653700233C1C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		4916406018EB653700233C1C /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		4916406118EB653700233C1C /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		4916406218EB653700233C1C /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		4916406318EB653700233C1C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		4916406418EB653700233C1C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		4916406518EB653700233C1C /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		4916408A18EB656200233C1C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4916408C18EB656B00233C1C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4916408E18EB65B700233C1C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		4916409018EB665700233C1C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		49196B90189AED9D007DCBD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/VIPStoryBoard.storyboard; sourceTree = "<group>"; };
 		49196B93189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/VIPStoryBoard.strings; sourceTree = "<group>"; };
 		49196B94189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -379,9 +398,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4916409118EB665700233C1C /* libsqlite3.dylib in Frameworks */,
+				4916408D18EB656B00233C1C /* libz.dylib in Frameworks */,
+				4916408B18EB656200233C1C /* SystemConfiguration.framework in Frameworks */,
 				4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */,
 				4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */,
 				53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */,
+				4916408518EB653700233C1C /* libGoogleAnalyticsServices.a in Frameworks */,
 				53D3A78D1889A05B00920A70 /* CoreData.framework in Frameworks */,
 				53D3A78B1889A05B00920A70 /* UIKit.framework in Frameworks */,
 				53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */,
@@ -411,6 +434,30 @@
 				4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */,
 			);
 			name = DataSources;
+			sourceTree = "<group>";
+		};
+		4916403118EB653700233C1C /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4916403218EB653700233C1C /* Changelog.txt */,
+				4916405D18EB653700233C1C /* libGoogleAnalyticsServices.a */,
+				4916405E18EB653700233C1C /* Library */,
+				4916406518EB653700233C1C /* Readme.txt */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		4916405E18EB653700233C1C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4916405F18EB653700233C1C /* GAI.h */,
+				4916406018EB653700233C1C /* GAIDictionaryBuilder.h */,
+				4916406118EB653700233C1C /* GAIFields.h */,
+				4916406218EB653700233C1C /* GAILogger.h */,
+				4916406318EB653700233C1C /* GAITrackedViewController.h */,
+				4916406418EB653700233C1C /* GAITracker.h */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		491BEA03189C0B5F00FCB21D /* CoreDataModels */ = {
@@ -681,6 +728,10 @@
 		53D3A7851889A05B00920A70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4916409018EB665700233C1C /* libsqlite3.dylib */,
+				4916408E18EB65B700233C1C /* AdSupport.framework */,
+				4916408C18EB656B00233C1C /* libz.dylib */,
+				4916408A18EB656200233C1C /* SystemConfiguration.framework */,
 				4903245B1890650A00FD9828 /* AddressBook.framework */,
 				4903245C1890650A00FD9828 /* AddressBookUI.framework */,
 				53D3A7861889A05B00920A70 /* Foundation.framework */,
@@ -697,6 +748,7 @@
 		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
+				4916403118EB653700233C1C /* GoogleAnalytics */,
 				4901592518D9E13D0088BA23 /* DataSources */,
 				49DD457218A17146003374A3 /* CoreDataModelsAPI */,
 				491BEA03189C0B5F00FCB21D /* CoreDataModels */,
@@ -861,6 +913,7 @@
 				4970E55218D37E6200104184 /* Candidate_default-image.png in Resources */,
 				4970E56E18D37E6200104184 /* TabBar_ballot.png in Resources */,
 				4970E56F18D37E6200104184 /* TabBar_ballot@2x.png in Resources */,
+				4916406618EB653700233C1C /* Changelog.txt in Resources */,
 				4970E57418D37E6200104184 /* TabBar_more-active.png in Resources */,
 				4970E55818D37E6200104184 /* Candidate_google.png in Resources */,
 				4970E55718D37E6200104184 /* Candidate_facebook@2x.png in Resources */,
@@ -899,6 +952,7 @@
 				4970E54618D37E6200104184 /* AppIcon-iPad@2x.png in Resources */,
 				4970E56A18D37E6200104184 /* Polling_location.png in Resources */,
 				4970E54518D37E6200104184 /* AppIcon-iPad.png in Resources */,
+				4916408618EB653700233C1C /* Readme.txt in Resources */,
 				4970E56318D37E6200104184 /* Homepage_about@2x.png in Resources */,
 				4970E54D18D37E6200104184 /* SpotlightIcon.png in Resources */,
 				4970E55E18D37E6200104184 /* Candidate_web.png in Resources */,
@@ -1195,6 +1249,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VotingInformationProject/GoogleAnalytics",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1245,6 +1303,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VotingInformationProject/GoogleAnalytics",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
