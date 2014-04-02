@@ -8,6 +8,9 @@
 #import "VIPTableViewController.h"
 #import "ScreenMacros.h"
 #import "VIPColor.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface VIPTableViewController ()
 
@@ -45,10 +48,30 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self sendGAScreenHit];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)sendGAScreenHit
+{
+    if ([self.screenName length] > 0) {
+        id tracker = [[GAI sharedInstance] defaultTracker];
+        // This screen name value will remain set on the tracker and sent with
+        // hits until it is set to a new value or to nil.
+        [tracker set:kGAIScreenName
+               value:self.screenName];
+        
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    }
 }
 
 @end

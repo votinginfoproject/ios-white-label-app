@@ -9,4 +9,6 @@
 
 @interface VIPViewController : UIViewController
 
+@property (strong, nonatomic) NSString *screenName;
+
 @end

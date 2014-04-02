@@ -44,6 +44,8 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
 {
     [super viewDidLoad];
 
+    self.screenName = @"Candidate Details Screen";
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 

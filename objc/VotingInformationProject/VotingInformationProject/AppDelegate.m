@@ -26,7 +26,7 @@
     NSString *googleAnalyticsID = [[AppSettings settings] valueForKey:@"GoogleAnalyticsTrackingID"];
     if (googleAnalyticsID != nil && ![googleAnalyticsID isEqualToString:@"Your Tracking ID Here"]) {
         [GAI sharedInstance].trackUncaughtExceptions = YES;
-        [GAI sharedInstance].dispatchInterval = 120;
+        [GAI sharedInstance].dispatchInterval = 60;
         [[GAI sharedInstance] trackerWithTrackingId:googleAnalyticsID];
     };
 

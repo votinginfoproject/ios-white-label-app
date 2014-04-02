@@ -50,6 +50,8 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 {
     [super viewDidLoad];
 
+    self.screenName = @"Contest Details Screen";
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 
