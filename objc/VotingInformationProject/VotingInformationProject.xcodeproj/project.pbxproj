@@ -142,8 +142,6 @@
 		49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E9814F1892F81600E26C5D /* FindElectionsCell.m */; };
 		49F5D28818D399D600BB352C /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D28718D399D600BB352C /* AppSettings.m */; };
 		530BD3EB18D792BD00B845FA /* PollingLocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */; };
-		533615FA18ECC53B00429042 /* Polling_failedGeocode.png in Resources */ = {isa = PBXBuildFile; fileRef = 533615F818ECC53B00429042 /* Polling_failedGeocode.png */; };
-		533615FB18ECC53B00429042 /* Polling_failedGeocode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 533615F918ECC53B00429042 /* Polling_failedGeocode@2x.png */; };
 		5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5382558718CE61FA0026C82D /* PollingLocationCell.m */; };
 		53D3A7871889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7881889A05B00920A70 /* CoreGraphics.framework */; };
@@ -372,8 +370,6 @@
 		49F5D28718D399D600BB352C /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 		530BD3E918D792BD00B845FA /* PollingLocationWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationWrapper.h; sourceTree = "<group>"; };
 		530BD3EA18D792BD00B845FA /* PollingLocationWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationWrapper.m; sourceTree = "<group>"; };
-		533615F818ECC53B00429042 /* Polling_failedGeocode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Polling_failedGeocode.png; sourceTree = "<group>"; };
-		533615F918ECC53B00429042 /* Polling_failedGeocode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_failedGeocode@2x.png"; sourceTree = "<group>"; };
 		5382558618CE61FA0026C82D /* PollingLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollingLocationCell.h; sourceTree = "<group>"; };
 		5382558718CE61FA0026C82D /* PollingLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationCell.m; sourceTree = "<group>"; };
 		53D3A7831889A05B00920A70 /* VotingInformationProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingInformationProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -554,8 +550,6 @@
 		4970E51618D37E6200104184 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				533615F818ECC53B00429042 /* Polling_failedGeocode.png */,
-				533615F918ECC53B00429042 /* Polling_failedGeocode@2x.png */,
 				4970E51718D37E6200104184 /* Candidate_default-image.png */,
 				4970E51818D37E6200104184 /* Candidate_default-image@2x.png */,
 				4970E51918D37E6200104184 /* Candidate_email.png */,
@@ -648,20 +642,16 @@
 		49E981411892F7F700E26C5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4901591C18D8B6CE0088BA23 /* VIPViewController.h */,
-				4901591D18D8B6CE0088BA23 /* VIPViewController.m */,
-				4970E49518D227AB00104184 /* BallotDetailsViewController.h */,
-				4970E49618D227AB00104184 /* BallotDetailsViewController.m */,
 				4969787418B55E5A00B23CC6 /* AboutViewController.h */,
 				4969787518B55E5A00B23CC6 /* AboutViewController.m */,
+				4970E49518D227AB00104184 /* BallotDetailsViewController.h */,
+				4970E49618D227AB00104184 /* BallotDetailsViewController.m */,
 				49CF34BB18A55BF100DDEE0E /* BallotViewController.h */,
 				49CF34BC18A55BF100DDEE0E /* BallotViewController.m */,
 				495CB9C318B2A10D00243ADB /* CandidateDetailsViewController.h */,
 				495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */,
 				49E981421892F7F700E26C5D /* ContactsSearchViewController.h */,
 				49E981431892F7F700E26C5D /* ContactsSearchViewController.m */,
-				4901592218D8BBD20088BA23 /* VIPTableViewController.h */,
-				4901592318D8BBD20088BA23 /* VIPTableViewController.m */,
 				49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */,
 				49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */,
 				49E981441892F7F700E26C5D /* FindElectionsViewController.h */,
@@ -672,6 +662,10 @@
 				49A04BD618AD261E00BCDB0D /* UIWebViewController.m */,
 				49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */,
 				49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */,
+				4901592218D8BBD20088BA23 /* VIPTableViewController.h */,
+				4901592318D8BBD20088BA23 /* VIPTableViewController.m */,
+				4901591C18D8B6CE0088BA23 /* VIPViewController.h */,
+				4901591D18D8B6CE0088BA23 /* VIPViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -914,7 +908,6 @@
 				4970E55118D37E6200104184 /* Default_background@2x.png in Resources */,
 				4970E56418D37E6200104184 /* Homepage_contact.png in Resources */,
 				4970E57C18D37E6200104184 /* Default_launch-screen-568@2x.png in Resources */,
-				533615FA18ECC53B00429042 /* Polling_failedGeocode.png in Resources */,
 				4970E57B18D37E6200104184 /* TabBar_polling@2x.png in Resources */,
 				4970E54C18D37E6200104184 /* SettingsIcon@2x.png in Resources */,
 				4970E55218D37E6200104184 /* Candidate_default-image.png in Resources */,
@@ -939,7 +932,6 @@
 				4970E57218D37E6200104184 /* TabBar_details.png in Resources */,
 				4967AB7A18A91D420079C9F1 /* CivicAPIKey.plist in Resources */,
 				4970E56518D37E6200104184 /* Homepage_contact@2x.png in Resources */,
-				533615FB18ECC53B00429042 /* Polling_failedGeocode@2x.png in Resources */,
 				4970E57018D37E6200104184 /* TabBar_details-active.png in Resources */,
 				4970E56B18D37E6200104184 /* Polling_location@2x.png in Resources */,
 				4970E56218D37E6200104184 /* Homepage_about.png in Resources */,

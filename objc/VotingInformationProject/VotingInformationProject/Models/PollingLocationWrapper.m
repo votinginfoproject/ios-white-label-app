@@ -19,7 +19,6 @@
 }
 
 const CLLocationCoordinate2D NullCoordinate = {-999, -999};
-static UIImage *_failedGeocode;
 
 #pragma mark - Setup/Teardown
 
@@ -31,11 +30,6 @@ static UIImage *_failedGeocode;
         self.geocodeSucceeded = YES;
     }
     return self;
-}
-
-+ (void)initialize
-{
-    _failedGeocode = [UIImage imageNamed:@"Polling_failedGeocode"];
 }
 
 - (PollingLocationWrapper*) initWithLocation:(PollingLocation*)location andGeocodeHandler:(void(^)(PollingLocationWrapper*, NSError*))onGeocodeComplete
@@ -109,7 +103,7 @@ static UIImage *_failedGeocode;
             if (error) {
                 self.geocodeSucceeded = NO;
                 if (self.tableCell && self.tableCell.owner == self) {
-                    self.tableCell.image.image = _failedGeocode;
+                    self.tableCell.image.alpha = 0.5f;
                 }
             } else {
                 self.mapPosition = position;
@@ -134,12 +128,11 @@ static UIImage *_failedGeocode;
         tableCell.owner = self;
         tableCell.address.text = self.address;
         tableCell.name.text = self.name;
-        if (self.geocodeSucceeded) {
-            tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
-                                     ? [UIImage imageNamed:@"Polling_earlyvoting"]
-                                     : [UIImage imageNamed:@"Polling_location"];
-        } else {
-            tableCell.image.image = _failedGeocode;
+        tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
+                                 ? [UIImage imageNamed:@"Polling_earlyvoting"]
+                                 : [UIImage imageNamed:@"Polling_location"];
+        if (!self.geocodeSucceeded) {
+            self.tableCell.image.alpha = 0.5f;
         }
         [self _updateDistance];
     }
