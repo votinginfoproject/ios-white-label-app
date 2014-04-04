@@ -100,14 +100,16 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     } else if (location != _location) {
         _location = location;
         [self.location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
+            float alpha = 1;
             if (error) {
                 self.geocodeSucceeded = NO;
-                if (self.tableCell && self.tableCell.owner == self) {
-                    self.tableCell.image.alpha = 0.5f;
-                }
+                alpha = 0.5;
             } else {
                 self.mapPosition = position;
                 [self _updateDistance];
+            }
+            if (self.tableCell && self.tableCell.owner == self) {
+                self.tableCell.image.alpha = alpha;
             }
             if (self.onGeocodeComplete) {
                 self.onGeocodeComplete(self, error);
@@ -131,7 +133,9 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
         tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
                                  ? [UIImage imageNamed:@"Polling_earlyvoting"]
                                  : [UIImage imageNamed:@"Polling_location"];
-        if (!self.geocodeSucceeded) {
+        // Grey out image if no lat/lon on table cell init (not geocoded yet!)
+        if ([self.location.address.latitude doubleValue] < VA_MIN_LAT ||
+            [self.location.address.longitude doubleValue] < VA_MIN_LON) {
             self.tableCell.image.alpha = 0.5f;
         }
         [self _updateDistance];
@@ -157,7 +161,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 {
     if ((a.latitude == NullCoordinate.latitude && a.longitude == NullCoordinate.longitude) ||
         (b.latitude == NullCoordinate.latitude && b.longitude == NullCoordinate.longitude)) {
-        return @"...";
+        return NSLocalizedString(@"-- mi", @"Indicate distance is unknown # of miles");
     }
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
     CLLocation *y = [[CLLocation alloc] initWithLatitude:b.latitude longitude:b.longitude];
@@ -177,13 +181,9 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 - (void)_updateDistance
 {
     if (self.tableCell && self.tableCell.owner == self) {
-        if (self.geocodeSucceeded) {
-            _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
-                                                                   toB:self.mapPosition];
-            self.tableCell.distance.text = _distance;
-        } else {
-            self.tableCell.distance.text = NSLocalizedString(@"Unknown", @"Distance label when location is unknown");
-        }
+        _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
+                                                               toB:self.mapPosition];
+        self.tableCell.distance.text = _distance;
     }
 }
 
