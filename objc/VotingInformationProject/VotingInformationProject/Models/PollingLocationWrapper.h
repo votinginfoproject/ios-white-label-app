@@ -58,6 +58,10 @@ extern const CLLocationCoordinate2D NullCoordinate;
  */
 @property (strong, nonatomic, readonly) NSString *distance;
 
+/** If NO, geocode didn't succeed, otherwise either it did or it hasn't completed yet
+ */
+@property BOOL geocodeSucceeded;
+
 /** Location of the "center" of the map that we measure distances from (usually user address) */
 @property CLLocationCoordinate2D mapOrigin;
 

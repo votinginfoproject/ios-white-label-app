@@ -27,6 +27,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     self = [super init];
     if (self != nil) {
         [self reset];
+        self.geocodeSucceeded = YES;
     }
     return self;
 }
@@ -52,6 +53,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     }
     _tableCell = nil;
     self.marker = nil;
+    self.geocodeSucceeded = YES;
 }
 
 #pragma mark - Properties
@@ -98,7 +100,12 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     } else if (location != _location) {
         _location = location;
         [self.location.address geocode:^(CLLocationCoordinate2D position, NSError *error) {
-            if (!error) {
+            if (error) {
+                self.geocodeSucceeded = NO;
+                if (self.tableCell && self.tableCell.owner == self) {
+                    self.tableCell.image.alpha = 0.5f;
+                }
+            } else {
                 self.mapPosition = position;
                 [self _updateDistance];
             }
@@ -124,6 +131,9 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
         tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
                                  ? [UIImage imageNamed:@"Polling_earlyvoting"]
                                  : [UIImage imageNamed:@"Polling_location"];
+        if (!self.geocodeSucceeded) {
+            self.tableCell.image.alpha = 0.5f;
+        }
         [self _updateDistance];
     }
 }
@@ -167,9 +177,13 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 - (void)_updateDistance
 {
     if (self.tableCell && self.tableCell.owner == self) {
-        _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
-                                                               toB:self.mapPosition];
-        self.tableCell.distance.text = _distance;
+        if (self.geocodeSucceeded) {
+            _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
+                                                                   toB:self.mapPosition];
+            self.tableCell.distance.text = _distance;
+        } else {
+            self.tableCell.distance.text = NSLocalizedString(@"Unknown", @"Distance label when location is unknown");
+        }
     }
 }
 

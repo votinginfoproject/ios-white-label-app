@@ -642,20 +642,16 @@
 		49E981411892F7F700E26C5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4901591C18D8B6CE0088BA23 /* VIPViewController.h */,
-				4901591D18D8B6CE0088BA23 /* VIPViewController.m */,
-				4970E49518D227AB00104184 /* BallotDetailsViewController.h */,
-				4970E49618D227AB00104184 /* BallotDetailsViewController.m */,
 				4969787418B55E5A00B23CC6 /* AboutViewController.h */,
 				4969787518B55E5A00B23CC6 /* AboutViewController.m */,
+				4970E49518D227AB00104184 /* BallotDetailsViewController.h */,
+				4970E49618D227AB00104184 /* BallotDetailsViewController.m */,
 				49CF34BB18A55BF100DDEE0E /* BallotViewController.h */,
 				49CF34BC18A55BF100DDEE0E /* BallotViewController.m */,
 				495CB9C318B2A10D00243ADB /* CandidateDetailsViewController.h */,
 				495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */,
 				49E981421892F7F700E26C5D /* ContactsSearchViewController.h */,
 				49E981431892F7F700E26C5D /* ContactsSearchViewController.m */,
-				4901592218D8BBD20088BA23 /* VIPTableViewController.h */,
-				4901592318D8BBD20088BA23 /* VIPTableViewController.m */,
 				49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */,
 				49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */,
 				49E981441892F7F700E26C5D /* FindElectionsViewController.h */,
@@ -666,6 +662,10 @@
 				49A04BD618AD261E00BCDB0D /* UIWebViewController.m */,
 				49CF34C418A581AB00DDEE0E /* VIPTabBarController.h */,
 				49CF34C518A581AB00DDEE0E /* VIPTabBarController.m */,
+				4901592218D8BBD20088BA23 /* VIPTableViewController.h */,
+				4901592318D8BBD20088BA23 /* VIPTableViewController.m */,
+				4901591C18D8B6CE0088BA23 /* VIPViewController.h */,
+				4901591D18D8B6CE0088BA23 /* VIPViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
