@@ -20,6 +20,8 @@
 #define AS_DIRECTIONS_FROM_INDEX 1
 #define AS_DIRECTIONS_CANCEL 2
 
+#define DIRECTIONS_STROKEWIDTH 6
+
 @interface NearbyPollingViewController ()
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -336,7 +338,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
  */
 - (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
 {
-    NSString *openInMaps = NSLocalizedString(@"Open in Maps",
+    NSString *openInMaps = NSLocalizedString(@"Show Directions List",
                                              @"Title in window to get directions when marker's pop-up gets clicked");
     NSString *directionsTo = NSLocalizedString(@"Directions To Here",
                                                @"Label in window for directions destination");
@@ -402,7 +404,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         return;
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:NSLocalizedString(@"Sorry, we are unable to get directions for this location.",
+                                                    message:NSLocalizedString(@"Sorry, we are unable to show directions for this location.",
                                                                               @"Error message when directions not found")
                                                    delegate:nil
                                           cancelButtonTitle:NSLocalizedString(@"OK",
@@ -442,19 +444,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         }
     }
 
-    NSLog(@"Source Addr: %@, Dest Addr: %@", saddr, daddr);
-    GDDirectionsService *gdService = [[GDDirectionsService alloc] init];
-    NSDictionary *gdOptions = @{@"sensor": @"true",
-                                @"key": [[AppSettings settings] valueForKey:@"GoogleDirectionsAPIKey"],
-                                @"origin": saddr,
-                                @"destination": daddr};
-    [gdService directionsQuery:gdOptions resultsBlock:^(NSDictionary *json, NSError *error) {
-        if (![[json valueForKey:@"status"] isEqualToString:@"OK"]) {
-            [alert show];
-            return;
-        }
-        [self addDirectionsToMap:json];
-    }];
+    NSDictionary *directionsAddresses = @{@"saddr": saddr, @"daddr": daddr};
+    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:directionsAddresses];
 }
 
 /**
@@ -464,6 +455,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
  */
 - (void)addDirectionsToMap:(NSDictionary*)json
 {
+    if (!json) {
+        return;
+    }
     NSDictionary *routes = [json objectForKey:@"routes"][0];
 
     NSDictionary *route = [routes objectForKey:@"overview_polyline"];
@@ -473,6 +467,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         self.directionsPolyline.map = nil;
     }
     self.directionsPolyline = [GMSPolyline polylineWithPath:path];
+    self.directionsPolyline.strokeWidth = DIRECTIONS_STROKEWIDTH;
     self.directionsPolyline.map = self.mapView;
 }
 
@@ -502,17 +497,39 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     return nil;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.cells.count) {
-        return;  // do not give directions on empty list item
-    }
-    [self openDirectionsActionSheet:indexPath.row];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.cells.count) {
+        return;
+    }
+
+    [self openDirectionsActionSheet:indexPath.row];
+}
+
+#pragma mark - Segues
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"DirectionsViewSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        DirectionsListViewController *directionsListVC = navigationController.viewControllers[0];
+        directionsListVC.delegate = self;
+
+        NSDictionary *addresses = (NSDictionary*)sender;
+        directionsListVC.sourceAddress = addresses[@"saddr"];
+        directionsListVC.destinationAddress = addresses[@"daddr"];
+    }
+}
+
+#pragma mark - DirectionsListViewControllerDelegate
+- (void)directionsListViewControllerDidClose:(DirectionsListViewController *)controller withDirectionsJson:(NSDictionary *)json
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self addDirectionsToMap:json];
 }
 
 @end

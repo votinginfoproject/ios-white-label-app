@@ -118,6 +118,8 @@
 		499537F418A2B8C1009B678C /* ElectionAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F318A2B8C1009B678C /* ElectionAPITests.m */; };
 		499537F618A2BCCB009B678C /* UserAddressAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F518A2BCCB009B678C /* UserAddressAPITests.m */; };
 		4997542F18C6310A002F97FE /* VIPError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997542E18C6310A002F97FE /* VIPError.m */; };
+		499A465D18F6E04A00E2C6BD /* DirectionsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499A465C18F6E04A00E2C6BD /* DirectionsListViewController.m */; };
+		499A466018F7073D00E2C6BD /* UILabel+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 499A465F18F7073D00E2C6BD /* UILabel+HTML.m */; };
 		49A04BD718AD261E00BCDB0D /* UIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD618AD261E00BCDB0D /* UIWebViewController.m */; };
 		49A04BDA18AD419000BCDB0D /* ContestDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */; };
 		49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */; };
@@ -316,6 +318,10 @@
 		499537F518A2BCCB009B678C /* UserAddressAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressAPITests.m; sourceTree = "<group>"; };
 		4997542D18C6310A002F97FE /* VIPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPError.h; sourceTree = "<group>"; };
 		4997542E18C6310A002F97FE /* VIPError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPError.m; sourceTree = "<group>"; };
+		499A465B18F6E04A00E2C6BD /* DirectionsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsListViewController.h; sourceTree = "<group>"; };
+		499A465C18F6E04A00E2C6BD /* DirectionsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsListViewController.m; sourceTree = "<group>"; };
+		499A465E18F7073D00E2C6BD /* UILabel+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HTML.h"; sourceTree = "<group>"; };
+		499A465F18F7073D00E2C6BD /* UILabel+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HTML.m"; sourceTree = "<group>"; };
 		49A04BD518AD261E00BCDB0D /* UIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebViewController.h; sourceTree = "<group>"; };
 		49A04BD618AD261E00BCDB0D /* UIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebViewController.m; sourceTree = "<group>"; };
 		49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestDetailsViewController.h; sourceTree = "<group>"; };
@@ -607,6 +613,8 @@
 		49E981411892F7F700E26C5D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				499A465B18F6E04A00E2C6BD /* DirectionsListViewController.h */,
+				499A465C18F6E04A00E2C6BD /* DirectionsListViewController.m */,
 				4901591C18D8B6CE0088BA23 /* VIPViewController.h */,
 				4901591D18D8B6CE0088BA23 /* VIPViewController.m */,
 				4970E49518D227AB00104184 /* BallotDetailsViewController.h */,
@@ -638,6 +646,8 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				499A465E18F7073D00E2C6BD /* UILabel+HTML.h */,
+				499A465F18F7073D00E2C6BD /* UILabel+HTML.m */,
 				49265ACA18DA473A00F21083 /* VIPColor.h */,
 				49265ACB18DA473A00F21083 /* VIPColor.m */,
 				49265ACD18DA4C1200F21083 /* UIColor+Hex.h */,
@@ -999,6 +1009,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499A465D18F6E04A00E2C6BD /* DirectionsListViewController.m in Sources */,
 				494023C118A3EEFB004FEF48 /* Candidate+API.m in Sources */,
 				4901593018DA126E0088BA23 /* VIPEmptyCell.m in Sources */,
 				49E9080518B515EF00E05ABC /* ContestUrlCell.m in Sources */,
@@ -1026,6 +1037,7 @@
 				4901592C18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m in Sources */,
 				49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */,
 				53D3A7951889A05B00920A70 /* main.m in Sources */,
+				499A466018F7073D00E2C6BD /* UILabel+HTML.m in Sources */,
 				4970E49718D227AB00104184 /* BallotDetailsViewController.m in Sources */,
 				4991F3C118C68461000023D6 /* VIPAddress.m in Sources */,
 				494023AC18A2F146004FEF48 /* DataSource+API.m in Sources */,
