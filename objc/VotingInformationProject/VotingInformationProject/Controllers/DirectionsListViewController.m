@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 4/10/14.
-//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
 #import "DirectionsListViewController.h"
@@ -13,6 +12,7 @@
 #import "AppSettings.h"
 #import "GDDirectionsService.h"
 #import "VIPColor.h"
+#import "VIPEmptyTableViewDataSource.h"
 
 #define AS_APPLEMAPS_INDEX 0
 #define AS_GOOGLEMAPS_INDEX 1
@@ -21,11 +21,14 @@
 @interface DirectionsListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @property (strong, nonatomic) NSArray *directions;
 @property (strong, nonatomic) NSDictionary* json;
 @end
 
 @implementation DirectionsListViewController
+
+const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +50,8 @@
     self.tableView.delegate = self;
     self.json = nil;
 
+    self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
+                            initWithEmptyMessage:NSLocalizedString(@"No Directions Available", @"String displayed on Directions list error")];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -63,17 +68,16 @@
                                 @"destination": self.destinationAddress};
     GDDirectionsService *directionsService = [[GDDirectionsService alloc] init];
     [directionsService directionsQuery:gdOptions resultsBlock:^(NSDictionary *json, NSError *error) {
-        if (error || (json && ![json[@"status"] isEqualToString:@"OK"])) {
-            // Handle error
-            return;
-        }
+
         self.json = json;
-        NSArray * legs = json[@"routes"][0][@"legs"];
-        if ([legs count] < 1) {
-            // Handle error
-            return;
+        @try {
+            NSDictionary* tripLeg = json[@"routes"][0][@"legs"][0];
+            self.directions = tripLeg[@"steps"];
+        } @catch (NSException* e) {
+            self.directions = @[];
+            NSLog(@"Error loading json: %@", error);
         }
-        self.directions = legs[0][@"steps"];
+        [self configureDataSource];
         [self.tableView reloadData];
     }];
 }
@@ -82,6 +86,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (id<UITableViewDataSource>)configureDataSource
+{
+    return ([self.directions count] > 0) ? self : self.emptyDataSource;
 }
 
 - (IBAction)cancel:(id)sender {
@@ -94,6 +103,11 @@
 
 #pragma mark - TableView delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([self.directions count] > 0) ? VIP_DIRECTIONS_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
+}
+
 #pragma mark - TableView datasource
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,8 +118,18 @@
                                                                  forIndexPath:indexPath];
     NSDictionary *directionsStep = (NSDictionary*)self.directions[indexPath.row];
     [cell.textLabel setHtmlText:directionsStep[@"html_instructions"]
-                 withAttributes:@{NSForegroundColorAttributeName: [VIPColor primaryTextColor]}];
-    cell.detailTextLabel.text = directionsStep[@"distance"][@"text"];
+                 withAttributes:@{
+                                  NSForegroundColorAttributeName: [VIPColor primaryTextColor],
+                                  NSFontAttributeName: [UIFont systemFontOfSize:15]
+                                  }];
+    //cell.textLabel.attributedText = [self bumpStringFont:cell.textLabel.attributedText bySize:4.0];
+
+    NSString *distanceText = directionsStep[@"distance"][@"text"];
+    NSString *durationText = directionsStep[@"duration"][@"text"];
+    NSString *separator = @" -- ";
+    NSString *detailText = [[distanceText stringByAppendingString:separator]
+                            stringByAppendingString:durationText];
+    cell.detailTextLabel.text = detailText;
     return cell;
 }
 
