@@ -28,7 +28,9 @@
 
 @implementation ContestDetailsViewController
 
+NSUInteger const CODVC_TABLE_HEADER_HEIGHT = 32;
 NSUInteger const CODVC_TABLECELL_HEIGHT_EMPTY = 88;
+NSUInteger const CODVC_TABLECELL_HEIGHT_CANDIDATES = 60;
 NSUInteger const CODVC_TABLECELL_HEIGHT_DEFAULT = 44;
 NSString * const CDVC_TABLE_CELLID_PROPERTIES = @"ContestPropertiesCell";
 NSString * const CDVC_TABLE_CELLID_PROPERTIES_EMPTY = @"ContestPropertiesCellEmpty";
@@ -36,6 +38,8 @@ NSUInteger const CDVC_TABLE_SECTION_PROPERTIES = 0;
 NSString * const CDVC_TABLE_CELLID_CANDIDATES = @"CandidateCell";
 NSString * const CDVC_TABLE_CELLID_CANDIDATES_EMPTY = @"CandidateCellEmpty";
 NSUInteger const CDVC_TABLE_SECTION_CANDIDATES = 1;
+NSUInteger const CDVC_TABLE_FOOTER_DEFAULT_HEIGHT = 0;
+NSUInteger const CDVC_TABLE_FOOTER_PROPERTIES_HEIGHT = 19;
 NSString * const REFERENDUM_API_ID = @"Referendum";
 
 - (NSMutableArray*)tableData
@@ -159,7 +163,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     return cell;
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString*)titleForHeaderInSection:(NSInteger)section
 {
     if (section == CDVC_TABLE_SECTION_PROPERTIES && [self.contest.type isEqualToString:REFERENDUM_API_ID]) {
         return NSLocalizedString(@"Referendum Details", @"Section title for referendum details");
@@ -171,6 +175,24 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     return @"";
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIColor *primaryTextColor = [VIPColor primaryTextColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, CODVC_TABLE_HEADER_HEIGHT)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, CODVC_TABLE_HEADER_HEIGHT)];
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = primaryTextColor;
+    label.text = [self titleForHeaderInSection:section];
+    [view addSubview:label];
+    [view setBackgroundColor:[VIPColor color:primaryTextColor withAlpha:0.5]];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return CODVC_TABLE_HEADER_HEIGHT;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
@@ -179,9 +201,22 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         return CODVC_TABLECELL_HEIGHT_EMPTY;
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES && isSectionEmpty) {
         return CODVC_TABLECELL_HEIGHT_EMPTY;
+    } else if (section == CDVC_TABLE_SECTION_CANDIDATES){
+        return CODVC_TABLECELL_HEIGHT_CANDIDATES;
     } else {
         return CODVC_TABLECELL_HEIGHT_DEFAULT;
     }
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == CDVC_TABLE_SECTION_PROPERTIES) {
+        CGRect propertiesCGRect = CGRectMake(0.0, 0, tableView.bounds.size.width, CDVC_TABLE_FOOTER_PROPERTIES_HEIGHT);
+        UIView *propertiesFooterView = [[UIView alloc] initWithFrame:propertiesCGRect];
+        propertiesFooterView.backgroundColor = [UIColor clearColor];
+        return propertiesFooterView;
+    }
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 /**
@@ -225,7 +260,8 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
                                        withCandidate:(Candidate*)candidate
 {
     cell.textLabel.text = candidate.name;
-    cell.detailTextLabel.text = candidate.party;
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:10.0];
+    cell.detailTextLabel.text = [candidate.party uppercaseString];
     UIImage* candidateImage = [UIImage imageWithData:candidate.photo];
     if (candidateImage) {
         cell.imageView.image = candidateImage;
