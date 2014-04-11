@@ -29,4 +29,20 @@ static NSString * const GDDirectionsURL = @"https://maps.googleapis.com/maps/api
          }];
 }
 
+- (NSString*)directionsTypeToString:(kGDDirectionsType)type
+{
+    switch (type) {
+        case kGDDirectionsTypeDriving:
+            return @"driving";
+        case kGDDirectionsTypeTransit:
+            return @"transit";
+        case kGDDirectionsTypeCycling:
+            return @"bicycling";
+        case kGDDirectionsTypeWalking:
+            return @"walking";
+        default:
+            return @"driving";
+    }
+}
+
 @end

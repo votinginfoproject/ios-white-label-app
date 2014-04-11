@@ -13,7 +13,7 @@
 #import "DirectionsListViewController.h"
 #import "Election+API.h"
 
-@interface NearbyPollingViewController : VIPViewController <GMSMapViewDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, DirectionsListViewControllerDelegate>
+@interface NearbyPollingViewController : VIPViewController <GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource, DirectionsListViewControllerDelegate>
 
 @property (strong, nonatomic) Election *election;
 

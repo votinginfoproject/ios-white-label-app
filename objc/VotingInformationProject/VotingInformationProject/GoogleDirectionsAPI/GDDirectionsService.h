@@ -8,6 +8,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+typedef enum {
+    kGDDirectionsTypeDriving = 0,
+    kGDDirectionsTypeTransit = 1,
+    kGDDirectionsTypeCycling = 2,
+    kGDDirectionsTypeWalking = 3
+} kGDDirectionsType;
+
 /*
  * Helper class for making requests to the Google Directions API
  * Only supports HTTPS
@@ -23,5 +30,7 @@
  */
 - (void) directionsQuery:(NSDictionary*)options
             resultsBlock:(void (^)(NSDictionary *json, NSError *error))resultsBlock;
+
+- (NSString*)directionsTypeToString:(kGDDirectionsType)type;
 
 @end

@@ -11,6 +11,7 @@
 
 #import "AppSettings.h"
 #import "GDDirectionsService.h"
+#import "VIPUserDefaultsKeys.h"
 #import "VIPColor.h"
 #import "VIPEmptyTableViewDataSource.h"
 
@@ -21,6 +22,7 @@
 @interface DirectionsListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *directionsTypeControl;
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @property (strong, nonatomic) NSArray *directions;
 @property (strong, nonatomic) NSDictionary* json;
@@ -60,26 +62,17 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
     NSLog(@"Directions viewWillAppear");
     [super viewWillAppear:animated];
 
-    self.directions = @[];
+    NSInteger directionsType = [[NSUserDefaults standardUserDefaults]
+                                integerForKey:USER_DEFAULTS_DIRECTIONS_TYPE_KEY];
+    self.directionsTypeControl.selectedSegmentIndex = directionsType;
+    [self requestDirectionsWithMode:(kGDDirectionsType)directionsType];
+}
 
-    NSDictionary *gdOptions = @{@"sensor": @"true",
-                                @"key": [[AppSettings settings] valueForKey:@"GoogleDirectionsAPIKey"],
-                                @"origin": self.sourceAddress,
-                                @"destination": self.destinationAddress};
-    GDDirectionsService *directionsService = [[GDDirectionsService alloc] init];
-    [directionsService directionsQuery:gdOptions resultsBlock:^(NSDictionary *json, NSError *error) {
-
-        self.json = json;
-        @try {
-            NSDictionary* tripLeg = json[@"routes"][0][@"legs"][0];
-            self.directions = tripLeg[@"steps"];
-        } @catch (NSException* e) {
-            self.directions = @[];
-            NSLog(@"Error loading json: %@", error);
-        }
-        [self configureDataSource];
-        [self.tableView reloadData];
-    }];
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSInteger directionsType = self.directionsTypeControl.selectedSegmentIndex;
+    [[NSUserDefaults standardUserDefaults] setInteger:directionsType
+                                               forKey:USER_DEFAULTS_DIRECTIONS_TYPE_KEY];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,6 +84,45 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 - (id<UITableViewDataSource>)configureDataSource
 {
     return ([self.directions count] > 0) ? self : self.emptyDataSource;
+}
+
+- (void) requestDirectionsWithMode:(kGDDirectionsType)mode
+{
+
+    GDDirectionsService *directionsService = [[GDDirectionsService alloc] init];
+
+    NSInteger epoch = floor([[NSDate date] timeIntervalSince1970]);
+    NSDictionary *gdOptions = @{@"sensor": @"true",
+                                @"key": [[AppSettings settings] valueForKey:@"GoogleDirectionsAPIKey"],
+                                @"mode": [directionsService directionsTypeToString:mode],
+                                @"departure_time": [@(epoch) stringValue],
+                                @"origin": self.sourceAddress,
+                                @"destination": self.destinationAddress};
+    NSLog(@"GD Options: %@", gdOptions);
+
+    [directionsService directionsQuery:gdOptions resultsBlock:^(NSDictionary *json, NSError *error) {
+        [self displayDirections:json];
+    }];
+}
+
+- (void) displayDirections:(NSDictionary*)json
+{
+    self.directions = @[];
+    self.json = nil;
+    // cache the last request
+    if (![json[@"status"] isEqualToString:@"OK"]) {
+        NSLog(@"Directions API Error: %@", json[@"status"]);
+    } else {
+        @try {
+            NSDictionary* tripLeg = json[@"routes"][0][@"legs"][0];
+            self.directions = tripLeg[@"steps"];
+            self.json = json;
+        } @catch (NSException* e) {
+            NSLog(@"Error loading json: %@", e);
+        }
+    }
+    self.tableView.dataSource = [self configureDataSource];
+    [self.tableView reloadData];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -143,6 +175,7 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
     return 1;
 }
 
+#pragma mark - ActionSheet
 
 /**
  *  Display an ActionSheet to allow the user to get directions
@@ -200,6 +233,17 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
         NSLog(@"actionSheet clickedButtonAtIndex: - Cannot open url %@ in Maps", url);
     }
 }
+
+#pragma mark - UISegmentedControl
+
+- (IBAction)onDirectionsTypeSelected:(id)sender {
+    if (![sender isKindOfClass:[UISegmentedControl class]]) {
+        return;
+    }
+    UISegmentedControl *directionsControl = (UISegmentedControl*)sender;
+    [self requestDirectionsWithMode:(kGDDirectionsType)directionsControl.selectedSegmentIndex];
+}
+
 
 - (NSURL*)makeMapsURL:(NSString*)sourceUrl
 {

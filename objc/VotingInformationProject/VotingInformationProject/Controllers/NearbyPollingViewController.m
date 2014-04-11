@@ -45,9 +45,6 @@
 
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 
-/** Open action sheet to prompt for getting directions from either map or list */
-- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
-
 @end
 
 
@@ -330,32 +327,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Dispose of any resources that can be recreated.
 }
 
-/**
- *  Display an ActionSheet to allow the user to get directions
- *  when either polling location map marker or list entry is tapped
- *
- *  @param pollingLocationIndex the index of the polling location cell
- */
-- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
-{
-    NSString *openInMaps = NSLocalizedString(@"Show Directions List",
-                                             @"Title in window to get directions when marker's pop-up gets clicked");
-    NSString *directionsTo = NSLocalizedString(@"Directions To Here",
-                                               @"Label in window for directions destination");
-    NSString *directionsFrom = NSLocalizedString(@"Directions From Here",
-                                                 @"Label in window for directions origin");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",
-                                                                                        @"Label for directions cancel button")
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:directionsTo, directionsFrom, nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    actionSheet.tag = pollingLocationIndex;
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
-}
-
-
 #pragma mark - GMSMapView delegate
 
 /**
@@ -382,70 +353,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         return;
     }
 
-    [self openDirectionsActionSheet:index];
-}
-
-#pragma mark - ActionSheet Delegate
-
-/**
- *  Open links in maps app on response from ActionSheet
- *
- *  @param actionSheet The ActionSheet sending this message, should have tag set to index of
- *                      marker that was originally clicked in actionSheet.tag
- *  @param buttonIndex Button that was clicked, 0|1.
- *
- *  @warning Requires GMSMarker.userData to be of type VIPAddress*
- *
- *  Displays a UIAlertView if the generated url cannot be opened in Apple Maps
- */
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == AS_DIRECTIONS_CANCEL) {
-        return;
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:NSLocalizedString(@"Sorry, we are unable to show directions for this location.",
-                                                                              @"Error message when directions not found")
-                                                   delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"OK",
-                                                                              @"Label for button to exit directions window")
-                                          otherButtonTitles:nil];
-
-    GMSMarker *marker = nil;
-
-    // Ensure actionSheet.tag is in range
-    @try {
-        marker = ((PollingLocationWrapper*)self.cells[actionSheet.tag]).marker;
-    } @catch (NSException *e) {
-        [alert show];
-        NSLog(@"actionSheet clickedButtonAtIndex: - No marker %@ in self.markers", marker.title);
-        return;
-    }
-    // Ensure userData has a VIPAddress in it
-    if (![marker.userData isKindOfClass:[VIPAddress class]]) {
-        [alert show];
-        NSLog(@"actionSheet clickedButtonAtIndex - Marker %@ userData not a VIPAddress", marker.title);
-        return;
-    }
-    VIPAddress *markerAddress = (VIPAddress*)marker.userData;
-    NSString *userAddressString = self.userAddress.address;
-    NSString *markerAddressString = [markerAddress toABAddressString:NO];
-    NSString *saddr, *daddr = nil;
-    switch (buttonIndex) {
-        case AS_DIRECTIONS_TO_INDEX: {
-            saddr = userAddressString;
-            daddr = markerAddressString;
-            break;
-        }
-        case AS_DIRECTIONS_FROM_INDEX: {
-            saddr = markerAddressString;
-            daddr = userAddressString;
-            break;
-        }
-    }
-
-    NSDictionary *directionsAddresses = @{@"saddr": saddr, @"daddr": daddr};
-    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:directionsAddresses];
+    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:self.cells[index]];
 }
 
 /**
@@ -502,15 +410,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.cells.count) {
-        return;
-    }
-
-    [self openDirectionsActionSheet:indexPath.row];
-}
-
 #pragma mark - Segues
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -519,9 +418,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         DirectionsListViewController *directionsListVC = navigationController.viewControllers[0];
         directionsListVC.delegate = self;
 
-        NSDictionary *addresses = (NSDictionary*)sender;
-        directionsListVC.sourceAddress = addresses[@"saddr"];
-        directionsListVC.destinationAddress = addresses[@"daddr"];
+        PollingLocationWrapper *plWrapper = nil;
+        if ([sender isKindOfClass:[PollingLocationWrapper class]]) {
+            plWrapper = sender;
+            directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
+        } else if ([sender isKindOfClass:[UITableViewCell class]]) {
+            PollingLocationCell *cell = (PollingLocationCell*)sender;
+            plWrapper = cell.owner;
+        }
+
+        directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
+        directionsListVC.sourceAddress = self.userAddress.address;
     }
 }
 
