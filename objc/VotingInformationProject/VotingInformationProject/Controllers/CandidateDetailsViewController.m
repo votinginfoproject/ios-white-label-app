@@ -86,6 +86,7 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
 
     self.affiliationLabel.text = self.candidate.party
         ? self.candidate.party : NSLocalizedString(@"No Party Information Available", @"Displays in place of candidate's party affiliation when candidate's party is not found");
+    self.affiliationLabel.text = [self.affiliationLabel.text uppercaseString];
 
     [self.tableView reloadData];
 }

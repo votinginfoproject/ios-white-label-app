@@ -84,6 +84,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     [self.tableData removeAllObjects];
     self.electionNameLabel.text = self.electionName ?: NSLocalizedString(@"Not Available",
                                                                          @"Contest details text displayed when election name not available");
+    self.electionNameLabel.text = [self.electionNameLabel.text uppercaseString];
     [self.tableData addObject:[self.contest getProperties]];
 
     if ([self.contest.type isEqualToString:REFERENDUM_API_ID]) {
