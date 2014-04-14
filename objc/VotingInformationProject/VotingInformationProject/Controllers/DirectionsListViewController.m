@@ -7,6 +7,7 @@
 
 #import "DirectionsListViewController.h"
 
+#import "NSURL+WithParams.h"
 #import "UILabel+HTML.h"
 
 #import "AppSettings.h"
@@ -26,11 +27,20 @@
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @property (strong, nonatomic) NSArray *directions;
 @property (strong, nonatomic) NSDictionary* json;
+
+@property (assign, nonatomic) kGDDirectionsType transitMode;
 @end
 
 @implementation DirectionsListViewController
 
 const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
+
+- (void)setTransitMode:(kGDDirectionsType)transitMode
+{
+    _transitMode = transitMode;
+    self.directionsTypeControl.selectedSegmentIndex = transitMode;
+    [self requestDirectionsWithMode:(kGDDirectionsType)transitMode];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,14 +74,12 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 
     NSInteger directionsType = [[NSUserDefaults standardUserDefaults]
                                 integerForKey:USER_DEFAULTS_DIRECTIONS_TYPE_KEY];
-    self.directionsTypeControl.selectedSegmentIndex = directionsType;
-    [self requestDirectionsWithMode:(kGDDirectionsType)directionsType];
+    self.transitMode = directionsType;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSInteger directionsType = self.directionsTypeControl.selectedSegmentIndex;
-    [[NSUserDefaults standardUserDefaults] setInteger:directionsType
+    [[NSUserDefaults standardUserDefaults] setInteger:self.transitMode
                                                forKey:USER_DEFAULTS_DIRECTIONS_TYPE_KEY];
 }
 
@@ -94,7 +102,7 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
     NSInteger epoch = floor([[NSDate date] timeIntervalSince1970]);
     NSDictionary *gdOptions = @{@"sensor": @"true",
                                 @"key": [[AppSettings settings] valueForKey:@"GoogleDirectionsAPIKey"],
-                                @"mode": [directionsService directionsTypeToString:mode],
+                                @"mode": [GDDirectionsService directionsTypeToString:mode],
                                 @"departure_time": [@(epoch) stringValue],
                                 @"origin": self.sourceAddress,
                                 @"destination": self.destinationAddress};
@@ -241,28 +249,25 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
         return;
     }
     UISegmentedControl *directionsControl = (UISegmentedControl*)sender;
-    [self requestDirectionsWithMode:(kGDDirectionsType)directionsControl.selectedSegmentIndex];
-}
-
-
-- (NSURL*)makeMapsURL:(NSString*)sourceUrl
-{
-    NSString *urlString = [NSString stringWithFormat:sourceUrl, self.sourceAddress, self.destinationAddress];
-    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    return url;
-
+    self.transitMode = directionsControl.selectedSegmentIndex;
 }
 
 - (NSURL*)makeAppleMapsURL
 {
-    static NSString *appleMapsUrl = @"http://maps.apple.com/?saddr=%@&daddr=%@";
-    return [self makeMapsURL:appleMapsUrl];
+    // The Apple Maps URL Scheme does not currently support passing a transit mode
+    //  :( -- https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+    static NSString *appleMapsUrl = @"http://maps.apple.com/";
+    return [NSURL URLFromString:appleMapsUrl withParams:@{@"saddr": self.sourceAddress,
+                                                          @"daddr": self.destinationAddress}];
 }
 
 - (NSURL*)makeGoogleMapsURL
 {
-    static NSString *googleMapsUrl = @"comgooglemaps://?saddr=%@&daddr=%@&directionsmode=driving";
-    return [self makeMapsURL:googleMapsUrl];
+    static NSString *googleMapsUrl = @"comgooglemaps://=%@&directionsmode=%@";
+    NSString *directionsMode = [GDDirectionsService directionsTypeToString:self.transitMode];
+    return [NSURL URLFromString:googleMapsUrl withParams:@{@"saddr": self.sourceAddress,
+                                                           @"daddr": self.destinationAddress,
+                                                           @"directionsmode": directionsMode}];
 }
 
 @end

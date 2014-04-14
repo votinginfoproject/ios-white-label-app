@@ -29,7 +29,7 @@ static NSString * const GDDirectionsURL = @"https://maps.googleapis.com/maps/api
          }];
 }
 
-- (NSString*)directionsTypeToString:(kGDDirectionsType)type
++ (NSString*)directionsTypeToString:(kGDDirectionsType)type
 {
     switch (type) {
         case kGDDirectionsTypeDriving:
