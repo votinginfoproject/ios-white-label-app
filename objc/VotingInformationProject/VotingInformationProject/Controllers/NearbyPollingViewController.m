@@ -6,15 +6,18 @@
 //  
 //
 
-#import "GDDirectionsService.h"
-#import "VIPUserDefaultsKeys.h"
 #import "NearbyPollingViewController.h"
-#import "VIPTabBarController.h"
+
+#import "UIImage+Scale.h"
+
+#import "AppSettings.h"
+#import "GDDirectionsService.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
+#import "VIPColor.h"
 #import "VIPEmptyTableViewDataSource.h"
-#import "UIImage+Scale.h"
-#import "AppSettings.h"
+#import "VIPTabBarController.h"
+#import "VIPUserDefaultsKeys.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
@@ -159,7 +162,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Creates a marker at the placemark location
     GMSMarker *marker = [GMSMarker markerWithPosition:position];
     marker.title = title;
-    marker.snippet = snippet;
+    NSString *snippetDirections = NSLocalizedString(@"Get Directions", @"String noting that the map infowindow can display directions on tap");
+    marker.snippet = [[snippet stringByAppendingString:@"\n\n"] stringByAppendingString:snippetDirections];
 
     return marker;
 }
@@ -330,6 +334,37 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 }
 
 #pragma mark - GMSMapView delegate
+
+/*
+- (UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
+{
+    // TODO: Implement this method to return a custom view with styled background and
+    //          a more obvious "Get Directions" link
+    static NSUInteger infoWindowWidth = 300;
+    static NSUInteger infoWindowHeight = 80;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, infoWindowWidth, infoWindowHeight)];
+    view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight;
+    view.opaque = YES;
+    [view setBackgroundColor:[UIColor whiteColor]];
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, -30, infoWindowWidth, infoWindowHeight)];
+    titleLabel.text = marker.title;
+
+    UILabel *snippetLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, -10, infoWindowWidth, infoWindowHeight)];
+    snippetLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    snippetLabel.numberOfLines = 0;
+    snippetLabel.font = [UIFont systemFontOfSize:12];
+    UIColor *markerTextColor = [VIPColor navBarBackgroundColor];
+    NSDictionary *markerTextAttributes = @{NSForegroundColorAttributeName: markerTextColor};
+    NSAttributedString *snippet = [[NSAttributedString alloc] initWithString:marker.snippet
+                                                                  attributes:markerTextAttributes];
+    snippetLabel.attributedText = snippet;
+
+    [view addSubview:titleLabel];
+    [view addSubview:snippetLabel];
+    return view;
+}
+*/
 
 /**
  *  Display an ActionSheet to allow the user to get directions when the marker

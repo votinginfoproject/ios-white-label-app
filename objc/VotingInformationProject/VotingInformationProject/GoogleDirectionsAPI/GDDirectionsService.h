@@ -31,6 +31,6 @@ typedef enum {
 - (void) directionsQuery:(NSDictionary*)options
             resultsBlock:(void (^)(NSDictionary *json, NSError *error))resultsBlock;
 
-- (NSString*)directionsTypeToString:(kGDDirectionsType)type;
++ (NSString*)directionsTypeToString:(kGDDirectionsType)type;
 
 @end

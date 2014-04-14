@@ -45,6 +45,7 @@
 		494023E518A41EF1004FEF48 /* ContestAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E418A41EF1004FEF48 /* ContestAPITests.m */; };
 		494023E718A4216D004FEF48 /* ElectionAdminBodyAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E618A4216D004FEF48 /* ElectionAdminBodyAPITests.m */; };
 		494023E918A425AC004FEF48 /* StateAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E818A425AC004FEF48 /* StateAPITests.m */; };
+		4940E20718FC6BFD009AA5DE /* NSURL+WithParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940E20618FC6BFD009AA5DE /* NSURL+WithParams.m */; };
 		494133FF188F137D006F7D0F /* FindElectionsViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */; };
 		495CB9BD18B26B1B00243ADB /* CandidateAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CB9BC18B26B1B00243ADB /* CandidateAPITests.m */; };
 		495CB9C518B2A10D00243ADB /* CandidateDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CB9C418B2A10D00243ADB /* CandidateDetailsViewController.m */; };
@@ -244,6 +245,8 @@
 		494023E418A41EF1004FEF48 /* ContestAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestAPITests.m; sourceTree = "<group>"; };
 		494023E618A4216D004FEF48 /* ElectionAdminBodyAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionAdminBodyAPITests.m; sourceTree = "<group>"; };
 		494023E818A425AC004FEF48 /* StateAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateAPITests.m; sourceTree = "<group>"; };
+		4940E20518FC6BFD009AA5DE /* NSURL+WithParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+WithParams.h"; sourceTree = "<group>"; };
+		4940E20618FC6BFD009AA5DE /* NSURL+WithParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+WithParams.m"; sourceTree = "<group>"; };
 		494133FE188F137D006F7D0F /* FindElectionsViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindElectionsViewControllerTests.m; sourceTree = "<group>"; };
 		495CB9BC18B26B1B00243ADB /* CandidateAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateAPITests.m; sourceTree = "<group>"; };
 		495CB9C318B2A10D00243ADB /* CandidateDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateDetailsViewController.h; sourceTree = "<group>"; };
@@ -693,6 +696,8 @@
 		49E9814B1892F81600E26C5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4940E20518FC6BFD009AA5DE /* NSURL+WithParams.h */,
+				4940E20618FC6BFD009AA5DE /* NSURL+WithParams.m */,
 				499A465E18F7073D00E2C6BD /* UILabel+HTML.h */,
 				499A465F18F7073D00E2C6BD /* UILabel+HTML.m */,
 				49265ACA18DA473A00F21083 /* VIPColor.h */,
@@ -1063,6 +1068,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4940E20718FC6BFD009AA5DE /* NSURL+WithParams.m in Sources */,
 				499A465D18F6E04A00E2C6BD /* DirectionsListViewController.m in Sources */,
 				494023C118A3EEFB004FEF48 /* Candidate+API.m in Sources */,
 				4901593018DA126E0088BA23 /* VIPEmptyCell.m in Sources */,
