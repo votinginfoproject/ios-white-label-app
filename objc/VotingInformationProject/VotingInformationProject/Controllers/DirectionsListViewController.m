@@ -53,9 +53,7 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 
 - (void)viewDidLoad
 {
-    NSLog(@"Directions viewDidLoad");
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 
     UIColor *navBarBGColor = [VIPColor navBarBackgroundColor];
     self.navigationController.navigationBar.barTintColor = navBarBGColor;
@@ -69,7 +67,6 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"Directions viewWillAppear");
     [super viewWillAppear:animated];
 
     NSInteger directionsType = [[NSUserDefaults standardUserDefaults]
@@ -86,7 +83,6 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (id<UITableViewDataSource>)configureDataSource
@@ -162,7 +158,6 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
                                   NSForegroundColorAttributeName: [VIPColor primaryTextColor],
                                   NSFontAttributeName: [UIFont systemFontOfSize:15]
                                   }];
-    //cell.textLabel.attributedText = [self bumpStringFont:cell.textLabel.attributedText bySize:4.0];
 
     NSString *distanceText = directionsStep[@"distance"][@"text"];
     NSString *durationText = directionsStep[@"duration"][@"text"];
