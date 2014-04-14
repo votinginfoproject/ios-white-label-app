@@ -6,6 +6,7 @@
 //  
 //
 
+#import "GDDirectionsService.h"
 #import "VIPUserDefaultsKeys.h"
 #import "NearbyPollingViewController.h"
 #import "VIPTabBarController.h"
@@ -13,10 +14,13 @@
 #import "PollingLocationWrapper.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "UIImage+Scale.h"
+#import "AppSettings.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1
 #define AS_DIRECTIONS_CANCEL 2
+
+#define DIRECTIONS_STROKEWIDTH 6
 
 @interface NearbyPollingViewController ()
 
@@ -33,14 +37,13 @@
 
 @property (strong, nonatomic) UserAddress *userAddress;
 
+@property (strong, nonatomic) GMSPolyline *directionsPolyline;
+
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
 
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
-
-/** Open action sheet to prompt for getting directions from either map or list */
-- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
 
 @end
 
@@ -326,32 +329,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Dispose of any resources that can be recreated.
 }
 
-/**
- *  Display an ActionSheet to allow the user to get directions
- *  when either polling location map marker or list entry is tapped
- *
- *  @param pollingLocationIndex the index of the polling location cell
- */
-- (void)openDirectionsActionSheet:(NSInteger)pollingLocationIndex;
-{
-    NSString *openInMaps = NSLocalizedString(@"Open in Maps",
-                                             @"Title in window to get directions when marker's pop-up gets clicked");
-    NSString *directionsTo = NSLocalizedString(@"Directions To Here",
-                                               @"Label in window for directions destination");
-    NSString *directionsFrom = NSLocalizedString(@"Directions From Here",
-                                                 @"Label in window for directions origin");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel",
-                                                                                        @"Label for directions cancel button")
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:directionsTo, directionsFrom, nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    actionSheet.tag = pollingLocationIndex;
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
-}
-
-
 #pragma mark - GMSMapView delegate
 
 /**
@@ -378,78 +355,30 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         return;
     }
 
-    [self openDirectionsActionSheet:index];
+    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:self.cells[index]];
 }
 
-#pragma mark - ActionSheet Delegate
-
 /**
- *  Open links in maps app on response from ActionSheet
+ *  Draw GMSPolyline on map using json from a Google Directions API request
  *
- *  @param actionSheet The ActionSheet sending this message, should have tag set to index of
- *                      marker that was originally clicked in actionSheet.tag
- *  @param buttonIndex Button that was clicked, 0|1.
- *
- *  @warning Requires GMSMarker.userData to be of type VIPAddress*
- *
- *  Displays a UIAlertView if the generated url cannot be opened in Apple Maps
+ *  @param json NSDictionary of the json response from the Google Directions API
  */
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)addDirectionsToMap:(NSDictionary*)json
 {
-    if (buttonIndex == AS_DIRECTIONS_CANCEL) {
+    if (!json) {
         return;
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:NSLocalizedString(@"Sorry, we are unable to get directions for this location.",
-                                                                              @"Error message when directions not found")
-                                                   delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"OK",
-                                                                              @"Label for button to exit directions window")
-                                          otherButtonTitles:nil];
+    NSDictionary *routes = [json objectForKey:@"routes"][0];
 
-    NSString *mapsRootUrl = @"http://maps.apple.com/?saddr=%@&daddr=%@";
-    GMSMarker *marker = nil;
-
-    // Ensure actionSheet.tag is in range
-    @try {
-        marker = ((PollingLocationWrapper*)self.cells[actionSheet.tag]).marker;
-    } @catch (NSException *e) {
-        [alert show];
-        NSLog(@"actionSheet clickedButtonAtIndex: - No marker %@ in self.markers", marker.title);
-        return;
+    NSDictionary *route = [routes objectForKey:@"overview_polyline"];
+    NSString *overview_route = [route objectForKey:@"points"];
+    GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
+    if (self.directionsPolyline && self.directionsPolyline.map) {
+        self.directionsPolyline.map = nil;
     }
-    // Ensure userData has a VIPAddress in it
-    if (![marker.userData isKindOfClass:[VIPAddress class]]) {
-        [alert show];
-        NSLog(@"actionSheet clickedButtonAtIndex - Marker %@ userData not a VIPAddress", marker.title);
-        return;
-    }
-    VIPAddress *markerAddress = (VIPAddress*)marker.userData;
-    NSURL *url = nil;
-    NSString *userAddressString = self.userAddress.address;
-    NSString *markerAddressString = [markerAddress toABAddressString:NO];
-    NSString *saddr, *daddr = nil;
-    switch (buttonIndex) {
-        case AS_DIRECTIONS_TO_INDEX: {
-            saddr = userAddressString;
-            daddr = markerAddressString;
-            break;
-        }
-        case AS_DIRECTIONS_FROM_INDEX: {
-            saddr = markerAddressString;
-            daddr = userAddressString;
-            break;
-        }
-    }
-    NSLog(@"Source Addr: %@, Dest Addr: %@", saddr, daddr);
-    NSString *urlString = [NSString stringWithFormat:mapsRootUrl, saddr, daddr];
-    url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url];
-    } else {
-        NSLog(@"actionSheet clickedButtonAtIndex: - Cannot open url %@ in Maps", url);
-        [alert show];
-    }
+    self.directionsPolyline = [GMSPolyline polylineWithPath:path];
+    self.directionsPolyline.strokeWidth = DIRECTIONS_STROKEWIDTH;
+    self.directionsPolyline.map = self.mapView;
 }
 
 
@@ -478,17 +407,38 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     return nil;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.cells.count) {
-        return;  // do not give directions on empty list item
-    }
-    [self openDirectionsActionSheet:indexPath.row];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
+}
+
+#pragma mark - Segues
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"DirectionsViewSegue"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        DirectionsListViewController *directionsListVC = navigationController.viewControllers[0];
+        directionsListVC.delegate = self;
+
+        PollingLocationWrapper *plWrapper = nil;
+        if ([sender isKindOfClass:[PollingLocationWrapper class]]) {
+            plWrapper = sender;
+            directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
+        } else if ([sender isKindOfClass:[UITableViewCell class]]) {
+            PollingLocationCell *cell = (PollingLocationCell*)sender;
+            plWrapper = cell.owner;
+        }
+
+        directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
+        directionsListVC.sourceAddress = self.userAddress.address;
+    }
+}
+
+#pragma mark - DirectionsListViewControllerDelegate
+- (void)directionsListViewControllerDidClose:(DirectionsListViewController *)controller withDirectionsJson:(NSDictionary *)json
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self addDirectionsToMap:json];
 }
 
 @end
