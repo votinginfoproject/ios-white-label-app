@@ -12,15 +12,26 @@
 @implementation VIPColor
 
 // TODO: Add cache for these colors or make them singletons
-// TODO: Make a function that abstracts these color functions.
-//          Something like -(UIColor*)readColor:(NSString*)dictKey default:(NSString*)hexValue ?
 
 + (UIColor*)color:(UIColor *)color withAlpha:(CGFloat)alpha
 {
+    // First try RGB
     CGFloat red, green, blue, oldalpha;
     BOOL success = [color getRed:&red green:&green blue:&blue alpha:&oldalpha];
     if (success) {
         return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    }
+    // Then try HSB
+    CGFloat hue, saturation, brightness;
+    success = [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&oldalpha];
+    if (success) {
+        return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    }
+    // Then try greyscale
+    CGFloat white;
+    success = [color getWhite:&white alpha:&oldalpha];
+    if (success) {
+        return [UIColor colorWithWhite:white alpha:alpha];
     }
     return color;
 }
