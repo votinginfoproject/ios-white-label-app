@@ -10,9 +10,10 @@
 #import "GoogleMaps/GoogleMaps.h"
 
 #import "VIPViewController.h"
+#import "DirectionsListViewController.h"
 #import "Election+API.h"
 
-@interface NearbyPollingViewController : VIPViewController <GMSMapViewDelegate, UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface NearbyPollingViewController : VIPViewController <GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource, DirectionsListViewControllerDelegate>
 
 @property (strong, nonatomic) Election *election;
 

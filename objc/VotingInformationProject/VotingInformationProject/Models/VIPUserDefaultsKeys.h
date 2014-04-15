@@ -11,3 +11,4 @@
 #define USER_DEFAULTS_LONGITUDE_KEY @"mapLongitude"
 #define USER_DEFAULTS_POLLING_VIEW_KEY @"PollingViewKey"
 #define USER_DEFAULTS_SITE_FILTER_KEY @"SiteFilterKey"
+#define USER_DEFAULTS_DIRECTIONS_TYPE_KEY @"DirectionsTypeKey"

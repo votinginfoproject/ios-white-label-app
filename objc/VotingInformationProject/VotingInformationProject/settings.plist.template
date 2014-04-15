@@ -6,6 +6,8 @@
 	<string>AIzaSyB9eioWAZVuhgg1ZxKs3luTCtMyE3KvZ8s</string>
 	<key>GoogleAnalyticsTrackingID</key>
 	<string>Your Tracking ID Here</string>
+	<key>GoogleDirectionsAPIKey</key>
+    <string>Your Directions API Key Here</string>
 	<key>GoogleCivicInfoElectionQueryURL</key>
 	<string>https://www.googleapis.com/civicinfo/us_v1/elections</string>
 	<key>ElectionListURL</key>
