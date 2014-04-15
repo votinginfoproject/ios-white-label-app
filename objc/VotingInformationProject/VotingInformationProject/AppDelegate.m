@@ -55,6 +55,9 @@
     // Segmented control Appearance
     [[UISegmentedControl appearance] setTintColor:[VIPColor primaryTextColor]];
 
+    // UILabel Appearance
+    [[UILabel appearance] setTextColor:[VIPColor primaryTextColor]];
+
     return YES;
 }
 

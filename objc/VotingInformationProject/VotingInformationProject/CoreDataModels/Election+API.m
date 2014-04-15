@@ -151,6 +151,19 @@
     return YES;
 }
 
+- (NSArray*)getUniqueParties
+{
+    NSMutableDictionary *parties = [NSMutableDictionary dictionary];
+    for (Contest *contest in self.contests) {
+        NSString *party = contest.primaryParty;
+        if (party) {
+            parties[party] = party;
+        }
+    }
+    // Sort alphabetically to avoid appearing partisan by certain parties appearing first
+    return [[parties allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
 - (NSString *) getDateString
 {
     NSString *electionDateString = nil;

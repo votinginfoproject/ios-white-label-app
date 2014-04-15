@@ -43,6 +43,13 @@
            resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock;
 
 /**
+ *  Get list of all the unique parties in this election sorted alphabetically
+ *
+ *  @return NSArray of NSString containing the unique parties
+ */
+- (NSArray*)getUniqueParties;
+
+/**
  * @return NSString of the form yyyy-mm-dd
  */
 - (NSString *) getDateString;
