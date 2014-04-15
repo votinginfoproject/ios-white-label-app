@@ -91,6 +91,13 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - ContestDetailsViewControllerDelegate
+
+- (void)contestDetailsViewControllerDidClose:(ContestDetailsViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,9 +137,11 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ContestDetailsSegue"]) {
-        ContestDetailsViewController *cdvc = (ContestDetailsViewController*) segue.destinationViewController;
+        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
+        ContestDetailsViewController *cdvc = (ContestDetailsViewController*) navController.viewControllers[0];
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        cdvc.delegate = self;
         cdvc.contest = _contests[indexPath.item];
         cdvc.electionName = self.election.electionName;
     }

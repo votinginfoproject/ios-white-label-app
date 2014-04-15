@@ -10,6 +10,14 @@
 #import "VIPViewController.h"
 #import "Contest+API.h"
 
+@class ContestDetailsViewController;
+
+@protocol ContestDetailsViewControllerDelegate <NSObject>
+
+- (void)contestDetailsViewControllerDidClose:(ContestDetailsViewController*)controller;
+
+@end
+
 /**
  A Table View controller for displaying details about a Contest*
  Has two sections, first is key/value properties of the contest,
@@ -27,5 +35,7 @@ extern NSString * const REFERENDUM_API_ID;
  The election name associated with this contest
  */
 @property (strong, nonatomic) NSString* electionName;
+@property (weak, nonatomic) id<ContestDetailsViewControllerDelegate>delegate;
 
 @end
+
