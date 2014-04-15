@@ -192,7 +192,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myh-79-KcO">
-                                    <rect key="frame" x="20" y="41" width="280" height="21"/>
+                                    <rect key="frame" x="20" y="41" width="132" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <nil key="highlightedColor"/>
@@ -280,7 +280,13 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4l-J3-RLN">
-                                    <rect key="frame" x="20" y="41" width="280" height="21"/>
+                                    <rect key="frame" x="20" y="41" width="120" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Selected Party" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aE-gR-hws">
+                                    <rect key="frame" x="140" y="41" width="160" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <nil key="highlightedColor"/>
@@ -327,6 +333,7 @@
                     <connections>
                         <outlet property="electionDateLabel" destination="K4l-J3-RLN" id="XvU-AJ-vlC"/>
                         <outlet property="electionNameLabel" destination="mfT-v3-glH" id="pDm-IN-Fpa"/>
+                        <outlet property="selectedPartyLabel" destination="0aE-gR-hws" id="Bt3-xU-X6I"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ne3-q0-quW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1098,6 +1105,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Sg3-NH-JMz"/>
+        <segue reference="xXd-r3-0ih"/>
     </inferredMetricsTieBreakers>
 </document>

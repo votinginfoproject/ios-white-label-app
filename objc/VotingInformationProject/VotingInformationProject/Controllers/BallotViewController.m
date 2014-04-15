@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *party;
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *selectedPartyLabel;
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @end
 
@@ -45,6 +46,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     self.screenName = @"Ballot Screen";
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
     self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
+    self.selectedPartyLabel.textColor = [VIPColor secondaryTextColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -61,6 +63,12 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
         [self updateUI];
     }];
+}
+
+- (void)setParty:(NSString *)party
+{
+    _party = party;
+    self.selectedPartyLabel.text = [party uppercaseString];
 }
 
 - (id<UITableViewDataSource>)configureDataSource
