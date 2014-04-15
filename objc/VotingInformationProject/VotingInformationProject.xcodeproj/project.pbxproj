@@ -91,10 +91,10 @@
 		4970E56518D37E6200104184 /* Homepage_contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52A18D37E6200104184 /* Homepage_contact@2x.png */; };
 		4970E56618D37E6200104184 /* NavigationBar_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52B18D37E6200104184 /* NavigationBar_home.png */; };
 		4970E56718D37E6200104184 /* NavigationBar_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52C18D37E6200104184 /* NavigationBar_home@2x.png */; };
-		4970E56818D37E6200104184 /* Polling_earlyvoting.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52D18D37E6200104184 /* Polling_earlyvoting.png */; };
-		4970E56918D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52E18D37E6200104184 /* Polling_earlyvoting@2x.png */; };
-		4970E56A18D37E6200104184 /* Polling_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52F18D37E6200104184 /* Polling_location.png */; };
-		4970E56B18D37E6200104184 /* Polling_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E53018D37E6200104184 /* Polling_location@2x.png */; };
+		4970E56818D37E6200104184 /* Polling_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52D18D37E6200104184 /* Polling_location.png */; };
+		4970E56918D37E6200104184 /* Polling_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52E18D37E6200104184 /* Polling_location@2x.png */; };
+		4970E56A18D37E6200104184 /* Polling_earlyvoting.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E52F18D37E6200104184 /* Polling_earlyvoting.png */; };
+		4970E56B18D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E53018D37E6200104184 /* Polling_earlyvoting@2x.png */; };
 		4970E56C18D37E6200104184 /* TabBar_ballot-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E53118D37E6200104184 /* TabBar_ballot-active.png */; };
 		4970E56D18D37E6200104184 /* TabBar_ballot-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E53218D37E6200104184 /* TabBar_ballot-active@2x.png */; };
 		4970E56E18D37E6200104184 /* TabBar_ballot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E53318D37E6200104184 /* TabBar_ballot.png */; };
@@ -298,10 +298,10 @@
 		4970E52A18D37E6200104184 /* Homepage_contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Homepage_contact@2x.png"; sourceTree = "<group>"; };
 		4970E52B18D37E6200104184 /* NavigationBar_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBar_home.png; sourceTree = "<group>"; };
 		4970E52C18D37E6200104184 /* NavigationBar_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavigationBar_home@2x.png"; sourceTree = "<group>"; };
-		4970E52D18D37E6200104184 /* Polling_earlyvoting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Polling_earlyvoting.png; sourceTree = "<group>"; };
-		4970E52E18D37E6200104184 /* Polling_earlyvoting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_earlyvoting@2x.png"; sourceTree = "<group>"; };
-		4970E52F18D37E6200104184 /* Polling_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Polling_location.png; sourceTree = "<group>"; };
-		4970E53018D37E6200104184 /* Polling_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_location@2x.png"; sourceTree = "<group>"; };
+		4970E52D18D37E6200104184 /* Polling_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Polling_location.png; sourceTree = "<group>"; };
+		4970E52E18D37E6200104184 /* Polling_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_location@2x.png"; sourceTree = "<group>"; };
+		4970E52F18D37E6200104184 /* Polling_earlyvoting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Polling_earlyvoting.png; sourceTree = "<group>"; };
+		4970E53018D37E6200104184 /* Polling_earlyvoting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_earlyvoting@2x.png"; sourceTree = "<group>"; };
 		4970E53118D37E6200104184 /* TabBar_ballot-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_ballot-active.png"; sourceTree = "<group>"; };
 		4970E53218D37E6200104184 /* TabBar_ballot-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_ballot-active@2x.png"; sourceTree = "<group>"; };
 		4970E53318D37E6200104184 /* TabBar_ballot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBar_ballot.png; sourceTree = "<group>"; };
@@ -584,10 +584,10 @@
 				4970E52A18D37E6200104184 /* Homepage_contact@2x.png */,
 				4970E52B18D37E6200104184 /* NavigationBar_home.png */,
 				4970E52C18D37E6200104184 /* NavigationBar_home@2x.png */,
-				4970E52D18D37E6200104184 /* Polling_earlyvoting.png */,
-				4970E52E18D37E6200104184 /* Polling_earlyvoting@2x.png */,
-				4970E52F18D37E6200104184 /* Polling_location.png */,
-				4970E53018D37E6200104184 /* Polling_location@2x.png */,
+				4970E52D18D37E6200104184 /* Polling_location.png */,
+				4970E52E18D37E6200104184 /* Polling_location@2x.png */,
+				4970E52F18D37E6200104184 /* Polling_earlyvoting.png */,
+				4970E53018D37E6200104184 /* Polling_earlyvoting@2x.png */,
 				4970E53118D37E6200104184 /* TabBar_ballot-active.png */,
 				4970E53218D37E6200104184 /* TabBar_ballot-active@2x.png */,
 				4970E53318D37E6200104184 /* TabBar_ballot.png */,
@@ -923,7 +923,7 @@
 				4970E55618D37E6200104184 /* Candidate_facebook.png in Resources */,
 				49273490188DE80000B25554 /* elections.json in Resources */,
 				4970E57118D37E6200104184 /* TabBar_details-active@2x.png in Resources */,
-				4970E56918D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */,
+				4970E56918D37E6200104184 /* Polling_location@2x.png in Resources */,
 				4970E55918D37E6200104184 /* Candidate_google@2x.png in Resources */,
 				4970E57918D37E6200104184 /* TabBar_polling-active@2x.png in Resources */,
 				4970E57318D37E6200104184 /* TabBar_details@2x.png in Resources */,
@@ -961,9 +961,9 @@
 				4967AB7A18A91D420079C9F1 /* CivicAPIKey.plist in Resources */,
 				4970E56518D37E6200104184 /* Homepage_contact@2x.png in Resources */,
 				4970E57018D37E6200104184 /* TabBar_details-active.png in Resources */,
-				4970E56B18D37E6200104184 /* Polling_location@2x.png in Resources */,
+				4970E56B18D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */,
 				4970E56218D37E6200104184 /* Homepage_about.png in Resources */,
-				4970E56818D37E6200104184 /* Polling_earlyvoting.png in Resources */,
+				4970E56818D37E6200104184 /* Polling_location.png in Resources */,
 				4970E55318D37E6200104184 /* Candidate_default-image@2x.png in Resources */,
 				53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */,
 				4970E57E18D37E6200104184 /* Default_launch-screen@2x.png in Resources */,
@@ -978,7 +978,7 @@
 				4970E56118D37E6200104184 /* Candidate_youtube@2x.png in Resources */,
 				4970E54A18D37E6200104184 /* iTunesArtwork@2x.png in Resources */,
 				4970E54618D37E6200104184 /* AppIcon-iPad@2x.png in Resources */,
-				4970E56A18D37E6200104184 /* Polling_location.png in Resources */,
+				4970E56A18D37E6200104184 /* Polling_earlyvoting.png in Resources */,
 				4970E54518D37E6200104184 /* AppIcon-iPad.png in Resources */,
 				4916408618EB653700233C1C /* Readme.txt in Resources */,
 				4970E56318D37E6200104184 /* Homepage_about@2x.png in Resources */,
