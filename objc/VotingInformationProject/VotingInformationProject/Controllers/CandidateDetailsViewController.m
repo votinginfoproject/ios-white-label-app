@@ -23,6 +23,8 @@
 
 @implementation CandidateDetailsViewController
 
+NSUInteger const CDVC_TABLE_HEADER_HEIGHT = 32;
+NSUInteger const CDVC_TABLE_FOOTER_LINKS_HEIGHT = 19;
 NSUInteger const CDVC_TABLECELL_HEIGHT_EMPTY = 88;
 NSUInteger const CDVC_TABLECELL_HEIGHT_DEFAULT = 44;
 NSUInteger const CDVC_TABLE_SECTION_LINKS = 0;
@@ -86,6 +88,7 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
 
     self.affiliationLabel.text = self.candidate.party
         ? self.candidate.party : NSLocalizedString(@"No Party Information Available", @"Displays in place of candidate's party affiliation when candidate's party is not found");
+    self.affiliationLabel.text = [self.affiliationLabel.text uppercaseString];
 
     [self.tableView reloadData];
 }
@@ -115,6 +118,24 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     }
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIColor *primaryTextColor = [VIPColor primaryTextColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, CDVC_TABLE_HEADER_HEIGHT)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, CDVC_TABLE_HEADER_HEIGHT)];
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = primaryTextColor;
+    label.text = [self titleForHeaderInSection:section];
+    [view addSubview:label];
+    [view setBackgroundColor:[VIPColor color:primaryTextColor withAlpha:0.5]];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return CDVC_TABLE_HEADER_HEIGHT;
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
@@ -134,7 +155,7 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     return cell;
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString*)titleForHeaderInSection:(NSInteger)section
 {
     if (section == CDVC_TABLE_SECTION_LINKS) {
         return NSLocalizedString(@"Candidate Details", @"Section header for candidate's details");
@@ -156,6 +177,19 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     } else {
         return CDVC_TABLECELL_HEIGHT_DEFAULT;
     }
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == CDVC_TABLE_SECTION_LINKS) {
+        CGRect propertiesCGRect = CGRectMake(0.0, 0,
+                                             tableView.bounds.size.width,
+                                             CDVC_TABLE_FOOTER_LINKS_HEIGHT);
+        UIView *propertiesFooterView = [[UIView alloc] initWithFrame:propertiesCGRect];
+        propertiesFooterView.backgroundColor = [UIColor clearColor];
+        return propertiesFooterView;
+    }
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 /**
