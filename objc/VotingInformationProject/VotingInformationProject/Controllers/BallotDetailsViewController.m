@@ -24,6 +24,7 @@
 
 @implementation BallotDetailsViewController
 
+const NSUInteger VIP_TABLE_HEADER_HEIGHT = 32;
 const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
 
 - (NSMutableArray*)tableData
@@ -135,27 +136,37 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
 }
 
 #pragma mark - Table view delegate
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIColor *primaryTextColor = [VIPColor primaryTextColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, VIP_TABLE_HEADER_HEIGHT)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, VIP_TABLE_HEADER_HEIGHT)];
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = primaryTextColor;
+    label.text = NSLocalizedString(@"Election Administration Body", nil);
+    [view addSubview:label];
+    [view setBackgroundColor:[VIPColor color:primaryTextColor withAlpha:0.5]];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return VIP_TABLE_HEADER_HEIGHT;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ([self.tableData[0] count] > 0) ? VIP_DETAILS_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
-        case 0:
-            return NSLocalizedString(@"Election Administration Body",
-                                     @"List header for election 'Details' tab");
-        default:
-            return @"";
-    }
-}
-
+/*
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     UIColor *textColor = [VIPColor primaryTextColor];
     view.backgroundColor = [VIPColor color:textColor withAlpha:0.5];
 }
+*/
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

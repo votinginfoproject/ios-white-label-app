@@ -47,9 +47,9 @@
 
     // Indicate an update is happening...
     // TODO: Add delay so this only shows if requests are taking more than x seconds
-    self.showElectionButton.enabled = NO;
     [self.showElectionButton setTitle:NSLocalizedString(@"Updating...", @"Message that displays while app loads election and voter info after user changes their address")
-                             forState:UIControlStateDisabled];
+                             forState:UIControlStateNormal];
+    [self.showElectionButton sizeToFit];
 
     // update elections when we set a new userAddress
     [Election
@@ -122,17 +122,29 @@
 
     self.screenName = @"Home Screen";
 
-    self.vipLabel.textColor = [VIPColor primaryTextColor];
-    self.brandNameLabel.textColor = [VIPColor secondaryTextColor];
-    self.gettingStartedLabel.textColor = [VIPColor primaryTextColor];
-    [self.aboutAppButton setTitleColor:[VIPColor primaryTextColor]
-                              forState:UIControlStateNormal];
-    [self.showElectionButton setTitleColor:[VIPColor primaryTextColor]
-                                  forState:UIControlStateNormal];
+    UIColor *primaryTextColor = [VIPColor primaryTextColor];
+    UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
 
+    self.addressTextField.textColor = primaryTextColor;
+    self.addressTextField.backgroundColor = [VIPColor color:primaryTextColor withAlpha:0.35];
+    self.addressTextField.borderStyle = UITextBorderStyleRoundedRect;
+
+    [self.aboutAppButton setTitleColor:primaryTextColor
+                              forState:UIControlStateNormal];
+
+    [self.showElectionButton setTitleColor:primaryTextColor
+                                  forState:UIControlStateNormal];
+    self.showElectionButton.layer.cornerRadius = 5;
+    self.showElectionButton.backgroundColor = [VIPColor color:primaryTextColor withAlpha:0.25];
+
+    self.brandNameLabel.textColor = secondaryTextColor;
     self.brandNameLabel.text = [[AppSettings UIStringForKey:@"BrandNameText"] uppercaseString];
+
+    self.vipLabel.textColor = primaryTextColor;
     self.vipLabel.text = NSLocalizedString(@"Voting Information",
                                            @"Localized brand name for the Voting Information Project");
+
+    self.gettingStartedLabel.textColor = primaryTextColor;
     self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to live.",
                                                       @"App home page instruction text for the address text field and contacts picker");
 }
@@ -264,10 +276,10 @@
  */
 - (void)displayGetElections
 {
-    self.showElectionButton.enabled = YES;
+    [self.showElectionButton setHidden:NO];
     [self.showElectionButton setTitle:NSLocalizedString(@"Show Upcoming Election", @"Text for button on first screen to show upcoming election for user's address")
                              forState:UIControlStateNormal];
-    [self.showElectionButton setHidden:NO];
+    [self.showElectionButton sizeToFit];
     [self performSegueWithIdentifier: @"BallotView" sender: self.showElectionButton];
 }
 
@@ -279,10 +291,10 @@
  */
 - (void) displayGetElectionsError:(NSError*)error
 {
-    self.showElectionButton.enabled = NO;
+    [self.showElectionButton setHidden:NO];
     NSString *errorTitle = error.localizedDescription
         ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", @"Error message displayed in button on first screen when app cannot get election data");
-    [self.showElectionButton setTitle:errorTitle forState:UIControlStateDisabled];
-    [self.showElectionButton setHidden:NO];
+    [self.showElectionButton setTitle:errorTitle forState:UIControlStateNormal];
+    [self.showElectionButton sizeToFit];
 }
 @end

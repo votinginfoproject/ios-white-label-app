@@ -17,8 +17,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXU-KT-uFF">
-                                <rect key="frame" x="20" y="462" width="280" height="22"/>
+                                <rect key="frame" x="20" y="464" width="279" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title=" About This App" image="Homepage_about.png">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
-                                <rect key="frame" x="267" y="174" width="23" height="30"/>
+                                <rect key="frame" x="267" y="196" width="23" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Homepage_contact.png">
                                     <attributedString key="attributedTitle"/>
@@ -45,23 +46,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get started by providing the address where you are registered to vote." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="3QK-lN-hQp">
-                                <rect key="frame" x="30" y="111" width="260" height="55"/>
+                                <rect key="frame" x="30" y="124" width="260" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Address..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-ab-T5N">
-                                <rect key="frame" x="30" y="174" width="224" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Address..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-ab-T5N">
+                                <rect key="frame" x="30" y="195" width="224" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.35000000000000003" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go"/>
                                 <connections>
                                     <outlet property="delegate" destination="NFr-cT-tr7" id="zug-Zt-poj"/>
                                 </connections>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
-                                <rect key="frame" x="20" y="226" width="280" height="136"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
+                                <rect key="frame" x="30" y="253" width="260" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <state key="normal" title="Show Upcoming Election"/>
                                 <state key="disabled">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,7 +82,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="CXU-KT-uFF" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="20" id="0Jk-w1-C0A"/>
-                            <constraint firstAttribute="trailing" secondItem="CXU-KT-uFF" secondAttribute="trailing" constant="20" id="kkf-7u-u9S"/>
+                            <constraint firstAttribute="trailing" secondItem="CXU-KT-uFF" secondAttribute="trailing" constant="21" id="kkf-7u-u9S"/>
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="CXU-KT-uFF" secondAttribute="bottom" constant="20" id="v0F-RP-iBd"/>
                         </constraints>
                     </view>
@@ -139,19 +142,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="54a-gY-yDF">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1g-E7-fra">
                                     <rect key="frame" x="20" y="0.0" width="280" height="55"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myh-79-KcO">
-                                    <rect key="frame" x="20" y="52" width="280" height="21"/>
+                                    <rect key="frame" x="20" y="41" width="280" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -159,7 +162,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ElectionDetailsCell" textLabel="Cj6-lZ-spM" detailTextLabel="02e-ig-Isb" style="IBUITableViewCellStyleValue1" id="Jsq-oz-nWt">
-                                <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="96" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jsq-oz-nWt" id="Gmn-vb-uaa">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -183,7 +186,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestUrlPropertiesCell" id="nXY-2B-R5G" customClass="ContestUrlCell">
-                                <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nXY-2B-R5G" id="wdd-fJ-kd0">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -227,19 +230,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="qcJ-f7-wcM">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfT-v3-glH">
                                     <rect key="frame" x="20" y="0.0" width="280" height="55"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4l-J3-RLN">
-                                    <rect key="frame" x="20" y="52" width="280" height="21"/>
+                                    <rect key="frame" x="20" y="41" width="280" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -247,7 +250,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContestCell" textLabel="jhG-7f-olu" detailTextLabel="WFP-hG-6gU" style="IBUITableViewCellStyleSubtitle" id="p74-8h-TLO">
-                                <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="96" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p74-8h-TLO" id="XhL-UB-GUi">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -305,22 +308,22 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yh4-mO-Jao">
                                 <rect key="frame" x="20" y="0.0" width="280" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5r-KA-iqC">
-                                <rect key="frame" x="20" y="52" width="280" height="21"/>
+                                <rect key="frame" x="20" y="44" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vBo-6w-tqu">
-                                <rect key="frame" x="0.0" y="86" width="320" height="369"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="32" sectionFooterHeight="19" translatesAutoresizingMaskIntoConstraints="NO" id="vBo-6w-tqu">
+                                <rect key="frame" x="0.0" y="73" width="320" height="382"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContestPropertiesCell" textLabel="TPa-Rk-VPF" detailTextLabel="zfx-nN-Mgb" style="IBUITableViewCellStyleValue1" id="R9g-8C-FnU">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="32" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R9g-8C-FnU" id="B2l-6h-ThZ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -344,7 +347,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ContestUrlPropertiesCell" id="OqJ-R2-srb" customClass="ContestUrlCell">
-                                        <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="76" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OqJ-R2-srb" id="YAp-UB-cQH">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -364,29 +367,29 @@
                                             <segue destination="LbF-1k-fvs" kind="push" identifier="ContestUrlCellSegue" id="Sg3-NH-JMz"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CandidateCell" textLabel="Vvv-RZ-OMA" detailTextLabel="R4j-vk-pLz" imageView="slH-K0-UFP" style="IBUITableViewCellStyleSubtitle" id="qsC-dw-6PN">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CandidateCell" textLabel="Vvv-RZ-OMA" detailTextLabel="R4j-vk-pLz" imageView="slH-K0-UFP" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="qsC-dw-6PN">
+                                        <rect key="frame" x="0.0" y="120" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qsC-dw-6PN" id="1LZ-A9-Ofm">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vvv-RZ-OMA">
-                                                    <rect key="frame" x="73" y="3" width="34" height="22"/>
+                                                    <rect key="frame" x="89" y="11" width="34" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R4j-vk-pLz">
-                                                    <rect key="frame" x="73" y="25" width="32" height="15"/>
+                                                    <rect key="frame" x="89" y="33" width="32" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Candidate_default-image.png" id="slH-K0-UFP">
-                                                    <rect key="frame" x="15" y="0.0" width="43" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="59" height="59"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -396,7 +399,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CandidateCellEmpty" rowHeight="88" id="pEi-jF-4Bz">
-                                        <rect key="frame" x="0.0" y="154" width="320" height="88"/>
+                                        <rect key="frame" x="0.0" y="180" width="320" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pEi-jF-4Bz" id="WpH-BO-XuG">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
@@ -412,7 +415,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContestPropertiesCellEmpty" rowHeight="88" id="o7f-MF-Gef">
-                                        <rect key="frame" x="0.0" y="242" width="320" height="88"/>
+                                        <rect key="frame" x="0.0" y="268" width="320" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o7f-MF-Gef" id="MhB-5R-ZFB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
@@ -458,21 +461,21 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Candidate Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZe-S3-Tn7">
                                 <rect key="frame" x="81" y="0.0" width="219" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Affiliation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foc-vh-xqY">
-                                <rect key="frame" x="81" y="52" width="219" height="21"/>
+                                <rect key="frame" x="81" y="44" width="219" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Candidate_default-image.png" translatesAutoresizingMaskIntoConstraints="NO" id="SdJ-sc-VsW">
-                                <rect key="frame" x="3" y="3" width="70" height="70"/>
+                                <rect key="frame" x="5" y="3" width="68" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpI-yk-lhW">
-                                <rect key="frame" x="0.0" y="81" width="320" height="374"/>
+                                <rect key="frame" x="0.0" y="73" width="320" height="382"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1055,6 +1058,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xXd-r3-0ih"/>
+        <segue reference="Sg3-NH-JMz"/>
     </inferredMetricsTieBreakers>
 </document>
