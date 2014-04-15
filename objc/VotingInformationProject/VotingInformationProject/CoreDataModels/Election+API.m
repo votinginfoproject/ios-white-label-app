@@ -168,8 +168,10 @@
 {
     NSString *electionDateString = nil;
     if (self.date) {
+        NSLog(@"getDateString: %@", self.date);
         NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-        [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+        [yyyymmddFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [yyyymmddFormatter setTimeStyle:NSDateFormatterNoStyle];
         electionDateString = [yyyymmddFormatter stringFromDate:self.date];
     }
     return electionDateString;
@@ -178,7 +180,7 @@
 - (void) setDateFromString:(NSString *)stringDate
 {
     NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-    [yyyymmddFormatter setDateFormat:@"yyyy-mm-dd"];
+    [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
     self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 

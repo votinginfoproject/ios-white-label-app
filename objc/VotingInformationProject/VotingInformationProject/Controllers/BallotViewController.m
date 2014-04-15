@@ -91,9 +91,6 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     NSArray *contests = [self.election getSorted:@"contests"
                                       byProperty:@"office"
                                        ascending:YES];
-    for (Contest *contest in contests) {
-        NSLog(@"Contest: %@", contest.special);
-    }
     if ([self.party length] > 0) {
         NSString *predicateFormat = @"SELF.primaryParty = nil OR SELF.primaryParty CONTAINS[cd] %@";
         NSPredicate *partyFilterPredicate = [NSPredicate
