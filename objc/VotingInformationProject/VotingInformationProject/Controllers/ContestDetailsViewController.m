@@ -75,6 +75,10 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)close:(id)sender {
+    [self.delegate contestDetailsViewControllerDidClose:self];
+}
+
 /**
  * Refresh data displayed in the elements on this view
  * Conditionally display Referendum elements if self.contest.type == REFERENDUM_API_ID
