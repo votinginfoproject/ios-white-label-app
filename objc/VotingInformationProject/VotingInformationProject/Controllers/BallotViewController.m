@@ -13,8 +13,10 @@
 #import "VIPColor.h"
 
 @interface BallotViewController ()
+@property (strong, nonatomic) NSString *party;
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *selectedPartyLabel;
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @end
 
@@ -44,6 +46,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     self.screenName = @"Ballot Screen";
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
     self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
+    self.selectedPartyLabel.textColor = [VIPColor secondaryTextColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -56,9 +59,16 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
     self.election = (Election*) vipTabBarController.currentElection;
+    self.party = vipTabBarController.currentParty;
     [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
         [self updateUI];
     }];
+}
+
+- (void)setParty:(NSString *)party
+{
+    _party = party;
+    self.selectedPartyLabel.text = [party uppercaseString];
 }
 
 - (id<UITableViewDataSource>)configureDataSource
@@ -78,9 +88,17 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     self.electionNameLabel.text = self.election.electionName;
     self.electionDateLabel.text = [self.election getDateString];
 
-    _contests = [self.election getSorted:@"contests"
-                              byProperty:@"office"
-                               ascending:YES];
+    NSArray *contests = [self.election getSorted:@"contests"
+                                      byProperty:@"office"
+                                       ascending:YES];
+    if ([self.party length] > 0) {
+        NSString *predicateFormat = @"SELF.primaryParty = nil OR SELF.primaryParty CONTAINS[cd] %@";
+        NSPredicate *partyFilterPredicate = [NSPredicate
+                                             predicateWithFormat:predicateFormat, self.party];
+
+        contests = [contests filteredArrayUsingPredicate:partyFilterPredicate];
+    }
+    _contests = contests;
     self.tableView.dataSource = [self configureDataSource];
     [self.tableView reloadData];
 }

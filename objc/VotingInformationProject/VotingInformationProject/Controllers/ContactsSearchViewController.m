@@ -9,25 +9,37 @@
 //  https://github.com/cristianbica/CBSimulatorSeed
 
 #import "ContactsSearchViewController.h"
+
+#import "MMPickerView.h"
+
 #import "AppSettings.h"
 #import "VIPColor.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
-@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
-@property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
 @property (strong, nonatomic) UserAddress *userAddress;
-@property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) Election *currentElection;
-@property (weak, nonatomic) IBOutlet UILabel *brandNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *vipLabel;
-@property (weak, nonatomic) IBOutlet UILabel *gettingStartedLabel;
+@property (strong, nonatomic) NSString *currentParty;
+@property (strong, nonatomic) NSArray *elections;
+@property (strong, nonatomic) NSArray *parties;
 @property (weak, nonatomic) IBOutlet UIButton *aboutAppButton;
+@property (weak, nonatomic) IBOutlet UIButton *partyPickerButton;
+@property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
+@property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
+@property (weak, nonatomic) IBOutlet UILabel *brandNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gettingStartedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vipLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+@property (weak, nonatomic) IBOutlet UIView *partyView;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
 
 @end
 
-@implementation ContactsSearchViewController
+@implementation ContactsSearchViewController {
+    NSString *_allPartiesString;
+    BOOL _hasShownPartyPicker;
+}
 
 /**
  *  Setter for userAddress
@@ -39,17 +51,18 @@
  */
 - (void)setUserAddress:(UserAddress *)userAddress
 {
+    if (userAddress == nil || [userAddress.address length] == 0) {
+        return;
+    }
     if ([userAddress.address isEqualToString:_userAddress.address]) {
         NSLog(@"No change. New address %@ == old", _userAddress.address);
         return;
     }
     _userAddress = userAddress;
 
-    // Indicate an update is happening...
-    // TODO: Add delay so this only shows if requests are taking more than x seconds
-    [self.showElectionButton setTitle:NSLocalizedString(@"Updating...", @"Message that displays while app loads election and voter info after user changes their address")
-                             forState:UIControlStateNormal];
-    [self.showElectionButton sizeToFit];
+    self.partyView.hidden = YES;
+    self.errorView.hidden = YES;
+    self.showElectionButton.hidden = YES;
 
     // update elections when we set a new userAddress
     [Election
@@ -109,11 +122,26 @@
      getVoterInfoIfExpired:^(BOOL success, NSError *error)
      {
          if (success) {
-             [self displayGetElections];
+             NSArray *parties = [self.currentElection getUniqueParties];
+             self.parties = [@[_allPartiesString]
+                             arrayByAddingObjectsFromArray:parties];
+             BOOL showPartyPicker = [self.parties count] > 1 ? YES : NO;
+             if (showPartyPicker) {
+                 [self displayPartyPicker];
+             } else {
+                 [self displayGetElections];
+             }
          } else {
              [self displayGetElectionsError:error];
          }
      }];
+}
+
+- (void)setCurrentParty:(NSString *)currentParty
+{
+    [self.partyPickerButton setTitle:currentParty
+                            forState:UIControlStateNormal];
+    _currentParty = currentParty;
 }
 
 - (void)viewDidLoad
@@ -123,6 +151,8 @@
     self.screenName = @"Home Screen";
 
     UIColor *primaryTextColor = [VIPColor primaryTextColor];
+    UIColor *primaryTextColorWithAlpha25 = [VIPColor color:primaryTextColor
+                                                 withAlpha:0.25];
     UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
 
     self.addressTextField.textColor = primaryTextColor;
@@ -135,18 +165,24 @@
     [self.showElectionButton setTitleColor:primaryTextColor
                                   forState:UIControlStateNormal];
     self.showElectionButton.layer.cornerRadius = 5;
-    self.showElectionButton.backgroundColor = [VIPColor color:primaryTextColor withAlpha:0.25];
+    self.showElectionButton.backgroundColor = secondaryTextColor;
 
     self.brandNameLabel.textColor = secondaryTextColor;
     self.brandNameLabel.text = [[AppSettings UIStringForKey:@"BrandNameText"] uppercaseString];
 
-    self.vipLabel.textColor = primaryTextColor;
     self.vipLabel.text = NSLocalizedString(@"Voting Information",
                                            @"Localized brand name for the Voting Information Project");
 
-    self.gettingStartedLabel.textColor = primaryTextColor;
     self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to live.",
                                                       @"App home page instruction text for the address text field and contacts picker");
+
+    self.partyPickerButton.backgroundColor = primaryTextColorWithAlpha25;
+    self.partyPickerButton.layer.cornerRadius = 5;
+
+    _hasShownPartyPicker = NO;
+    _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
+    self.currentParty = _allPartiesString;
+    self.parties = @[_allPartiesString];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -166,6 +202,12 @@
                                                                  ascending:NO];
     self.addressTextField.text = userAddress.address;
     self.userAddress = userAddress;
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self shiftElectionButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -248,6 +290,8 @@
         VIPTabBarController *vipTabBarController = segue.destinationViewController;
         vipTabBarController.elections = self.elections;
         vipTabBarController.currentElection = self.currentElection;
+        NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
+        vipTabBarController.currentParty = party;
     }
 }
 
@@ -271,16 +315,50 @@
 
 #pragma mark - UI Error Handling
 
+- (IBAction)showPartyView:(id)sender {
+    [MMPickerView showPickerViewInView:self.view
+                           withStrings:self.parties
+                           withOptions:@{MMselectedObject: self.currentParty}
+                            completion:^(NSString* selectedString) {
+                                self.currentParty = selectedString;
+                                [self displayGetElections];
+    }];
+}
+
+- (void)displayPartyPicker
+{
+    self.partyView.hidden = NO;
+    if (_hasShownPartyPicker) {
+        [self displayGetElections];
+    }
+    if (!_hasShownPartyPicker) {
+        _hasShownPartyPicker = YES;
+    }
+}
+
+- (void)shiftElectionButton
+{
+    BOOL shouldShiftButton = !([self.parties count] > 1);
+    CGRect partyViewFrame = self.partyView.frame;
+    CGRect showElectionButtonFrame = self.showElectionButton.frame;
+    CGFloat buttonPadding = 10;
+    if (shouldShiftButton) {
+        showElectionButtonFrame.origin.y = partyViewFrame.origin.y;
+    } else {
+        showElectionButtonFrame.origin.y = partyViewFrame.origin.y + buttonPadding + partyViewFrame.size.height;
+    }
+    self.showElectionButton.frame = showElectionButtonFrame;
+}
+
 /**
  *  Enable button and display relevant text
  */
 - (void)displayGetElections
 {
-    [self.showElectionButton setHidden:NO];
-    [self.showElectionButton setTitle:NSLocalizedString(@"Show Upcoming Election", @"Text for button on first screen to show upcoming election for user's address")
+    self.errorView.hidden = YES;
+    self.showElectionButton.hidden = NO;
+    [self.showElectionButton setTitle:NSLocalizedString(@"GO!", @"Home view GO! button text")
                              forState:UIControlStateNormal];
-    [self.showElectionButton sizeToFit];
-    [self performSegueWithIdentifier: @"BallotView" sender: self.showElectionButton];
 }
 
 /**
@@ -291,10 +369,11 @@
  */
 - (void) displayGetElectionsError:(NSError*)error
 {
-    [self.showElectionButton setHidden:NO];
+    self.showElectionButton.hidden = YES;
+    self.partyView.hidden = YES;
+    self.errorView.hidden = NO;
     NSString *errorTitle = error.localizedDescription
         ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", @"Error message displayed in button on first screen when app cannot get election data");
-    [self.showElectionButton setTitle:errorTitle forState:UIControlStateNormal];
-    [self.showElectionButton sizeToFit];
+    self.errorLabel.text = errorTitle;
 }
 @end

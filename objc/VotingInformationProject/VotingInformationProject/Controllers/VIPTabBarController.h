@@ -15,5 +15,6 @@
 
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) Election *currentElection;
+@property (strong, nonatomic) NSString *currentParty;
 
 @end
