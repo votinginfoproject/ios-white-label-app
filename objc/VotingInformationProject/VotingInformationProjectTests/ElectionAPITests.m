@@ -58,6 +58,8 @@ describe(@"Election+API Tests", ^{
         election1.lastUpdated = [NSDate date];
         Contest *contest1 = [Contest MR_createEntity];
         [election1 addContestsObject:contest1];
+
+        // This line fails if your settings.plist VotingInfoCacheDays is set to < 1
         [[theValue([election1 shouldUpdate]) should] equal:theValue(NO)];
     });
 
@@ -130,13 +132,14 @@ describe(@"Election+API Tests", ^{
     it(@"should ensure that setDateFromString properly sets election date", ^{
         Election *election = [Election MR_createEntity];
         NSString *testDateString = @"2013-01-01";
+        NSString *formattedTestDateString = @"Jan 1, 2013";
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-mm-dd"];
+        [df setDateFormat:@"yyyy-MM-dd"];
         NSDate *testDate = [df dateFromString:testDateString];
 
         [election setDateFromString:testDateString];
         [[testDate should] equal:election.date];
-        [[testDateString should] equal:[election getDateString]];
+        [[formattedTestDateString should] equal:[election getDateString]];
     });
 
     it(@"getVoterInfoAt test ", ^{
