@@ -158,9 +158,25 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
 {
+    // staticlaly define things once to save expense on creating them
+    // http://nshipster.com/nsformatter/
+    static dispatch_once_t onceToken;
+    static NSNumberFormatter *_numberFormatter = nil;
+    static NSString *_unknown = nil;
+    static NSString *_suffix = nil;
+    dispatch_once(&onceToken, ^{
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+        [_numberFormatter setLocale:[NSLocale currentLocale]];
+        [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [_numberFormatter setMaximumFractionDigits:1];
+
+        _unknown = NSLocalizedString(@"-- mi", @"Indicate distance is unknown # of miles");
+        _suffix = NSLocalizedString(@"mi", @"Abbreviation for miles");
+    });
+
     if ((a.latitude == NullCoordinate.latitude && a.longitude == NullCoordinate.longitude) ||
         (b.latitude == NullCoordinate.latitude && b.longitude == NullCoordinate.longitude)) {
-        return NSLocalizedString(@"-- mi", @"Indicate distance is unknown # of miles");
+        return _unknown;
     }
 
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
@@ -168,22 +184,11 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     CLLocationDistance distanceInMeters = fabs([x distanceFromLocation:y]);
     // TODO: flexible unit conversion?
     // meters * (100 cm / meter) * (1 inch / 2.54 cm) * (1 ft / 12 inch) * (1 mile / 5280')
-    CLLocationDistance distance = distanceInMeters * 100 / 2.54 / 12 / 5280;
-
-    // staticlaly define number formatter once to save expense on creating it
-    // http://nshipster.com/nsformatter/
-    static NSNumberFormatter *_numberFormatter = nil;
-    static dispatch_once_t nfOnceToken;
-    dispatch_once(&nfOnceToken, ^{
-        _numberFormatter = [[NSNumberFormatter alloc] init];
-        [_numberFormatter setLocale:[NSLocale currentLocale]];
-        [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [_numberFormatter setMaximumFractionDigits:1];
-    });
+    // 100 / 2.54 / 12 / 5280 = 0.00062137119224
+    CLLocationDistance distance = distanceInMeters * 0.00062137119224;
 
     NSString *distString = [_numberFormatter stringFromNumber:[NSNumber numberWithDouble:distance]];
-    NSString *suffix = NSLocalizedString(@"mi", @"Abbreviation for miles");
-    return [distString stringByAppendingString:suffix];
+    return [distString stringByAppendingString:_suffix];
 }
 
 - (void)_updateDistance
