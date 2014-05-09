@@ -12,9 +12,10 @@
 
 #import "VIPTableViewController.h"
 #import "VIPTabBarController.h"
+#import "ContactsSearchViewControllerDelegate.h"
 #import "Election+API.h"
 #import "FindElectionsCell.h"
 
-@interface FindElectionsViewController : VIPTableViewController
+@interface FindElectionsViewController : VIPTableViewController <ContactsSearchViewControllerDelegate>
 
 @end

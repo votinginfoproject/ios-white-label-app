@@ -8,12 +8,17 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
+#import "UIWebViewController.h"
+#import "VIPTabBarController.h"
 #import "ContactsSearchViewController.h"
 
 #import "MMPickerView.h"
 
 #import "AppSettings.h"
+#import "Election+API.h"
+#import "UserAddress+API.h"
 #import "VIPColor.h"
+#import "VIPUserDefaultsKeys.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
@@ -185,10 +190,6 @@
     self.parties = @[_allPartiesString];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 
 #pragma mark - view appears
 
@@ -202,6 +203,11 @@
                                                                  ascending:NO];
     self.addressTextField.text = userAddress.address;
     self.userAddress = userAddress;
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
+    [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
+    [defaults setObject:nil forKey:USER_DEFAULTS_PARTY];
 }
 
 - (void)viewDidLayoutSubviews
@@ -213,6 +219,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
+    [defaults setObject:self.currentElection.electionId forKey:USER_DEFAULTS_ELECTION_ID];
+    [defaults setObject:self.userAddress.address forKey:USER_DEFAULTS_STORED_ADDRESS];
+    [defaults setObject:party forKey:USER_DEFAULTS_PARTY];
+
     [super viewWillDisappear:animated];
 }
 
@@ -282,17 +295,17 @@
 }
 
 
-#pragma mark - Segues
+#pragma mark - showElectionButton
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"BallotView"]) {
-        VIPTabBarController *vipTabBarController = segue.destinationViewController;
-        vipTabBarController.elections = self.elections;
-        vipTabBarController.currentElection = self.currentElection;
-        NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
-        vipTabBarController.currentParty = party;
-    }
+- (IBAction)tappedShowElectionButton:(id)sender {
+    // Set the current selections to local store so we can pull them from CoreData
+    //  on future app loads
+
+    NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
+    [self.delegate contactsSearchViewControllerDidClose:self
+                                          withElections:self.elections
+                                        currentElection:self.currentElection
+                                               andParty:party];
 }
 
 

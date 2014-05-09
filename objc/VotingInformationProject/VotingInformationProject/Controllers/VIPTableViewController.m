@@ -43,9 +43,7 @@
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:image];
     [self.tableView setOpaque:NO];
 
-    UIColor *navBarBGColor = [VIPColor navBarBackgroundColor];
-    self.navigationController.navigationBar.barTintColor = navBarBGColor;
-
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
