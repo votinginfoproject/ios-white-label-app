@@ -156,24 +156,32 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 }
 
 
-
 + (NSString*)getDistanceStringFromA:(CLLocationCoordinate2D)a toB:(CLLocationCoordinate2D)b
 {
     if ((a.latitude == NullCoordinate.latitude && a.longitude == NullCoordinate.longitude) ||
         (b.latitude == NullCoordinate.latitude && b.longitude == NullCoordinate.longitude)) {
         return NSLocalizedString(@"-- mi", @"Indicate distance is unknown # of miles");
     }
+
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
     CLLocation *y = [[CLLocation alloc] initWithLatitude:b.latitude longitude:b.longitude];
     CLLocationDistance distanceInMeters = fabs([x distanceFromLocation:y]);
     // TODO: flexible unit conversion?
     // meters * (100 cm / meter) * (1 inch / 2.54 cm) * (1 ft / 12 inch) * (1 mile / 5280')
     CLLocationDistance distance = distanceInMeters * 100 / 2.54 / 12 / 5280;
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setLocale:[NSLocale currentLocale]];
-    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [numberFormatter setMaximumFractionDigits:1];
-    NSString *distString = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:distance]];
+
+    // staticlaly define number formatter once to save expense on creating it
+    // http://nshipster.com/nsformatter/
+    static NSNumberFormatter *_numberFormatter = nil;
+    static dispatch_once_t nfOnceToken;
+    dispatch_once(&nfOnceToken, ^{
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+        [_numberFormatter setLocale:[NSLocale currentLocale]];
+        [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [_numberFormatter setMaximumFractionDigits:1];
+    });
+
+    NSString *distString = [_numberFormatter stringFromNumber:[NSNumber numberWithDouble:distance]];
     NSString *suffix = NSLocalizedString(@"mi", @"Abbreviation for miles");
     return [distString stringByAppendingString:suffix];
 }
