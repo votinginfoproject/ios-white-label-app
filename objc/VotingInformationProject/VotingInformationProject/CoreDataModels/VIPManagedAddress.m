@@ -49,8 +49,17 @@
                      position.latitude = lat;
                      position.longitude = lon;
                      NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
-                     [moc MR_saveOnlySelfAndWait];
-                     resultsBlock(position, nil);
+                     [moc MR_saveOnlySelfWithCompletion: ^(BOOL saved, NSError *error){
+                         if (error) {
+                             NSLog(@"Error saving geocoded PlaceMark: %@", error);
+                             return;
+                         }
+                         if (saved) {
+                             resultsBlock(position, nil);
+                         } else {
+                             NSLog(@"Failed to save geocoded PlaceMark.");
+                         }
+                     }];
                  }];
 }
 
