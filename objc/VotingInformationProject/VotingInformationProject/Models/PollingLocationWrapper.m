@@ -181,11 +181,12 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
     CLLocation *x = [[CLLocation alloc] initWithLatitude:a.latitude longitude:a.longitude];
     CLLocation *y = [[CLLocation alloc] initWithLatitude:b.latitude longitude:b.longitude];
-    CLLocationDistance distanceInMeters = fabs([x distanceFromLocation:y]);
+
     // TODO: flexible unit conversion?
+    // CLLocationDistance distanceInMeters = fabs([x distanceFromLocation:y]);
     // meters * (100 cm / meter) * (1 inch / 2.54 cm) * (1 ft / 12 inch) * (1 mile / 5280')
     // 100 / 2.54 / 12 / 5280 = 0.00062137119224
-    CLLocationDistance distance = distanceInMeters * 0.00062137119224;
+    CLLocationDistance distance = fabs([x distanceFromLocation:y]) * 0.00062137119224;
 
     NSString *distString = [_numberFormatter stringFromNumber:[NSNumber numberWithDouble:distance]];
     return [distString stringByAppendingString:_suffix];
