@@ -118,6 +118,22 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
 #pragma mark - ContactsSearchViewControllerDelegate
 
+/* 
+ * NOTE:
+ * This delegate function call and the HomeSegue if block in the prepareForSegue method below are in
+ * all of the tab bar root view controllers for each tab stack. I couldn't come up with
+ * a good way to DRY it out so that there was only one instance of the "Home" button for
+ * all of the tab navigation controllers. Each of the root view controllers has a separate
+ * instance of that home button as well as a modal "HomeSegue" defined.
+ * If someone has a good solution to this, please share.
+ *
+ * Tried:
+ *  - Subclassing navigation controller, but that requires a bunch of logic to only display
+ *    the button contionally on the root view
+ *  - Superclassing each of the tab root controllers, but this is also messy because we have a mix
+ *    of UIViewControllers and UITableViewControllers
+ *
+ */
 - (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
                                withElections:(NSArray *)elections
                              currentElection:(Election *)election
