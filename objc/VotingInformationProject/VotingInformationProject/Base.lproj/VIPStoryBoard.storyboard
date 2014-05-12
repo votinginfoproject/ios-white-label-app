@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -352,22 +352,25 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yh4-mO-Jao">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yh4-mO-Jao">
                                 <rect key="frame" x="20" y="0.0" width="280" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5r-KA-iqC">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5r-KA-iqC">
                                 <rect key="frame" x="20" y="44" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="32" sectionFooterHeight="19" translatesAutoresizingMaskIntoConstraints="NO" id="vBo-6w-tqu">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="32" sectionFooterHeight="19" translatesAutoresizingMaskIntoConstraints="NO" id="vBo-6w-tqu">
                                 <rect key="frame" x="0.0" y="73" width="320" height="431"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="431" id="f4c-0C-e8c"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContestPropertiesCell" textLabel="TPa-Rk-VPF" detailTextLabel="zfx-nN-Mgb" style="IBUITableViewCellStyleValue1" id="R9g-8C-FnU">
                                         <rect key="frame" x="0.0" y="32" width="320" height="44"/>
@@ -400,7 +403,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l52-B7-Cnn">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l52-B7-Cnn">
                                                     <rect key="frame" x="20" y="11" width="247" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -408,6 +411,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="l52-B7-Cnn" secondAttribute="trailing" constant="20" symbolic="YES" id="LHi-CI-6Q7"/>
+                                                <constraint firstItem="l52-B7-Cnn" firstAttribute="leading" secondItem="YAp-UB-cQH" secondAttribute="leading" constant="20" symbolic="YES" id="qd5-03-f54"/>
+                                                <constraint firstItem="l52-B7-Cnn" firstAttribute="centerY" secondItem="YAp-UB-cQH" secondAttribute="centerY" id="uyY-Rv-zKm"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="l52-B7-Cnn" id="VIN-sM-Y5L"/>
@@ -452,13 +460,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Available Candidates" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-gz-R3x">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Available Candidates" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-gz-R3x">
                                                     <rect key="frame" x="40" y="20" width="240" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="centerX" secondItem="WpH-BO-XuG" secondAttribute="centerX" id="PSn-Xz-hML"/>
+                                                <constraint firstAttribute="bottom" secondItem="bBk-gz-R3x" secondAttribute="bottom" constant="20" symbolic="YES" id="ZWy-6T-Gq7"/>
+                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="top" secondItem="WpH-BO-XuG" secondAttribute="top" constant="20" symbolic="YES" id="hjb-eO-ijz"/>
+                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="leading" secondItem="WpH-BO-XuG" secondAttribute="leading" constant="40" id="prF-wy-0Rf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContestPropertiesCellEmpty" rowHeight="88" id="o7f-MF-Gef">
@@ -468,19 +482,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Available Contest Information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-uN-l3v">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Available Contest Information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-uN-l3v">
                                                     <rect key="frame" x="40" y="20" width="240" height="47"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="leading" secondItem="MhB-5R-ZFB" secondAttribute="leading" constant="40" id="Cdr-89-Wz7"/>
+                                                <constraint firstAttribute="bottom" secondItem="KMq-uN-l3v" secondAttribute="bottom" constant="20" symbolic="YES" id="KDh-4i-JOb"/>
+                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="top" secondItem="MhB-5R-ZFB" secondAttribute="top" constant="20" symbolic="YES" id="Zng-U6-Ibe"/>
+                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="centerX" secondItem="MhB-5R-ZFB" secondAttribute="centerX" id="bOx-k6-fTK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="top" secondItem="Fll-8I-Fhh" secondAttribute="top" id="0Q2-OY-uqs"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="centerX" secondItem="Yh4-mO-Jao" secondAttribute="centerX" id="G8L-Tx-Eld"/>
+                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="leading" secondItem="Fll-8I-Fhh" secondAttribute="leading" constant="20" symbolic="YES" id="LWx-Qt-Yk1"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="top" secondItem="Yh4-mO-Jao" secondAttribute="bottom" constant="18" id="WlN-7R-gzR"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="centerX" secondItem="e5r-KA-iqC" secondAttribute="centerX" id="aj4-5e-PfD"/>
+                            <constraint firstAttribute="bottom" secondItem="vBo-6w-tqu" secondAttribute="bottom" id="fU0-mL-fBv"/>
+                            <constraint firstAttribute="trailing" secondItem="vBo-6w-tqu" secondAttribute="trailing" id="fds-0y-Ga3"/>
+                            <constraint firstItem="e5r-KA-iqC" firstAttribute="leading" secondItem="Yh4-mO-Jao" secondAttribute="leading" id="i4a-R8-5x7"/>
+                            <constraint firstItem="e5r-KA-iqC" firstAttribute="top" secondItem="6OT-2v-rCX" secondAttribute="bottom" constant="44" id="oz0-L5-B4k"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="top" secondItem="e5r-KA-iqC" secondAttribute="bottom" constant="8" symbolic="YES" id="u9P-00-abX"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="leading" secondItem="Fll-8I-Fhh" secondAttribute="leading" id="xDH-29-I0D"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Contest" id="02m-1K-uJy">
                         <barButtonItem key="leftBarButtonItem" title="Ballot" id="xCZ-1X-Mny">
@@ -1130,6 +1163,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xXd-r3-0ih"/>
+        <segue reference="Sg3-NH-JMz"/>
     </inferredMetricsTieBreakers>
 </document>
