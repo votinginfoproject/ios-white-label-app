@@ -178,7 +178,7 @@
     self.vipLabel.text = NSLocalizedString(@"Voting Information",
                                            @"Localized brand name for the Voting Information Project");
 
-    self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to live.",
+    self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to vote.",
                                                       @"App home page instruction text for the address text field and contacts picker");
 
     self.partyPickerButton.backgroundColor = primaryTextColorWithAlpha25;
