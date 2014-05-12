@@ -1,18 +1,18 @@
 //
-//  VIPEmptyCell.m
+//  VIPCandidateCell.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 3/19/14.
+//  Created by Andrew Fink on 5/12/14.
+//  Copyright (c) 2014 Bennet Huber. All rights reserved.
 //
 
-#import "VIPEmptyCell.h"
+#import "VIPCandidateCell.h"
 
-@implementation VIPEmptyCell
+@implementation VIPCandidateCell
 
 - (void)awakeFromNib
 {
     // Initialization code
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
