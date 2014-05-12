@@ -170,6 +170,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     NSString *title = [contest.type isEqualToString:REFERENDUM_API_ID]
         ? contest.referendumTitle : contest.office;
     cell.textLabel.text = title;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize] - 1];
     cell.detailTextLabel.text = contest.type;
     return cell;
 }
