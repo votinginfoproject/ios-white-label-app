@@ -20,6 +20,12 @@
 
 - (void)geocode:(void (^)(CLLocationCoordinate2D, NSError *))resultsBlock
 {
+    static NSManagedObjectContext *_moc = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _moc = [NSManagedObjectContext MR_defaultContext];
+    });
+
     double lat = [self.latitude doubleValue];
     double lon = [self.longitude doubleValue];
     if (lat > VA_MIN_LAT && lon > VA_MIN_LON) {
@@ -48,9 +54,18 @@
                      self.longitude = [[NSNumber alloc] initWithDouble:lon];
                      position.latitude = lat;
                      position.longitude = lon;
-                     NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
-                     [moc MR_saveOnlySelfAndWait];
-                     resultsBlock(position, nil);
+                     //NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+                     [_moc MR_saveOnlySelfWithCompletion: ^(BOOL saved, NSError *error){
+                         if (error) {
+                             NSLog(@"Error saving geocoded PlaceMark: %@", error);
+                             return;
+                         }
+                         if (saved) {
+                             resultsBlock(position, nil);
+                         } else {
+                             NSLog(@"Failed to save geocoded PlaceMark.");
+                         }
+                     }];
                  }];
 }
 

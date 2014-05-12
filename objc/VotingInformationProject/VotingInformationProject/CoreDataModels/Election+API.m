@@ -137,9 +137,14 @@
         return NO;
     }
     // setup date formatter
-    NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-    [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
+    static dispatch_once_t onceToken;
+    static NSDateFormatter *_yyyymmddFormatter = nil;
+    dispatch_once(&onceToken, ^{
+        _yyyymmddFormatter = [[NSDateFormatter alloc] init];
+        [_yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
+    });
+
+    NSDate *electionDate = [_yyyymmddFormatter dateFromString:election[@"electionDay"]];
     // Show if election in future relative to current day midnight localtime
     NSCalendarUnit units = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date]];
