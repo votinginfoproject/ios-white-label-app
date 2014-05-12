@@ -7,6 +7,7 @@
 
 #import "ContestDetailsViewController.h"
 
+#import "VIPTabBarController.h"
 #import "CandidateDetailsViewController.h"
 #import "UIWebViewController.h"
 #import "ContestUrlCell.h"
@@ -73,10 +74,6 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (IBAction)close:(id)sender {
-    [self.delegate contestDetailsViewControllerDidClose:self];
 }
 
 /**

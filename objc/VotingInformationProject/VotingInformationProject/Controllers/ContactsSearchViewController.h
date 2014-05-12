@@ -10,14 +10,14 @@
 #import <AddressBookUI/AddressBookUI.h>
 
 #import "VIPViewController.h"
-#import "UIWebViewController.h"
-#import "VIPTabBarController.h"
+#import "ContactsSearchViewControllerDelegate.h"
 
-#import "VIPUserDefaultsKeys.h"
-#import "UserAddress+API.h"
-#import "Election+API.h"
+
+@class ContactsSearchViewController;
 
 @interface ContactsSearchViewController : VIPViewController <ABPeoplePickerNavigationControllerDelegate>
+
+@property (weak, nonatomic) id<ContactsSearchViewControllerDelegate>delegate;
 
 - (IBAction) showPeoplePicker:(id)sender;
 

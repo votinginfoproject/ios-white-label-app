@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="krc-xq-fxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Contacts Search View Controller - Voting Information Project-->
+        <!--Contacts Search View Controller - ContactsSearchViewController-->
         <scene sceneID="yA2-Pp-ibd">
             <objects>
-                <viewController id="NFr-cT-tr7" customClass="ContactsSearchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsSearchViewController" title="ContactsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NFr-cT-tr7" customClass="ContactsSearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vPq-SJ-gnq"/>
                         <viewControllerLayoutGuide type="bottom" id="SbJ-3I-o0Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hKW-vG-RYp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXU-KT-uFF">
-                                <rect key="frame" x="20" y="464" width="279" height="20"/>
+                                <rect key="frame" x="20" y="528" width="279" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title=" About This App" image="Homepage_about.png">
@@ -25,7 +25,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fQj-HQ-I0g" kind="push" id="hs2-HV-Xyz"/>
+                                    <segue destination="fQj-HQ-I0g" kind="push" id="KDW-bH-9Vc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
@@ -70,7 +70,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LLH-BM-tD1" kind="push" identifier="BallotView" id="dNj-Hm-Mrn"/>
+                                    <action selector="tappedShowElectionButton:" destination="NFr-cT-tr7" eventType="touchUpInside" id="7J8-bu-vp3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BRAND NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9S-9H-o10">
@@ -123,6 +123,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="aboutAppButton" destination="CXU-KT-uFF" id="OhQ-EO-NTq"/>
                         <outlet property="addressTextField" destination="dfh-ab-T5N" id="PxV-ir-iAT"/>
@@ -148,7 +149,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="12" y="-8"/>
+            <point key="canvasLocation" x="1076" y="-1388"/>
         </scene>
         <!--Tab Bar Controller - Ballot-->
         <scene sceneID="A3e-Tl-AaM">
@@ -164,10 +165,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Bjz-KM-0gu" kind="relationship" relationship="viewControllers" id="rb7-aO-Oso"/>
-                        <segue destination="HR7-5F-hsN" kind="relationship" relationship="viewControllers" id="73D-Zt-YjH"/>
-                        <segue destination="5h8-J8-eZD" kind="relationship" relationship="viewControllers" id="eY4-Yu-9aR"/>
-                        <segue destination="ilS-n4-gjw" kind="relationship" relationship="viewControllers" id="eiS-19-q7Y"/>
+                        <segue destination="oC0-78-SdT" kind="relationship" relationship="viewControllers" id="rb7-aO-Oso"/>
+                        <segue destination="1WY-5C-VSE" kind="relationship" relationship="viewControllers" id="73D-Zt-YjH"/>
+                        <segue destination="zjK-nE-Utk" kind="relationship" relationship="viewControllers" id="eY4-Yu-9aR"/>
+                        <segue destination="kuE-gb-sKk" kind="relationship" relationship="viewControllers" id="eiS-19-q7Y"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDG-VB-KDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -252,7 +253,14 @@
                             <outlet property="delegate" destination="HR7-5F-hsN" id="NGa-Qw-RVC"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Details" image="TabBar_details.png" id="pC8-7J-EJ9"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Details" id="GHt-5F-JdD">
+                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="Rh3-EZ-8TE">
+                            <connections>
+                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="0FR-Eq-Ss4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="electionDateLabel" destination="Myh-79-KcO" id="WiR-eK-U5i"/>
                         <outlet property="electionNameLabel" destination="k1g-E7-fra" id="kzY-J0-Scc"/>
@@ -260,7 +268,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8a9-h5-vL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="-295"/>
+            <point key="canvasLocation" x="1946" y="129"/>
         </scene>
         <!--Ballot View Controller - Ballot-->
         <scene sceneID="WL0-zb-gHw">
@@ -319,7 +327,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="fjh-JZ-oIn" kind="modal" identifier="ContestDetailsSegue" id="9kD-F5-7jl"/>
+                                    <segue destination="7ZY-Ni-zvk" kind="push" identifier="ContestDetailsSegue" id="dV5-P3-5lN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -328,8 +336,14 @@
                             <outlet property="delegate" destination="Bjz-KM-0gu" id="CoU-c4-INX"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Ballot" image="TabBar_ballot.png" id="i8q-c5-xN2"/>
-                    <navigationItem key="navigationItem" id="QAa-gR-ZRz"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Ballot" id="QAa-gR-ZRz">
+                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="gWq-jM-INw">
+                            <connections>
+                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="7rT-zS-i3R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="electionDateLabel" destination="K4l-J3-RLN" id="XvU-AJ-vlC"/>
                         <outlet property="electionNameLabel" destination="mfT-v3-glH" id="pDm-IN-Fpa"/>
@@ -338,7 +352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ne3-q0-quW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496" y="-606"/>
+            <point key="canvasLocation" x="1946" y="-652"/>
         </scene>
         <!--Contest Details View Controller - Contest-->
         <scene sceneID="I9h-Un-kdD">
@@ -349,7 +363,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HIY-Da-tzn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Fll-8I-Fhh">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contest Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yh4-mO-Jao">
@@ -361,16 +375,16 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Election Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5r-KA-iqC">
                                 <rect key="frame" x="20" y="44" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="obq-yg-B2l"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="32" sectionFooterHeight="19" translatesAutoresizingMaskIntoConstraints="NO" id="vBo-6w-tqu">
-                                <rect key="frame" x="0.0" y="73" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="73" width="320" height="382"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="431" id="f4c-0C-e8c"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContestPropertiesCell" textLabel="TPa-Rk-VPF" detailTextLabel="zfx-nN-Mgb" style="IBUITableViewCellStyleValue1" id="R9g-8C-FnU">
                                         <rect key="frame" x="0.0" y="32" width="320" height="44"/>
@@ -412,9 +426,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="l52-B7-Cnn" secondAttribute="trailing" constant="20" symbolic="YES" id="LHi-CI-6Q7"/>
-                                                <constraint firstItem="l52-B7-Cnn" firstAttribute="leading" secondItem="YAp-UB-cQH" secondAttribute="leading" constant="20" symbolic="YES" id="qd5-03-f54"/>
-                                                <constraint firstItem="l52-B7-Cnn" firstAttribute="centerY" secondItem="YAp-UB-cQH" secondAttribute="centerY" id="uyY-Rv-zKm"/>
+                                                <constraint firstAttribute="trailing" secondItem="l52-B7-Cnn" secondAttribute="trailing" constant="20" symbolic="YES" id="Mxz-rH-hf8"/>
+                                                <constraint firstItem="l52-B7-Cnn" firstAttribute="leading" secondItem="YAp-UB-cQH" secondAttribute="leading" constant="20" symbolic="YES" id="Rvy-L1-ibt"/>
+                                                <constraint firstItem="l52-B7-Cnn" firstAttribute="centerY" secondItem="YAp-UB-cQH" secondAttribute="centerY" id="eLw-eO-5uF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -468,10 +482,10 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="centerX" secondItem="WpH-BO-XuG" secondAttribute="centerX" id="PSn-Xz-hML"/>
-                                                <constraint firstAttribute="bottom" secondItem="bBk-gz-R3x" secondAttribute="bottom" constant="20" symbolic="YES" id="ZWy-6T-Gq7"/>
-                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="top" secondItem="WpH-BO-XuG" secondAttribute="top" constant="20" symbolic="YES" id="hjb-eO-ijz"/>
-                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="leading" secondItem="WpH-BO-XuG" secondAttribute="leading" constant="40" id="prF-wy-0Rf"/>
+                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="top" secondItem="WpH-BO-XuG" secondAttribute="top" constant="20" symbolic="YES" id="MHb-qu-6Pd"/>
+                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="leading" secondItem="WpH-BO-XuG" secondAttribute="leading" constant="40" id="bw5-L6-8sC"/>
+                                                <constraint firstAttribute="bottom" secondItem="bBk-gz-R3x" secondAttribute="bottom" constant="20" symbolic="YES" id="eJv-OY-bpW"/>
+                                                <constraint firstItem="bBk-gz-R3x" firstAttribute="centerX" secondItem="WpH-BO-XuG" secondAttribute="centerX" id="mgX-y8-IKR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -490,10 +504,10 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="leading" secondItem="MhB-5R-ZFB" secondAttribute="leading" constant="40" id="Cdr-89-Wz7"/>
-                                                <constraint firstAttribute="bottom" secondItem="KMq-uN-l3v" secondAttribute="bottom" constant="20" symbolic="YES" id="KDh-4i-JOb"/>
-                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="top" secondItem="MhB-5R-ZFB" secondAttribute="top" constant="20" symbolic="YES" id="Zng-U6-Ibe"/>
-                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="centerX" secondItem="MhB-5R-ZFB" secondAttribute="centerX" id="bOx-k6-fTK"/>
+                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="leading" secondItem="MhB-5R-ZFB" secondAttribute="leading" constant="40" id="AWD-mh-2Bb"/>
+                                                <constraint firstAttribute="bottom" secondItem="KMq-uN-l3v" secondAttribute="bottom" constant="20" symbolic="YES" id="BzC-he-1CP"/>
+                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="top" secondItem="MhB-5R-ZFB" secondAttribute="top" constant="20" symbolic="YES" id="LMn-DG-Nug"/>
+                                                <constraint firstItem="KMq-uN-l3v" firstAttribute="centerX" secondItem="MhB-5R-ZFB" secondAttribute="centerX" id="Uol-ha-3W8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -502,26 +516,21 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="top" secondItem="Fll-8I-Fhh" secondAttribute="top" id="0Q2-OY-uqs"/>
-                            <constraint firstItem="vBo-6w-tqu" firstAttribute="centerX" secondItem="Yh4-mO-Jao" secondAttribute="centerX" id="G8L-Tx-Eld"/>
-                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="leading" secondItem="Fll-8I-Fhh" secondAttribute="leading" constant="20" symbolic="YES" id="LWx-Qt-Yk1"/>
-                            <constraint firstItem="vBo-6w-tqu" firstAttribute="top" secondItem="Yh4-mO-Jao" secondAttribute="bottom" constant="18" id="WlN-7R-gzR"/>
-                            <constraint firstItem="vBo-6w-tqu" firstAttribute="centerX" secondItem="e5r-KA-iqC" secondAttribute="centerX" id="aj4-5e-PfD"/>
-                            <constraint firstAttribute="bottom" secondItem="vBo-6w-tqu" secondAttribute="bottom" id="fU0-mL-fBv"/>
-                            <constraint firstAttribute="trailing" secondItem="vBo-6w-tqu" secondAttribute="trailing" id="fds-0y-Ga3"/>
-                            <constraint firstItem="e5r-KA-iqC" firstAttribute="leading" secondItem="Yh4-mO-Jao" secondAttribute="leading" id="i4a-R8-5x7"/>
-                            <constraint firstItem="e5r-KA-iqC" firstAttribute="top" secondItem="6OT-2v-rCX" secondAttribute="bottom" constant="44" id="oz0-L5-B4k"/>
-                            <constraint firstItem="vBo-6w-tqu" firstAttribute="top" secondItem="e5r-KA-iqC" secondAttribute="bottom" constant="8" symbolic="YES" id="u9P-00-abX"/>
-                            <constraint firstItem="vBo-6w-tqu" firstAttribute="leading" secondItem="Fll-8I-Fhh" secondAttribute="leading" id="xDH-29-I0D"/>
+                            <constraint firstAttribute="bottom" secondItem="vBo-6w-tqu" secondAttribute="bottom" id="0W6-2B-co8"/>
+                            <constraint firstItem="e5r-KA-iqC" firstAttribute="top" secondItem="6OT-2v-rCX" secondAttribute="bottom" constant="44" id="38g-Be-I9V"/>
+                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="top" secondItem="Fll-8I-Fhh" secondAttribute="top" id="7yK-tI-Lbi"/>
+                            <constraint firstItem="e5r-KA-iqC" firstAttribute="trailing" secondItem="Yh4-mO-Jao" secondAttribute="trailing" id="E4b-Zo-f8T"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="leading" secondItem="Fll-8I-Fhh" secondAttribute="leading" id="I3f-JB-JqM"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="top" secondItem="e5r-KA-iqC" secondAttribute="bottom" constant="8" symbolic="YES" id="LEu-Pz-rMx"/>
+                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="leading" secondItem="Fll-8I-Fhh" secondAttribute="leading" constant="20" symbolic="YES" id="N4u-sM-K2U"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="top" secondItem="Yh4-mO-Jao" secondAttribute="bottom" constant="18" id="NWl-WZ-w6C"/>
+                            <constraint firstItem="vBo-6w-tqu" firstAttribute="centerX" secondItem="e5r-KA-iqC" secondAttribute="centerX" id="WCe-dp-Q4E"/>
+                            <constraint firstItem="Yh4-mO-Jao" firstAttribute="leading" secondItem="e5r-KA-iqC" secondAttribute="leading" id="lgW-6Y-MHi"/>
+                            <constraint firstAttribute="trailing" secondItem="Yh4-mO-Jao" secondAttribute="trailing" constant="20" symbolic="YES" id="v5v-eW-gee"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contest" id="02m-1K-uJy">
-                        <barButtonItem key="leftBarButtonItem" title="Ballot" id="xCZ-1X-Mny">
-                            <connections>
-                                <action selector="close:" destination="7ZY-Ni-zvk" id="Lz9-go-h2d"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Contest" id="02m-1K-uJy"/>
                     <connections>
                         <outlet property="contestNameLabel" destination="Yh4-mO-Jao" id="7oF-yc-RrC"/>
                         <outlet property="electionNameLabel" destination="e5r-KA-iqC" id="vMn-WQ-oCJ"/>
@@ -530,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n81-Og-yRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2543" y="-606"/>
+            <point key="canvasLocation" x="2459" y="-652"/>
         </scene>
         <!--Candidate Details View Controller - Candidate-->
         <scene sceneID="8zN-tc-9rG">
@@ -541,7 +550,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Xzj-DD-Xpr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aij-qL-i49">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Candidate Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZe-S3-Tn7">
@@ -561,7 +570,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FpI-yk-lhW">
-                                <rect key="frame" x="0.0" y="73" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="73" width="320" height="382"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -679,6 +688,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Candidate" id="mV6-it-J7F"/>
                     <connections>
                         <outlet property="affiliationLabel" destination="foc-vh-xqY" id="nRP-rT-CYE"/>
@@ -689,7 +699,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVG-M1-LB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3006" y="-606"/>
+            <point key="canvasLocation" x="2962" y="-652"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="1xV-W7-NP6">
@@ -700,11 +710,11 @@
                         <viewControllerLayoutGuide type="bottom" id="caa-Tr-E9f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="amI-3T-UiG">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POQ-8Z-IZQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
@@ -722,12 +732,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SkN-uM-f2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392" y="234"/>
+            <point key="canvasLocation" x="2962" y="129"/>
         </scene>
         <!--About View Controller - About This App-->
         <scene sceneID="gX1-Hu-63K">
             <objects>
-                <tableViewController id="fQj-HQ-I0g" customClass="AboutViewController" sceneMemberID="viewController">
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="fQj-HQ-I0g" customClass="AboutViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OF2-Ln-1CT">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -819,6 +829,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About This App" id="KhW-d4-g1X"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="aboutLabel" destination="wKK-2H-Xzv" id="Dez-TM-pPE"/>
                         <outlet property="privacyLabel" destination="h39-3L-vc3" id="i0R-Iz-9sU"/>
@@ -827,7 +838,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmx-cU-LlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="711"/>
+            <point key="canvasLocation" x="1602" y="-1388"/>
         </scene>
         <!--Nearby Polling View Controller - Polling Sites-->
         <scene sceneID="vau-lL-Dmt">
@@ -935,9 +946,14 @@
                             <constraint firstItem="vGb-SD-759" firstAttribute="top" secondItem="TWf-K2-fuw" secondAttribute="bottom" constant="10" id="uGO-6y-qqx"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Polling" image="TabBar_polling.png" id="Kxk-5f-oXy"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Polling Sites" id="Xfu-rg-ES2">
                         <barButtonItem key="backBarButtonItem" title="Home" id="3WV-9A-YoC"/>
+                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="AiG-na-nBN">
+                            <connections>
+                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="QR0-2Q-jFB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="qmB-pE-6NH" id="lev-l9-aet"/>
@@ -948,7 +964,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsg-MQ-szX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="566"/>
+            <point key="canvasLocation" x="1946" y="900"/>
         </scene>
         <!--Directions List View Controller - Directions-->
         <scene sceneID="of1-7N-h8j">
@@ -1013,6 +1029,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Directions" id="uia-Wy-7kT">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="48o-Jn-qM7">
                             <connections>
@@ -1032,7 +1049,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YS-68-NUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="946"/>
+            <point key="canvasLocation" x="2994" y="900"/>
         </scene>
         <!--Find Elections View Controller - More Elections-->
         <scene sceneID="U8f-na-ZUT">
@@ -1077,37 +1094,18 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="More Elections" image="TabBar_more.png" id="uAv-dm-Gkx"/>
                     <navigationItem key="navigationItem" title="More Elections" id="m4i-zl-0oB">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zqx-En-nBP"/>
+                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="KTl-h3-iXX">
+                            <connections>
+                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="QgY-EI-ECu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wok-0d-qpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496" y="175"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="plA-od-okF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="krc-xq-fxA" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="cyK-rL-Cjo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="YcE-1e-crj">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="NFr-cT-tr7" kind="relationship" relationship="rootViewController" id="fch-cP-uj9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E7f-2Q-UPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-512" y="-8"/>
+            <point key="canvasLocation" x="1946" y="1727"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qJG-Y3-Fnx">
@@ -1115,7 +1113,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jgN-a0-jrp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="1jn-Vy-NRj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1jn-Vy-NRj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1126,32 +1124,110 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z13-xd-9pl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1496" y="946"/>
+            <point key="canvasLocation" x="2472" y="900"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="pAJ-vL-Hlc">
+        <scene sceneID="eAq-Ny-bgD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fjh-JZ-oIn" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4mh-1Q-h6R" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="B5Q-Uf-jnS">
+                    <navigationItem key="navigationItem" id="sxJ-ar-sl3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oE8-gA-AmN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="7ZY-Ni-zvk" kind="relationship" relationship="rootViewController" id="aBF-gc-C2a"/>
+                        <segue destination="NFr-cT-tr7" kind="relationship" relationship="rootViewController" id="1AC-lx-qUx"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pFY-O8-w51" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGv-jx-vLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="-606"/>
+            <point key="canvasLocation" x="571" y="-1388"/>
+        </scene>
+        <!--Navigation Controller - Ballot-->
+        <scene sceneID="E6J-nz-gNK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oC0-78-SdT" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Ballot" image="TabBar_ballot.png" id="i8q-c5-xN2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rWf-7J-kle">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Bjz-KM-0gu" kind="relationship" relationship="rootViewController" id="UXc-sE-ZoE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zFc-OX-LQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="-652"/>
+        </scene>
+        <!--Navigation Controller - More Elections-->
+        <scene sceneID="jHu-iV-d0H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kuE-gb-sKk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="More Elections" image="TabBar_more.png" id="uAv-dm-Gkx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qca-Dd-dbd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ilS-n4-gjw" kind="relationship" relationship="rootViewController" id="wrl-4G-kUz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejX-LD-FEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="1727"/>
+        </scene>
+        <!--Navigation Controller - Details-->
+        <scene sceneID="wif-Dh-IgL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1WY-5C-VSE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Details" image="TabBar_details.png" id="pC8-7J-EJ9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="apD-W1-r3l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HR7-5F-hsN" kind="relationship" relationship="rootViewController" id="rTV-kV-2ti"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gr-r1-hAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="129"/>
+        </scene>
+        <!--Navigation Controller - Polling-->
+        <scene sceneID="UWl-gO-7JM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zjK-nE-Utk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Polling" image="TabBar_polling.png" id="Kxk-5f-oXy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dA-VI-jzV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5h8-J8-eZD" kind="relationship" relationship="rootViewController" id="7i2-R1-83p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4f2-5a-ftz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="900"/>
         </scene>
     </scenes>
     <resources>
         <image name="Candidate_default-image.png" width="72" height="72"/>
         <image name="Homepage_about.png" width="20" height="20"/>
         <image name="Homepage_contact.png" width="23" height="20"/>
+        <image name="NavigationBar_home.png" width="22" height="22"/>
         <image name="TabBar_ballot.png" width="26" height="20"/>
         <image name="TabBar_details.png" width="26" height="20"/>
         <image name="TabBar_more.png" width="28" height="6"/>
@@ -1163,6 +1239,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="7rT-zS-i3R"/>
         <segue reference="Sg3-NH-JMz"/>
     </inferredMetricsTieBreakers>
 </document>

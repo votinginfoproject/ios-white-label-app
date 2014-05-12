@@ -42,8 +42,7 @@
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 
-    UIColor *navBarBGColor = [VIPColor navBarBackgroundColor];
-    self.navigationController.navigationBar.barTintColor = navBarBGColor;
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void) viewWillAppear:(BOOL)animated
