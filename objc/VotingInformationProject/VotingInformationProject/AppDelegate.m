@@ -30,8 +30,14 @@
         [[GAI sharedInstance] trackerWithTrackingId:googleAnalyticsID];
     };
 
+    // Set status bar to light globally
+    // Also requires that View controller-based status bar appearance == NO in project info settings
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     // Sets color of navigation bars
-    self.window.tintColor = [VIPColor navBarTextColor];
+    [[UINavigationBar appearance] setTintColor:[VIPColor navBarTextColor]];
+    [[UINavigationBar appearance] setBarTintColor:[VIPColor navBarBackgroundColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [VIPColor primaryTextColor]}];
 
     // Global tab bar styling
     //[[UITabBar appearance] setTranslucent:NO];

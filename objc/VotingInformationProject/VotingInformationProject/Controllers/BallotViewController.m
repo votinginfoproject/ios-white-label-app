@@ -6,11 +6,13 @@
 //
 
 #import "BallotViewController.h"
+#import "ContactsSearchViewController.h"
 #import "ContestDetailsViewController.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "Election+API.h"
 #import "Contest+API.h"
 #import "VIPColor.h"
+#import "VIPUserDefaultsKeys.h"
 
 @interface BallotViewController ()
 @property (strong, nonatomic) NSString *party;
@@ -40,8 +42,8 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     [super viewDidLoad];
 
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
-                            initWithEmptyMessage:NSLocalizedString(@"No Elections Available",
-                                                                   @"Text displayed by the table view if there are no elections to display")];
+                            initWithEmptyMessage:NSLocalizedString(@"No Contests Available",
+                                                                   @"Text displayed by the table view if there are no contests to display")];
 
     self.screenName = @"Ballot Screen";
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
@@ -58,11 +60,16 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     }
 
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
-    self.election = (Election*) vipTabBarController.currentElection;
-    self.party = vipTabBarController.currentParty;
-    [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
-        [self updateUI];
-    }];
+
+    if (![vipTabBarController isVIPDataAvailable]) {
+        [self presentContactsSearchViewController];
+    } else {
+        self.election = (Election*) vipTabBarController.currentElection;
+        self.party = vipTabBarController.currentParty;
+        [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
+            [self updateUI];
+        }];
+    }
 }
 
 - (void)setParty:(NSString *)party
@@ -109,10 +116,33 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - ContestDetailsViewControllerDelegate
+#pragma mark - ContactsSearchViewControllerDelegate
 
-- (void)contestDetailsViewControllerDidClose:(ContestDetailsViewController *)controller
+/* 
+ * NOTE:
+ * This delegate function call and the HomeSegue if block in the prepareForSegue method below are in
+ * all of the tab bar root view controllers for each tab stack. I couldn't come up with
+ * a good way to DRY it out so that there was only one instance of the "Home" button for
+ * all of the tab navigation controllers. Each of the root view controllers has a separate
+ * instance of that home button as well as a modal "HomeSegue" defined.
+ * If someone has a good solution to this, please share.
+ *
+ * Tried:
+ *  - Subclassing navigation controller, but that requires a bunch of logic to only display
+ *    the button contionally on the root view
+ *  - Superclassing each of the tab root controllers, but this is also messy because we have a mix
+ *    of UIViewControllers and UITableViewControllers
+ *
+ */
+- (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
+                               withElections:(NSArray *)elections
+                             currentElection:(Election *)election
+                                    andParty:(NSString *)party
 {
+    VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+    vipTabBarController.elections = elections;
+    vipTabBarController.currentElection = election;
+    vipTabBarController.currentParty = party;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -154,15 +184,26 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"ContestDetailsSegue"]) {
+    if ([segue.identifier isEqualToString:@"HomeSegue"]) {
         UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
-        ContestDetailsViewController *cdvc = (ContestDetailsViewController*) navController.viewControllers[0];
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        csvc.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"ContestDetailsSegue"]) {
+        ContestDetailsViewController *cdvc = (ContestDetailsViewController*) segue.destinationViewController;
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        cdvc.delegate = self;
         cdvc.contest = _contests[indexPath.item];
         cdvc.electionName = self.election.electionName;
     }
+}
+
+- (void)presentContactsSearchViewController
+{
+    UIStoryboard *storyboard = self.storyboard;
+    ContactsSearchViewController *csvc = [storyboard instantiateViewControllerWithIdentifier:@"ContactsSearchViewController"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:csvc];
+    csvc.delegate = self;
+    [self presentViewController:navigationController animated:NO completion:nil];
 }
 
 @end

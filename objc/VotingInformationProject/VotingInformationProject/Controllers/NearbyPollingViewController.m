@@ -11,6 +11,7 @@
 #import "UIImage+Scale.h"
 
 #import "AppSettings.h"
+#import "ContactsSearchViewController.h"
 #import "GDDirectionsService.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
@@ -206,8 +207,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
     tabBarController.title = NSLocalizedString(@"Polling Sites",
                                                @"Label for polling sites tab button");
-    self.originalRightBarButtonItem = tabBarController.navigationItem.rightBarButtonItem;
-    tabBarController.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
+    self.originalRightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 
     // Set proper view from last known
     _currentView = [[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_POLLING_VIEW_KEY];
@@ -261,7 +262,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    self.tabBarController.navigationItem.rightBarButtonItem = self.originalRightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.originalRightBarButtonItem;
     [[NSUserDefaults standardUserDefaults] setInteger:_currentView
                                                forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
     [[NSUserDefaults standardUserDefaults] setInteger:self.siteFilter.selectedSegmentIndex
@@ -466,6 +467,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
         directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
         directionsListVC.sourceAddress = self.userAddress.address;
+    } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
+        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        csvc.delegate = self;
     }
 }
 
@@ -474,6 +479,19 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self addDirectionsToMap:json];
+}
+
+#pragma mark - ContactsSearchViewControllerViewDelegate
+- (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
+                               withElections:(NSArray *)elections
+                             currentElection:(id)election
+                                    andParty:(NSString *)party
+{
+    VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+    vipTabBarController.elections = elections;
+    vipTabBarController.currentElection = election;
+    vipTabBarController.currentParty = party;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

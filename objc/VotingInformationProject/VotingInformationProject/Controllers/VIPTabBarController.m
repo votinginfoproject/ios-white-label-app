@@ -8,38 +8,27 @@
 
 #import "VIPTabBarController.h"
 
+#import "VIPUserDefaultsKeys.h"
+
 @interface VIPTabBarController ()
 
 @end
 
 @implementation VIPTabBarController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupTabBarImages];
 
-    UIImage *homeImage = [UIImage imageNamed:@"NavigationBar_home"];
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:homeImage
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:self
-                                                                  action:@selector(didTapBackButton:)];
-    self.navigationItem.leftBarButtonItem = homeButton;
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.elections = nil;
+    self.currentElection = nil;
+    self.currentParty = nil;
+
+    // Check if ElectionID/Address/Party exist in local store. If they do, load from there instead
+    //  of showing modal window
+    [self loadVIPDataFromCache];
 }
 
 - (void)setupTabBarImages
@@ -68,9 +57,33 @@
     }
 }
 
-- (void)didTapBackButton:(id)sender
+- (BOOL)isVIPDataAvailable
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    return self.elections && self.currentElection;
+}
+
+/* Loading the data from cache allows us to skip the "Select address/party" modal
+ * when we restore the app from a saved state
+ */
+- (void)loadVIPDataFromCache
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *address = [defaults stringForKey:USER_DEFAULTS_STORED_ADDRESS];
+    NSString *electionId = [defaults stringForKey:USER_DEFAULTS_ELECTION_ID];
+    NSString *party = [defaults stringForKey:USER_DEFAULTS_PARTY];
+
+    UserAddress *userAddress = [UserAddress MR_findFirstByAttribute:@"address" withValue:address];
+    NSArray *elections = [Election MR_findByAttribute:@"userAddress"
+                                            withValue:userAddress
+                                           andOrderBy:@"date"
+                                            ascending:YES];
+    for (Election *election in elections) {
+        if ([election.electionId isEqualToString:electionId]) {
+            self.currentParty = party;
+            self.currentElection = election;
+            self.elections = elections;
+        }
+    }
 }
 
 @end

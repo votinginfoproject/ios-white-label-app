@@ -355,6 +355,7 @@
 		49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "PollingLocation+API.m"; path = "CoreDataModels/PollingLocation+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49B5B8A818EB2C6900CCB11E /* GDDirectionsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDDirectionsService.h; path = GoogleDirectionsAPI/GDDirectionsService.h; sourceTree = "<group>"; };
 		49B5B8A918EB2C6900CCB11E /* GDDirectionsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDDirectionsService.m; path = GoogleDirectionsAPI/GDDirectionsService.m; sourceTree = "<group>"; };
+		49B6DBC0191D1E4600D30A3C /* ContactsSearchViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsSearchViewControllerDelegate.h; path = Delegates/ContactsSearchViewControllerDelegate.h; sourceTree = "<group>"; };
 		49C1FED518B2C6AE00CF9DFE /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Candidate.h; path = CoreDataModels/Candidate.h; sourceTree = "<group>"; };
 		49C1FED618B2C6AE00CF9DFE /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Candidate.m; path = CoreDataModels/Candidate.m; sourceTree = "<group>"; };
 		49C1FED818B2C6AF00CF9DFE /* SocialChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocialChannel.h; path = CoreDataModels/SocialChannel.h; sourceTree = "<group>"; };
@@ -629,6 +630,14 @@
 			name = GoogleDirectionsAPI;
 			sourceTree = "<group>";
 		};
+		49B6DBBF191D1E1D00D30A3C /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				49B6DBC0191D1E4600D30A3C /* ContactsSearchViewControllerDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		49DD457218A17146003374A3 /* CoreDataModelsAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +784,7 @@
 		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
+				49B6DBBF191D1E1D00D30A3C /* Delegates */,
 				4916403118EB653700233C1C /* GoogleAnalytics */,
 				49B5B8A718EB2B0C00CCB11E /* GoogleDirectionsAPI */,
 				4901592518D9E13D0088BA23 /* DataSources */,
@@ -902,6 +912,7 @@
 				en,
 				es,
 				Base,
+				fr,
 			);
 			mainGroup = 53D3A77A1889A05B00920A70;
 			productRefGroup = 53D3A7841889A05B00920A70 /* Products */;

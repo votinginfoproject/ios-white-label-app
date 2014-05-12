@@ -8,6 +8,7 @@
 #import "BallotDetailsViewController.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "VIPTabBarController.h"
+#import "ContactsSearchViewController.h"
 #import "UIWebViewController.h"
 #import "State+API.h"
 #import "VIPColor.h"
@@ -175,7 +176,26 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
         webView.title = cell.descriptionLabel.text;
         webView.url = cell.url;
+    } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
+        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        csvc.delegate = self;
     }
 }
+
+#pragma mark - ContactsSearchViewControllerDelegate
+- (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
+                               withElections:(NSArray *)elections
+                             currentElection:(Election *)election
+                                    andParty:(NSString *)party
+{
+    VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+    vipTabBarController.elections = elections;
+    vipTabBarController.currentElection = election;
+    vipTabBarController.currentParty = party;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end
