@@ -59,7 +59,6 @@
                               @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info", @"Label for election administration body's absentee voting information link"),
                               @"electionRegistrationUrl": NSLocalizedString(@"Election Registration", @"Label for election administration body's registration information link"),
                               @"electionRulesUrl": NSLocalizedString(@"Election Rules", @"Label for election administration body's election rules link"),
-                              @"votingLocationFinderUrl": NSLocalizedString(@"Location Finder", @"Label for election administration body's location finder link"),
                               @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services")
                          };
     });
