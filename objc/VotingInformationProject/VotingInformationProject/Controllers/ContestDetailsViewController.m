@@ -265,7 +265,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
                                        withCandidate:(Candidate*)candidate
 {
     cell.nameLabel.font = [UIFont systemFontOfSize:17.0];
-    cell.textLabel.text = [candidate.name capitalizedString];
+    cell.nameLabel.text = [candidate.name capitalizedString];
     cell.partyLabel.font = [UIFont boldSystemFontOfSize:12.0];
     cell.partyLabel.text = [candidate.party capitalizedString];
     UIImage* candidateImage = [UIImage imageWithData:candidate.photo];
