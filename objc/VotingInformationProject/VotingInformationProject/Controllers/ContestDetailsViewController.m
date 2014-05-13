@@ -100,7 +100,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
                                                                               @"Contest details text displayed when office name not available");
         // Only add candidates for elections, not referenda
         [self.tableData addObject:[self.contest getSorted:@"candidates"
-                                               byProperty:@"name"
+                                               byProperty:@"orderOnBallot"
                                                 ascending:YES]];
     }
     [self.tableView reloadData];
@@ -288,7 +288,8 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        cdvc.candidate = self.tableData[indexPath.section][indexPath.item];
+        Candidate *candidate = self.tableData[indexPath.section][indexPath.item];
+        cdvc.candidate = candidate;
 
     } else if ([segue.identifier isEqualToString:@"ContestUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;

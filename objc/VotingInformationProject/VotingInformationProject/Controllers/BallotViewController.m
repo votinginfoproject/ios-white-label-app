@@ -96,8 +96,9 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     self.electionDateLabel.text = [self.election getDateString];
 
     NSArray *contests = [self.election getSorted:@"contests"
-                                      byProperty:@"office"
+                                      byProperty:@"ballotPlacement"
                                        ascending:YES];
+
     if ([self.party length] > 0) {
         NSString *predicateFormat = @"SELF.primaryParty = nil OR SELF.primaryParty CONTAINS[cd] %@";
         NSPredicate *partyFilterPredicate = [NSPredicate
@@ -192,7 +193,8 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
         ContestDetailsViewController *cdvc = (ContestDetailsViewController*) segue.destinationViewController;
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        cdvc.contest = _contests[indexPath.item];
+        Contest *contest = (Contest*)_contests[indexPath.item];
+        cdvc.contest = contest;
         cdvc.electionName = self.election.electionName;
     }
 }
