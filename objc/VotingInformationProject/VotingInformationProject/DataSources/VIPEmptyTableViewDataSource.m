@@ -46,6 +46,8 @@ NSString * const VIP_EMPTY_TABLECELL_ID = @"VIPEmptyTableCell";
         cell = (VIPEmptyCell*)[tableView dequeueReusableCellWithIdentifier:VIP_EMPTY_TABLECELL_ID];
     }
     cell.messageLabel.text = self.emptyMessage;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.userInteractionEnabled = NO;
     return cell;
 }
 

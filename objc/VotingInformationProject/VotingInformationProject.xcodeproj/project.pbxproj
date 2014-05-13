@@ -115,6 +115,7 @@
 		4970E57D18D37E6200104184 /* Default_launch-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E54318D37E6200104184 /* Default_launch-screen.png */; };
 		4970E57E18D37E6200104184 /* Default_launch-screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E54418D37E6200104184 /* Default_launch-screen@2x.png */; };
 		498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 498225E2189AEADC00FB8FC4 /* Localizable.strings */; };
+		4982F905192157F60007B75B /* VIPCandidateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4982F903192157F60007B75B /* VIPCandidateCell.m */; };
 		4991F3A918C68296000023D6 /* VIPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991F3A818C68296000023D6 /* VIPManagedObject.m */; };
 		4991F3BB18C68425000023D6 /* VIPManagedAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991F3BA18C68425000023D6 /* VIPManagedAddress.m */; };
 		4991F3BE18C68460000023D6 /* UserAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991F3BD18C68460000023D6 /* UserAddress.m */; };
@@ -183,9 +184,9 @@
 		4901592318D8BBD20088BA23 /* VIPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPTableViewController.m; sourceTree = "<group>"; };
 		4901592A18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPEmptyTableViewDataSource.h; path = DataSources/VIPEmptyTableViewDataSource.h; sourceTree = "<group>"; };
 		4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPEmptyTableViewDataSource.m; path = DataSources/VIPEmptyTableViewDataSource.m; sourceTree = "<group>"; };
-		4901592D18DA126E0088BA23 /* VIPEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPEmptyCell.h; sourceTree = "<group>"; };
-		4901592E18DA126E0088BA23 /* VIPEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPEmptyCell.m; sourceTree = "<group>"; };
-		4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VIPEmptyCell.xib; sourceTree = "<group>"; };
+		4901592D18DA126E0088BA23 /* VIPEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPEmptyCell.h; path = Models/VIPEmptyCell.h; sourceTree = "<group>"; };
+		4901592E18DA126E0088BA23 /* VIPEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPEmptyCell.m; path = Models/VIPEmptyCell.m; sourceTree = "<group>"; };
+		4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VIPEmptyCell.xib; path = Models/VIPEmptyCell.xib; sourceTree = "<group>"; };
 		4903245B1890650A00FD9828 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4903245C1890650A00FD9828 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		49041DAF18DB9677007A0F1D /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
@@ -322,6 +323,8 @@
 		4970E54318D37E6200104184 /* Default_launch-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_launch-screen.png"; sourceTree = "<group>"; };
 		4970E54418D37E6200104184 /* Default_launch-screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_launch-screen@2x.png"; sourceTree = "<group>"; };
 		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		4982F902192157F60007B75B /* VIPCandidateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPCandidateCell.h; path = Views/VIPCandidateCell.h; sourceTree = "<group>"; };
+		4982F903192157F60007B75B /* VIPCandidateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPCandidateCell.m; path = Views/VIPCandidateCell.m; sourceTree = "<group>"; };
 		4991F3A718C68296000023D6 /* VIPManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPManagedObject.h; path = CoreDataModels/VIPManagedObject.h; sourceTree = "<group>"; };
 		4991F3A818C68296000023D6 /* VIPManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPManagedObject.m; path = CoreDataModels/VIPManagedObject.m; sourceTree = "<group>"; };
 		4991F3B918C68425000023D6 /* VIPManagedAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPManagedAddress.h; path = CoreDataModels/VIPManagedAddress.h; sourceTree = "<group>"; };
@@ -621,6 +624,18 @@
 			path = Images/LaunchScreen;
 			sourceTree = "<group>";
 		};
+		4982F901192157680007B75B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4982F902192157F60007B75B /* VIPCandidateCell.h */,
+				4982F903192157F60007B75B /* VIPCandidateCell.m */,
+				4901592D18DA126E0088BA23 /* VIPEmptyCell.h */,
+				4901592E18DA126E0088BA23 /* VIPEmptyCell.m */,
+				4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		49B5B8A718EB2B0C00CCB11E /* GoogleDirectionsAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,9 +735,6 @@
 				4997542E18C6310A002F97FE /* VIPError.m */,
 				49E9080318B515EF00E05ABC /* ContestUrlCell.h */,
 				49E9080418B515EF00E05ABC /* ContestUrlCell.m */,
-				4901592D18DA126E0088BA23 /* VIPEmptyCell.h */,
-				4901592E18DA126E0088BA23 /* VIPEmptyCell.m */,
-				4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */,
 				496A2FFC18B3A9B90079996F /* CandidateSocialCell.h */,
 				496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */,
 				49C1FEDB18B3A20C00CF9DFE /* CandidateLinkCell.h */,
@@ -784,6 +796,7 @@
 		53D3A78E1889A05B00920A70 /* VotingInformationProject */ = {
 			isa = PBXGroup;
 			children = (
+				4982F901192157680007B75B /* Views */,
 				49B6DBBF191D1E1D00D30A3C /* Delegates */,
 				4916403118EB653700233C1C /* GoogleAnalytics */,
 				49B5B8A718EB2B0C00CCB11E /* GoogleDirectionsAPI */,
@@ -1136,6 +1149,7 @@
 				49C1FEDD18B3A20C00CF9DFE /* CandidateLinkCell.m in Sources */,
 				4970E49A18D3453300104184 /* Contest.m in Sources */,
 				496A300118B3B0F10079996F /* SocialChannel+API.m in Sources */,
+				4982F905192157F60007B75B /* VIPCandidateCell.m in Sources */,
 				49265ACF18DA4C1200F21083 /* UIColor+Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
