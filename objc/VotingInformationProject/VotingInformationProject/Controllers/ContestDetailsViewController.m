@@ -251,9 +251,10 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 {
     cell.textLabel.text = property[@"title"];
     cell.textLabel.textColor = [VIPColor primaryTextColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
     cell.detailTextLabel.text = [property[@"data"] capitalizedString];
     cell.detailTextLabel.textColor = [VIPColor primaryTextColor];
-    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:17];
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:16];
 }
 
 /**
