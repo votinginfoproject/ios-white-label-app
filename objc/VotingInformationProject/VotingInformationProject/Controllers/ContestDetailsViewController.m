@@ -11,6 +11,7 @@
 #import "CandidateDetailsViewController.h"
 #import "UIWebViewController.h"
 #import "ContestUrlCell.h"
+#import "VIPCandidateCell.h"
 #import "VIPColor.h"
 
 
@@ -31,12 +32,12 @@
 
 NSUInteger const CODVC_TABLE_HEADER_HEIGHT = 32;
 NSUInteger const CODVC_TABLECELL_HEIGHT_EMPTY = 88;
-NSUInteger const CODVC_TABLECELL_HEIGHT_CANDIDATES = 60;
+NSUInteger const CODVC_TABLECELL_HEIGHT_CANDIDATES = 64;
 NSUInteger const CODVC_TABLECELL_HEIGHT_DEFAULT = 44;
 NSString * const CDVC_TABLE_CELLID_PROPERTIES = @"ContestPropertiesCell";
 NSString * const CDVC_TABLE_CELLID_PROPERTIES_EMPTY = @"ContestPropertiesCellEmpty";
 NSUInteger const CDVC_TABLE_SECTION_PROPERTIES = 0;
-NSString * const CDVC_TABLE_CELLID_CANDIDATES = @"CandidateCell";
+NSString * const CDVC_TABLE_CELLID_CANDIDATES = @"VIPCandidateCell";
 NSString * const CDVC_TABLE_CELLID_CANDIDATES_EMPTY = @"CandidateCellEmpty";
 NSUInteger const CDVC_TABLE_SECTION_CANDIDATES = 1;
 NSUInteger const CDVC_TABLE_FOOTER_DEFAULT_HEIGHT = 0;
@@ -159,7 +160,8 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         [self configurePropertiesTableViewCell:cell withDictionary:property];
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES && !isSectionEmpty) {
         Candidate *candidate = (Candidate *)self.tableData[section][indexPath.item];
-        [self configureCandidateTableViewCell:cell withCandidate:candidate];
+        VIPCandidateCell *candidateCell = (VIPCandidateCell*)cell;
+        [self configureCandidateTableViewCell:candidateCell withCandidate:candidate];
     }
     return cell;
 }
@@ -249,9 +251,10 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 {
     cell.textLabel.text = property[@"title"];
     cell.textLabel.textColor = [VIPColor primaryTextColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
     cell.detailTextLabel.text = [property[@"data"] capitalizedString];
     cell.detailTextLabel.textColor = [VIPColor primaryTextColor];
-    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:17];
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:16];
 }
 
 /**
@@ -259,16 +262,16 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
-- (void)configureCandidateTableViewCell:(UITableViewCell*)cell
+- (void)configureCandidateTableViewCell:(VIPCandidateCell*)cell
                                        withCandidate:(Candidate*)candidate
 {
-    cell.textLabel.font = [UIFont systemFontOfSize:20.0];
-    cell.textLabel.text = [candidate.name capitalizedString];
-    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:12.0];
-    cell.detailTextLabel.text = [candidate.party capitalizedString];
+    cell.nameLabel.font = [UIFont systemFontOfSize:17.0];
+    cell.nameLabel.text = [candidate.name capitalizedString];
+    cell.partyLabel.font = [UIFont boldSystemFontOfSize:12.0];
+    cell.partyLabel.text = [candidate.party capitalizedString];
     UIImage* candidateImage = [UIImage imageWithData:candidate.photo];
     if (candidateImage) {
-        cell.imageView.image = candidateImage;
+        cell.photoView.image = candidateImage;
     }
 }
 
