@@ -182,6 +182,8 @@
                                                       @"App home page instruction text for the address text field and contacts picker");
 
     self.partyPickerButton.backgroundColor = primaryTextColorWithAlpha25;
+    [self.partyPickerButton setTitleColor:[VIPColor secondaryTextColor]
+                                 forState:UIControlStateNormal];
     self.partyPickerButton.layer.cornerRadius = 5;
 
     _hasShownPartyPicker = NO;
