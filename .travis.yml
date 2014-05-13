@@ -1,15 +1,18 @@
 language: objective-c
 
 before_install:
+    # Cocoapods expects UTF-8 terminal and throws warning
+    - export LANG=en_US.UTF-8
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - brew update
-    - brew uninstall xctool && brew install xctool
+    # Faster than uninstall + install
+    - brew upgrade xctool 
 install:
     - pushd objc/VotingInformationProject && pod install
     - cp VotingInformationProject/CivicAPIKey.plist.template VotingInformationProject/CivicAPIKey.plist
     - cp VotingInformationProject/settings.plist.template VotingInformationProject/settings.plist
 
 script:
-    - xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator -arch i386 test
+    - xctool -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO clean build test 
     - popd
     - ./scripts/ci/check_copyright.sh
