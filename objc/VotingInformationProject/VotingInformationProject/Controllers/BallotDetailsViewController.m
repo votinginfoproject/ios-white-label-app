@@ -130,10 +130,20 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ElectionDetailsCell"
                                                                 forIndexPath:indexPath];
-        cell.textLabel.text = property[@"title"];
-        cell.detailTextLabel.text = property[@"data"];
+        [self configureDetailsCell:cell withDictionary:property];
         return cell;
     }
+}
+
+- (void)configureDetailsCell:(UITableViewCell*)cell
+                withDictionary:(NSDictionary*)property
+{
+    UIColor *primaryTextColor = [VIPColor primaryTextColor];
+    cell.textLabel.text = property[@"title"];
+    cell.textLabel.textColor = primaryTextColor;
+    cell.detailTextLabel.text = property[@"data"];
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:17];
+    cell.detailTextLabel.textColor = primaryTextColor;
 }
 
 #pragma mark - Table view delegate
