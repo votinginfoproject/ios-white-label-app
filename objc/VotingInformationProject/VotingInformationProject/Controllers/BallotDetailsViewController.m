@@ -144,6 +144,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     cell.detailTextLabel.text = property[@"data"];
     cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:17];
     cell.detailTextLabel.textColor = primaryTextColor;
+    cell.userInteractionEnabled = NO;
 }
 
 #pragma mark - Table view delegate
