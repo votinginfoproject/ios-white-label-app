@@ -2,7 +2,10 @@
 #
 # update_storyboard_strings.sh - automatically extract translatable strings from storyboards and update strings files
 # Based on http://forums.macrumors.com/showpost.php?p=16060008&postcount=4 by mikezang
-# from gist: https://gist.github.com/ole/5007019
+#########
+# This is an exact copy of gist: https://gist.github.com/ole/5007019
+# if this script stops working, you might want to check to see if the gist has been updated.
+#########
 
 storyboardExt=".storyboard"
 stringsExt=".strings"
