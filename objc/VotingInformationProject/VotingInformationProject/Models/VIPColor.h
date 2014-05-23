@@ -25,6 +25,12 @@
          withAlpha:(CGFloat)alpha;
 
 /*
+ * key: tableHeaderColor
+ * value: A hex string, i.e. '#FFFFFF'
+ */
++ (UIColor*) tableHeaderColor;
+
+/*
  * key: navBarTextColor
  * value: A hex string, i.e. '#FFFFFF'
  */
