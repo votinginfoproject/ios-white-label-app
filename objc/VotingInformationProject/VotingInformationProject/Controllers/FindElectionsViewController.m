@@ -104,11 +104,10 @@ const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
         return; // if no elections to select
     }
 
-    VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
-
-    NSUInteger index = indexPath.row;
-    tabBarController.currentElection = [_elections objectAtIndex:index];
-    tabBarController.selectedIndex = 0;
+    Election * currentElection = [_elections objectAtIndex:indexPath.row];
+    VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+    vipTabBarController.currentElection = currentElection;
+    [self performSegueWithIdentifier:@"HomeSegue" sender:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,6 +124,8 @@ const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
         UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
         csvc.delegate = self;
+        VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+        csvc.currentElection = vipTabBarController.currentElection;
     }
 }
 
@@ -139,6 +140,7 @@ const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
     vipTabBarController.elections = elections;
     vipTabBarController.currentElection = election;
     vipTabBarController.currentParty = party;
+    vipTabBarController.selectedIndex = 0;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

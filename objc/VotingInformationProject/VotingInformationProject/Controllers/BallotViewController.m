@@ -190,6 +190,8 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
         UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
         csvc.delegate = self;
+        VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+        csvc.currentElection = vipTabBarController.currentElection;
     } else if ([segue.identifier isEqualToString:@"ContestDetailsSegue"]) {
         ContestDetailsViewController *cdvc = (ContestDetailsViewController*) segue.destinationViewController;
         UITableViewCell *cell = (UITableViewCell*)sender;
