@@ -158,7 +158,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     label.textColor = primaryTextColor;
     label.text = NSLocalizedString(@"Election Administration Body", nil);
     [view addSubview:label];
-    [view setBackgroundColor:[VIPColor color:primaryTextColor withAlpha:0.5]];
+    [view setBackgroundColor:[VIPColor tableHeaderColor]];
     return view;
 }
 

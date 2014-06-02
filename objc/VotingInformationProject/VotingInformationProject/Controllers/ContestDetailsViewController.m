@@ -187,7 +187,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     label.textColor = primaryTextColor;
     label.text = [self titleForHeaderInSection:section];
     [view addSubview:label];
-    [view setBackgroundColor:[VIPColor color:primaryTextColor withAlpha:0.5]];
+    [view setBackgroundColor:[VIPColor tableHeaderColor]];
     return view;
 }
 

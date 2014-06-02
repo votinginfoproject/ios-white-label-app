@@ -54,6 +54,15 @@
     return [UIColor colorWithHexString:hexColor];
 }
 
++ (UIColor*)tableHeaderColor
+{
+    NSString *hexColor = [[AppSettings settings] valueForKey:@"tableHeaderColor"];
+    if (!hexColor) {
+        hexColor = @"0x8ea1b8";
+    }
+    return [UIColor colorWithHexString:hexColor];
+}
+
 + (UIColor*)navBarBackgroundColor
 {
     NSString *hexColor = [[AppSettings settings] valueForKey:@"navBarBackgroundColor"];
@@ -65,7 +74,7 @@
 
 + (UIColor*)navBarTextColor
 {
-    NSString *hexColor = [[AppSettings settings] valueForKey:@"navBarBackgroundColor"];
+    NSString *hexColor = [[AppSettings settings] valueForKey:@"navBarTextColor"];
     if (!hexColor) {
         return [self secondaryTextColor];
     }
