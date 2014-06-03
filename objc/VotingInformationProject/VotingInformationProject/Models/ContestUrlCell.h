@@ -11,12 +11,12 @@
 
 @interface ContestUrlCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
-
 @property (strong, nonatomic) NSURL *url;
 
 /**
  *  Configure cell url and title
+ * 
+ *  This class uses the Basic UITableViewCell type defined in IB.
  *
  *  @param title Title for left detail section of cell
  *  @param url   URL to click through to

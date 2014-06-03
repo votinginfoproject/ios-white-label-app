@@ -55,11 +55,11 @@
                               @"name": NSLocalizedString(@"Name", @"Label for election administration body's name"),
                               @"hoursOfOperation": NSLocalizedString(@"Hours", @"Label for election administration body's hours of operation"),
                               @"state.name": NSLocalizedString(@"State", @"Label for election administration body's state"),
+                              @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services"),
                               @"electionInfoUrl": NSLocalizedString(@"Election Info", @"Label for election adnimistration body's information link"),
                               @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info", @"Label for election administration body's absentee voting information link"),
                               @"electionRegistrationUrl": NSLocalizedString(@"Election Registration", @"Label for election administration body's registration information link"),
-                              @"electionRulesUrl": NSLocalizedString(@"Election Rules", @"Label for election administration body's election rules link"),
-                              @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services")
+                              @"electionRulesUrl": NSLocalizedString(@"Election Rules", @"Label for election administration body's election rules link")
                          };
     });
     return propertyList;

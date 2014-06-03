@@ -27,7 +27,7 @@
 
 - (void)configure:(NSString *)title withUrl:(NSString *)stringUrl
 {
-    self.descriptionLabel.text = title;
+    self.textLabel.text = title;
     self.url = [NSURL URLWithString:stringUrl];
 }
 

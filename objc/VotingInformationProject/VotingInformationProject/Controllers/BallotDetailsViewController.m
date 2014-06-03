@@ -185,7 +185,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     if ([segue.identifier isEqualToString:@"BallotUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
-        webView.title = cell.descriptionLabel.text;
+        webView.title = cell.textLabel.text;
         webView.url = cell.url;
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
         UINavigationController *navController = (UINavigationController*) segue.destinationViewController;

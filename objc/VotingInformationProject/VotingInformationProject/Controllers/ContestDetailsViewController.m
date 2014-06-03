@@ -299,7 +299,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
     } else if ([segue.identifier isEqualToString:@"ContestUrlCellSegue"]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
-        webView.title = NSLocalizedString(@"Website", @"Title when viewing contest web page");
+        webView.title = cell.textLabel.text;
         webView.url = cell.url;
     }
 }
