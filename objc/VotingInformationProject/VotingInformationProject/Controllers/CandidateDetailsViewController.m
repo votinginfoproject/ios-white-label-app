@@ -127,7 +127,7 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     label.textColor = primaryTextColor;
     label.text = [self titleForHeaderInSection:section];
     [view addSubview:label];
-    [view setBackgroundColor:[VIPColor color:primaryTextColor withAlpha:0.5]];
+    [view setBackgroundColor:[VIPColor tableHeaderColor]];
     return view;
 }
 

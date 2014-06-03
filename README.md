@@ -89,6 +89,10 @@ Once you have a Tracking ID (UA-XXXXXXXX-X) paste it into settings.plist as valu
 Used: http://www.delitestudio.com/app/localizable-strings-merge/  
 The default genstrings tool does not recursively search .m files or handle merges well.
 
+A separate script extracts the storyboard strings using ibtool, if the storyboard has been updated since the last time the script was run.  To run the script, go to:
+ios7-white-label-app/objc/VotingInformationProject/VotingInformationProject/Base.lproj
+and run:
+`./update_storyboard_strings.sh`
 
 ## Updating the Civic Info API Key
 
