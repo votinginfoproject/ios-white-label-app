@@ -60,6 +60,13 @@
 - (void) setDateFromString:(NSString*)stringDate;
 
 /**
+ *  Get a NSDateFormatter configured for the date string format of the election object
+ *
+ *  @return NSDateFormatter init with format yyyy-MM-dd
+ */
++ (NSDateFormatter*)getElectionDateFormatter;
+
+/**
  *  Filter polling locations based on type
  *
  *  @param type One of enum VIPPollingLocationsType

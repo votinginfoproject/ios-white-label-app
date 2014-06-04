@@ -129,6 +129,18 @@
 
 }
 
++ (NSDateFormatter*)getElectionDateFormatter
+{
+    // setup date formatter
+    static dispatch_once_t onceToken;
+    static NSDateFormatter *yyyymmddFormatter = nil;
+    dispatch_once(&onceToken, ^{
+        yyyymmddFormatter = [[NSDateFormatter alloc] init];
+        [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
+    });
+    return yyyymmddFormatter;
+}
+
 + (BOOL) isElectionDictValid:(NSDictionary*)election {
     if (!election[@"id"]) {
         return NO;
@@ -136,15 +148,9 @@
     if (!election[@"name"]) {
         return NO;
     }
-    // setup date formatter
-    static dispatch_once_t onceToken;
-    static NSDateFormatter *_yyyymmddFormatter = nil;
-    dispatch_once(&onceToken, ^{
-        _yyyymmddFormatter = [[NSDateFormatter alloc] init];
-        [_yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
-    });
 
-    NSDate *electionDate = [_yyyymmddFormatter dateFromString:election[@"electionDay"]];
+    NSDateFormatter *yyyymmddFormatter = [Election getElectionDateFormatter];
+    NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
     // Show if election in future relative to current day midnight localtime
     NSCalendarUnit units = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date]];
@@ -173,7 +179,6 @@
 {
     NSString *electionDateString = nil;
     if (self.date) {
-        NSLog(@"getDateString: %@", self.date);
         NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
         [yyyymmddFormatter setDateStyle:NSDateFormatterMediumStyle];
         [yyyymmddFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -184,8 +189,7 @@
 
 - (void) setDateFromString:(NSString *)stringDate
 {
-    NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-    [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDateFormatter *yyyymmddFormatter = [Election getElectionDateFormatter];
     self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 

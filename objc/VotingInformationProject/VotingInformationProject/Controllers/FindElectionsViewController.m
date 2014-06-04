@@ -41,17 +41,31 @@ const NSUInteger VIP_OTHER_ELECTIONS_TABLECELL_HEIGHT = 44;
 - (void) setOtherElections
 {
     VIPTabBarController *parentTabBarController = (VIPTabBarController*) self.tabBarController;
-    NSMutableArray *elections = [parentTabBarController.elections mutableCopy];
 
-    NSUInteger numElections = [elections count];
-    if (numElections > 1) {
-        [elections removeObject:parentTabBarController.currentElection];
-        _elections = elections;
-    } else {
-        _elections = @[];
-    }
+    _elections = [self removeInvalidElectionsFrom:parentTabBarController.elections
+                               andCurrentElection:parentTabBarController.currentElection];
     self.tableView.dataSource = [self configureDataSource];
     [self.tableView reloadData];
+}
+
+- (NSArray*)removeInvalidElectionsFrom:(NSArray*)elections
+                    andCurrentElection:(Election*)election
+{
+    NSMutableArray *mutableElections = [elections mutableCopy];
+    NSUInteger numElections = [elections count];
+    if (numElections > 1) {
+        [mutableElections removeObject:election];
+        NSDate *now = [NSDate date];
+        for (Election *election in elections) {
+            NSComparisonResult result = [now compare:election.date];
+            if (result == NSOrderedDescending) {
+                [mutableElections removeObject:election];
+            }
+        }
+        return mutableElections;
+    } else {
+        return @[];
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated
