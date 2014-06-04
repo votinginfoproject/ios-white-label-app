@@ -63,6 +63,7 @@
         return;
     }
     _userAddress = userAddress;
+    self.currentElection.userAddress = userAddress;
     [self updateUI];
 }
 
