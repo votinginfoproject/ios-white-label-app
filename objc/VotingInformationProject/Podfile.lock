@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (2.1.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.1.0):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.1.0)
+  - AFNetworking/Security (2.1.0)
+  - AFNetworking/Serialization (2.1.0)
+  - AFNetworking/UIKit (2.1.0):
+    - AFNetworking/NSURLConnection
+  - Google-Maps-iOS-SDK (1.6.2)
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/XCTest (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - MagicalRecord (2.2):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.2)
+  - MMPickerView (0.0.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.0)
+  - Google-Maps-iOS-SDK (~> 1.6)
+  - Kiwi/XCTest
+  - MagicalRecord (~> 2.2)
+  - MMPickerView
+
+SPEC CHECKSUMS:
+  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
+  Google-Maps-iOS-SDK: a81f0b0dede6964e64b632d0e5dc3d06873ca365
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
+  MMPickerView: 29b43ebf73d4a163700cb3a80982711ce595ce12
+
+COCOAPODS: 0.32.1
