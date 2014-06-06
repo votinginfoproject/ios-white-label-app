@@ -191,6 +191,8 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
         UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
         csvc.delegate = self;
+        VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+        csvc.currentElection = vipTabBarController.currentElection;
     }
 }
 

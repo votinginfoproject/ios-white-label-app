@@ -471,6 +471,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
         csvc.delegate = self;
+        VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+        csvc.currentElection = vipTabBarController.currentElection;
     }
 }
 

@@ -23,7 +23,6 @@
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) UserAddress *userAddress;
-@property (strong, nonatomic) Election *currentElection;
 @property (strong, nonatomic) NSString *currentParty;
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
@@ -64,84 +63,15 @@
         return;
     }
     _userAddress = userAddress;
-
-    self.partyView.hidden = YES;
-    self.errorView.hidden = YES;
-    self.showElectionButton.hidden = YES;
-
-    // update elections when we set a new userAddress
-    [Election
-     getElectionsAt:_userAddress
-     resultsBlock:^(NSArray *elections, NSError *error){
-         if (!error && [elections count] > 0) {
-             self.elections = elections;
-         } else {
-             [self displayGetElectionsError:error];
-         }
-     }];
+    self.currentElection.userAddress = userAddress;
+    [self updateUI];
 }
 
 /**
- *  Setter for elections
+ *  Setter for currentParty, update partyPicker button choices when updated
  *
- *  When elections are set, we also want ot update the currentElection and update its data
- *  from the voterInfo query
- *
- *  @param elections
+ *  @param currentParty NSString*
  */
-- (void)setElections:(NSArray *)elections
-{
-    _currentElection = nil;
-    // if elections is nil or no elections in NSArray, bail out
-    if ([elections count] == 0) {
-        _elections = @[];
-        NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
-        [self displayGetElectionsError:error];
-        return;
-    }
-
-    _elections = elections;
-
-    // if ElectionID set in settings.plist set and is a valid election, set as current
-    NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
-    NSLog(@"Requesting election: %@", electionId);
-    NSLog(@"Available elections:");
-    for (Election *e in _elections) {
-        NSLog(@"%@", e.electionId);
-        if ([e.electionId isEqualToString:electionId]) {
-            _currentElection = e;
-            break;
-        }
-    }
-
-    // If no election got set above, when specific election requested, error.
-    if (electionId && !_currentElection) {
-        [self displayGetElectionsError:[VIPError errorWithCode:[VIPError NoValidElections]]];
-        return;
-    } else if (!_currentElection) {
-        _currentElection = elections[0];
-    }
-
-    // Make request for _currentElection data
-    [_currentElection
-     getVoterInfoIfExpired:^(BOOL success, NSError *error)
-     {
-         if (success) {
-             NSArray *parties = [self.currentElection getUniqueParties];
-             self.parties = [@[_allPartiesString]
-                             arrayByAddingObjectsFromArray:parties];
-             BOOL showPartyPicker = [self.parties count] > 1 ? YES : NO;
-             if (showPartyPicker) {
-                 [self displayPartyPicker];
-             } else {
-                 [self displayGetElections];
-             }
-         } else {
-             [self displayGetElectionsError:error];
-         }
-     }];
-}
-
 - (void)setCurrentParty:(NSString *)currentParty
 {
     [self.partyPickerButton setTitle:currentParty
@@ -201,15 +131,16 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 
-    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                                 ascending:NO];
-    self.addressTextField.text = userAddress.address;
-    self.userAddress = userAddress;
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
     [defaults setObject:nil forKey:USER_DEFAULTS_PARTY];
+
+    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                                 ascending:NO];
+    self.addressTextField.text = userAddress.address;
+    // updateUI called internally here
+    self.userAddress = userAddress;
 }
 
 - (void)viewDidLayoutSubviews
@@ -231,12 +162,107 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)didReceiveMemoryWarning
+/**
+ *  Start the updateUI process
+ *
+ *  There are a few things that need to be updated for the election process.
+ *  First, get elections for the userAddress the user just entered
+ *  Then, ensure the currentElection is in the elections and update it
+ *  or automatically choose the current election to be the next future election
+ *
+ *  Calls updateUIElections then updateUICurrentElection
+ *  Can bail out of the update process at any time with [self displayGetElectionsError:error]
+ */
+- (void) updateUI
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.partyView.hidden = YES;
+    self.errorView.hidden = YES;
+    self.showElectionButton.hidden = YES;
+
+    // update elections when we set a new userAddress
+    [Election
+     getElectionsAt:self.userAddress
+     resultsBlock:^(NSArray *elections, NSError *error){
+         if (!error && [elections count] > 0) {
+             [self updateUIElections:elections];
+         } else {
+             [self displayGetElectionsError:error];
+         }
+     }];
+
+
 }
 
+/**
+ *  Part of the update process, see updateUI for details
+ *
+ *  @param elections NSArray* of elections to update
+ */
+- (void)updateUIElections:(NSArray*)elections
+{
+    self.elections = elections;
+
+    if (self.currentElection) {
+        [self updateUICurrentElection];
+        return;
+    }
+
+    self.currentElection = nil;
+    // if elections is nil or no elections in NSArray, bail out
+    if ([elections count] == 0) {
+        self.elections = @[];
+        NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
+        [self displayGetElectionsError:error];
+        return;
+    }
+
+    // if ElectionID set in settings.plist set and is a valid election, set as current
+    NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
+    NSLog(@"Requesting election: %@", electionId);
+    NSLog(@"Available elections:");
+    for (Election *e in elections) {
+        NSLog(@"%@", e.electionId);
+        if ([e.electionId isEqualToString:electionId]) {
+            self.currentElection = e;
+            break;
+        }
+    }
+
+    // If no election got set above, when specific election requested, error.
+    if (electionId && !self.currentElection) {
+        [self displayGetElectionsError:[VIPError errorWithCode:[VIPError NoValidElections]]];
+        return;
+    } else if (!_currentElection) {
+        self.currentElection = elections[0];
+    }
+
+    [self updateUICurrentElection];
+}
+
+/**
+ *  Part of the update process, see updateUI for details
+ */
+- (void)updateUICurrentElection
+{
+    // Make request for _currentElection data
+    [self.currentElection
+     getVoterInfoIfExpired:^(BOOL success, NSError *error)
+     {
+         if (success) {
+             NSArray *parties = [self.currentElection getUniqueParties];
+             self.parties = [@[_allPartiesString]
+                             arrayByAddingObjectsFromArray:parties];
+             BOOL showPartyPicker = [self.parties count] > 1 ? YES : NO;
+             if (showPartyPicker) {
+                 [self displayPartyPicker];
+             } else {
+                 [self displayGetElections];
+             }
+         } else {
+             [self displayGetElectionsError:error];
+         }
+     }];
+}
 
 #pragma mark - contacts picker
 
@@ -384,6 +410,7 @@
  */
 - (void) displayGetElectionsError:(NSError*)error
 {
+    NSLog(@"displayGetElectionsError: %@", error);
     self.showElectionButton.hidden = YES;
     self.partyView.hidden = YES;
     self.errorView.hidden = NO;
