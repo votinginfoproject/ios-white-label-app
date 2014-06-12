@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1247,11 +1247,11 @@
             </objects>
             <point key="canvasLocation" x="1420" y="129"/>
         </scene>
-        <!--Navigation Controller - Polling-->
+        <!--Navigation Controller - Where to Vote-->
         <scene sceneID="UWl-gO-7JM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zjK-nE-Utk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Polling" image="TabBar_polling.png" id="Kxk-5f-oXy"/>
+                    <tabBarItem key="tabBarItem" title="Where to Vote" image="TabBar_polling.png" id="Kxk-5f-oXy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dA-VI-jzV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1283,7 +1283,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0FR-Eq-Ss4"/>
         <segue reference="xXd-r3-0ih"/>
+        <segue reference="QR0-2Q-jFB"/>
     </inferredMetricsTieBreakers>
 </document>
