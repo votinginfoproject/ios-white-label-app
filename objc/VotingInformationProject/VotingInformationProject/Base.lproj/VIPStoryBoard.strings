@@ -50,6 +50,9 @@
 /* Class = "IBUILabel"; text = "123 Main St, Some City, Some State, 12345"; ObjectID = "Gd1-sc-b41"; */
 "Gd1-sc-b41.text" = "123 Main St, Some City, Some State, 12345";
 
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Gt5-On-x3A"; */
+"Gt5-On-x3A.text" = "Title";
+
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "HEu-5b-zXP"; */
 "HEu-5b-zXP.text" = "Label";
 
@@ -62,17 +65,14 @@
 /* Class = "IBUINavigationItem"; title = "About This App"; ObjectID = "KhW-d4-g1X"; */
 "KhW-d4-g1X.title" = "About This App";
 
-/* Class = "IBUITabBarItem"; title = "Polling"; ObjectID = "Kxk-5f-oXy"; */
-"Kxk-5f-oXy.title" = "Polling";
+/* Class = "IBUITabBarItem"; title = "Where to Vote"; ObjectID = "Kxk-5f-oXy"; */
+"Kxk-5f-oXy.title" = "Where to Vote";
 
 /* Class = "IBUILabel"; text = "Election Date"; ObjectID = "Myh-79-KcO"; */
 "Myh-79-KcO.text" = "Election Date";
 
 /* Class = "IBUIViewController"; title = "ContactsSearchViewController"; ObjectID = "NFr-cT-tr7"; */
 "NFr-cT-tr7.title" = "ContactsSearchViewController";
-
-/* Class = "IBUILabel"; text = "Website"; ObjectID = "PAM-3N-7lx"; */
-"PAM-3N-7lx.text" = "Website";
 
 /* Class = "IBUILabel"; text = "Link Description"; ObjectID = "PDN-h2-ZBz"; */
 "PDN-h2-ZBz.text" = "Link Description";
@@ -106,6 +106,9 @@
 
 /* Class = "IBUINavigationItem"; title = "Polling Sites"; ObjectID = "Xfu-rg-ES2"; */
 "Xfu-rg-ES2.title" = "Polling Sites";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "YcA-kl-nPt"; */
+"YcA-kl-nPt.text" = "Title";
 
 /* Class = "IBUILabel"; text = "Contest Name"; ObjectID = "Yh4-mO-Jao"; */
 "Yh4-mO-Jao.text" = "Contest Name";
@@ -142,9 +145,6 @@
 
 /* Class = "IBUILabel"; text = "Election Name"; ObjectID = "k1g-E7-fra"; */
 "k1g-E7-fra.text" = "Election Name";
-
-/* Class = "IBUILabel"; text = "Website"; ObjectID = "l52-B7-Cnn"; */
-"l52-B7-Cnn.text" = "Website";
 
 /* Class = "IBUINavigationItem"; title = "More Elections"; ObjectID = "m4i-zl-0oB"; */
 "m4i-zl-0oB.title" = "More Elections";
