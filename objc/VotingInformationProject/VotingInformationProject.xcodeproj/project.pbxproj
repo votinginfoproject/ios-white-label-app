@@ -53,6 +53,8 @@
 		4969787618B55E5A00B23CC6 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969787518B55E5A00B23CC6 /* AboutViewController.m */; };
 		496A2FFE18B3A9B90079996F /* CandidateSocialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */; };
 		496A300118B3B0F10079996F /* SocialChannel+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A300018B3B0F10079996F /* SocialChannel+API.m */; };
+		496E3DF91958B10B003C9C8A /* MMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E3DF81958B10B003C9C8A /* MMPickerView.m */; };
+		496E3DFC1958BDC8003C9C8A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 496E3DFB1958BDC8003C9C8A /* LICENSE */; };
 		4970E49718D227AB00104184 /* BallotDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4970E49618D227AB00104184 /* BallotDetailsViewController.m */; };
 		4970E49A18D3453300104184 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4970E49918D3453300104184 /* Contest.m */; };
 		4970E54518D37E6200104184 /* AppIcon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E50818D37E6200104184 /* AppIcon-iPad.png */; };
@@ -257,6 +259,9 @@
 		496A2FFD18B3A9B90079996F /* CandidateSocialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateSocialCell.m; sourceTree = "<group>"; };
 		496A2FFF18B3B0F10079996F /* SocialChannel+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SocialChannel+API.h"; path = "CoreDataModels/SocialChannel+API.h"; sourceTree = "<group>"; };
 		496A300018B3B0F10079996F /* SocialChannel+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SocialChannel+API.m"; path = "CoreDataModels/SocialChannel+API.m"; sourceTree = "<group>"; };
+		496E3DF71958B10B003C9C8A /* MMPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPickerView.h; sourceTree = "<group>"; };
+		496E3DF81958B10B003C9C8A /* MMPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPickerView.m; sourceTree = "<group>"; };
+		496E3DFB1958BDC8003C9C8A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4970E49518D227AB00104184 /* BallotDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotDetailsViewController.h; sourceTree = "<group>"; };
 		4970E49618D227AB00104184 /* BallotDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotDetailsViewController.m; sourceTree = "<group>"; };
 		4970E49818D3453300104184 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Contest.h; path = CoreDataModels/Contest.h; sourceTree = "<group>"; };
@@ -529,6 +534,16 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		496E3DFA1958BDA3003C9C8A /* MMPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				496E3DF71958B10B003C9C8A /* MMPickerView.h */,
+				496E3DF81958B10B003C9C8A /* MMPickerView.m */,
+				496E3DFB1958BDC8003C9C8A /* LICENSE */,
+			);
+			name = MMPickerView;
+			sourceTree = "<group>";
+		};
 		4970E50718D37E6200104184 /* AppIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +637,7 @@
 		4982F901192157680007B75B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				496E3DFA1958BDA3003C9C8A /* MMPickerView */,
 				4982F902192157F60007B75B /* VIPCandidateCell.h */,
 				4982F903192157F60007B75B /* VIPCandidateCell.m */,
 				4901592D18DA126E0088BA23 /* VIPEmptyCell.h */,
@@ -971,6 +987,7 @@
 				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,
 				4970E54818D37E6200104184 /* AppIcon-iPhone@2x.png in Resources */,
 				4970E55A18D37E6200104184 /* Candidate_phone.png in Resources */,
+				496E3DFC1958BDC8003C9C8A /* LICENSE in Resources */,
 				4970E57818D37E6200104184 /* TabBar_polling-active.png in Resources */,
 				4970E56C18D37E6200104184 /* TabBar_ballot-active.png in Resources */,
 				4970E57218D37E6200104184 /* TabBar_details.png in Resources */,
@@ -1105,6 +1122,7 @@
 				49F5D28818D399D600BB352C /* AppSettings.m in Sources */,
 				49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
+				496E3DF91958B10B003C9C8A /* MMPickerView.m in Sources */,
 				4991F3BB18C68425000023D6 /* VIPManagedAddress.m in Sources */,
 				5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
