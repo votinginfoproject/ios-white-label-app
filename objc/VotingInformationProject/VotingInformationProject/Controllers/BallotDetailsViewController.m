@@ -188,8 +188,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
         webView.title = cell.textLabel.text;
         webView.url = cell.url;
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
-        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
-        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;

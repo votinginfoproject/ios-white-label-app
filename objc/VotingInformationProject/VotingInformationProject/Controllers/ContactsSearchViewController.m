@@ -143,12 +143,6 @@
     self.userAddress = userAddress;
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    [self shiftElectionButton];
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
@@ -375,20 +369,6 @@
     if (!_hasShownPartyPicker) {
         _hasShownPartyPicker = YES;
     }
-}
-
-- (void)shiftElectionButton
-{
-    BOOL shouldShiftButton = !([self.parties count] > 1);
-    CGRect partyViewFrame = self.partyView.frame;
-    CGRect showElectionButtonFrame = self.showElectionButton.frame;
-    CGFloat buttonPadding = 10;
-    if (shouldShiftButton) {
-        showElectionButtonFrame.origin.y = partyViewFrame.origin.y;
-    } else {
-        showElectionButtonFrame.origin.y = partyViewFrame.origin.y + buttonPadding + partyViewFrame.size.height;
-    }
-    self.showElectionButton.frame = showElectionButtonFrame;
 }
 
 /**

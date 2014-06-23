@@ -187,8 +187,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"HomeSegue"]) {
-        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
-        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;

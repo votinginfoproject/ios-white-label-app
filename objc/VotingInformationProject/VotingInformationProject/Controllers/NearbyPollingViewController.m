@@ -468,8 +468,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
         directionsListVC.sourceAddress = self.userAddress.address;
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
-        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
-        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;
