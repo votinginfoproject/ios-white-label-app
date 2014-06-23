@@ -63,7 +63,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
 {
     [super viewWillAppear:animated];
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
-    self.election = (Election*) vipTabBarController.currentElection;
+    self.election = (UserElection*) vipTabBarController.currentElection;
     [self updateUI];
 }
 
@@ -198,7 +198,7 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
 #pragma mark - ContactsSearchViewControllerDelegate
 - (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
                                withElections:(NSArray *)elections
-                             currentElection:(Election *)election
+                             currentElection:(UserElection *)election
                                     andParty:(NSString *)party
 {
     VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;

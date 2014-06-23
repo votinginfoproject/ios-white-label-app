@@ -12,7 +12,7 @@
 #import "VIPViewController.h"
 #import "DirectionsListViewController.h"
 #import "ContactsSearchViewControllerDelegate.h"
-#import "Election+API.h"
+#import "UserElection+API.h"
 
 @interface NearbyPollingViewController : VIPViewController <ContactsSearchViewControllerDelegate,
                                                             GMSMapViewDelegate,
@@ -20,7 +20,7 @@
                                                             UITableViewDataSource,
                                                             DirectionsListViewControllerDelegate>
 
-@property (strong, nonatomic) Election *election;
+@property (strong, nonatomic) UserElection *election;
 
 /** List of PollingLocationWrapper objects representing currently viewed locations */
 @property (strong, nonatomic) NSMutableArray *cells;

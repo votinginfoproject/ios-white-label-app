@@ -23,6 +23,6 @@
 
 - (NSString *) getAddress: (ABRecordRef) person atIdentifier:(ABMultiValueIdentifier) identifier;
 
-@property (strong, nonatomic) Election *currentElection;
+@property (strong, nonatomic) UserElection *currentElection;
 
 @end

@@ -1,19 +1,18 @@
 //
-//  Election.m
+//  UserElection.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/5/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
-#import "Election.h"
+#import "UserElection.h"
 #import "Contest.h"
 #import "PollingLocation.h"
 #import "State.h"
 #import "UserAddress.h"
 
 
-@implementation Election
+@implementation UserElection
 
 @dynamic date;
 @dynamic electionId;

@@ -1,5 +1,5 @@
 //
-//  Election+API.h
+//  UserElection+API.h
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 1/31/14.
@@ -9,17 +9,17 @@
 #import "AFNetworking/AFNetworking.h"
 
 #import "VIPError.h"
-#import "Election.h"
+#import "UserElection.h"
 #import "UserAddress+API.h"
 #import "Contest+API.h"
 #import "PollingLocation+API.h"
 #import "State+API.h"
 
 /**
- Election+API is a category for Election that provides various convenience methods
+ UserElection+API is a category for Election that provides various convenience methods
  */
 
-@interface Election (API)
+@interface UserElection (API)
 
 /**
  * Get a unique election from CoreData or create a new unique instance if it does not exist
@@ -28,7 +28,7 @@
  * @param electionId The string id of the election
  * @param userAddress The user address instance to match an election response to
  */
-+ (Election *) getUnique:(NSString*)electionId
++ (UserElection *) getUnique:(NSString*)electionId
          withUserAddress:(UserAddress*)userAddress;
 
 /**

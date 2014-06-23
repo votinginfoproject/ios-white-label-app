@@ -2,14 +2,13 @@
 //  State.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/5/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import "State.h"
 #import "DataSource.h"
-#import "Election.h"
 #import "ElectionAdministrationBody.h"
+#import "UserElection.h"
 
 
 @implementation State
@@ -17,7 +16,7 @@
 @dynamic localJurisdiction;
 @dynamic name;
 @dynamic dataSources;
-@dynamic election;
+@dynamic userElection;
 @dynamic electionAdministrationBody;
 
 @end

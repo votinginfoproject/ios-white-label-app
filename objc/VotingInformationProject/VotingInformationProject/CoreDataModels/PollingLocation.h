@@ -2,14 +2,13 @@
 //  PollingLocation.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DataSource, Election, VIPAddress;
+@class DataSource, UserElection, VIPAddress;
 
 @interface PollingLocation : VIPManagedObject
 
@@ -23,7 +22,7 @@
 @property (nonatomic, retain) NSString * voterServices;
 @property (nonatomic, retain) VIPAddress *address;
 @property (nonatomic, retain) NSSet *dataSources;
-@property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) UserElection *userElection;
 @end
 
 @interface PollingLocation (CoreDataGeneratedAccessors)

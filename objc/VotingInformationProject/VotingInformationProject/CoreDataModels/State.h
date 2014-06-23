@@ -2,21 +2,20 @@
 //  State.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/5/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DataSource, Election, ElectionAdministrationBody;
+@class DataSource, ElectionAdministrationBody, UserElection;
 
 @interface State : VIPManagedObject
 
 @property (nonatomic, retain) NSString * localJurisdiction;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *dataSources;
-@property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) UserElection *userElection;
 @property (nonatomic, retain) ElectionAdministrationBody *electionAdministrationBody;
 @end
 

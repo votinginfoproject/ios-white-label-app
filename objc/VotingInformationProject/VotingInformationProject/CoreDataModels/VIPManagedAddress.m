@@ -2,16 +2,17 @@
 //  VIPManagedAddress.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 3/4/14.
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import "VIPManagedAddress.h"
+#import "VIPError.h"
 
 @implementation VIPManagedAddress
 
+@dynamic address;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic address;
 
 - (CLLocationCoordinate2D)position
 {
@@ -25,7 +26,7 @@
     dispatch_once(&onceToken, ^{
         _moc = [NSManagedObjectContext MR_defaultContext];
     });
-
+    
     double lat = [self.latitude doubleValue];
     double lon = [self.longitude doubleValue];
     if (lat > VA_MIN_LAT && lon > VA_MIN_LON) {
@@ -33,7 +34,7 @@
         resultsBlock(position, nil);
         return;
     }
-
+    
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder geocodeAddressString:self.address
                  completionHandler:^(NSArray* placemarks, NSError *error) {
@@ -46,7 +47,7 @@
                          NSError *geocoderError = [VIPError errorWithCode:VIPError.GeocoderError];
                          resultsBlock(position, geocoderError);
                      }
-
+                     
                      CLPlacemark *placemark = placemarks[0];
                      double lat = placemark.location.coordinate.latitude;
                      double lon = placemark.location.coordinate.longitude;
@@ -68,5 +69,6 @@
                      }];
                  }];
 }
+
 
 @end

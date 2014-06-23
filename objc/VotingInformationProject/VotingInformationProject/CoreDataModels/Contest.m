@@ -2,21 +2,21 @@
 //  Contest.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 3/14/14.
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import "Contest.h"
 #import "Candidate.h"
 #import "DataSource.h"
 #import "District.h"
-#import "Election.h"
+#import "UserElection.h"
 
 
 @implementation Contest
 
 @dynamic ballotPlacement;
-@dynamic id;
 @dynamic electorateSpecifications;
+@dynamic id;
 @dynamic level;
 @dynamic numberElected;
 @dynamic numberVotingFor;
@@ -30,6 +30,6 @@
 @dynamic candidates;
 @dynamic dataSources;
 @dynamic district;
-@dynamic election;
+@dynamic userElection;
 
 @end

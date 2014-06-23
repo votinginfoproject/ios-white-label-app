@@ -15,7 +15,7 @@
 #import "MMPickerView.h"
 
 #import "AppSettings.h"
-#import "Election+API.h"
+#import "UserElection+API.h"
 #import "UserAddress+API.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
@@ -79,7 +79,7 @@
     _currentParty = currentParty;
 }
 
-- (void)setCurrentElection:(Election *)currentElection
+- (void)setCurrentElection:(UserElection *)currentElection
 {
     [self.electionPickerButton setTitle:currentElection.electionName
                                forState:UIControlStateNormal];
@@ -148,8 +148,10 @@
     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                                  ascending:NO];
 
-    [self.electionPickerButton setTitle:self.currentElection.electionName
-                               forState:UIControlStateNormal];
+    if (self.currentElection) {
+        [self.electionPickerButton setTitle:self.currentElection.electionName
+                                   forState:UIControlStateNormal];
+    }
     self.addressTextField.text = userAddress.address;
     // updateUI called internally here
     self.userAddress = userAddress;
@@ -186,7 +188,7 @@
     self.showElectionButton.hidden = YES;
 
     // update elections when we set a new userAddress
-    [Election
+    [UserElection
      getElectionsAt:self.userAddress
      resultsBlock:^(NSArray *elections, NSError *error){
          if (!error && [elections count] > 0) {
@@ -226,7 +228,7 @@
     NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
     NSLog(@"Requesting election: %@", electionId);
     NSLog(@"Available elections:");
-    for (Election *e in elections) {
+    for (UserElection *e in elections) {
         NSLog(@"%@", e.electionId);
         if ([e.electionId isEqualToString:electionId]) {
             self.currentElection = e;
@@ -365,11 +367,12 @@
     [MMPickerView showPickerViewInView:self.view
                            withObjects:self.elections
                            withOptions:@{MMselectedObject: self.currentElection}
-               objectToStringConverter:^NSString *(Election *election) {
+               objectToStringConverter:^NSString *(UserElection *election) {
                    return election.electionName;
                }
-                            completion:^(Election *selectedElection) {
+                            completion:^(UserElection *selectedElection) {
                                 self.currentElection = selectedElection;
+                                [self updateUICurrentElection];
                             }];
 }
 
