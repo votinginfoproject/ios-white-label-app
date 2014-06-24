@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 1/31/14.
-//  
 //
 
 #import "AFNetworking/AFNetworking.h"
@@ -14,6 +13,7 @@
 #import "Contest+API.h"
 #import "PollingLocation+API.h"
 #import "State+API.h"
+#import "Election+API.h"
 
 /**
  UserElection+API is a category for Election that provides various convenience methods
@@ -32,39 +32,11 @@
          withUserAddress:(UserAddress*)userAddress;
 
 /**
- * Get a list of elections for the specified UserAddress
- *
- * @param userAddress The userAddress to assign the election results to
- * @param resultsBlock A block object to be executed when the operation completes. 
- *      The block has no return value and takes two arguments: NSArray of elections
- *      return and an NSError that will contain any errors or nil if the operation completed successfully.
- */
-+ (void) getElectionsAt:(UserAddress*)userAddress
-           resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock;
-
-/**
  *  Get list of all the unique parties in this election sorted alphabetically
  *
  *  @return NSArray of NSString containing the unique parties
  */
 - (NSArray*)getUniqueParties;
-
-/**
- * @return NSString of the form yyyy-mm-dd
- */
-- (NSString *) getDateString;
-
-/**
- * @param stringDate NSString of the form yyyy-mm-dd
- */
-- (void) setDateFromString:(NSString*)stringDate;
-
-/**
- *  Get a NSDateFormatter configured for the date string format of the election object
- *
- *  @return NSDateFormatter init with format yyyy-MM-dd
- */
-+ (NSDateFormatter*)getElectionDateFormatter;
 
 /**
  *  Filter polling locations based on type

@@ -16,12 +16,14 @@
 
 #import "AppSettings.h"
 #import "UserElection+API.h"
+#import "Election+API.h"
 #import "UserAddress+API.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
+@property (strong, nonatomic) Election *activeElection;
 @property (strong, nonatomic) UserAddress *userAddress;
 @property (strong, nonatomic) NSString *currentParty;
 @property (strong, nonatomic) NSArray *elections;
@@ -63,8 +65,8 @@
         return;
     }
     _userAddress = userAddress;
-    self.currentElection.userAddress = userAddress;
-    [self updateUI];
+    self.currentElection = [UserElection getUnique:self.activeElection.electionId
+                                   withUserAddress:userAddress];
 }
 
 /**
@@ -79,11 +81,40 @@
     _currentParty = currentParty;
 }
 
+- (void)setElections:(NSArray *)elections
+{
+    if (!elections) {
+        [self.electionPickerButton setTitle:NSLocalizedString(@"No Elections Available", nil)
+                                   forState:UIControlStateNormal];
+    } else if (!self.currentElection) {
+        [self.electionPickerButton setTitle:NSLocalizedString(@"Choose an Election", nil)
+                                   forState:UIControlStateNormal];
+    } else {
+        [self.electionPickerButton setTitle:self.activeElection.electionName
+                                   forState:UIControlStateNormal];
+    }
+    _elections = elections;
+}
+
+- (void)setActiveElection:(Election *)activeElection
+{
+    if ([activeElection.electionName length] > 0) {
+        [self.electionPickerButton setTitle:activeElection.electionName
+                                   forState:UIControlStateNormal];
+    }
+    _activeElection = activeElection;
+    self.currentElection = [UserElection getUnique:activeElection.electionId
+                                   withUserAddress:self.userAddress];
+}
+
 - (void)setCurrentElection:(UserElection *)currentElection
 {
-    [self.electionPickerButton setTitle:currentElection.electionName
-                               forState:UIControlStateNormal];
     _currentElection = currentElection;
+    NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+    [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        NSLog(@"DataStore saved: %d", success);
+    }];
+    [self updateUICurrentElection];
 }
 
 - (void)viewDidLoad
@@ -129,6 +160,8 @@
     _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
     self.currentParty = _allPartiesString;
     self.parties = @[_allPartiesString];
+
+    [self updateUI];
 }
 
 
@@ -139,22 +172,20 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
+                                                                 ascending:NO];
+    self.addressTextField.text = userAddress.address;
+    self.userAddress = userAddress;
+
+    NSString *activeElectionId = [defaults objectForKey:USER_DEFAULTS_ELECTION_ID];
+    self.activeElection = [Election getUnique:activeElectionId];
+
     [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
     [defaults setObject:nil forKey:USER_DEFAULTS_PARTY];
 
-    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                                 ascending:NO];
-
-    if (self.currentElection) {
-        [self.electionPickerButton setTitle:self.currentElection.electionName
-                                   forState:UIControlStateNormal];
-    }
-    self.addressTextField.text = userAddress.address;
-    // updateUI called internally here
-    self.userAddress = userAddress;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -163,11 +194,27 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
-    [defaults setObject:self.currentElection.electionId forKey:USER_DEFAULTS_ELECTION_ID];
+    [defaults setObject:self.activeElection.electionId forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:self.userAddress.address forKey:USER_DEFAULTS_STORED_ADDRESS];
     [defaults setObject:party forKey:USER_DEFAULTS_PARTY];
 
     [super viewWillDisappear:animated];
+}
+
+- (void)updateElections
+{
+    self.elections = [Election getFutureElections];
+    [self.electionPickerButton setTitle:NSLocalizedString(@"Loading elections...",
+                                                          @"Text for election picker button while elections are loading")
+                               forState:UIControlStateNormal];
+    [Election getElectionList:^(NSArray *elections, NSError *error) {
+        self.elections = elections;
+        if (error) {
+            NSLog(@"Error getting election list: %@", error);
+            NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
+            [self displayGetElectionsError:error];
+        }
+    }];
 }
 
 /**
@@ -183,68 +230,15 @@
  */
 - (void) updateUI
 {
+    [self hideViews];
+    [self updateElections];
+}
+
+- (void)hideViews
+{
     self.partyView.hidden = YES;
     self.errorView.hidden = YES;
     self.showElectionButton.hidden = YES;
-
-    // update elections when we set a new userAddress
-    [UserElection
-     getElectionsAt:self.userAddress
-     resultsBlock:^(NSArray *elections, NSError *error){
-         if (!error && [elections count] > 0) {
-             [self updateUIElections:elections];
-         } else {
-             [self displayGetElectionsError:error];
-         }
-     }];
-
-
-}
-
-/**
- *  Part of the update process, see updateUI for details
- *
- *  @param elections NSArray* of elections to update
- */
-- (void)updateUIElections:(NSArray*)elections
-{
-    self.elections = elections;
-
-    if (self.currentElection) {
-        [self updateUICurrentElection];
-        return;
-    }
-
-    self.currentElection = nil;
-    // if elections is nil or no elections in NSArray, bail out
-    if ([elections count] == 0) {
-        self.elections = @[];
-        NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
-        [self displayGetElectionsError:error];
-        return;
-    }
-
-    // if ElectionID set in settings.plist set and is a valid election, set as current
-    NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
-    NSLog(@"Requesting election: %@", electionId);
-    NSLog(@"Available elections:");
-    for (UserElection *e in elections) {
-        NSLog(@"%@", e.electionId);
-        if ([e.electionId isEqualToString:electionId]) {
-            self.currentElection = e;
-            break;
-        }
-    }
-
-    // If no election got set above, when specific election requested, error.
-    if (electionId && !self.currentElection) {
-        [self displayGetElectionsError:[VIPError errorWithCode:[VIPError NoValidElections]]];
-        return;
-    } else if (!_currentElection) {
-        self.currentElection = elections[0];
-    }
-
-    [self updateUICurrentElection];
 }
 
 /**
@@ -252,6 +246,7 @@
  */
 - (void)updateUICurrentElection
 {
+    [self hideViews];
     // Make request for _currentElection data
     [self.currentElection
      getVoterInfoIfExpired:^(BOOL success, NSError *error)
@@ -361,19 +356,26 @@
     return NO;
 }
 
-#pragma mark - ElectionPicker
+#pragma mark - electionPicker
 
 - (IBAction)showElectionPicker:(id)sender {
+    Election *selectedElection = [Election getUnique:self.currentElection.electionId];
+    if (!selectedElection) {
+        selectedElection = self.elections[0];
+    }
     [MMPickerView showPickerViewInView:self.view
                            withObjects:self.elections
-                           withOptions:@{MMselectedObject: self.currentElection}
-               objectToStringConverter:^NSString *(UserElection *election) {
+                           withOptions:@{MMselectedObject: selectedElection}
+               objectToStringConverter:^NSString *(Election *election) {
                    return election.electionName;
                }
-                            completion:^(UserElection *selectedElection) {
-                                self.currentElection = selectedElection;
+                            completion:^(Election *selectedElection) {
+                                self.activeElection = selectedElection;
+                                self.currentElection = [UserElection getUnique:self.activeElection.electionId
+                                                               withUserAddress:self.userAddress];
                                 [self updateUICurrentElection];
                             }];
+
 }
 
 

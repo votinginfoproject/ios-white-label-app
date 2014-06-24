@@ -2,19 +2,17 @@
 //  UserElection.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 6/23/14.
+//  Created by Andrew Fink on 6/24/14.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Election.h"
 
 @class Contest, PollingLocation, State, UserAddress;
 
-@interface UserElection : VIPManagedObject
+@interface UserElection : Election
 
-@property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSString * electionId;
-@property (nonatomic, retain) NSString * electionName;
 @property (nonatomic, retain) NSDate * lastUpdated;
 @property (nonatomic, retain) NSSet *contests;
 @property (nonatomic, retain) NSSet *pollingLocations;

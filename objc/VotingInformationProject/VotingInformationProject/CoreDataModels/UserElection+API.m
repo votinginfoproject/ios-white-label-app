@@ -15,151 +15,40 @@
 + (UserElection*) getUnique:(NSString*)electionId
         withUserAddress:(UserAddress*)userAddress
 {
-    UserElection *election = nil;
+    UserElection *userElection = nil;
     if (electionId && [electionId length] > 0 && [userAddress hasAddress]) {
+        // Ensure an Election object is created when a UserElection one is requested
+        Election *election = [Election getUnique:electionId];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"electionId == %@ && userAddress == %@", electionId, userAddress];
-        election = [UserElection MR_findFirstWithPredicate:predicate];
-        if (!election) {
-            election = [UserElection MR_createEntity];
-            election.electionId = electionId;
-            election.userAddress = userAddress;
+        userElection = [UserElection MR_findFirstWithPredicate:predicate];
+        if (!userElection) {
+            userElection = [UserElection MR_createEntity];
+            userElection.userAddress = userAddress;
 #if DEBUG
-            NSLog(@"Created new election with id: %@", electionId);
+            NSLog(@"Created new userElection with id: %@", electionId);
 #endif
         } else {
 #if DEBUG
-            NSLog(@"Retrieved election %@ from data store", electionId);
+            NSLog(@"Retrieved userElection %@ from data store", electionId);
 #endif
         }
-    }
-    return election;
-}
-
-+ (void) getElectionsAt:(UserAddress*)userAddress
-           resultsBlock:(void (^)(NSArray * elections, NSError * error))resultsBlock
-{
-    if (![userAddress hasAddress]) {
-        NSError *error = [VIPError errorWithCode:VIPError.NoAddress];
-        resultsBlock(@[], error);
-        return;
-    }
-
-    // TODO: Attempt to get stored elections from the cache and display those rather than
-    //          making a network request
-    NSArray *elections = [UserElection MR_findByAttribute:@"userAddress"
-                                            withValue:userAddress
-                                           andOrderBy:@"date"
-                                            ascending:YES];
-    if ([elections count] > 0) {
-        NSLog(@"Elections from cache for user address: %@", userAddress.address);
-        BOOL foundRequested = NO;
-        NSString *requestedElectionId = [[AppSettings settings] valueForKey:@"ElectionID"];
-        for (UserElection *e in elections) {
-            if ([requestedElectionId isEqualToString:e.electionId]) {
-                foundRequested = YES;
-                break;
+        [userElection setWithElection:election];
+        NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
+        [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError* error) {
+            if (success) {
+                NSLog(@"Saved UserElection: %@, %@", electionId, userAddress.address);
+            } else {
+                NSLog(@"ERROR: Saving UserElection: %@", error);
             }
-        }
-        if (foundRequested) {
-            NSLog(@"Election %@ requested found in cache.", requestedElectionId);
-            resultsBlock(elections, nil);
-            return;
-        }
-        NSLog(@"Election %@ requested and not found in cache. Attempting to fetch from election list...",
-              requestedElectionId);
+        }];
     }
-
-    BOOL appDebug = [[[AppSettings settings] valueForKey:@"DEBUG"] boolValue];
-    // Setup request manager
-    // TODO: Refactor into separate class if multiple requests are made
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
-                                                         setByAddingObjectsFromSet:[NSSet setWithObject:@"text/plain"]];
-
-    NSString *requestUrl = [[AppSettings settings] objectForKey:@"ElectionListURL"];
-    NSLog(@"URL: %@", requestUrl);
-    NSDictionary *requestParams = nil;
-
-    [manager GET:requestUrl
-      parameters:requestParams
-         success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-             
-             // On Success
-             NSArray *electionData = [responseObject objectForKey:@"elections"];
-             if (!electionData) {
-                 // table view will simply be empty
-                 NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
-                 resultsBlock(@[], error);
-                 return;
-             }
-
-             // Init elections array
-             NSUInteger numberOfElections = [electionData count];
-             NSMutableArray *elections = [[NSMutableArray alloc] initWithCapacity:numberOfElections];
-
-             // Loop elections and add valid ones to elections array
-             for (NSDictionary *entry in electionData) {
-                 // skip election if in the past and debug is disabled
-                 if (!appDebug && ![UserElection isElectionDictValid:entry]) {
-                     continue;
-                 }
-
-                 NSString *electionId = entry[@"id"];
-                 UserElection *election = [UserElection getUnique:electionId
-                                          withUserAddress:userAddress];
-                 election.electionName = entry[@"name"];
-                 [election setDateFromString:entry[@"electionDay"]];
-                 [elections addObject:election];
-             }
-
-             // sort elections by date ascending now that theyre all in the future
-             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
-                                                                              ascending:YES];
-             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-             NSArray *sortedElections = [elections sortedArrayUsingDescriptors:sortDescriptors];
-             NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
-             [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                 resultsBlock(sortedElections, error);
-             }];
-
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             resultsBlock(@[], error);
-         }];
-
+    return userElection;
 }
 
-+ (NSDateFormatter*)getElectionDateFormatter
-{
-    // setup date formatter
-    static dispatch_once_t onceToken;
-    static NSDateFormatter *yyyymmddFormatter = nil;
-    dispatch_once(&onceToken, ^{
-        yyyymmddFormatter = [[NSDateFormatter alloc] init];
-        [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
-    });
-    return yyyymmddFormatter;
-}
-
-+ (BOOL) isElectionDictValid:(NSDictionary*)election {
-    if (!election[@"id"]) {
-        return NO;
-    }
-    if (!election[@"name"]) {
-        return NO;
-    }
-
-    NSDateFormatter *yyyymmddFormatter = [UserElection getElectionDateFormatter];
-    NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
-    // Show if election in future relative to current day midnight localtime
-    NSCalendarUnit units = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-    NSDateComponents* comps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date]];
-    comps.day = comps.day - 1;
-    NSDate* todayMidnight = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    if ([electionDate compare:todayMidnight] != NSOrderedDescending) {
-        return NO;
-    }
-    return YES;
+- (void)setWithElection:(Election*)election {
+        self.electionId = election.electionId;
+        self.electionName = election.electionName;
+        self.date = election.date;
 }
 
 - (NSArray*)getUniqueParties
@@ -173,24 +62,6 @@
     }
     // Sort alphabetically to avoid appearing partisan by certain parties appearing first
     return [[parties allValues] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-}
-
-- (NSString *) getDateString
-{
-    NSString *electionDateString = nil;
-    if (self.date) {
-        NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-        [yyyymmddFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [yyyymmddFormatter setTimeStyle:NSDateFormatterNoStyle];
-        electionDateString = [yyyymmddFormatter stringFromDate:self.date];
-    }
-    return electionDateString;
-}
-
-- (void) setDateFromString:(NSString *)stringDate
-{
-    NSDateFormatter *yyyymmddFormatter = [UserElection getElectionDateFormatter];
-    self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 
 - (NSArray*)filterPollingLocations:(VIPPollingLocationType)type

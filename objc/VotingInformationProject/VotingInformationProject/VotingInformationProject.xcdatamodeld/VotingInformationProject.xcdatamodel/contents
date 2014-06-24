@@ -44,6 +44,11 @@
         <attribute name="scope" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <relationship name="contests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contest" inverseName="district" inverseEntity="Contest" syncable="YES"/>
     </entity>
+    <entity name="Election" representedClassName="Election" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="electionId" attributeType="String" syncable="YES"/>
+        <attribute name="electionName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="ElectionAdministrationBody" representedClassName="ElectionAdministrationBody" syncable="YES">
         <attribute name="absenteeVotingInfoUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="ballotInfoUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
@@ -96,10 +101,7 @@
         <attribute name="lastUsed" attributeType="Date" syncable="YES"/>
         <relationship name="userElections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserElection" inverseName="userAddress" inverseEntity="UserElection" syncable="YES"/>
     </entity>
-    <entity name="UserElection" representedClassName="UserElection" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="electionId" attributeType="String" maxValueString="32" syncable="YES"/>
-        <attribute name="electionName" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+    <entity name="UserElection" representedClassName="UserElection" parentEntity="Election" syncable="YES">
         <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="contests" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Contest" inverseName="userElection" inverseEntity="Contest" syncable="YES"/>
         <relationship name="pollingLocations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PollingLocation" inverseName="userElection" inverseEntity="PollingLocation" syncable="YES"/>
@@ -127,13 +129,14 @@
         <element name="Contest" positionX="0" positionY="0" width="128" height="298"/>
         <element name="DataSource" positionX="0" positionY="0" width="128" height="120"/>
         <element name="District" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Election" positionX="-414" positionY="45" width="128" height="90"/>
         <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="128" height="240"/>
         <element name="ElectionOfficial" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PollingLocation" positionX="0" positionY="0" width="128" height="208"/>
         <element name="SocialChannel" positionX="0" positionY="0" width="128" height="90"/>
         <element name="State" positionX="0" positionY="0" width="128" height="118"/>
         <element name="UserAddress" positionX="0" positionY="0" width="128" height="73"/>
-        <element name="UserElection" positionX="0" positionY="0" width="128" height="163"/>
+        <element name="UserElection" positionX="0" positionY="0" width="128" height="118"/>
         <element name="VIPAddress" positionX="0" positionY="0" width="128" height="180"/>
         <element name="VIPManagedAddress" positionX="-621" positionY="-108" width="128" height="90"/>
     </elements>
