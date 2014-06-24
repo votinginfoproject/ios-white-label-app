@@ -26,20 +26,17 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
-  - MMPickerView (0.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Google-Maps-iOS-SDK (~> 1.6)
   - Kiwi/XCTest
   - MagicalRecord (~> 2.2)
-  - MMPickerView
 
 SPEC CHECKSUMS:
-  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
-  Google-Maps-iOS-SDK: a81f0b0dede6964e64b632d0e5dc3d06873ca365
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
-  MMPickerView: 29b43ebf73d4a163700cb3a80982711ce595ce12
+  AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
+  Google-Maps-iOS-SDK: 572669521615fa2685696cc391049e3982710402
+  Kiwi: 7b9bc7294de746357213067a1df49cc0a59384e8
+  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1

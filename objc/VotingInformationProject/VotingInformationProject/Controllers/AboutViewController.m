@@ -99,7 +99,7 @@
  */
 - (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
                                withElections:(NSArray *)elections
-                             currentElection:(Election *)election
+                             currentElection:(UserElection *)election
                                     andParty:(NSString *)party
 {
     VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;

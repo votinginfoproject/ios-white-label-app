@@ -2,11 +2,12 @@
 //  Candidate.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/17/14.
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import "Candidate.h"
 #import "Contest.h"
+#import "SocialChannel.h"
 
 
 @implementation Candidate
