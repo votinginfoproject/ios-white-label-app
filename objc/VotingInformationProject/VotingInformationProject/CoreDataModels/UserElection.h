@@ -1,9 +1,8 @@
 //
-//  Election.h
+//  UserElection.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/5/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,7 +10,7 @@
 
 @class Contest, PollingLocation, State, UserAddress;
 
-@interface Election : VIPManagedObject
+@interface UserElection : VIPManagedObject
 
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * electionId;
@@ -23,7 +22,7 @@
 @property (nonatomic, retain) UserAddress *userAddress;
 @end
 
-@interface Election (CoreDataGeneratedAccessors)
+@interface UserElection (CoreDataGeneratedAccessors)
 
 - (void)addContestsObject:(Contest *)value;
 - (void)removeContestsObject:(Contest *)value;

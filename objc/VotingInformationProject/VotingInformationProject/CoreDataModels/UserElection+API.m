@@ -1,26 +1,26 @@
 //
-//  Election+API.m
+//  UserElection+API.m
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 1/31/14.
 //  
 //
 
-#import "Election+API.h"
+#import "UserElection+API.h"
 #import "AppSettings.h"
 
-@implementation Election (API)
+@implementation UserElection (API)
 
 
-+ (Election*) getUnique:(NSString*)electionId
++ (UserElection*) getUnique:(NSString*)electionId
         withUserAddress:(UserAddress*)userAddress
 {
-    Election *election = nil;
+    UserElection *election = nil;
     if (electionId && [electionId length] > 0 && [userAddress hasAddress]) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"electionId == %@ && userAddress == %@", electionId, userAddress];
-        election = [Election MR_findFirstWithPredicate:predicate];
+        election = [UserElection MR_findFirstWithPredicate:predicate];
         if (!election) {
-            election = [Election MR_createEntity];
+            election = [UserElection MR_createEntity];
             election.electionId = electionId;
             election.userAddress = userAddress;
 #if DEBUG
@@ -46,7 +46,7 @@
 
     // TODO: Attempt to get stored elections from the cache and display those rather than
     //          making a network request
-    NSArray *elections = [Election MR_findByAttribute:@"userAddress"
+    NSArray *elections = [UserElection MR_findByAttribute:@"userAddress"
                                             withValue:userAddress
                                            andOrderBy:@"date"
                                             ascending:YES];
@@ -54,7 +54,7 @@
         NSLog(@"Elections from cache for user address: %@", userAddress.address);
         BOOL foundRequested = NO;
         NSString *requestedElectionId = [[AppSettings settings] valueForKey:@"ElectionID"];
-        for (Election *e in elections) {
+        for (UserElection *e in elections) {
             if ([requestedElectionId isEqualToString:e.electionId]) {
                 foundRequested = YES;
                 break;
@@ -101,12 +101,12 @@
              // Loop elections and add valid ones to elections array
              for (NSDictionary *entry in electionData) {
                  // skip election if in the past and debug is disabled
-                 if (!appDebug && ![Election isElectionDictValid:entry]) {
+                 if (!appDebug && ![UserElection isElectionDictValid:entry]) {
                      continue;
                  }
 
                  NSString *electionId = entry[@"id"];
-                 Election *election = [Election getUnique:electionId
+                 UserElection *election = [UserElection getUnique:electionId
                                           withUserAddress:userAddress];
                  election.electionName = entry[@"name"];
                  [election setDateFromString:entry[@"electionDay"]];
@@ -149,7 +149,7 @@
         return NO;
     }
 
-    NSDateFormatter *yyyymmddFormatter = [Election getElectionDateFormatter];
+    NSDateFormatter *yyyymmddFormatter = [UserElection getElectionDateFormatter];
     NSDate *electionDate = [yyyymmddFormatter dateFromString:election[@"electionDay"]];
     // Show if election in future relative to current day midnight localtime
     NSCalendarUnit units = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
@@ -189,7 +189,7 @@
 
 - (void) setDateFromString:(NSString *)stringDate
 {
-    NSDateFormatter *yyyymmddFormatter = [Election getElectionDateFormatter];
+    NSDateFormatter *yyyymmddFormatter = [UserElection getElectionDateFormatter];
     self.date = [yyyymmddFormatter dateFromString:stringDate];
 }
 

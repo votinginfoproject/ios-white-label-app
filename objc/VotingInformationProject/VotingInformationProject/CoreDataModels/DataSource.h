@@ -2,8 +2,7 @@
 //  DataSource.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/6/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import <Foundation/Foundation.h>

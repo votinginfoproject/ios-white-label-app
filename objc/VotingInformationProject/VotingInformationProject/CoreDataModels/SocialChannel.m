@@ -2,7 +2,7 @@
 //  SocialChannel.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/17/14.
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import "SocialChannel.h"
@@ -11,8 +11,8 @@
 
 @implementation SocialChannel
 
-@dynamic type;
 @dynamic id;
+@dynamic type;
 @dynamic candidate;
 
 @end

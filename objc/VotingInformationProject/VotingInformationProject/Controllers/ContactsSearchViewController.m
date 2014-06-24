@@ -15,7 +15,7 @@
 #import "MMPickerView.h"
 
 #import "AppSettings.h"
-#import "Election+API.h"
+#import "UserElection+API.h"
 #import "UserAddress+API.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
@@ -26,7 +26,6 @@
 @property (strong, nonatomic) NSString *currentParty;
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
-@property (weak, nonatomic) IBOutlet UIButton *aboutAppButton;
 @property (weak, nonatomic) IBOutlet UIButton *partyPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
@@ -37,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UIView *partyView;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (weak, nonatomic) IBOutlet UIButton *electionPickerButton;
 
 @end
 
@@ -79,6 +79,13 @@
     _currentParty = currentParty;
 }
 
+- (void)setCurrentElection:(UserElection *)currentElection
+{
+    [self.electionPickerButton setTitle:currentElection.electionName
+                               forState:UIControlStateNormal];
+    _currentElection = currentElection;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -94,9 +101,6 @@
     self.addressTextField.backgroundColor = [VIPColor color:primaryTextColor withAlpha:0.35];
     self.addressTextField.borderStyle = UITextBorderStyleRoundedRect;
 
-    [self.aboutAppButton setTitleColor:primaryTextColor
-                              forState:UIControlStateNormal];
-
     [self.showElectionButton setTitleColor:primaryTextColor
                                   forState:UIControlStateNormal];
     self.showElectionButton.layer.cornerRadius = 5;
@@ -110,6 +114,11 @@
 
     self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to vote.",
                                                       @"App home page instruction text for the address text field and contacts picker");
+
+    self.electionPickerButton.backgroundColor = primaryTextColorWithAlpha25;
+    [self.electionPickerButton setTitleColor:[VIPColor secondaryTextColor]
+                                 forState:UIControlStateNormal];
+    self.electionPickerButton.layer.cornerRadius = 5;
 
     self.partyPickerButton.backgroundColor = primaryTextColorWithAlpha25;
     [self.partyPickerButton setTitleColor:[VIPColor secondaryTextColor]
@@ -138,6 +147,11 @@
 
     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                                  ascending:NO];
+
+    if (self.currentElection) {
+        [self.electionPickerButton setTitle:self.currentElection.electionName
+                                   forState:UIControlStateNormal];
+    }
     self.addressTextField.text = userAddress.address;
     // updateUI called internally here
     self.userAddress = userAddress;
@@ -174,7 +188,7 @@
     self.showElectionButton.hidden = YES;
 
     // update elections when we set a new userAddress
-    [Election
+    [UserElection
      getElectionsAt:self.userAddress
      resultsBlock:^(NSArray *elections, NSError *error){
          if (!error && [elections count] > 0) {
@@ -214,7 +228,7 @@
     NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
     NSLog(@"Requesting election: %@", electionId);
     NSLog(@"Available elections:");
-    for (Election *e in elections) {
+    for (UserElection *e in elections) {
         NSLog(@"%@", e.electionId);
         if ([e.electionId isEqualToString:electionId]) {
             self.currentElection = e;
@@ -347,8 +361,23 @@
     return NO;
 }
 
+#pragma mark - ElectionPicker
 
-#pragma mark - UI Error Handling
+- (IBAction)showElectionPicker:(id)sender {
+    [MMPickerView showPickerViewInView:self.view
+                           withObjects:self.elections
+                           withOptions:@{MMselectedObject: self.currentElection}
+               objectToStringConverter:^NSString *(UserElection *election) {
+                   return election.electionName;
+               }
+                            completion:^(UserElection *selectedElection) {
+                                self.currentElection = selectedElection;
+                                [self updateUICurrentElection];
+                            }];
+}
+
+
+#pragma mark - PartyPicker
 
 - (IBAction)showPartyView:(id)sender {
     [MMPickerView showPickerViewInView:self.view
@@ -381,6 +410,8 @@
     [self.showElectionButton setTitle:NSLocalizedString(@"GO!", @"Home view GO! button text")
                              forState:UIControlStateNormal];
 }
+
+#pragma mark - UI Error Handling
 
 /**
  *  Error handle getting elections by displaying error as the text of the button

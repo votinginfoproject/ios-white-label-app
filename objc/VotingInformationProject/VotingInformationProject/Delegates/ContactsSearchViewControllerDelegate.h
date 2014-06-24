@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Election.h"
+#import "UserElection.h"
 
 @class ContactsSearchViewController;
 
@@ -15,7 +15,7 @@
 
 - (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController*)controller
                                withElections:(NSArray*)elections
-                             currentElection:(Election*)election
+                             currentElection:(UserElection*)election
                                     andParty:(NSString*)party;
 
 @end
