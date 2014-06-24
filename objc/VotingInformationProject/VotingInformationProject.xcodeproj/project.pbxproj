@@ -115,6 +115,10 @@
 		4970E57E18D37E6200104184 /* Default_launch-screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E54418D37E6200104184 /* Default_launch-screen@2x.png */; };
 		498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 498225E2189AEADC00FB8FC4 /* Localizable.strings */; };
 		4982F905192157F60007B75B /* VIPCandidateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4982F903192157F60007B75B /* VIPCandidateCell.m */; };
+		49875A68195A1AA700EE31D7 /* TabBar_about-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A64195A1AA700EE31D7 /* TabBar_about-active.png */; };
+		49875A69195A1AA700EE31D7 /* TabBar_about-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */; };
+		49875A6A195A1AA700EE31D7 /* TabBar_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A66195A1AA700EE31D7 /* TabBar_about.png */; };
+		49875A6B195A1AA700EE31D7 /* TabBar_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */; };
 		4991F3A918C68296000023D6 /* VIPManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991F3A818C68296000023D6 /* VIPManagedObject.m */; };
 		499537F418A2B8C1009B678C /* ElectionAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F318A2B8C1009B678C /* ElectionAPITests.m */; };
 		499537F618A2BCCB009B678C /* UserAddressAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F518A2BCCB009B678C /* UserAddressAPITests.m */; };
@@ -325,6 +329,10 @@
 		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		4982F902192157F60007B75B /* VIPCandidateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPCandidateCell.h; path = Views/VIPCandidateCell.h; sourceTree = "<group>"; };
 		4982F903192157F60007B75B /* VIPCandidateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPCandidateCell.m; path = Views/VIPCandidateCell.m; sourceTree = "<group>"; };
+		49875A64195A1AA700EE31D7 /* TabBar_about-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about-active.png"; sourceTree = "<group>"; };
+		49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about-active@2x.png"; sourceTree = "<group>"; };
+		49875A66195A1AA700EE31D7 /* TabBar_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBar_about.png; sourceTree = "<group>"; };
+		49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about@2x.png"; sourceTree = "<group>"; };
 		4991F3A718C68296000023D6 /* VIPManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPManagedObject.h; path = CoreDataModels/VIPManagedObject.h; sourceTree = "<group>"; };
 		4991F3A818C68296000023D6 /* VIPManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPManagedObject.m; path = CoreDataModels/VIPManagedObject.m; sourceTree = "<group>"; };
 		499537F318A2B8C1009B678C /* ElectionAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionAPITests.m; sourceTree = "<group>"; };
@@ -584,6 +592,10 @@
 		4970E51618D37E6200104184 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				49875A64195A1AA700EE31D7 /* TabBar_about-active.png */,
+				49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */,
+				49875A66195A1AA700EE31D7 /* TabBar_about.png */,
+				49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */,
 				4970E51718D37E6200104184 /* Candidate_default-image.png */,
 				4970E51818D37E6200104184 /* Candidate_default-image@2x.png */,
 				4970E51918D37E6200104184 /* Candidate_email.png */,
@@ -962,6 +974,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4970E55018D37E6200104184 /* Default_background.png in Resources */,
+				49875A6A195A1AA700EE31D7 /* TabBar_about.png in Resources */,
 				4970E55618D37E6200104184 /* Candidate_facebook.png in Resources */,
 				49273490188DE80000B25554 /* elections.json in Resources */,
 				4970E57118D37E6200104184 /* TabBar_details-active@2x.png in Resources */,
@@ -976,6 +989,7 @@
 				4970E54B18D37E6200104184 /* SettingsIcon.png in Resources */,
 				4970E56D18D37E6200104184 /* TabBar_ballot-active@2x.png in Resources */,
 				4970E55118D37E6200104184 /* Default_background@2x.png in Resources */,
+				49875A68195A1AA700EE31D7 /* TabBar_about-active.png in Resources */,
 				4970E56418D37E6200104184 /* Homepage_contact.png in Resources */,
 				4970E57C18D37E6200104184 /* Default_launch-screen-568@2x.png in Resources */,
 				4970E57B18D37E6200104184 /* TabBar_polling@2x.png in Resources */,
@@ -999,11 +1013,13 @@
 				4970E55A18D37E6200104184 /* Candidate_phone.png in Resources */,
 				496E3DFC1958BDC8003C9C8A /* LICENSE in Resources */,
 				4970E57818D37E6200104184 /* TabBar_polling-active.png in Resources */,
+				49875A6B195A1AA700EE31D7 /* TabBar_about@2x.png in Resources */,
 				4970E56C18D37E6200104184 /* TabBar_ballot-active.png in Resources */,
 				4970E57218D37E6200104184 /* TabBar_details.png in Resources */,
 				4967AB7A18A91D420079C9F1 /* CivicAPIKey.plist in Resources */,
 				4970E56518D37E6200104184 /* Homepage_contact@2x.png in Resources */,
 				4970E57018D37E6200104184 /* TabBar_details-active.png in Resources */,
+				49875A69195A1AA700EE31D7 /* TabBar_about-active@2x.png in Resources */,
 				4970E56B18D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */,
 				4970E56218D37E6200104184 /* Homepage_about.png in Resources */,
 				4970E56818D37E6200104184 /* Polling_location.png in Resources */,

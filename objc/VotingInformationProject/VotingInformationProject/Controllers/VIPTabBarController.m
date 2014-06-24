@@ -38,7 +38,7 @@
     NSArray *imageNames = @[@"TabBar_ballot",
                             @"TabBar_details",
                             @"TabBar_polling",
-                            @"TabBar_more"];
+                            @"TabBar_about"];
     NSUInteger index = 0;
     UITabBar *tabBar = self.tabBar;
     for (UITabBarItem* tabBarItem in tabBar.items) {
