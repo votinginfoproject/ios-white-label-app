@@ -39,12 +39,20 @@
 @property (weak, nonatomic) IBOutlet UIView *partyView;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
 @property (weak, nonatomic) IBOutlet UIButton *electionPickerButton;
+@property (strong, nonatomic) NSString* allPartiesString;
 
 @end
 
 @implementation ContactsSearchViewController {
-    NSString *_allPartiesString;
     BOOL _hasShownPartyPicker;
+}
+
+- (NSString*)allPartiesString
+{
+    if (!_allPartiesString) {
+        _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
+    }
+    return _allPartiesString;
 }
 
 /**
@@ -110,10 +118,6 @@
 - (void)setCurrentElection:(UserElection *)currentElection
 {
     _currentElection = currentElection;
-    NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
-    [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-        NSLog(@"DataStore saved: %d", success);
-    }];
     [self updateUICurrentElection];
 }
 
@@ -157,9 +161,8 @@
     self.partyPickerButton.layer.cornerRadius = 5;
 
     _hasShownPartyPicker = NO;
-    _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
-    self.currentParty = _allPartiesString;
-    self.parties = @[_allPartiesString];
+    self.currentParty = self.allPartiesString;
+    self.parties = @[self.allPartiesString];
 
     [self updateUI];
 }
@@ -193,7 +196,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
+    NSString *party = [self.currentParty isEqualToString:self.allPartiesString] ? nil : self.currentParty;
     [defaults setObject:self.activeElection.electionId forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:self.userAddress.address forKey:USER_DEFAULTS_STORED_ADDRESS];
     [defaults setObject:party forKey:USER_DEFAULTS_PARTY];
@@ -253,7 +256,7 @@
      {
          if (success) {
              NSArray *parties = [self.currentElection getUniqueParties];
-             self.parties = [@[_allPartiesString]
+             self.parties = [@[self.allPartiesString]
                              arrayByAddingObjectsFromArray:parties];
              BOOL showPartyPicker = [self.parties count] > 1 ? YES : NO;
              if (showPartyPicker) {
@@ -332,7 +335,7 @@
     // Set the current selections to local store so we can pull them from CoreData
     //  on future app loads
 
-    NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
+    NSString *party = [self.currentParty isEqualToString:self.allPartiesString] ? nil : self.currentParty;
     [self.delegate contactsSearchViewControllerDidClose:self
                                           withElections:self.elections
                                         currentElection:self.currentElection
