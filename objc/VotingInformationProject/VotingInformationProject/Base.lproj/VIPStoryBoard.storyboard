@@ -1153,7 +1153,7 @@
         <scene sceneID="jHu-iV-d0H">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kuE-gb-sKk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About" image="TabBar_more.png" id="uAv-dm-Gkx"/>
+                    <tabBarItem key="tabBarItem" title="About" image="TabBar_about.png" id="uAv-dm-Gkx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qca-Dd-dbd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1211,9 +1211,9 @@
         <image name="Candidate_default-image.png" width="72" height="72"/>
         <image name="Homepage_contact.png" width="23" height="20"/>
         <image name="NavigationBar_home.png" width="22" height="22"/>
+        <image name="TabBar_about.png" width="23" height="23"/>
         <image name="TabBar_ballot.png" width="26" height="20"/>
         <image name="TabBar_details.png" width="26" height="20"/>
-        <image name="TabBar_more.png" width="28" height="6"/>
         <image name="TabBar_polling.png" width="18" height="26"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
