@@ -14,32 +14,32 @@
 /* Class = "IBUILabel"; text = "123.4mi"; ObjectID = "1ha-6N-tX9"; */
 "1ha-6N-tX9.text" = "123.4mi";
 
+/* Class = "IBUIButton"; accessibilityHint = "Opens party picker."; ObjectID = "2hP-xP-Xzu"; */
+"2hP-xP-Xzu.accessibilityHint" = "Opens party picker.";
+
 /* Class = "IBUIButton"; normalTitle = "All Selected Parties"; ObjectID = "2hP-xP-Xzu"; */
 "2hP-xP-Xzu.normalTitle" = "All Selected Parties";
 
 /* Class = "IBUIButton"; normalTitle = "Link"; ObjectID = "3H1-ex-dlV"; */
 "3H1-ex-dlV.normalTitle" = "Link";
 
-/* Class = "IBUILabel"; text = "Get started by providing the address where you are registered to vote."; ObjectID = "3QK-lN-hQp"; */
-"3QK-lN-hQp.text" = "Get started by providing the address where you are registered to vote.";
-
 /* Class = "IBUIBarButtonItem"; title = "Home"; ObjectID = "3WV-9A-YoC"; */
 "3WV-9A-YoC.title" = "Home";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "4e7-kZ-rvO"; */
-"4e7-kZ-rvO.text" = "Label";
+/* Class = "IBUIButton"; accessibilityLabel = "Contacts Search"; ObjectID = "76u-cC-uxA"; */
+"76u-cC-uxA.accessibilityLabel" = "Contacts Search";
 
 /* Class = "IBUILabel"; text = "Terms of Use"; ObjectID = "8lF-Pb-K8U"; */
 "8lF-Pb-K8U.text" = "Terms of Use";
-
-/* Class = "IBUIButton"; normalTitle = " About This App"; ObjectID = "CXU-KT-uFF"; */
-"CXU-KT-uFF.normalTitle" = " About This App";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "Cj6-lZ-spM"; */
 "Cj6-lZ-spM.text" = "Title";
 
 /* Class = "IBUILabel"; text = "There are partisan contests in this election. Choose a party to view."; ObjectID = "DRW-zW-eMI"; */
 "DRW-zW-eMI.text" = "There are partisan contests in this election. Choose a party to view.";
+
+/* Class = "IBUIButton"; accessibilityHint = "Opens election picker."; ObjectID = "DUM-9j-12x"; */
+"DUM-9j-12x.accessibilityHint" = "Opens election picker.";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "EUE-y5-Mn3"; */
 "EUE-y5-Mn3.text" = "Subtitle";
@@ -113,9 +113,6 @@
 /* Class = "IBUILabel"; text = "Contest Name"; ObjectID = "Yh4-mO-Jao"; */
 "Yh4-mO-Jao.text" = "Contest Name";
 
-/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "Zqx-En-nBP"; */
-"Zqx-En-nBP.title" = "Back";
-
 /* Class = "IBUILabel"; text = "No Available Candidates"; ObjectID = "bBk-gz-R3x"; */
 "bBk-gz-R3x.text" = "No Available Candidates";
 
@@ -146,9 +143,6 @@
 /* Class = "IBUILabel"; text = "Election Name"; ObjectID = "k1g-E7-fra"; */
 "k1g-E7-fra.text" = "Election Name";
 
-/* Class = "IBUINavigationItem"; title = "More Elections"; ObjectID = "m4i-zl-0oB"; */
-"m4i-zl-0oB.title" = "More Elections";
-
 /* Class = "IBUINavigationItem"; title = "Candidate"; ObjectID = "mV6-it-J7F"; */
 "mV6-it-J7F.title" = "Candidate";
 
@@ -161,8 +155,14 @@
 /* Class = "IBUITableViewSection"; headerTitle = "Terms of Use"; ObjectID = "o9y-1C-cNH"; */
 "o9y-1C-cNH.headerTitle" = "Terms of Use";
 
+/* Class = "IBUILabel"; text = "Enter Your Address:"; ObjectID = "oDm-bR-mta"; */
+"oDm-bR-mta.text" = "Enter Your Address:";
+
 /* Class = "IBUITabBarItem"; title = "Details"; ObjectID = "pC8-7J-EJ9"; */
 "pC8-7J-EJ9.title" = "Details";
+
+/* Class = "IBUILabel"; text = "Pick an Election:"; ObjectID = "pNR-wi-mkO"; */
+"pNR-wi-mkO.text" = "Pick an Election:";
 
 /* Class = "IBUILabel"; text = "Voting Information"; ObjectID = "prJ-mj-Bjp"; */
 "prJ-mj-Bjp.text" = "Voting Information";
@@ -173,8 +173,8 @@
 /* Class = "IBUILabel"; text = "BRAND NAME"; ObjectID = "u9S-9H-o10"; */
 "u9S-9H-o10.text" = "BRAND NAME";
 
-/* Class = "IBUITabBarItem"; title = "More Elections"; ObjectID = "uAv-dm-Gkx"; */
-"uAv-dm-Gkx.title" = "More Elections";
+/* Class = "IBUITabBarItem"; title = "About"; ObjectID = "uAv-dm-Gkx"; */
+"uAv-dm-Gkx.title" = "About";
 
 /* Class = "IBUINavigationItem"; title = "Directions"; ObjectID = "uia-Wy-7kT"; */
 "uia-Wy-7kT.title" = "Directions";
@@ -208,9 +208,6 @@
 
 /* Class = "IBUILabel"; text = "About this app."; ObjectID = "wKK-2H-Xzv"; */
 "wKK-2H-Xzv.text" = "About this app.";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "wXf-gH-Jj8"; */
-"wXf-gH-Jj8.text" = "Label";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "zfx-nN-Mgb"; */
 "zfx-nN-Mgb.text" = "Detail";
