@@ -9,7 +9,7 @@
 #import "ContactsSearchViewController.h"
 #import "ContestDetailsViewController.h"
 #import "VIPEmptyTableViewDataSource.h"
-#import "Election+API.h"
+#import "UserElection+API.h"
 #import "Contest+API.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
@@ -64,7 +64,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     if (![vipTabBarController isVIPDataAvailable]) {
         [self presentContactsSearchViewController];
     } else {
-        self.election = (Election*) vipTabBarController.currentElection;
+        self.election = (UserElection*) vipTabBarController.currentElection;
         self.party = vipTabBarController.currentParty;
         [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
             [self updateUI];
@@ -137,7 +137,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
  */
 - (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
                                withElections:(NSArray *)elections
-                             currentElection:(Election *)election
+                             currentElection:(UserElection *)election
                                     andParty:(NSString *)party
 {
     VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
@@ -187,8 +187,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"HomeSegue"]) {
-        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
-        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;

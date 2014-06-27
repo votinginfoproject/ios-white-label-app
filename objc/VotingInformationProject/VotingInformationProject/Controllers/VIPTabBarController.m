@@ -38,7 +38,7 @@
     NSArray *imageNames = @[@"TabBar_ballot",
                             @"TabBar_details",
                             @"TabBar_polling",
-                            @"TabBar_more"];
+                            @"TabBar_about"];
     NSUInteger index = 0;
     UITabBar *tabBar = self.tabBar;
     for (UITabBarItem* tabBarItem in tabBar.items) {
@@ -73,17 +73,9 @@
     NSString *party = [defaults stringForKey:USER_DEFAULTS_PARTY];
 
     UserAddress *userAddress = [UserAddress MR_findFirstByAttribute:@"address" withValue:address];
-    NSArray *elections = [Election MR_findByAttribute:@"userAddress"
-                                            withValue:userAddress
-                                           andOrderBy:@"date"
-                                            ascending:YES];
-    for (Election *election in elections) {
-        if ([election.electionId isEqualToString:electionId]) {
-            self.currentParty = party;
-            self.currentElection = election;
-            self.elections = elections;
-        }
-    }
+    self.currentParty = party;
+    self.elections = [Election getFutureElections];
+    self.currentElection = [UserElection getUnique:electionId withUserAddress:userAddress];
 }
 
 @end

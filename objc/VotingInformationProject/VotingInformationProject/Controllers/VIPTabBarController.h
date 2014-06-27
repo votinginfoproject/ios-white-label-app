@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "BallotViewController.h"
-#import "Election+API.h"
+#import "UserElection+API.h"
 
 @interface VIPTabBarController : UITabBarController
 
 @property (strong, nonatomic) NSArray *elections;
-@property (strong, nonatomic) Election *currentElection;
+@property (strong, nonatomic) UserElection *currentElection;
 @property (strong, nonatomic) NSString *currentParty;
 
 /**

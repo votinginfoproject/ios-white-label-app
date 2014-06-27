@@ -2,13 +2,12 @@
 //  PollingLocation.m
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 2/4/14.
-//  
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import "PollingLocation.h"
 #import "DataSource.h"
-#import "Election.h"
+#import "UserElection.h"
 #import "VIPAddress.h"
 
 
@@ -24,6 +23,6 @@
 @dynamic voterServices;
 @dynamic address;
 @dynamic dataSources;
-@dynamic election;
+@dynamic userElection;
 
 @end
