@@ -52,15 +52,21 @@
 
 + (NSArray*)getFutureElections
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@)", [Election today]];
-    NSArray *elections = [Election MR_findAllWithPredicate:predicate];
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
-                                                                 ascending:YES];
-    NSSortDescriptor *idDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"electionId"
-                                                                 ascending:YES];
-    NSArray *descriptors = @[dateDescriptor, idDescriptor];
-    NSArray *allElections = [[elections filteredArrayUsingPredicate:predicate]
-                             sortedArrayUsingDescriptors:descriptors];
+    BOOL appDebug = [[[AppSettings settings] valueForKey:@"DEBUG"] boolValue];
+    NSArray *allElections = nil;
+    if (appDebug) {
+        allElections = [Election MR_findAllSortedBy:@"date" ascending:YES];
+    } else {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@)", [Election today]];
+        NSArray *elections = [Election MR_findAllWithPredicate:predicate];
+        NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date"
+                                                                         ascending:YES];
+        NSSortDescriptor *idDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"electionId"
+                                                                       ascending:YES];
+        NSArray *descriptors = @[dateDescriptor, idDescriptor];
+        allElections = [[elections filteredArrayUsingPredicate:predicate]
+                        sortedArrayUsingDescriptors:descriptors];
+    }
 
     // CoreData returns the sub-entities in this fetch as well, so remove them
     NSMutableArray *onlyElections = [[NSMutableArray alloc] initWithCapacity:[allElections count]];
