@@ -100,6 +100,8 @@
     } else {
         [self.electionPickerButton setTitle:self.activeElection.electionName
                                    forState:UIControlStateNormal];
+        self.currentElection = [UserElection getUnique:self.activeElection.electionId
+                                       withUserAddress:self.userAddress];
     }
     _elections = elections;
 }
@@ -163,8 +165,6 @@
     _hasShownPartyPicker = NO;
     self.currentParty = self.allPartiesString;
     self.parties = @[self.allPartiesString];
-
-    [self updateUI];
 }
 
 
@@ -184,6 +184,7 @@
 
     NSString *activeElectionId = [defaults objectForKey:USER_DEFAULTS_ELECTION_ID];
     self.activeElection = [Election getUnique:activeElectionId];
+    [self updateUI];
 
     [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
@@ -206,7 +207,6 @@
 
 - (void)updateElections
 {
-    self.elections = [Election getFutureElections];
     [self.electionPickerButton setTitle:NSLocalizedString(@"Loading elections...",
                                                           @"Text for election picker button while elections are loading")
                                forState:UIControlStateNormal];
@@ -241,7 +241,6 @@
 {
     self.partyView.hidden = YES;
     self.errorView.hidden = YES;
-    self.showElectionButton.hidden = YES;
 }
 
 /**
@@ -375,9 +374,6 @@
                }
                             completion:^(Election *selectedElection) {
                                 self.activeElection = selectedElection;
-                                self.currentElection = [UserElection getUnique:self.activeElection.electionId
-                                                               withUserAddress:self.userAddress];
-                                [self updateUICurrentElection];
                             }];
 
 }
