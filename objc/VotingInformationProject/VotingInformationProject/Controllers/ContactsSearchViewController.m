@@ -100,6 +100,8 @@
     } else {
         [self.electionPickerButton setTitle:self.activeElection.electionName
                                    forState:UIControlStateNormal];
+        self.currentElection = [UserElection getUnique:self.activeElection.electionId
+                                       withUserAddress:self.userAddress];
     }
     _elections = elections;
 }
@@ -205,7 +207,6 @@
 
 - (void)updateElections
 {
-    self.elections = [Election getFutureElections];
     [self.electionPickerButton setTitle:NSLocalizedString(@"Loading elections...",
                                                           @"Text for election picker button while elections are loading")
                                forState:UIControlStateNormal];
@@ -373,9 +374,6 @@
                }
                             completion:^(Election *selectedElection) {
                                 self.activeElection = selectedElection;
-                                self.currentElection = [UserElection getUnique:self.activeElection.electionId
-                                                               withUserAddress:self.userAddress];
-                                [self updateUICurrentElection];
                             }];
 
 }
