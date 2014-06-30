@@ -19,6 +19,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
                                 <rect key="frame" x="267" y="235" width="23" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Contacts Search"/>
                                 <state key="normal" image="Homepage_contact.png">
                                     <attributedString key="attributedTitle"/>
                                 </state>
@@ -77,6 +78,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hP-xP-Xzu">
                                         <rect key="frame" x="0.0" y="61" width="260" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Opens party picker."/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="All Selected Parties">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,6 +106,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-9j-12x">
                                 <rect key="frame" x="30" y="156" width="260" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Opens election picker."/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1090,7 +1093,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Directions" id="uia-Wy-7kT">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="48o-Jn-qM7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="48o-Jn-qM7">
                             <connections>
                                 <action selector="cancel:" destination="vVt-pV-L1b" id="0Iq-qo-p0f"/>
                             </connections>
@@ -1102,6 +1105,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="x2N-U7-mjj" id="Bb0-dx-yva"/>
                         <outlet property="directionsTypeControl" destination="w6R-Cc-ZLj" id="pSQ-3C-q57"/>
                         <outlet property="tableView" destination="Sjr-Ml-bIM" id="wHi-1c-h5b"/>
                     </connections>
@@ -1222,7 +1226,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Pyh-G2-h10"/>
         <segue reference="xXd-r3-0ih"/>
+        <segue reference="eBc-MR-pin"/>
     </inferredMetricsTieBreakers>
 </document>
