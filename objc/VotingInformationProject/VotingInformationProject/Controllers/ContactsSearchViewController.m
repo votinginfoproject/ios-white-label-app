@@ -362,6 +362,7 @@
 #pragma mark - electionPicker
 
 - (IBAction)showElectionPicker:(id)sender {
+    [self.addressTextField resignFirstResponder];
     Election *selectedElection = [Election getUnique:self.currentElection.electionId];
     if (!selectedElection) {
         selectedElection = self.elections[0];
@@ -385,6 +386,7 @@
 #pragma mark - PartyPicker
 
 - (IBAction)showPartyView:(id)sender {
+    [self.addressTextField resignFirstResponder];
     [MMPickerView showPickerViewInView:self.view
                            withStrings:self.parties
                            withOptions:@{MMselectedObject: self.currentParty}
