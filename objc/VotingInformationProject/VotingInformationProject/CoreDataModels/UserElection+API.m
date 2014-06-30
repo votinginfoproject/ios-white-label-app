@@ -36,9 +36,11 @@
         NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
         [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError* error) {
             if (success) {
-                NSLog(@"Saved UserElection: %@, %@", electionId, userAddress.address);
+                NSLog(@"UserElection SAVED: %@, %@", electionId, userAddress.address);
+            } else if (error) {
+                NSLog(@"UserElection ERROR: while saving: %@", error);
             } else {
-                NSLog(@"ERROR: Saving UserElection: %@", error);
+                NSLog(@"UserElection: no change");
             }
         }];
     }

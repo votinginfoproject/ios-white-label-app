@@ -102,9 +102,11 @@
             NSManagedObjectContext *moc = [NSManagedObjectContext MR_defaultContext];
             [moc MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError* error) {
                 if (success) {
-                    NSLog(@"Saved Election: %@", electionId);
+                    NSLog(@"Election SAVED: %@", electionId);
+                } else if (error) {
+                    NSLog(@"Election ERROR: %@, %@", electionId, error);
                 } else {
-                    NSLog(@"ERROR: Saving election: %@", error);
+                    NSLog(@"Election: %@ no change", electionId);
                 }
             }];
 #if DEBUG
@@ -121,10 +123,7 @@
 
 + (void)getElectionList:(void (^)(NSArray *, NSError *))resultsBlock
 {
-
-    BOOL appDebug = [[[AppSettings settings] valueForKey:@"DEBUG"] boolValue];
     // Setup request manager
-    // TODO: Refactor into separate class if multiple requests are made
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes

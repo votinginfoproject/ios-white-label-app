@@ -163,8 +163,6 @@
     _hasShownPartyPicker = NO;
     self.currentParty = self.allPartiesString;
     self.parties = @[self.allPartiesString];
-
-    [self updateUI];
 }
 
 
@@ -184,6 +182,7 @@
 
     NSString *activeElectionId = [defaults objectForKey:USER_DEFAULTS_ELECTION_ID];
     self.activeElection = [Election getUnique:activeElectionId];
+    [self updateUI];
 
     [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
