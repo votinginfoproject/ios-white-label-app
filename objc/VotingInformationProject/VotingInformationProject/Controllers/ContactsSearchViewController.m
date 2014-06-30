@@ -240,7 +240,6 @@
 {
     self.partyView.hidden = YES;
     self.errorView.hidden = YES;
-    self.showElectionButton.hidden = YES;
 }
 
 /**
