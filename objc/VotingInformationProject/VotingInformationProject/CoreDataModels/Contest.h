@@ -2,19 +2,19 @@
 //  Contest.h
 //  VotingInformationProject
 //
-//  Created by Andrew Fink on 3/14/14.
+//  Created by Andrew Fink on 6/23/14.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Candidate, DataSource, District, Election;
+@class Candidate, DataSource, District, UserElection;
 
 @interface Contest : VIPManagedObject
 
 @property (nonatomic, retain) NSString * ballotPlacement;
-@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * electorateSpecifications;
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * level;
 @property (nonatomic, retain) NSString * numberElected;
 @property (nonatomic, retain) NSString * numberVotingFor;
@@ -28,7 +28,7 @@
 @property (nonatomic, retain) NSSet *candidates;
 @property (nonatomic, retain) NSSet *dataSources;
 @property (nonatomic, retain) District *district;
-@property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) UserElection *userElection;
 @end
 
 @interface Contest (CoreDataGeneratedAccessors)

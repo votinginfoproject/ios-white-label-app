@@ -188,7 +188,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
     self.screenName = @"Nearby Polling Screen";
     self.mapView.delegate = self;
-    
+    self.mapView.accessibilityElementsHidden = NO;
+
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
     self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -297,6 +298,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         currentView = self.mapView;
         nextView = self.listView;
         self.ourRightBarButtonItem.title = NSLocalizedString(@"Map", @"Nav button label");
+        self.ourRightBarButtonItem.accessibilityHint =
+        NSLocalizedString(@"Flips to map",
+                          @"Polling Locations View Map Button: Accessibility Hint - Flips to map");
         transition = UIViewAnimationTransitionFlipFromRight;
         _currentView = LIST_VIEW;
     }
@@ -304,9 +308,13 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         currentView = self.listView;
         nextView = self.mapView;
         self.ourRightBarButtonItem.title = NSLocalizedString(@"List", @"Nav button label");
+        self.ourRightBarButtonItem.accessibilityHint =
+        NSLocalizedString(@"Flips to list",
+                          @"Polling Locations View List Button: Accessibility Hint - Flips to list");
         transition = UIViewAnimationTransitionFlipFromLeft;
         _currentView = MAP_VIEW;
     }
+    self.ourRightBarButtonItem.accessibilityTraits = UIAccessibilityTraitButton;
 
     [self updateUI];
 
@@ -468,8 +476,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
         directionsListVC.sourceAddress = self.userAddress.address;
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
-        UINavigationController *navController = (UINavigationController*) segue.destinationViewController;
-        ContactsSearchViewController *csvc = (ContactsSearchViewController*) navController.viewControllers[0];
+        ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;

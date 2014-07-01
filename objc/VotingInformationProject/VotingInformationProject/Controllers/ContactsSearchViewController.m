@@ -15,6 +15,7 @@
 #import "MMPickerView.h"
 
 #import "AppSettings.h"
+#import "UserElection+API.h"
 #import "Election+API.h"
 #import "UserAddress+API.h"
 #import "VIPColor.h"
@@ -22,11 +23,11 @@
 
 @interface ContactsSearchViewController () <UITextFieldDelegate>
 
+@property (strong, nonatomic) Election *activeElection;
 @property (strong, nonatomic) UserAddress *userAddress;
 @property (strong, nonatomic) NSString *currentParty;
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
-@property (weak, nonatomic) IBOutlet UIButton *aboutAppButton;
 @property (weak, nonatomic) IBOutlet UIButton *partyPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
@@ -37,12 +38,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UIView *partyView;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (weak, nonatomic) IBOutlet UIButton *electionPickerButton;
+@property (strong, nonatomic) NSString* allPartiesString;
 
 @end
 
 @implementation ContactsSearchViewController {
-    NSString *_allPartiesString;
     BOOL _hasShownPartyPicker;
+}
+
+- (NSString*)allPartiesString
+{
+    if (!_allPartiesString) {
+        _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
+    }
+    return _allPartiesString;
 }
 
 /**
@@ -63,8 +73,8 @@
         return;
     }
     _userAddress = userAddress;
-    self.currentElection.userAddress = userAddress;
-    [self updateUI];
+    self.currentElection = [UserElection getUnique:self.activeElection.electionId
+                                   withUserAddress:userAddress];
 }
 
 /**
@@ -77,6 +87,40 @@
     [self.partyPickerButton setTitle:currentParty
                             forState:UIControlStateNormal];
     _currentParty = currentParty;
+}
+
+- (void)setElections:(NSArray *)elections
+{
+    if ([elections count] == 0) {
+        [self.electionPickerButton setTitle:NSLocalizedString(@"No Elections Available", nil)
+                                   forState:UIControlStateNormal];
+    } else if (!self.currentElection) {
+        [self.electionPickerButton setTitle:NSLocalizedString(@"Choose an Election", nil)
+                                   forState:UIControlStateNormal];
+    } else {
+        [self.electionPickerButton setTitle:self.activeElection.electionName
+                                   forState:UIControlStateNormal];
+        self.currentElection = [UserElection getUnique:self.activeElection.electionId
+                                       withUserAddress:self.userAddress];
+    }
+    _elections = elections;
+}
+
+- (void)setActiveElection:(Election *)activeElection
+{
+    if ([activeElection.electionName length] > 0) {
+        [self.electionPickerButton setTitle:activeElection.electionName
+                                   forState:UIControlStateNormal];
+    }
+    _activeElection = activeElection;
+    self.currentElection = [UserElection getUnique:activeElection.electionId
+                                   withUserAddress:self.userAddress];
+}
+
+- (void)setCurrentElection:(UserElection *)currentElection
+{
+    _currentElection = currentElection;
+    [self updateUICurrentElection];
 }
 
 - (void)viewDidLoad
@@ -94,9 +138,6 @@
     self.addressTextField.backgroundColor = [VIPColor color:primaryTextColor withAlpha:0.35];
     self.addressTextField.borderStyle = UITextBorderStyleRoundedRect;
 
-    [self.aboutAppButton setTitleColor:primaryTextColor
-                              forState:UIControlStateNormal];
-
     [self.showElectionButton setTitleColor:primaryTextColor
                                   forState:UIControlStateNormal];
     self.showElectionButton.layer.cornerRadius = 5;
@@ -111,15 +152,19 @@
     self.gettingStartedLabel.text = NSLocalizedString(@"Get started by providing the address where you are registered to vote.",
                                                       @"App home page instruction text for the address text field and contacts picker");
 
+    self.electionPickerButton.backgroundColor = primaryTextColorWithAlpha25;
+    [self.electionPickerButton setTitleColor:[VIPColor secondaryTextColor]
+                                 forState:UIControlStateNormal];
+    self.electionPickerButton.layer.cornerRadius = 5;
+
     self.partyPickerButton.backgroundColor = primaryTextColorWithAlpha25;
     [self.partyPickerButton setTitleColor:[VIPColor secondaryTextColor]
                                  forState:UIControlStateNormal];
     self.partyPickerButton.layer.cornerRadius = 5;
 
     _hasShownPartyPicker = NO;
-    _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
-    self.currentParty = _allPartiesString;
-    self.parties = @[_allPartiesString];
+    self.currentParty = self.allPartiesString;
+    self.parties = @[self.allPartiesString];
 }
 
 
@@ -130,23 +175,21 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
-    [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
-    [defaults setObject:nil forKey:USER_DEFAULTS_PARTY];
 
     UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
                                                                  ascending:NO];
     self.addressTextField.text = userAddress.address;
-    // updateUI called internally here
     self.userAddress = userAddress;
-}
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    [self shiftElectionButton];
+    NSString *activeElectionId = [defaults objectForKey:USER_DEFAULTS_ELECTION_ID];
+    self.activeElection = [Election getUnique:activeElectionId];
+    [self updateUI];
+
+    [defaults setObject:nil forKey:USER_DEFAULTS_ELECTION_ID];
+    [defaults setObject:nil forKey:USER_DEFAULTS_STORED_ADDRESS];
+    [defaults setObject:nil forKey:USER_DEFAULTS_PARTY];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -154,12 +197,27 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
-    [defaults setObject:self.currentElection.electionId forKey:USER_DEFAULTS_ELECTION_ID];
+    NSString *party = [self.currentParty isEqualToString:self.allPartiesString] ? nil : self.currentParty;
+    [defaults setObject:self.activeElection.electionId forKey:USER_DEFAULTS_ELECTION_ID];
     [defaults setObject:self.userAddress.address forKey:USER_DEFAULTS_STORED_ADDRESS];
     [defaults setObject:party forKey:USER_DEFAULTS_PARTY];
 
     [super viewWillDisappear:animated];
+}
+
+- (void)updateElections
+{
+    [self.electionPickerButton setTitle:NSLocalizedString(@"Loading elections...",
+                                                          @"Text for election picker button while elections are loading")
+                               forState:UIControlStateNormal];
+    [Election getElectionList:^(NSArray *elections, NSError *error) {
+        self.elections = elections;
+        if (error) {
+            NSLog(@"Error getting election list: %@", error);
+            NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
+            [self displayGetElectionsError:error];
+        }
+    }];
 }
 
 /**
@@ -175,68 +233,14 @@
  */
 - (void) updateUI
 {
-    self.partyView.hidden = YES;
-    self.errorView.hidden = YES;
-    self.showElectionButton.hidden = YES;
-
-    // update elections when we set a new userAddress
-    [Election
-     getElectionsAt:self.userAddress
-     resultsBlock:^(NSArray *elections, NSError *error){
-         if (!error && [elections count] > 0) {
-             [self updateUIElections:elections];
-         } else {
-             [self displayGetElectionsError:error];
-         }
-     }];
-
-
+    [self hideViews];
+    [self updateElections];
 }
 
-/**
- *  Part of the update process, see updateUI for details
- *
- *  @param elections NSArray* of elections to update
- */
-- (void)updateUIElections:(NSArray*)elections
+- (void)hideViews
 {
-    self.elections = elections;
-
-    if (self.currentElection) {
-        [self updateUICurrentElection];
-        return;
-    }
-
-    self.currentElection = nil;
-    // if elections is nil or no elections in NSArray, bail out
-    if ([elections count] == 0) {
-        self.elections = @[];
-        NSError *error = [VIPError errorWithCode:VIPError.NoValidElections];
-        [self displayGetElectionsError:error];
-        return;
-    }
-
-    // if ElectionID set in settings.plist set and is a valid election, set as current
-    NSString *electionId = [[AppSettings settings] valueForKey:@"ElectionID"];
-    NSLog(@"Requesting election: %@", electionId);
-    NSLog(@"Available elections:");
-    for (Election *e in elections) {
-        NSLog(@"%@", e.electionId);
-        if ([e.electionId isEqualToString:electionId]) {
-            self.currentElection = e;
-            break;
-        }
-    }
-
-    // If no election got set above, when specific election requested, error.
-    if (electionId && !self.currentElection) {
-        [self displayGetElectionsError:[VIPError errorWithCode:[VIPError NoValidElections]]];
-        return;
-    } else if (!_currentElection) {
-        self.currentElection = elections[0];
-    }
-
-    [self updateUICurrentElection];
+    self.partyView.hidden = YES;
+    self.errorView.hidden = YES;
 }
 
 /**
@@ -244,13 +248,14 @@
  */
 - (void)updateUICurrentElection
 {
+    [self hideViews];
     // Make request for _currentElection data
     [self.currentElection
      getVoterInfoIfExpired:^(BOOL success, NSError *error)
      {
          if (success) {
              NSArray *parties = [self.currentElection getUniqueParties];
-             self.parties = [@[_allPartiesString]
+             self.parties = [@[self.allPartiesString]
                              arrayByAddingObjectsFromArray:parties];
              BOOL showPartyPicker = [self.parties count] > 1 ? YES : NO;
              if (showPartyPicker) {
@@ -329,7 +334,7 @@
     // Set the current selections to local store so we can pull them from CoreData
     //  on future app loads
 
-    NSString *party = [self.currentParty isEqualToString:_allPartiesString] ? nil : self.currentParty;
+    NSString *party = [self.currentParty isEqualToString:self.allPartiesString] ? nil : self.currentParty;
     [self.delegate contactsSearchViewControllerDidClose:self
                                           withElections:self.elections
                                         currentElection:self.currentElection
@@ -353,10 +358,34 @@
     return NO;
 }
 
+#pragma mark - electionPicker
 
-#pragma mark - UI Error Handling
+- (IBAction)showElectionPicker:(id)sender {
+    [self.addressTextField resignFirstResponder];
+    if ([self.elections count] == 0) {
+        return;
+    }
+
+    Election *selectedElection = [Election getUnique:self.currentElection.electionId];
+    if (!selectedElection) {
+        selectedElection = self.elections[0];
+    }
+    [MMPickerView showPickerViewInView:self.view
+                           withObjects:self.elections
+                           withOptions:@{MMselectedObject: selectedElection}
+               objectToStringConverter:^NSString *(Election *election) {
+                   return election.electionName;
+               }
+                            completion:^(Election *selectedElection) {
+                                self.activeElection = selectedElection;
+                            }];
+
+}
+
+#pragma mark - PartyPicker
 
 - (IBAction)showPartyView:(id)sender {
+    [self.addressTextField resignFirstResponder];
     [MMPickerView showPickerViewInView:self.view
                            withStrings:self.parties
                            withOptions:@{MMselectedObject: self.currentParty}
@@ -377,20 +406,6 @@
     }
 }
 
-- (void)shiftElectionButton
-{
-    BOOL shouldShiftButton = !([self.parties count] > 1);
-    CGRect partyViewFrame = self.partyView.frame;
-    CGRect showElectionButtonFrame = self.showElectionButton.frame;
-    CGFloat buttonPadding = 10;
-    if (shouldShiftButton) {
-        showElectionButtonFrame.origin.y = partyViewFrame.origin.y;
-    } else {
-        showElectionButtonFrame.origin.y = partyViewFrame.origin.y + buttonPadding + partyViewFrame.size.height;
-    }
-    self.showElectionButton.frame = showElectionButtonFrame;
-}
-
 /**
  *  Enable button and display relevant text
  */
@@ -401,6 +416,8 @@
     [self.showElectionButton setTitle:NSLocalizedString(@"GO!", @"Home view GO! button text")
                              forState:UIControlStateNormal];
 }
+
+#pragma mark - UI Error Handling
 
 /**
  *  Error handle getting elections by displaying error as the text of the button

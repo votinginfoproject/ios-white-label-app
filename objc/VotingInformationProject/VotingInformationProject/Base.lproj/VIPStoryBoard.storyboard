@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -16,21 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXU-KT-uFF">
-                                <rect key="frame" x="20" y="528" width="279" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title=" About This App" image="Homepage_about.png">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="fQj-HQ-I0g" kind="push" id="KDW-bH-9Vc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
-                                <rect key="frame" x="267" y="196" width="23" height="45"/>
+                                <rect key="frame" x="267" y="157" width="23" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Contacts Search"/>
                                 <state key="normal" image="Homepage_contact.png">
                                     <attributedString key="attributedTitle"/>
                                 </state>
@@ -45,14 +34,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get started by providing the address where you are registered to vote." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="3QK-lN-hQp">
-                                <rect key="frame" x="30" y="124" width="260" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Address..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-ab-T5N">
-                                <rect key="frame" x="30" y="195" width="224" height="45"/>
+                                <rect key="frame" x="30" y="156" width="224" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.35000000000000003" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -61,9 +44,12 @@
                                     <outlet property="delegate" destination="NFr-cT-tr7" id="zug-Zt-poj"/>
                                 </connections>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
-                                <rect key="frame" x="29" y="348" width="260" height="40"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
+                                <rect key="frame" x="30" y="518" width="260" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vLA-Uj-WII"/>
+                                </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <state key="normal" title="GO!"/>
                                 <state key="disabled" title="Show Upcoming Election">
@@ -80,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="La0-GZ-3eG">
-                                <rect key="frame" x="30" y="250" width="260" height="90"/>
+                                <rect key="frame" x="30" y="299" width="260" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="There are partisan contests in this election. Choose a party to view." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="DRW-zW-eMI">
@@ -92,6 +78,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hP-xP-Xzu">
                                         <rect key="frame" x="0.0" y="61" width="260" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Opens party picker."/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="All Selected Parties">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,7 +91,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoW-nK-Iqg">
-                                <rect key="frame" x="30" y="250" width="260" height="90"/>
+                                <rect key="frame" x="30" y="299" width="260" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown Error" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-aA-QQc">
@@ -116,22 +103,47 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-9j-12x">
+                                <rect key="frame" x="30" y="250" width="260" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Opens election picker."/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showElectionPicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="Izd-4W-vQQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Your Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNR-wi-mkO">
+                                <rect key="frame" x="30" y="128" width="260" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick an Election:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-bR-mta">
+                                <rect key="frame" x="30" y="221" width="260" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="CXU-KT-uFF" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="20" id="0Jk-w1-C0A"/>
-                            <constraint firstAttribute="trailing" secondItem="CXU-KT-uFF" secondAttribute="trailing" constant="21" id="kkf-7u-u9S"/>
-                            <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="CXU-KT-uFF" secondAttribute="bottom" constant="20" id="v0F-RP-iBd"/>
+                            <constraint firstItem="V8e-zO-oTj" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="Dca-E8-uNV"/>
+                            <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="V8e-zO-oTj" secondAttribute="bottom" constant="20" id="KW3-9p-B2w"/>
+                            <constraint firstAttribute="trailing" secondItem="V8e-zO-oTj" secondAttribute="trailing" constant="30" id="enK-QZ-XIL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="aboutAppButton" destination="CXU-KT-uFF" id="OhQ-EO-NTq"/>
                         <outlet property="addressTextField" destination="dfh-ab-T5N" id="PxV-ir-iAT"/>
                         <outlet property="brandNameLabel" destination="u9S-9H-o10" id="DtV-ZK-bSL"/>
+                        <outlet property="electionPickerButton" destination="DUM-9j-12x" id="hOJ-U4-tf5"/>
                         <outlet property="errorLabel" destination="eMN-aA-QQc" id="7pX-MS-lKt"/>
                         <outlet property="errorView" destination="qoW-nK-Iqg" id="KQs-Jt-kKQ"/>
-                        <outlet property="gettingStartedLabel" destination="3QK-lN-hQp" id="osd-7K-8N5"/>
                         <outlet property="partyPickerButton" destination="2hP-xP-Xzu" id="hQL-Ob-SvU"/>
                         <outlet property="partyView" destination="La0-GZ-3eG" id="Ll0-JO-8I6"/>
                         <outlet property="searchDisplayController" destination="3MZ-vv-Y3L" id="SUR-pT-NRP"/>
@@ -150,7 +162,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1076" y="-1388"/>
+            <point key="canvasLocation" x="550" y="-736"/>
         </scene>
         <!--Tab Bar Controller - Ballot-->
         <scene sceneID="A3e-Tl-AaM">
@@ -257,7 +269,7 @@
                     <navigationItem key="navigationItem" title="Details" id="GHt-5F-JdD">
                         <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="Rh3-EZ-8TE">
                             <connections>
-                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="0FR-Eq-Ss4"/>
+                                <segue destination="NFr-cT-tr7" kind="modal" identifier="HomeSegue" id="7Fy-cK-Sdj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -340,7 +352,7 @@
                     <navigationItem key="navigationItem" title="Ballot" id="QAa-gR-ZRz">
                         <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="gWq-jM-INw">
                             <connections>
-                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="7rT-zS-i3R"/>
+                                <segue destination="NFr-cT-tr7" kind="modal" identifier="HomeSegue" id="eBc-MR-pin"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -783,7 +795,7 @@
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="fQj-HQ-I0g" customClass="AboutViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OF2-Ln-1CT">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -872,7 +884,13 @@
                             <outlet property="delegate" destination="fQj-HQ-I0g" id="Cxd-kq-GWR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="About This App" id="KhW-d4-g1X"/>
+                    <navigationItem key="navigationItem" title="About This App" id="KhW-d4-g1X">
+                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="FD2-qC-fNe">
+                            <connections>
+                                <segue destination="NFr-cT-tr7" kind="modal" identifier="HomeSegue" id="Pyh-G2-h10"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="aboutLabel" destination="wKK-2H-Xzv" id="Dez-TM-pPE"/>
@@ -882,7 +900,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmx-cU-LlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="-1388"/>
+            <point key="canvasLocation" x="1946" y="1727"/>
         </scene>
         <!--Nearby Polling View Controller - Polling Sites-->
         <scene sceneID="vau-lL-Dmt">
@@ -995,7 +1013,7 @@
                         <barButtonItem key="backBarButtonItem" title="Home" id="3WV-9A-YoC"/>
                         <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="AiG-na-nBN">
                             <connections>
-                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="QR0-2Q-jFB"/>
+                                <segue destination="NFr-cT-tr7" kind="modal" identifier="HomeSegue" id="BSD-rg-h3n"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1075,7 +1093,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Directions" id="uia-Wy-7kT">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="48o-Jn-qM7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="48o-Jn-qM7">
                             <connections>
                                 <action selector="cancel:" destination="vVt-pV-L1b" id="0Iq-qo-p0f"/>
                             </connections>
@@ -1087,6 +1105,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="x2N-U7-mjj" id="Bb0-dx-yva"/>
                         <outlet property="directionsTypeControl" destination="w6R-Cc-ZLj" id="pSQ-3C-q57"/>
                         <outlet property="tableView" destination="Sjr-Ml-bIM" id="wHi-1c-h5b"/>
                     </connections>
@@ -1094,62 +1113,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YS-68-NUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2994" y="900"/>
-        </scene>
-        <!--Find Elections View Controller - More Elections-->
-        <scene sceneID="U8f-na-ZUT">
-            <objects>
-                <tableViewController id="ilS-n4-gjw" customClass="FindElectionsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xyY-pn-TlG">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="ElectionCell" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ElectionCell" id="NSc-jP-A9V" customClass="FindElectionsCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NSc-jP-A9V" id="zhR-F1-2ND">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e7-kZ-rvO">
-                                            <rect key="frame" x="20" y="2" width="247" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXf-gH-Jj8">
-                                            <rect key="frame" x="20" y="20" width="247" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="dateStringLabel" destination="wXf-gH-Jj8" id="XHm-nl-JAs"/>
-                                    <outlet property="nameLabel" destination="4e7-kZ-rvO" id="R9i-Qh-ZS8"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ilS-n4-gjw" id="Byr-NL-MmE"/>
-                            <outlet property="delegate" destination="ilS-n4-gjw" id="gzx-Pk-UoV"/>
-                        </connections>
-                    </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="More Elections" id="m4i-zl-0oB">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Zqx-En-nBP"/>
-                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="KTl-h3-iXX">
-                            <connections>
-                                <segue destination="4mh-1Q-h6R" kind="modal" identifier="HomeSegue" id="QgY-EI-ECu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wok-0d-qpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1946" y="1727"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qJG-Y3-Fnx">
@@ -1169,25 +1132,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z13-xd-9pl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2472" y="900"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="eAq-Ny-bgD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4mh-1Q-h6R" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="sxJ-ar-sl3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oE8-gA-AmN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="NFr-cT-tr7" kind="relationship" relationship="rootViewController" id="1AC-lx-qUx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fGv-jx-vLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="571" y="-1388"/>
         </scene>
         <!--Navigation Controller - Ballot-->
         <scene sceneID="E6J-nz-gNK">
@@ -1209,11 +1153,11 @@
             </objects>
             <point key="canvasLocation" x="1420" y="-652"/>
         </scene>
-        <!--Navigation Controller - More Elections-->
+        <!--Navigation Controller - About-->
         <scene sceneID="jHu-iV-d0H">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kuE-gb-sKk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More Elections" image="TabBar_more.png" id="uAv-dm-Gkx"/>
+                    <tabBarItem key="tabBarItem" title="About" image="TabBar_about.png" id="uAv-dm-Gkx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qca-Dd-dbd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1221,7 +1165,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ilS-n4-gjw" kind="relationship" relationship="rootViewController" id="wrl-4G-kUz"/>
+                        <segue destination="fQj-HQ-I0g" kind="relationship" relationship="rootViewController" id="ySH-Zb-itM"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejX-LD-FEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1269,12 +1213,11 @@
     </scenes>
     <resources>
         <image name="Candidate_default-image.png" width="72" height="72"/>
-        <image name="Homepage_about.png" width="20" height="20"/>
         <image name="Homepage_contact.png" width="23" height="20"/>
         <image name="NavigationBar_home.png" width="22" height="22"/>
+        <image name="TabBar_about.png" width="23" height="23"/>
         <image name="TabBar_ballot.png" width="26" height="20"/>
         <image name="TabBar_details.png" width="26" height="20"/>
-        <image name="TabBar_more.png" width="28" height="6"/>
         <image name="TabBar_polling.png" width="18" height="26"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1284,6 +1227,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="xXd-r3-0ih"/>
-        <segue reference="QR0-2Q-jFB"/>
+        <segue reference="eBc-MR-pin"/>
     </inferredMetricsTieBreakers>
 </document>

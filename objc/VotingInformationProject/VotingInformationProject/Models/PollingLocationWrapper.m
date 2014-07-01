@@ -139,7 +139,22 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
             self.tableCell.image.alpha = 0.5f;
         }
         [self _updateDistance];
+        [self updateTableCellAccessibility];
     }
+}
+
+- (void)updateTableCellAccessibility
+{
+    // set accessibility of tableCell
+    self.tableCell.isAccessibilityElement = YES;
+    NSString *accessibilityLabel = [self.location.isEarlyVoteSite boolValue] ?
+    NSLocalizedString(@"Early Vote Site", @"Polling Location Cell Accessibility Label - Early Vote Site") :
+    NSLocalizedString(@"Polling Site", @"Polling Location Cell Accessibility Label - Polling Site");
+    self.tableCell.accessibilityLabel = accessibilityLabel;
+    
+    NSString *accessibilityValue = [NSString stringWithFormat:@"%@. %@. %@",
+                                    self.name, self.address, self.tableCell.distance.text];
+    self.tableCell.accessibilityValue = accessibilityValue;
 }
 
  - (GMSMarker*)marker
@@ -198,6 +213,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
         _distance = [PollingLocationWrapper getDistanceStringFromA:self.mapOrigin
                                                                toB:self.mapPosition];
         self.tableCell.distance.text = _distance;
+        [self updateTableCellAccessibility];
     }
 }
 

@@ -7,7 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "VIPTableViewController.h"
+#import "ContactsSearchViewControllerDelegate.h"
 
-@interface AboutViewController : VIPTableViewController
+@interface AboutViewController : VIPTableViewController <ContactsSearchViewControllerDelegate>
 
 @end

@@ -27,6 +27,7 @@
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
 @property (strong, nonatomic) NSArray *directions;
 @property (strong, nonatomic) NSDictionary* json;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *actionButton;
 
 @property (assign, nonatomic) kGDDirectionsType transitMode;
 @end
@@ -59,6 +60,19 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
     self.navigationController.navigationBar.barTintColor = navBarBGColor;
     self.tableView.delegate = self;
     self.json = nil;
+
+    // Set Accessibility on Action BarButtonItem
+    self.actionButton.isAccessibilityElement = YES;
+    self.actionButton.accessibilityLabel =
+    NSLocalizedString(@"Action",
+                      @"Directions View Action Button: Accessibility Label");
+    self.actionButton.accessibilityHint =
+    NSLocalizedString(@"Open maps app selector",
+                      @"Directions View Action Button: Accessibility Hint - Open maps app selector");
+    self.directionsTypeControl.isAccessibilityElement = YES;
+    self.directionsTypeControl.accessibilityHint =
+    NSLocalizedString(@"Selects type of directions",
+                      @"Directions View Directions Type Segmented Control: Accessibility Hint - Selects type of directions");
 
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
                             initWithEmptyMessage:NSLocalizedString(@"No Directions Available", @"String displayed on Directions list error")];
