@@ -127,6 +127,21 @@
     return election;
 }
 
++ (NSDictionary*)getElectionRequestParamsForUrl:(NSString*)requestUrl
+{
+    NSDictionary *requestParams = nil;
+    NSString *googleCivicAPIUrl = [[AppSettings settings]
+                                   objectForKey:@"GoogleCivicInfoElectionQueryURL"];
+    if ([requestUrl isEqualToString:googleCivicAPIUrl]) {
+        NSString *civicApiKeyPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey"
+                                                                    ofType:@"plist"];
+        NSDictionary *civicApiKeyDict = [[NSDictionary alloc] initWithContentsOfFile:civicApiKeyPath];
+        requestParams = @{@"key": [civicApiKeyDict valueForKey:@"GoogleCivicInfoAPIKey"]};
+    }
+
+    return requestParams;
+}
+
 + (void)getElectionList:(void (^)(NSArray *, NSError *))resultsBlock
 {
     // Setup request manager
@@ -137,10 +152,9 @@
 
     NSString *requestUrl = [[AppSettings settings] objectForKey:@"ElectionListURL"];
     NSLog(@"URL: %@", requestUrl);
-    NSDictionary *requestParams = nil;
 
     [manager GET:requestUrl
-      parameters:requestParams
+      parameters:[Election getElectionRequestParamsForUrl:requestUrl]
          success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
              
              // On Success

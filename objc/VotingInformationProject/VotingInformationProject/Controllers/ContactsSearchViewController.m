@@ -91,7 +91,7 @@
 
 - (void)setElections:(NSArray *)elections
 {
-    if (!elections) {
+    if ([elections count] == 0) {
         [self.electionPickerButton setTitle:NSLocalizedString(@"No Elections Available", nil)
                                    forState:UIControlStateNormal];
     } else if (!self.currentElection) {
@@ -362,6 +362,10 @@
 
 - (IBAction)showElectionPicker:(id)sender {
     [self.addressTextField resignFirstResponder];
+    if ([self.elections count] == 0) {
+        return;
+    }
+
     Election *selectedElection = [Election getUnique:self.currentElection.electionId];
     if (!selectedElection) {
         selectedElection = self.elections[0];
@@ -377,7 +381,6 @@
                             }];
 
 }
-
 
 #pragma mark - PartyPicker
 

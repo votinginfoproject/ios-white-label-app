@@ -78,7 +78,7 @@
         <attribute name="isEarlyVoteSite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" maxValueString="1024" syncable="YES"/>
-        <attribute name="pollingHours" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
+        <attribute name="pollingHours" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voterServices" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="VIPAddress" inverseName="pollingLocation" inverseEntity="VIPAddress" syncable="YES"/>
@@ -132,7 +132,7 @@
         <element name="Election" positionX="-414" positionY="45" width="128" height="90"/>
         <element name="ElectionAdministrationBody" positionX="0" positionY="0" width="128" height="240"/>
         <element name="ElectionOfficial" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="PollingLocation" positionX="0" positionY="0" width="128" height="208"/>
+        <element name="PollingLocation" positionX="0" positionY="0" width="128" height="210"/>
         <element name="SocialChannel" positionX="0" positionY="0" width="128" height="90"/>
         <element name="State" positionX="0" positionY="0" width="128" height="118"/>
         <element name="UserAddress" positionX="0" positionY="0" width="128" height="73"/>
