@@ -9,9 +9,9 @@
 	<key>GoogleDirectionsAPIKey</key>
     <string>Your Directions API Key Here</string>
 	<key>GoogleCivicInfoElectionQueryURL</key>
-	<string>https://www.googleapis.com/civicinfo/us_v1/elections</string>
+	<string>https://www.googleapis.com/civicinfo/v1/elections</string>
 	<key>ElectionListURL</key>
-    <string>https://raw2.github.com/votinginfoproject/ios7-white-label-app/develop/objc/VotingInformationProject/VotingInformationProject/elections.json</string>
+	<string>https://www.googleapis.com/civicinfo/v1/elections</string>
     <key>BrandNameText</key>
     <string>Your Brand Name Here</string>
 	<key>VotingInfoCacheDays</key>
