@@ -245,6 +245,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
+            _userAddressMarker.map = nil;
             _userAddressMarker = [GMSMarker markerWithPosition:position];
             _userAddressMarker.title = NSLocalizedString(@"Your Address",
                                                          @"Title for map marker pop-up on user's address");
