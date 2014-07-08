@@ -241,7 +241,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
     // Initialize Map View
     self.mapView.camera = camera;
-    self.mapView.myLocationEnabled = YES;
+    self.mapView.myLocationEnabled = NO;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
