@@ -93,6 +93,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
+        // Skip this early vote site if it's not currently open
+        if ([location.isEarlyVoteSite boolValue] && ![location isAvailable]) {
+            continue;
+        }
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
                 if (error) {
                     NSLog(@"Error encountered for marker %@: %@", sender.name, error);

@@ -27,4 +27,16 @@ typedef enum {
 + (PollingLocation*) setFromDictionary:(NSDictionary*)attributes
                      asEarlyVotingSite:(BOOL)isEarlyVotingSite;
 
+/**
+ *  Returns status of PollingLocation
+ *  Returns YES if current datetime is before the PollingLocation endDate,
+ *  otherwise NO.
+ *  If start_date or end_date is not a valid date of the form YYYY-MM-DD
+ *  this method returns YES as per the voting information spec 3.0:
+ *  http://votinginfoproject.github.io/vip-specification/#earlyvotesiteitems
+ *
+ *  @return BOOL See Above
+ */
+- (BOOL)isAvailable;
+
 @end

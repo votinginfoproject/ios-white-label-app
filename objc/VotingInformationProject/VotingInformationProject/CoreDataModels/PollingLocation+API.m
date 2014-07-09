@@ -7,6 +7,7 @@
 //
 
 #import "PollingLocation+API.h"
+#import "Election+API.h"
 
 @implementation PollingLocation (API)
 
@@ -35,5 +36,25 @@
 
     return pollingLocation;
 }
+
+- (BOOL)isAvailable
+{
+    NSDateFormatter *yyyymmddFormatter = [Election getElectionDateFormatter];
+    NSDate *startDate = [yyyymmddFormatter dateFromString:self.startDate];
+    NSDate *endDate = [yyyymmddFormatter dateFromString:self.endDate];
+    // Assume valid if either of these are missing as per the VIP Spec 3.0
+    if (!startDate || !endDate) {
+        return YES;
+    }
+
+    NSDate *today = [Election today];
+    // Check if today is before PollingLocation endDate
+    if ([today compare:endDate] == NSOrderedAscending) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 
 @end
