@@ -6,6 +6,8 @@
 //  
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "NearbyPollingViewController.h"
 
 #import "UIImage+Scale.h"
@@ -13,6 +15,7 @@
 #import "AppSettings.h"
 #import "ContactsSearchViewController.h"
 #import "GDDirectionsService.h"
+#import "PollingInfoWindowView.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
 #import "VIPColor.h"
@@ -102,15 +105,14 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                     NSLog(@"Error encountered for marker %@: %@", sender.name, error);
                 } else {
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
-                                                 withTitle:sender.name
-                                                andSnippet:sender.address];
+                                                 withTitle:sender.name];
                     if ([location.isEarlyVoteSite boolValue]) {
                         marker.icon = earlyVoting;
                     } else {
                         marker.icon = polling;
                     }
                     marker.map = self.mapView;
-                    marker.userData = sender.location.address;
+                    marker.userData = sender;
                     sender.marker = marker;
                 }
         }];
@@ -162,14 +164,13 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
                   withTitle:(NSString*)title
-                 andSnippet:(NSString*)snippet
 {
     // Creates a marker at the placemark location
     GMSMarker *marker = [GMSMarker markerWithPosition:position];
-    marker.title = title;
-    NSString *snippetDirections = NSLocalizedString(@"Get Directions", @"String noting that the map infowindow can display directions on tap");
-    marker.snippet = [[snippet stringByAppendingString:@"\n\n"] stringByAppendingString:snippetDirections];
-
+    marker.title = [title capitalizedString];
+    // Move custom InfoWindow up a bit
+    // Default is (0.5, 0.0)
+    marker.infoWindowAnchor = CGPointMake(0.5, -0.1);
     return marker;
 }
 
@@ -349,36 +350,71 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 #pragma mark - GMSMapView delegate
 
-/*
 - (UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
 {
-    // TODO: Implement this method to return a custom view with styled background and
-    //          a more obvious "Get Directions" link
-    static NSUInteger infoWindowWidth = 300;
-    static NSUInteger infoWindowHeight = 80;
+    if (!marker.userData) {
+        return nil;
+    }
+
+    PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)marker.userData;
+    NSUInteger infoWindowWidth = 300;
+    NSUInteger infoWindowMaxHeight = 200;
+    NSUInteger xPadding = 10;
+    NSUInteger yPadding = 5;
+    NSUInteger labelWidth = infoWindowWidth - 2 * xPadding;
+    NSUInteger titleLabelHeight = 20;
+    NSUInteger directionsButtonHeight = 30;
+    NSUInteger availableHeightForSnippet = infoWindowMaxHeight - (2 * yPadding + titleLabelHeight + directionsButtonHeight);
+    CGSize maxSize = CGSizeMake(labelWidth, availableHeightForSnippet);
+    UIFont *titleFont = [UIFont systemFontOfSize:12];
+    UIFont *pollingHoursFont = [UIFont systemFontOfSize:10];
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPadding, yPadding, labelWidth, titleLabelHeight)];
+    titleLabel.text = [marker.title capitalizedString];
+    titleLabel.font = titleFont;
+
+    NSString *snippet = plWrapper.location.pollingHours;
+    if ([snippet length] == 0) {
+        snippet = NSLocalizedString(@"No Polling Hours Available",
+                                    @"Text on Map InfoWindow if the Polling Location does not indicate hours of availability");
+    }
+    CGRect snippetRect = [snippet boundingRectWithSize:maxSize
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{NSFontAttributeName:pollingHoursFont} context:nil];
+    snippetRect.size.height = ceil(snippetRect.size.height);
+    snippetRect.size.width = ceil(snippetRect.size.width);
+
+    snippetRect.origin.x = xPadding;
+    snippetRect.origin.y = yPadding + titleLabelHeight;
+
+    UILabel *snippetLabel = [[UILabel alloc] initWithFrame:snippetRect];
+    snippetLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    snippetLabel.numberOfLines = 0;
+    snippetLabel.font = [UIFont systemFontOfSize:10];
+    snippetLabel.text = snippet;
+
+    NSUInteger directionsButtonY = yPadding + titleLabelHeight + snippetRect.size.height;
+    CGRect buttonFrame = CGRectMake(xPadding, directionsButtonY, labelWidth, directionsButtonHeight);
+    UIButton *directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    directionsButton.frame = buttonFrame;
+    directionsButton.titleLabel.font = titleFont;
+    [directionsButton setTitle:NSLocalizedString(@"Get Directions", nil)
+                      forState:UIControlStateNormal];
+
+    NSUInteger infoWindowHeight = yPadding + titleLabelHeight + snippetRect.size.height + directionsButtonHeight;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, infoWindowWidth, infoWindowHeight)];
     view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight;
     view.opaque = YES;
     [view setBackgroundColor:[UIColor whiteColor]];
-
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, -30, infoWindowWidth, infoWindowHeight)];
-    titleLabel.text = marker.title;
-
-    UILabel *snippetLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, -10, infoWindowWidth, infoWindowHeight)];
-    snippetLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    snippetLabel.numberOfLines = 0;
-    snippetLabel.font = [UIFont systemFontOfSize:12];
-    UIColor *markerTextColor = [VIPColor navBarBackgroundColor];
-    NSDictionary *markerTextAttributes = @{NSForegroundColorAttributeName: markerTextColor};
-    NSAttributedString *snippet = [[NSAttributedString alloc] initWithString:marker.snippet
-                                                                  attributes:markerTextAttributes];
-    snippetLabel.attributedText = snippet;
+    view.layer.cornerRadius = 5.f;
+    view.layer.borderColor = [VIPColor navBarBackgroundColor].CGColor;
+    view.layer.borderWidth = 1.f;
 
     [view addSubview:titleLabel];
     [view addSubview:snippetLabel];
+    [view addSubview:directionsButton];
     return view;
 }
-*/
 
 /**
  *  Display an ActionSheet to allow the user to get directions when the marker

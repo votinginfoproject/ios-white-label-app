@@ -115,6 +115,7 @@
 		4970E57E18D37E6200104184 /* Default_launch-screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4970E54418D37E6200104184 /* Default_launch-screen@2x.png */; };
 		498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 498225E2189AEADC00FB8FC4 /* Localizable.strings */; };
 		4982F905192157F60007B75B /* VIPCandidateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4982F903192157F60007B75B /* VIPCandidateCell.m */; };
+		498358E3196EED1C00A45012 /* PollingInfoWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498358E2196EED1C00A45012 /* PollingInfoWindowView.m */; };
 		49875A68195A1AA700EE31D7 /* TabBar_about-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A64195A1AA700EE31D7 /* TabBar_about-active.png */; };
 		49875A69195A1AA700EE31D7 /* TabBar_about-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */; };
 		49875A6A195A1AA700EE31D7 /* TabBar_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A66195A1AA700EE31D7 /* TabBar_about.png */; };
@@ -329,6 +330,8 @@
 		498225E1189AEADC00FB8FC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		4982F902192157F60007B75B /* VIPCandidateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPCandidateCell.h; path = Views/VIPCandidateCell.h; sourceTree = "<group>"; };
 		4982F903192157F60007B75B /* VIPCandidateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPCandidateCell.m; path = Views/VIPCandidateCell.m; sourceTree = "<group>"; };
+		498358E1196EED1C00A45012 /* PollingInfoWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PollingInfoWindowView.h; path = Views/PollingInfoWindowView.h; sourceTree = "<group>"; };
+		498358E2196EED1C00A45012 /* PollingInfoWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PollingInfoWindowView.m; path = Views/PollingInfoWindowView.m; sourceTree = "<group>"; };
 		49875A64195A1AA700EE31D7 /* TabBar_about-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about-active.png"; sourceTree = "<group>"; };
 		49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about-active@2x.png"; sourceTree = "<group>"; };
 		49875A66195A1AA700EE31D7 /* TabBar_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBar_about.png; sourceTree = "<group>"; };
@@ -657,6 +660,8 @@
 		4982F901192157680007B75B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				498358E1196EED1C00A45012 /* PollingInfoWindowView.h */,
+				498358E2196EED1C00A45012 /* PollingInfoWindowView.m */,
 				496E3DFA1958BDA3003C9C8A /* MMPickerView */,
 				4982F902192157F60007B75B /* VIPCandidateCell.h */,
 				4982F903192157F60007B75B /* VIPCandidateCell.m */,
@@ -1149,6 +1154,7 @@
 				49A57B0218A0254C00C5E889 /* UserAddress+API.m in Sources */,
 				53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */,
 				496E3DF91958B10B003C9C8A /* MMPickerView.m in Sources */,
+				498358E3196EED1C00A45012 /* PollingInfoWindowView.m in Sources */,
 				5382558818CE61FA0026C82D /* PollingLocationCell.m in Sources */,
 				49E9814A1892F7F700E26C5D /* NearbyPollingViewController.m in Sources */,
 				49DB5B0A1958D40500F41604 /* State.m in Sources */,
