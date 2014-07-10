@@ -14,6 +14,7 @@
  *  Create a new PollingInfoWindow sized to fit data in PollingLocationWrapper
  *  DESIGNATED INITIALIZER
  *
+ *  @param frame Should be initialized with CGRect(0, 0, maxwidthofpopup, maxheightofpopup)
  *  @param plWrapper
  *
  *  @return new PollingInfoWindowView

@@ -357,63 +357,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     }
 
     PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)marker.userData;
-    NSUInteger infoWindowWidth = 300;
-    NSUInteger infoWindowMaxHeight = 200;
-    NSUInteger xPadding = 10;
-    NSUInteger yPadding = 5;
-    NSUInteger labelWidth = infoWindowWidth - 2 * xPadding;
-    NSUInteger titleLabelHeight = 20;
-    NSUInteger directionsButtonHeight = 30;
-    NSUInteger availableHeightForSnippet = infoWindowMaxHeight - (2 * yPadding + titleLabelHeight + directionsButtonHeight);
-    CGSize maxSize = CGSizeMake(labelWidth, availableHeightForSnippet);
-    UIFont *titleFont = [UIFont systemFontOfSize:12];
-    UIFont *pollingHoursFont = [UIFont systemFontOfSize:10];
-
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPadding, yPadding, labelWidth, titleLabelHeight)];
-    titleLabel.text = [marker.title capitalizedString];
-    titleLabel.font = titleFont;
-
-    NSString *snippet = plWrapper.location.pollingHours;
-    if ([snippet length] == 0) {
-        snippet = NSLocalizedString(@"No Polling Hours Available",
-                                    @"Text on Map InfoWindow if the Polling Location does not indicate hours of availability");
-    }
-    CGRect snippetRect = [snippet boundingRectWithSize:maxSize
-                                               options:NSStringDrawingUsesLineFragmentOrigin
-                                            attributes:@{NSFontAttributeName:pollingHoursFont} context:nil];
-    snippetRect.size.height = ceil(snippetRect.size.height);
-    snippetRect.size.width = ceil(snippetRect.size.width);
-
-    snippetRect.origin.x = xPadding;
-    snippetRect.origin.y = yPadding + titleLabelHeight;
-
-    UILabel *snippetLabel = [[UILabel alloc] initWithFrame:snippetRect];
-    snippetLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    snippetLabel.numberOfLines = 0;
-    snippetLabel.font = [UIFont systemFontOfSize:10];
-    snippetLabel.text = snippet;
-
-    NSUInteger directionsButtonY = yPadding + titleLabelHeight + snippetRect.size.height;
-    CGRect buttonFrame = CGRectMake(xPadding, directionsButtonY, labelWidth, directionsButtonHeight);
-    UIButton *directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    directionsButton.frame = buttonFrame;
-    directionsButton.titleLabel.font = titleFont;
-    [directionsButton setTitle:NSLocalizedString(@"Get Directions", nil)
-                      forState:UIControlStateNormal];
-
-    NSUInteger infoWindowHeight = yPadding + titleLabelHeight + snippetRect.size.height + directionsButtonHeight;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, infoWindowWidth, infoWindowHeight)];
-    view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight;
-    view.opaque = YES;
-    [view setBackgroundColor:[UIColor whiteColor]];
-    view.layer.cornerRadius = 5.f;
-    view.layer.borderColor = [VIPColor navBarBackgroundColor].CGColor;
-    view.layer.borderWidth = 1.f;
-
-    [view addSubview:titleLabel];
-    [view addSubview:snippetLabel];
-    [view addSubview:directionsButton];
-    return view;
+    CGRect frame = CGRectMake(0, 0, 300, 200);
+    return [[PollingInfoWindowView alloc] initWithFrame:frame
+                              andPollingLocationWrapper:plWrapper];
 }
 
 /**
