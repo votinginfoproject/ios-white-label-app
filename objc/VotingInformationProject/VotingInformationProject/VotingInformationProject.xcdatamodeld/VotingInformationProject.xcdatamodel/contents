@@ -91,10 +91,10 @@
         <relationship name="candidate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Candidate" inverseName="socialChannels" inverseEntity="Candidate" syncable="YES"/>
     </entity>
     <entity name="State" representedClassName="State" syncable="YES">
-        <attribute name="localJurisdiction" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
         <attribute name="name" attributeType="String" maxValueString="64" syncable="YES"/>
         <relationship name="dataSources" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DataSource" inverseName="state" inverseEntity="DataSource" syncable="YES"/>
         <relationship name="electionAdministrationBody" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ElectionAdministrationBody" inverseName="state" inverseEntity="ElectionAdministrationBody" syncable="YES"/>
+        <relationship name="localJurisdiction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="localJurisdiction" inverseEntity="State" syncable="YES"/>
         <relationship name="userElection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserElection" inverseName="states" inverseEntity="UserElection" syncable="YES"/>
     </entity>
     <entity name="UserAddress" representedClassName="UserAddress" parentEntity="VIPManagedAddress" syncable="YES">

@@ -52,14 +52,18 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         propertyList = @{
-                              @"name": NSLocalizedString(@"Name", @"Label for election administration body's name"),
-                              @"hoursOfOperation": NSLocalizedString(@"Hours", @"Label for election administration body's hours of operation"),
-                              @"state.name": NSLocalizedString(@"State", @"Label for election administration body's state"),
-                              @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services"),
-                              @"electionInfoUrl": NSLocalizedString(@"Election Info", @"Label for election adnimistration body's information link"),
-                              @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info", @"Label for election administration body's absentee voting information link"),
-                              @"electionRegistrationUrl": NSLocalizedString(@"Election Registration", @"Label for election administration body's registration information link"),
-                              @"electionRulesUrl": NSLocalizedString(@"Election Rules", @"Label for election administration body's election rules link")
+                         // Leave state.name object first. It is dynamically removed from the properties object
+                         // at runtime for local jurisdictions
+                         // Cannot remove via string matching as the values returned by getProperties will be localized
+                         @"state.name": NSLocalizedString(@"State", @"Label for election administration body's state"),
+                         
+                         @"name": NSLocalizedString(@"Name", @"Label for election administration body's name"),
+                         @"hoursOfOperation": NSLocalizedString(@"Hours", @"Label for election administration body's hours of operation"),
+                         @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services"),
+                         @"electionInfoUrl": NSLocalizedString(@"Election Info", @"Label for election adnimistration body's information link"),
+                         @"absenteeVotingInfoUrl": NSLocalizedString(@"Absentee Info", @"Label for election administration body's absentee voting information link"),
+                         @"electionRegistrationUrl": NSLocalizedString(@"Election Registration", @"Label for election administration body's registration information link"),
+                         @"electionRulesUrl": NSLocalizedString(@"Election Rules", @"Label for election administration body's election rules link")
                          };
     });
     return propertyList;
