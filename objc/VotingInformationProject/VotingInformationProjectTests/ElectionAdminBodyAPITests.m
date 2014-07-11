@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "Kiwi.h"
 #import "ElectionAdministrationBody+API.h"
+#import "State+API.h"
 
 SPEC_BEGIN(ElectionAdminBodyAPITests)
 
@@ -42,6 +43,25 @@ describe(@"ElectionAdminBodyAPITests", ^{
         [[theValue([testEab.electionOfficials count]) should] equal:theValue(1)];
         [[theValue([testEab.addresses count]) should] equal:theValue(2)];
         [[testEab.name should] equal:@"EAB Test Name"];
+    });
+
+    it(@"should ensure that State Name is the first property returned in getProperties", ^{
+        // Test required so that ElectionDetails view properly filters the state name for
+        //  the local jurisdiction section
+        NSDictionary *attributes = @{
+                                     @"electionOfficials": @[@{@"name": @"TestOfficial"}],
+                                     @"correspondenceAddress": @{@"locationName": @"123 Test Drive"},
+                                     @"physicalAddress": @{@"locationName": @"123 Test Suite"},
+                                     @"name": @"EAB Test Name"
+                                     };
+        NSDictionary *stateAttributes = @{@"name": @"Test State"};
+        ElectionAdministrationBody *testEab = [ElectionAdministrationBody setFromDictionary:attributes];
+        State *state = [State setFromDictionary:stateAttributes];
+        testEab.state = state;
+        NSMutableArray *properties = [testEab getProperties];
+        NSDictionary *stateName = [properties objectAtIndex:0];
+        [[theValue([properties count]) should] beGreaterThan:theValue(1)];
+        [[stateName[@"data"] should] equal:@"Test State"];
     });
 
 });
