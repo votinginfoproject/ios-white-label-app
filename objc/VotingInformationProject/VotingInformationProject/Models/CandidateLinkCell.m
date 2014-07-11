@@ -53,7 +53,7 @@
     if (self.linkType == kCandidateLinkTypeWebsite) {
         _url = url;
     } else if (self.linkType == kCandidateLinkTypePhone) {
-        _url = [NSString stringWithFormat:@"tel:%@", url];
+        _url = [NSString stringWithFormat:@"telprompt:%@", url];
     } else if (self.linkType == kCandidateLinkTypeEmail) {
         _url = [NSString stringWithFormat:@"mailto:%@", url];
     } else {

@@ -6,6 +6,8 @@
 //  
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "NearbyPollingViewController.h"
 
 #import "UIImage+Scale.h"
@@ -13,6 +15,7 @@
 #import "AppSettings.h"
 #import "ContactsSearchViewController.h"
 #import "GDDirectionsService.h"
+#import "PollingInfoWindowView.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
 #import "VIPColor.h"
@@ -93,20 +96,23 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
+        // Skip this early vote site if it's not currently open
+        if ([location.isEarlyVoteSite boolValue] && ![location isAvailable]) {
+            continue;
+        }
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
                 if (error) {
                     NSLog(@"Error encountered for marker %@: %@", sender.name, error);
                 } else {
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
-                                                 withTitle:sender.name
-                                                andSnippet:sender.address];
+                                                 withTitle:sender.name];
                     if ([location.isEarlyVoteSite boolValue]) {
                         marker.icon = earlyVoting;
                     } else {
                         marker.icon = polling;
                     }
                     marker.map = self.mapView;
-                    marker.userData = sender.location.address;
+                    marker.userData = sender;
                     sender.marker = marker;
                 }
         }];
@@ -158,14 +164,13 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
                   withTitle:(NSString*)title
-                 andSnippet:(NSString*)snippet
 {
     // Creates a marker at the placemark location
     GMSMarker *marker = [GMSMarker markerWithPosition:position];
-    marker.title = title;
-    NSString *snippetDirections = NSLocalizedString(@"Get Directions", @"String noting that the map infowindow can display directions on tap");
-    marker.snippet = [[snippet stringByAppendingString:@"\n\n"] stringByAppendingString:snippetDirections];
-
+    marker.title = [title capitalizedString];
+    // Move custom InfoWindow up a bit
+    // Default is (0.5, 0.0)
+    marker.infoWindowAnchor = CGPointMake(0.5, -0.1);
     return marker;
 }
 
@@ -241,10 +246,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
     // Initialize Map View
     self.mapView.camera = camera;
-    self.mapView.myLocationEnabled = YES;
+    self.mapView.myLocationEnabled = NO;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
+            _userAddressMarker.map = nil;
             _userAddressMarker = [GMSMarker markerWithPosition:position];
             _userAddressMarker.title = NSLocalizedString(@"Your Address",
                                                          @"Title for map marker pop-up on user's address");
@@ -344,36 +350,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 #pragma mark - GMSMapView delegate
 
-/*
 - (UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
 {
-    // TODO: Implement this method to return a custom view with styled background and
-    //          a more obvious "Get Directions" link
-    static NSUInteger infoWindowWidth = 300;
-    static NSUInteger infoWindowHeight = 80;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, infoWindowWidth, infoWindowHeight)];
-    view.autoresizesSubviews = UIViewAutoresizingFlexibleHeight;
-    view.opaque = YES;
-    [view setBackgroundColor:[UIColor whiteColor]];
+    if (!marker.userData) {
+        return nil;
+    }
 
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, -30, infoWindowWidth, infoWindowHeight)];
-    titleLabel.text = marker.title;
-
-    UILabel *snippetLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, -10, infoWindowWidth, infoWindowHeight)];
-    snippetLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    snippetLabel.numberOfLines = 0;
-    snippetLabel.font = [UIFont systemFontOfSize:12];
-    UIColor *markerTextColor = [VIPColor navBarBackgroundColor];
-    NSDictionary *markerTextAttributes = @{NSForegroundColorAttributeName: markerTextColor};
-    NSAttributedString *snippet = [[NSAttributedString alloc] initWithString:marker.snippet
-                                                                  attributes:markerTextAttributes];
-    snippetLabel.attributedText = snippet;
-
-    [view addSubview:titleLabel];
-    [view addSubview:snippetLabel];
-    return view;
+    PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)marker.userData;
+    CGRect frame = CGRectMake(0, 0, 300, 200);
+    return [[PollingInfoWindowView alloc] initWithFrame:frame
+                              andPollingLocationWrapper:plWrapper];
 }
-*/
 
 /**
  *  Display an ActionSheet to allow the user to get directions when the marker

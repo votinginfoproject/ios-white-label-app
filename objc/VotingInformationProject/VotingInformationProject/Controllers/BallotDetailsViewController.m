@@ -27,6 +27,8 @@
 
 const NSUInteger VIP_TABLE_HEADER_HEIGHT = 32;
 const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
+const NSUInteger BDVC_TABLE_SECTION_STATE = 0;
+const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
 
 - (NSMutableArray*)tableData
 {
@@ -88,6 +90,12 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
         State *state = (State*)states[0];
         NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
         [self.tableData addObject:eabProperties];
+        if (state.localJurisdiction) {
+            NSMutableArray *localJurisdictionProperties =
+            [state.localJurisdiction.electionAdministrationBody getProperties];
+            [localJurisdictionProperties removeObjectAtIndex:0];
+            [self.tableData addObject:localJurisdictionProperties];
+        }
         self.tableView.dataSource = [self configureDataSource];
         [self.tableView reloadData];
     }
@@ -147,6 +155,17 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     cell.userInteractionEnabled = NO;
 }
 
+- (NSString*) titleForHeaderInSection:(NSInteger)section
+{
+    if (section == BDVC_TABLE_SECTION_STATE) {
+        return NSLocalizedString(@"State", @"Section title for State Election Administration details");
+    } else if (section == BDVC_TABLE_SECTION_LOCAL) {
+        return NSLocalizedString(@"Local Jurisdiction", @"Section title for Local Election Administration details");
+    }
+    return @"";
+}
+
+
 #pragma mark - Table view delegate
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -156,10 +175,21 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, VIP_TABLE_HEADER_HEIGHT)];
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = primaryTextColor;
-    label.text = NSLocalizedString(@"Election Administration Body", nil);
+    label.text = [self titleForHeaderInSection:section];
     [view addSubview:label];
     [view setBackgroundColor:[VIPColor tableHeaderColor]];
     return view;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == BDVC_TABLE_SECTION_STATE) {
+        CGRect propertiesCGRect = CGRectMake(0.0, 0, tableView.bounds.size.width, 19);
+        UIView *propertiesFooterView = [[UIView alloc] initWithFrame:propertiesCGRect];
+        propertiesFooterView.backgroundColor = [UIColor clearColor];
+        return propertiesFooterView;
+    }
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -172,13 +202,8 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     return ([self.tableData[0] count] > 0) ? VIP_DETAILS_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
-/*
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    UIColor *textColor = [VIPColor primaryTextColor];
-    view.backgroundColor = [VIPColor color:textColor withAlpha:0.5];
-}
-*/
+
+#pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -195,7 +220,9 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     }
 }
 
+
 #pragma mark - ContactsSearchViewControllerDelegate
+
 - (void)contactsSearchViewControllerDidClose:(ContactsSearchViewController *)controller
                                withElections:(NSArray *)elections
                              currentElection:(UserElection *)election
@@ -207,7 +234,5 @@ const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
     vipTabBarController.currentParty = party;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 @end
