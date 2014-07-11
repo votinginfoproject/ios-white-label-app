@@ -7,6 +7,7 @@
 //
 
 #import "ElectionAdministrationBody+API.h"
+#import "State+API.h"
 
 @implementation ElectionAdministrationBody (API)
 
@@ -52,11 +53,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         propertyList = @{
-                         // Leave state.name object first. It is dynamically removed from the properties object
-                         // at runtime for local jurisdictions
-                         // Cannot remove via string matching as the values returned by getProperties will be localized
-                         @"state.name": NSLocalizedString(@"State", @"Label for election administration body's state"),
-                         
                          @"name": NSLocalizedString(@"Name", @"Label for election administration body's name"),
                          @"hoursOfOperation": NSLocalizedString(@"Hours", @"Label for election administration body's hours of operation"),
                          @"voterServices": NSLocalizedString(@"Voter Services", @"Label for election administration body's voter services"),
@@ -67,6 +63,17 @@
                          };
     });
     return propertyList;
+}
+
+- (NSMutableArray*)getProperties
+{
+    NSMutableArray *properties = [super getProperties];
+
+    // Need to add state.name first in the returned object so it is consistently at the same spot
+    NSString *localizedStateTitle = NSLocalizedString(@"State", @"Label for election administration body's state");
+    NSDictionary *stateName = @{@"title": localizedStateTitle, @"data": self.state.name};
+    [properties insertObject:stateName atIndex:0];
+    return properties;
 }
 
 @end

@@ -14,4 +14,5 @@
 
 + (ElectionAdministrationBody*) setFromDictionary:(NSDictionary*)attributes;
 
+- (NSMutableArray *)getProperties;
 @end
