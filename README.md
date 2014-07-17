@@ -94,6 +94,10 @@ ios7-white-label-app/objc/VotingInformationProject/VotingInformationProject/Base
 and run:
 `./update_storyboard_strings.sh`
 
+UPDATE: Apple has a tool called AppleGlot that supports incremental updates of strings files, including storyboard files.
+It can be downloaded by registered apple developers from:
+https://developer.apple.com/downloads/index.action?name=localization
+
 ## Updating the Civic Info API Key
 
 Follow the instructions in the section 'Acquiring and using an API Key' here:  
