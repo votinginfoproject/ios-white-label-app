@@ -357,6 +357,7 @@
 		49A57B0118A0254C00C5E889 /* UserAddress+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "UserAddress+API.m"; path = "CoreDataModels/UserAddress+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49A57B0918A08E9200C5E889 /* PollingLocation+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "PollingLocation+API.h"; path = "CoreDataModels/PollingLocation+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "PollingLocation+API.m"; path = "CoreDataModels/PollingLocation+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		49B2B1221978359C003B598B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VIPStoryBoard.strings; sourceTree = "<group>"; };
 		49B5B8A818EB2C6900CCB11E /* GDDirectionsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDDirectionsService.h; path = GoogleDirectionsAPI/GDDirectionsService.h; sourceTree = "<group>"; };
 		49B5B8A918EB2C6900CCB11E /* GDDirectionsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDDirectionsService.m; path = GoogleDirectionsAPI/GDDirectionsService.m; sourceTree = "<group>"; };
 		49B6DBC0191D1E4600D30A3C /* ContactsSearchViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactsSearchViewControllerDelegate.h; path = Delegates/ContactsSearchViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -1231,6 +1232,7 @@
 			children = (
 				49196B90189AED9D007DCBD9 /* Base */,
 				49196B93189AEE33007DCBD9 /* es */,
+				49B2B1221978359C003B598B /* en */,
 			);
 			name = VIPStoryBoard.storyboard;
 			sourceTree = "<group>";
