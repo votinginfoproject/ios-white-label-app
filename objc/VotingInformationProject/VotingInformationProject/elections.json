@@ -22,11 +22,6 @@
         "electionDay": "2014-08-14"
     },
     {
-        "id": "4038",
-        "name": "NC 2014 Second Primary",
-        "electionDay": "2014-07-15"
-    },
-    {
         "id": "4039",
         "name": "WY 2014 Primary",
         "electionDay": "2014-08-19"
@@ -40,11 +35,6 @@
         "id": "4041",
         "name": "MN 2014 Primary",
         "electionDay": "2014-08-12"
-    },
-    {
-        "id": "4042",
-        "name": "Leon County, FL 2014 Primary",
-        "electionDay": "2014-08-26"
     }
     ]
 }
