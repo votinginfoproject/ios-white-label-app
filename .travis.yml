@@ -6,7 +6,10 @@ before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - brew update
     # Faster than uninstall + install
-    - brew upgrade xctool 
+    #- brew upgrade xctool
+    - brew remove xctool
+    - brew install xctool
+    
 install:
     - pushd objc/VotingInformationProject && pod install
     - cp VotingInformationProject/CivicAPIKey.plist.template VotingInformationProject/CivicAPIKey.plist
