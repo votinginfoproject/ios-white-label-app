@@ -1,213 +1,213 @@
 
 /* Class = "IBUINavigationItem"; title = "Ballot"; ObjectID = "00C-3m-emq"; */
-"00C-3m-emq.title" = "Ballot";
+"00C-3m-emq.title" = "Votar";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "02e-ig-Isb"; */
-"02e-ig-Isb.text" = "Detail";
+"02e-ig-Isb.text" = "Información";
 
 /* Class = "IBUINavigationItem"; title = "Contest"; ObjectID = "02m-1K-uJy"; */
-"02m-1K-uJy.title" = "Contest";
+"02m-1K-uJy.title" = "Concurso";
 
 /* Class = "IBUILabel"; text = "Selected Party"; ObjectID = "0aE-gR-hws"; */
-"0aE-gR-hws.text" = "Selected Party";
+"0aE-gR-hws.text" = "Parte seleccionada";
 
 /* Class = "IBUILabel"; text = "123.4mi"; ObjectID = "1ha-6N-tX9"; */
-"1ha-6N-tX9.text" = "123.4mi";
+"1ha-6N-tX9.text" = "123.4millas";
 
 /* Class = "IBUIButton"; accessibilityHint = "Opens party picker."; ObjectID = "2hP-xP-Xzu"; */
-"2hP-xP-Xzu.accessibilityHint" = "Opens party picker.";
+"2hP-xP-Xzu.accessibilityHint" = "Abre selector de parte.";
 
 /* Class = "IBUIButton"; normalTitle = "All Selected Parties"; ObjectID = "2hP-xP-Xzu"; */
-"2hP-xP-Xzu.normalTitle" = "All Selected Parties";
+"2hP-xP-Xzu.normalTitle" = "Todas las partes seleccionadas";
 
 /* Class = "IBUIButton"; normalTitle = "Link"; ObjectID = "3H1-ex-dlV"; */
-"3H1-ex-dlV.normalTitle" = "Link";
+"3H1-ex-dlV.normalTitle" = "Enlace";
 
 /* Class = "IBUIBarButtonItem"; title = "Home"; ObjectID = "3WV-9A-YoC"; */
-"3WV-9A-YoC.title" = "Home";
+"3WV-9A-YoC.title" = "Inicio";
 
 /* Class = "IBUIButton"; accessibilityLabel = "Contacts Search"; ObjectID = "76u-cC-uxA"; */
-"76u-cC-uxA.accessibilityLabel" = "Contacts Search";
+"76u-cC-uxA.accessibilityLabel" = "Búsqueda de contactos";
 
 /* Class = "IBUILabel"; text = "Terms of Use"; ObjectID = "8lF-Pb-K8U"; */
-"8lF-Pb-K8U.text" = "Terms of Use";
+"8lF-Pb-K8U.text" = "Términos de uso";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "Cj6-lZ-spM"; */
-"Cj6-lZ-spM.text" = "Title";
+"Cj6-lZ-spM.text" = "Título";
 
 /* Class = "IBUILabel"; text = "There are partisan contests in this election. Choose a party to view."; ObjectID = "DRW-zW-eMI"; */
-"DRW-zW-eMI.text" = "There are partisan contests in this election. Choose a party to view.";
+"DRW-zW-eMI.text" = "Hay concursos partidistas en esta elección. Elija una parte para visualizar.";
 
 /* Class = "IBUIButton"; accessibilityHint = "Opens election picker."; ObjectID = "DUM-9j-12x"; */
-"DUM-9j-12x.accessibilityHint" = "Opens election picker.";
+"DUM-9j-12x.accessibilityHint" = "Abre selector de elección.";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "EUE-y5-Mn3"; */
-"EUE-y5-Mn3.text" = "Subtitle";
+"EUE-y5-Mn3.text" = "Subtítulo";
 
 /* Class = "IBUINavigationItem"; title = "Details"; ObjectID = "GHt-5F-JdD"; */
-"GHt-5F-JdD.title" = "Details";
+"GHt-5F-JdD.title" = "Información";
 
 /* Class = "IBUILabel"; text = "123 Main St, Some City, Some State, 12345"; ObjectID = "Gd1-sc-b41"; */
-"Gd1-sc-b41.text" = "123 Main St, Some City, Some State, 12345";
+"Gd1-sc-b41.text" = "123 Main St, alguna ciudad, algún estado, 12345";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "Gt5-On-x3A"; */
-"Gt5-On-x3A.text" = "Title";
+"Gt5-On-x3A.text" = "Título";
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "HEu-5b-zXP"; */
-"HEu-5b-zXP.text" = "Label";
+"HEu-5b-zXP.text" = "Etiqueta";
 
 /* Class = "IBUILabel"; text = "Election Date"; ObjectID = "K4l-J3-RLN"; */
-"K4l-J3-RLN.text" = "Election Date";
+"K4l-J3-RLN.text" = "Fecha de elección";
 
 /* Class = "IBUILabel"; text = "No Available Contest Information"; ObjectID = "KMq-uN-l3v"; */
-"KMq-uN-l3v.text" = "No Available Contest Information";
+"KMq-uN-l3v.text" = "Sin información disponible acerca del concurso";
 
 /* Class = "IBUINavigationItem"; title = "About This App"; ObjectID = "KhW-d4-g1X"; */
-"KhW-d4-g1X.title" = "About This App";
+"KhW-d4-g1X.title" = "Acerca de esta aplicación";
 
 /* Class = "IBUITabBarItem"; title = "Where to Vote"; ObjectID = "Kxk-5f-oXy"; */
-"Kxk-5f-oXy.title" = "Where to Vote";
+"Kxk-5f-oXy.title" = "Dónde votar";
 
 /* Class = "IBUILabel"; text = "Election Date"; ObjectID = "Myh-79-KcO"; */
-"Myh-79-KcO.text" = "Election Date";
+"Myh-79-KcO.text" = "Fecha de elección";
 
 /* Class = "IBUIViewController"; title = "ContactsSearchViewController"; ObjectID = "NFr-cT-tr7"; */
 "NFr-cT-tr7.title" = "ContactsSearchViewController";
 
 /* Class = "IBUILabel"; text = "Link Description"; ObjectID = "PDN-h2-ZBz"; */
-"PDN-h2-ZBz.text" = "Link Description";
+"PDN-h2-ZBz.text" = "Descripción del enlace";
 
 /* Class = "IBUINavigationItem"; title = "Ballot"; ObjectID = "QAa-gR-ZRz"; */
-"QAa-gR-ZRz.title" = "Ballot";
+"QAa-gR-ZRz.title" = "Votar";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "QP9-Gq-bfF"; */
-"QP9-Gq-bfF.text" = "Title";
+"QP9-Gq-bfF.text" = "Título";
 
 /* Class = "IBUILabel"; text = "Polling Location Title"; ObjectID = "R7p-iM-glq"; */
-"R7p-iM-glq.text" = "Polling Location Title";
+"R7p-iM-glq.text" = "Título del lugar de votación";
 
 /* Class = "IBUITableViewSection"; headerTitle = "About"; ObjectID = "Smz-Cr-U6n"; */
-"Smz-Cr-U6n.headerTitle" = "About";
+"Smz-Cr-U6n.headerTitle" = "Acerca de";
 
 /* Class = "IBUILabel"; text = "No Candidate Details Available"; ObjectID = "TAd-f0-ejo"; */
-"TAd-f0-ejo.text" = "No Candidate Details Available";
+"TAd-f0-ejo.text" = "Sin información disponible de los candidatos";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "TPa-Rk-VPF"; */
-"TPa-Rk-VPF.text" = "Title";
+"TPa-Rk-VPF.text" = "Título";
 
 /* Class = "IBUIButton"; disabledTitle = "Show Upcoming Election"; ObjectID = "V8e-zO-oTj"; */
-"V8e-zO-oTj.disabledTitle" = "Show Upcoming Election";
+"V8e-zO-oTj.disabledTitle" = "Mostrar próxima elección";
 
 /* Class = "IBUIButton"; normalTitle = "GO!"; ObjectID = "V8e-zO-oTj"; */
-"V8e-zO-oTj.normalTitle" = "GO!";
+"V8e-zO-oTj.normalTitle" = "¡ADELANTE!";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "WFP-hG-6gU"; */
-"WFP-hG-6gU.text" = "Subtitle";
+"WFP-hG-6gU.text" = "Subtítulo";
 
 /* Class = "IBUINavigationItem"; title = "Polling Sites"; ObjectID = "Xfu-rg-ES2"; */
-"Xfu-rg-ES2.title" = "Polling Sites";
+"Xfu-rg-ES2.title" = "Centro de votación";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "YcA-kl-nPt"; */
-"YcA-kl-nPt.text" = "Title";
+"YcA-kl-nPt.text" = "Título";
 
 /* Class = "IBUILabel"; text = "Contest Name"; ObjectID = "Yh4-mO-Jao"; */
-"Yh4-mO-Jao.text" = "Contest Name";
+"Yh4-mO-Jao.text" = "Nombre del concurso";
 
 /* Class = "IBUILabel"; text = "No Available Candidates"; ObjectID = "bBk-gz-R3x"; */
-"bBk-gz-R3x.text" = "No Available Candidates";
+"bBk-gz-R3x.text" = "Sin candidatos disponibles";
 
 /* Class = "IBUITextField"; placeholder = "Enter Address..."; ObjectID = "dfh-ab-T5N"; */
-"dfh-ab-T5N.placeholder" = "Enter Address...";
+"dfh-ab-T5N.placeholder" = "Ingrese dirección...";
 
 /* Class = "IBUILabel"; text = "Election Name"; ObjectID = "e5r-KA-iqC"; */
-"e5r-KA-iqC.text" = "Election Name";
+"e5r-KA-iqC.text" = "Nombre de la elección";
 
 /* Class = "IBUILabel"; text = "Unknown Error"; ObjectID = "eMN-aA-QQc"; */
-"eMN-aA-QQc.text" = "Unknown Error";
+"eMN-aA-QQc.text" = "Error desconocido";
 
 /* Class = "IBUILabel"; text = "Affiliation"; ObjectID = "foc-vh-xqY"; */
-"foc-vh-xqY.text" = "Affiliation";
+"foc-vh-xqY.text" = "Afiliación";
 
 /* Class = "IBUINavigationItem"; title = "Voting Information Project"; ObjectID = "gBY-hG-QTh"; */
-"gBY-hG-QTh.title" = "Voting Information Project";
+"gBY-hG-QTh.title" = "Proyecto de información de la votación";
 
 /* Class = "IBUILabel"; text = "Privacy Policy"; ObjectID = "h39-3L-vc3"; */
-"h39-3L-vc3.text" = "Privacy Policy";
+"h39-3L-vc3.text" = "Política de privacidad";
 
 /* Class = "IBUITabBarItem"; title = "Ballot"; ObjectID = "i8q-c5-xN2"; */
-"i8q-c5-xN2.title" = "Ballot";
+"i8q-c5-xN2.title" = "Votar";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "jhG-7f-olu"; */
-"jhG-7f-olu.text" = "Title";
+"jhG-7f-olu.text" = "Título";
 
 /* Class = "IBUILabel"; text = "Election Name"; ObjectID = "k1g-E7-fra"; */
-"k1g-E7-fra.text" = "Election Name";
+"k1g-E7-fra.text" = "Nombre de elección";
 
 /* Class = "IBUINavigationItem"; title = "Candidate"; ObjectID = "mV6-it-J7F"; */
-"mV6-it-J7F.title" = "Candidate";
+"mV6-it-J7F.title" = "Candidato";
 
 /* Class = "IBUILabel"; text = "Candidate Name"; ObjectID = "mZe-S3-Tn7"; */
-"mZe-S3-Tn7.text" = "Candidate Name";
+"mZe-S3-Tn7.text" = "Nombre del candidato";
 
 /* Class = "IBUILabel"; text = "Election Name"; ObjectID = "mfT-v3-glH"; */
-"mfT-v3-glH.text" = "Election Name";
+"mfT-v3-glH.text" = "Nombre de elección";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Terms of Use"; ObjectID = "o9y-1C-cNH"; */
-"o9y-1C-cNH.headerTitle" = "Terms of Use";
+"o9y-1C-cNH.headerTitle" = "Términos de uso";
 
 /* Class = "IBUILabel"; text = "Pick an Election:"; ObjectID = "oDm-bR-mta"; */
-"oDm-bR-mta.text" = "Pick an Election:";
+"oDm-bR-mta.text" = "Seleccione una elección:";
 
 /* Class = "IBUITabBarItem"; title = "Details"; ObjectID = "pC8-7J-EJ9"; */
-"pC8-7J-EJ9.title" = "Details";
+"pC8-7J-EJ9.title" = "Información";
 
 /* Class = "IBUILabel"; text = "Enter Your Address:"; ObjectID = "pNR-wi-mkO"; */
-"pNR-wi-mkO.text" = "Enter Your Address:";
+"pNR-wi-mkO.text" = "Ingrese su dirección:";
 
 /* Class = "IBUILabel"; text = "Voting Information"; ObjectID = "prJ-mj-Bjp"; */
-"prJ-mj-Bjp.text" = "Voting Information";
+"prJ-mj-Bjp.text" = "Información sobre la votación";
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "qWA-aG-iY3"; */
-"qWA-aG-iY3.text" = "Label";
+"qWA-aG-iY3.text" = "Etiqueta";
 
 /* Class = "IBUILabel"; text = "BRAND NAME"; ObjectID = "u9S-9H-o10"; */
-"u9S-9H-o10.text" = "BRAND NAME";
+"u9S-9H-o10.text" = "NOMBRE DE MARCA";
 
 /* Class = "IBUITabBarItem"; title = "About"; ObjectID = "uAv-dm-Gkx"; */
-"uAv-dm-Gkx.title" = "About";
+"uAv-dm-Gkx.title" = "Acerca de";
 
 /* Class = "IBUINavigationItem"; title = "Directions"; ObjectID = "uia-Wy-7kT"; */
-"uia-Wy-7kT.title" = "Directions";
+"uia-Wy-7kT.title" = "Indicaciones";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Privacy Policy"; ObjectID = "vDe-91-fCz"; */
-"vDe-91-fCz.headerTitle" = "Privacy Policy";
+"vDe-91-fCz.headerTitle" = "Política de privacidad";
 
 /* Class = "IBUISegmentedControl"; vGb-SD-759.segmentTitles[0] = "All Sites"; ObjectID = "vGb-SD-759"; */
-"vGb-SD-759.segmentTitles[0]" = "All Sites";
+"vGb-SD-759.segmentTitles[0]" = "Todos los sitios";
 
 /* Class = "IBUISegmentedControl"; vGb-SD-759.segmentTitles[1] = "Early Voting"; ObjectID = "vGb-SD-759"; */
-"vGb-SD-759.segmentTitles[1]" = "Early Voting";
+"vGb-SD-759.segmentTitles[1]" = "Votación temprana";
 
 /* Class = "IBUISegmentedControl"; vGb-SD-759.segmentTitles[2] = "Polling Sites"; ObjectID = "vGb-SD-759"; */
-"vGb-SD-759.segmentTitles[2]" = "Polling Sites";
+"vGb-SD-759.segmentTitles[2]" = "Sitios de votación";
 
 /* Class = "IBUIBarButtonItem"; title = "Ballot"; ObjectID = "vcN-hl-QBN"; */
-"vcN-hl-QBN.title" = "Ballot";
+"vcN-hl-QBN.title" = "Votar";
 
 /* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[0] = "Driving"; ObjectID = "w6R-Cc-ZLj"; */
-"w6R-Cc-ZLj.segmentTitles[0]" = "Driving";
+"w6R-Cc-ZLj.segmentTitles[0]" = "Conducción";
 
 /* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[1] = "Transit"; ObjectID = "w6R-Cc-ZLj"; */
-"w6R-Cc-ZLj.segmentTitles[1]" = "Transit";
+"w6R-Cc-ZLj.segmentTitles[1]" = "Tránsito";
 
 /* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[2] = "Cycling"; ObjectID = "w6R-Cc-ZLj"; */
-"w6R-Cc-ZLj.segmentTitles[2]" = "Cycling";
+"w6R-Cc-ZLj.segmentTitles[2]" = "Ciclismo";
 
 /* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[3] = "Walking"; ObjectID = "w6R-Cc-ZLj"; */
-"w6R-Cc-ZLj.segmentTitles[3]" = "Walking";
+"w6R-Cc-ZLj.segmentTitles[3]" = "Caminata";
 
 /* Class = "IBUILabel"; text = "About this app."; ObjectID = "wKK-2H-Xzv"; */
-"wKK-2H-Xzv.text" = "About this app.";
+"wKK-2H-Xzv.text" = "Acerca de esta aplicación.";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "zfx-nN-Mgb"; */
-"zfx-nN-Mgb.text" = "Detail";
+"zfx-nN-Mgb.text" = "Información";
