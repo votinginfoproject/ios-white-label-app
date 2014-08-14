@@ -52,7 +52,7 @@
            byProperty:(NSString *)propertyKey
             ascending:(BOOL)isAscending
 {
-    NSArray *results = nil;
+    NSArray *results = @[];
     NSSet *vipSet = [self valueForKey:property];
     if (vipSet && [vipSet respondsToSelector:@selector(allObjects)]) {
         SEL stringSelector = @selector(caseInsensitiveCompare:);
