@@ -367,7 +367,7 @@
     }
 
     Election *selectedElection = [Election getUnique:self.currentElection.electionId];
-    if (!selectedElection) {
+    if (!(selectedElection && selectedElection.date)) {
         selectedElection = self.elections[0];
     }
     [MMPickerView showPickerViewInView:self.view
@@ -379,7 +379,6 @@
                             completion:^(Election *selectedElection) {
                                 self.activeElection = selectedElection;
                             }];
-
 }
 
 #pragma mark - PartyPicker
