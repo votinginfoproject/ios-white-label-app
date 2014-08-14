@@ -47,6 +47,9 @@
 /* Class = "IBUINavigationItem"; title = "Details"; ObjectID = "GHt-5F-JdD"; */
 "GHt-5F-JdD.title" = "Details";
 
+/* Class = "IBUILabel"; text = "No Social Media Links Available"; ObjectID = "GZs-m6-D5y"; */
+"GZs-m6-D5y.text" = "No Social Media Links Available";
+
 /* Class = "IBUILabel"; text = "123 Main St, Some City, Some State, 12345"; ObjectID = "Gd1-sc-b41"; */
 "Gd1-sc-b41.text" = "123 Main St, Some City, Some State, 12345";
 

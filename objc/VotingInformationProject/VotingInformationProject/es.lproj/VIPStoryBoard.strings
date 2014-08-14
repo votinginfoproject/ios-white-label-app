@@ -211,3 +211,7 @@
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "zfx-nN-Mgb"; */
 "zfx-nN-Mgb.text" = "Información";
+
+/* Class = "IBUILabel"; text = "No Social Media Links Available"; ObjectID = "GZs-m6-D5y"; */
+"GZs-m6-D5y.text" = "No Social Media Links Available";
+
