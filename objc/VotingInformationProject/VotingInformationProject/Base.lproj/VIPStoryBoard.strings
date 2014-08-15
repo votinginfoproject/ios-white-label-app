@@ -47,6 +47,9 @@
 /* Class = "IBUINavigationItem"; title = "Details"; ObjectID = "GHt-5F-JdD"; */
 "GHt-5F-JdD.title" = "Details";
 
+/* Class = "IBUILabel"; text = "No Social Media Links Available"; ObjectID = "GZs-m6-D5y"; */
+"GZs-m6-D5y.text" = "No Social Media Links Available";
+
 /* Class = "IBUILabel"; text = "123 Main St, Some City, Some State, 12345"; ObjectID = "Gd1-sc-b41"; */
 "Gd1-sc-b41.text" = "123 Main St, Some City, Some State, 12345";
 
@@ -155,14 +158,14 @@
 /* Class = "IBUITableViewSection"; headerTitle = "Terms of Use"; ObjectID = "o9y-1C-cNH"; */
 "o9y-1C-cNH.headerTitle" = "Terms of Use";
 
-/* Class = "IBUILabel"; text = "Enter Your Address:"; ObjectID = "oDm-bR-mta"; */
-"oDm-bR-mta.text" = "Enter Your Address:";
+/* Class = "IBUILabel"; text = "Pick an Election:"; ObjectID = "oDm-bR-mta"; */
+"oDm-bR-mta.text" = "Pick an Election:";
 
 /* Class = "IBUITabBarItem"; title = "Details"; ObjectID = "pC8-7J-EJ9"; */
 "pC8-7J-EJ9.title" = "Details";
 
-/* Class = "IBUILabel"; text = "Pick an Election:"; ObjectID = "pNR-wi-mkO"; */
-"pNR-wi-mkO.text" = "Pick an Election:";
+/* Class = "IBUILabel"; text = "Enter Your Address:"; ObjectID = "pNR-wi-mkO"; */
+"pNR-wi-mkO.text" = "Enter Your Address:";
 
 /* Class = "IBUILabel"; text = "Voting Information"; ObjectID = "prJ-mj-Bjp"; */
 "prJ-mj-Bjp.text" = "Voting Information";

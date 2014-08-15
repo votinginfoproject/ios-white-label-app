@@ -130,7 +130,8 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     }
 
     // If we have a url, make this cell segue to UIWebViewController
-    if (dataUrl.scheme && [dataUrl.scheme length] > 0) {
+    if ([dataUrl.scheme isEqualToString:@"http"] ||
+        [dataUrl.scheme isEqualToString:@"https"]) {
         ContestUrlCell *cell = (ContestUrlCell*)[tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID
                                                                                 forIndexPath:indexPath];
         [cell configure:property[@"title"] withUrl:property[@"data"]];

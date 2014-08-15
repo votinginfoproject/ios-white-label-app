@@ -1,0 +1,213 @@
+
+/* Class = "IBUINavigationItem"; title = "Ballot"; ObjectID = "00C-3m-emq"; */
+"00C-3m-emq.title" = "Ballot";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "02e-ig-Isb"; */
+"02e-ig-Isb.text" = "Detail";
+
+/* Class = "IBUINavigationItem"; title = "Contest"; ObjectID = "02m-1K-uJy"; */
+"02m-1K-uJy.title" = "Contest";
+
+/* Class = "IBUILabel"; text = "Selected Party"; ObjectID = "0aE-gR-hws"; */
+"0aE-gR-hws.text" = "Selected Party";
+
+/* Class = "IBUILabel"; text = "123.4mi"; ObjectID = "1ha-6N-tX9"; */
+"1ha-6N-tX9.text" = "123.4mi";
+
+/* Class = "IBUIButton"; accessibilityHint = "Opens party picker."; ObjectID = "2hP-xP-Xzu"; */
+"2hP-xP-Xzu.accessibilityHint" = "Opens party picker.";
+
+/* Class = "IBUIButton"; normalTitle = "All Selected Parties"; ObjectID = "2hP-xP-Xzu"; */
+"2hP-xP-Xzu.normalTitle" = "All Selected Parties";
+
+/* Class = "IBUIButton"; normalTitle = "Link"; ObjectID = "3H1-ex-dlV"; */
+"3H1-ex-dlV.normalTitle" = "Link";
+
+/* Class = "IBUIBarButtonItem"; title = "Home"; ObjectID = "3WV-9A-YoC"; */
+"3WV-9A-YoC.title" = "Home";
+
+/* Class = "IBUIButton"; accessibilityLabel = "Contacts Search"; ObjectID = "76u-cC-uxA"; */
+"76u-cC-uxA.accessibilityLabel" = "Contacts Search";
+
+/* Class = "IBUILabel"; text = "Terms of Use"; ObjectID = "8lF-Pb-K8U"; */
+"8lF-Pb-K8U.text" = "Terms of Use";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Cj6-lZ-spM"; */
+"Cj6-lZ-spM.text" = "Title";
+
+/* Class = "IBUILabel"; text = "There are partisan contests in this election. Choose a party to view."; ObjectID = "DRW-zW-eMI"; */
+"DRW-zW-eMI.text" = "There are partisan contests in this election. Choose a party to view.";
+
+/* Class = "IBUIButton"; accessibilityHint = "Opens election picker."; ObjectID = "DUM-9j-12x"; */
+"DUM-9j-12x.accessibilityHint" = "Opens election picker.";
+
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "EUE-y5-Mn3"; */
+"EUE-y5-Mn3.text" = "Subtitle";
+
+/* Class = "IBUINavigationItem"; title = "Details"; ObjectID = "GHt-5F-JdD"; */
+"GHt-5F-JdD.title" = "Details";
+
+/* Class = "IBUILabel"; text = "123 Main St, Some City, Some State, 12345"; ObjectID = "Gd1-sc-b41"; */
+"Gd1-sc-b41.text" = "123 Main St, Some City, Some State, 12345";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Gt5-On-x3A"; */
+"Gt5-On-x3A.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "HEu-5b-zXP"; */
+"HEu-5b-zXP.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Election Date"; ObjectID = "K4l-J3-RLN"; */
+"K4l-J3-RLN.text" = "Election Date";
+
+/* Class = "IBUILabel"; text = "No Available Contest Information"; ObjectID = "KMq-uN-l3v"; */
+"KMq-uN-l3v.text" = "No Available Contest Information";
+
+/* Class = "IBUINavigationItem"; title = "About This App"; ObjectID = "KhW-d4-g1X"; */
+"KhW-d4-g1X.title" = "About This App";
+
+/* Class = "IBUITabBarItem"; title = "Where to Vote"; ObjectID = "Kxk-5f-oXy"; */
+"Kxk-5f-oXy.title" = "Where to Vote";
+
+/* Class = "IBUILabel"; text = "Election Date"; ObjectID = "Myh-79-KcO"; */
+"Myh-79-KcO.text" = "Election Date";
+
+/* Class = "IBUIViewController"; title = "ContactsSearchViewController"; ObjectID = "NFr-cT-tr7"; */
+"NFr-cT-tr7.title" = "ContactsSearchViewController";
+
+/* Class = "IBUILabel"; text = "Link Description"; ObjectID = "PDN-h2-ZBz"; */
+"PDN-h2-ZBz.text" = "Link Description";
+
+/* Class = "IBUINavigationItem"; title = "Ballot"; ObjectID = "QAa-gR-ZRz"; */
+"QAa-gR-ZRz.title" = "Ballot";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "QP9-Gq-bfF"; */
+"QP9-Gq-bfF.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Polling Location Title"; ObjectID = "R7p-iM-glq"; */
+"R7p-iM-glq.text" = "Polling Location Title";
+
+/* Class = "IBUITableViewSection"; headerTitle = "About"; ObjectID = "Smz-Cr-U6n"; */
+"Smz-Cr-U6n.headerTitle" = "About";
+
+/* Class = "IBUILabel"; text = "No Candidate Details Available"; ObjectID = "TAd-f0-ejo"; */
+"TAd-f0-ejo.text" = "No Candidate Details Available";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "TPa-Rk-VPF"; */
+"TPa-Rk-VPF.text" = "Title";
+
+/* Class = "IBUIButton"; disabledTitle = "Show Upcoming Election"; ObjectID = "V8e-zO-oTj"; */
+"V8e-zO-oTj.disabledTitle" = "Show Upcoming Election";
+
+/* Class = "IBUIButton"; normalTitle = "GO!"; ObjectID = "V8e-zO-oTj"; */
+"V8e-zO-oTj.normalTitle" = "GO!";
+
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "WFP-hG-6gU"; */
+"WFP-hG-6gU.text" = "Subtitle";
+
+/* Class = "IBUINavigationItem"; title = "Polling Sites"; ObjectID = "Xfu-rg-ES2"; */
+"Xfu-rg-ES2.title" = "Polling Sites";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "YcA-kl-nPt"; */
+"YcA-kl-nPt.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Contest Name"; ObjectID = "Yh4-mO-Jao"; */
+"Yh4-mO-Jao.text" = "Contest Name";
+
+/* Class = "IBUILabel"; text = "No Available Candidates"; ObjectID = "bBk-gz-R3x"; */
+"bBk-gz-R3x.text" = "No Available Candidates";
+
+/* Class = "IBUITextField"; placeholder = "Enter Address..."; ObjectID = "dfh-ab-T5N"; */
+"dfh-ab-T5N.placeholder" = "Enter Address...";
+
+/* Class = "IBUILabel"; text = "Election Name"; ObjectID = "e5r-KA-iqC"; */
+"e5r-KA-iqC.text" = "Election Name";
+
+/* Class = "IBUILabel"; text = "Unknown Error"; ObjectID = "eMN-aA-QQc"; */
+"eMN-aA-QQc.text" = "Unknown Error";
+
+/* Class = "IBUILabel"; text = "Affiliation"; ObjectID = "foc-vh-xqY"; */
+"foc-vh-xqY.text" = "Affiliation";
+
+/* Class = "IBUINavigationItem"; title = "Voting Information Project"; ObjectID = "gBY-hG-QTh"; */
+"gBY-hG-QTh.title" = "Voting Information Project";
+
+/* Class = "IBUILabel"; text = "Privacy Policy"; ObjectID = "h39-3L-vc3"; */
+"h39-3L-vc3.text" = "Privacy Policy";
+
+/* Class = "IBUITabBarItem"; title = "Ballot"; ObjectID = "i8q-c5-xN2"; */
+"i8q-c5-xN2.title" = "Ballot";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "jhG-7f-olu"; */
+"jhG-7f-olu.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Election Name"; ObjectID = "k1g-E7-fra"; */
+"k1g-E7-fra.text" = "Election Name";
+
+/* Class = "IBUINavigationItem"; title = "Candidate"; ObjectID = "mV6-it-J7F"; */
+"mV6-it-J7F.title" = "Candidate";
+
+/* Class = "IBUILabel"; text = "Candidate Name"; ObjectID = "mZe-S3-Tn7"; */
+"mZe-S3-Tn7.text" = "Candidate Name";
+
+/* Class = "IBUILabel"; text = "Election Name"; ObjectID = "mfT-v3-glH"; */
+"mfT-v3-glH.text" = "Election Name";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Terms of Use"; ObjectID = "o9y-1C-cNH"; */
+"o9y-1C-cNH.headerTitle" = "Terms of Use";
+
+/* Class = "IBUILabel"; text = "Pick an Election:"; ObjectID = "oDm-bR-mta"; */
+"oDm-bR-mta.text" = "Pick an Election:";
+
+/* Class = "IBUITabBarItem"; title = "Details"; ObjectID = "pC8-7J-EJ9"; */
+"pC8-7J-EJ9.title" = "Details";
+
+/* Class = "IBUILabel"; text = "Enter Your Address:"; ObjectID = "pNR-wi-mkO"; */
+"pNR-wi-mkO.text" = "Enter Your Address:";
+
+/* Class = "IBUILabel"; text = "Voting Information"; ObjectID = "prJ-mj-Bjp"; */
+"prJ-mj-Bjp.text" = "Voting Information";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "qWA-aG-iY3"; */
+"qWA-aG-iY3.text" = "Label";
+
+/* Class = "IBUILabel"; text = "BRAND NAME"; ObjectID = "u9S-9H-o10"; */
+"u9S-9H-o10.text" = "BRAND NAME";
+
+/* Class = "IBUITabBarItem"; title = "About"; ObjectID = "uAv-dm-Gkx"; */
+"uAv-dm-Gkx.title" = "About";
+
+/* Class = "IBUINavigationItem"; title = "Directions"; ObjectID = "uia-Wy-7kT"; */
+"uia-Wy-7kT.title" = "Directions";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Privacy Policy"; ObjectID = "vDe-91-fCz"; */
+"vDe-91-fCz.headerTitle" = "Privacy Policy";
+
+/* Class = "IBUISegmentedControl"; vGb-SD-759.segmentTitles[0] = "All Sites"; ObjectID = "vGb-SD-759"; */
+"vGb-SD-759.segmentTitles[0]" = "All Sites";
+
+/* Class = "IBUISegmentedControl"; vGb-SD-759.segmentTitles[1] = "Early Voting"; ObjectID = "vGb-SD-759"; */
+"vGb-SD-759.segmentTitles[1]" = "Early Voting";
+
+/* Class = "IBUISegmentedControl"; vGb-SD-759.segmentTitles[2] = "Polling Sites"; ObjectID = "vGb-SD-759"; */
+"vGb-SD-759.segmentTitles[2]" = "Polling Sites";
+
+/* Class = "IBUIBarButtonItem"; title = "Ballot"; ObjectID = "vcN-hl-QBN"; */
+"vcN-hl-QBN.title" = "Ballot";
+
+/* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[0] = "Driving"; ObjectID = "w6R-Cc-ZLj"; */
+"w6R-Cc-ZLj.segmentTitles[0]" = "Driving";
+
+/* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[1] = "Transit"; ObjectID = "w6R-Cc-ZLj"; */
+"w6R-Cc-ZLj.segmentTitles[1]" = "Transit";
+
+/* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[2] = "Cycling"; ObjectID = "w6R-Cc-ZLj"; */
+"w6R-Cc-ZLj.segmentTitles[2]" = "Cycling";
+
+/* Class = "IBUISegmentedControl"; w6R-Cc-ZLj.segmentTitles[3] = "Walking"; ObjectID = "w6R-Cc-ZLj"; */
+"w6R-Cc-ZLj.segmentTitles[3]" = "Walking";
+
+/* Class = "IBUILabel"; text = "About this app."; ObjectID = "wKK-2H-Xzv"; */
+"wKK-2H-Xzv.text" = "About this app.";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "zfx-nN-Mgb"; */
+"zfx-nN-Mgb.text" = "Detail";

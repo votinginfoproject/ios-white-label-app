@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Candidate" representedClassName="Candidate" syncable="YES">
         <attribute name="candidateUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" maxValueString="255" syncable="YES"/>
@@ -21,8 +21,8 @@
         <attribute name="numberVotingFor" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="office" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="primaryParty" optional="YES" attributeType="String" maxValueString="32" syncable="YES"/>
-        <attribute name="referendumSubtitle" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
-        <attribute name="referendumTitle" optional="YES" attributeType="String" maxValueString="64" syncable="YES"/>
+        <attribute name="referendumSubtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referendumTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referendumUrl" optional="YES" attributeType="String" maxValueString="2000" syncable="YES"/>
         <attribute name="special" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" maxValueString="100" syncable="YES"/>
@@ -126,7 +126,7 @@
     </entity>
     <elements>
         <element name="Candidate" positionX="0" positionY="0" width="128" height="195"/>
-        <element name="Contest" positionX="0" positionY="0" width="128" height="298"/>
+        <element name="Contest" positionX="0" positionY="0" width="128" height="300"/>
         <element name="DataSource" positionX="0" positionY="0" width="128" height="120"/>
         <element name="District" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Election" positionX="-414" positionY="45" width="128" height="90"/>
