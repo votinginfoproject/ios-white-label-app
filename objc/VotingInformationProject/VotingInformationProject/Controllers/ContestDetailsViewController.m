@@ -100,9 +100,10 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available",
                                                                               @"Contest details text displayed when office name not available");
         // Only add candidates for elections, not referenda
-        [self.tableData addObject:[self.contest getSorted:@"candidates"
+        NSArray *sortedContests = [self.contest getSorted:@"candidates"
                                                byProperty:@"orderOnBallot"
-                                                ascending:YES]];
+                                                ascending:YES];
+        [self.tableData addObject:sortedContests];
     }
     [self.tableView reloadData];
 }
@@ -152,7 +153,9 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 
     // If we have a url, make this cell segue to UIWebViewController
     BOOL isSectionEmpty = [self isSectionEmpty:section];
-    if (section == CDVC_TABLE_SECTION_PROPERTIES && dataUrl.scheme && [dataUrl.scheme length] > 0) {
+    if (section == CDVC_TABLE_SECTION_PROPERTIES &&
+        ([dataUrl.scheme isEqualToString:@"http"] ||
+         [dataUrl.scheme isEqualToString:@"https"])) {
         cell = [tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID forIndexPath:indexPath];
         ContestUrlCell *urlCell = (ContestUrlCell*)cell;
         [urlCell configure:property[@"title"] withUrl:property[@"data"]];

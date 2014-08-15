@@ -76,12 +76,12 @@ describe(@"VIPManagedObjectTests", ^{
         [[jon.name should] equal:@"Jon Snow"];
     });
     
-    it(@"should ensure that getSorted returns nil with bad input", ^{
+    it(@"should ensure that getSorted returns empty array with bad input", ^{
         Contest* contest = createMockContest();
         NSArray* candidatesBadProperty = [contest getSorted:@"badProperty"
                                                  byProperty:@"name"
                                                   ascending:NO];
-        [[candidatesBadProperty should] beNil];
+        [[candidatesBadProperty should] equal:@[]];
     });
 });
 

@@ -90,7 +90,8 @@
 
     // Set Social Channels
     for (NSDictionary* channel in channels) {
-        [candidate addSocialChannelsObject:[SocialChannel setFromDictionary:channel]];
+        SocialChannel *sc = (SocialChannel*)[SocialChannel setFromDictionary:channel];
+        [candidate addSocialChannelsObject:sc];
     }
 
     // Download photo from url
