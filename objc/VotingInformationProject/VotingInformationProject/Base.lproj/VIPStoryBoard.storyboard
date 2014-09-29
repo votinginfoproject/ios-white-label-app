@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -554,43 +555,33 @@
                                 <rect key="frame" x="0.0" y="67" width="320" height="388"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CandidateLinksCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="CandidateLinksCell" id="MC6-RE-XPe" customClass="CandidateLinkCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CandidateLinksCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CandidateLinksCell" id="MC6-RE-XPe" customClass="CandidateLinkCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MC6-RE-XPe" id="npR-Mc-wwT">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-h2-ZBz">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Link Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-h2-ZBz">
                                                     <rect key="frame" x="20" y="11" width="162" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-ex-dlV">
-                                                    <rect key="frame" x="190" y="7" width="110" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="110" id="tRj-Gr-FoE"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Link">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="linkPressed:" destination="MC6-RE-XPe" eventType="touchUpInside" id="tXh-df-dhF"/>
-                                                    </connections>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvP-6h-Xh5">
+                                                    <rect key="frame" x="190" y="8" width="89" height="28"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="3H1-ex-dlV" firstAttribute="baseline" secondItem="PDN-h2-ZBz" secondAttribute="baseline" id="JTc-jD-pko"/>
                                                 <constraint firstItem="PDN-h2-ZBz" firstAttribute="leading" secondItem="npR-Mc-wwT" secondAttribute="leading" constant="20" symbolic="YES" id="T24-Sr-E72"/>
-                                                <constraint firstAttribute="trailing" secondItem="3H1-ex-dlV" secondAttribute="trailing" constant="20" symbolic="YES" id="UUg-Zs-LeR"/>
                                                 <constraint firstItem="PDN-h2-ZBz" firstAttribute="centerY" secondItem="npR-Mc-wwT" secondAttribute="centerY" id="Zuw-cI-tCP"/>
-                                                <constraint firstItem="3H1-ex-dlV" firstAttribute="leading" secondItem="PDN-h2-ZBz" secondAttribute="trailing" constant="8" symbolic="YES" id="zRL-fG-NTb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="PDN-h2-ZBz" id="Ko4-Ig-6Jc"/>
-                                            <outlet property="linkButton" destination="3H1-ex-dlV" id="14a-ST-P21"/>
+                                            <outlet property="linkLabel" destination="bvP-6h-Xh5" id="URK-tM-DlI"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CandidateSocialCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CandidateSocialCell" id="c52-hh-Pe7" customClass="CandidateSocialCell">
@@ -708,6 +699,7 @@
                         <outlet property="candidatePhoto" destination="SdJ-sc-VsW" id="Ne3-qI-rk1"/>
                         <outlet property="nameLabel" destination="mZe-S3-Tn7" id="CXV-7X-pBd"/>
                         <outlet property="tableView" destination="FpI-yk-lhW" id="LGp-Kk-dti"/>
+                        <segue destination="LbF-1k-fvs" kind="push" identifier="CandidateLinkWebsiteSegue" id="cdu-r9-jOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVG-M1-LB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1170,6 +1162,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="eBc-MR-pin"/>
-        <segue reference="v9n-rt-NBh"/>
+        <segue reference="cdu-r9-jOY"/>
     </inferredMetricsTieBreakers>
 </document>

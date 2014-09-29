@@ -12,8 +12,9 @@
 @interface CandidateLinkCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, weak) IBOutlet UIButton *linkButton;
+@property (nonatomic, weak) IBOutlet UILabel *linkLabel;
 @property (nonatomic) CandidateLinkTypes linkType;
+@property (strong, nonatomic) NSURL* url;
 
 /**
  *  Set all properties of the CandidateLinkCell

@@ -49,31 +49,67 @@
 - (NSMutableArray*)getLinksDataArray
 {
     NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:3];
-    if (self.candidateUrl) {
+    if ([[self class] canOpenLink:self.candidateUrl asType:kCandidateLinkTypeWebsite]) {
         [links addObject:@{
                            @"buttonTitle": NSLocalizedString(@"Website", @"Button name for candidate's website"),
                            @"description": NSLocalizedString(@"Website", @"Link description for candidate's website"),
-                           @"url": self.candidateUrl,
+                           @"url": [[self class] makeWebsiteURL:self.candidateUrl],
                            @"urlScheme": @(kCandidateLinkTypeWebsite)
                            }];
     }
-    if (self.phone) {
+    if ([[self class] canOpenLink:self.phone asType:kCandidateLinkTypePhone]) {
         [links addObject:@{
                            @"buttonTitle": NSLocalizedString(@"Call", @"Button name for candidate's phone number"),
                            @"description": NSLocalizedString(@"Phone", @"Link description for candidate's phone number"),
-                           @"url": self.phone,
+                           @"url": [[self class] makePhoneURL:self.phone],
                            @"urlScheme": @(kCandidateLinkTypePhone)
                            }];
     }
-    if (self.email) {
+    if ([[self class] canOpenLink:self.email asType:kCandidateLinkTypeEmail]) {
         [links addObject:@{
                            @"buttonTitle": NSLocalizedString(@"Email", @"Button name for candidate's email address"),
                            @"description": NSLocalizedString(@"Email", @"Link description for candidate's email address"),
-                           @"url": self.email,
+                           @"url": [[self class] makeEmailURL:self.email],
                            @"urlScheme": @(kCandidateLinkTypeEmail)
                            }];
     }
     return links;
+}
+
++ (BOOL)canOpenLink:(NSString*)link asType:(int)type
+{
+    if ([link length] == 0) {
+        return NO;
+    }
+
+    NSURL *url = nil;
+    if (type == kCandidateLinkTypeWebsite) {
+        url = [[self class] makeWebsiteURL:link];
+    } else if (type == kCandidateLinkTypePhone) {
+        url = [[self class] makePhoneURL:link];
+    } else if (type == kCandidateLinkTypeEmail) {
+        url = [[self class] makeEmailURL:link];
+    } else {
+        url = nil;
+    }
+    return [[UIApplication sharedApplication] canOpenURL:url];
+}
+
++ (NSURL*)makePhoneURL:(NSString*)phone
+{
+    NSString *urlString = [NSString stringWithFormat:@"telprompt:%@", phone];
+    return [NSURL URLWithString:urlString];
+}
+
++ (NSURL*)makeWebsiteURL:(NSString*)website
+{
+    return [NSURL URLWithString:website];
+}
+
++ (NSURL*)makeEmailURL:(NSString*)email
+{
+    NSString *urlString = [NSString stringWithFormat:@"mailto:%@", email];
+    return [NSURL URLWithString:urlString];
 }
 
 + (Candidate*) setFromDictionary:(NSDictionary *)attributes

@@ -118,6 +118,23 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == CDVC_TABLE_SECTION_LINKS) {
+        CandidateLinkCell *cell = (CandidateLinkCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+
+        if (cell.linkType == kCandidateLinkTypeWebsite) {
+            // Requested that website links open in app browser
+            NSLog(@"CandidateLinkWebsiteSegue: %@", cell.url);
+            [self performSegueWithIdentifier:@"CandidateLinkWebsiteSegue" sender:cell];
+        } else {
+            NSURL *url = cell.url;
+           [[UIApplication sharedApplication] openURL:url];
+        }
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIColor *primaryTextColor = [VIPColor primaryTextColor];
@@ -221,6 +238,11 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
         UIWebViewController *webView = (UIWebViewController*)segue.destinationViewController;
         webView.url = cell.url;
         webView.title = NSLocalizedString(@"Social", @"Title for browser window when viewing canditate's social media site");
+    } else if ([segue.identifier isEqualToString:@"CandidateLinkWebsiteSegue"]) {
+        CandidateLinkCell *cell = (CandidateLinkCell*)sender;
+        UIWebViewController *webView = (UIWebViewController*)segue.destinationViewController;
+        webView.url = cell.url;
+        webView.title = NSLocalizedString(@"Website", @"Title for browser window when viewing candidate's website");
     }
 }
 
