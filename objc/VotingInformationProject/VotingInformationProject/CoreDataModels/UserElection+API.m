@@ -131,16 +131,18 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
     NSDictionary *params = @{ @"address": self.userAddress.address };
+    BOOL officialOnly = [[[AppSettings settings] objectForKey:@"OfficialOnly"] boolValue];
+    NSString *officialOnlyString = officialOnly ? @"True" : @"False";
 
-    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True";
+    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=%@";
 
     // Add query params to the url since AFNetworking serializes these internally anyway
     //  and the parameters parameter below attaches only to the http body for POST
     // Always use officialOnly = True
     if ([[AppSettings settings] valueForKey:@"DEBUG"]) {
-        urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=True&productionDataOnly=false";
+        urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=%@&productionDataOnly=false";
     }
-    NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey];
+    NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey, officialOnlyString];
     NSLog(@"VoterInfo Query: %@", url);
     [manager POST:url
        parameters:params

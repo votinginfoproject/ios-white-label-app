@@ -10,7 +10,7 @@
 **Value:** *(String)* The key to use to initialize the Google Maps API for the polling list map view.
 
 **Key:** GoogleAnalyticsTrackingID  
-**Value:** *(String)* The key to use to initialize the Google Analytics SDK for app tracking. 
+**Value:** *(String)* The key to use to initialize the Google Analytics SDK for app tracking.
 
 **Key:** GoogleDirectionsAPIKey  
 **Value:** *(String)* The key to use for calls to the Google Directions API.
@@ -20,4 +20,7 @@
 
 **Key:** VotingInfoCacheDays  
 **Value:** *(Int)* The number of days to cache votingInfo queries. If not set, no caching is done.
+
+**Key:** OfficialOnly  
+**Value:** *(Bool)* Sets the API query param officialOnly. If false, unoffiical sources will be returned and displayed via the API.
 

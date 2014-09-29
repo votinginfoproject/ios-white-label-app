@@ -16,5 +16,7 @@
     <string>Your Brand Name Here</string>
 	<key>VotingInfoCacheDays</key>
 	<integer>2</integer>
+	<key>OfficialOnly</key>
+	<true/>
 </dict>
 </plist>
