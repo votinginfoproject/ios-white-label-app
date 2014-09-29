@@ -37,7 +37,8 @@
 - (void)configure:(NSDictionary *)link
 {
     self.descriptionLabel.text = link[@"description"];
-    self.descriptionLabel.textColor = [VIPColor secondaryTextColor];
+    self.descriptionLabel.textColor = [VIPColor primaryTextColor];
+    [self.linkButton setTitleColor:[VIPColor linkColor] forState:UIControlStateNormal];
     [self.linkButton setTitle:link[@"buttonTitle"] forState:UIControlStateNormal];
     self.linkType = [link[@"urlScheme"] integerValue];
     self.url = link[@"url"];
