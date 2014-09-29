@@ -16,6 +16,6 @@ install:
     - cp VotingInformationProject/settings.plist.template VotingInformationProject/settings.plist
 
 script:
-    - xctool ARCHS="armv7 armv7s arm64" ONLY_ACTIVE_ARCH=NO -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator7.1 test 
+    - xctool ARCHS="i386" ONLY_ACTIVE_ARCH=NO -workspace VotingInformationProject.xcworkspace -scheme VotingInformationProject -configuration Debug -sdk iphonesimulator test 
     - popd
     - ./scripts/ci/check_copyright.sh
