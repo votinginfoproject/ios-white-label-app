@@ -72,4 +72,10 @@
  */
 + (UIColor*) secondaryTextColor;
 
+/*
+ * key: linkColor
+ * value: A hex string, i.e. '#FFFFFF'
+ */
++ (UIColor*) linkColor;
+
 @end

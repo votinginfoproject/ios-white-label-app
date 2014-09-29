@@ -109,4 +109,13 @@
     return [UIColor colorWithHexString:hexColor];
 }
 
++ (UIColor*)linkColor
+{
+    NSString *hexColor = [[AppSettings settings] valueForKey:@"linkColor"];
+    if (!hexColor) {
+        return [[self class] secondaryTextColor];
+    }
+    return [UIColor colorWithHexString:hexColor];
+}
+
 @end
