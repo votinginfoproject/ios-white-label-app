@@ -7,5 +7,5 @@ pod "MagicalRecord",        "~> 2.2"
 # If you're using Xcode 5 with a brand new project
 # (XCTest based instead of OCUnit based) use this instead:
 target :VotingInformationProjectTests, :exclusive => true do
-    pod 'Kiwi/XCTest'
+    pod 'Kiwi'
 end

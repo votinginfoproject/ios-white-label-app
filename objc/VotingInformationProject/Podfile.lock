@@ -18,11 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - Google-Maps-iOS-SDK (1.6.2)
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/XCTest (2.2.3):
-    - Kiwi/ARC
-    - Kiwi/NonARC
+  - Kiwi (2.3.0)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
@@ -30,13 +26,13 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Google-Maps-iOS-SDK (~> 1.6)
-  - Kiwi/XCTest
+  - Kiwi
   - MagicalRecord (~> 2.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
   Google-Maps-iOS-SDK: 572669521615fa2685696cc391049e3982710402
-  Kiwi: 7b9bc7294de746357213067a1df49cc0a59384e8
+  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.1
