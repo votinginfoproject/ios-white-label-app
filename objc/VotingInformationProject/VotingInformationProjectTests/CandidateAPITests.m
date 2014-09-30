@@ -33,19 +33,21 @@ describe(@"CandidateAPITests", ^{
     it(@"should ensure that getLinksDataArray results have hte proper dict keys", ^{
         Candidate *candidate = [Candidate MR_createEntity];
         candidate.email = @"test.email@somedomain.com";
+        candidate.candidateUrl = @"http://test.com";
 
         NSMutableArray *linksData = [candidate getLinksDataArray];
-        // should only get data for email since candidateUrl and phone are null
+        // should only get data for website since phone is null and email cannot be opened on simulator
         [[theValue([linksData count]) should] equal:theValue(1)];
-        NSDictionary *emailData = linksData[0];
-        [[emailData should] beKindOfClass:[NSDictionary class]];
-        [[emailData[@"description"] should] beNonNil];
-        [[emailData[@"buttonTitle"] should] beNonNil];
-        [[emailData[@"url"] should] beNonNil];
-        [[emailData[@"urlScheme"] should] beNonNil];
+        NSDictionary *websiteData = linksData[0];
+        [[websiteData should] beKindOfClass:[NSDictionary class]];
+        [[websiteData[@"description"] should] beNonNil];
+        [[websiteData[@"buttonTitle"] should] beNonNil];
+        [[websiteData[@"url"] should] beNonNil];
+        [[websiteData[@"urlScheme"] should] beNonNil];
 
-        // ensure emailData urlScheme is of type kCandidateLinkTypeEmail as well
-        [[theValue([emailData[@"urlScheme"] integerValue]) should] equal:theValue(kCandidateLinkTypeEmail)];
+        // ensure websiteData urlScheme is of type kCandidateLinkTypeEmail as well
+        [[theValue([websiteData[@"urlScheme"] integerValue]) should]
+         equal:theValue(kCandidateLinkTypeWebsite)];
     });
    
 });
