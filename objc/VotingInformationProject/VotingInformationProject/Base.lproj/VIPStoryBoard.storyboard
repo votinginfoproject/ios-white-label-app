@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -572,21 +571,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Link Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-h2-ZBz">
-                                                    <rect key="frame" x="20" y="11" width="162" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDN-h2-ZBz">
+                                                    <rect key="frame" x="20" y="5" width="162" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="162" id="LAy-Cd-Xeq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvP-6h-Xh5">
-                                                    <rect key="frame" x="190" y="8" width="89" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvP-6h-Xh5">
+                                                    <rect key="frame" x="190" y="5" width="97" height="34"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="PDN-h2-ZBz" firstAttribute="leading" secondItem="npR-Mc-wwT" secondAttribute="leading" constant="20" symbolic="YES" id="T24-Sr-E72"/>
-                                                <constraint firstItem="PDN-h2-ZBz" firstAttribute="centerY" secondItem="npR-Mc-wwT" secondAttribute="centerY" id="Zuw-cI-tCP"/>
+                                                <constraint firstItem="bvP-6h-Xh5" firstAttribute="top" secondItem="npR-Mc-wwT" secondAttribute="top" constant="5" id="8d5-Od-OEj"/>
+                                                <constraint firstAttribute="bottom" secondItem="PDN-h2-ZBz" secondAttribute="bottom" constant="5" id="Gkg-Uo-qEu"/>
+                                                <constraint firstItem="PDN-h2-ZBz" firstAttribute="leading" secondItem="npR-Mc-wwT" secondAttribute="leading" constant="20" id="P6o-GU-nhC"/>
+                                                <constraint firstItem="PDN-h2-ZBz" firstAttribute="top" secondItem="npR-Mc-wwT" secondAttribute="top" constant="5" id="Wzi-Kr-R2o"/>
+                                                <constraint firstAttribute="trailing" secondItem="bvP-6h-Xh5" secondAttribute="trailing" id="h17-hZ-KEx"/>
+                                                <constraint firstItem="bvP-6h-Xh5" firstAttribute="leading" secondItem="PDN-h2-ZBz" secondAttribute="trailing" constant="8" id="jOW-tv-mNL"/>
+                                                <constraint firstAttribute="bottom" secondItem="bvP-6h-Xh5" secondAttribute="bottom" constant="4" id="v8l-t9-Dxk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -714,7 +721,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVG-M1-LB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2962" y="-652"/>
+            <point key="canvasLocation" x="2962" y="-654"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="1xV-W7-NP6">
