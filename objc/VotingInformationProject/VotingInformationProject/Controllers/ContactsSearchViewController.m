@@ -8,6 +8,7 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
+#import "AboutViewController.h"
 #import "UIWebViewController.h"
 #import "VIPTabBarController.h"
 #import "ContactsSearchViewController.h"
@@ -21,7 +22,7 @@
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
 
-@interface ContactsSearchViewController () <UITextFieldDelegate>
+@interface ContactsSearchViewController () <UITextFieldDelegate, AboutViewControllerDelegate>
 
 @property (strong, nonatomic) Election *activeElection;
 @property (strong, nonatomic) UserAddress *userAddress;
@@ -433,5 +434,21 @@
     NSString *errorTitle = error.localizedDescription
         ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", @"Error message displayed in button on first screen when app cannot get election data");
     self.errorLabel.text = errorTitle;
+}
+
+#pragma mark - AboutViewControllerDelegate
+
+-(void)aboutViewControllerDidClose:(AboutViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AboutSegue"]) {
+        UINavigationController *navigationViewController = (UINavigationController*)segue.destinationViewController;
+        AboutViewController *viewController = navigationViewController.viewControllers[0];
+        viewController.delegate = self;
+    }
 }
 @end
