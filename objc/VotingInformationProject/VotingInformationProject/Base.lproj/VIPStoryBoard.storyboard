@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -41,20 +42,6 @@
                                     <outlet property="delegate" destination="NFr-cT-tr7" id="zug-Zt-poj"/>
                                 </connections>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
-                                <rect key="frame" x="30" y="518" width="260" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="vLA-Uj-WII"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="GO!"/>
-                                <state key="disabled" title="Show Upcoming Election">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tappedShowElectionButton:" destination="NFr-cT-tr7" eventType="touchUpInside" id="7J8-bu-vp3"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BRAND NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9S-9H-o10">
                                 <rect key="frame" x="30" y="37" width="260" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
@@ -116,11 +103,36 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
+                                <rect key="frame" x="80" y="518" width="160" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vLA-Uj-WII"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="GO!"/>
+                                <state key="disabled" title="Show Upcoming Election">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedShowElectionButton:" destination="NFr-cT-tr7" eventType="touchUpInside" id="7J8-bu-vp3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62o-cQ-GfA">
+                                <rect key="frame" x="281" y="521" width="23" height="23"/>
+                                <state key="normal" image="TabBar_about.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kuE-gb-sKk" kind="modal" identifier="AboutSegue" id="wmE-yX-fv4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="V8e-zO-oTj" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="Dca-E8-uNV"/>
+                            <constraint firstItem="V8e-zO-oTj" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="80" id="Dca-E8-uNV"/>
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="V8e-zO-oTj" secondAttribute="bottom" constant="20" id="KW3-9p-B2w"/>
-                            <constraint firstAttribute="trailing" secondItem="V8e-zO-oTj" secondAttribute="trailing" constant="30" id="enK-QZ-XIL"/>
+                            <constraint firstAttribute="trailing" secondItem="V8e-zO-oTj" secondAttribute="trailing" constant="80" id="enK-QZ-XIL"/>
+                            <constraint firstAttribute="trailing" secondItem="62o-cQ-GfA" secondAttribute="trailing" constant="16" id="y4f-oU-Azf"/>
+                            <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="62o-cQ-GfA" secondAttribute="bottom" constant="24" id="z7D-Lv-P6l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
@@ -168,7 +180,6 @@
                         <segue destination="oC0-78-SdT" kind="relationship" relationship="viewControllers" id="rb7-aO-Oso"/>
                         <segue destination="1WY-5C-VSE" kind="relationship" relationship="viewControllers" id="73D-Zt-YjH"/>
                         <segue destination="zjK-nE-Utk" kind="relationship" relationship="viewControllers" id="eY4-Yu-9aR"/>
-                        <segue destination="kuE-gb-sKk" kind="relationship" relationship="viewControllers" id="eiS-19-q7Y"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDG-VB-KDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -751,7 +762,7 @@
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="fQj-HQ-I0g" customClass="AboutViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OF2-Ln-1CT">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -838,9 +849,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About This App" id="KhW-d4-g1X">
-                        <barButtonItem key="leftBarButtonItem" image="NavigationBar_home.png" id="FD2-qC-fNe">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="UR1-iy-myW">
                             <connections>
-                                <segue destination="NFr-cT-tr7" kind="modal" identifier="HomeSegue" id="Pyh-G2-h10"/>
+                                <action selector="close:" destination="fQj-HQ-I0g" id="xJs-fw-e6k"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -853,7 +864,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmx-cU-LlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1946" y="1727"/>
+            <point key="canvasLocation" x="1946" y="-1451"/>
         </scene>
         <!--Polling Sites-->
         <scene sceneID="vau-lL-Dmt">
@@ -1113,7 +1124,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejX-LD-FEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="1727"/>
+            <point key="canvasLocation" x="1420" y="-1451"/>
         </scene>
         <!--Details-->
         <scene sceneID="wif-Dh-IgL">

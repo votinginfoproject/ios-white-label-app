@@ -37,8 +37,7 @@
     // Ex selected image for TabBar_ballot is TabBar_ballot-active
     NSArray *imageNames = @[@"TabBar_ballot",
                             @"TabBar_details",
-                            @"TabBar_polling",
-                            @"TabBar_about"];
+                            @"TabBar_polling"];
     NSUInteger index = 0;
     UITabBar *tabBar = self.tabBar;
     for (UITabBarItem* tabBarItem in tabBar.items) {
