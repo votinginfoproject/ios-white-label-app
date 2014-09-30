@@ -75,6 +75,18 @@ If no data loads:
   - Ensure you correctly copied your browser Civic Info API key to the proper location (between the <string> tags) in the CivicInfoAPIKey.plist file.
 
 
+### Updating to Xcode6
+
+Checkout the most recent version of the project. Then, with Xcode closed, run
+```
+cd objc/VotingInformationProject && pod install
+```
+
+Then, open Xcode and do:
+  - Project -> Clean
+  - Project -> Build
+
+
 ## Adding Tracking via Google Analytics
 
 Generate a tracking ID for your app here:
