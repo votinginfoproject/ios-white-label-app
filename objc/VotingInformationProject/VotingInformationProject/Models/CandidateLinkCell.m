@@ -10,8 +10,6 @@
 
 @interface CandidateLinkCell()
 
-- (IBAction)linkPressed:(id)sender;
-
 @end
 
 @implementation CandidateLinkCell
