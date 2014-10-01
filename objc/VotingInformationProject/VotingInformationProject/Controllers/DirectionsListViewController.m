@@ -210,6 +210,7 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
                                                  @"Title for the action sheet Open in Apple Maps item");
     NSString *cancelButtonTitle = NSLocalizedString(@"Cancel", @"Title for a Cancel button");
 
+    // TODO: Use UIAlertController in iOS8+
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:openInMaps
                                                              delegate:self
                                                     cancelButtonTitle:nil

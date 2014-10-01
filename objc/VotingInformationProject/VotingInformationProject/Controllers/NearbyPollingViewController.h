@@ -18,6 +18,7 @@
                                                             GMSMapViewDelegate,
                                                             UITableViewDelegate,
                                                             UITableViewDataSource,
+                                                            UIActionSheetDelegate,
                                                             DirectionsListViewControllerDelegate>
 
 @property (strong, nonatomic) UserElection *election;
