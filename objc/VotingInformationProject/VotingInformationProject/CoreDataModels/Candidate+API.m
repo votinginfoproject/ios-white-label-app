@@ -7,6 +7,7 @@
 //
 
 #import "Candidate+API.h"
+#import "VIPPhoneNumber.h"
 
 @implementation Candidate (API)
 
@@ -97,8 +98,7 @@
 
 + (NSURL*)makePhoneURL:(NSString*)phone
 {
-    NSString *urlString = [NSString stringWithFormat:@"telprompt:%@", phone];
-    return [NSURL URLWithString:urlString];
+    return [VIPPhoneNumber makeTelPromptLink:phone];
 }
 
 + (NSURL*)makeWebsiteURL:(NSString*)website

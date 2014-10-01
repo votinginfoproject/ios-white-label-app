@@ -23,6 +23,7 @@
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
 		49265ACC18DA473A00F21083 /* VIPColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACB18DA473A00F21083 /* VIPColor.m */; };
 		49265ACF18DA4C1200F21083 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACE18DA4C1200F21083 /* UIColor+Hex.m */; };
+		49270DD819DB47B4003624DF /* VIPPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 49270DD719DB47B4003624DF /* VIPPhoneNumber.m */; };
 		49273490188DE80000B25554 /* elections.json in Resources */ = {isa = PBXBuildFile; fileRef = 4927348F188DE80000B25554 /* elections.json */; };
 		4940239D18A2D355004FEF48 /* PollingLocationAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940239C18A2D355004FEF48 /* PollingLocationAPITests.m */; };
 		494023A018A2E961004FEF48 /* VIPAddress+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940239F18A2E961004FEF48 /* VIPAddress+API.m */; };
@@ -211,6 +212,8 @@
 		49265ACB18DA473A00F21083 /* VIPColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPColor.m; sourceTree = "<group>"; };
 		49265ACD18DA4C1200F21083 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		49265ACE18DA4C1200F21083 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		49270DD619DB47B4003624DF /* VIPPhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPPhoneNumber.h; sourceTree = "<group>"; };
+		49270DD719DB47B4003624DF /* VIPPhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPPhoneNumber.m; sourceTree = "<group>"; };
 		4927348F188DE80000B25554 /* elections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = elections.json; sourceTree = "<group>"; };
 		4940239C18A2D355004FEF48 /* PollingLocationAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollingLocationAPITests.m; sourceTree = "<group>"; };
 		4940239E18A2E961004FEF48 /* VIPAddress+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "VIPAddress+API.h"; path = "CoreDataModels/VIPAddress+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -795,6 +798,8 @@
 				49041DB018DB9677007A0F1D /* UIImage+Scale.m */,
 				49F5D28618D399D600BB352C /* AppSettings.h */,
 				49F5D28718D399D600BB352C /* AppSettings.m */,
+				49270DD619DB47B4003624DF /* VIPPhoneNumber.h */,
+				49270DD719DB47B4003624DF /* VIPPhoneNumber.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1187,6 +1192,7 @@
 				49DB5B0D1958D40500F41604 /* PollingLocation.m in Sources */,
 				494023AC18A2F146004FEF48 /* DataSource+API.m in Sources */,
 				4991F3A918C68296000023D6 /* VIPManagedObject.m in Sources */,
+				49270DD819DB47B4003624DF /* VIPPhoneNumber.m in Sources */,
 				49E981531892F81600E26C5D /* FindElectionsCell.m in Sources */,
 				49DB5B101958D40600F41604 /* UserAddress.m in Sources */,
 				495CB9C518B2A10D00243ADB /* CandidateDetailsViewController.m in Sources */,
