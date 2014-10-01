@@ -348,6 +348,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)showDirectionsSwitcherForCell:(PollingLocationWrapper*)plWrapper
+{
+    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:plWrapper];
+}
+
 #pragma mark - GMSMapView delegate
 
 - (UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
@@ -385,8 +390,18 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (index < 0) {
         return;
     }
+    [self showDirectionsSwitcherForCell:self.cells[index]];
 
-    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:self.cells[index]];
+    /*
+    if (NSClassFromString(@"UIAlertController")) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert!"
+                                                                       message:@"I'm an alert!"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:self.cells[index]];
+    }
+     */
 }
 
 /**
@@ -433,6 +448,16 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     return cell.tableCell;
 }
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PollingLocationCell *cell = (PollingLocationCell*)
+        [tableView cellForRowAtIndexPath:indexPath];
+    PollingLocationWrapper *plWrapper = cell.owner;
+    [self showDirectionsSwitcherForCell:plWrapper];
+}
+
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return nil;
@@ -451,15 +476,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         DirectionsListViewController *directionsListVC = navigationController.viewControllers[0];
         directionsListVC.delegate = self;
 
-        PollingLocationWrapper *plWrapper = nil;
-        if ([sender isKindOfClass:[PollingLocationWrapper class]]) {
-            plWrapper = sender;
-            directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
-        } else if ([sender isKindOfClass:[UITableViewCell class]]) {
-            PollingLocationCell *cell = (PollingLocationCell*)sender;
-            plWrapper = cell.owner;
-        }
-
+        PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)sender;
         directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
         directionsListVC.sourceAddress = self.userAddress.address;
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
