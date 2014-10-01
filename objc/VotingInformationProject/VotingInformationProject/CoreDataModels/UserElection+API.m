@@ -5,6 +5,7 @@
 //  Created by Andrew Fink on 1/31/14.
 //  
 //
+#import "CoreData+MagicalRecord.h"
 
 #import "UserElection+API.h"
 #import "AppSettings.h"
@@ -94,6 +95,7 @@
     if ([self.pollingLocations count] == 0 && [self.contests count] == 0 && [self.states count] == 0) {
         return YES;
     }
+
     // Update if election data is more than x days old
     int days = [[[AppSettings settings] valueForKey:@"VotingInfoCacheDays"] intValue];
     double secondsSinceUpdate = [self.lastUpdated timeIntervalSinceNow];
@@ -124,27 +126,37 @@
     }
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:5];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    // Serializes the http body POST parameters as JSON, which is what the Civic Info API expects
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
-    NSDictionary *params = @{ @"address": self.userAddress.address };
     BOOL officialOnly = [[[AppSettings settings] objectForKey:@"OfficialOnly"] boolValue];
-    NSString *officialOnlyString = officialOnly ? @"True" : @"False";
 
-    NSString *urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=%@";
-
-    // Add query params to the url since AFNetworking serializes these internally anyway
-    //  and the parameters parameter below attaches only to the http body for POST
-    // Always use officialOnly = True
-    if ([[AppSettings settings] valueForKey:@"DEBUG"]) {
-        urlFormat = @"https://www.googleapis.com/civicinfo/us_v1/voterinfo/%@/lookup?key=%@&officialOnly=%@&productionDataOnly=false";
+    // set GET parameters for query
+    // address
+    [params setObject:self.userAddress.address forKey:@"address"];
+    
+    // election ID
+    if (self.electionId != nil) {
+        [params setObject:self.electionId forKey:@"electionId"];
     }
-    NSString *url =[NSString stringWithFormat:urlFormat, self.electionId, apiKey, officialOnlyString];
+
+    // official only
+    [params setObject:(officialOnly ? @"True" : @"False") forKey:@"officialOnly"];
+
+    // debug key
+    if ([[AppSettings settings] valueForKey:@"DEBUG"]) {
+        [params setObject:@"false" forKey:@"productionDataOnly"];
+    }
+
+    // API key
+    [params setObject:apiKey forKey:@"key"];
+
+    NSString *url =[[AppSettings settings] valueForKey:@"VoterInfoQueryURL"];
     NSLog(@"VoterInfo Query: %@", url);
-    [manager POST:url
+
+    [manager GET:url
        parameters:params
           success:^(AFHTTPRequestOperation *operation, NSDictionary *json) {
               NSError *error = [self parseVoterInfoJSON:json];

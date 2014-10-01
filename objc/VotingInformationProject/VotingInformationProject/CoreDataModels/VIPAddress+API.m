@@ -5,6 +5,7 @@
 //  Created by Andrew Fink on 2/5/14.
 //  
 //
+#import "CoreData+MagicalRecord.h"
 
 #import <AddressBookUI/AddressBookUI.h>
 #import <AddressBook/AddressBook.h>

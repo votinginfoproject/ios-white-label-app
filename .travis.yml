@@ -1,4 +1,5 @@
 language: objective-c
+xcode_sdk: iphonesimulator7.1
 
 before_install:
     # Cocoapods expects UTF-8 terminal and throws warning

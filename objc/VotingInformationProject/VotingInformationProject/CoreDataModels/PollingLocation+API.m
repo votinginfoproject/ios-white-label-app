@@ -8,6 +8,7 @@
 
 #import "PollingLocation+API.h"
 #import "Election+API.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation PollingLocation (API)
 

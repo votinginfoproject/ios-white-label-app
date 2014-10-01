@@ -6,6 +6,7 @@
 //
 
 #import "Contest+API.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation Contest (API)
 

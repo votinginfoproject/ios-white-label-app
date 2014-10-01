@@ -22,6 +22,7 @@
 #import "VIPEmptyTableViewDataSource.h"
 #import "VIPTabBarController.h"
 #import "VIPUserDefaultsKeys.h"
+#import "CoreData+MagicalRecord.h"
 
 #define AS_DIRECTIONS_TO_INDEX 0
 #define AS_DIRECTIONS_FROM_INDEX 1

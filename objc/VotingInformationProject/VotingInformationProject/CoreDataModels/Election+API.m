@@ -9,6 +9,7 @@
 #import "AppSettings.h"
 #import "AFNetworking/AFNetworking.h"
 #import "VIPError.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation Election (API)
 
@@ -129,14 +130,21 @@
 
 + (NSDictionary*)getElectionRequestParamsForUrl:(NSString*)requestUrl
 {
+    NSLog(@"Getting election request parameters...");
     NSDictionary *requestParams = nil;
     NSString *googleCivicAPIUrl = [[AppSettings settings]
-                                   objectForKey:@"GoogleCivicInfoElectionQueryURL"];
+                                   objectForKey:@"ElectionListURL"];
+    NSLog(@"URL should be %@", googleCivicAPIUrl);
+    NSLog(@"URL is %@", requestUrl);
+
     if ([requestUrl isEqualToString:googleCivicAPIUrl]) {
+        NSLog(@"Getting key...");
         NSString *civicApiKeyPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey"
                                                                     ofType:@"plist"];
         NSDictionary *civicApiKeyDict = [[NSDictionary alloc] initWithContentsOfFile:civicApiKeyPath];
         requestParams = @{@"key": [civicApiKeyDict valueForKey:@"GoogleCivicInfoAPIKey"]};
+    } else {
+        NSLog(@"URL mismatch!");
     }
 
     return requestParams;
@@ -144,13 +152,17 @@
 
 + (void)getElectionList:(void (^)(NSArray *, NSError *))resultsBlock
 {
+    NSLog(@"Getting election list...");
+
     // Setup request manager
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
                                                          setByAddingObjectsFromSet:[NSSet setWithObject:@"text/plain"]];
 
+    // TODO: no ElectionListURL any more; re-query with election ID
     NSString *requestUrl = [[AppSettings settings] objectForKey:@"ElectionListURL"];
+    ///////////////////////////////////////////////////////////////
     NSLog(@"URL: %@", requestUrl);
 
     [manager GET:requestUrl

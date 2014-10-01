@@ -13,6 +13,7 @@
 #import "Contest.h"
 #import "State.h"
 #import "PollingLocation+API.h"
+#import "CoreData+MagicalRecord.h"
 
 SPEC_BEGIN(ElectionAPITests)
 

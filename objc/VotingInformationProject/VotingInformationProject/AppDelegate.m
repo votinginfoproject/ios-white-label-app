@@ -9,6 +9,7 @@
 #import "AppSettings.h"
 #import "GAI.h"
 #import "VIPColor.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation AppDelegate
 

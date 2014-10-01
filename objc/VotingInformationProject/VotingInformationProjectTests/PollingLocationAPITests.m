@@ -10,6 +10,7 @@
 
 #import "PollingLocation+API.h"
 #import "Election+API.h"
+#import "CoreData+MagicalRecord.h"
 
 SPEC_BEGIN(PollingLocationAPITests)
 
@@ -109,7 +110,7 @@ describe(@"PLAPITests", ^{
         PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:YES];
         [[theValue([pl isAvailable]) should] equal:theValue(NO)];
         // Shouldnt matter if earlyVoteSite or not
-        pl.isEarlyVoteSite = NO;
+        pl.isEarlyVoteSite = @(NO);
         [[theValue([pl isAvailable]) should] equal:theValue(NO)];
     });
 
@@ -139,7 +140,7 @@ describe(@"PLAPITests", ^{
         PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:YES];
         [[theValue([pl isAvailable]) should] equal:theValue(YES)];
         // Shouldnt matter if earlyVoteSite or not
-        pl.isEarlyVoteSite = NO;
+        pl.isEarlyVoteSite = @(NO);
         [[theValue([pl isAvailable]) should] equal:theValue(YES)];
     });
 

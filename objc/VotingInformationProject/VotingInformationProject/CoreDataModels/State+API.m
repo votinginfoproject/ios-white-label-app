@@ -7,6 +7,7 @@
 //
 
 #import "State+API.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation State (API)
 

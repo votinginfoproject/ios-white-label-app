@@ -6,6 +6,8 @@
 //  
 //
 
+#import "CoreData+MagicalRecord.h"
+
 #import "UserAddress+API.h"
 
 #import "VIPError.h"

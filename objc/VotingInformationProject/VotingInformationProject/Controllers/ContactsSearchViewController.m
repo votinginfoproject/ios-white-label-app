@@ -8,6 +8,8 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
+#import "CoreData+MagicalRecord.h"
+
 #import "AboutViewController.h"
 #import "UIWebViewController.h"
 #import "VIPTabBarController.h"
@@ -211,6 +213,8 @@
     [self.electionPickerButton setTitle:NSLocalizedString(@"Loading elections...",
                                                           @"Text for election picker button while elections are loading")
                                forState:UIControlStateNormal];
+    ////////////
+    //TODO: query twice for list
     [Election getElectionList:^(NSArray *elections, NSError *error) {
         self.elections = elections;
         if (error) {
@@ -219,6 +223,7 @@
             [self displayGetElectionsError:error];
         }
     }];
+    //////////////////
 }
 
 /**

@@ -165,7 +165,6 @@
 		53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A7981889A05B00920A70 /* AppDelegate.m */; };
 		53D3A79C1889A05B00920A70 /* VotingInformationProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53D3A79A1889A05B00920A70 /* VotingInformationProject.xcdatamodeld */; };
 		53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A79D1889A05B00920A70 /* Images.xcassets */; };
-		53D3A7A51889A05B00920A70 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7A41889A05B00920A70 /* XCTest.framework */; };
 		53D3A7A61889A05B00920A70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A7861889A05B00920A70 /* Foundation.framework */; };
 		53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
 		53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
@@ -426,7 +425,6 @@
 		53D3A79B1889A05B00920A70 /* VotingInformationProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VotingInformationProject.xcdatamodel; sourceTree = "<group>"; };
 		53D3A79D1889A05B00920A70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		53D3A7A31889A05B00920A70 /* VotingInformationProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VotingInformationProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		53D3A7A41889A05B00920A70 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
 		53D3A7AF1889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		548B2CFFD32E415181767B53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -459,7 +457,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53D3A7A51889A05B00920A70 /* XCTest.framework in Frameworks */,
 				53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */,
 				53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */,
 				53D3A7A61889A05B00920A70 /* Foundation.framework in Frameworks */,
@@ -837,7 +834,6 @@
 				53D3A7881889A05B00920A70 /* CoreGraphics.framework */,
 				53D3A78A1889A05B00920A70 /* UIKit.framework */,
 				53D3A78C1889A05B00920A70 /* CoreData.framework */,
-				53D3A7A41889A05B00920A70 /* XCTest.framework */,
 				548B2CFFD32E415181767B53 /* libPods.a */,
 				EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */,
 			);

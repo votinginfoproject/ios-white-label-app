@@ -7,6 +7,7 @@
 
 #import "VIPManagedAddress.h"
 #import "VIPError.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation VIPManagedAddress
 

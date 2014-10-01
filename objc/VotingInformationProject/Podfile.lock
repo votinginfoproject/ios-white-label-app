@@ -1,23 +1,26 @@
 PODS:
-  - AFNetworking (2.1.0):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.1.0):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.1.0):
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.1.0)
-  - AFNetworking/Security (2.1.0)
-  - AFNetworking/Serialization (2.1.0)
-  - AFNetworking/UIKit (2.1.0):
-    - AFNetworking/NSURLConnection
-  - Google-Maps-iOS-SDK (1.6.2)
+    - AFNetworking/NSURLSession
+  - Google-Maps-iOS-SDK (1.8.1)
   - Kiwi (2.3.0)
   - libPhoneNumber-iOS (0.7.3)
   - MagicalRecord (2.2):
@@ -32,8 +35,8 @@ DEPENDENCIES:
   - MagicalRecord (~> 2.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
-  Google-Maps-iOS-SDK: 572669521615fa2685696cc391049e3982710402
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Google-Maps-iOS-SDK: 4fe35d952dbd1e4dacfcfa178e9cce2f06d67ecc
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224

@@ -8,6 +8,7 @@
 
 #import "Candidate+API.h"
 #import "VIPPhoneNumber.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation Candidate (API)
 

@@ -7,6 +7,7 @@
 //
 
 #import "VIPManagedObject.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation VIPManagedObject
 
