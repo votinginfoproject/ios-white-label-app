@@ -14,6 +14,7 @@
 
 #import "AppSettings.h"
 #import "ContactsSearchViewController.h"
+#import "DirectionsViewSegueData.h"
 #import "GDDirectionsService.h"
 #import "PollingInfoWindowView.h"
 #import "PollingLocationCell.h"
@@ -32,6 +33,7 @@
 @interface NearbyPollingViewController ()
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
@@ -59,6 +61,7 @@
     NSManagedObjectContext *_moc;
     GMSMarker *_userAddressMarker;
     NSMutableArray *_cells;
+    PollingLocationWrapper *_actionSheetPLWrapper;
 }
 
 static const int MAP_VIEW = 0;
@@ -162,6 +165,14 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                         ? earlyVoteMessage : pollingMessage;
 }
 
+- (CLLocationManager*)locationManager
+{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return _locationManager;
+}
+
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
                   withTitle:(NSString*)title
 {
@@ -191,9 +202,12 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     [super viewDidLoad];
 
+    // iOS 8 location authorization
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
     self.screenName = @"Nearby Polling Screen";
-    self.mapView.delegate = self;
-    self.mapView.accessibilityElementsHidden = NO;
 
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
     self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -204,11 +218,16 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.listView.backgroundView = nil;
     self.contentView.backgroundColor = [UIColor clearColor];
     self.contentView.opaque = NO;
+
+    self.mapView.delegate = self;
+    self.mapView.accessibilityElementsHidden = NO;
+    self.mapView.settings.myLocationButton = YES;
 };
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
     tabBarController.title = NSLocalizedString(@"Polling Sites",
@@ -234,6 +253,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
                                                                  zoom:zoom];
+    self.mapView.camera = camera;
+    self.mapView.myLocationEnabled = YES;
+
 
     // Set listener for segmented control
     VIPPollingLocationType type = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
@@ -243,10 +265,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [self.siteFilter addTarget:self
                         action:@selector(filterLocations:)
               forControlEvents:UIControlEventValueChanged];
-
-    // Initialize Map View
-    self.mapView.camera = camera;
-    self.mapView.myLocationEnabled = NO;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
@@ -274,9 +292,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
     [[NSUserDefaults standardUserDefaults] setInteger:self.siteFilter.selectedSegmentIndex
                                                forKey:USER_DEFAULTS_SITE_FILTER_KEY];
+    self.mapView.myLocationEnabled = NO;
 }
-
-
 
 - (void)onViewSwitcherClicked:(id)sender
 {
@@ -348,7 +365,90 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - GMSMapView delegate
+- (void)showDirectionsSwitcherForCell:(PollingLocationWrapper*)plWrapper
+{
+    // FIXME: mapView.myLocation resets itself to nil on ios8 after a short time, but only
+    //        until location refreshes
+    //        may only be a simulator issue
+    if (!self.mapView.myLocation) {
+        // First, if no current location option, skip directly to segue
+        [self directionsSegueTo:plWrapper fromAddress:self.userAddress];
+        return;
+    }
+
+    NSString *alertTitle = NSLocalizedString(@"From Location", nil);
+    NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
+    NSString *yourAddressTitle = NSLocalizedString(@"Your Address", nil);
+    NSString *currentLocationTitle = NSLocalizedString(@"Current Location", nil);
+    NearbyPollingViewController *viewController = self;
+
+    // Next, we have current location, so give the user an alert to choose their source location
+    // In iOS8+, use UIAlertController
+    if (NSClassFromString(@"UIAlertController")) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:alertTitle
+                                                                        message:nil
+                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
+        [alert addAction:[UIAlertAction actionWithTitle:cancelTitle
+                                                  style:UIAlertActionStyleCancel
+                                                handler:nil]];
+
+        UIAlertAction *yourAddressAction = [UIAlertAction actionWithTitle:yourAddressTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction) {
+
+            [viewController directionsSegueTo:plWrapper fromAddress:viewController.userAddress];
+        }];
+        [alert addAction:yourAddressAction];
+
+        UIAlertAction *currentLocationAction = [UIAlertAction actionWithTitle:currentLocationTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction) {
+
+            [viewController directionsSegueTo:plWrapper fromLocation:viewController.mapView.myLocation];
+        }];
+        [alert addAction:currentLocationAction];
+
+        [self presentViewController:alert animated:YES completion:nil];
+    // Use UIActionSheet < iOS8
+    } else {
+        UIActionSheet *alert = [[UIActionSheet alloc] initWithTitle:alertTitle
+                                                           delegate:self
+                                                  cancelButtonTitle:cancelTitle
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:yourAddressTitle, currentLocationTitle, nil];
+        _actionSheetPLWrapper = plWrapper;
+        [alert showInView:[self.view window]];
+    }
+}
+
+- (void)directionsSegueTo:(PollingLocationWrapper*)plWrapper fromAddress:(UserAddress*)address
+{
+    NSString *from = address.address;
+    NSString *to = [plWrapper.location.address toABAddressString:YES];
+    DirectionsViewSegueData *segueData =
+    [DirectionsViewSegueData dataWithSource:from andDestination:to];
+    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];
+}
+
+- (void)directionsSegueTo:(PollingLocationWrapper*)plWrapper fromLocation:(CLLocation*)location
+{
+    NSString *from = [NSString stringWithFormat:@"%f,%f",
+                      location.coordinate.latitude, location.coordinate.longitude];
+    NSString *to = [plWrapper.location.address toABAddressString:YES];
+    DirectionsViewSegueData *segueData =
+    [DirectionsViewSegueData dataWithSource:from andDestination:to];
+    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self directionsSegueTo:_actionSheetPLWrapper fromAddress:self.userAddress];
+    } else if (buttonIndex == 1) {
+        [self directionsSegueTo:_actionSheetPLWrapper fromLocation:self.mapView.myLocation];
+    }
+    _actionSheetPLWrapper = nil;
+}
+
+#pragma mark - GMSMapViewDelegate
 
 - (UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
 {
@@ -385,8 +485,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (index < 0) {
         return;
     }
-
-    [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:self.cells[index]];
+    [self showDirectionsSwitcherForCell:self.cells[index]];
 }
 
 /**
@@ -433,6 +532,16 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     return cell.tableCell;
 }
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PollingLocationCell *cell = (PollingLocationCell*)
+        [tableView cellForRowAtIndexPath:indexPath];
+    PollingLocationWrapper *plWrapper = cell.owner;
+    [self showDirectionsSwitcherForCell:plWrapper];
+}
+
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return nil;
@@ -451,17 +560,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         DirectionsListViewController *directionsListVC = navigationController.viewControllers[0];
         directionsListVC.delegate = self;
 
-        PollingLocationWrapper *plWrapper = nil;
-        if ([sender isKindOfClass:[PollingLocationWrapper class]]) {
-            plWrapper = sender;
-            directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
-        } else if ([sender isKindOfClass:[UITableViewCell class]]) {
-            PollingLocationCell *cell = (PollingLocationCell*)sender;
-            plWrapper = cell.owner;
-        }
-
-        directionsListVC.destinationAddress = [plWrapper.location.address toABAddressString:YES];
-        directionsListVC.sourceAddress = self.userAddress.address;
+        DirectionsViewSegueData *data = (DirectionsViewSegueData*)sender;
+        directionsListVC.destinationAddress = data.destination;
+        directionsListVC.sourceAddress = data.source;
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;

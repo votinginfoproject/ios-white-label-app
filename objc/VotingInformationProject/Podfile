@@ -1,7 +1,7 @@
 platform :ios, '7.0'
 
 pod "AFNetworking",         "~> 2.0"
-pod "Google-Maps-iOS-SDK",  "~> 1.6"
+pod "Google-Maps-iOS-SDK",  "~> 1.8.1"
 pod "MagicalRecord",        "~> 2.2"
 pod "libPhoneNumber-iOS",   "~> 0.7"
 

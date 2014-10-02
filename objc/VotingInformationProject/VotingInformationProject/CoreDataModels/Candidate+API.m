@@ -108,6 +108,7 @@
 
 + (NSURL*)makeEmailURL:(NSString*)email
 {
+    NSLog(@"Candidate Email: %@", email);
     NSString *urlString = [NSString stringWithFormat:@"mailto:%@", email];
     return [NSURL URLWithString:urlString];
 }

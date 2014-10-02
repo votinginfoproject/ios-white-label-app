@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -873,7 +874,7 @@
                         <viewControllerLayoutGuide type="bottom" id="nTU-4R-KE5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OOX-4h-T5b">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vGb-SD-759">
@@ -927,7 +928,6 @@
                                                     <outlet property="distance" destination="1ha-6N-tX9" id="KP0-Ol-7kf"/>
                                                     <outlet property="image" destination="FrZ-yR-9S1" id="vvj-Tw-17s"/>
                                                     <outlet property="name" destination="R7p-iM-glq" id="5Mi-eQ-Ofd"/>
-                                                    <segue destination="jgN-a0-jrp" kind="modal" identifier="DirectionsViewSegue" id="Y8T-cC-xzT"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -976,6 +976,7 @@
                         <outlet property="listView" destination="OJL-jN-nx5" id="Xbi-iH-MBY"/>
                         <outlet property="mapView" destination="6DM-NM-eBM" id="gHh-fx-ZZS"/>
                         <outlet property="siteFilter" destination="vGb-SD-759" id="Xy8-NS-vEb"/>
+                        <segue destination="jgN-a0-jrp" kind="modal" identifier="DirectionsViewSegue" id="NjA-8o-DJO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsg-MQ-szX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1178,7 +1179,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eBc-MR-pin"/>
+        <segue reference="BSD-rg-h3n"/>
         <segue reference="cdu-r9-jOY"/>
     </inferredMetricsTieBreakers>
 </document>
