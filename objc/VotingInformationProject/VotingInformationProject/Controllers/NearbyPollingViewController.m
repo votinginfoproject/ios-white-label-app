@@ -165,6 +165,14 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                         ? earlyVoteMessage : pollingMessage;
 }
 
+- (CLLocationManager*)locationManager
+{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return _locationManager;
+}
+
 - (GMSMarker*) setPlacemark:(CLLocationCoordinate2D)position
                   withTitle:(NSString*)title
 {
@@ -194,10 +202,12 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     [super viewDidLoad];
 
+    // iOS 8 location authorization
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+
     self.screenName = @"Nearby Polling Screen";
-    self.mapView.delegate = self;
-    self.mapView.accessibilityElementsHidden = NO;
-    self.mapView.settings.myLocationButton = YES;
 
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
     self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -209,16 +219,15 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.contentView.backgroundColor = [UIColor clearColor];
     self.contentView.opaque = NO;
 
-    // iOS 8 location authorization
-    self.locationManager = [[CLLocationManager alloc] init];
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
+    self.mapView.delegate = self;
+    self.mapView.accessibilityElementsHidden = NO;
+    self.mapView.settings.myLocationButton = YES;
 };
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
 
     tabBarController.title = NSLocalizedString(@"Polling Sites",
@@ -244,6 +253,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
                                                                  zoom:zoom];
+    self.mapView.camera = camera;
+    self.mapView.myLocationEnabled = YES;
+
 
     // Set listener for segmented control
     VIPPollingLocationType type = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
@@ -253,10 +265,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [self.siteFilter addTarget:self
                         action:@selector(filterLocations:)
               forControlEvents:UIControlEventValueChanged];
-
-    // Initialize Map View
-    self.mapView.camera = camera;
-    self.mapView.myLocationEnabled = YES;
 
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
@@ -359,7 +367,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (void)showDirectionsSwitcherForCell:(PollingLocationWrapper*)plWrapper
 {
-    // FIXME: mapView.myLocation resets itself to nil on ios8 after a short time
+    // FIXME: mapView.myLocation resets itself to nil on ios8 after a short time, but only
+    //        until location refreshes
+    //        may only be a simulator issue
     if (!self.mapView.myLocation) {
         // First, if no current location option, skip directly to segue
         [self directionsSegueTo:plWrapper fromAddress:self.userAddress];
