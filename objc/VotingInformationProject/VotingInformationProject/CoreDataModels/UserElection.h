@@ -5,36 +5,23 @@
 //  Created by Andrew Fink on 6/24/14.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "JSONModel.h"
+#import "Contest.h"
+#import "EarlyVoteSite.h"
 #import "Election.h"
+#import "PollingLocation.h"
+#import "State.h"
 
-@class Contest, PollingLocation, State, UserAddress;
 
-@interface UserElection : Election
+@interface UserElection : JSONModel
 
-@property (nonatomic, retain) NSDate * lastUpdated;
-@property (nonatomic, retain) NSSet *contests;
-@property (nonatomic, retain) NSSet *pollingLocations;
-@property (nonatomic, retain) NSSet *states;
-@property (nonatomic, retain) UserAddress *userAddress;
-@end
-
-@interface UserElection (CoreDataGeneratedAccessors)
-
-- (void)addContestsObject:(Contest *)value;
-- (void)removeContestsObject:(Contest *)value;
-- (void)addContests:(NSSet *)values;
-- (void)removeContests:(NSSet *)values;
-
-- (void)addPollingLocationsObject:(PollingLocation *)value;
-- (void)removePollingLocationsObject:(PollingLocation *)value;
-- (void)addPollingLocations:(NSSet *)values;
-- (void)removePollingLocations:(NSSet *)values;
-
-- (void)addStatesObject:(State *)value;
-- (void)removeStatesObject:(State *)value;
-- (void)addStates:(NSSet *)values;
-- (void)removeStates:(NSSet *)values;
+@property (nonatomic, strong) NSString *kind;
+@property (nonatomic, strong) VIPAddress *normalizedInput;
+@property (nonatomic, strong) Election *election;
+@property (nonatomic, strong) NSArray<Election, Optional> *otherElections;
+@property (nonatomic, strong) NSArray<Contest, Optional> *contests;
+@property (nonatomic, strong) NSArray<PollingLocation, Optional> *pollingLocations;
+@property (nonatomic, strong) NSArray<EarlyVoteSite, Optional> *earlyVoteSites;
+@property (nonatomic, strong) NSArray<State, Optional> *state;
 
 @end

@@ -58,7 +58,7 @@
 
 - (BOOL)isVIPDataAvailable
 {
-    return self.elections && self.currentElection;
+    return self.currentElection ? YES : NO;
 }
 
 /* Loading the data from cache allows us to skip the "Select address/party" modal
@@ -66,15 +66,18 @@
  */
 - (void)loadVIPDataFromCache
 {
+    // TODO: Reimplement with hydration via stored UserElection json object
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *address = [defaults stringForKey:USER_DEFAULTS_STORED_ADDRESS];
-    NSString *electionId = [defaults stringForKey:USER_DEFAULTS_ELECTION_ID];
-    NSString *party = [defaults stringForKey:USER_DEFAULTS_PARTY];
 
-    UserAddress *userAddress = [UserAddress MR_findFirstByAttribute:@"address" withValue:address];
+    NSString *party = [defaults stringForKey:USER_DEFAULTS_PARTY];
     self.currentParty = party;
-    self.elections = [Election getFutureElections];
-    self.currentElection = [UserElection getUnique:electionId withUserAddress:userAddress];
+
+    NSError* error = nil;
+    NSString *currentJson = [defaults objectForKey:USER_DEFAULTS_JSON];
+    UserElection *votingInfo = [[UserElection alloc] initWithString:currentJson error:&error];
+    if (!error) {
+        self.currentElection = votingInfo;
+    }
 }
 
 @end

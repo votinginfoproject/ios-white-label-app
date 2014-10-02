@@ -6,24 +6,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class DataSource, ElectionAdministrationBody, State, UserElection;
+#import "DataSource.h"
+#import "ElectionAdministrationBody.h"
 
-@interface State : VIPManagedObject
-
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSSet *dataSources;
-@property (nonatomic, retain) ElectionAdministrationBody *electionAdministrationBody;
-@property (nonatomic, retain) UserElection *userElection;
-@property (nonatomic, retain) State *localJurisdiction;
+@protocol State
 @end
 
-@interface State (CoreDataGeneratedAccessors)
+@interface State : VIPModel
 
-- (void)addDataSourcesObject:(DataSource *)value;
-- (void)removeDataSourcesObject:(DataSource *)value;
-- (void)addDataSources:(NSSet *)values;
-- (void)removeDataSources:(NSSet *)values;
-
+@property (nonatomic, strong) NSString<Optional> * name;
+@property (nonatomic, strong) NSArray<DataSource, Optional> *dataSources;
+@property (nonatomic, strong) ElectionAdministrationBody<Optional> *electionAdministrationBody;
+@property (nonatomic, strong) State<Optional> *localJurisdiction;
 @end

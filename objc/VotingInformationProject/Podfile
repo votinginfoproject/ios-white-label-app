@@ -4,6 +4,7 @@ pod "AFNetworking",         "~> 2.0"
 pod "Google-Maps-iOS-SDK",  "~> 1.8.1"
 pod "MagicalRecord",        "~> 2.2"
 pod "libPhoneNumber-iOS",   "~> 0.7"
+pod "JSONModel",            "~> 1.0"
 
 # If you're using Xcode 5 with a brand new project
 # (XCTest based instead of OCUnit based) use this instead:
