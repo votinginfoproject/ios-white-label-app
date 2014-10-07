@@ -21,6 +21,37 @@
 		4916409118EB665700233C1C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916409018EB665700233C1C /* libsqlite3.dylib */; };
 		49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
+		492245CD19E4962D006DED70 /* AppIcon-iPad@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245C919E4962D006DED70 /* AppIcon-iPad@3x.png */; };
+		492245CE19E4962D006DED70 /* AppIcon-iPhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245CA19E4962D006DED70 /* AppIcon-iPhone@3x.png */; };
+		492245CF19E4962D006DED70 /* SettingsIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245CB19E4962D006DED70 /* SettingsIcon@3x.png */; };
+		492245D019E4962D006DED70 /* SpotlightIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245CC19E4962D006DED70 /* SpotlightIcon@3x.png */; };
+		492245D319E49683006DED70 /* Default_background-667@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D119E49683006DED70 /* Default_background-667@2x.png */; };
+		492245D419E49683006DED70 /* Default_background-736@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D219E49683006DED70 /* Default_background-736@3x.png */; };
+		492245EC19E496BB006DED70 /* Candidate_default-image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D519E496BA006DED70 /* Candidate_default-image@3x.png */; };
+		492245ED19E496BB006DED70 /* Candidate_email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D619E496BA006DED70 /* Candidate_email@3x.png */; };
+		492245EE19E496BB006DED70 /* Candidate_facebook@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D719E496BA006DED70 /* Candidate_facebook@3x.png */; };
+		492245EF19E496BB006DED70 /* Candidate_google@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D819E496BB006DED70 /* Candidate_google@3x.png */; };
+		492245F019E496BB006DED70 /* Candidate_phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245D919E496BB006DED70 /* Candidate_phone@3x.png */; };
+		492245F119E496BB006DED70 /* Candidate_twitter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245DA19E496BB006DED70 /* Candidate_twitter@3x.png */; };
+		492245F219E496BB006DED70 /* Candidate_web@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245DB19E496BB006DED70 /* Candidate_web@3x.png */; };
+		492245F319E496BB006DED70 /* Candidate_youtube@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245DC19E496BB006DED70 /* Candidate_youtube@3x.png */; };
+		492245F419E496BB006DED70 /* Homepage_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245DD19E496BB006DED70 /* Homepage_about@3x.png */; };
+		492245F519E496BB006DED70 /* Homepage_contact@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245DE19E496BB006DED70 /* Homepage_contact@3x.png */; };
+		492245F619E496BB006DED70 /* NavigationBar_home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245DF19E496BB006DED70 /* NavigationBar_home@3x.png */; };
+		492245F719E496BB006DED70 /* Polling_earlyvoting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E019E496BB006DED70 /* Polling_earlyvoting@3x.png */; };
+		492245F819E496BB006DED70 /* Polling_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E119E496BB006DED70 /* Polling_location@3x.png */; };
+		492245F919E496BB006DED70 /* TabBar_about-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E219E496BB006DED70 /* TabBar_about-active@3x.png */; };
+		492245FA19E496BB006DED70 /* TabBar_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E319E496BB006DED70 /* TabBar_about@3x.png */; };
+		492245FB19E496BB006DED70 /* TabBar_ballot-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E419E496BB006DED70 /* TabBar_ballot-active@3x.png */; };
+		492245FC19E496BB006DED70 /* TabBar_ballot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E519E496BB006DED70 /* TabBar_ballot@3x.png */; };
+		492245FD19E496BB006DED70 /* TabBar_details-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E619E496BB006DED70 /* TabBar_details-active@3x.png */; };
+		492245FE19E496BB006DED70 /* TabBar_details@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E719E496BB006DED70 /* TabBar_details@3x.png */; };
+		492245FF19E496BB006DED70 /* TabBar_more-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E819E496BB006DED70 /* TabBar_more-active@3x.png */; };
+		4922460019E496BB006DED70 /* TabBar_more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245E919E496BB006DED70 /* TabBar_more@3x.png */; };
+		4922460119E496BB006DED70 /* TabBar_polling-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245EA19E496BB006DED70 /* TabBar_polling-active@3x.png */; };
+		4922460219E496BB006DED70 /* TabBar_polling@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492245EB19E496BB006DED70 /* TabBar_polling@3x.png */; };
+		4922460519E496E3006DED70 /* Default_launch-screen-667@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922460319E496E3006DED70 /* Default_launch-screen-667@2x.png */; };
+		4922460619E496E3006DED70 /* Default_launch-screen-736@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4922460419E496E3006DED70 /* Default_launch-screen-736@3x.png */; };
 		49265ACC18DA473A00F21083 /* VIPColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACB18DA473A00F21083 /* VIPColor.m */; };
 		49265ACF18DA4C1200F21083 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACE18DA4C1200F21083 /* UIColor+Hex.m */; };
 		49270DD819DB47B4003624DF /* VIPPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 49270DD719DB47B4003624DF /* VIPPhoneNumber.m */; };
@@ -201,6 +232,37 @@
 		49196B95189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		49196B96189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		491EE5AE188EE0600018A060 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		492245C919E4962D006DED70 /* AppIcon-iPad@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-iPad@3x.png"; sourceTree = "<group>"; };
+		492245CA19E4962D006DED70 /* AppIcon-iPhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-iPhone@3x.png"; sourceTree = "<group>"; };
+		492245CB19E4962D006DED70 /* SettingsIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SettingsIcon@3x.png"; sourceTree = "<group>"; };
+		492245CC19E4962D006DED70 /* SpotlightIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpotlightIcon@3x.png"; sourceTree = "<group>"; };
+		492245D119E49683006DED70 /* Default_background-667@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_background-667@2x.png"; sourceTree = "<group>"; };
+		492245D219E49683006DED70 /* Default_background-736@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_background-736@3x.png"; sourceTree = "<group>"; };
+		492245D519E496BA006DED70 /* Candidate_default-image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_default-image@3x.png"; sourceTree = "<group>"; };
+		492245D619E496BA006DED70 /* Candidate_email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_email@3x.png"; sourceTree = "<group>"; };
+		492245D719E496BA006DED70 /* Candidate_facebook@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_facebook@3x.png"; sourceTree = "<group>"; };
+		492245D819E496BB006DED70 /* Candidate_google@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_google@3x.png"; sourceTree = "<group>"; };
+		492245D919E496BB006DED70 /* Candidate_phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_phone@3x.png"; sourceTree = "<group>"; };
+		492245DA19E496BB006DED70 /* Candidate_twitter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_twitter@3x.png"; sourceTree = "<group>"; };
+		492245DB19E496BB006DED70 /* Candidate_web@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_web@3x.png"; sourceTree = "<group>"; };
+		492245DC19E496BB006DED70 /* Candidate_youtube@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Candidate_youtube@3x.png"; sourceTree = "<group>"; };
+		492245DD19E496BB006DED70 /* Homepage_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Homepage_about@3x.png"; sourceTree = "<group>"; };
+		492245DE19E496BB006DED70 /* Homepage_contact@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Homepage_contact@3x.png"; sourceTree = "<group>"; };
+		492245DF19E496BB006DED70 /* NavigationBar_home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavigationBar_home@3x.png"; sourceTree = "<group>"; };
+		492245E019E496BB006DED70 /* Polling_earlyvoting@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_earlyvoting@3x.png"; sourceTree = "<group>"; };
+		492245E119E496BB006DED70 /* Polling_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Polling_location@3x.png"; sourceTree = "<group>"; };
+		492245E219E496BB006DED70 /* TabBar_about-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about-active@3x.png"; sourceTree = "<group>"; };
+		492245E319E496BB006DED70 /* TabBar_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about@3x.png"; sourceTree = "<group>"; };
+		492245E419E496BB006DED70 /* TabBar_ballot-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_ballot-active@3x.png"; sourceTree = "<group>"; };
+		492245E519E496BB006DED70 /* TabBar_ballot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_ballot@3x.png"; sourceTree = "<group>"; };
+		492245E619E496BB006DED70 /* TabBar_details-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_details-active@3x.png"; sourceTree = "<group>"; };
+		492245E719E496BB006DED70 /* TabBar_details@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_details@3x.png"; sourceTree = "<group>"; };
+		492245E819E496BB006DED70 /* TabBar_more-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_more-active@3x.png"; sourceTree = "<group>"; };
+		492245E919E496BB006DED70 /* TabBar_more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_more@3x.png"; sourceTree = "<group>"; };
+		492245EA19E496BB006DED70 /* TabBar_polling-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_polling-active@3x.png"; sourceTree = "<group>"; };
+		492245EB19E496BB006DED70 /* TabBar_polling@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_polling@3x.png"; sourceTree = "<group>"; };
+		4922460319E496E3006DED70 /* Default_launch-screen-667@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_launch-screen-667@2x.png"; sourceTree = "<group>"; };
+		4922460419E496E3006DED70 /* Default_launch-screen-736@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_launch-screen-736@3x.png"; sourceTree = "<group>"; };
 		49265ACA18DA473A00F21083 /* VIPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPColor.h; sourceTree = "<group>"; };
 		49265ACB18DA473A00F21083 /* VIPColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPColor.m; sourceTree = "<group>"; };
 		49265ACD18DA4C1200F21083 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -509,14 +571,18 @@
 			children = (
 				4970E50818D37E6200104184 /* AppIcon-iPad.png */,
 				4970E50918D37E6200104184 /* AppIcon-iPad@2x.png */,
+				492245C919E4962D006DED70 /* AppIcon-iPad@3x.png */,
 				4970E50A18D37E6200104184 /* AppIcon-iPhone.png */,
 				4970E50B18D37E6200104184 /* AppIcon-iPhone@2x.png */,
+				492245CA19E4962D006DED70 /* AppIcon-iPhone@3x.png */,
 				4970E50C18D37E6200104184 /* iTunesArtwork.png */,
 				4970E50D18D37E6200104184 /* iTunesArtwork@2x.png */,
 				4970E50E18D37E6200104184 /* SettingsIcon.png */,
 				4970E50F18D37E6200104184 /* SettingsIcon@2x.png */,
+				492245CB19E4962D006DED70 /* SettingsIcon@3x.png */,
 				4970E51018D37E6200104184 /* SpotlightIcon.png */,
 				4970E51118D37E6200104184 /* SpotlightIcon@2x.png */,
+				492245CC19E4962D006DED70 /* SpotlightIcon@3x.png */,
 			);
 			name = AppIcons;
 			path = Images/AppIcons;
@@ -526,6 +592,8 @@
 			isa = PBXGroup;
 			children = (
 				4970E51318D37E6200104184 /* Default_background-568@2x.png */,
+				492245D119E49683006DED70 /* Default_background-667@2x.png */,
+				492245D219E49683006DED70 /* Default_background-736@3x.png */,
 				4970E51418D37E6200104184 /* Default_background.png */,
 				4970E51518D37E6200104184 /* Default_background@2x.png */,
 			);
@@ -536,52 +604,75 @@
 		4970E51618D37E6200104184 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				49875A64195A1AA700EE31D7 /* TabBar_about-active.png */,
-				49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */,
-				49875A66195A1AA700EE31D7 /* TabBar_about.png */,
-				49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */,
 				4970E51718D37E6200104184 /* Candidate_default-image.png */,
 				4970E51818D37E6200104184 /* Candidate_default-image@2x.png */,
+				492245D519E496BA006DED70 /* Candidate_default-image@3x.png */,
 				4970E51918D37E6200104184 /* Candidate_email.png */,
 				4970E51A18D37E6200104184 /* Candidate_email@2x.png */,
+				492245D619E496BA006DED70 /* Candidate_email@3x.png */,
 				4970E51B18D37E6200104184 /* Candidate_facebook.png */,
 				4970E51C18D37E6200104184 /* Candidate_facebook@2x.png */,
+				492245D719E496BA006DED70 /* Candidate_facebook@3x.png */,
 				4970E51D18D37E6200104184 /* Candidate_google.png */,
 				4970E51E18D37E6200104184 /* Candidate_google@2x.png */,
+				492245D819E496BB006DED70 /* Candidate_google@3x.png */,
 				4970E51F18D37E6200104184 /* Candidate_phone.png */,
 				4970E52018D37E6200104184 /* Candidate_phone@2x.png */,
+				492245D919E496BB006DED70 /* Candidate_phone@3x.png */,
 				4970E52118D37E6200104184 /* Candidate_twitter.png */,
 				4970E52218D37E6200104184 /* Candidate_twitter@2x.png */,
+				492245DA19E496BB006DED70 /* Candidate_twitter@3x.png */,
 				4970E52318D37E6200104184 /* Candidate_web.png */,
 				4970E52418D37E6200104184 /* Candidate_web@2x.png */,
+				492245DB19E496BB006DED70 /* Candidate_web@3x.png */,
 				4970E52518D37E6200104184 /* Candidate_youtube.png */,
 				4970E52618D37E6200104184 /* Candidate_youtube@2x.png */,
+				492245DC19E496BB006DED70 /* Candidate_youtube@3x.png */,
 				4970E52718D37E6200104184 /* Homepage_about.png */,
 				4970E52818D37E6200104184 /* Homepage_about@2x.png */,
+				492245DD19E496BB006DED70 /* Homepage_about@3x.png */,
 				4970E52918D37E6200104184 /* Homepage_contact.png */,
 				4970E52A18D37E6200104184 /* Homepage_contact@2x.png */,
+				492245DE19E496BB006DED70 /* Homepage_contact@3x.png */,
 				4970E52B18D37E6200104184 /* NavigationBar_home.png */,
 				4970E52C18D37E6200104184 /* NavigationBar_home@2x.png */,
-				4970E52D18D37E6200104184 /* Polling_location.png */,
-				4970E52E18D37E6200104184 /* Polling_location@2x.png */,
+				492245DF19E496BB006DED70 /* NavigationBar_home@3x.png */,
 				4970E52F18D37E6200104184 /* Polling_earlyvoting.png */,
 				4970E53018D37E6200104184 /* Polling_earlyvoting@2x.png */,
+				492245E019E496BB006DED70 /* Polling_earlyvoting@3x.png */,
+				4970E52D18D37E6200104184 /* Polling_location.png */,
+				4970E52E18D37E6200104184 /* Polling_location@2x.png */,
+				492245E119E496BB006DED70 /* Polling_location@3x.png */,
+				49875A64195A1AA700EE31D7 /* TabBar_about-active.png */,
+				49875A65195A1AA700EE31D7 /* TabBar_about-active@2x.png */,
+				492245E219E496BB006DED70 /* TabBar_about-active@3x.png */,
+				49875A66195A1AA700EE31D7 /* TabBar_about.png */,
+				49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */,
+				492245E319E496BB006DED70 /* TabBar_about@3x.png */,
 				4970E53118D37E6200104184 /* TabBar_ballot-active.png */,
 				4970E53218D37E6200104184 /* TabBar_ballot-active@2x.png */,
+				492245E419E496BB006DED70 /* TabBar_ballot-active@3x.png */,
 				4970E53318D37E6200104184 /* TabBar_ballot.png */,
 				4970E53418D37E6200104184 /* TabBar_ballot@2x.png */,
+				492245E519E496BB006DED70 /* TabBar_ballot@3x.png */,
 				4970E53518D37E6200104184 /* TabBar_details-active.png */,
 				4970E53618D37E6200104184 /* TabBar_details-active@2x.png */,
+				492245E619E496BB006DED70 /* TabBar_details-active@3x.png */,
 				4970E53718D37E6200104184 /* TabBar_details.png */,
 				4970E53818D37E6200104184 /* TabBar_details@2x.png */,
+				492245E719E496BB006DED70 /* TabBar_details@3x.png */,
 				4970E53918D37E6200104184 /* TabBar_more-active.png */,
 				4970E53A18D37E6200104184 /* TabBar_more-active@2x.png */,
+				492245E819E496BB006DED70 /* TabBar_more-active@3x.png */,
 				4970E53B18D37E6200104184 /* TabBar_more.png */,
 				4970E53C18D37E6200104184 /* TabBar_more@2x.png */,
+				492245E919E496BB006DED70 /* TabBar_more@3x.png */,
 				4970E53D18D37E6200104184 /* TabBar_polling-active.png */,
 				4970E53E18D37E6200104184 /* TabBar_polling-active@2x.png */,
+				492245EA19E496BB006DED70 /* TabBar_polling-active@3x.png */,
 				4970E53F18D37E6200104184 /* TabBar_polling.png */,
 				4970E54018D37E6200104184 /* TabBar_polling@2x.png */,
+				492245EB19E496BB006DED70 /* TabBar_polling@3x.png */,
 			);
 			name = Graphics;
 			path = Images/Graphics;
@@ -591,6 +682,8 @@
 			isa = PBXGroup;
 			children = (
 				4970E54218D37E6200104184 /* Default_launch-screen-568@2x.png */,
+				4922460319E496E3006DED70 /* Default_launch-screen-667@2x.png */,
+				4922460419E496E3006DED70 /* Default_launch-screen-736@3x.png */,
 				4970E54318D37E6200104184 /* Default_launch-screen.png */,
 				4970E54418D37E6200104184 /* Default_launch-screen@2x.png */,
 			);
@@ -983,10 +1076,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4922460519E496E3006DED70 /* Default_launch-screen-667@2x.png in Resources */,
 				4970E55018D37E6200104184 /* Default_background.png in Resources */,
 				49875A6A195A1AA700EE31D7 /* TabBar_about.png in Resources */,
+				492245F319E496BB006DED70 /* Candidate_youtube@3x.png in Resources */,
 				4970E55618D37E6200104184 /* Candidate_facebook.png in Resources */,
 				49273490188DE80000B25554 /* elections.json in Resources */,
+				4922460219E496BB006DED70 /* TabBar_polling@3x.png in Resources */,
+				492245D419E49683006DED70 /* Default_background-736@3x.png in Resources */,
 				4970E57118D37E6200104184 /* TabBar_details-active@2x.png in Resources */,
 				4970E56918D37E6200104184 /* Polling_location@2x.png in Resources */,
 				4970E55918D37E6200104184 /* Candidate_google@2x.png in Resources */,
@@ -995,9 +1092,11 @@
 				4970E54E18D37E6200104184 /* SpotlightIcon@2x.png in Resources */,
 				4970E57D18D37E6200104184 /* Default_launch-screen.png in Resources */,
 				499A8F0D199D224000F5F21D /* Changelog.txt in Resources */,
+				492245FB19E496BB006DED70 /* TabBar_ballot-active@3x.png in Resources */,
 				498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */,
 				4970E55D18D37E6200104184 /* Candidate_twitter@2x.png in Resources */,
 				4970E54B18D37E6200104184 /* SettingsIcon.png in Resources */,
+				492245FE19E496BB006DED70 /* TabBar_details@3x.png in Resources */,
 				4970E56D18D37E6200104184 /* TabBar_ballot-active@2x.png in Resources */,
 				4970E55118D37E6200104184 /* Default_background@2x.png in Resources */,
 				49875A68195A1AA700EE31D7 /* TabBar_about-active.png in Resources */,
@@ -1007,30 +1106,48 @@
 				4970E54C18D37E6200104184 /* SettingsIcon@2x.png in Resources */,
 				4970E55218D37E6200104184 /* Candidate_default-image.png in Resources */,
 				4970E56E18D37E6200104184 /* TabBar_ballot.png in Resources */,
+				492245FC19E496BB006DED70 /* TabBar_ballot@3x.png in Resources */,
 				4970E56F18D37E6200104184 /* TabBar_ballot@2x.png in Resources */,
+				492245F019E496BB006DED70 /* Candidate_phone@3x.png in Resources */,
 				4970E57418D37E6200104184 /* TabBar_more-active.png in Resources */,
 				4970E55818D37E6200104184 /* Candidate_google.png in Resources */,
 				4970E55718D37E6200104184 /* Candidate_facebook@2x.png in Resources */,
+				492245EC19E496BB006DED70 /* Candidate_default-image@3x.png in Resources */,
+				492245F619E496BB006DED70 /* NavigationBar_home@3x.png in Resources */,
+				4922460619E496E3006DED70 /* Default_launch-screen-736@3x.png in Resources */,
 				4970E55518D37E6200104184 /* Candidate_email@2x.png in Resources */,
 				4970E55418D37E6200104184 /* Candidate_email.png in Resources */,
 				499A8F2C199D224000F5F21D /* Readme.txt in Resources */,
+				492245FF19E496BB006DED70 /* TabBar_more-active@3x.png in Resources */,
 				4970E57518D37E6200104184 /* TabBar_more-active@2x.png in Resources */,
 				4970E55F18D37E6200104184 /* Candidate_web@2x.png in Resources */,
+				492245EF19E496BB006DED70 /* Candidate_google@3x.png in Resources */,
 				4970E57A18D37E6200104184 /* TabBar_polling.png in Resources */,
+				492245ED19E496BB006DED70 /* Candidate_email@3x.png in Resources */,
 				4970E54918D37E6200104184 /* iTunesArtwork.png in Resources */,
+				492245CF19E4962D006DED70 /* SettingsIcon@3x.png in Resources */,
 				4970E55C18D37E6200104184 /* Candidate_twitter.png in Resources */,
 				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,
 				4970E54818D37E6200104184 /* AppIcon-iPhone@2x.png in Resources */,
 				4970E55A18D37E6200104184 /* Candidate_phone.png in Resources */,
 				496E3DFC1958BDC8003C9C8A /* LICENSE in Resources */,
+				492245F219E496BB006DED70 /* Candidate_web@3x.png in Resources */,
+				492245FD19E496BB006DED70 /* TabBar_details-active@3x.png in Resources */,
+				492245CD19E4962D006DED70 /* AppIcon-iPad@3x.png in Resources */,
+				492245CE19E4962D006DED70 /* AppIcon-iPhone@3x.png in Resources */,
 				4970E57818D37E6200104184 /* TabBar_polling-active.png in Resources */,
+				492245D319E49683006DED70 /* Default_background-667@2x.png in Resources */,
+				4922460019E496BB006DED70 /* TabBar_more@3x.png in Resources */,
 				49875A6B195A1AA700EE31D7 /* TabBar_about@2x.png in Resources */,
+				4922460119E496BB006DED70 /* TabBar_polling-active@3x.png in Resources */,
 				4970E56C18D37E6200104184 /* TabBar_ballot-active.png in Resources */,
+				492245F719E496BB006DED70 /* Polling_earlyvoting@3x.png in Resources */,
 				4970E57218D37E6200104184 /* TabBar_details.png in Resources */,
 				4967AB7A18A91D420079C9F1 /* CivicAPIKey.plist in Resources */,
 				4970E56518D37E6200104184 /* Homepage_contact@2x.png in Resources */,
 				4970E57018D37E6200104184 /* TabBar_details-active.png in Resources */,
 				49875A69195A1AA700EE31D7 /* TabBar_about-active@2x.png in Resources */,
+				492245F419E496BB006DED70 /* Homepage_about@3x.png in Resources */,
 				4970E56B18D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */,
 				4970E56218D37E6200104184 /* Homepage_about.png in Resources */,
 				4970E56818D37E6200104184 /* Polling_location.png in Resources */,
@@ -1041,20 +1158,27 @@
 				4970E57718D37E6200104184 /* TabBar_more@2x.png in Resources */,
 				4970E56618D37E6200104184 /* NavigationBar_home.png in Resources */,
 				4970E56018D37E6200104184 /* Candidate_youtube.png in Resources */,
+				492245F519E496BB006DED70 /* Homepage_contact@3x.png in Resources */,
 				4901593118DA126E0088BA23 /* VIPEmptyCell.xib in Resources */,
 				4970E57618D37E6200104184 /* TabBar_more.png in Resources */,
+				492245F119E496BB006DED70 /* Candidate_twitter@3x.png in Resources */,
 				4970E56718D37E6200104184 /* NavigationBar_home@2x.png in Resources */,
+				492245FA19E496BB006DED70 /* TabBar_about@3x.png in Resources */,
 				49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */,
 				4970E56118D37E6200104184 /* Candidate_youtube@2x.png in Resources */,
 				4970E54A18D37E6200104184 /* iTunesArtwork@2x.png in Resources */,
+				492245EE19E496BB006DED70 /* Candidate_facebook@3x.png in Resources */,
 				4970E54618D37E6200104184 /* AppIcon-iPad@2x.png in Resources */,
+				492245F819E496BB006DED70 /* Polling_location@3x.png in Resources */,
 				4970E56A18D37E6200104184 /* Polling_earlyvoting.png in Resources */,
+				492245F919E496BB006DED70 /* TabBar_about-active@3x.png in Resources */,
 				4970E54518D37E6200104184 /* AppIcon-iPad.png in Resources */,
 				4970E56318D37E6200104184 /* Homepage_about@2x.png in Resources */,
 				4970E54D18D37E6200104184 /* SpotlightIcon.png in Resources */,
 				4970E55E18D37E6200104184 /* Candidate_web.png in Resources */,
 				491EE5AF188EE0600018A060 /* settings.plist in Resources */,
 				4970E54F18D37E6200104184 /* Default_background-568@2x.png in Resources */,
+				492245D019E4962D006DED70 /* SpotlightIcon@3x.png in Resources */,
 				4970E54718D37E6200104184 /* AppIcon-iPhone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
