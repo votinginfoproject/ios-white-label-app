@@ -24,6 +24,22 @@
     return electionDateString;
 }
 
+- (BOOL)isExpired
+{
+    if (!self.electionDay) {
+        return YES;
+    }
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = 1;
+
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *expireDate = [theCalendar dateByAddingComponents:dayComponent
+                                                      toDate:self.electionDay
+                                                     options:0];
+    NSDate *now = [NSDate date];
+    return [now compare:expireDate] == NSOrderedDescending;
+}
+
 + (NSDateFormatter*)getElectionDateFormatter
 {
     // setup date formatter

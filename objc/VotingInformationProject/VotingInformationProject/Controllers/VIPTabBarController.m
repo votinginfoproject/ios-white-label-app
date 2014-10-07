@@ -8,6 +8,7 @@
 
 #import "VIPTabBarController.h"
 
+#import "Election+API.h"
 #import "VIPUserDefaultsKeys.h"
 
 @interface VIPTabBarController ()
@@ -76,7 +77,10 @@
     NSString *currentJson = [defaults objectForKey:USER_DEFAULTS_JSON];
     UserElection *votingInfo = [[UserElection alloc] initWithString:currentJson error:&error];
     if (!error) {
-        self.currentElection = votingInfo;
+        if (![votingInfo.election isExpired]) {
+            NSLog(@"Loading election %@ from cache", votingInfo.election.name);
+            self.currentElection = votingInfo;
+        }
     }
 }
 
