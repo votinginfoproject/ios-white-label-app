@@ -6,30 +6,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class DataSource, UserElection, VIPAddress;
+#import "DataSource.h"
+#import "VIPAddress.h"
 
-@interface PollingLocation : VIPManagedObject
-
-@property (nonatomic, retain) NSString * endDate;
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSNumber * isEarlyVoteSite;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * notes;
-@property (nonatomic, retain) NSString * pollingHours;
-@property (nonatomic, retain) NSString * startDate;
-@property (nonatomic, retain) NSString * voterServices;
-@property (nonatomic, retain) VIPAddress *address;
-@property (nonatomic, retain) NSSet *dataSources;
-@property (nonatomic, retain) UserElection *userElection;
+@protocol PollingLocation
 @end
 
-@interface PollingLocation (CoreDataGeneratedAccessors)
+@interface PollingLocation : VIPModel
 
-- (void)addDataSourcesObject:(DataSource *)value;
-- (void)removeDataSourcesObject:(DataSource *)value;
-- (void)addDataSources:(NSSet *)values;
-- (void)removeDataSources:(NSSet *)values;
+@property (nonatomic, strong) NSString<Optional> * name;
+@property (nonatomic, strong) NSString<Optional> * notes;
+@property (nonatomic, strong) NSString<Optional> * pollingHours;
+@property (nonatomic, strong) NSDate<Optional> * startDate;
+@property (nonatomic, strong) NSDate<Optional> * endDate;
+@property (nonatomic, strong) NSString<Optional> * voterServices;
+@property (nonatomic, strong) VIPAddress<Optional> *address;
+@property (nonatomic, strong) NSArray<DataSource, Optional> *sources;
 
 @end

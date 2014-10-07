@@ -69,40 +69,24 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoW-nK-Iqg">
-                                <rect key="frame" x="30" y="299" width="260" height="90"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoW-nK-Iqg">
+                                <rect key="frame" x="30" y="418" width="260" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown Error" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-aA-QQc">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown Error" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-aA-QQc">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="90"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eMN-aA-QQc" secondAttribute="bottom" id="50z-8U-d5r"/>
+                                    <constraint firstItem="eMN-aA-QQc" firstAttribute="leading" secondItem="qoW-nK-Iqg" secondAttribute="leading" id="DMN-vk-Eoy"/>
+                                    <constraint firstItem="eMN-aA-QQc" firstAttribute="top" secondItem="qoW-nK-Iqg" secondAttribute="top" id="KSy-3H-xxa"/>
+                                    <constraint firstAttribute="trailing" secondItem="eMN-aA-QQc" secondAttribute="trailing" id="Vj8-L1-PK2"/>
+                                    <constraint firstAttribute="height" constant="90" id="bvh-nr-EDv"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-9j-12x">
-                                <rect key="frame" x="30" y="250" width="260" height="30"/>
-                                <accessibility key="accessibilityConfiguration" hint="Opens election picker."/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showElectionPicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="Izd-4W-vQQ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Your Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNR-wi-mkO">
-                                <rect key="frame" x="30" y="128" width="260" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick an Election:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-bR-mta">
-                                <rect key="frame" x="30" y="221" width="260" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
                                 <rect key="frame" x="80" y="518" width="160" height="30"/>
                                 <constraints>
@@ -126,11 +110,49 @@
                                     <segue destination="kuE-gb-sKk" kind="modal" identifier="AboutSegue" id="wmE-yX-fv4"/>
                                 </connections>
                             </button>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz1-ZP-C4h">
+                                <rect key="frame" x="30" y="209" width="260" height="82"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick an Election:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-bR-mta">
+                                        <rect key="frame" x="0.0" y="8" width="260" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-9j-12x">
+                                        <rect key="frame" x="0.0" y="44" width="260" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Opens election picker."/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showElectionPicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="Izd-4W-vQQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="scO-Eb-RH4"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Your Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNR-wi-mkO">
+                                <rect key="frame" x="30" y="128" width="260" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="qoW-nK-Iqg" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="34l-BZ-zRH"/>
+                            <constraint firstAttribute="trailing" secondItem="qoW-nK-Iqg" secondAttribute="trailing" constant="30" id="Ayg-KY-iFf"/>
                             <constraint firstItem="V8e-zO-oTj" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="80" id="Dca-E8-uNV"/>
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="V8e-zO-oTj" secondAttribute="bottom" constant="20" id="KW3-9p-B2w"/>
+                            <constraint firstItem="V8e-zO-oTj" firstAttribute="top" secondItem="qoW-nK-Iqg" secondAttribute="bottom" constant="10" id="KZd-xi-c1U"/>
+                            <constraint firstItem="zz1-ZP-C4h" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="RBu-wp-zpy"/>
                             <constraint firstAttribute="trailing" secondItem="V8e-zO-oTj" secondAttribute="trailing" constant="80" id="enK-QZ-XIL"/>
+                            <constraint firstAttribute="trailing" secondItem="zz1-ZP-C4h" secondAttribute="trailing" constant="30" id="npc-nw-VA5"/>
+                            <constraint firstItem="zz1-ZP-C4h" firstAttribute="top" secondItem="hKW-vG-RYp" secondAttribute="top" constant="209" id="sch-4B-DQg"/>
                             <constraint firstAttribute="trailing" secondItem="62o-cQ-GfA" secondAttribute="trailing" constant="16" id="y4f-oU-Azf"/>
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="62o-cQ-GfA" secondAttribute="bottom" constant="24" id="z7D-Lv-P6l"/>
                         </constraints>
@@ -138,9 +160,10 @@
                     <navigationItem key="navigationItem" title="Voting Information Project" id="gBY-hG-QTh"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="addressTextField" destination="dfh-ab-T5N" id="PxV-ir-iAT"/>
+                        <outlet property="addressTextField" destination="dfh-ab-T5N" id="1Md-Wm-cZo"/>
                         <outlet property="brandNameLabel" destination="u9S-9H-o10" id="DtV-ZK-bSL"/>
                         <outlet property="electionPickerButton" destination="DUM-9j-12x" id="hOJ-U4-tf5"/>
+                        <outlet property="electionsView" destination="zz1-ZP-C4h" id="Dnq-yW-EvI"/>
                         <outlet property="errorLabel" destination="eMN-aA-QQc" id="7pX-MS-lKt"/>
                         <outlet property="errorView" destination="qoW-nK-Iqg" id="KQs-Jt-kKQ"/>
                         <outlet property="partyPickerButton" destination="2hP-xP-Xzu" id="hQL-Ob-SvU"/>

@@ -6,14 +6,8 @@
 //
 
 #import "District.h"
-#import "Contest.h"
 
 
 @implementation District
-
-@dynamic id;
-@dynamic name;
-@dynamic scope;
-@dynamic contests;
 
 @end

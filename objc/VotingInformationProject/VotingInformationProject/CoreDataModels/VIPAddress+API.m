@@ -12,14 +12,6 @@
 
 @implementation VIPAddress (API)
 
-+ (VIPAddress*)setFromDictionary:(NSDictionary *)attributes
-{
-    VIPAddress *vipAddress = [self MR_createEntity];
-    [vipAddress setValuesForKeysWithDictionary:attributes];
-    vipAddress.address = [vipAddress toABAddressString:YES];
-    return vipAddress;
-}
-
 - (NSString*)toABAddressString:(BOOL)withNewlines
 {
     // TODO: Allow user to set country code in settings.plist
@@ -39,6 +31,41 @@
         address = [address stringByReplacingOccurrencesOfString:@"\n" withString:@", "];
     }
     return address;
+}
+
+- (void)geocode:(void (^)(CLLocationCoordinate2D, NSError *))resultsBlock
+{
+    double lat = [self.latitude doubleValue];
+    double lon = [self.longitude doubleValue];
+    if (self.latitude && self.longitude && lat > VA_MIN_LAT && lon > VA_MIN_LON) {
+        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat, lon);
+        resultsBlock(position, nil);
+        return;
+    }
+
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:[self toABAddressString:NO]
+                 completionHandler:^(NSArray* placemarks, NSError *error) {
+                     CLLocationCoordinate2D position = CLLocationCoordinate2DMake(VA_MIN_LAT, VA_MIN_LON);
+                     if (error) {
+                         resultsBlock(position, error);
+                         return;
+                     }
+                     if ([placemarks count] == 0) {
+                         NSError *geocoderError = [VIPError errorWithCode:VIPError.GeocoderError];
+                         resultsBlock(position, geocoderError);
+                         return;
+                     }
+
+                     CLPlacemark *placemark = placemarks[0];
+                     double lat = placemark.location.coordinate.latitude;
+                     double lon = placemark.location.coordinate.longitude;
+                     self.latitude = [[NSNumber alloc] initWithDouble:lat];
+                     self.longitude = [[NSNumber alloc] initWithDouble:lon];
+                     position.latitude = lat;
+                     position.longitude = lon;
+                     resultsBlock(position, nil);
+                 }];
 }
 
 @end

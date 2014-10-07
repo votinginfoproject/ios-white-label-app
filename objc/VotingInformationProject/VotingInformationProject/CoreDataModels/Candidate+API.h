@@ -19,15 +19,6 @@ typedef enum {
 } CandidateLinkTypes;
 
 /**
- * Create and return an instance of Candidate from a dictionary
- *
- * @param attributes NSDictionary of the attributes to set
- *
- * @see VIPManagedObject setFromDictionary:
- */
-+ (Candidate*) setFromDictionary:(NSDictionary*)attributes;
-
-/**
  *  Helper method to determine if a link of a particular type can be opened
  *
  *  @param link string url to open in the application

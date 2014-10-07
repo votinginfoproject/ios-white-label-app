@@ -1,12 +1,12 @@
 //
-//  Contest+API.h
+//  EarlyVoteSite.m
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 10/6/14.
 //
 
-#import "Contest.h"
+#import "EarlyVoteSite.h"
 
-@interface Contest (API)
+@implementation EarlyVoteSite
 
 @end

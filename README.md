@@ -75,14 +75,22 @@ If no data loads:
   - Ensure you correctly copied your browser Civic Info API key to the proper location (between the <string> tags) in the CivicInfoAPIKey.plist file.
 
 
-### Updating to Xcode6
+### Updating the build 
 
-Checkout the most recent version of the project. Then, with Xcode closed, run
+Checkout the most recent version (master or develop) of the project:
+```
+git pull origin master
+# or
+git pull origin develop
+```
+
+Then, with Xcode closed, run:
 ```
 cd objc/VotingInformationProject && pod install
 ```
 
-Then, open Xcode and do:
+Then, open Xcode. Ensure that your settings.plist file contains all of the keys found  
+in the settings.plist.template file, then run:
   - Project -> Clean
   - Project -> Build
 

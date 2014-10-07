@@ -70,7 +70,8 @@ NSString * const CDVC_TABLE_CELLID_SOCIAL_EMPTY = @"CandidateSocialCellEmpty";
     NSArray* links = [self.candidate getLinksDataArray];
     [self.tableData addObject:links];
 
-    NSArray* channels = [self.candidate getSorted:@"socialChannels" byProperty:@"type" ascending:YES];
+    NSSortDescriptor *socialSort = [NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES];
+    NSArray* channels = [self.candidate.channels sortedArrayUsingDescriptors:@[socialSort]];
     if (channels) {
         [self.tableData addObject:channels];
     }

@@ -7,7 +7,7 @@
 //
 
 #define USER_DEFAULTS_STORED_ADDRESS @"votinginfo.storedAddress"
-#define USER_DEFAULTS_ELECTION_ID @"votinginfo.electionId"
+#define USER_DEFAULTS_JSON @"votinginfo.json"
 #define USER_DEFAULTS_PARTY @"votinginfo.party"
 #define USER_DEFAULTS_LATITUDE_KEY @"votinginfo.mapLatitude"
 #define USER_DEFAULTS_LONGITUDE_KEY @"votinginfo.mapLongitude"

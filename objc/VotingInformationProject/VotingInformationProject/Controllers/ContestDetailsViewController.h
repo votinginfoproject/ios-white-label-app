@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 #import "VIPViewController.h"
-#import "Contest+API.h"
+#import "Contest.h"
 
 /**
  A Table View controller for displaying details about a Contest*

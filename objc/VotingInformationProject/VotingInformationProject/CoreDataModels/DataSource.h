@@ -5,17 +5,15 @@
 //  Created by Andrew Fink on 6/23/14.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class Contest, PollingLocation, State;
 
-@interface DataSource : VIPManagedObject
+@protocol DataSource
+@end
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * official;
-@property (nonatomic, retain) Contest *contest;
-@property (nonatomic, retain) PollingLocation *pollingLocation;
-@property (nonatomic, retain) State *state;
+@interface DataSource : VIPModel
+
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, assign) BOOL official;
 
 @end

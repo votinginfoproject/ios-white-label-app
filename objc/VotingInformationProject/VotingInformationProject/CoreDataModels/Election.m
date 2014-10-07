@@ -10,8 +10,4 @@
 
 @implementation Election
 
-@dynamic date;
-@dynamic electionName;
-@dynamic electionId;
-
 @end

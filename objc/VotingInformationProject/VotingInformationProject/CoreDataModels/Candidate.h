@@ -5,30 +5,23 @@
 //  Created by Andrew Fink on 6/23/14.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class Contest, SocialChannel;
+#import "SocialChannel.h"
 
-@interface Candidate : VIPManagedObject
-
-@property (nonatomic, retain) NSString * candidateUrl;
-@property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * orderOnBallot;
-@property (nonatomic, retain) NSString * party;
-@property (nonatomic, retain) NSString * phone;
-@property (nonatomic, retain) NSData * photo;
-@property (nonatomic, retain) NSString * photoUrl;
-@property (nonatomic, retain) Contest *contest;
-@property (nonatomic, retain) NSSet *socialChannels;
+@protocol Candidate
 @end
 
-@interface Candidate (CoreDataGeneratedAccessors)
+@interface Candidate : VIPModel 
 
-- (void)addSocialChannelsObject:(SocialChannel *)value;
-- (void)removeSocialChannelsObject:(SocialChannel *)value;
-- (void)addSocialChannels:(NSSet *)values;
-- (void)removeSocialChannels:(NSSet *)values;
+@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString<Optional>* party;
+@property (nonatomic, strong) NSString<Optional>* candidateUrl;
+@property (nonatomic, strong) NSString<Optional>* phone;
+@property (nonatomic, strong) NSString<Optional>* photoUrl;
+@property (nonatomic, strong) NSString<Optional>* email;
+@property (nonatomic, assign) long orderOnBallot;
+@property (nonatomic, strong) NSArray<SocialChannel, Optional>* channels;
+@property (nonatomic, strong) NSData<Ignore>* photo;
 
 @end

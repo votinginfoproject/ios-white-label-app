@@ -18,6 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - Google-Maps-iOS-SDK (1.8.1)
+  - JSONModel (1.0.1)
   - Kiwi (2.3.0)
   - libPhoneNumber-iOS (0.7.3)
   - MagicalRecord (2.2):
@@ -27,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Google-Maps-iOS-SDK (~> 1.8.1)
+  - JSONModel (~> 1.0)
   - Kiwi
   - libPhoneNumber-iOS (~> 0.7)
   - MagicalRecord (~> 2.2)
@@ -34,6 +36,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
   Google-Maps-iOS-SDK: 4fe35d952dbd1e4dacfcfa178e9cce2f06d67ecc
+  JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
   libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224

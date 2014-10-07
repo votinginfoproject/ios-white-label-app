@@ -12,28 +12,39 @@
 
 SPEC_BEGIN(CandidateAPITests)
 
+/**
+ Helper function to create a contest with two candidates
+ */
+Candidate* (^createMockCandidate) () = ^Candidate* () {
+    NSDictionary *attributes = @{
+        @"name": @"Jon Snow",
+        @"photoUrl": @"https://votinginfoproject.org/a/img/logo-vip.png",
+        @"email": @"test.email@somedomain.com",
+        @"candidateUrl": @"http://test.com"
+    };
+
+    NSError *error = nil;
+    Candidate* candidate = [[Candidate alloc] initWithDictionary:attributes error:&error];
+    return candidate;
+};
+
 describe(@"CandidateAPITests", ^{
     
     beforeEach(^{
-        [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
     afterEach(^{
-        [MagicalRecord cleanUp];
     });
 
     it(@"should ensure that getCandidatePhotoData sets data", ^{
-        Candidate* candidate = [Candidate MR_createEntity];
-        candidate.photoUrl = @"https://votinginfoproject.org/a/img/logo-vip.png";
+        Candidate* candidate = createMockCandidate();
         [[candidate.photo should] beNil];
         [candidate getCandidatePhotoData];
         [[expectFutureValue(candidate.photo) shouldEventuallyBeforeTimingOutAfter(2.0)] beNonNil];
     });
 
     it(@"should ensure that getLinksDataArray results have hte proper dict keys", ^{
-        Candidate *candidate = [Candidate MR_createEntity];
-        candidate.email = @"test.email@somedomain.com";
-        candidate.candidateUrl = @"http://test.com";
+        Candidate *candidate = createMockCandidate();
 
         NSMutableArray *linksData = [candidate getLinksDataArray];
         // should only get data for website since phone is null and email cannot be opened on simulator

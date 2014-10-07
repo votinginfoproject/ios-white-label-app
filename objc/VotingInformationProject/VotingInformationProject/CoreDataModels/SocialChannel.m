@@ -6,13 +6,8 @@
 //
 
 #import "SocialChannel.h"
-#import "Candidate.h"
 
 
 @implementation SocialChannel
-
-@dynamic id;
-@dynamic type;
-@dynamic candidate;
 
 @end

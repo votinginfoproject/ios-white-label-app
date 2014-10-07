@@ -8,27 +8,25 @@
 #import <XCTest/XCTest.h>
 #import "Kiwi.h"
 
-#import "State+API.h"
+#import "State.h"
 
 SPEC_BEGIN(StateAPITests)
 
 describe(@"StateAPITests", ^{
     
     beforeEach(^{
-        [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
     afterEach(^{
-        [MagicalRecord cleanUp];
     });
 
-    it(@"should ensure that setDictionary sets empty objects with nil", ^{
+    it(@"should ensure that initWithDictionary sets empty objects with nil", ^{
 
         NSDictionary *attributes = @{};
-        State *state = [State setFromDictionary:attributes];
+        NSError *error = nil;
+        State *state = [[State alloc] initWithDictionary:attributes error:&error];
 
-        [[state.electionAdministrationBody shouldNot] beNil];
-        [[state.electionAdministrationBody.name should] beNil];
+        [[state.electionAdministrationBody should] beNil];
         [[theValue([state.dataSources count]) should] equal:theValue(0)];
     });
 
@@ -38,10 +36,10 @@ describe(@"StateAPITests", ^{
         NSDictionary *attributes = @{
                                      @"name": namevalue,
                                      @"electionAdministrationBody": @{@"name": @"Test EAB"},
-                                     @"sources": @[@{@"name": @"Test DataSource"}]
+                                     @"dataSources": @[@{@"name": @"Test DataSource", @"official": @"true"}]
                                      };
-
-        State *state = [State setFromDictionary:attributes];
+        NSError *error = nil;
+        State *state = [[State alloc] initWithDictionary:attributes error:&error];
         [[theValue([state.dataSources count]) should] equal:theValue(1)];
         [[state.electionAdministrationBody.name should] equal:@"Test EAB"];
         [[state.name should] equal:namevalue];

@@ -16,9 +16,11 @@
 #import "ContactsSearchViewController.h"
 #import "DirectionsViewSegueData.h"
 #import "GDDirectionsService.h"
+#import "PollingLocation+API.h"
 #import "PollingInfoWindowView.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
+#import "VIPAddress+API.h"
 #import "VIPColor.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "VIPTabBarController.h"
@@ -44,7 +46,7 @@
 // Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 
-@property (strong, nonatomic) UserAddress *userAddress;
+@property (strong, nonatomic) VIPAddress *userAddress;
 
 @property (strong, nonatomic) GMSPolyline *directionsPolyline;
 
@@ -100,7 +102,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
         // Skip this early vote site if it's not currently open
-        if ([location.isEarlyVoteSite boolValue] && ![location isAvailable]) {
+        if ([location isMemberOfClass:[EarlyVoteSite class]] && ![location isAvailable]) {
             continue;
         }
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
@@ -109,7 +111,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                 } else {
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
                                                  withTitle:sender.name];
-                    if ([location.isEarlyVoteSite boolValue]) {
+                    if ([location isMemberOfClass:[EarlyVoteSite class]]) {
                         marker.icon = earlyVoting;
                     } else {
                         marker.icon = polling;
@@ -242,13 +244,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.election = tabBarController.currentElection;
 
     // Set map center to address if it exists
-    UserAddress *userAddress = [UserAddress MR_findFirstOrderedByAttribute:@"lastUsed"
-                                                 ascending:NO];
-    self.userAddress = userAddress;
+    self.userAddress = self.election.normalizedInput;
 
     // Set map view and display
-    double latitude = [userAddress.latitude doubleValue];
-    double longitude = [userAddress.longitude doubleValue];
+    double latitude = [self.userAddress.latitude doubleValue];
+    double longitude = [self.userAddress.longitude doubleValue];
     double zoom = 14;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
@@ -272,7 +272,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
             _userAddressMarker = [GMSMarker markerWithPosition:position];
             _userAddressMarker.title = NSLocalizedString(@"Your Address",
                                                          @"Title for map marker pop-up on user's address");
-            _userAddressMarker.snippet = self.userAddress.address;
+            _userAddressMarker.snippet = [self.userAddress toABAddressString:YES];
             _userAddressMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
             _userAddressMarker.map = self.mapView;
             for (PollingLocationWrapper *cell in self.cells) {
@@ -417,10 +417,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     }
 }
 
-- (void)directionsSegueTo:(PollingLocationWrapper*)plWrapper fromAddress:(UserAddress*)address
+- (void)directionsSegueTo:(PollingLocationWrapper*)plWrapper fromAddress:(VIPAddress*)address
 {
-    NSString *from = address.address;
-    NSString *to = [plWrapper.location.address toABAddressString:YES];
+    NSString *from = [address toABAddressString:NO];
+    NSString *to = [plWrapper.location.address toABAddressString:NO];
     DirectionsViewSegueData *segueData =
     [DirectionsViewSegueData dataWithSource:from andDestination:to];
     [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];
@@ -430,7 +430,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     NSString *from = [NSString stringWithFormat:@"%f,%f",
                       location.coordinate.latitude, location.coordinate.longitude];
-    NSString *to = [plWrapper.location.address toABAddressString:YES];
+    NSString *to = [plWrapper.location.address toABAddressString:NO];
     DirectionsViewSegueData *segueData =
     [DirectionsViewSegueData dataWithSource:from andDestination:to];
     [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];

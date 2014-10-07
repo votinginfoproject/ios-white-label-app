@@ -6,23 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class Contest;
 
-@interface District : VIPManagedObject
+@interface District : VIPModel
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * scope;
-@property (nonatomic, retain) NSSet *contests;
-@end
-
-@interface District (CoreDataGeneratedAccessors)
-
-- (void)addContestsObject:(Contest *)value;
-- (void)removeContestsObject:(Contest *)value;
-- (void)addContests:(NSSet *)values;
-- (void)removeContests:(NSSet *)values;
+@property (nonatomic, strong) NSString<Optional> * id;
+@property (nonatomic, strong) NSString<Optional> * name;
+@property (nonatomic, strong) NSString<Optional> * scope;
 
 @end
