@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 
 #import "PollingLocation+API.h"
+#import "EarlyVoteSite.h"
 #import "Election+API.h"
 
 SPEC_BEGIN(PollingLocationAPITests)
@@ -16,22 +17,9 @@ SPEC_BEGIN(PollingLocationAPITests)
 describe(@"PLAPITests", ^{
     
     beforeEach(^{
-        [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
     afterEach(^{
-        [MagicalRecord cleanUp];
-    });
-
-    it(@"should ensure that setDictionary sets empty objects with nil", ^{
-
-        NSDictionary *attributes = @{};
-        PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:YES];
-
-        [[pl.isEarlyVoteSite should] beYes];
-        [[pl.address shouldNot] beNil];
-        [[pl.address.locationName should] beNil];
-        [[theValue([pl.dataSources count]) should] equal:theValue(0)];
     });
 
     it(@"should ensure that setDictionary sets valid keys of PollingLocation", ^{
@@ -42,12 +30,11 @@ describe(@"PLAPITests", ^{
                                      @"notes": notesvalue,
                                      @"name": namevalue,
                                      @"address": @{@"locationName": @"123 Test Drive"},
-                                     @"sources": @[@{@"name": @"Test DataSource"}]
+                                     @"sources": @[@{@"name": @"Test DataSource", @"official": @"true"}]
                                      };
-
-        PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:NO];
-        [[pl.isEarlyVoteSite should] beNo];
-        [[theValue([pl.dataSources count]) should] equal:theValue(1)];
+        NSError *error = nil;
+        PollingLocation *pl = [[PollingLocation alloc] initWithDictionary:attributes error:&error];
+        [[theValue([pl.sources count]) should] equal:theValue(1)];
         [[pl.address.locationName should] equal:@"123 Test Drive"];
         [[pl.notes should] equal:notesvalue];
         [[pl.name should] equal:namevalue];
@@ -59,8 +46,7 @@ describe(@"PLAPITests", ^{
         int daysFuture = 3;
         NSDate *startDate = [now dateByAddingTimeInterval:-1*60*60*24*daysPast];
         NSDate *endDate = [now dateByAddingTimeInterval:60*60*24*daysFuture];
-        NSDateFormatter *yyyymmddFormatter = [[NSDateFormatter alloc] init];
-        [yyyymmddFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDateFormatter *yyyymmddFormatter = [Election getElectionDateFormatter];
         NSString *endDateString = [yyyymmddFormatter stringFromDate:endDate];
         NSString *startDateString = [yyyymmddFormatter stringFromDate:startDate];
 
@@ -70,15 +56,14 @@ describe(@"PLAPITests", ^{
                                      @"notes": notesvalue,
                                      @"name": namevalue,
                                      @"address": @{@"locationName": @"123 Test Drive"},
-                                     @"sources": @[@{@"name": @"Test DataSource"}],
-                                     @"startDate": [NSNull null],
-                                     @"endDate": endDateString,
-                                     @"isEarlyVoteSite": @(YES)
+                                     @"sources": @[@{@"name": @"Test DataSource", @"official": @"true"}],
+                                     @"endDate": endDateString
                                      };
 
-        PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:YES];
+        NSError *error = nil;
+        PollingLocation *pl = [[PollingLocation alloc] initWithDictionary:attributes error:&error];
         [[theValue([pl isAvailable]) should] equal:theValue(YES)];
-        pl.startDate = startDateString;
+        pl.startDate = startDate;
         pl.endDate = nil;
         [[theValue([pl isAvailable]) should] equal:theValue(YES)];
     });
@@ -100,17 +85,16 @@ describe(@"PLAPITests", ^{
                                      @"notes": notesvalue,
                                      @"name": namevalue,
                                      @"address": @{@"locationName": @"123 Test Drive"},
-                                     @"sources": @[@{@"name": @"Test DataSource"}],
+                                     @"sources": @[@{@"name": @"Test DataSource", @"official": @"true"}],
                                      @"startDate": startDateString,
-                                     @"endDate": endDateString,
-                                     @"isEarlyVoteSite": @(YES)
+                                     @"endDate": endDateString
                                      };
-
-        PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:YES];
+        NSError *error = nil;
+        PollingLocation *pl = [[PollingLocation alloc] initWithDictionary:attributes error:&error];
         [[theValue([pl isAvailable]) should] equal:theValue(NO)];
         // Shouldnt matter if earlyVoteSite or not
-        pl.isEarlyVoteSite = NO;
-        [[theValue([pl isAvailable]) should] equal:theValue(NO)];
+        EarlyVoteSite *evs = [[EarlyVoteSite alloc] initWithDictionary:attributes error:&error];
+        [[theValue([evs isAvailable]) should] equal:theValue(NO)];
     });
 
     it(@"should ensure that isAvailable returns YES if today is before endDate", ^{
@@ -130,17 +114,17 @@ describe(@"PLAPITests", ^{
                                      @"notes": notesvalue,
                                      @"name": namevalue,
                                      @"address": @{@"locationName": @"123 Test Drive"},
-                                     @"sources": @[@{@"name": @"Test DataSource"}],
+                                     @"sources": @[@{@"name": @"Test DataSource", @"official": @"true"}],
                                      @"startDate": startDateString,
-                                     @"endDate": endDateString,
-                                     @"isEarlyVoteSite": @(YES)
+                                     @"endDate": endDateString
                                      };
 
-        PollingLocation *pl = [PollingLocation setFromDictionary:attributes asEarlyVotingSite:YES];
+        NSError *error = nil;
+        PollingLocation *pl = [[PollingLocation alloc] initWithDictionary:attributes error:&error];
         [[theValue([pl isAvailable]) should] equal:theValue(YES)];
         // Shouldnt matter if earlyVoteSite or not
-        pl.isEarlyVoteSite = NO;
-        [[theValue([pl isAvailable]) should] equal:theValue(YES)];
+        EarlyVoteSite *evs = [[EarlyVoteSite alloc] initWithDictionary:attributes error:&error];
+        [[theValue([evs isAvailable]) should] equal:theValue(YES)];
     });
 
 });

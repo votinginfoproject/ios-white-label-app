@@ -30,7 +30,6 @@
 		494023A018A2E961004FEF48 /* VIPAddress+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 4940239F18A2E961004FEF48 /* VIPAddress+API.m */; };
 		494023A318A2EA74004FEF48 /* ElectionAdministrationBody+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023A218A2EA74004FEF48 /* ElectionAdministrationBody+API.m */; };
 		494023C118A3EEFB004FEF48 /* Candidate+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023C018A3EEFB004FEF48 /* Candidate+API.m */; };
-		494023E318A403E4004FEF48 /* VIPManagedObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E218A403E4004FEF48 /* VIPManagedObjectTests.m */; };
 		494023E518A41EF1004FEF48 /* ContestAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E418A41EF1004FEF48 /* ContestAPITests.m */; };
 		494023E718A4216D004FEF48 /* ElectionAdminBodyAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E618A4216D004FEF48 /* ElectionAdminBodyAPITests.m */; };
 		494023E918A425AC004FEF48 /* StateAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 494023E818A425AC004FEF48 /* StateAPITests.m */; };
@@ -118,7 +117,6 @@
 		49875A6A195A1AA700EE31D7 /* TabBar_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A66195A1AA700EE31D7 /* TabBar_about.png */; };
 		49875A6B195A1AA700EE31D7 /* TabBar_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */; };
 		499537F418A2B8C1009B678C /* ElectionAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F318A2B8C1009B678C /* ElectionAPITests.m */; };
-		499537F618A2BCCB009B678C /* UserAddressAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 499537F518A2BCCB009B678C /* UserAddressAPITests.m */; };
 		4997542F18C6310A002F97FE /* VIPError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4997542E18C6310A002F97FE /* VIPError.m */; };
 		499A465D18F6E04A00E2C6BD /* DirectionsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499A465C18F6E04A00E2C6BD /* DirectionsListViewController.m */; };
 		499A466018F7073D00E2C6BD /* UILabel+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 499A465F18F7073D00E2C6BD /* UILabel+HTML.m */; };
@@ -127,7 +125,6 @@
 		499A8F31199D229100F5F21D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499A8F30199D229100F5F21D /* libGoogleAnalyticsServices.a */; };
 		49A04BD718AD261E00BCDB0D /* UIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD618AD261E00BCDB0D /* UIWebViewController.m */; };
 		49A04BDA18AD419000BCDB0D /* ContestDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */; };
-		49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */; };
 		49A57B0B18A08E9200C5E889 /* PollingLocation+API.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */; };
 		49B5B8AA18EB2C6900CCB11E /* GDDirectionsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5B8A918EB2C6900CCB11E /* GDDirectionsService.m */; };
 		49C1FEDD18B3A20C00CF9DFE /* CandidateLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C1FEDC18B3A20C00CF9DFE /* CandidateLinkCell.m */; };
@@ -220,7 +217,6 @@
 		494023A218A2EA74004FEF48 /* ElectionAdministrationBody+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "ElectionAdministrationBody+API.m"; path = "CoreDataModels/ElectionAdministrationBody+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		494023BF18A3EEFB004FEF48 /* Candidate+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "Candidate+API.h"; path = "CoreDataModels/Candidate+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		494023C018A3EEFB004FEF48 /* Candidate+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "Candidate+API.m"; path = "CoreDataModels/Candidate+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		494023E218A403E4004FEF48 /* VIPManagedObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPManagedObjectTests.m; sourceTree = "<group>"; };
 		494023E418A41EF1004FEF48 /* ContestAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestAPITests.m; sourceTree = "<group>"; };
 		494023E618A4216D004FEF48 /* ElectionAdminBodyAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionAdminBodyAPITests.m; sourceTree = "<group>"; };
 		494023E818A425AC004FEF48 /* StateAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateAPITests.m; sourceTree = "<group>"; };
@@ -324,7 +320,6 @@
 		49875A66195A1AA700EE31D7 /* TabBar_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBar_about.png; sourceTree = "<group>"; };
 		49875A67195A1AA700EE31D7 /* TabBar_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBar_about@2x.png"; sourceTree = "<group>"; };
 		499537F318A2B8C1009B678C /* ElectionAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionAPITests.m; sourceTree = "<group>"; };
-		499537F518A2BCCB009B678C /* UserAddressAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressAPITests.m; sourceTree = "<group>"; };
 		4997542D18C6310A002F97FE /* VIPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPError.h; sourceTree = "<group>"; };
 		4997542E18C6310A002F97FE /* VIPError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPError.m; sourceTree = "<group>"; };
 		499A465B18F6E04A00E2C6BD /* DirectionsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsListViewController.h; sourceTree = "<group>"; };
@@ -348,7 +343,6 @@
 		49A04BD618AD261E00BCDB0D /* UIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebViewController.m; sourceTree = "<group>"; };
 		49A04BD818AD419000BCDB0D /* ContestDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestDetailsViewController.h; sourceTree = "<group>"; };
 		49A04BD918AD419000BCDB0D /* ContestDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestDetailsViewController.m; sourceTree = "<group>"; };
-		49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataModelTests.m; sourceTree = "<group>"; };
 		49A57B0918A08E9200C5E889 /* PollingLocation+API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "PollingLocation+API.h"; path = "CoreDataModels/PollingLocation+API.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49A57B0A18A08E9200C5E889 /* PollingLocation+API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "PollingLocation+API.m"; path = "CoreDataModels/PollingLocation+API.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49B2B1221978359C003B598B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VIPStoryBoard.strings; sourceTree = "<group>"; };
@@ -875,14 +869,11 @@
 				495CB9BC18B26B1B00243ADB /* CandidateAPITests.m */,
 				4960FE2F1891B72B00E734AF /* ContactsSearchViewControllerTests.m */,
 				494023E418A41EF1004FEF48 /* ContestAPITests.m */,
-				49A57AF818A0001F00C5E889 /* CoreDataModelTests.m */,
 				494023E618A4216D004FEF48 /* ElectionAdminBodyAPITests.m */,
 				499537F318A2B8C1009B678C /* ElectionAPITests.m */,
 				4940239C18A2D355004FEF48 /* PollingLocationAPITests.m */,
 				494023E818A425AC004FEF48 /* StateAPITests.m */,
 				53D3A7AC1889A05B00920A70 /* Supporting Files */,
-				499537F518A2BCCB009B678C /* UserAddressAPITests.m */,
-				494023E218A403E4004FEF48 /* VIPManagedObjectTests.m */,
 			);
 			path = VotingInformationProjectTests;
 			sourceTree = "<group>";
@@ -1212,8 +1203,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				494023E318A403E4004FEF48 /* VIPManagedObjectTests.m in Sources */,
-				499537F618A2BCCB009B678C /* UserAddressAPITests.m in Sources */,
 				4960FE301891B72C00E734AF /* ContactsSearchViewControllerTests.m in Sources */,
 				494023E718A4216D004FEF48 /* ElectionAdminBodyAPITests.m in Sources */,
 				499537F418A2B8C1009B678C /* ElectionAPITests.m in Sources */,
@@ -1222,7 +1211,6 @@
 				494023E918A425AC004FEF48 /* StateAPITests.m in Sources */,
 				4940239D18A2D355004FEF48 /* PollingLocationAPITests.m in Sources */,
 				49E336C118B4028800C36337 /* SocialChannelTests.m in Sources */,
-				49A57AF918A0001F00C5E889 /* CoreDataModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
