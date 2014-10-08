@@ -56,7 +56,8 @@
               statusBlock(votingInfo, error);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              statusBlock(nil, error);
+              NSError *vipError = [VIPError vipResponseToError:operation.responseObject];
+              statusBlock(nil, vipError);
           }];
 }
 

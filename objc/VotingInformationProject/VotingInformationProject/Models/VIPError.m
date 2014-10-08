@@ -70,13 +70,13 @@ VIPErrorCode * _GeocoderError;
 //  voterInfo query v1 response
 // See https://developers.google.com/civic-information/docs/data_guidelines#status
 NSString * const APIResponseSuccess = @"success";
-NSString * const APIResponseNoStreetSegmentFound = @"noStreetSegmentFound";
-NSString * const APIAddressUnparseable = @"addressUnparseable";
-NSString * const APIResponseNoAddressParameter = @"noAddressParameter";
-NSString * const APIResponseMultipleStreetSegmentsFound = @"multipleStreetSegmentsFound";
-NSString * const APIResponseElectionOver = @"electionOver";
-NSString * const APIResponseElectionUnknown = @"electionUnknown";
-NSString * const APIInternalLookupFailure = @"internalLookupFailure";
+NSString * const APIResponseNoStreetSegmentFound = @"notFound";
+NSString * const APIAddressUnparseable = @"parseError";
+NSString * const APIResponseNoAddressParameter = @"required";
+NSString * const APIResponseMultipleStreetSegmentsFound = @"conflict";
+NSString * const APIResponseElectionOver = @"invalidQuery";
+NSString * const APIResponseElectionUnknown = @"invalidValue";
+NSString * const APIInternalLookupFailure = @"backendError";
 
 NSDictionary *_stringToErrorCode;
 
@@ -135,7 +135,6 @@ NSDictionary *_stringToErrorCode;
                            APIResponseElectionOver : _ElectionOver,
                            APIResponseElectionUnknown : _ElectionUnknown,
                            APIInternalLookupFailure : _InternalLookupError};
-
 }
 
 + (NSError*)errorWithCode:(VIPErrorCode*)errorCode
@@ -153,6 +152,16 @@ NSDictionary *_stringToErrorCode;
 {
     VIPErrorCode *errorCode = [_stringToErrorCode objectForKey:status];
     return errorCode == nil ? nil : [VIPError errorWithCode:errorCode];
+}
+
++ (NSError*)vipResponseToError:(NSDictionary*)response
+{
+    NSError *vipError = [VIPError errorWithCode:VIPError.GenericAPIError];
+    NSArray *errors = response[@"error"][@"errors"];
+    if ([errors count] > 0) {
+        vipError = [VIPError statusToError:errors[0][@"reason"]];
+    }
+    return vipError;
 }
 
 @end

@@ -71,4 +71,12 @@ extern NSString * const APIInternalLookupFailure;
  */
 + (NSError*) statusToError:(NSString*)status;
 
+/**
+ *  Return an NSError object based on the error response from the Civic Info v2 API
+ *
+ *  @param response NSDictionary JSON response returned by APIv2 voterInfo on non 200 status
+ *
+ *  @return VIPError matching error reason, or nil if cannot parse the response 
+ */
++ (NSError*) vipResponseToError:(NSDictionary*)response;
 @end
