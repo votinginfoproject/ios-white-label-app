@@ -104,7 +104,9 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         if (state.localJurisdiction) {
             NSMutableArray *localJurisdictionProperties =
             [state.localJurisdiction.electionAdministrationBody getProperties];
-            [self.tableData addObject:localJurisdictionProperties];
+            if (localJurisdictionProperties) {
+                [self.tableData addObject:localJurisdictionProperties];
+            }
         }
         self.tableView.dataSource = [self configureDataSource];
         [self.tableView reloadData];
