@@ -6,21 +6,17 @@
 //
 
 #import "Candidate.h"
-#import "Contest.h"
-#import "SocialChannel.h"
 
 
 @implementation Candidate
 
-@dynamic candidateUrl;
-@dynamic email;
-@dynamic name;
-@dynamic orderOnBallot;
-@dynamic party;
-@dynamic phone;
-@dynamic photo;
-@dynamic photoUrl;
-@dynamic contest;
-@dynamic socialChannels;
++ (BOOL)propertyIsOptional:(NSString *)propertyName
+{
+    if ([propertyName isEqualToString:@"orderOnBallot"]) {
+        return YES;
+    } else {
+        return [super propertyIsOptional:propertyName];
+    }
+}
 
 @end

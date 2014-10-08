@@ -6,20 +6,13 @@
 //
 
 #import "VIPAddress.h"
-#import "ElectionAdministrationBody.h"
-#import "PollingLocation.h"
 
 
 @implementation VIPAddress
 
-@dynamic city;
-@dynamic line1;
-@dynamic line2;
-@dynamic line3;
-@dynamic locationName;
-@dynamic state;
-@dynamic zip;
-@dynamic eab;
-@dynamic pollingLocation;
+- (CLLocationCoordinate2D)position
+{
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
+}
 
 @end

@@ -8,13 +8,9 @@
 	<string>Your Tracking ID Here</string>
 	<key>GoogleDirectionsAPIKey</key>
     <string>Your Directions API Key Here</string>
-	<key>GoogleCivicInfoElectionQueryURL</key>
-	<string>https://www.googleapis.com/civicinfo/v1/elections</string>
-	<key>ElectionListURL</key>
-	<string>https://www.googleapis.com/civicinfo/v1/elections</string>
     <key>BrandNameText</key>
     <string>Your Brand Name Here</string>
-	<key>VotingInfoCacheDays</key>
-	<integer>2</integer>
+	<key>OfficialOnly</key>
+	<true/>
 </dict>
 </plist>

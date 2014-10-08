@@ -6,14 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class Candidate;
+@protocol SocialChannel
+@end
 
-@interface SocialChannel : VIPManagedObject
+@interface SocialChannel : VIPModel
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) Candidate *candidate;
+@property (nonatomic, strong) NSString * id;
+@property (nonatomic, strong) NSString * type;
 
 @end

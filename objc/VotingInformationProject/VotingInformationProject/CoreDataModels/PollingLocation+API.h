@@ -7,8 +7,6 @@
 //
 
 #import "PollingLocation.h"
-#import "DataSource+API.h"
-#import "VIPAddress+API.h"
 
 @interface PollingLocation (API)
 
@@ -23,9 +21,6 @@ typedef enum {
     VIPPollingLocationTypeEarlyVote = 1,
     VIPPollingLocationTypeNormal = 2
 } VIPPollingLocationType;
-
-+ (PollingLocation*) setFromDictionary:(NSDictionary*)attributes
-                     asEarlyVotingSite:(BOOL)isEarlyVotingSite;
 
 /**
  *  Returns status of PollingLocation

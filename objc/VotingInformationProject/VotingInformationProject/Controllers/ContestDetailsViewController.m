@@ -100,10 +100,9 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         self.contestNameLabel.text = self.contest.office ?: NSLocalizedString(@"Not Available",
                                                                               @"Contest details text displayed when office name not available");
         // Only add candidates for elections, not referenda
-        NSArray *sortedContests = [self.contest getSorted:@"candidates"
-                                               byProperty:@"orderOnBallot"
-                                                ascending:YES];
-        [self.tableData addObject:sortedContests];
+        NSSortDescriptor *candidatesSort = [NSSortDescriptor sortDescriptorWithKey:@"orderOnBallot" ascending:YES];
+        NSArray *sortedCandidates = [self.contest.candidates sortedArrayUsingDescriptors:@[candidatesSort]];
+        [self.tableData addObject:sortedCandidates];
     }
     [self.tableView reloadData];
 }

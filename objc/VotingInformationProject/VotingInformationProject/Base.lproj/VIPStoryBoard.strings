@@ -20,9 +20,6 @@
 /* Class = "IBUIButton"; normalTitle = "All Selected Parties"; ObjectID = "2hP-xP-Xzu"; */
 "2hP-xP-Xzu.normalTitle" = "All Selected Parties";
 
-/* Class = "IBUIButton"; normalTitle = "Link"; ObjectID = "3H1-ex-dlV"; */
-"3H1-ex-dlV.normalTitle" = "Link";
-
 /* Class = "IBUIBarButtonItem"; title = "Home"; ObjectID = "3WV-9A-YoC"; */
 "3WV-9A-YoC.title" = "Home";
 
@@ -118,6 +115,9 @@
 
 /* Class = "IBUILabel"; text = "No Available Candidates"; ObjectID = "bBk-gz-R3x"; */
 "bBk-gz-R3x.text" = "No Available Candidates";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "bvP-6h-Xh5"; */
+"bvP-6h-Xh5.text" = "Label";
 
 /* Class = "IBUITextField"; placeholder = "Enter Address..."; ObjectID = "dfh-ab-T5N"; */
 "dfh-ab-T5N.placeholder" = "Enter Address...";

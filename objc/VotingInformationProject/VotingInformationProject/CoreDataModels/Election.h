@@ -6,13 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
+@protocol Election
+@end
 
-@interface Election : VIPManagedObject
+@interface Election : VIPModel
 
-@property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSString * electionName;
-@property (nonatomic, retain) NSString * electionId;
+@property (nonatomic, strong) NSString * id;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSDate * electionDay;
 
 @end

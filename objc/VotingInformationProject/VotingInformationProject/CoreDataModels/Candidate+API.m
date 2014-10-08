@@ -7,6 +7,7 @@
 //
 
 #import "Candidate+API.h"
+#import "VIPPhoneNumber.h"
 
 @implementation Candidate (API)
 
@@ -49,80 +50,67 @@
 - (NSMutableArray*)getLinksDataArray
 {
     NSMutableArray *links = [[NSMutableArray alloc] initWithCapacity:3];
-    if (self.candidateUrl) {
+    if ([[self class] canOpenLink:self.candidateUrl asType:kCandidateLinkTypeWebsite]) {
         [links addObject:@{
                            @"buttonTitle": NSLocalizedString(@"Website", @"Button name for candidate's website"),
                            @"description": NSLocalizedString(@"Website", @"Link description for candidate's website"),
-                           @"url": self.candidateUrl,
+                           @"url": [[self class] makeWebsiteURL:self.candidateUrl],
                            @"urlScheme": @(kCandidateLinkTypeWebsite)
                            }];
     }
-    if (self.phone) {
+    if ([[self class] canOpenLink:self.phone asType:kCandidateLinkTypePhone]) {
         [links addObject:@{
                            @"buttonTitle": NSLocalizedString(@"Call", @"Button name for candidate's phone number"),
                            @"description": NSLocalizedString(@"Phone", @"Link description for candidate's phone number"),
-                           @"url": self.phone,
+                           @"url": [[self class] makePhoneURL:self.phone],
                            @"urlScheme": @(kCandidateLinkTypePhone)
                            }];
     }
-    if (self.email) {
+    if ([[self class] canOpenLink:self.email asType:kCandidateLinkTypeEmail]) {
         [links addObject:@{
                            @"buttonTitle": NSLocalizedString(@"Email", @"Button name for candidate's email address"),
                            @"description": NSLocalizedString(@"Email", @"Link description for candidate's email address"),
-                           @"url": self.email,
+                           @"url": [[self class] makeEmailURL:self.email],
                            @"urlScheme": @(kCandidateLinkTypeEmail)
                            }];
     }
     return links;
 }
 
-+ (Candidate*) setFromDictionary:(NSDictionary *)attributes
++ (BOOL)canOpenLink:(NSString*)link asType:(int)type
 {
-    NSMutableDictionary *mutableAttributes = [attributes mutableCopy];
-
-    NSString *channelsKey = @"channels";
-    NSArray* channels = attributes[channelsKey];
-    [mutableAttributes removeObjectForKey:channelsKey];
-
-    Candidate *candidate = [Candidate MR_createEntity];
-    // Set attributes
-    [candidate updateFromDictionary:mutableAttributes];
-
-    // Set Social Channels
-    for (NSDictionary* channel in channels) {
-        SocialChannel *sc = (SocialChannel*)[SocialChannel setFromDictionary:channel];
-        [candidate addSocialChannelsObject:sc];
+    if ([link length] == 0) {
+        return NO;
     }
 
-    // Download photo from url
-    [candidate getCandidatePhotoData];
-
-    return candidate;
+    NSURL *url = nil;
+    if (type == kCandidateLinkTypeWebsite) {
+        url = [[self class] makeWebsiteURL:link];
+    } else if (type == kCandidateLinkTypePhone) {
+        url = [[self class] makePhoneURL:link];
+    } else if (type == kCandidateLinkTypeEmail) {
+        url = [[self class] makeEmailURL:link];
+    } else {
+        url = nil;
+    }
+    return [[UIApplication sharedApplication] canOpenURL:url];
 }
 
-/**
- *  Temporary method for stubbing a bit of candidate data for testing
- *  Sets social channels and an email/phone
- *  @warning Remove for final release
- */
-- (void) stubCandidateData
++ (NSURL*)makePhoneURL:(NSString*)phone
 {
-#if DEBUG
-        SocialChannel *twitter =
-        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Twitter", @"id": @"VotingInfo"}];
-        [self addSocialChannelsObject:twitter];
+    return [VIPPhoneNumber makeTelPromptLink:phone];
+}
 
-        SocialChannel *facebook =
-        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"Facebook", @"id": @"VotingInfo"}];
-        [self addSocialChannelsObject:facebook];
++ (NSURL*)makeWebsiteURL:(NSString*)website
+{
+    return [NSURL URLWithString:website];
+}
 
-        SocialChannel *youtube =
-        (SocialChannel*)[SocialChannel setFromDictionary:@{@"type": @"YouTube", @"id": @"pew"}];
-        [self addSocialChannelsObject:youtube];
-
-        self.email = @"info@azavea.com";
-        self.phone = @"(123)456-7890";
-#endif
++ (NSURL*)makeEmailURL:(NSString*)email
+{
+    NSLog(@"Candidate Email: %@", email);
+    NSString *urlString = [NSString stringWithFormat:@"mailto:%@", email];
+    return [NSURL URLWithString:urlString];
 }
 
 @end

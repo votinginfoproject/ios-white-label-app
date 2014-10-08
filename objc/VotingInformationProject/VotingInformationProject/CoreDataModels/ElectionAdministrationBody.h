@@ -6,37 +6,31 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "VIPModel.h"
 
-@class ElectionOfficial, State, VIPAddress;
+#import "DataSource.h"
+#import "ElectionOfficial.h"
+#import "VIPAddress.h"
 
-@interface ElectionAdministrationBody : VIPManagedObject
-
-@property (nonatomic, retain) NSString * absenteeVotingInfoUrl;
-@property (nonatomic, retain) NSString * ballotInfoUrl;
-@property (nonatomic, retain) NSString * electionInfoUrl;
-@property (nonatomic, retain) NSString * electionRegistrationConfirmationUrl;
-@property (nonatomic, retain) NSString * electionRegistrationUrl;
-@property (nonatomic, retain) NSString * electionRulesUrl;
-@property (nonatomic, retain) NSString * hoursOfOperation;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * voterServices;
-@property (nonatomic, retain) NSString * votingLocationFinderUrl;
-@property (nonatomic, retain) NSSet *addresses;
-@property (nonatomic, retain) NSSet *electionOfficials;
-@property (nonatomic, retain) State *state;
+@protocol ElectionAdministrationBody
 @end
 
-@interface ElectionAdministrationBody (CoreDataGeneratedAccessors)
+@interface ElectionAdministrationBody : VIPModel
 
-- (void)addAddressesObject:(VIPAddress *)value;
-- (void)removeAddressesObject:(VIPAddress *)value;
-- (void)addAddresses:(NSSet *)values;
-- (void)removeAddresses:(NSSet *)values;
-
-- (void)addElectionOfficialsObject:(ElectionOfficial *)value;
-- (void)removeElectionOfficialsObject:(ElectionOfficial *)value;
-- (void)addElectionOfficials:(NSSet *)values;
-- (void)removeElectionOfficials:(NSSet *)values;
+@property (nonatomic, strong) NSString<Optional> * name;
+@property (nonatomic, strong) NSString<Optional> * electionInfoUrl;
+@property (nonatomic, strong) NSString<Optional> * electionRegistrationUrl;
+@property (nonatomic, strong) NSString<Optional> * electionRegistrationConfirmationUrl;
+@property (nonatomic, strong) NSString<Optional> * absenteeVotingInfoUrl;
+@property (nonatomic, strong) NSString<Optional> * votingLocationFinderUrl;
+@property (nonatomic, strong) NSString<Optional> * ballotInfoUrl;
+@property (nonatomic, strong) NSString<Optional> * electionRulesUrl;
+@property (nonatomic, strong) NSString<Optional> * hoursOfOperation;
+@property (nonatomic, strong) NSArray<Ignore> * voterServices;
+@property (nonatomic, strong) VIPAddress<Optional> *correspondenceAddress;
+@property (nonatomic, strong) VIPAddress<Optional> *physicalAddress;
+@property (nonatomic, strong) ElectionAdministrationBody<Optional> * local_jurisdiction;
+@property (nonatomic, strong) NSArray<ElectionOfficial, Optional> *electionOfficials;
+@property (nonatomic, strong) NSArray<DataSource, Optional> *sources;
 
 @end

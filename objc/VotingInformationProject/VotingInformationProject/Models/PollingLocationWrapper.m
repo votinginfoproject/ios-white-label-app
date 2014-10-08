@@ -7,7 +7,7 @@
 
 #import "PollingLocationWrapper.h"
 #import "PollingLocationCell.h"
-#import "VIPAddress.h"
+#import "EarlyVoteSite.h"
 #import "VIPAddress+API.h"
 
 @implementation PollingLocationWrapper {
@@ -130,7 +130,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
         tableCell.owner = self;
         tableCell.address.text = self.address;
         tableCell.name.text = self.name;
-        tableCell.image.image = [self.location.isEarlyVoteSite boolValue]
+        tableCell.image.image = [self.location isMemberOfClass:[EarlyVoteSite class]]
                                  ? [UIImage imageNamed:@"Polling_earlyvoting"]
                                  : [UIImage imageNamed:@"Polling_location"];
         // Grey out image if no lat/lon on table cell init (not geocoded yet!)
@@ -147,7 +147,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 {
     // set accessibility of tableCell
     self.tableCell.isAccessibilityElement = YES;
-    NSString *accessibilityLabel = [self.location.isEarlyVoteSite boolValue] ?
+    NSString *accessibilityLabel = [self.location isMemberOfClass:[EarlyVoteSite class]] ?
     NSLocalizedString(@"Early Vote Site", @"Polling Location Cell Accessibility Label - Early Vote Site") :
     NSLocalizedString(@"Polling Site", @"Polling Location Cell Accessibility Label - Polling Site");
     self.tableCell.accessibilityLabel = accessibilityLabel;

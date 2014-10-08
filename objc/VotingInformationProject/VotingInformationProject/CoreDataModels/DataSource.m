@@ -6,17 +6,8 @@
 //
 
 #import "DataSource.h"
-#import "Contest.h"
-#import "PollingLocation.h"
-#import "State.h"
 
 
 @implementation DataSource
-
-@dynamic name;
-@dynamic official;
-@dynamic contest;
-@dynamic pollingLocation;
-@dynamic state;
 
 @end

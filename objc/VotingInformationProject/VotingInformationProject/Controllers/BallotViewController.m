@@ -10,6 +10,7 @@
 #import "ContestDetailsViewController.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "UserElection+API.h"
+#import "Election+API.h"
 #import "Contest+API.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
@@ -66,9 +67,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     } else {
         self.election = (UserElection*) vipTabBarController.currentElection;
         self.party = vipTabBarController.currentParty;
-        [self.election getVoterInfoIfExpired:^(BOOL success, NSError *error) {
-            [self updateUI];
-        }];
+        [self updateUI];
     }
 }
 
@@ -92,12 +91,12 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
         return;
     }
 
-    self.electionNameLabel.text = self.election.electionName;
-    self.electionDateLabel.text = [self.election getDateString];
+    self.electionNameLabel.text = self.election.election.name;
+    self.electionDateLabel.text = [self.election.election getDateString];
 
-    NSArray *contests = [self.election getSorted:@"contests"
-                                      byProperty:@"ballotPlacement"
-                                       ascending:YES];
+    NSSortDescriptor *contestsSort = [NSSortDescriptor sortDescriptorWithKey:@"ballotPlacement"
+                                                                   ascending:YES];
+    NSArray *contests = [self.election.contests sortedArrayUsingDescriptors:@[contestsSort]];
 
     if ([self.party length] > 0) {
         NSString *predicateFormat = @"SELF.primaryParty = nil OR SELF.primaryParty CONTAINS[cd] %@";
@@ -197,7 +196,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         Contest *contest = (Contest*)_contests[indexPath.item];
         cdvc.contest = contest;
-        cdvc.electionName = self.election.electionName;
+        cdvc.electionName = self.election.election.name;
     }
 }
 

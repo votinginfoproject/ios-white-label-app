@@ -15,15 +15,15 @@ SPEC_BEGIN(SocialChannelTests)
 describe(@"SocialChannelTests", ^{
     
     beforeEach(^{
-        [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
     afterEach(^{
-        [MagicalRecord cleanUp];
     });
 
     it(@"should ensure that uniqueUrl returns valid urls", ^{
-        SocialChannel *channel = (SocialChannel*)[SocialChannel setFromDictionary:@{@"id": @"VotingInfo", @"type": @"Facebook"}];
+        NSError *error = nil;
+        SocialChannel *channel = [[SocialChannel alloc] initWithDictionary:@{@"id": @"VotingInfo", @"type": @"Facebook"}
+                                                                     error:&error];
         [[[[channel url] absoluteString] should] equal:@"https://facebook.com/VotingInfo"];
 
         channel.type = @"Twitter";

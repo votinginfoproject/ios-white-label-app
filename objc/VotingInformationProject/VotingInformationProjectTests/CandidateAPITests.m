@@ -12,40 +12,53 @@
 
 SPEC_BEGIN(CandidateAPITests)
 
+/**
+ Helper function to create a contest with two candidates
+ */
+Candidate* (^createMockCandidate) () = ^Candidate* () {
+    NSDictionary *attributes = @{
+        @"name": @"Jon Snow",
+        @"photoUrl": @"https://votinginfoproject.org/a/img/logo-vip.png",
+        @"email": @"test.email@somedomain.com",
+        @"candidateUrl": @"http://test.com"
+    };
+
+    NSError *error = nil;
+    Candidate* candidate = [[Candidate alloc] initWithDictionary:attributes error:&error];
+    return candidate;
+};
+
 describe(@"CandidateAPITests", ^{
     
     beforeEach(^{
-        [MagicalRecord setupCoreDataStackWithInMemoryStore];
     });
     
     afterEach(^{
-        [MagicalRecord cleanUp];
     });
 
     it(@"should ensure that getCandidatePhotoData sets data", ^{
-        Candidate* candidate = [Candidate MR_createEntity];
-        candidate.photoUrl = @"https://votinginfoproject.org/a/img/logo-vip.png";
+        Candidate* candidate = createMockCandidate();
         [[candidate.photo should] beNil];
         [candidate getCandidatePhotoData];
         [[expectFutureValue(candidate.photo) shouldEventuallyBeforeTimingOutAfter(2.0)] beNonNil];
     });
 
     it(@"should ensure that getLinksDataArray results have hte proper dict keys", ^{
-        Candidate *candidate = [Candidate MR_createEntity];
-        candidate.email = @"test.email@somedomain.com";
+        Candidate *candidate = createMockCandidate();
 
         NSMutableArray *linksData = [candidate getLinksDataArray];
-        // should only get data for email since candidateUrl and phone are null
+        // should only get data for website since phone is null and email cannot be opened on simulator
         [[theValue([linksData count]) should] equal:theValue(1)];
-        NSDictionary *emailData = linksData[0];
-        [[emailData should] beKindOfClass:[NSDictionary class]];
-        [[emailData[@"description"] should] beNonNil];
-        [[emailData[@"buttonTitle"] should] beNonNil];
-        [[emailData[@"url"] should] beNonNil];
-        [[emailData[@"urlScheme"] should] beNonNil];
+        NSDictionary *websiteData = linksData[0];
+        [[websiteData should] beKindOfClass:[NSDictionary class]];
+        [[websiteData[@"description"] should] beNonNil];
+        [[websiteData[@"buttonTitle"] should] beNonNil];
+        [[websiteData[@"url"] should] beNonNil];
+        [[websiteData[@"urlScheme"] should] beNonNil];
 
-        // ensure emailData urlScheme is of type kCandidateLinkTypeEmail as well
-        [[theValue([emailData[@"urlScheme"] integerValue]) should] equal:theValue(kCandidateLinkTypeEmail)];
+        // ensure websiteData urlScheme is of type kCandidateLinkTypeEmail as well
+        [[theValue([websiteData[@"urlScheme"] integerValue]) should]
+         equal:theValue(kCandidateLinkTypeWebsite)];
     });
    
 });

@@ -10,7 +10,8 @@
 #import "VIPTabBarController.h"
 #import "ContactsSearchViewController.h"
 #import "UIWebViewController.h"
-#import "State+API.h"
+#import "Election+API.h"
+#import "State.h"
 #import "VIPColor.h"
 
 #import "ContestUrlCell.h"
@@ -80,21 +81,32 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         return;
     }
 
-    self.electionNameLabel.text = self.election.electionName;
-    self.electionDateLabel.text = [self.election getDateString];
+    self.electionNameLabel.text = self.election.election.name;
+    self.electionDateLabel.text = [self.election.election getDateString];
 
     [self.tableData removeAllObjects];
-    NSArray *states = [self.election.states allObjects];
+    NSArray *states = self.election.state;
     //TODO: Allow for multiple state selection. In US the states set will only ever have 0-1 entries
     if ([states count] == 1) {
         State *state = (State*)states[0];
         NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
+        if (!eabProperties) {
+            eabProperties = [[NSMutableArray alloc] initWithCapacity:1];
+        }
+        // Add state name to EAB Properties
+        if (state.name) {
+            [eabProperties insertObject:@{
+                                          @"title": NSLocalizedString(@"State", nil),
+                                          @"data": state.name }
+                                atIndex:0];
+        }
         [self.tableData addObject:eabProperties];
         if (state.localJurisdiction) {
             NSMutableArray *localJurisdictionProperties =
             [state.localJurisdiction.electionAdministrationBody getProperties];
-            [localJurisdictionProperties removeObjectAtIndex:0];
-            [self.tableData addObject:localJurisdictionProperties];
+            if (localJurisdictionProperties) {
+                [self.tableData addObject:localJurisdictionProperties];
+            }
         }
         self.tableView.dataSource = [self configureDataSource];
         [self.tableView reloadData];

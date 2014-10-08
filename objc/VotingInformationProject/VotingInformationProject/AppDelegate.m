@@ -14,9 +14,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Initialize Core Data Stack via MagicalRecord
-    [MagicalRecord setupCoreDataStack];
-
     // Load GoogleMaps API Key from file
     // Default key provided in repo is azaveadev@azavea.com key
     // Instructions on using your own key are in the README: necessary if you change the app bundle identifier
@@ -92,7 +89,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [MagicalRecord cleanUp];
 }
 
 #pragma mark - Application's Documents directory
