@@ -57,6 +57,7 @@
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               NSError *vipError = [VIPError vipResponseToError:operation.responseObject];
+              NSLog(@"Response Error: %@", operation.responseObject);
               statusBlock(nil, vipError);
           }];
 }

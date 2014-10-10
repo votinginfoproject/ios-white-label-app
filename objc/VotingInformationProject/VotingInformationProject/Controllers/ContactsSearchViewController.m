@@ -212,11 +212,13 @@
     _updating = YES;
     NSLog(@"Requesting: %@", self.userAddress);
     [CivicInfoAPI getVotingInfo:self.userAddress forElection:self.activeElection callback:^(UserElection *votingInfo, NSError *error) {
-        if (error) {
-            [self displayGetElectionsError:error];
-        } else {
+        if (votingInfo && !error) {
             self.currentElection = votingInfo;
             [self updateUICurrentElection];
+        } else {
+            NSLog(@"ERROR getting election: %@", error);
+            NSLog(@"ERROR: %@", votingInfo);
+            [self displayGetElectionsError:error];
         }
         _updating = NO;
     }];
