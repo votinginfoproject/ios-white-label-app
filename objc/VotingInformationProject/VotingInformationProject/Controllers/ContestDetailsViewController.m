@@ -102,7 +102,9 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         // Only add candidates for elections, not referenda
         NSSortDescriptor *candidatesSort = [NSSortDescriptor sortDescriptorWithKey:@"orderOnBallot" ascending:YES];
         NSArray *sortedCandidates = [self.contest.candidates sortedArrayUsingDescriptors:@[candidatesSort]];
-        [self.tableData addObject:sortedCandidates];
+        if (sortedCandidates) {
+            [self.tableData addObject:sortedCandidates];
+        }
     }
     [self.tableView reloadData];
 }

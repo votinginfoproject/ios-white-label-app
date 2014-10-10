@@ -539,6 +539,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     PollingLocationCell *cell = (PollingLocationCell*)
         [tableView cellForRowAtIndexPath:indexPath];
     PollingLocationWrapper *plWrapper = cell.owner;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self showDirectionsSwitcherForCell:plWrapper];
 }
 

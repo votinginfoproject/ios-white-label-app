@@ -42,6 +42,12 @@
                                     @"data": stringData}];
         }
     }
+    if ([properties count] == 0) {
+        [properties addObject:@{
+            @"title": @"",
+            @"data": NSLocalizedString(@"Not Available", nil)
+        }];
+    }
     return properties;
 }
 

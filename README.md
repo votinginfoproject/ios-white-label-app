@@ -89,8 +89,11 @@ Then, with Xcode closed, run:
 cd objc/VotingInformationProject && pod install
 ```
 
-Then, open Xcode. Ensure that your settings.plist file contains all of the keys found  
-in the settings.plist.template file, then run:
+Next, ensure your settings.plist file contains only the keys found in SETTINGS.md.
+If it does not, recopy the settings.plist.template file using the instructions in 
+the build section and re-add your api keys after copying.
+
+Now open Xcode. Run: 
   - Project -> Clean
   - Project -> Build
 
