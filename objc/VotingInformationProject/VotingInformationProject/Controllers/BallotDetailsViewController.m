@@ -93,13 +93,6 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         if (!eabProperties) {
             eabProperties = [[NSMutableArray alloc] initWithCapacity:1];
         }
-        // Add state name to EAB Properties
-        if (state.name) {
-            [eabProperties insertObject:@{
-                                          @"title": NSLocalizedString(@"State", nil),
-                                          @"data": state.name }
-                                atIndex:0];
-        }
         [self.tableData addObject:eabProperties];
         if (state.localJurisdiction) {
             NSMutableArray *localJurisdictionProperties =
