@@ -6,9 +6,9 @@
 //  
 //
 
-#define USER_DEFAULTS_STORED_ADDRESS @"votinginfo.storedAddress"
-#define USER_DEFAULTS_JSON @"votinginfo.json"
-#define USER_DEFAULTS_PARTY @"votinginfo.party"
+#define USER_DEFAULTS_STORED_ADDRESS @"votinginfo.storedAddress.v2.0.1"
+#define USER_DEFAULTS_JSON @"votinginfo.json.v2.0.1"
+#define USER_DEFAULTS_PARTY @"votinginfo.party.v2.0.1"
 #define USER_DEFAULTS_LATITUDE_KEY @"votinginfo.mapLatitude"
 #define USER_DEFAULTS_LONGITUDE_KEY @"votinginfo.mapLongitude"
 #define USER_DEFAULTS_POLLING_VIEW_KEY @"votinginfo.pollingViewKey"
