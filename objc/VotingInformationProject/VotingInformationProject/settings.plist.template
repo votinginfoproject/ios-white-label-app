@@ -12,5 +12,7 @@
     <string>Your Brand Name Here</string>
 	<key>OfficialOnly</key>
 	<true/>
+    <key>UseTestData</key>
+    <false/>
 </dict>
 </plist>
