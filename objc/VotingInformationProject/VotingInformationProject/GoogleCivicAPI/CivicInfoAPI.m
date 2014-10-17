@@ -34,13 +34,17 @@
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
 
     BOOL officialOnly = [[[AppSettings settings] objectForKey:@"OfficialOnly"] boolValue];
+    BOOL useTestData = [[[AppSettings settings] objectForKey:@"UseTestData"] boolValue];
     NSString *officialOnlyString = officialOnly ? @"True" : @"False";
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{
         @"address": address,
         @"key": apiKey,
         @"officialOnly": officialOnlyString
     }];
-    if (election && [election.id length] != 0) {
+    if (useTestData) {
+      [params setObject:@"2000" forKey:@"electionId"];
+    }
+    else if (election && [election.id length] != 0) {
         [params setObject:election.id forKey:@"electionId"];
     }
     if ([[AppSettings settings] valueForKey:@"DEBUG"]) {
