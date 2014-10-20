@@ -8,7 +8,7 @@ Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-lab
 
 ### Project Dependencies
 
-First you must install the package manager CocoaPods on your Mac:  
+First you must install the package manager CocoaPods v0.34+ on your Mac:  
 http://cocoapods.org/
 
 ```
