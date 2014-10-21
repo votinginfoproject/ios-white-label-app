@@ -33,8 +33,10 @@
     NSString *url = @"https://www.googleapis.com/civicinfo/v2/voterinfo";
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
 
-    BOOL officialOnly = [[[AppSettings settings] objectForKey:@"OfficialOnly"] boolValue];
-    BOOL useTestData = [[[AppSettings settings] objectForKey:@"UseTestData"] boolValue];
+    id official = [[AppSettings settings] objectForKey:@"OfficialOnly"];
+    BOOL officialOnly = official ? [official boolValue] : YES;
+    id testData = [[AppSettings settings] objectForKey:@"UseTestData"];
+    BOOL useTestData = testData ? [testData boolValue] : NO;
     NSString *officialOnlyString = officialOnly ? @"True" : @"False";
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{
         @"address": address,
@@ -43,8 +45,7 @@
     }];
     if (useTestData) {
       [params setObject:@"2000" forKey:@"electionId"];
-    }
-    else if (election && [election.id length] != 0) {
+    } else if (election && [election.id length] != 0) {
         [params setObject:election.id forKey:@"electionId"];
     }
     if ([[AppSettings settings] valueForKey:@"DEBUG"]) {

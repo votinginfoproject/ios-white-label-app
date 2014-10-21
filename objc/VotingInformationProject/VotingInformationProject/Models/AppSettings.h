@@ -21,4 +21,6 @@
  */
 + (NSString*)UIStringForKey:(NSString*)key;
 
++ (id)valueForKey:(NSString*)key withDefault:(id)defaultValue;
+
 @end
