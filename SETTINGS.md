@@ -14,6 +14,10 @@ If the key has a default, it will be noted as an **Optional** field
 **Key:** BrandNameText  
 **Value:** *(String)* The brand name to display on the app homepage.
 
+**Key:** electionId  
+**Value:** *(String)* Forces the app to search for this electionId only as part of the v2 API voterInfo query.  
+**Optional:** Default nil
+
 **Key:** OfficialOnly  
 **Value:** *(BOOL)* Sets the API query param officialOnly. If false, unoffiical sources will be returned and displayed via the API.
 **Optional:** Default YES
