@@ -138,8 +138,6 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [indexPath section];
-    NSString *cellIdentifier = [self cellIdentifierFor:section];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
     NSArray *data = self.tableData[section];
     NSDictionary *property = nil;
@@ -152,17 +150,24 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         }
     }
 
+    UITableViewCell *cell = nil;
+    NSString *cellIdentifier = [self cellIdentifierFor:section];
     // If we have a url, make this cell segue to UIWebViewController
     BOOL isSectionEmpty = [self isSectionEmpty:section];
     if (section == CDVC_TABLE_SECTION_PROPERTIES &&
         ([dataUrl.scheme isEqualToString:@"http"] ||
          [dataUrl.scheme isEqualToString:@"https"])) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:CONTEST_URL_CELLID
+                                               forIndexPath:indexPath];
         ContestUrlCell *urlCell = (ContestUrlCell*)cell;
         [urlCell configure:property[@"title"] withUrl:property[@"data"]];
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES && !isSectionEmpty) {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                               forIndexPath:indexPath];
         [self configurePropertiesTableViewCell:cell withDictionary:property];
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES && !isSectionEmpty) {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                               forIndexPath:indexPath];
         Candidate *candidate = (Candidate *)self.tableData[section][indexPath.item];
         VIPCandidateCell *candidateCell = (VIPCandidateCell*)cell;
         [self configureCandidateTableViewCell:candidateCell withCandidate:candidate];

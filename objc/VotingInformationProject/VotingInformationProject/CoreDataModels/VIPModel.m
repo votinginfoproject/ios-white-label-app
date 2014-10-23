@@ -38,14 +38,16 @@
             }
         } else if (data && [data isKindOfClass:[NSString class]]) {
             NSString *stringData = (NSString*)data;
-            [properties addObject:@{@"title": propertyList[property],
-                                    @"data": stringData}];
+            if ([data length] > 0) {
+                [properties addObject:@{@"title": propertyList[property],
+                                        @"data": stringData}];
+            }
         }
     }
     if ([properties count] == 0) {
         [properties addObject:@{
-            @"title": @"",
-            @"data": NSLocalizedString(@"Not Available", nil)
+            @"title": NSLocalizedString(@"Not Available", nil),
+            @"data": @""
         }];
     }
     return properties;
