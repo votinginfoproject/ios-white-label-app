@@ -30,4 +30,10 @@
     return uiString;
 }
 
++ (id)valueForKey:(NSString*)key withDefault:(id)defaultValue
+{
+    id value = [[self settings] objectForKey:key];
+    return value ? value : defaultValue;
+}
+
 @end

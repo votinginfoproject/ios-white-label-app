@@ -8,7 +8,7 @@ Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-lab
 
 ### Project Dependencies
 
-First you must install the package manager CocoaPods on your Mac:  
+First you must install the package manager CocoaPods v0.34+ on your Mac:  
 http://cocoapods.org/
 
 ```
@@ -136,6 +136,27 @@ https://developers.google.com/maps/documentation/ios/start#getting_the_google_ma
 
 Follow the instructions under the section "Obtaining an API Key"  
 Copy the newly generated API key and paste between the string tags for the key GoogleMapsAPIKey in settings.plist
+
+
+## Updating the app package display name
+
+This will update the package name that will display under the application icon on the springboard.
+
+ In objc/VotingInformationProject, open the project in Xcode by opening the file:
+
+```
+VotingInformationProject.xcworkspace
+```
+
+In VointingInformationProject/Supporting Files Open:
+
+```
+VotingInformationProject-Info.plist
+```
+
+For the key _'Bundle display name'_ change the value _'$(PRODUCT_NAME)'_ to the string of your choice
+
+Save and compile the application to see the changes
 
 
 ## Licenses
