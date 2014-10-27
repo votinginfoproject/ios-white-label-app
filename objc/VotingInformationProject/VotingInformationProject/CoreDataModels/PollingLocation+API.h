@@ -20,7 +20,7 @@ typedef enum {
     VIPPollingLocationTypeAll = 0,
     VIPPollingLocationTypeEarlyVote = 1,
     VIPPollingLocationTypeNormal = 2,
-    VIPPollingLocationTypeDropbox = 3
+    VIPPollingLocationTypeDropoff = 3
 } VIPPollingLocationType;
 
 /**

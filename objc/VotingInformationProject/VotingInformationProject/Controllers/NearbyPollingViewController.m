@@ -40,7 +40,6 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
 @property (weak, nonatomic) IBOutlet UIButton *pollingPickerButton;
 
 // Original value of self.tabBarController.navigationItem.rightBarButtonItem
@@ -103,12 +102,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Also scale the images to the proper size
     UIImage *earlyVoting = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_earlyvoting"] scaledToSize:CGSizeMake(25, 38)];
     UIImage *polling = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_location"] scaledToSize:CGSizeMake(25, 38)];
+    UIImage *dropoff = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_location"] scaledToSize:CGSizeMake(25, 38)];
 
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
         // Skip this early vote site if it's not currently open
         if ([location isMemberOfClass:[EarlyVoteSite class]] && ![location isAvailable]) {
+            continue;
+        }
+        // Skip this drop off location if its not currently open
+        if ([location isMemberOfClass:[DropoffLocation class]] && ![location isAvailable]) {
             continue;
         }
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
@@ -119,6 +123,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                  withTitle:sender.name];
                     if ([location isMemberOfClass:[EarlyVoteSite class]]) {
                         marker.icon = earlyVoting;
+                    } else if ([location isMemberOfClass:[DropoffLocation class]]) {
+                        marker.icon = dropoff;
                     } else {
                         marker.icon = polling;
                     }
@@ -177,8 +183,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                    @"Text to display if the table view has no early vote sites to display");
     NSString *pollingMessage = NSLocalizedString(@"No Nearby Polling Locations",
                                                  @"Text to display if the table view has no polling locations to display");
-    self.emptyDataSource.emptyMessage = (type == VIPPollingLocationTypeEarlyVote)
-                                        ? earlyVoteMessage : pollingMessage;
+    NSString *dropoffMessage = NSLocalizedString(@"No Nearby Dropoff Locations",
+                                                 @"Text to display if the table view has no dropoff locations to display");
+    NSString *message = nil;
+    if (type == VIPPollingLocationTypeEarlyVote) {
+        message = earlyVoteMessage;
+    } else if (type == VIPPollingLocationTypeDropoff) {
+        message = dropoffMessage;
+    } else {
+        message = pollingMessage;
+    }
+    self.emptyDataSource.emptyMessage = pollingMessage;
 }
 
 - (CLLocationManager*)locationManager
@@ -246,12 +261,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                    andDescription:NSLocalizedString(@"Polling Locations", nil)],
         [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeEarlyVote
                                    andDescription:NSLocalizedString(@"Early Vote", nil)],
-        [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeDropbox
+        [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeDropoff
                                    andDescription:NSLocalizedString(@"Drop Boxes", nil)]
     ];
     
     UIColor *primaryTextColor = [VIPColor primaryTextColor];
-    [self.pollingPickerButton setTitle:_pollingOptions[0] forState:UIControlStateNormal];
     [self.pollingPickerButton setTitleColor:primaryTextColor
                                    forState:UIControlStateNormal];
     self.pollingPickerButton.layer.borderColor = [primaryTextColor CGColor];
@@ -290,14 +304,12 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.mapView.myLocationEnabled = YES;
 
 
-    // Set listener for segmented control
+    // Set polling picker filter
     self.selectedFilterType = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
                                                        integerForKey:USER_DEFAULTS_SITE_FILTER_KEY];
     [self setEmptyMessage:self.selectedFilterType];
     PollingPickerOption *option = [self getSelectedOptionObject];
-    [self.pollingPickerButton setTitle:option.desc
-                              forState:UIControlStateNormal];
-
+    [self setPollingPickerTitle:option.desc];
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
             _userAddressMarker.map = nil;
@@ -468,6 +480,14 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 #pragma mark - Polling Picker
 
+- (void) setPollingPickerTitle:(NSString*)desc
+{
+    NSString *title = NSLocalizedString(@"Filter", @"Prefix for polling picker filter seleciton button");
+    title = [title stringByAppendingString:@": "];
+    title = [title stringByAppendingString:desc];
+    [self.pollingPickerButton setTitle:title forState:UIControlStateNormal];
+}
+
 - (PollingPickerOption*)getSelectedOptionObject
 {
     NSUInteger selectedOptionIndex = [_pollingOptions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -488,7 +508,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                 self.selectedFilterType = option.type;
                                 [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
                                                                            forKey:USER_DEFAULTS_SITE_FILTER_KEY];
-                                [self.pollingPickerButton setTitle:option.desc forState:UIControlStateNormal];
+                                [self setPollingPickerTitle:option.desc];
                                 [self setEmptyMessage:option.type];
                                 [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
                             }];

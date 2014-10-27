@@ -3,7 +3,6 @@
 //  VotingInformationProject
 //
 //  Created by Andrew Fink on 10/27/14.
-//  Copyright (c) 2014 The Pew Charitable Trusts. All rights reserved.
 //
 
 #import "PollingPickerOption.h"

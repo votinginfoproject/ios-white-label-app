@@ -27,11 +27,15 @@
 - (NSArray*)filterPollingLocations:(VIPPollingLocationType)type
 {
     if (type == VIPPollingLocationTypeAll) {
-        return [self.pollingLocations arrayByAddingObjectsFromArray:self.earlyVoteSites];
+        return [[self.pollingLocations
+                 arrayByAddingObjectsFromArray:self.earlyVoteSites]
+                 arrayByAddingObjectsFromArray:self.dropOffLocations];
     } else if (type == VIPPollingLocationTypeNormal) {
         return self.pollingLocations;
     } else if (type == VIPPollingLocationTypeEarlyVote) {
         return self.earlyVoteSites;
+    } else if (type == VIPPollingLocationTypeDropoff) {
+        return self.dropOffLocations;
     } else {
         return @[];
     }

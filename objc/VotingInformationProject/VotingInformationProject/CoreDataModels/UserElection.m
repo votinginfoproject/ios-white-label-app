@@ -25,6 +25,9 @@
         if (!self.contests) {
             self.contests = @[];
         }
+        if (!self.dropOffLocations) {
+            self.dropOffLocations = @[];
+        }
     }
     return self;
 }
