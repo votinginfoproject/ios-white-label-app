@@ -10,9 +10,12 @@
 @interface SocialChannel (API)
 
 /**
- * Return the unique NSURL constructed from the social channel id/type
+ * Return the id field as an NSURL
  *
- * @return NSURL The url, e.g. "https://twitter.com/votinginfo for id: votinginfo, type: Twitter
+ *  According to the VIP folks, the id field will always be a url,
+ *      so we can just pass it to [NSURL URLWithString]
+ *
+ * @return NSURL for id or nil if no id field
  */
 - (NSURL*)url;
 
