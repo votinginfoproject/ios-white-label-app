@@ -48,6 +48,26 @@ describe(@"Election+API Tests", ^{
         [[theValue([normalSites count]) should] equal:theValue(2)];
     });
 
+    it(@"should ensure that filterPollingLocations returns data if pollingLocations is nil", ^{
+        NSDictionary *attributes = @{
+            @"kind": @"test",
+            @"normalizedInput": @{ @"locationName": @"Test location" },
+            @"election": @{
+                    @"id": @"2000",
+                    @"name": @"Test Election",
+                    @"electionDay": @"2013-01-01"
+                    },
+            @"earlyVoteSites": @[@{}]
+        };
+        NSError *error = nil;
+        UserElection *votingInfo = [[UserElection alloc] initWithDictionary:attributes error:&error];
+        NSArray *allSites = [votingInfo filterPollingLocations:VIPPollingLocationTypeAll];
+        [[theValue([allSites count]) should] equal:theValue(1)];
+
+
+
+    });
+
     it(@"should ensure that getUniqueParties returns unique, alphabetically listed parties", ^{
         NSDictionary *attributes = @{
             @"kind": @"test",

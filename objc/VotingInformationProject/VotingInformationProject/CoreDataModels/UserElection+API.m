@@ -11,7 +11,6 @@
 
 @implementation UserElection (API)
 
-
 - (NSArray*)getUniqueParties
 {
     NSMutableDictionary *parties = [NSMutableDictionary dictionary];
@@ -37,12 +36,5 @@
         return @[];
     }
 }
-
-/*
- A set of parsed data is unique on (electionId, UserAddress).
-*/
-/*
- // TODO: Rewrite for v2
- */
 
 @end
