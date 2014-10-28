@@ -8,6 +8,7 @@
 #import "PollingLocationWrapper.h"
 #import "PollingLocationCell.h"
 #import "EarlyVoteSite.h"
+#import "DropoffLocation.h"
 #import "VIPAddress+API.h"
 
 @implementation PollingLocationWrapper {
@@ -130,9 +131,13 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
         tableCell.owner = self;
         tableCell.address.text = self.address;
         tableCell.name.text = self.name;
-        tableCell.image.image = [self.location isMemberOfClass:[EarlyVoteSite class]]
-                                 ? [UIImage imageNamed:@"Polling_earlyvoting"]
-                                 : [UIImage imageNamed:@"Polling_location"];
+        if ([self.location isMemberOfClass:[EarlyVoteSite class]]) {
+            tableCell.image.image = [UIImage imageNamed:@"Polling_earlyvoting"];
+        } else if ([self.location isMemberOfClass:[DropoffLocation class]]) {
+            tableCell.image.image = [UIImage imageNamed:@"Polling_dropoff"];
+        } else {
+            tableCell.image.image = [UIImage imageNamed:@"Polling_location"];
+        }
         // Grey out image if no lat/lon on table cell init (not geocoded yet!)
         if ([self.location.address.latitude doubleValue] < VA_MIN_LAT ||
             [self.location.address.longitude doubleValue] < VA_MIN_LON) {

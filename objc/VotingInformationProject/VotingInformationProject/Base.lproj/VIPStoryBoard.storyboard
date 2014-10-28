@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--ContactsSearchViewController-->
@@ -900,14 +900,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vGb-SD-759">
-                                <rect key="frame" x="20" y="10" width="280" height="29"/>
-                                <segments>
-                                    <segment title="All Sites"/>
-                                    <segment title="Early Voting"/>
-                                    <segment title="Polling Sites"/>
-                                </segments>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmB-pE-6NH">
                                 <rect key="frame" x="0.0" y="46" width="320" height="409"/>
                                 <subviews>
@@ -973,16 +965,24 @@
                                     <constraint firstItem="6DM-NM-eBM" firstAttribute="top" secondItem="qmB-pE-6NH" secondAttribute="top" id="s7q-e8-do0"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AB9-4Q-gau">
+                                <rect key="frame" x="16" y="8" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Polling Picker"/>
+                                <connections>
+                                    <action selector="didTapPollingPickerButton:" destination="5h8-J8-eZD" eventType="touchUpInside" id="GTH-kk-rA9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qmB-pE-6NH" firstAttribute="top" secondItem="vGb-SD-759" secondAttribute="bottom" constant="8" id="5iL-Hp-0vl"/>
-                            <constraint firstAttribute="trailing" secondItem="vGb-SD-759" secondAttribute="trailing" constant="20" id="GNH-dx-hcA"/>
+                            <constraint firstAttribute="trailing" secondItem="AB9-4Q-gau" secondAttribute="trailing" constant="16" id="3WP-0t-TOo"/>
+                            <constraint firstItem="AB9-4Q-gau" firstAttribute="leading" secondItem="OOX-4h-T5b" secondAttribute="leading" constant="16" id="3zr-Mh-wjG"/>
+                            <constraint firstItem="AB9-4Q-gau" firstAttribute="top" secondItem="TWf-K2-fuw" secondAttribute="bottom" constant="8" id="Iyy-hC-BgP"/>
                             <constraint firstItem="nTU-4R-KE5" firstAttribute="top" secondItem="qmB-pE-6NH" secondAttribute="bottom" id="OLV-Bp-fdX"/>
                             <constraint firstAttribute="trailing" secondItem="qmB-pE-6NH" secondAttribute="trailing" id="ThK-00-q1a"/>
                             <constraint firstItem="qmB-pE-6NH" firstAttribute="leading" secondItem="OOX-4h-T5b" secondAttribute="leading" id="e7j-6g-sy1"/>
-                            <constraint firstItem="vGb-SD-759" firstAttribute="leading" secondItem="OOX-4h-T5b" secondAttribute="leading" constant="20" id="tSr-Vp-XFJ"/>
-                            <constraint firstItem="vGb-SD-759" firstAttribute="top" secondItem="TWf-K2-fuw" secondAttribute="bottom" constant="10" id="uGO-6y-qqx"/>
+                            <constraint firstItem="qmB-pE-6NH" firstAttribute="top" secondItem="AB9-4Q-gau" secondAttribute="bottom" constant="8" id="qLP-EZ-3CO"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -998,7 +998,7 @@
                         <outlet property="contentView" destination="qmB-pE-6NH" id="lev-l9-aet"/>
                         <outlet property="listView" destination="OJL-jN-nx5" id="Xbi-iH-MBY"/>
                         <outlet property="mapView" destination="6DM-NM-eBM" id="gHh-fx-ZZS"/>
-                        <outlet property="siteFilter" destination="vGb-SD-759" id="Xy8-NS-vEb"/>
+                        <outlet property="pollingPickerButton" destination="AB9-4Q-gau" id="j41-NB-mwd"/>
                         <segue destination="jgN-a0-jrp" kind="modal" identifier="DirectionsViewSegue" id="NjA-8o-DJO"/>
                     </connections>
                 </viewController>
@@ -1202,7 +1202,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7Fy-cK-Sdj"/>
+        <segue reference="BSD-rg-h3n"/>
         <segue reference="Sg3-NH-JMz"/>
     </inferredMetricsTieBreakers>
 </document>
