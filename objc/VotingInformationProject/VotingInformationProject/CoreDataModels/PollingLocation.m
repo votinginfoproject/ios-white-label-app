@@ -10,4 +10,9 @@
 
 @implementation PollingLocation
 
+- (NSString*)prettyType
+{
+    return NSLocalizedString(@"Polling", nil);
+}
+
 @end

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "PollingLocation.h"
+#import "PollingLocation+API.h"
 #import "PollingLocationCell.h"
 #import "GoogleMaps/GoogleMaps.h"
 

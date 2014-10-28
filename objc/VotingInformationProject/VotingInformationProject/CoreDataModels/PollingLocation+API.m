@@ -27,5 +27,17 @@
     }
 }
 
+- (NSString*)getTitle
+{
+    NSString *title = self.address.locationName;
+    if (!title) {
+        title = self.name;
+    }
+    if (!title) {
+        title = @"";
+    }
+    return [NSString stringWithFormat:@"%@ (%@)", title, [self prettyType]];
+}
+
 
 @end

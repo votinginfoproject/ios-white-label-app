@@ -66,16 +66,8 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
 - (NSString*) name
 {
-    if (self.location) {
-        if (self.location.address.locationName.length > 0) {
-            return self.location.address.locationName;
-        } else {
-            NSString *result = self.location.name;
-            return result.length > 0 ? result : @"";
-        }
-    } else {
-        return @"";
-    }
+    NSString *name = [self.location getTitle];
+    return name ? name : @"";
 }
 
 - (CLLocationCoordinate2D)mapOrigin
