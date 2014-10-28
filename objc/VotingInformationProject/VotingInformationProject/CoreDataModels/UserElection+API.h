@@ -26,14 +26,4 @@
 
 - (NSArray*)filterPollingLocations:(VIPPollingLocationType)type;
 
-/**
- * Get election data for an election from the Google Civic Info API
- *
- * https://developers.google.com/civic-information/docs/us_v1/elections/voterInfoQuery
- * The API call is always made with officialOnly=True
- *
- * @param statusBlock A block object that executes when the operation completes, fills NSError param if success is NO
- */
-//- (void) getVoterInfo:(void (^) (BOOL success, NSError *error)) statusBlock;
-
 @end

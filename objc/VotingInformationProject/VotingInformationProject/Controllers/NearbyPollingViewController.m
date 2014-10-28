@@ -11,11 +11,13 @@
 #import "NearbyPollingViewController.h"
 
 #import "UIImage+Scale.h"
+#import "MMPickerView.h"
 
 #import "AppSettings.h"
 #import "ContactsSearchViewController.h"
 #import "DirectionsViewSegueData.h"
 #import "GDDirectionsService.h"
+#import "PollingPickerOption.h"
 #import "PollingLocation+API.h"
 #import "PollingInfoWindowView.h"
 #import "PollingLocationCell.h"
@@ -38,7 +40,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *siteFilter;
+@property (weak, nonatomic) IBOutlet UIButton *pollingPickerButton;
 
 // Original value of self.tabBarController.navigationItem.rightBarButtonItem
 @property (strong, nonatomic) UIBarButtonItem *originalRightBarButtonItem;
@@ -49,6 +51,8 @@
 @property (strong, nonatomic) VIPAddress *userAddress;
 
 @property (strong, nonatomic) GMSPolyline *directionsPolyline;
+
+@property (assign, nonatomic) VIPPollingLocationType selectedFilterType;
 
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
@@ -64,6 +68,7 @@
     GMSMarker *_userAddressMarker;
     NSMutableArray *_cells;
     PollingLocationWrapper *_actionSheetPLWrapper;
+    NSArray *_pollingOptions;
 }
 
 static const int MAP_VIEW = 0;
@@ -97,12 +102,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Also scale the images to the proper size
     UIImage *earlyVoting = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_earlyvoting"] scaledToSize:CGSizeMake(25, 38)];
     UIImage *polling = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_location"] scaledToSize:CGSizeMake(25, 38)];
+    UIImage *dropoff = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_dropoff"] scaledToSize:CGSizeMake(25, 38)];
 
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
         // Skip this early vote site if it's not currently open
         if ([location isMemberOfClass:[EarlyVoteSite class]] && ![location isAvailable]) {
+            continue;
+        }
+        // Skip this drop off location if its not currently open
+        if ([location isMemberOfClass:[DropoffLocation class]] && ![location isAvailable]) {
             continue;
         }
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
@@ -113,6 +123,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                  withTitle:sender.name];
                     if ([location isMemberOfClass:[EarlyVoteSite class]]) {
                         marker.icon = earlyVoting;
+                    } else if ([location isMemberOfClass:[DropoffLocation class]]) {
+                        marker.icon = dropoff;
                     } else {
                         marker.icon = polling;
                     }
@@ -171,8 +183,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                    @"Text to display if the table view has no early vote sites to display");
     NSString *pollingMessage = NSLocalizedString(@"No Nearby Polling Locations",
                                                  @"Text to display if the table view has no polling locations to display");
-    self.emptyDataSource.emptyMessage = (type == VIPPollingLocationTypeEarlyVote)
-                                        ? earlyVoteMessage : pollingMessage;
+    NSString *dropoffMessage = NSLocalizedString(@"No Nearby Dropoff Locations",
+                                                 @"Text to display if the table view has no dropoff locations to display");
+    NSString *message = nil;
+    if (type == VIPPollingLocationTypeEarlyVote) {
+        message = earlyVoteMessage;
+    } else if (type == VIPPollingLocationTypeDropoff) {
+        message = dropoffMessage;
+    } else {
+        message = pollingMessage;
+    }
+    self.emptyDataSource.emptyMessage = pollingMessage;
 }
 
 - (CLLocationManager*)locationManager
@@ -232,6 +253,21 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.mapView.delegate = self;
     self.mapView.accessibilityElementsHidden = NO;
     self.mapView.settings.myLocationButton = YES;
+
+    _pollingOptions = @[
+        [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeAll
+                                   andDescription:NSLocalizedString(@"All Sites", nil)],
+        [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeNormal
+                                   andDescription:NSLocalizedString(@"Polling Locations", nil)],
+        [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeEarlyVote
+                                   andDescription:NSLocalizedString(@"Early Vote", nil)],
+        [[PollingPickerOption alloc] initWithType:VIPPollingLocationTypeDropoff
+                                   andDescription:NSLocalizedString(@"Drop Boxes", nil)]
+    ];
+    
+    UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
+    [self.pollingPickerButton setTitleColor:secondaryTextColor
+                                   forState:UIControlStateNormal];
 };
 
 - (void) viewWillAppear:(BOOL)animated
@@ -265,15 +301,12 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.mapView.myLocationEnabled = YES;
 
 
-    // Set listener for segmented control
-    VIPPollingLocationType type = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
-                                   integerForKey:USER_DEFAULTS_SITE_FILTER_KEY];
-    self.siteFilter.selectedSegmentIndex = type;
-    [self setEmptyMessage:type];
-    [self.siteFilter addTarget:self
-                        action:@selector(filterLocations:)
-              forControlEvents:UIControlEventValueChanged];
-
+    // Set polling picker filter
+    self.selectedFilterType = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
+                                                       integerForKey:USER_DEFAULTS_SITE_FILTER_KEY];
+    [self setEmptyMessage:self.selectedFilterType];
+    PollingPickerOption *option = [self getSelectedOptionObject];
+    [self setPollingPickerTitle:option.desc];
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
         if (!error) {
             _userAddressMarker.map = nil;
@@ -290,7 +323,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         }
     }];
 
-    [self setCellsWithLocations:[self.election filterPollingLocations:type]];
+    [self setCellsWithLocations:[self.election filterPollingLocations:self.selectedFilterType]];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -298,8 +331,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.navigationItem.rightBarButtonItem = self.originalRightBarButtonItem;
     [[NSUserDefaults standardUserDefaults] setInteger:_currentView
                                                forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
-    [[NSUserDefaults standardUserDefaults] setInteger:self.siteFilter.selectedSegmentIndex
-                                               forKey:USER_DEFAULTS_SITE_FILTER_KEY];
     self.mapView.myLocationEnabled = NO;
 }
 
@@ -443,6 +474,41 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [DirectionsViewSegueData dataWithSource:from andDestination:to];
     [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];
 }
+
+#pragma mark - Polling Picker
+
+- (void) setPollingPickerTitle:(NSString*)desc
+{
+    [self.pollingPickerButton setTitle:desc forState:UIControlStateNormal];
+}
+
+- (PollingPickerOption*)getSelectedOptionObject
+{
+    NSUInteger selectedOptionIndex = [_pollingOptions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        BOOL found = ((PollingPickerOption*)obj).type == self.selectedFilterType;
+        return found;
+    }];
+    return _pollingOptions[selectedOptionIndex];
+}
+
+- (IBAction)didTapPollingPickerButton:(id)sender {
+    [MMPickerView showPickerViewInView:self.view
+                           withObjects:_pollingOptions
+                           withOptions:@{MMselectedObject: [self getSelectedOptionObject]}
+               objectToStringConverter:^NSString *(PollingPickerOption *option) {
+                   return option.desc;
+               }
+                            completion:^(PollingPickerOption *option) {
+                                self.selectedFilterType = option.type;
+                                [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
+                                                                           forKey:USER_DEFAULTS_SITE_FILTER_KEY];
+                                [self setPollingPickerTitle:option.desc];
+                                [self setEmptyMessage:option.type];
+                                [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
+                            }];
+}
+
+
 
 #pragma mark - UIActionSheetDelegate
 

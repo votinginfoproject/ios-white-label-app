@@ -10,6 +10,7 @@
 #import "EarlyVoteSite.h"
 #import "Election.h"
 #import "PollingLocation.h"
+#import "DropoffLocation.h"
 #import "State.h"
 
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) NSArray<Contest, Optional> *contests;
 @property (nonatomic, strong) NSArray<PollingLocation, Optional> *pollingLocations;
 @property (nonatomic, strong) NSArray<EarlyVoteSite, Optional> *earlyVoteSites;
+@property (nonatomic, strong) NSArray<DropoffLocation, Optional> *dropOffLocations;
 @property (nonatomic, strong) NSArray<State, Optional> *state;
 
 @end

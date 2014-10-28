@@ -11,7 +11,6 @@
 
 @implementation UserElection (API)
 
-
 - (NSArray*)getUniqueParties
 {
     NSMutableDictionary *parties = [NSMutableDictionary dictionary];
@@ -28,21 +27,18 @@
 - (NSArray*)filterPollingLocations:(VIPPollingLocationType)type
 {
     if (type == VIPPollingLocationTypeAll) {
-        return [self.pollingLocations arrayByAddingObjectsFromArray:self.earlyVoteSites];
+        return [[self.pollingLocations
+                 arrayByAddingObjectsFromArray:self.earlyVoteSites]
+                 arrayByAddingObjectsFromArray:self.dropOffLocations];
     } else if (type == VIPPollingLocationTypeNormal) {
         return self.pollingLocations;
     } else if (type == VIPPollingLocationTypeEarlyVote) {
         return self.earlyVoteSites;
+    } else if (type == VIPPollingLocationTypeDropoff) {
+        return self.dropOffLocations;
     } else {
         return @[];
     }
 }
-
-/*
- A set of parsed data is unique on (electionId, UserAddress).
-*/
-/*
- // TODO: Rewrite for v2
- */
 
 @end
