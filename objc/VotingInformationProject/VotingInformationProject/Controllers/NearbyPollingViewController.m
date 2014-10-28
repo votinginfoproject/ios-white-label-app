@@ -185,7 +185,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     } else {
         message = pollingMessage;
     }
-    self.emptyDataSource.emptyMessage = pollingMessage;
+    self.emptyDataSource.emptyMessage = message;
 }
 
 - (CLLocationManager*)locationManager
