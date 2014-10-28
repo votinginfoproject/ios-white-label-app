@@ -119,12 +119,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                 if (error) {
                     NSLog(@"Error encountered for marker %@: %@", sender.name, error);
                 } else {
-                    NSString *locationName = sender.location.address.locationName;
-                    if (!locationName) {
-                        locationName = sender.location.name;
-                    }
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
-                                                 withTitle:locationName];
+                                                 withTitle:sender.name];
                     if ([location isMemberOfClass:[EarlyVoteSite class]]) {
                         marker.icon = earlyVoting;
                     } else if ([location isMemberOfClass:[DropoffLocation class]]) {

@@ -67,10 +67,10 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 - (NSString*) name
 {
     if (self.location) {
-        if (self.location.name.length > 0) {
-            return self.location.name;
+        if (self.location.address.locationName.length > 0) {
+            return self.location.address.locationName;
         } else {
-            NSString *result = self.location.address.locationName;
+            NSString *result = self.location.name;
             return result.length > 0 ? result : @"";
         }
     } else {
@@ -112,7 +112,10 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
             if (self.tableCell && self.tableCell.owner == self) {
                 self.tableCell.image.alpha = alpha;
             }
-            if (self.onGeocodeComplete) {
+            // Race condition where geocode would complete after the [self reset] function
+            // was called, leading to orphaned markers on the map
+            // Only call onGeocodeComplete if this wrapper has a location set
+            if (self.onGeocodeComplete && self.location) {
                 self.onGeocodeComplete(self, error);
             }
         }];
@@ -130,11 +133,7 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     if (self.tableCell && self.location) {
         tableCell.owner = self;
         tableCell.address.text = self.address;
-        NSString *locationName = self.location.address.locationName;
-        if (!locationName) {
-            locationName = self.location.name;
-        }
-        tableCell.name.text = locationName;
+        tableCell.name.text = self.name;
         if ([self.location isMemberOfClass:[EarlyVoteSite class]]) {
             tableCell.image.image = [UIImage imageNamed:@"Polling_earlyvoting"];
         } else if ([self.location isMemberOfClass:[DropoffLocation class]]) {
