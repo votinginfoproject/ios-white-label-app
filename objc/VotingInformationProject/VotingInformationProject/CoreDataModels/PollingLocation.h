@@ -25,4 +25,6 @@
 @property (nonatomic, strong) VIPAddress<Optional> *address;
 @property (nonatomic, strong) NSArray<DataSource, Optional> *sources;
 
+- (NSString*)prettyType;
+
 @end

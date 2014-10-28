@@ -66,16 +66,8 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
 - (NSString*) name
 {
-    if (self.location) {
-        if (self.location.name.length > 0) {
-            return self.location.name;
-        } else {
-            NSString *result = self.location.address.locationName;
-            return result.length > 0 ? result : @"";
-        }
-    } else {
-        return @"";
-    }
+    NSString *name = [self.location getTitle];
+    return name ? name : @"";
 }
 
 - (CLLocationCoordinate2D)mapOrigin
@@ -112,7 +104,10 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
             if (self.tableCell && self.tableCell.owner == self) {
                 self.tableCell.image.alpha = alpha;
             }
-            if (self.onGeocodeComplete) {
+            // Race condition where geocode would complete after the [self reset] function
+            // was called, leading to orphaned markers on the map
+            // Only call onGeocodeComplete if this wrapper has a location set
+            if (self.onGeocodeComplete && self.location) {
                 self.onGeocodeComplete(self, error);
             }
         }];

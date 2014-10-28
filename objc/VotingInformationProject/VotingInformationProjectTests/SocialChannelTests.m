@@ -22,15 +22,10 @@ describe(@"SocialChannelTests", ^{
 
     it(@"should ensure that uniqueUrl returns valid urls", ^{
         NSError *error = nil;
-        SocialChannel *channel = [[SocialChannel alloc] initWithDictionary:@{@"id": @"VotingInfo", @"type": @"Facebook"}
+        SocialChannel *channel = [[SocialChannel alloc] initWithDictionary:@{@"id": @"https://facebook.com/VotingInfo", @"type": @"Facebook"}
                                                                      error:&error];
         [[[[channel url] absoluteString] should] equal:@"https://facebook.com/VotingInfo"];
 
-        channel.type = @"Twitter";
-        [[[[channel url] absoluteString] should] equal:@"https://twitter.com/VotingInfo"];
-
-        channel.type = @"BadSocialMediaPlatform";
-        [[[channel url] should] beNil];
     });
    
 });
