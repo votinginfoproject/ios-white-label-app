@@ -967,6 +967,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AB9-4Q-gau">
                                 <rect key="frame" x="16" y="8" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Polling Picker"/>
                                 <connections>
                                     <action selector="didTapPollingPickerButton:" destination="5h8-J8-eZD" eventType="touchUpInside" id="GTH-kk-rA9"/>

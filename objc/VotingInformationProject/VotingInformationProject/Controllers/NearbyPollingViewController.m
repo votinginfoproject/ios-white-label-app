@@ -265,12 +265,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                    andDescription:NSLocalizedString(@"Drop Boxes", nil)]
     ];
     
-    UIColor *primaryTextColor = [VIPColor primaryTextColor];
-    [self.pollingPickerButton setTitleColor:primaryTextColor
+    UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
+    [self.pollingPickerButton setTitleColor:secondaryTextColor
                                    forState:UIControlStateNormal];
-    self.pollingPickerButton.layer.borderColor = [primaryTextColor CGColor];
-    self.pollingPickerButton.layer.borderWidth = 1.0f;
-    self.pollingPickerButton.layer.cornerRadius= 5;
 };
 
 - (void) viewWillAppear:(BOOL)animated
@@ -482,10 +479,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (void) setPollingPickerTitle:(NSString*)desc
 {
-    NSString *title = NSLocalizedString(@"Filter", @"Prefix for polling picker filter seleciton button");
-    title = [title stringByAppendingString:@": "];
-    title = [title stringByAppendingString:desc];
-    [self.pollingPickerButton setTitle:title forState:UIControlStateNormal];
+    [self.pollingPickerButton setTitle:desc forState:UIControlStateNormal];
 }
 
 - (PollingPickerOption*)getSelectedOptionObject
