@@ -102,7 +102,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Also scale the images to the proper size
     UIImage *earlyVoting = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_earlyvoting"] scaledToSize:CGSizeMake(25, 38)];
     UIImage *polling = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_location"] scaledToSize:CGSizeMake(25, 38)];
-    UIImage *dropoff = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_location"] scaledToSize:CGSizeMake(25, 38)];
+    UIImage *dropoff = [UIImage imageWithImage:[UIImage imageNamed:@"Polling_dropoff"] scaledToSize:CGSizeMake(25, 38)];
 
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
