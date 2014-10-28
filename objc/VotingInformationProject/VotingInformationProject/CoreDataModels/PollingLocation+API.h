@@ -35,4 +35,6 @@ typedef enum {
  */
 - (BOOL)isAvailable;
 
+- (NSString*)getTitle;
+
 @end

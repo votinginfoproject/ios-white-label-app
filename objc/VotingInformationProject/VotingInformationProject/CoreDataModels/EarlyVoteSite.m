@@ -9,4 +9,9 @@
 
 @implementation EarlyVoteSite
 
+- (NSString*)prettyType
+{
+    return NSLocalizedString(@"Early Vote", nil);
+}
+
 @end

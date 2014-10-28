@@ -139,14 +139,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         [newCells addObject:cell];
     }
     self.cells = newCells;
-
-    // If no cells, switch to list view and disable button
-    if ([newCells count] == 0) {
-        self.ourRightBarButtonItem.enabled = NO;
-        [self switchView:LIST_VIEW animated:NO];
-    } else {
-        self.ourRightBarButtonItem.enabled = YES;
-    }
 }
 
 - (id<UITableViewDataSource>)configureDataSource
@@ -193,7 +185,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     } else {
         message = pollingMessage;
     }
-    self.emptyDataSource.emptyMessage = pollingMessage;
+    self.emptyDataSource.emptyMessage = message;
 }
 
 - (CLLocationManager*)locationManager

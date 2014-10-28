@@ -9,4 +9,9 @@
 
 @implementation DropoffLocation
 
+- (NSString*)prettyType
+{
+    return NSLocalizedString(@"Dropoff", nil);
+}
+
 @end
