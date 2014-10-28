@@ -130,7 +130,11 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     if (self.tableCell && self.location) {
         tableCell.owner = self;
         tableCell.address.text = self.address;
-        tableCell.name.text = self.name;
+        NSString *locationName = self.location.address.locationName;
+        if (!locationName) {
+            locationName = self.location.name;
+        }
+        tableCell.name.text = locationName;
         if ([self.location isMemberOfClass:[EarlyVoteSite class]]) {
             tableCell.image.image = [UIImage imageNamed:@"Polling_earlyvoting"];
         } else if ([self.location isMemberOfClass:[DropoffLocation class]]) {
