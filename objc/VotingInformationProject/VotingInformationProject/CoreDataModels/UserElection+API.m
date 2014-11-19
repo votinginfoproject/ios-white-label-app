@@ -7,7 +7,9 @@
 //
 
 #import "UserElection+API.h"
+
 #import "AppSettings.h"
+#import "VIPAddress+API.h"
 
 @implementation UserElection (API)
 
@@ -39,6 +41,17 @@
     } else {
         return @[];
     }
+}
+
+- (NSMutableURLRequest*)getFeedbackRequest
+{
+    NSString *postString = [NSString stringWithFormat:@"electionId=%@&address=%@",
+                            self.election.id, [self.normalizedInput toABAddressString:NO]];
+    NSURL *url = [NSURL URLWithString:@"https://voter-info-tool.appspot.com/feedback"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    return request;
 }
 
 @end

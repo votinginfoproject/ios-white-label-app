@@ -24,6 +24,10 @@
 		4916408B18EB656200233C1C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916408A18EB656200233C1C /* SystemConfiguration.framework */; };
 		4916408D18EB656B00233C1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916408C18EB656B00233C1C /* libz.dylib */; };
 		4916409118EB665700233C1C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916409018EB665700233C1C /* libsqlite3.dylib */; };
+		4918989E1A1BE44C00B6B43F /* VIPFeedbackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4918989D1A1BE44C00B6B43F /* VIPFeedbackView.m */; };
+		491898A21A1CF67D00B6B43F /* Report_issue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4918989F1A1CF67D00B6B43F /* Report_issue@3x.png */; };
+		491898A31A1CF67D00B6B43F /* Report_issue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 491898A01A1CF67D00B6B43F /* Report_issue@2x.png */; };
+		491898A41A1CF67D00B6B43F /* Report_issue.png in Resources */ = {isa = PBXBuildFile; fileRef = 491898A11A1CF67D00B6B43F /* Report_issue.png */; };
 		49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */; };
 		491EE5AF188EE0600018A060 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491EE5AE188EE0600018A060 /* settings.plist */; };
 		49265ACC18DA473A00F21083 /* VIPColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49265ACB18DA473A00F21083 /* VIPColor.m */; };
@@ -205,6 +209,11 @@
 		4916408C18EB656B00233C1C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4916408E18EB65B700233C1C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		4916409018EB665700233C1C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		4918989C1A1BE44C00B6B43F /* VIPFeedbackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPFeedbackView.h; path = Views/VIPFeedbackView.h; sourceTree = "<group>"; };
+		4918989D1A1BE44C00B6B43F /* VIPFeedbackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPFeedbackView.m; path = Views/VIPFeedbackView.m; sourceTree = "<group>"; };
+		4918989F1A1CF67D00B6B43F /* Report_issue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Report_issue@3x.png"; sourceTree = "<group>"; };
+		491898A01A1CF67D00B6B43F /* Report_issue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Report_issue@2x.png"; sourceTree = "<group>"; };
+		491898A11A1CF67D00B6B43F /* Report_issue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Report_issue.png; sourceTree = "<group>"; };
 		49196B90189AED9D007DCBD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/VIPStoryBoard.storyboard; sourceTree = "<group>"; };
 		49196B93189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/VIPStoryBoard.strings; sourceTree = "<group>"; };
 		49196B94189AEE33007DCBD9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -533,6 +542,9 @@
 		4970E51618D37E6200104184 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4918989F1A1CF67D00B6B43F /* Report_issue@3x.png */,
+				491898A01A1CF67D00B6B43F /* Report_issue@2x.png */,
+				491898A11A1CF67D00B6B43F /* Report_issue.png */,
 				49062B9119FFDDF3003B10E3 /* Polling_dropoff@3x.png */,
 				49062B9219FFDDF3003B10E3 /* Polling_dropoff@2x.png */,
 				49062B9319FFDDF3003B10E3 /* Polling_dropoff.png */,
@@ -609,6 +621,8 @@
 				4901592D18DA126E0088BA23 /* VIPEmptyCell.h */,
 				4901592E18DA126E0088BA23 /* VIPEmptyCell.m */,
 				4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */,
+				4918989C1A1BE44C00B6B43F /* VIPFeedbackView.h */,
+				4918989D1A1BE44C00B6B43F /* VIPFeedbackView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -962,6 +976,7 @@
 				4970E55018D37E6200104184 /* Default_background.png in Resources */,
 				49875A6A195A1AA700EE31D7 /* TabBar_about.png in Resources */,
 				4970E55618D37E6200104184 /* Candidate_facebook.png in Resources */,
+				491898A41A1CF67D00B6B43F /* Report_issue.png in Resources */,
 				49273490188DE80000B25554 /* elections.json in Resources */,
 				4970E57118D37E6200104184 /* TabBar_details-active@2x.png in Resources */,
 				4970E56918D37E6200104184 /* Polling_location@2x.png in Resources */,
@@ -1007,9 +1022,11 @@
 				4970E56518D37E6200104184 /* Homepage_contact@2x.png in Resources */,
 				4970E57018D37E6200104184 /* TabBar_details-active.png in Resources */,
 				49875A69195A1AA700EE31D7 /* TabBar_about-active@2x.png in Resources */,
+				491898A31A1CF67D00B6B43F /* Report_issue@2x.png in Resources */,
 				4970E56B18D37E6200104184 /* Polling_earlyvoting@2x.png in Resources */,
 				4970E56218D37E6200104184 /* Homepage_about.png in Resources */,
 				4970E56818D37E6200104184 /* Polling_location.png in Resources */,
+				491898A21A1CF67D00B6B43F /* Report_issue@3x.png in Resources */,
 				4970E55318D37E6200104184 /* Candidate_default-image@2x.png in Resources */,
 				53D3A79E1889A05B00920A70 /* Images.xcassets in Resources */,
 				4970E57E18D37E6200104184 /* Default_launch-screen@2x.png in Resources */,
@@ -1121,6 +1138,7 @@
 				494023C118A3EEFB004FEF48 /* Candidate+API.m in Sources */,
 				4901593018DA126E0088BA23 /* VIPEmptyCell.m in Sources */,
 				49E9080518B515EF00E05ABC /* ContestUrlCell.m in Sources */,
+				4918989E1A1BE44C00B6B43F /* VIPFeedbackView.m in Sources */,
 				494023A318A2EA74004FEF48 /* ElectionAdministrationBody+API.m in Sources */,
 				49B5B8AA18EB2C6900CCB11E /* GDDirectionsService.m in Sources */,
 				496192151958DE66006773D2 /* UserElection+API.m in Sources */,

@@ -9,10 +9,11 @@
 
 #import "VIPTableViewController.h"
 #import "VIPTabBarController.h"
+#import "VIPFeedbackView.h"
 #import "UserElection+API.h"
 #import "ContactsSearchViewControllerDelegate.h"
 
-@interface BallotViewController : VIPTableViewController <ContactsSearchViewControllerDelegate>
+@interface BallotViewController : VIPTableViewController <ContactsSearchViewControllerDelegate, VIPFeedbackViewDelegate>
 
 @property (strong, nonatomic) UserElection *election;
 

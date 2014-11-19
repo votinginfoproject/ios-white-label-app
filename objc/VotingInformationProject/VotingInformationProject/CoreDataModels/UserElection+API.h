@@ -26,4 +26,6 @@
 
 - (NSArray*)filterPollingLocations:(VIPPollingLocationType)type;
 
+- (NSMutableURLRequest*)getFeedbackRequest;
+
 @end

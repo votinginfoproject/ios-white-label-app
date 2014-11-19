@@ -26,11 +26,13 @@
 {
     [super viewDidLoad];
 
-	// Do any additional setup after loading the view.
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
-    if (self.url && request) {
-        NSLog(@"Loading: %@", self.url);
-        [_webView loadRequest:request];
+    // Prioritize url if it exists, fall through to self.request
+    if (self.url) {
+        self.request = [NSMutableURLRequest requestWithURL:self.url];
+    }
+    if (self.request) {
+        NSLog(@"Loading: %@", self.request);
+        [_webView loadRequest:self.request];
     } else {
         [self showErrorAlert];
     }
