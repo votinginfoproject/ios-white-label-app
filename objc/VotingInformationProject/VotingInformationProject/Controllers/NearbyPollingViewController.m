@@ -22,9 +22,11 @@
 #import "PollingInfoWindowView.h"
 #import "PollingLocationCell.h"
 #import "PollingLocationWrapper.h"
+#import "UIWebViewController.h"
 #import "VIPAddress+API.h"
 #import "VIPColor.h"
 #import "VIPEmptyTableViewDataSource.h"
+#import "VIPFeedbackView.h"
 #import "VIPTabBarController.h"
 #import "VIPUserDefaultsKeys.h"
 
@@ -233,7 +235,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.screenName = @"Nearby Polling Screen";
 
     self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc] init];
-    self.listView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.listView.tableFooterView = [VIPFeedbackView inView:self.listView
+                                               withDelegate:self];
 
     // Set table view fully transparent
     self.listView.backgroundColor = [UIColor clearColor];
@@ -514,6 +517,14 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     _actionSheetPLWrapper = nil;
 }
 
+#pragma mark - VIPFeedbackViewDelegate
+
+- (void)sendFeedback:(VIPFeedbackView *)view
+{
+    NSMutableURLRequest *request = [self.election getFeedbackRequest];
+    [self performSegueWithIdentifier:VIP_FEEDBACK_SEGUE sender:request];
+}
+
 #pragma mark - GMSMapViewDelegate
 
 - (UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
@@ -635,6 +646,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;
+    } else if ([segue.identifier isEqualToString:VIP_FEEDBACK_SEGUE]) {
+        UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
+        webView.title = NSLocalizedString(@"Feedback", @"Title for web view displaying the VIP election feedback form");
+        webView.request = (NSMutableURLRequest*)sender;
     }
 }
 

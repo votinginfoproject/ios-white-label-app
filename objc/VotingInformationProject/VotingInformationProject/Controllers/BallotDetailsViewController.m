@@ -13,6 +13,7 @@
 #import "Election+API.h"
 #import "State.h"
 #import "VIPColor.h"
+#import "VIPFeedbackView.h"
 
 #import "ContestUrlCell.h"
 
@@ -27,6 +28,7 @@
 @implementation BallotDetailsViewController
 
 const NSUInteger VIP_TABLE_HEADER_HEIGHT = 32;
+const NSUInteger VIP_TABLE_FOOTER_HEIGHT = 19;
 const NSUInteger VIP_DETAILS_TABLECELL_HEIGHT = 44;
 const NSUInteger BDVC_TABLE_SECTION_STATE = 0;
 const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
@@ -59,7 +61,8 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
     self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
 
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = [VIPFeedbackView inView:self.tableView
+                                                withDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -110,6 +113,14 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - VIPFeedbackViewDelegate
+
+- (void)sendFeedback:(VIPFeedbackView *)view
+{
+    NSMutableURLRequest *request = [self.election getFeedbackRequest];
+    [self performSegueWithIdentifier:VIP_FEEDBACK_SEGUE sender:request];
 }
 
 #pragma mark - Table view data source
@@ -189,13 +200,18 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == BDVC_TABLE_SECTION_STATE) {
-        CGRect propertiesCGRect = CGRectMake(0.0, 0, tableView.bounds.size.width, 19);
-        UIView *propertiesFooterView = [[UIView alloc] initWithFrame:propertiesCGRect];
-        propertiesFooterView.backgroundColor = [UIColor clearColor];
-        return propertiesFooterView;
-    }
     return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    NSInteger sections = [self.tableData count];
+    NSInteger lastSectionCount = [self.tableData[sections - 1] count];
+    BOOL footerHasHeight = section < sections - 1
+                            && lastSectionCount != 0
+                            && [self.tableData[0] count] > 0;
+    return footerHasHeight ? VIP_TABLE_FOOTER_HEIGHT : 0;
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -223,6 +239,10 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;
+    } else if ([segue.identifier isEqualToString:VIP_FEEDBACK_SEGUE]) {
+        UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
+        webView.title = NSLocalizedString(@"Feedback", @"Title for web view displaying the VIP election feedback form");
+        webView.request = (NSMutableURLRequest*)sender;
     }
 }
 

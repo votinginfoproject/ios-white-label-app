@@ -9,6 +9,7 @@
 #import "ContactsSearchViewController.h"
 #import "ContestDetailsViewController.h"
 #import "VIPEmptyTableViewDataSource.h"
+#import "UIWebViewController.h"
 #import "UserElection+API.h"
 #import "Election+API.h"
 #import "Contest+API.h"
@@ -50,7 +51,9 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
     self.electionDateLabel.textColor = [VIPColor secondaryTextColor];
     self.selectedPartyLabel.textColor = [VIPColor secondaryTextColor];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    self.tableView.tableFooterView =[VIPFeedbackView inView:self.tableView
+                                               withDelegate:self];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -146,6 +149,14 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - VIPFeedbackViewDelegate
+
+- (void)sendFeedback:(VIPFeedbackView *)view
+{
+    NSMutableURLRequest *request = [self.election getFeedbackRequest];
+    [self performSegueWithIdentifier:VIP_FEEDBACK_SEGUE sender:request];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -181,6 +192,7 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
     return ([_contests count] > 0) ? VIP_BALLOT_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -197,6 +209,10 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
         Contest *contest = (Contest*)_contests[indexPath.item];
         cdvc.contest = contest;
         cdvc.electionName = self.election.election.name;
+    } else if ([segue.identifier isEqualToString:VIP_FEEDBACK_SEGUE]) {
+        UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
+        webView.title = NSLocalizedString(@"Feedback", @"Title for web view displaying the VIP election feedback form");
+        webView.request = (NSMutableURLRequest*)sender;
     }
 }
 

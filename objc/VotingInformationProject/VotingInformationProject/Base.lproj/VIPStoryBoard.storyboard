@@ -295,6 +295,7 @@
                     <connections>
                         <outlet property="electionDateLabel" destination="Myh-79-KcO" id="WiR-eK-U5i"/>
                         <outlet property="electionNameLabel" destination="k1g-E7-fra" id="kzY-J0-Scc"/>
+                        <segue destination="LbF-1k-fvs" kind="push" identifier="FeedbackSegue" id="A7N-jx-vJW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8a9-h5-vL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -376,6 +377,7 @@
                         <outlet property="electionDateLabel" destination="K4l-J3-RLN" id="XvU-AJ-vlC"/>
                         <outlet property="electionNameLabel" destination="mfT-v3-glH" id="pDm-IN-Fpa"/>
                         <outlet property="selectedPartyLabel" destination="0aE-gR-hws" id="Bt3-xU-X6I"/>
+                        <segue destination="LbF-1k-fvs" kind="push" identifier="FeedbackSegue" id="5eW-1E-i5g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ne3-q0-quW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -756,11 +758,11 @@
                         <viewControllerLayoutGuide type="bottom" id="caa-Tr-E9f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="amI-3T-UiG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POQ-8Z-IZQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POQ-8Z-IZQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                 <connections>
@@ -769,7 +771,14 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="POQ-8Z-IZQ" firstAttribute="leading" secondItem="amI-3T-UiG" secondAttribute="leading" id="1S8-pP-KN1"/>
+                            <constraint firstAttribute="bottom" secondItem="POQ-8Z-IZQ" secondAttribute="bottom" id="SQa-1G-hoM"/>
+                            <constraint firstItem="POQ-8Z-IZQ" firstAttribute="top" secondItem="amI-3T-UiG" secondAttribute="top" id="SRx-ll-eke"/>
+                            <constraint firstAttribute="trailing" secondItem="POQ-8Z-IZQ" secondAttribute="trailing" id="cyJ-0v-7nA"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="wpD-Bv-LvD"/>
                     <connections>
                         <outlet property="webView" destination="POQ-8Z-IZQ" id="eFt-R5-CuM"/>
@@ -777,7 +786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SkN-uM-f2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2962" y="129"/>
+            <point key="canvasLocation" x="2459" y="129"/>
         </scene>
         <!--About This App-->
         <scene sceneID="gX1-Hu-63K">
@@ -1000,6 +1009,7 @@
                         <outlet property="mapView" destination="6DM-NM-eBM" id="gHh-fx-ZZS"/>
                         <outlet property="pollingPickerButton" destination="AB9-4Q-gau" id="j41-NB-mwd"/>
                         <segue destination="jgN-a0-jrp" kind="modal" identifier="DirectionsViewSegue" id="NjA-8o-DJO"/>
+                        <segue destination="LbF-1k-fvs" kind="push" identifier="FeedbackSegue" id="io9-4R-w0O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsg-MQ-szX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1202,7 +1212,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="io9-4R-w0O"/>
         <segue reference="BSD-rg-h3n"/>
-        <segue reference="Sg3-NH-JMz"/>
     </inferredMetricsTieBreakers>
 </document>

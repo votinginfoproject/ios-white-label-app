@@ -222,13 +222,10 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == CDVC_TABLE_SECTION_PROPERTIES) {
-        CGRect propertiesCGRect = CGRectMake(0.0, 0, tableView.bounds.size.width, CDVC_TABLE_FOOTER_PROPERTIES_HEIGHT);
-        UIView *propertiesFooterView = [[UIView alloc] initWithFrame:propertiesCGRect];
-        propertiesFooterView.backgroundColor = [UIColor clearColor];
-        return propertiesFooterView;
-    }
-    return [[UIView alloc] initWithFrame:CGRectZero];
+    CGRect propertiesCGRect = CGRectMake(0.0, 0, tableView.bounds.size.width, CDVC_TABLE_FOOTER_PROPERTIES_HEIGHT);
+    UIView *propertiesFooterView = [[UIView alloc] initWithFrame:propertiesCGRect];
+    propertiesFooterView.backgroundColor = [UIColor clearColor];
+    return propertiesFooterView;
 }
 
 /**

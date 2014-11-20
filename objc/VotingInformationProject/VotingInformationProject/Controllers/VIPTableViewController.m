@@ -8,6 +8,7 @@
 #import "VIPTableViewController.h"
 #import "ScreenMacros.h"
 #import "VIPColor.h"
+#import "VIPFeedbackView.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
