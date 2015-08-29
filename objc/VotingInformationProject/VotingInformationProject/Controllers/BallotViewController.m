@@ -15,9 +15,11 @@
 #import "Contest+API.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
+#import "VIPContestCell.h"
 
 @interface BallotViewController ()
 @property (strong, nonatomic) NSString *party;
+@property (strong, nonatomic) NSMutableDictionary *offscreenCells;
 @property (weak, nonatomic) IBOutlet UILabel *electionNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *electionDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *selectedPartyLabel;
@@ -30,11 +32,20 @@
 
 const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
+static UIFont *kTitleFont;
+static UIFont *kSubtitleFont;
+
+
++ (void)initialize {
+    kTitleFont              = [UIFont boldSystemFontOfSize:16];
+    kSubtitleFont           = [UIFont systemFontOfSize:15];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        _offscreenCells = @{}.mutableCopy;
     }
     return self;
 }
@@ -173,15 +184,27 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ContestCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *reuseIdentifier = @"ContestCell";
+    VIPContestCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+
     
     Contest *contest = _contests[indexPath.item];
     NSString *title = [contest.type isEqualToString:REFERENDUM_API_ID]
         ? contest.referendumTitle : contest.office;
     cell.textLabel.text = title;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-    cell.detailTextLabel.text = contest.type;
+    cell.textLabel.font = kTitleFont;
+    
+    NSString *detailLabel = [contest.type isEqualToString:REFERENDUM_API_ID] ? contest.referendumBrief : contest.type;
+    
+    cell.detailTextLabel.text = detailLabel;
+    cell.detailTextLabel.font = kSubtitleFont;
+    
+    cell.textLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds);
+    cell.detailTextLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds);
+    
+    [cell setNeedsLayout];
+    [cell updateConstraintsIfNeeded];
+    
     return cell;
 }
 
@@ -189,9 +212,40 @@ const NSUInteger VIP_BALLOT_TABLECELL_HEIGHT = 44;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ([_contests count] > 0) ? VIP_BALLOT_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
+    Contest *contest = _contests[indexPath.item];
+    NSString *title = [contest.type isEqualToString:REFERENDUM_API_ID]
+    ? contest.referendumTitle : contest.office;
+    NSString *detailLabel = [contest.type isEqualToString:REFERENDUM_API_ID] ? contest.referendumBrief : contest.type;
+    
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    CGRect titleRect = [title boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 100, CGFLOAT_MAX)
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                attributes:@{NSFontAttributeName:kTitleFont, NSParagraphStyleAttributeName:paragraph}
+                                                   context:NULL];
+    
+    CGRect detailRect = [detailLabel boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 100, CGFLOAT_MAX)
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName:kSubtitleFont, NSParagraphStyleAttributeName:paragraph}
+                                           context:NULL];
+    
+    if ((_contests.count) > 0) {
+        return titleRect.size.height + detailRect.size.height + 20;
+    } else {
+        return VIP_EMPTY_TABLECELL_HEIGHT;
+    }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+    if ((_contests.count) > 0) {
+        return 44.f;
+    } else {
+        return VIP_EMPTY_TABLECELL_HEIGHT;
+    }
+}
 
 #pragma mark - Navigation
 

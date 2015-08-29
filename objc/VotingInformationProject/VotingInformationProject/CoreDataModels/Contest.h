@@ -29,8 +29,13 @@
 @property (nonatomic, strong) NSNumber<Optional> * ballotPlacement;
 @property (nonatomic, strong) NSArray<Candidate, Optional> *candidates;
 @property (nonatomic, strong) NSString<Optional> * referendumTitle;
+@property (nonatomic, strong) NSString<Optional> * referendumBrief;
 @property (nonatomic, strong) NSString<Optional> * referendumSubtitle;
+@property (nonatomic, strong) NSString<Optional> * referendumText;
+@property (nonatomic, strong) NSString<Optional> * referendumProStatement;
+@property (nonatomic, strong) NSString<Optional> * referendumConStatement;
 @property (nonatomic, strong) NSString<Optional> * referendumUrl;
+@property (nonatomic, strong) NSString<Optional> * referendumPassageThreshold;
 @property (nonatomic, strong) NSArray<DataSource, Optional>* sources;
 
 @end

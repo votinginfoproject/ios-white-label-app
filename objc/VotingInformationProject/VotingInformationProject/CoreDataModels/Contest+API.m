@@ -15,6 +15,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         propertyList = @{
+                              @"referendumBrief": NSLocalizedString(@"Referendum Brief", @"Label in contest details section for referendum subtitle"),
                               @"type": NSLocalizedString(@"Contest Type", @"Label in contest details section for contest type"),
                               @"primaryParty": NSLocalizedString(@"Primary Party", @"Label in contest details section for party in primary"),
                               @"district.name": NSLocalizedString(@"District Name", @"Label in contest details section for the district"),
@@ -24,6 +25,10 @@
                               @"numberElected": NSLocalizedString(@"Number Elected", @"Label in contest details section for # elected"),
                               @"numberVotingFor": NSLocalizedString(@"Number Voting For", @"Label in contest details section for # voting for"),
                               @"referendumSubtitle": NSLocalizedString(@"Referendum Subtitle", @"Label in contest details section for referendum subtitle"),
+                               @"referendumText": NSLocalizedString(@"Referendum Text", @"Label in contest details section for referendum text"),
+                              @"referendumProStatement": NSLocalizedString(@"Referendum Pro", @"Label in contest details section for referendum subtitle"),
+                              @"referendumConStatement": NSLocalizedString(@"Referendum Con", @"Label in contest details section for referendum subtitle"),
+                              @"referendumPassageThreshold": NSLocalizedString(@"Referendum Passage", @"Label in contest details section for referendum subtitle"),
                               @"referendumUrl": NSLocalizedString(@"Referendum URL", @"Label in contest details section for referendum URL link"),
                          };
     });
