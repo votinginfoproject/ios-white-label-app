@@ -26,4 +26,6 @@
 @property (nonatomic, strong) NSArray<DropoffLocation, Optional> *dropOffLocations;
 @property (nonatomic, strong) NSArray<State, Optional> *state;
 
+@property(nonatomic,getter=isMailOnly) BOOL mailOnly;
+
 @end
