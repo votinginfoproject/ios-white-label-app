@@ -227,6 +227,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     [super viewDidLoad];
 
+    [self.listView registerClass:[UITableViewCell class]
+           forCellReuseIdentifier:@"MailOnlyCellIdentifier"];
+
     // iOS 8 location authorization
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
@@ -593,16 +596,33 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.election.mailOnly ? 2 : 1;;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cells.count;
+    if (section == 0) {
+        return self.cells.count;
+    } else {
+        return 1;
+    }
+
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MailOnlyCellIdentifier"];
+        cell.textLabel.text = NSLocalizedString(@"Your upcoming election is mail-only. Please contact your local election official to learn more about how to receive and return your ballot.", nil);
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.textColor = [UIColor lightTextColor];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+
+        return cell;
+    }
+
     PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
     NSString *cellIdentifier = @"PollingLocationCell";
     cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -627,6 +647,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        return 80;
+    }
+
     return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
 }
 
