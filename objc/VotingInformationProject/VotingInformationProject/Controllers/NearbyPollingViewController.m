@@ -601,17 +601,16 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return self.cells.count;
-    } else {
+    if (section == 0 && self.election.mailOnly) {
         return 1;
+    } else {
+        return self.cells.count;
     }
-    
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0 && self.election.mailOnly) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MailOnlyCellIdentifier"];
         cell.textLabel.text = NSLocalizedString(@"Your upcoming election is mail-only. Please contact your local election official to learn more about how to receive and return your ballot.", nil);
         cell.textLabel.font = [UIFont systemFontOfSize:12];
