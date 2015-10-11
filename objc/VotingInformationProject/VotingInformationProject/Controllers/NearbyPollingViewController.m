@@ -653,11 +653,19 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0 && self.election.mailOnly) {
         return 80;
     }
     
-    return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
+    if ([self.cells count] > 0) {
+        PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
+        CGFloat height = VIP_POLLING_TABLECELL_HEIGHT;
+        height += plWrapper.location.voterServices != nil ? 20 : 0;
+        height += plWrapper.hours != nil ? 20 : 0;
+        return height;
+    } else {
+        return VIP_EMPTY_TABLECELL_HEIGHT;
+    }
 }
 
 #pragma mark - Segues
