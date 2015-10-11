@@ -64,6 +64,11 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
     return self.location && self.location.address ? [self.location.address toABAddressString:NO] : @"";
 }
 
+- (NSString*) hours
+{
+    return self.location && self.location.pollingHours ? self.location.pollingHours : @"";
+}
+
 - (NSString*) name
 {
     NSString *name = [self.location getTitle];
@@ -126,6 +131,12 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
         tableCell.owner = self;
         tableCell.address.text = self.address;
         tableCell.name.text = self.name;
+        tableCell.hours.text = self.hours;
+
+        if (self.location.voterServices) {
+            tableCell.voterServices.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Services", nil), self.location.voterServices];
+        }
+
         if ([self.location isMemberOfClass:[EarlyVoteSite class]]) {
             tableCell.image.image = [UIImage imageNamed:@"Polling_earlyvoting"];
         } else if ([self.location isMemberOfClass:[DropoffLocation class]]) {

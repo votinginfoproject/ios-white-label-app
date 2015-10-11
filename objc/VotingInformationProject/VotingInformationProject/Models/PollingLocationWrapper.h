@@ -58,6 +58,9 @@ extern const CLLocationCoordinate2D NullCoordinate;
  */
 @property (strong, nonatomic, readonly) NSString *distance;
 
+/** tableCell.address.hours, derived from self.pollinghours */
+@property (strong, nonatomic, readonly) NSString *hours;
+
 /** If NO, geocode didn't succeed, otherwise either it did or it hasn't completed yet
  */
 @property BOOL geocodeSucceeded;
