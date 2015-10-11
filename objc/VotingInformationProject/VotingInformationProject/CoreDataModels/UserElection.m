@@ -11,7 +11,7 @@
 @implementation UserElection
 
 // initWithDictionary is the JSONModel designated initializer
-- (instancetype) initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err
+- (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err
 {
     self = [super initWithDictionary:dict error:err];
     // Set these properties to empty arrays if not provided by API
@@ -28,8 +28,18 @@
         if (!self.dropOffLocations) {
             self.dropOffLocations = @[];
         }
+        if (!self.isMailOnly) {
+            self.mailOnly = NO;
+        }
     }
     return self;
+}
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    if ([propertyName isEqualToString:@"mailOnly"]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end
