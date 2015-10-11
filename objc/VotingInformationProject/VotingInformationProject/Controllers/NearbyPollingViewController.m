@@ -273,9 +273,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [super viewWillAppear:animated];
 
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
-
-    tabBarController.title = NSLocalizedString(@"Polling Sites",
-                                               @"Label for polling sites tab button");
+    
     self.originalRightBarButtonItem = self.navigationItem.rightBarButtonItem;
     self.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 
@@ -284,6 +282,15 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [self switchView:_currentView animated:NO];
 
     self.election = tabBarController.currentElection;
+    
+    if (self.election.isMailOnly) {
+        tabBarController.title = NSLocalizedString(@"Dropoff Locations",
+                                                   @"Label for polling sites when election mail only");
+    } else {
+        tabBarController.title = NSLocalizedString(@"Polling Sites",
+                                                   @"Label for polling sites tab button");
+    }
+    self.title = tabBarController.title;
 
     // Set map center to address if it exists
     self.userAddress = self.election.normalizedInput;
