@@ -33,7 +33,7 @@ files for use. From the objc/VotingInformationProject directory, do:
 cd VotingInformationProject
 // Your relative path should now be: 
 // objc/VotingInformationProject/VotingInformationProject
-cp CivicInfoAPIKey.plist.template CivicInfoAPIKey.plist
+cp CivicAPIKey.plist.template CivicAPIKey.plist
 cp settings.plist.template settings.plist
 ```
 
