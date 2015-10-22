@@ -46,7 +46,9 @@
     if (useTestData) {
       [params setObject:@"2000" forKey:@"electionId"];
     } else if (election && [election.id length] != 0) {
-        [params setObject:election.id forKey:@"electionId"];
+      // Removing this parameter, it seems to be taking precendence over
+      // the address search text.
+//        [params setObject:election.id forKey:@"electionId"];
     }
     if ([[AppSettings settings] valueForKey:@"DEBUG"]) {
         [params setObject:@"False" forKey:@"productionDataOnly"];
