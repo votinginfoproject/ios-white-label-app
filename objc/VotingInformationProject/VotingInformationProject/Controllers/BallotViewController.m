@@ -212,25 +212,26 @@ static UIFont *kSubtitleFont;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Contest *contest = _contests[indexPath.item];
-    NSString *title = [contest.type isEqualToString:REFERENDUM_API_ID]
-    ? contest.referendumTitle : contest.office;
-    NSString *detailLabel = [contest.type isEqualToString:REFERENDUM_API_ID] ? contest.referendumBrief : contest.type;
-    
-    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    
-    CGRect titleRect = [title boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 100, CGFLOAT_MAX)
-                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                attributes:@{NSFontAttributeName:kTitleFont, NSParagraphStyleAttributeName:paragraph}
-                                                   context:NULL];
-    
-    CGRect detailRect = [detailLabel boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 100, CGFLOAT_MAX)
-                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName:kSubtitleFont, NSParagraphStyleAttributeName:paragraph}
-                                           context:NULL];
-    
     if ((_contests.count) > 0) {
+      Contest *contest = _contests[indexPath.item];
+      NSString *title = [contest.type isEqualToString:REFERENDUM_API_ID]
+      ? contest.referendumTitle : contest.office;
+      NSString *detailLabel = [contest.type isEqualToString:REFERENDUM_API_ID] ? contest.referendumBrief : contest.type;
+      
+      NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+      paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+      
+      CGRect titleRect = [title boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 100, CGFLOAT_MAX)
+                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                  attributes:@{NSFontAttributeName:kTitleFont, NSParagraphStyleAttributeName:paragraph}
+                                                     context:NULL];
+      
+      CGRect detailRect = [detailLabel boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 100, CGFLOAT_MAX)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName:kSubtitleFont, NSParagraphStyleAttributeName:paragraph}
+                                             context:NULL];
+      
+
         return titleRect.size.height + detailRect.size.height + 20;
     } else {
         return VIP_EMPTY_TABLECELL_HEIGHT;
