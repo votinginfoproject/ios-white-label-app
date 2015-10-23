@@ -226,6 +226,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.listView registerClass:[UITableViewCell class]
+           forCellReuseIdentifier:@"MailOnlyCellIdentifier"];
 
     // iOS 8 location authorization
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -270,9 +273,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [super viewWillAppear:animated];
 
     VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
-
-    tabBarController.title = NSLocalizedString(@"Polling Sites",
-                                               @"Label for polling sites tab button");
+    
     self.originalRightBarButtonItem = self.navigationItem.rightBarButtonItem;
     self.navigationItem.rightBarButtonItem = self.ourRightBarButtonItem;
 
@@ -281,6 +282,15 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     [self switchView:_currentView animated:NO];
 
     self.election = tabBarController.currentElection;
+    
+    if (self.election.isMailOnly) {
+        tabBarController.title = NSLocalizedString(@"Dropoff Locations",
+                                                   @"Label for polling sites when election mail only");
+    } else {
+        tabBarController.title = NSLocalizedString(@"Polling Sites",
+                                                   @"Label for polling sites tab button");
+    }
+    self.title = tabBarController.title;
 
     // Set map center to address if it exists
     self.userAddress = self.election.normalizedInput;
@@ -593,16 +603,32 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.election.mailOnly ? 2 : 1;;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cells.count;
+    if (section == 0 && self.election.mailOnly) {
+        return 1;
+    } else {
+        return self.cells.count;
+    }
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0 && self.election.mailOnly) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MailOnlyCellIdentifier"];
+        cell.textLabel.text = NSLocalizedString(@"Your upcoming election is mail-only. Please contact your local election official to learn more about how to receive and return your ballot.", nil);
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.textColor = [UIColor lightTextColor];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+        
+        return cell;
+    }
+    
     PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
     NSString *cellIdentifier = @"PollingLocationCell";
     cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -627,7 +653,19 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ([self.cells count] > 0) ? VIP_POLLING_TABLECELL_HEIGHT : VIP_EMPTY_TABLECELL_HEIGHT;
+    if (indexPath.section == 0 && self.election.mailOnly) {
+        return 80;
+    }
+    
+    if ([self.cells count] > 0) {
+        PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
+        CGFloat height = VIP_POLLING_TABLECELL_HEIGHT;
+        height += plWrapper.location.voterServices != nil ? 20 : 0;
+        height += plWrapper.hours != nil ? 20 : 0;
+        return height;
+    } else {
+        return VIP_EMPTY_TABLECELL_HEIGHT;
+    }
 }
 
 #pragma mark - Segues

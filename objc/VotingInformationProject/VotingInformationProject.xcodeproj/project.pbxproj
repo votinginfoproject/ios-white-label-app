@@ -170,6 +170,8 @@
 		53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
 		53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
 		53D3A7B01889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7AE1889A05B00920A70 /* InfoPlist.strings */; };
+		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; settings = {ASSET_TAGS = (); }; };
+		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; settings = {ASSET_TAGS = (); }; };
 		9DD78D93039F4A87BC8E023B /* libPods-VotingInformationProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -420,6 +422,10 @@
 		53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
 		53D3A7AF1889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		548B2CFFD32E415181767B53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83AA58221BBA4AE20077C9FB /* VIPContestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPContestCell.h; path = Views/VIPContestCell.h; sourceTree = "<group>"; };
+		83AA58231BBA4AE20077C9FB /* VIPContestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPContestCell.m; path = Views/VIPContestCell.m; sourceTree = "<group>"; };
+		83CAB98D1BBAD32400611F0E /* VIPContestPropertiesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPContestPropertiesCell.h; sourceTree = "<group>"; };
+		83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPContestPropertiesCell.m; sourceTree = "<group>"; };
 		8E961C806967FBE49B93356C /* Pods-VotingInformationProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VotingInformationProjectTests/Pods-VotingInformationProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		9028CB24F30754E7279DBD34 /* Pods-VotingInformationProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VotingInformationProjectTests/Pods-VotingInformationProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC33FB3D0E64DCF4B02B271F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -623,6 +629,10 @@
 				4901592F18DA126E0088BA23 /* VIPEmptyCell.xib */,
 				4918989C1A1BE44C00B6B43F /* VIPFeedbackView.h */,
 				4918989D1A1BE44C00B6B43F /* VIPFeedbackView.m */,
+				83AA58221BBA4AE20077C9FB /* VIPContestCell.h */,
+				83AA58231BBA4AE20077C9FB /* VIPContestCell.m */,
+				83CAB98D1BBAD32400611F0E /* VIPContestPropertiesCell.h */,
+				83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1162,6 +1172,7 @@
 				49DB5B131958D40600F41604 /* ElectionAdministrationBody.m in Sources */,
 				49041DB118DB9677007A0F1D /* UIImage+Scale.m in Sources */,
 				4901592C18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m in Sources */,
+				83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */,
 				49E247A419E2DBFB00193A9F /* EarlyVoteSite.m in Sources */,
 				49CF34C618A581AB00DDEE0E /* VIPTabBarController.m in Sources */,
 				49E247A719E2E8A400193A9F /* VIPModel.m in Sources */,
@@ -1179,6 +1190,7 @@
 				49265ACC18DA473A00F21083 /* VIPColor.m in Sources */,
 				498358E919701DDD00A45012 /* State.m in Sources */,
 				4901591E18D8B6CE0088BA23 /* VIPViewController.m in Sources */,
+				83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */,
 				49E247AA19E2ED4D00193A9F /* Contest+API.m in Sources */,
 				49A57B0B18A08E9200C5E889 /* PollingLocation+API.m in Sources */,
 				49DB5B1C1958D40600F41604 /* SocialChannel.m in Sources */,

@@ -13,6 +13,8 @@
 #import "ContestUrlCell.h"
 #import "VIPCandidateCell.h"
 #import "VIPColor.h"
+#import "VIPContestCell.h"
+#import "VIPContestPropertiesCell.h"
 
 
 @interface ContestDetailsViewController ()
@@ -42,7 +44,16 @@ NSString * const CDVC_TABLE_CELLID_CANDIDATES_EMPTY = @"CandidateCellEmpty";
 NSUInteger const CDVC_TABLE_SECTION_CANDIDATES = 1;
 NSUInteger const CDVC_TABLE_FOOTER_DEFAULT_HEIGHT = 0;
 NSUInteger const CDVC_TABLE_FOOTER_PROPERTIES_HEIGHT = 19;
-NSString * const REFERENDUM_API_ID = @"Referendum";
+NSString * const REFERENDUM_API_ID = @"referenda";
+
+static UIFont *kTitleFont;
+static UIFont *kSubtitleFont;
+
+
++ (void)initialize {
+    kTitleFont              = [UIFont boldSystemFontOfSize:16];
+    kSubtitleFont           = [UIFont systemFontOfSize:14];
+}
 
 - (NSMutableArray*)tableData
 {
@@ -55,6 +66,8 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.tableView registerClass:[VIPContestPropertiesCell class] forCellReuseIdentifier:CDVC_TABLE_CELLID_PROPERTIES];
 
     self.screenName = @"Contest Details Screen";
 
@@ -162,8 +175,7 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         ContestUrlCell *urlCell = (ContestUrlCell*)cell;
         [urlCell configure:property[@"title"] withUrl:property[@"data"]];
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES && !isSectionEmpty) {
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
-                                               forIndexPath:indexPath];
+        cell = (VIPContestPropertiesCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         [self configurePropertiesTableViewCell:cell withDictionary:property];
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES && !isSectionEmpty) {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
@@ -213,11 +225,48 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
         return CODVC_TABLECELL_HEIGHT_EMPTY;
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES && isSectionEmpty) {
         return CODVC_TABLECELL_HEIGHT_EMPTY;
-    } else if (section == CDVC_TABLE_SECTION_CANDIDATES){
+    } else if (section == CDVC_TABLE_SECTION_CANDIDATES) {
         return CODVC_TABLECELL_HEIGHT_CANDIDATES;
-    } else {
+    } else if (section == CDVC_TABLE_SECTION_PROPERTIES) {
+        return [self heightForPropertyIndexPath:indexPath];
+    }
+    else {
         return CODVC_TABLECELL_HEIGHT_DEFAULT;
     }
+}
+
+- (CGFloat)heightForPropertyIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *data = self.tableData[indexPath.section];
+    NSDictionary *property = nil;
+    // Check if we can make a url from the data property
+    NSURL *dataUrl = nil;
+    if (data && [data count] > 0) {
+        property = (NSDictionary *)data[indexPath.item];
+        if ([property isKindOfClass:[NSDictionary class]]) {
+            dataUrl = [NSURL URLWithString:property[@"data"]];
+        }
+    }
+    
+    NSString *title = property[@"title"];
+    NSString *detailLabel = property[@"data"];
+    
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    
+    CGRect titleRect = [title boundingRectWithSize:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)
+                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                               attributes:@{NSFontAttributeName:kTitleFont, NSParagraphStyleAttributeName:paragraph}
+                                                  context:NULL];
+    
+    CGRect detailRect = [detailLabel boundingRectWithSize:CGSizeMake(self.view.frame.size.width, CGFLOAT_MAX)
+                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                               attributes:@{NSFontAttributeName:kSubtitleFont, NSParagraphStyleAttributeName:paragraph}
+                                                  context:NULL];
+    
+
+    return titleRect.size.height + detailRect.size.height + 20;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -252,15 +301,20 @@ NSString * const REFERENDUM_API_ID = @"Referendum";
  *
  * TODO: Add appropriate styling -- do this in a subclass of UITableViewCell
  */
-- (void)configurePropertiesTableViewCell:(UITableViewCell*)cell
+- (void)configurePropertiesTableViewCell:(VIPContestPropertiesCell *)cell
                           withDictionary:(NSDictionary*)property
 {
-    cell.textLabel.text = property[@"title"];
-    cell.textLabel.textColor = [VIPColor primaryTextColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
-    cell.detailTextLabel.text = [property[@"data"] capitalizedString];
-    cell.detailTextLabel.textColor = [VIPColor primaryTextColor];
-    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:16];
+    cell.titleLabel.text = property[@"title"];
+    cell.titleLabel.textColor = [VIPColor primaryTextColor];
+    cell.titleLabel.font = kTitleFont;
+    cell.titleLabel.numberOfLines = 0;
+    cell.subtitleLabel.text = [property[@"data"] capitalizedString];
+    cell.subtitleLabel.textColor = [VIPColor primaryTextColor];
+    cell.subtitleLabel.font = kSubtitleFont;
+    cell.subtitleLabel.numberOfLines = 0;
+    
+    [cell setNeedsUpdateConstraints];
+    [cell setNeedsLayout];
 }
 
 /**
