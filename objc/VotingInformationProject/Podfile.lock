@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.1.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.1.0)
+    - AFNetworking/NSURLSession (= 2.1.0)
+    - AFNetworking/Reachability (= 2.1.0)
+    - AFNetworking/Security (= 2.1.0)
+    - AFNetworking/Serialization (= 2.1.0)
+    - AFNetworking/UIKit (= 2.1.0)
   - AFNetworking/NSURLConnection (2.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -17,31 +17,31 @@ PODS:
   - AFNetworking/Serialization (2.1.0)
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
-  - Google-Maps-iOS-SDK (1.8.1)
   - GoogleAnalytics-iOS-SDK (3.0.7)
+  - GoogleMaps (1.10.4)
   - JSONModel (1.0.1)
   - Kiwi (2.3.0)
   - libPhoneNumber-iOS (0.7.3)
   - MagicalRecord (2.2):
-    - MagicalRecord/Core
+    - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - Google-Maps-iOS-SDK (~> 1.8.1)
   - GoogleAnalytics-iOS-SDK (= 3.0.7)
+  - GoogleMaps (~> 1.10.4)
   - JSONModel (~> 1.0)
   - Kiwi
   - libPhoneNumber-iOS (~> 0.7)
   - MagicalRecord (~> 2.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
-  Google-Maps-iOS-SDK: 4fe35d952dbd1e4dacfcfa178e9cce2f06d67ecc
-  GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
-  JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
-  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
-  libPhoneNumber-iOS: 98fc07d70c8fdb5e6a8e3442c37e97353065c20e
-  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
+  AFNetworking: d397c9a76a60c670cbcd33f3ff2c5f961f724cbc
+  GoogleAnalytics-iOS-SDK: 8737363000dd5ba8ba20efd90bcfb730ca22bc2d
+  GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
+  JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
+  Kiwi: 4c3988bd551f80f6ca0009f302f7c1a2e3777bf2
+  libPhoneNumber-iOS: 820f22823afe2c7fc66c5c30bd83ca5a4253f32c
+  MagicalRecord: f8a56bb87ab6552f20c4bb8681a1958a197ea3cd
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.38.2
