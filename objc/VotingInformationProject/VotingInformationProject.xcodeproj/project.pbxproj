@@ -170,8 +170,9 @@
 		53D3A7A71889A05B00920A70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78A1889A05B00920A70 /* UIKit.framework */; };
 		53D3A7A81889A05B00920A70 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D3A78C1889A05B00920A70 /* CoreData.framework */; };
 		53D3A7B01889A05B00920A70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A7AE1889A05B00920A70 /* InfoPlist.strings */; };
-		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; settings = {ASSET_TAGS = (); }; };
-		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; settings = {ASSET_TAGS = (); }; };
+		839DD6131C2270D400A21AC6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839DD6121C2270D400A21AC6 /* MapKit.framework */; };
+		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; };
+		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; };
 		9DD78D93039F4A87BC8E023B /* libPods-VotingInformationProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4987FA570B47C7AABCBCC9 /* libPods-VotingInformationProjectTests.a */; };
 /* End PBXBuildFile section */
 
@@ -422,6 +423,7 @@
 		53D3A7AD1889A05B00920A70 /* VotingInformationProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VotingInformationProjectTests-Info.plist"; sourceTree = "<group>"; };
 		53D3A7AF1889A05B00920A70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		548B2CFFD32E415181767B53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		839DD6121C2270D400A21AC6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83AA58221BBA4AE20077C9FB /* VIPContestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPContestCell.h; path = Views/VIPContestCell.h; sourceTree = "<group>"; };
 		83AA58231BBA4AE20077C9FB /* VIPContestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPContestCell.m; path = Views/VIPContestCell.m; sourceTree = "<group>"; };
 		83CAB98D1BBAD32400611F0E /* VIPContestPropertiesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPContestPropertiesCell.h; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				4916408D18EB656B00233C1C /* libz.dylib in Frameworks */,
 				4916408B18EB656200233C1C /* SystemConfiguration.framework in Frameworks */,
 				4903245D1890650A00FD9828 /* AddressBook.framework in Frameworks */,
+				839DD6131C2270D400A21AC6 /* MapKit.framework in Frameworks */,
 				4903245E1890650A00FD9828 /* AddressBookUI.framework in Frameworks */,
 				53D3A7891889A05B00920A70 /* CoreGraphics.framework in Frameworks */,
 				53D3A78D1889A05B00920A70 /* CoreData.framework in Frameworks */,
@@ -811,6 +814,7 @@
 		53D3A7851889A05B00920A70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				839DD6121C2270D400A21AC6 /* MapKit.framework */,
 				4916409018EB665700233C1C /* libsqlite3.dylib */,
 				4916408E18EB65B700233C1C /* AdSupport.framework */,
 				4916408C18EB656B00233C1C /* libz.dylib */,
@@ -950,7 +954,12 @@
 				ORGANIZATIONNAME = "The Pew Charitable Trusts";
 				TargetAttributes = {
 					53D3A7821889A05B00920A70 = {
-						DevelopmentTeam = HX678UA6R2;
+						DevelopmentTeam = LMU2729A2N;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					53D3A7A21889A05B00920A70 = {
 						TestTargetID = 53D3A7821889A05B00920A70;
@@ -1309,6 +1318,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1329,7 +1339,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1340,6 +1351,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1353,6 +1365,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
@@ -1395,7 +1408,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = VotingInformationProject;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1407,7 +1420,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
@@ -1450,7 +1464,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = VotingInformationProject;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
