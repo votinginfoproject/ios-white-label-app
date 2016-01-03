@@ -249,6 +249,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.contentView.opaque = NO;
 
     self.mapView.delegate = self;
+    [self.mapView layoutIfNeeded];
     self.mapView.accessibilityElementsHidden = NO;
     self.mapView.settings.myLocationButton = YES;
 

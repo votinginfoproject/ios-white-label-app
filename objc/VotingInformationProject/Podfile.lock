@@ -18,7 +18,7 @@ PODS:
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - GoogleAnalytics-iOS-SDK (3.0.7)
-  - GoogleMaps (1.10.4)
+  - GoogleMaps (1.10.5)
   - JSONModel (1.0.1)
   - Kiwi (2.3.0)
   - libPhoneNumber-iOS (0.7.3)
@@ -38,7 +38,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: d397c9a76a60c670cbcd33f3ff2c5f961f724cbc
   GoogleAnalytics-iOS-SDK: 8737363000dd5ba8ba20efd90bcfb730ca22bc2d
-  GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
   Kiwi: 4c3988bd551f80f6ca0009f302f7c1a2e3777bf2
   libPhoneNumber-iOS: 820f22823afe2c7fc66c5c30bd83ca5a4253f32c
