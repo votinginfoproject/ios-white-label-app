@@ -28,6 +28,18 @@ Pods
 *.swp
 ~*
 
+# Build products
+build/
+*.o
+*.LinkFileList
+*.hmap
+
+# Automatic backup files
+*~.nib/
+*~
+*.dat
+*.dep
+
 # User settings files to be overridden
 # cp the {filename}.template file to {filename} for xcode to build
 CivicAPIKey.plist

@@ -1,15 +1,16 @@
 platform :ios, '7.0'
 source 'https://github.com/CocoaPods/Specs'
 
-pod "AFNetworking",         "~> 2.0"
-pod "GoogleMaps",  "~> 1.10.4"
-pod "MagicalRecord",        "~> 2.2"
-pod "libPhoneNumber-iOS",   "~> 0.7"
-pod "JSONModel",            "~> 1.0"
-pod "GoogleAnalytics-iOS-SDK",      "3.0.7"
-
-# If you're using Xcode 5 with a brand new project
-# (XCTest based instead of OCUnit based) use this instead:
-target :VotingInformationProjectTests, :exclusive => true do
-    pod 'Kiwi'
+target 'VotingInformationProject' do
+  pod 'Google-Maps-iOS-SDK',  '~> 1.8.1'
+  pod 'MagicalRecord',        '~> 2.3'
+  pod 'libPhoneNumber-iOS',   '~> 0.8'
+  pod 'JSONModel',            '~> 1.0'
+  pod 'GoogleAnalytics'
+  pod 'AFNetworking',         '~> 2.0'
 end
+
+target 'VotingInformationProjectTests' do
+  pod 'Kiwi'
+end
+
