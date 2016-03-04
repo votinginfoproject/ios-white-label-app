@@ -90,6 +90,8 @@
     }
   
     _userAddress = userAddress;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:userAddress forKey:USER_DEFAULTS_STORED_ADDRESS];
 }
 
 /**
