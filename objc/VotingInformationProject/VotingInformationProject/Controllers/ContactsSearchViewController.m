@@ -62,7 +62,6 @@
 
 @property (strong, nonatomic) UIPickerView *partyPicker;
 @property (strong, nonatomic) UIPickerView *electionPicker;
-
 @end
 
 @implementation ContactsSearchViewController {
