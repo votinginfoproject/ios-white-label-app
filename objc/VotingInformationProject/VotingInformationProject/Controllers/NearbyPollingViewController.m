@@ -35,10 +35,13 @@
 
 #define DIRECTIONS_STROKEWIDTH 6
 
-@interface NearbyPollingViewController () <UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface NearbyPollingViewController () <
+    UIGestureRecognizerDelegate,
+    UIPickerViewDataSource,
+    UIPickerViewDelegate
+>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet UITableView *listView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *pollingPickerButton;
@@ -49,24 +52,22 @@
 // Map/List view switcher.  Assigned to self.tabBarController.navigationItem.rightBarButtonItem
 @property (strong, nonatomic) UIBarButtonItem *ourRightBarButtonItem;
 
-@property (strong, nonatomic) VIPAddress *userAddress;
-
-@property (strong, nonatomic) GMSPolyline *directionsPolyline;
-
-@property (assign, nonatomic) VIPPollingLocationType selectedFilterType;
-
 // Identifies the type of view currently displayed (map or list)
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
-
-@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) UITextField *locationTextField;
 @property (strong, nonatomic) UIPickerView *locationPicker;
 
-@end
+@property (strong, nonatomic) VIPAddress *userAddress;
 
+@property (strong, nonatomic) GMSPolyline *directionsPolyline;
+
+@property (assign, nonatomic) VIPPollingLocationType selectedFilterType;
+@property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
+@end
 
 @implementation NearbyPollingViewController
 {
@@ -87,6 +88,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (!_cells) {
         _cells = [[NSMutableArray alloc] init];
     }
+  
     return _cells;
 }
 
@@ -98,6 +100,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
             [cell reset];
         }
     }
+  
     _cells = cells;
     [self updateUI];
 }
@@ -113,20 +116,25 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.cells = nil;
     NSMutableArray *newCells = [[NSMutableArray alloc] initWithCapacity:[locations count]];
     for (PollingLocation *location in locations) {
+      
         // Skip this early vote site if it's not currently open
         if ([location isMemberOfClass:[EarlyVoteSite class]] && ![location isAvailable]) {
             continue;
         }
+      
         // Skip this drop off location if its not currently open
         if ([location isMemberOfClass:[DropoffLocation class]] && ![location isAvailable]) {
             continue;
         }
+      
         PollingLocationWrapper *cell = [[PollingLocationWrapper alloc] initWithLocation:location andGeocodeHandler:^void(PollingLocationWrapper *sender, NSError *error) {
+          
                 if (error) {
                     NSLog(@"Error encountered for marker %@: %@", sender.name, error);
                 } else {
                     GMSMarker *marker = [self setPlacemark:sender.mapPosition
                                                  withTitle:sender.name];
+                  
                     if ([location isMemberOfClass:[EarlyVoteSite class]]) {
                         marker.icon = earlyVoting;
                     } else if ([location isMemberOfClass:[DropoffLocation class]]) {
@@ -134,6 +142,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                     } else {
                         marker.icon = polling;
                     }
+                  
                     marker.map = self.mapView;
                     marker.userData = sender;
                     sender.marker = marker;
@@ -142,8 +151,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         if (_userAddressMarker) {
             cell.mapOrigin = _userAddressMarker.position;
         }
+      
         [newCells addObject:cell];
     }
+  
     self.cells = newCells;
 }
 
@@ -170,6 +181,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *siteFilter = (UISegmentedControl*)sender;
         VIPPollingLocationType type = (VIPPollingLocationType)siteFilter.selectedSegmentIndex;
+      
         [self setEmptyMessage:type];
         [self setCellsWithLocations:[self.election filterPollingLocations:type]];
     }
@@ -184,6 +196,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     NSString *dropoffMessage = NSLocalizedString(@"No Nearby Dropoff Locations",
                                                  @"Text to display if the table view has no dropoff locations to display");
     NSString *message = nil;
+  
     if (type == VIPPollingLocationTypeEarlyVote) {
         message = earlyVoteMessage;
     } else if (type == VIPPollingLocationTypeDropoff) {
@@ -191,6 +204,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     } else {
         message = pollingMessage;
     }
+  
     self.emptyDataSource.emptyMessage = message;
 }
 
@@ -199,6 +213,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (!_locationManager) {
         _locationManager = [[CLLocationManager alloc] init];
     }
+  
     return _locationManager;
 }
 
@@ -211,6 +226,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     // Move custom InfoWindow up a bit
     // Default is (0.5, 0.0)
     marker.infoWindowAnchor = CGPointMake(0.5, -0.1);
+  
     return marker;
 }
 
@@ -224,6 +240,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                                  target:self
                                                                  action:@selector(onViewSwitcherClicked:)];
     }
+  
     return _ourRightBarButtonItem;
 }
 
@@ -249,6 +266,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.listView.backgroundColor = [UIColor clearColor];
     self.listView.opaque = NO;
     self.listView.backgroundView = nil;
+  
     self.contentView.backgroundColor = [UIColor clearColor];
     self.contentView.opaque = NO;
 
@@ -275,6 +293,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:self.tapRecognizer];
     self.tapRecognizer.delegate = self;
+  
     self.locationPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.locationPicker.dataSource = self;
     self.locationPicker.delegate = self;
@@ -329,17 +348,21 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     PollingPickerOption *option = [self getSelectedOptionObject];
     [self setPollingPickerTitle:option.desc];
     [self.userAddress geocode:^(CLLocationCoordinate2D position, NSError *error) {
+      
         if (!error) {
             _userAddressMarker.map = nil;
             _userAddressMarker = [GMSMarker markerWithPosition:position];
             _userAddressMarker.title = NSLocalizedString(@"Your Address",
                                                          @"Title for map marker pop-up on user's address");
+          
             _userAddressMarker.snippet = [self.userAddress toABAddressString:YES];
             _userAddressMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
             _userAddressMarker.map = self.mapView;
+          
             for (PollingLocationWrapper *cell in self.cells) {
                 cell.mapOrigin = position;
             }
+          
             [self.mapView animateToLocation:position];
         }
     }];
@@ -380,20 +403,24 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (viewType == LIST_VIEW) {
         currentView = self.mapView;
         nextView = self.listView;
+      
         self.ourRightBarButtonItem.title = NSLocalizedString(@"Map", @"Nav button label");
         self.ourRightBarButtonItem.accessibilityHint =
         NSLocalizedString(@"Flips to map",
                           @"Polling Locations View Map Button: Accessibility Hint - Flips to map");
+      
         transition = UIViewAnimationTransitionFlipFromRight;
         _currentView = LIST_VIEW;
     }
     else {
         currentView = self.listView;
         nextView = self.mapView;
+      
         self.ourRightBarButtonItem.title = NSLocalizedString(@"List", @"Nav button label");
         self.ourRightBarButtonItem.accessibilityHint =
         NSLocalizedString(@"Flips to list",
                           @"Polling Locations View List Button: Accessibility Hint - Flips to list");
+      
         transition = UIViewAnimationTransitionFlipFromLeft;
         _currentView = MAP_VIEW;
     }
@@ -404,10 +431,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (animated) {
         [UIView beginAnimations:@"View Flip" context:nil];
         [UIView setAnimationDuration:1.0];
+      
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-
-
         [UIView setAnimationTransition: transition forView:self.contentView cache:YES];
+      
         currentView.hidden = YES;
         nextView.hidden = NO;
 
@@ -433,6 +460,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (!self.mapView.myLocation) {
         // First, if no current location option, skip directly to segue
         [self directionsSegueTo:plWrapper fromAddress:self.userAddress];
+      
         return;
     }
 
@@ -440,6 +468,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
     NSString *yourAddressTitle = NSLocalizedString(@"Your Address", nil);
     NSString *currentLocationTitle = NSLocalizedString(@"Current Location", nil);
+  
     NearbyPollingViewController *viewController = self;
 
     // Next, we have current location, so give the user an alert to choose their source location
@@ -456,12 +485,14 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
             [viewController directionsSegueTo:plWrapper fromAddress:viewController.userAddress];
         }];
+      
         [alert addAction:yourAddressAction];
 
         UIAlertAction *currentLocationAction = [UIAlertAction actionWithTitle:currentLocationTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *alertAction) {
 
             [viewController directionsSegueTo:plWrapper fromLocation:viewController.mapView.myLocation];
         }];
+      
         [alert addAction:currentLocationAction];
 
         [self presentViewController:alert animated:YES completion:nil];
@@ -473,6 +504,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                              destructiveButtonTitle:nil
                                                   otherButtonTitles:yourAddressTitle, currentLocationTitle, nil];
         _actionSheetPLWrapper = plWrapper;
+      
         [alert showInView:[self.view window]];
     }
 }
@@ -481,8 +513,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     NSString *from = [address toABAddressString:NO];
     NSString *to = [plWrapper.location.address toABAddressString:NO];
+  
     DirectionsViewSegueData *segueData =
     [DirectionsViewSegueData dataWithSource:from andDestination:to];
+  
     [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];
 }
 
@@ -491,8 +525,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     NSString *from = [NSString stringWithFormat:@"%f,%f",
                       location.coordinate.latitude, location.coordinate.longitude];
     NSString *to = [plWrapper.location.address toABAddressString:NO];
+  
     DirectionsViewSegueData *segueData =
     [DirectionsViewSegueData dataWithSource:from andDestination:to];
+  
     [self performSegueWithIdentifier:@"DirectionsViewSegue" sender:segueData];
 }
 
@@ -519,6 +555,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     BOOL found = ((PollingPickerOption*)obj).type == self.selectedFilterType;
     return found;
   }];
+  
   return selectedOptionIndex;
 }
 
@@ -565,6 +602,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     } else if (buttonIndex == 1) {
         [self directionsSegueTo:_actionSheetPLWrapper fromLocation:self.mapView.myLocation];
     }
+  
     _actionSheetPLWrapper = nil;
 }
 
@@ -613,6 +651,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     if (index < 0) {
         return;
     }
+  
     [self showDirectionsSwitcherForCell:self.cells[index]];
 }
 
@@ -631,9 +670,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     NSDictionary *route = [routes objectForKey:@"overview_polyline"];
     NSString *overview_route = [route objectForKey:@"points"];
     GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
+  
     if (self.directionsPolyline && self.directionsPolyline.map) {
         self.directionsPolyline.map = nil;
     }
+  
     self.directionsPolyline = [GMSPolyline polylineWithPath:path];
     self.directionsPolyline.strokeWidth = DIRECTIONS_STROKEWIDTH;
     self.directionsPolyline.map = self.mapView;
@@ -673,6 +714,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     PollingLocationWrapper *cell = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
     NSString *cellIdentifier = @"PollingLocationCell";
     cell.tableCell = (PollingLocationCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+  
     return cell.tableCell;
 }
 
@@ -683,6 +725,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     PollingLocationCell *cell = (PollingLocationCell*)
         [tableView cellForRowAtIndexPath:indexPath];
     PollingLocationWrapper *plWrapper = cell.owner;
+  
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self showDirectionsSwitcherForCell:plWrapper];
 }
@@ -720,13 +763,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         DirectionsViewSegueData *data = (DirectionsViewSegueData*)sender;
         directionsListVC.destinationAddress = data.destination;
         directionsListVC.sourceAddress = data.source;
+      
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
+      
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;
+      
     } else if ([segue.identifier isEqualToString:VIP_FEEDBACK_SEGUE]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
+      
         webView.title = NSLocalizedString(@"Feedback", @"Title for web view displaying the VIP election feedback form");
         webView.request = (NSMutableURLRequest*)sender;
     }
@@ -746,9 +793,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                     andParty:(NSString *)party
 {
     VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
+  
     vipTabBarController.elections = elections;
     vipTabBarController.currentElection = election;
     vipTabBarController.currentParty = party;
+  
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

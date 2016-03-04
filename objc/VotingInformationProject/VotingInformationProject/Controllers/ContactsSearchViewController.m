@@ -13,11 +13,12 @@
 #import "VIPTabBarController.h"
 #import "ContactsSearchViewController.h"
 
-#import "AppSettings.h"
-#import "CivicInfoAPI.h"
 #import "UserElection+API.h"
 #import "Election+API.h"
 #import "VIPAddress+API.h"
+
+#import "AppSettings.h"
+#import "CivicInfoAPI.h"
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
 
@@ -68,14 +69,7 @@
     BOOL _updating;
 }
 
-- (NSString*)allPartiesString
-{
-    if (!_allPartiesString) {
-        _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
-    }
-    return _allPartiesString;
-}
-
+#pragma mark - setters
 /**
  *  Setter for userAddress
  * 
@@ -89,10 +83,12 @@
     if (userAddress == nil || [userAddress length] == 0) {
         return;
     }
+  
     if ([userAddress isEqualToString:_userAddress]) {
         NSLog(@"No change. New address %@ == old", _userAddress);
         return;
     }
+  
     _userAddress = userAddress;
 }
 
@@ -116,6 +112,7 @@
 - (void)setElections:(NSArray *)elections
 {
     self.electionsView.hidden = [elections count] < 2 ? YES : NO;
+  
     if (self.activeElection) {
         [self.electionPickerButton setTitle:self.activeElection.name
                                    forState:UIControlStateNormal];
@@ -123,6 +120,7 @@
         [self.electionPickerButton setTitle:((Election*)elections[0]).name
                                    forState:UIControlStateNormal];
     }
+  
     _elections = elections;
 }
 
@@ -132,8 +130,11 @@
         [self.electionPickerButton setTitle:activeElection.name
                                    forState:UIControlStateNormal];
     }
+  
     _activeElection = activeElection;
 }
+
+#pragma mark - view lifecycle
 
 - (void)viewDidLoad
 {
@@ -199,19 +200,18 @@
     self.electionTextField.inputView = self.electionPicker;
 }
 
-
-#pragma mark - view appears
-
 //Hide nav bar on root view
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+  
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     NSString *address = [defaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
+  
     self.userAddress = address;
     self.addressTextField.text = address;
+  
     if (!self.currentElection) {
         [self updateUI];
     } else {
@@ -243,13 +243,18 @@
     if (_updating) {
         return;
     }
+  
     [self hideViews];
+  
     if ([self.userAddress length] == 0) {
         return;
     }
+  
     _updating = YES;
+  
     NSLog(@"Requesting: %@", self.userAddress);
     [CivicInfoAPI getVotingInfo:self.userAddress forElection:self.activeElection callback:^(UserElection *votingInfo, NSError *error) {
+      
         if (votingInfo && !error) {
             self.currentElection = votingInfo;
             [self updateUICurrentElection];
@@ -258,6 +263,7 @@
             NSLog(@"ERROR: %@", votingInfo);
             [self displayGetElectionsError:error];
         }
+      
         _updating = NO;
     }];
 }
@@ -271,7 +277,6 @@
 }
 
 - (void) dismissKeyboard {
-    NSLog(@"dismissKeyboard");
     [self.view endEditing:YES];
 }
 
@@ -328,6 +333,7 @@
         [self updateUI];
         return NO;
     }
+  
     return YES;
 }
 
@@ -345,6 +351,7 @@
     NSDictionary *addressDict = [addressesArray objectAtIndex:addressIndex];
     NSString *address = ABCreateStringWithAddressDictionary(addressDict, NO);
     CFRelease(addresses);
+  
     return address;
 }
 
@@ -378,6 +385,7 @@
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+  
     return NO;
 }
 
@@ -386,6 +394,7 @@
 - (IBAction)showElectionPicker:(id)sender
 {
     [self.addressTextField resignFirstResponder];
+  
     if ([self.elections count] == 0) {
         return;
     }
@@ -419,6 +428,14 @@
     self.showElectionButton.hidden = NO;
     [self.showElectionButton setTitle:NSLocalizedString(@"GO!", @"Home view GO! button text")
                              forState:UIControlStateNormal];
+}
+
+- (NSString*)allPartiesString
+{
+  if (!_allPartiesString) {
+    _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
+  }
+  return _allPartiesString;
 }
 
 #pragma mark - UI Error Handling
