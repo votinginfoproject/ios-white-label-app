@@ -32,27 +32,35 @@
 @property (weak, nonatomic) IBOutlet UIButton *partyPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
 @property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
+
 @property (weak, nonatomic) IBOutlet UILabel *brandNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gettingStartedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vipLabel;
-@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+
 @property (weak, nonatomic) IBOutlet UIView *partyView;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
 @property (weak, nonatomic) IBOutlet UIView *electionsView;
+
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+
 @property (weak, nonatomic) IBOutlet UIButton *electionPickerButton;
+
+@property (strong, nonatomic) Election *activeElection;
+
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @property (strong, nonatomic) NSString *userAddress;
 @property (strong, nonatomic) NSString *currentParty;
-@property (strong, nonatomic) Election *activeElection;
+@property (strong, nonatomic) NSString *allPartiesString;
+
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
-@property (strong, nonatomic) NSString* allPartiesString;
 
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) UITextField *partyTextField;
-@property (strong, nonatomic) UIPickerView *partyPicker;
 @property (strong, nonatomic) UITextField *electionTextField;
+
+@property (strong, nonatomic) UIPickerView *partyPicker;
 @property (strong, nonatomic) UIPickerView *electionPicker;
 
 @end
