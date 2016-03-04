@@ -13,8 +13,6 @@
 #import "VIPTabBarController.h"
 #import "ContactsSearchViewController.h"
 
-#import "MMPickerView.h"
-
 #import "AppSettings.h"
 #import "CivicInfoAPI.h"
 #import "UserElection+API.h"

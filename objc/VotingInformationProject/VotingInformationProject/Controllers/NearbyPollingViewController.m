@@ -11,7 +11,6 @@
 #import "NearbyPollingViewController.h"
 
 #import "UIImage+Scale.h"
-#import "MMPickerView.h"
 
 #import "AppSettings.h"
 #import "ContactsSearchViewController.h"
