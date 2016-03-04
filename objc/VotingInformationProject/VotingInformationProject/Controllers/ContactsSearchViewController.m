@@ -23,7 +23,13 @@
 #import "VIPColor.h"
 #import "VIPUserDefaultsKeys.h"
 
-@interface ContactsSearchViewController () <UITextFieldDelegate, AboutViewControllerDelegate>
+@interface ContactsSearchViewController () <
+    UITextFieldDelegate,
+    AboutViewControllerDelegate,
+    UIPickerViewDataSource,
+    UIPickerViewDelegate,
+    UIGestureRecognizerDelegate
+>
 
 @property (strong, nonatomic) NSString *userAddress;
 @property (strong, nonatomic) NSString *currentParty;
@@ -43,6 +49,10 @@
 @property (weak, nonatomic) IBOutlet UIView *electionsView;
 @property (weak, nonatomic) IBOutlet UIButton *electionPickerButton;
 @property (strong, nonatomic) NSString* allPartiesString;
+
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (strong, nonatomic) UITextField *partyTextField;
+@property (strong, nonatomic) UIPickerView *partyPicker;
 
 @end
 
@@ -159,6 +169,18 @@
 
     self.currentParty = self.allPartiesString;
     self.parties = @[self.allPartiesString];
+  
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:self.tapRecognizer];
+    self.tapRecognizer.delegate = self;
+
+    UIPickerView *partyPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    partyPicker.dataSource = self;
+    partyPicker.delegate = self;
+  
+    self.partyTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.partyTextField];
+    self.partyTextField.inputView = partyPicker;
 }
 
 
@@ -230,6 +252,11 @@
     self.errorView.hidden = YES;
     self.electionsView.hidden = YES;
     self.showElectionButton.hidden = YES;
+}
+
+- (void) dismissKeyboard {
+    NSLog(@"dismissKeyboard");
+    [self.view endEditing:YES];
 }
 
 /**
@@ -361,14 +388,7 @@
 #pragma mark - PartyPicker
 
 - (IBAction)showPartyView:(id)sender {
-    [self.addressTextField resignFirstResponder];
-    [MMPickerView showPickerViewInView:self.view
-                           withStrings:self.parties
-                           withOptions:@{MMselectedObject: self.currentParty}
-                            completion:^(NSString* selectedString) {
-                                self.currentParty = selectedString;
-                                [self displayGetElections];
-    }];
+    [self.partyTextField becomeFirstResponder];
 }
 
 - (void)displayPartyPicker
@@ -425,4 +445,29 @@
         viewController.delegate = self;
     }
 }
+
+
+#pragma mark - UIPickerViewDataSource
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.parties count];
+}
+
+#pragma mark - UIPickerViewDelegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.parties objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.currentParty = [self.parties objectAtIndex:row];
+    [self displayGetElections];
+}
+
 @end
