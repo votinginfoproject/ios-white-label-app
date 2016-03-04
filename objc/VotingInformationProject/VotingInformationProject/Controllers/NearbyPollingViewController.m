@@ -68,7 +68,8 @@
 @end
 
 
-@implementation NearbyPollingViewController {
+@implementation NearbyPollingViewController
+{
     NSManagedObjectContext *_moc;
     GMSMarker *_userAddressMarker;
     NSMutableArray *_cells;
@@ -281,7 +282,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     self.locationTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.locationTextField];
     self.locationTextField.inputView = self.locationPicker;
-};
+}
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -497,7 +498,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 #pragma mark - Polling Picker
 
-- (void) dismissKeyboard {
+- (void) dismissKeyboard
+{
     [self.view endEditing:YES];
 }
 
@@ -511,7 +513,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     return _pollingOptions[[self getIndex]];
 }
 
-- (NSInteger) getIndex {
+- (NSInteger) getIndex
+{
   NSUInteger selectedOptionIndex = [_pollingOptions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
     BOOL found = ((PollingPickerOption*)obj).type == self.selectedFilterType;
     return found;
@@ -519,7 +522,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
   return selectedOptionIndex;
 }
 
-- (IBAction)didTapPollingPickerButton:(id)sender {
+- (IBAction)didTapPollingPickerButton:(id)sender
+{
     [self.locationTextField becomeFirstResponder];
     [self.locationPicker selectRow:[self getIndex] inComponent:0 animated:YES];
 }

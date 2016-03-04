@@ -351,7 +351,8 @@
 
 #pragma mark - showElectionButton
 
-- (IBAction)tappedShowElectionButton:(id)sender {
+- (IBAction)tappedShowElectionButton:(id)sender
+{
     // Set the current selections to local store so we can pull them from CoreData
     //  on future app loads
 
@@ -382,7 +383,8 @@
 
 #pragma mark - electionPicker
 
-- (IBAction)showElectionPicker:(id)sender {
+- (IBAction)showElectionPicker:(id)sender
+{
     [self.addressTextField resignFirstResponder];
     if ([self.elections count] == 0) {
         return;
@@ -394,7 +396,8 @@
 
 #pragma mark - PartyPicker
 
-- (IBAction)showPartyView:(id)sender {
+- (IBAction)showPartyView:(id)sender
+{
     [self.partyTextField becomeFirstResponder];
 }
 
