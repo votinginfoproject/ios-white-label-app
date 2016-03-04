@@ -36,7 +36,7 @@
 
 #define DIRECTIONS_STROKEWIDTH 6
 
-@interface NearbyPollingViewController ()
+@interface NearbyPollingViewController () <UIGestureRecognizerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -61,6 +61,10 @@
 @property (assign, nonatomic) NSUInteger currentView;
 
 @property (strong, nonatomic) VIPEmptyTableViewDataSource *emptyDataSource;
+
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (strong, nonatomic) UITextField *locationTextField;
+@property (strong, nonatomic) UIPickerView *locationPicker;
 
 @end
 
@@ -267,6 +271,17 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
     [self.pollingPickerButton setTitleColor:secondaryTextColor
                                    forState:UIControlStateNormal];
+  
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:self.tapRecognizer];
+    self.tapRecognizer.delegate = self;
+    self.locationPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.locationPicker.dataSource = self;
+    self.locationPicker.delegate = self;
+  
+    self.locationTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.locationTextField];
+    self.locationTextField.inputView = self.locationPicker;
 };
 
 - (void) viewWillAppear:(BOOL)animated
@@ -483,6 +498,10 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 #pragma mark - Polling Picker
 
+- (void) dismissKeyboard {
+    [self.view endEditing:YES];
+}
+
 - (void) setPollingPickerTitle:(NSString*)desc
 {
     [self.pollingPickerButton setTitle:desc forState:UIControlStateNormal];
@@ -490,31 +509,49 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (PollingPickerOption*)getSelectedOptionObject
 {
-    NSUInteger selectedOptionIndex = [_pollingOptions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        BOOL found = ((PollingPickerOption*)obj).type == self.selectedFilterType;
-        return found;
-    }];
-    return _pollingOptions[selectedOptionIndex];
+    return _pollingOptions[[self getIndex]];
+}
+
+- (NSInteger) getIndex {
+  NSUInteger selectedOptionIndex = [_pollingOptions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+    BOOL found = ((PollingPickerOption*)obj).type == self.selectedFilterType;
+    return found;
+  }];
+  return selectedOptionIndex;
 }
 
 - (IBAction)didTapPollingPickerButton:(id)sender {
-    [MMPickerView showPickerViewInView:self.view
-                           withObjects:_pollingOptions
-                           withOptions:@{MMselectedObject: [self getSelectedOptionObject]}
-               objectToStringConverter:^NSString *(PollingPickerOption *option) {
-                   return option.desc;
-               }
-                            completion:^(PollingPickerOption *option) {
-                                self.selectedFilterType = option.type;
-                                [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
-                                                                           forKey:USER_DEFAULTS_SITE_FILTER_KEY];
-                                [self setPollingPickerTitle:option.desc];
-                                [self setEmptyMessage:option.type];
-                                [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
-                            }];
+    [self.locationTextField becomeFirstResponder];
+    [self.locationPicker selectRow:[self getIndex] inComponent:0 animated:YES];
 }
 
+#pragma mark - UIPickerViewDataSource
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
 
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [_pollingOptions count];
+}
+
+#pragma mark - UIPickerViewDelegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [[_pollingOptions objectAtIndex:row] desc];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    PollingPickerOption *option = [_pollingOptions objectAtIndex:row];
+    self.selectedFilterType = option.type;
+    [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
+                                             forKey:USER_DEFAULTS_SITE_FILTER_KEY];
+    [self setPollingPickerTitle:option.desc];
+    [self setEmptyMessage:option.type];
+    [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
+}
 
 #pragma mark - UIActionSheetDelegate
 
