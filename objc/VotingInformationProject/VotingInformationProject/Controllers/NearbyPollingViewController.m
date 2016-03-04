@@ -553,6 +553,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
   NSUInteger selectedOptionIndex = [_pollingOptions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
     BOOL found = ((PollingPickerOption*)obj).type == self.selectedFilterType;
+    
     return found;
   }];
   

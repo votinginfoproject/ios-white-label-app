@@ -287,12 +287,15 @@
 {
     // Update self.elections, self.activeElections
     NSArray *elections = @[];
+  
     if (self.currentElection) {
         if ([self.currentElection.otherElections count] > 0) {
             elections = self.currentElection.otherElections;
         }
+      
         elections = [elections arrayByAddingObject:self.currentElection.election];
     }
+  
     self.elections = elections;
     self.activeElection = self.currentElection.election;
 
@@ -331,6 +334,7 @@
         self.userAddress = address;
         self.addressTextField.text = address;
         [self updateUI];
+      
         return NO;
     }
   
@@ -415,6 +419,7 @@
     NSArray *parties = [self.currentElection getUniqueParties];
     self.parties = [@[self.allPartiesString]
                     arrayByAddingObjectsFromArray:parties];
+  
     BOOL showPartyPicker = [self.parties count] > 1 ? YES : NO;
     self.partyView.hidden = !showPartyPicker;
 }
@@ -435,6 +440,7 @@
   if (!_allPartiesString) {
     _allPartiesString = NSLocalizedString(@"All Parties", @"Default selection for the party selection picker");
   }
+  
   return _allPartiesString;
 }
 
@@ -452,8 +458,10 @@
     self.showElectionButton.hidden = YES;
     self.partyView.hidden = YES;
     self.errorView.hidden = NO;
+  
     NSString *errorTitle = error.localizedDescription
-        ? error.localizedDescription : NSLocalizedString(@"Unknown error getting elections", @"Error message displayed in button on first screen when app cannot get election data");
+        ? error.localizedDescription
+        : NSLocalizedString(@"Unknown error getting elections", @"Error message displayed in button on first screen when app cannot get election data");
     self.errorLabel.text = errorTitle;
 }
 
