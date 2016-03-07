@@ -236,7 +236,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 {
     if (_ourRightBarButtonItem == nil) {
         _ourRightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"List"
-                                                                  style:UIBarButtonItemStyleBordered
+                                                                  style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(onViewSwitcherClicked:)];
     }

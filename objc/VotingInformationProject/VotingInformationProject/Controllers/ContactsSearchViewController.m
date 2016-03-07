@@ -403,7 +403,6 @@
         return;
     }
 
-    Election *selectedElection = self.currentElection.election;
     [self.electionTextField becomeFirstResponder];
 }
 
