@@ -173,6 +173,7 @@
 		839DD6131C2270D400A21AC6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839DD6121C2270D400A21AC6 /* MapKit.framework */; };
 		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; };
 		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; };
+		CB4040E21C8E230D00A57206 /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4040E11C8E230D00A57206 /* PickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -428,6 +429,8 @@
 		83CAB98D1BBAD32400611F0E /* VIPContestPropertiesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPContestPropertiesCell.h; sourceTree = "<group>"; };
 		83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPContestPropertiesCell.m; sourceTree = "<group>"; };
 		DEE015E866353F8C1F56091D /* Pods-VotingInformationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-VotingInformationProject/Pods-VotingInformationProject.release.xcconfig"; sourceTree = "<group>"; };
+		CB4040E01C8E230D00A57206 /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PickerView.h; path = Views/PickerView.h; sourceTree = "<group>"; };
+		CB4040E11C8E230D00A57206 /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PickerView.m; path = Views/PickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -620,6 +623,8 @@
 		4982F901192157680007B75B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB4040E01C8E230D00A57206 /* PickerView.h */,
+				CB4040E11C8E230D00A57206 /* PickerView.m */,
 				498358E1196EED1C00A45012 /* PollingInfoWindowView.h */,
 				498358E2196EED1C00A45012 /* PollingInfoWindowView.m */,
 				4982F902192157F60007B75B /* VIPCandidateCell.h */,
@@ -1167,6 +1172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB4040E21C8E230D00A57206 /* PickerView.m in Sources */,
 				49DB5B191958D40600F41604 /* District.m in Sources */,
 				49548E651959B62500094AB1 /* Election+API.m in Sources */,
 				4940E20718FC6BFD009AA5DE /* NSURL+WithParams.m in Sources */,
