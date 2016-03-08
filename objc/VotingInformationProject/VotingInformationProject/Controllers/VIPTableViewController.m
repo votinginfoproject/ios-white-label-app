@@ -69,7 +69,7 @@
         [tracker set:kGAIScreenName
                value:self.screenName];
         
-        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+        [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     }
 }
 
