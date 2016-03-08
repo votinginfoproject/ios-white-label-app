@@ -36,7 +36,7 @@
     self.descriptionLabel.textColor = [VIPColor primaryTextColor];
     self.linkLabel.text = link[@"buttonTitle"];
     self.linkLabel.textColor = [VIPColor linkColor];
-    self.linkType = [link[@"urlScheme"] integerValue];
+    self.linkType = (CandidateLinkTypes)[link[@"urlScheme"] integerValue];
     self.url = link[@"url"];
 }
 

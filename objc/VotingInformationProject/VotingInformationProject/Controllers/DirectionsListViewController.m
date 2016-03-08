@@ -85,7 +85,7 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
 
     NSInteger directionsType = [[NSUserDefaults standardUserDefaults]
                                 integerForKey:USER_DEFAULTS_DIRECTIONS_TYPE_KEY];
-    self.transitMode = directionsType;
+    self.transitMode = (kGDDirectionsType)directionsType;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
