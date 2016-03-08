@@ -54,7 +54,7 @@
 
 + (NSDate*)today
 {
-    NSCalendarUnit units = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSCalendarUnit units = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:units fromDate:[NSDate date]];
     comps.day = comps.day - 1;
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
