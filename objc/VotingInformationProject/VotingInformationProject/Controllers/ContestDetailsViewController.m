@@ -176,7 +176,7 @@ static UIFont *kSubtitleFont;
         [urlCell configure:property[@"title"] withUrl:property[@"data"]];
     } else if (section == CDVC_TABLE_SECTION_PROPERTIES && !isSectionEmpty) {
         cell = (VIPContestPropertiesCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        [self configurePropertiesTableViewCell:cell withDictionary:property];
+        [self configurePropertiesTableViewCell:(VIPContestPropertiesCell *)cell withDictionary:property];
     } else if (section == CDVC_TABLE_SECTION_CANDIDATES && !isSectionEmpty) {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
                                                forIndexPath:indexPath];
