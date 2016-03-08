@@ -8,10 +8,12 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
+#import "PickerView.h"
+
+#import "ContactsSearchViewController.h"
 #import "AboutViewController.h"
 #import "UIWebViewController.h"
 #import "VIPTabBarController.h"
-#import "ContactsSearchViewController.h"
 
 #import "UserElection+API.h"
 #import "Election+API.h"
@@ -58,7 +60,6 @@
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
 
-@property (strong, nonatomic) UITextField *partyTextField;
 @property (strong, nonatomic) UITextField *electionTextField;
 
 @property (strong, nonatomic) UIPickerView *partyPicker;
@@ -184,14 +185,6 @@
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:self.tapRecognizer];
     self.tapRecognizer.delegate = self;
-
-    self.partyPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    self.partyPicker.dataSource = self;
-    self.partyPicker.delegate = self;
-  
-    self.partyTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:self.partyTextField];
-    self.partyTextField.inputView = self.partyPicker;
 
     self.electionPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.electionPicker.dataSource = self;
@@ -412,7 +405,14 @@
 
 - (IBAction)showPartyView:(id)sender
 {
-    [self.partyTextField becomeFirstResponder];
+    self.partyPicker = [PickerView initWithView:self.view
+                                           data:self.parties
+                                       selected:nil
+                                      converter:nil
+                                     completion:^(NSString* selectedParty) {
+                                       self.currentParty = selectedParty;
+                                       [self displayGetElections];
+                                     }];
 }
 
 - (void)displayPartyPicker
