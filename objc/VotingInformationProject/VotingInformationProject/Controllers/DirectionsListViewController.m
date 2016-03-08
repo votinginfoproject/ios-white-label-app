@@ -259,7 +259,7 @@ const NSUInteger VIP_DIRECTIONS_TABLECELL_HEIGHT = 64;
         return;
     }
     UISegmentedControl *directionsControl = (UISegmentedControl*)sender;
-    self.transitMode = directionsControl.selectedSegmentIndex;
+    self.transitMode = (kGDDirectionsType)directionsControl.selectedSegmentIndex;
 }
 
 - (NSURL*)makeAppleMapsURL
