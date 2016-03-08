@@ -1389,7 +1389,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/VotingInformationProject/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1447,7 +1446,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/VotingInformationProject/GoogleAnalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
