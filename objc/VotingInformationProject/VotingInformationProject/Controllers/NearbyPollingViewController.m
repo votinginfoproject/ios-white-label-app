@@ -66,7 +66,6 @@
 
 @implementation NearbyPollingViewController
 {
-    NSManagedObjectContext *_moc;
     GMSMarker *_userAddressMarker;
     NSMutableArray *_cells;
     PollingLocationWrapper *_actionSheetPLWrapper;
