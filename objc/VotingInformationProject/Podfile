@@ -2,7 +2,7 @@ platform :ios, '7.0'
 source 'https://github.com/CocoaPods/Specs'
 
 target 'VotingInformationProject' do
-  pod 'Google-Maps-iOS-SDK',  '~> 1.8.1'
+  pod 'GoogleMaps',  '~> 1.12.3'
   pod 'MagicalRecord',        '~> 2.3'
   pod 'libPhoneNumber-iOS',   '~> 0.8'
   pod 'JSONModel',            '~> 1.0'

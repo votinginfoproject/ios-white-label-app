@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Google-Maps-iOS-SDK (1.8.1)
   - GoogleAnalytics (3.14.0)
+  - GoogleMaps (1.12.3)
   - JSONModel (1.0.1)
   - Kiwi (2.3.0)
   - libPhoneNumber-iOS (0.8.11)
@@ -31,8 +31,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - Google-Maps-iOS-SDK (~> 1.8.1)
   - GoogleAnalytics
+  - GoogleMaps (~> 1.12.3)
   - JSONModel (~> 1.0)
   - Kiwi
   - libPhoneNumber-iOS (~> 0.8)
@@ -40,13 +40,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  Google-Maps-iOS-SDK: ac676d383fccd332bcb0abb24e483891b5956bb4
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
   JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
   Kiwi: 4c3988bd551f80f6ca0009f302f7c1a2e3777bf2
   libPhoneNumber-iOS: ded33fab2c51ee847979556aa504c9e70f32d703
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
-PODFILE CHECKSUM: 62c1d33e89f9c16a2d7ba2b67456c4b45c0d130d
+PODFILE CHECKSUM: 857e0dadabed0f1e2763ee51be62908be7f58509
 
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 1.0.0.beta.5

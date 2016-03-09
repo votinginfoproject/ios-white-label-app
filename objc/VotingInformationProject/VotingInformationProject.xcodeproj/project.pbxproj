@@ -895,12 +895,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */;
 			buildPhases = (
-				7F0CE0BC0C2E12A43E4A0ECB /* Check Pods Manifest.lock */,
+				7F0CE0BC0C2E12A43E4A0ECB /* 📦 Check Pods Manifest.lock */,
 				53D3A77F1889A05B00920A70 /* Sources */,
 				53D3A7801889A05B00920A70 /* Frameworks */,
 				53D3A7811889A05B00920A70 /* Resources */,
-				8C55FACE8F6B20DA6F21BBD1 /* Embed Pods Frameworks */,
-				BB71995535A44FB73CCB36FD /* Copy Pods Resources */,
+				8C55FACE8F6B20DA6F21BBD1 /* 📦 Embed Pods Frameworks */,
+				BB71995535A44FB73CCB36FD /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -915,12 +915,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53D3A7B81889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProjectTests" */;
 			buildPhases = (
-				993E2DFC09A7C3EC02CF54AA /* Check Pods Manifest.lock */,
+				993E2DFC09A7C3EC02CF54AA /* 📦 Check Pods Manifest.lock */,
 				53D3A79F1889A05B00920A70 /* Sources */,
 				53D3A7A01889A05B00920A70 /* Frameworks */,
 				53D3A7A11889A05B00920A70 /* Resources */,
-				45B9B48B4338478A67E895BA /* Embed Pods Frameworks */,
-				658C8C798E7A28AD14AF5B27 /* Copy Pods Resources */,
+				45B9B48B4338478A67E895BA /* 📦 Embed Pods Frameworks */,
+				658C8C798E7A28AD14AF5B27 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -942,7 +942,7 @@
 				ORGANIZATIONNAME = "The Pew Charitable Trusts";
 				TargetAttributes = {
 					53D3A7821889A05B00920A70 = {
-						DevelopmentTeam = LMU2729A2N;
+						DevelopmentTeam = SYZ2B4B9CC;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -1070,14 +1070,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		45B9B48B4338478A67E895BA /* Embed Pods Frameworks */ = {
+		45B9B48B4338478A67E895BA /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1085,14 +1085,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VotingInformationProjectTests/Pods-VotingInformationProjectTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		658C8C798E7A28AD14AF5B27 /* Copy Pods Resources */ = {
+		658C8C798E7A28AD14AF5B27 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1100,14 +1100,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VotingInformationProjectTests/Pods-VotingInformationProjectTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F0CE0BC0C2E12A43E4A0ECB /* Check Pods Manifest.lock */ = {
+		7F0CE0BC0C2E12A43E4A0ECB /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1115,14 +1115,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8C55FACE8F6B20DA6F21BBD1 /* Embed Pods Frameworks */ = {
+		8C55FACE8F6B20DA6F21BBD1 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1130,14 +1130,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VotingInformationProject/Pods-VotingInformationProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		993E2DFC09A7C3EC02CF54AA /* Check Pods Manifest.lock */ = {
+		993E2DFC09A7C3EC02CF54AA /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1145,14 +1145,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BB71995535A44FB73CCB36FD /* Copy Pods Resources */ = {
+		BB71995535A44FB73CCB36FD /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
