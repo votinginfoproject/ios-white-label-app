@@ -26,10 +26,7 @@
 
 @interface ContactsSearchViewController () <
     UITextFieldDelegate,
-    AboutViewControllerDelegate,
-    UIPickerViewDataSource,
-    UIPickerViewDelegate,
-    UIGestureRecognizerDelegate
+    AboutViewControllerDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UIButton *partyPickerButton;
@@ -51,16 +48,12 @@
 
 @property (strong, nonatomic) Election *activeElection;
 
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
-
 @property (strong, nonatomic) NSString *userAddress;
 @property (strong, nonatomic) NSString *currentParty;
 @property (strong, nonatomic) NSString *allPartiesString;
 
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
-
-@property (strong, nonatomic) UITextField *electionTextField;
 
 @property (strong, nonatomic) UIPickerView *partyPicker;
 @property (strong, nonatomic) UIPickerView *electionPicker;
@@ -181,18 +174,6 @@
 
     self.currentParty = self.allPartiesString;
     self.parties = @[self.allPartiesString];
-  
-    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:self.tapRecognizer];
-    self.tapRecognizer.delegate = self;
-
-    self.electionPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    self.electionPicker.dataSource = self;
-    self.electionPicker.delegate = self;
-  
-    self.electionTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:self.electionTextField];
-    self.electionTextField.inputView = self.electionPicker;
 }
 
 //Hide nav bar on root view
@@ -398,16 +379,29 @@
         return;
     }
 
-    [self.electionTextField becomeFirstResponder];
+    NSInteger electionIndex = [self.elections indexOfObject:self.currentElection];
+    self.electionPicker = [PickerView initWithView:self.view
+                                              data:self.elections
+                                          selected:&electionIndex
+                                         converter:^NSString *(Election *election) {
+                                           return election.name;
+                                         }
+                                        completion:^(Election *election) {
+                                           self.activeElection = election;
+                                           [self updateUI];
+                                         }];
 }
 
 #pragma mark - PartyPicker
 
 - (IBAction)showPartyView:(id)sender
 {
+    [self.addressTextField resignFirstResponder];
+
+    NSInteger partyIndex = [self.parties indexOfObject:self.currentParty];
     self.partyPicker = [PickerView initWithView:self.view
                                            data:self.parties
-                                       selected:nil
+                                       selected:&partyIndex
                                       converter:nil
                                      completion:^(NSString* selectedParty) {
                                        self.currentParty = selectedParty;
@@ -481,42 +475,4 @@
         viewController.delegate = self;
     }
 }
-
-
-#pragma mark - UIPickerViewDataSource
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if (pickerView == self.partyPicker) {
-        return [self.parties count];
-    } else {
-        return [self.elections count];
-    }
-}
-
-#pragma mark - UIPickerViewDelegate
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (pickerView == self.partyPicker) {
-        return [self.parties objectAtIndex:row];
-    } else {
-        return [[self.elections objectAtIndex:row] name];
-    }
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if (pickerView == self.partyPicker) {
-        self.currentParty = [self.parties objectAtIndex:row];
-        [self displayGetElections];
-    } else {
-        self.activeElection = [self.elections objectAtIndex:row];
-        [self updateUI];
-    }
-}
-
 @end
