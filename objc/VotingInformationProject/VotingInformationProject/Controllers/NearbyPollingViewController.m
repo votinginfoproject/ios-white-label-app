@@ -16,6 +16,7 @@
 #import "ContactsSearchViewController.h"
 #import "DirectionsViewSegueData.h"
 #import "GDDirectionsService.h"
+#import "PickerView.h"
 #import "PollingPickerOption.h"
 #import "PollingLocation+API.h"
 #import "PollingInfoWindowView.h"
@@ -35,11 +36,7 @@
 
 #define DIRECTIONS_STROKEWIDTH 6
 
-@interface NearbyPollingViewController () <
-    UIGestureRecognizerDelegate,
-    UIPickerViewDataSource,
-    UIPickerViewDelegate
->
+@interface NearbyPollingViewController ()
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *listView;
@@ -57,9 +54,7 @@
 @property (assign, nonatomic) NSUInteger currentView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
-@property (strong, nonatomic) UITextField *locationTextField;
-@property (strong, nonatomic) UIPickerView *locationPicker;
+@property (strong, nonatomic) PickerView *locationPicker;
 
 @property (strong, nonatomic) VIPAddress *userAddress;
 
@@ -287,20 +282,9 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     ];
     
     UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
+  
     [self.pollingPickerButton setTitleColor:secondaryTextColor
                                    forState:UIControlStateNormal];
-  
-    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:self.tapRecognizer];
-    self.tapRecognizer.delegate = self;
-  
-    self.locationPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    self.locationPicker.dataSource = self;
-    self.locationPicker.delegate = self;
-  
-    self.locationTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:self.locationTextField];
-    self.locationTextField.inputView = self.locationPicker;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -325,6 +309,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
         tabBarController.title = NSLocalizedString(@"Polling Sites",
                                                    @"Label for polling sites tab button");
     }
+  
     self.title = tabBarController.title;
 
     // Set map center to address if it exists
@@ -339,7 +324,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                                                  zoom:zoom];
     self.mapView.camera = camera;
     self.mapView.myLocationEnabled = YES;
-
 
     // Set polling picker filter
     self.selectedFilterType = (VIPPollingLocationType)[[NSUserDefaults standardUserDefaults]
@@ -562,36 +546,20 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (IBAction)didTapPollingPickerButton:(id)sender
 {
-    [self.locationTextField becomeFirstResponder];
-    [self.locationPicker selectRow:[self getIndex] inComponent:0 animated:YES];
-}
-
-#pragma mark - UIPickerViewDataSource
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [_pollingOptions count];
-}
-
-#pragma mark - UIPickerViewDelegate
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [[_pollingOptions objectAtIndex:row] desc];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    PollingPickerOption *option = [_pollingOptions objectAtIndex:row];
-    self.selectedFilterType = option.type;
-    [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
-                                             forKey:USER_DEFAULTS_SITE_FILTER_KEY];
-    [self setPollingPickerTitle:option.desc];
-    [self setEmptyMessage:option.type];
-    [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
+    self.locationPicker = [PickerView initWithView:self.view
+                                              data:_pollingOptions
+                                          selected:[self getIndex]
+                                         converter:^NSString *(PollingPickerOption *option) {
+                                           return option.desc;
+                                         }
+                                        completion:^(PollingPickerOption *option) {
+                                          self.selectedFilterType = option.type;
+                                          [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
+                                                                                     forKey:USER_DEFAULTS_SITE_FILTER_KEY];
+                                          [self setPollingPickerTitle:option.desc];
+                                          [self setEmptyMessage:option.type];
+                                          [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
+                                        }];
 }
 
 #pragma mark - UIActionSheetDelegate
