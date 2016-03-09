@@ -27,7 +27,7 @@
 @implementation PickerView
 + (id) initWithView:(UIView *)view
                data:(NSArray *)data
-           selected:(NSInteger*)index
+           selected:(NSInteger)index
           converter:(NSString *(^)(id object))converter
          completion:(void(^)(id))completion
 {
@@ -62,13 +62,13 @@
     [_glassPane addSubview:_textField];
 }
 
-- (void) initPicker:(NSInteger*)index {
+- (void) initPicker:(NSInteger)index {
     _pickerView = [[UIPickerView alloc] init];
     _pickerView.delegate = self;
     _pickerView.dataSource = self;
   
-    if (index!= nil && *index < [_data count]) {
-        [_pickerView selectRow:*index inComponent:0 animated:YES];
+    if (index < [_data count]) {
+        [_pickerView selectRow:index inComponent:0 animated:YES];
     } else {
         [_pickerView selectRow:0 inComponent:0 animated:YES];
     }

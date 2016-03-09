@@ -379,10 +379,9 @@
         return;
     }
 
-    NSInteger electionIndex = [self.elections indexOfObject:self.currentElection];
     self.electionPicker = [PickerView initWithView:self.view
                                               data:self.elections
-                                          selected:&electionIndex
+                                          selected:(NSInteger)[self.elections indexOfObject:self.currentElection]
                                          converter:^NSString *(Election *election) {
                                            return election.name;
                                          }
@@ -398,10 +397,9 @@
 {
     [self.addressTextField resignFirstResponder];
 
-    NSInteger partyIndex = [self.parties indexOfObject:self.currentParty];
     self.partyPicker = [PickerView initWithView:self.view
                                            data:self.parties
-                                       selected:&partyIndex
+                                       selected:(NSInteger)[self.parties indexOfObject:self.currentParty]
                                       converter:nil
                                      completion:^(NSString* selectedParty) {
                                        self.currentParty = selectedParty;

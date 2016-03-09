@@ -29,7 +29,7 @@
 
 + (id) initWithView:(UIView*)view
                data:(NSArray*)data
-           selected:(NSInteger*)index
+           selected:(NSInteger)index
           converter:(NSString *(^)(id object))converter
          completion:(void(^)(id))completion;
 @end
