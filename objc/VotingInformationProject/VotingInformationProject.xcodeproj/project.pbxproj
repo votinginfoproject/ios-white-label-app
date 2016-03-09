@@ -1335,7 +1335,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1356,8 +1356,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1368,7 +1368,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1387,9 +1387,7 @@
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1426,7 +1424,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.votinginfoproject.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VotingInformationProject;
-				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1444,9 +1442,7 @@
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
 				INFOPLIST_FILE = "VotingInformationProject/VotingInformationProject-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1483,7 +1479,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.votinginfoproject.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = VotingInformationProject;
-				PROVISIONING_PROFILE = "ce873073-4448-4906-a525-0660b73a869a";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
