@@ -17,16 +17,16 @@
     // Set these properties to empty arrays if not provided by API
     if (self) {
         if (!self.pollingLocations) {
-            self.pollingLocations = @[];
+          self.pollingLocations = [[NSArray<PollingLocation, Optional> alloc] init];
         }
         if (!self.earlyVoteSites) {
-            self.earlyVoteSites = @[];
+            self.earlyVoteSites = [[NSArray<EarlyVoteSite, Optional> alloc] init];
         }
         if (!self.contests) {
-            self.contests = @[];
+            self.contests = [[NSArray<Contest, Optional> alloc] init];
         }
         if (!self.dropOffLocations) {
-            self.dropOffLocations = @[];
+            self.dropOffLocations = [[NSArray<DropoffLocation, Optional> alloc] init];
         }
         if (!self.isMailOnly) {
             self.mailOnly = NO;
