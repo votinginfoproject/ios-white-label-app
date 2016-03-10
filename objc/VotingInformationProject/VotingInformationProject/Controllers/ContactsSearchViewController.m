@@ -8,11 +8,10 @@
 // Great project that quickly seeds the iOS Simulator with Contacts:
 //  https://github.com/cristianbica/CBSimulatorSeed
 
-#import "PickerView.h"
-
 #import "ContactsSearchViewController.h"
 #import "AboutViewController.h"
 #import "UIWebViewController.h"
+#import "VIPPickerViewController.h"
 #import "VIPTabBarController.h"
 
 #import "UserElection+API.h"
@@ -54,9 +53,6 @@
 
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) NSArray *parties;
-
-@property (strong, nonatomic) UIPickerView *partyPicker;
-@property (strong, nonatomic) UIPickerView *electionPicker;
 @end
 
 @implementation ContactsSearchViewController {
@@ -379,16 +375,19 @@
         return;
     }
 
-    self.electionPicker = [PickerView initWithView:self.view
-                                              data:self.elections
-                                          selected:(NSInteger)[self.elections indexOfObject:self.currentElection]
-                                         converter:^NSString *(Election *election) {
-                                           return election.name;
-                                         }
-                                        completion:^(Election *election) {
-                                           self.activeElection = election;
-                                           [self updateUI];
-                                         }];
+    VIPPickerViewController *electionPickerViewController =
+        [[VIPPickerViewController alloc] initWithData:self.elections
+                                             selected:(NSInteger)[self.elections indexOfObject:self.currentElection]
+                                            converter:^NSString *(Election *election) {
+                                              return election.name;
+                                            }
+                                           completion:^(Election *election) {
+                                             self.activeElection = election;
+                                             [self updateUI];
+                                           }];
+
+    electionPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:electionPickerViewController animated:YES completion:nil];
 }
 
 #pragma mark - PartyPicker
@@ -397,14 +396,17 @@
 {
     [self.addressTextField resignFirstResponder];
 
-    self.partyPicker = [PickerView initWithView:self.view
-                                           data:self.parties
-                                       selected:(NSInteger)[self.parties indexOfObject:self.currentParty]
-                                      converter:nil
-                                     completion:^(NSString* selectedParty) {
-                                       self.currentParty = selectedParty;
-                                       [self displayGetElections];
-                                     }];
+    VIPPickerViewController *partyPickerViewController =
+        [[VIPPickerViewController alloc] initWithData:self.parties
+                                             selected:(NSInteger)[self.parties indexOfObject:self.currentParty]
+                                            converter:nil
+                                           completion:^(NSString* selectedParty) {
+                                             self.currentParty = selectedParty;
+                                             [self displayGetElections];
+                                           }];
+  
+    partyPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:partyPickerViewController animated:YES completion:nil];
 }
 
 - (void)displayPartyPicker

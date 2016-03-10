@@ -16,7 +16,6 @@
 #import "ContactsSearchViewController.h"
 #import "DirectionsViewSegueData.h"
 #import "GDDirectionsService.h"
-#import "PickerView.h"
 #import "PollingPickerOption.h"
 #import "PollingLocation+API.h"
 #import "PollingInfoWindowView.h"
@@ -27,6 +26,7 @@
 #import "VIPColor.h"
 #import "VIPEmptyTableViewDataSource.h"
 #import "VIPFeedbackView.h"
+#import "VIPPickerViewController.h"
 #import "VIPTabBarController.h"
 #import "VIPUserDefaultsKeys.h"
 
@@ -53,8 +53,6 @@
 // Can be either MAP_VIEW or LIST_VIEW
 @property (assign, nonatomic) NSUInteger currentView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
-@property (strong, nonatomic) PickerView *locationPicker;
 
 @property (strong, nonatomic) VIPAddress *userAddress;
 
@@ -545,20 +543,22 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (IBAction)didTapPollingPickerButton:(id)sender
 {
-    self.locationPicker = [PickerView initWithView:self.view
-                                              data:_pollingOptions
-                                          selected:[self getIndex]
-                                         converter:^NSString *(PollingPickerOption *option) {
-                                           return option.desc;
-                                         }
-                                        completion:^(PollingPickerOption *option) {
-                                          self.selectedFilterType = option.type;
-                                          [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
-                                                                                     forKey:USER_DEFAULTS_SITE_FILTER_KEY];
-                                          [self setPollingPickerTitle:option.desc];
-                                          [self setEmptyMessage:option.type];
-                                          [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
-                                        }];
+    VIPPickerViewController *locationPickerViewController =
+        [[VIPPickerViewController alloc] initWithData:_pollingOptions
+                                             selected:[self getIndex]
+                                            converter:^NSString *(PollingPickerOption *option) {
+                                              return option.desc;
+                                            }
+                                           completion:^(PollingPickerOption *option) {
+                                             self.selectedFilterType = option.type;
+                                             [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
+                                                                                        forKey:USER_DEFAULTS_SITE_FILTER_KEY];
+                                             [self setPollingPickerTitle:option.desc];
+                                             [self setEmptyMessage:option.type];
+                                             [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
+                                           }];
+    locationPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self.tabBarController presentViewController:locationPickerViewController animated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate

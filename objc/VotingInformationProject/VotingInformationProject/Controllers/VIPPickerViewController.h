@@ -1,5 +1,5 @@
 //
-//  PickerView.h
+//  VIPPickerViewController.h
 //  VotingInformationProject
 //
 //  Created by Tom Nelson on 3/7/16.
@@ -8,15 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PickerView : NSObject
+@interface VIPPickerViewController : UIViewController
 
 @property (nonatomic, strong) UITextField *textField;
 
 /**
- Creates a UIPickerView with the backing data, initial index, converter block if needed to extract a string for display 
+ Creates a UIPickerViewController with the backing data, initial index, converter block if needed to extract a string for display 
  and a completion block for when the selection changes
- 
- @param view The view hosting the Picker
  
  @param data The backing data for the picker
  
@@ -27,8 +25,7 @@
  @param completion A block to update the UI when the selection changes
  */
 
-+ (id) initWithView:(UIView*)view
-               data:(NSArray*)data
+- (id) initWithData:(NSArray*)data
            selected:(NSInteger)index
           converter:(NSString *(^)(id object))converter
          completion:(void(^)(id))completion;
