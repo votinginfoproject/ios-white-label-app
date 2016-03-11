@@ -385,7 +385,6 @@
                                       self.activeElection = election;
                                     }];
 
-    electionPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:electionPickerViewController animated:YES completion:nil];
 }
 
@@ -404,7 +403,6 @@
                                       [self displayGetElections];
                                     }];
   
-    partyPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:partyPickerViewController animated:YES completion:nil];
 }
 

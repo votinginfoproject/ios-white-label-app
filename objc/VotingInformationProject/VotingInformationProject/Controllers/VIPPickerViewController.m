@@ -35,6 +35,7 @@
     picker.onCompletion = completion;
     picker.converter = converter;
     picker.selectedIndex = index;
+    picker.modalPresentationStyle = UIModalPresentationOverCurrentContext;
   
     return picker;
 }

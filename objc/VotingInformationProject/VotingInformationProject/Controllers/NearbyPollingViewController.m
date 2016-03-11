@@ -557,7 +557,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                                      [self setEmptyMessage:option.type];
                                      [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
                                    }];
-    locationPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+
     [self.tabBarController presentViewController:locationPickerViewController animated:YES completion:nil];
 }
 
