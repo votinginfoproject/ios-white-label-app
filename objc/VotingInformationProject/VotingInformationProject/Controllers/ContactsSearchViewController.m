@@ -383,7 +383,6 @@
                                      }
                                     completion:^(Election *election) {
                                       self.activeElection = election;
-                                      [self updateUI];
                                     }];
 
     electionPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
