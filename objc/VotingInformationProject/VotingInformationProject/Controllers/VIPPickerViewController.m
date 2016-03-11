@@ -80,7 +80,7 @@
         [_pickerView selectRow:0 inComponent:0 animated:YES];
     }
   
-    [_glassPane addSubview:(_pickerView)];
+    [_glassPane addSubview:_pickerView];
 }
 
 - (void) dismissPicker

@@ -140,6 +140,7 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
                     sender.marker = marker;
                 }
         }];
+      
         if (_userAddressMarker) {
             cell.mapOrigin = _userAddressMarker.position;
         }
@@ -221,8 +222,6 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
   
     return marker;
 }
-
-
 
 - (UIBarButtonItem*)ourRightBarButtonItem
 {
