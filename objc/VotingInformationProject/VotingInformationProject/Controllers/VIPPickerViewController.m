@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, strong) UIView *glassPane;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
 @property (nonatomic) NSInteger selectedIndex;
 @property (copy) void (^onCompletion)(NSString *);
@@ -48,17 +47,14 @@
 
 - (void) initGlassPane
 {
-    _glassPane = [[UIView alloc] initWithFrame:self.view.bounds];
     _gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPicker)];
-    [_glassPane addGestureRecognizer:_gestureRecognizer];
+    [self.view addGestureRecognizer:_gestureRecognizer];
     _gestureRecognizer.delegate = self;
-  
-    [self.view addSubview:self.glassPane];
 }
 
 - (void) initTextField
 {
-    [_glassPane addSubview:_textField];
+    [self.view addSubview:_textField];
 }
 
 - (void) initPicker:(NSInteger)index
@@ -80,7 +76,7 @@
         [_pickerView selectRow:0 inComponent:0 animated:YES];
     }
   
-    [_glassPane addSubview:_pickerView];
+    [self.view addSubview:_pickerView];
 }
 
 - (void) dismissPicker
