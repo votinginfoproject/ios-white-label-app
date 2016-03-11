@@ -544,19 +544,19 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 - (IBAction)didTapPollingPickerButton:(id)sender
 {
     VIPPickerViewController *locationPickerViewController =
-        [[VIPPickerViewController alloc] initWithData:_pollingOptions
-                                             selected:[self getIndex]
-                                            converter:^NSString *(PollingPickerOption *option) {
-                                              return option.desc;
-                                            }
-                                           completion:^(PollingPickerOption *option) {
-                                             self.selectedFilterType = option.type;
-                                             [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
-                                                                                        forKey:USER_DEFAULTS_SITE_FILTER_KEY];
-                                             [self setPollingPickerTitle:option.desc];
-                                             [self setEmptyMessage:option.type];
-                                             [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
-                                           }];
+        [VIPPickerViewController initWithData:_pollingOptions
+                                     selected:[self getIndex]
+                                    converter:^NSString *(PollingPickerOption *option) {
+                                      return option.desc;
+                                    }
+                                   completion:^(PollingPickerOption *option) {
+                                     self.selectedFilterType = option.type;
+                                     [[NSUserDefaults standardUserDefaults] setInteger:self.selectedFilterType
+                                                                                forKey:USER_DEFAULTS_SITE_FILTER_KEY];
+                                     [self setPollingPickerTitle:option.desc];
+                                     [self setEmptyMessage:option.type];
+                                     [self setCellsWithLocations:[self.election filterPollingLocations:option.type]];
+                                   }];
     locationPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self.tabBarController presentViewController:locationPickerViewController animated:YES completion:nil];
 }

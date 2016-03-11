@@ -376,15 +376,15 @@
     }
 
     VIPPickerViewController *electionPickerViewController =
-        [[VIPPickerViewController alloc] initWithData:self.elections
-                                             selected:(NSInteger)[self.elections indexOfObject:self.currentElection]
-                                            converter:^NSString *(Election *election) {
-                                              return election.name;
-                                            }
-                                           completion:^(Election *election) {
-                                             self.activeElection = election;
-                                             [self updateUI];
-                                           }];
+        [VIPPickerViewController  initWithData:self.elections
+                                      selected:(NSInteger)[self.elections indexOfObject:self.currentElection]
+                                     converter:^NSString *(Election *election) {
+                                       return election.name;
+                                     }
+                                    completion:^(Election *election) {
+                                      self.activeElection = election;
+                                      [self updateUI];
+                                    }];
 
     electionPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:electionPickerViewController animated:YES completion:nil];
@@ -397,13 +397,13 @@
     [self.addressTextField resignFirstResponder];
 
     VIPPickerViewController *partyPickerViewController =
-        [[VIPPickerViewController alloc] initWithData:self.parties
-                                             selected:(NSInteger)[self.parties indexOfObject:self.currentParty]
-                                            converter:nil
-                                           completion:^(NSString* selectedParty) {
-                                             self.currentParty = selectedParty;
-                                             [self displayGetElections];
-                                           }];
+        [VIPPickerViewController  initWithData:self.parties
+                                      selected:(NSInteger)[self.parties indexOfObject:self.currentParty]
+                                     converter:nil
+                                    completion:^(NSString* selectedParty) {
+                                      self.currentParty = selectedParty;
+                                      [self displayGetElections];
+                                    }];
   
     partyPickerViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:partyPickerViewController animated:YES completion:nil];

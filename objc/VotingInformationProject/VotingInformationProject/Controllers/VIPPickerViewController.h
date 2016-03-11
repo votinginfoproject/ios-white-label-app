@@ -25,7 +25,7 @@
  @param completion A block to update the UI when the selection changes
  */
 
-- (id) initWithData:(NSArray*)data
++ (id) initWithData:(NSArray*)data
            selected:(NSInteger)index
           converter:(NSString *(^)(id object))converter
          completion:(void(^)(id))completion;

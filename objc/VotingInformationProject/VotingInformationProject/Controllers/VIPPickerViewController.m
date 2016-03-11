@@ -25,17 +25,18 @@
 @end
 
 @implementation VIPPickerViewController
-- (id) initWithData:(NSArray *)data
++ (id) initWithData:(NSArray *)data
            selected:(NSInteger)index
           converter:(NSString *(^)(id object))converter
          completion:(void(^)(id))completion
 {
-    self.data = data;
-    self.onCompletion = completion;
-    self.converter = converter;
-    self.selectedIndex = index;
+    VIPPickerViewController *picker = [[VIPPickerViewController alloc] init];
+    picker.data = data;
+    picker.onCompletion = completion;
+    picker.converter = converter;
+    picker.selectedIndex = index;
   
-    return self;
+    return picker;
 }
 
 - (void) viewDidLoad {
