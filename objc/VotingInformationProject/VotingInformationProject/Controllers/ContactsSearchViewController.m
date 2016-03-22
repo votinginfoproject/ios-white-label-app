@@ -80,8 +80,6 @@
     }
   
     _userAddress = userAddress;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:userAddress forKey:USER_DEFAULTS_STORED_ADDRESS];
 }
 
 /**
@@ -176,33 +174,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+  
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-  
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *address = [defaults objectForKey:USER_DEFAULTS_STORED_ADDRESS];
-  
-    self.userAddress = address;
-    self.addressTextField.text = address;
-  
-    if (!self.currentElection) {
-        [self updateUI];
-    } else {
-        [self updateUICurrentElection];
-    }
-
-    [defaults setObject:nil forKey:USER_DEFAULTS_JSON];
-    [defaults setObject:nil forKey:USER_DEFAULTS_PARTY];
+    [self hideViews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *party = [self.currentParty isEqualToString:self.allPartiesString] ? nil : self.currentParty;
-    [defaults setObject:[self.currentElection toJSONString] forKey:USER_DEFAULTS_JSON];
-    [defaults setObject:self.userAddress forKey:USER_DEFAULTS_STORED_ADDRESS];
-    [defaults setObject:party forKey:USER_DEFAULTS_PARTY];
 
     [super viewWillDisappear:animated];
 }
