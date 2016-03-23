@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LLH-BM-tD1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,46 +17,120 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
-                                <rect key="frame" x="267" y="157" width="23" height="45"/>
-                                <accessibility key="accessibilityConfiguration" label="Contacts Search"/>
-                                <state key="normal" image="Homepage_contact.png">
-                                    <attributedString key="attributedTitle"/>
-                                </state>
-                                <connections>
-                                    <action selector="showPeoplePicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="KBP-jV-WvW"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Voting Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prJ-mj-Bjp">
-                                <rect key="frame" x="30" y="52" width="260" height="43"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-ab-T5N">
-                                <rect key="frame" x="30" y="156" width="224" height="45"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.35000000000000003" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                                <connections>
-                                    <outlet property="delegate" destination="NFr-cT-tr7" id="zug-Zt-poj"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BRAND NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9S-9H-o10">
-                                <rect key="frame" x="30" y="37" width="260" height="19"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="La0-GZ-3eG">
-                                <rect key="frame" x="30" y="299" width="260" height="110"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ks0-hI-a6K" userLabel="Brand View">
+                                <rect key="frame" x="30" y="40" width="260" height="73"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="There are partisan contests in this election. Choose a party to view." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="DRW-zW-eMI">
-                                        <rect key="frame" x="0.0" y="0.0" width="260" height="53"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BRAND NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9S-9H-o10">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voting Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prJ-mj-Bjp">
+                                        <rect key="frame" x="0.0" y="38" width="260" height="35"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="prJ-mj-Bjp" firstAttribute="leading" secondItem="Ks0-hI-a6K" secondAttribute="leading" id="M5K-Vo-kkt"/>
+                                    <constraint firstItem="u9S-9H-o10" firstAttribute="top" secondItem="Ks0-hI-a6K" secondAttribute="top" id="VPF-KJ-65t"/>
+                                    <constraint firstItem="prJ-mj-Bjp" firstAttribute="top" secondItem="u9S-9H-o10" secondAttribute="bottom" constant="20" id="lkh-aH-2jx"/>
+                                    <constraint firstAttribute="trailing" secondItem="prJ-mj-Bjp" secondAttribute="trailing" id="m5S-bu-EQT"/>
+                                    <constraint firstAttribute="trailing" secondItem="u9S-9H-o10" secondAttribute="trailing" id="nTV-oY-CXS"/>
+                                    <constraint firstItem="u9S-9H-o10" firstAttribute="leading" secondItem="Ks0-hI-a6K" secondAttribute="leading" id="uMV-f6-Rbb"/>
+                                    <constraint firstAttribute="bottom" secondItem="prJ-mj-Bjp" secondAttribute="bottom" id="wN4-8I-Tpy"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qO5-KM-2x7" userLabel="Address View">
+                                <rect key="frame" x="30" y="146" width="260" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Your Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNR-wi-mkO">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Address..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-ab-T5N">
+                                        <rect key="frame" x="0.0" y="37" width="217" height="18"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.35000000000000003" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="NFr-cT-tr7" id="zug-Zt-poj"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76u-cC-uxA">
+                                        <rect key="frame" x="237" y="36" width="23" height="20"/>
+                                        <accessibility key="accessibilityConfiguration" label="Contacts Search"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="1sh-PF-z7F"/>
+                                            <constraint firstAttribute="width" constant="23" id="JMh-ma-vPA"/>
+                                        </constraints>
+                                        <state key="normal" image="Homepage_contact.png">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPeoplePicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="KBP-jV-WvW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="dfh-ab-T5N" secondAttribute="bottom" id="01c-8r-DIL"/>
+                                    <constraint firstItem="76u-cC-uxA" firstAttribute="centerY" secondItem="dfh-ab-T5N" secondAttribute="centerY" id="5lY-j3-U40"/>
+                                    <constraint firstItem="dfh-ab-T5N" firstAttribute="leading" secondItem="qO5-KM-2x7" secondAttribute="leading" id="A0e-bA-77G"/>
+                                    <constraint firstItem="76u-cC-uxA" firstAttribute="leading" secondItem="dfh-ab-T5N" secondAttribute="trailing" constant="20" id="M9I-kS-RPG"/>
+                                    <constraint firstItem="pNR-wi-mkO" firstAttribute="leading" secondItem="qO5-KM-2x7" secondAttribute="leading" id="l2a-eO-qsZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="76u-cC-uxA" secondAttribute="trailing" id="nxJ-zn-049"/>
+                                    <constraint firstItem="pNR-wi-mkO" firstAttribute="top" secondItem="qO5-KM-2x7" secondAttribute="top" id="skM-yg-cnq"/>
+                                    <constraint firstItem="dfh-ab-T5N" firstAttribute="top" secondItem="pNR-wi-mkO" secondAttribute="bottom" constant="20" id="vWS-Vk-eEW"/>
+                                    <constraint firstAttribute="trailing" secondItem="pNR-wi-mkO" secondAttribute="trailing" id="yuj-Fk-lY5"/>
+                                </constraints>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz1-ZP-C4h">
+                                <rect key="frame" x="30" y="231" width="260" height="67"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick an Election:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-bR-mta">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-9j-12x">
+                                        <rect key="frame" x="0.0" y="37" width="260" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Opens election picker."/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showElectionPicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="Izd-4W-vQQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="DUM-9j-12x" secondAttribute="bottom" id="GK3-9S-qFF"/>
+                                    <constraint firstItem="oDm-bR-mta" firstAttribute="leading" secondItem="zz1-ZP-C4h" secondAttribute="leading" id="Igd-Re-Noc"/>
+                                    <constraint firstAttribute="trailing" secondItem="oDm-bR-mta" secondAttribute="trailing" id="NcU-LS-XE6"/>
+                                    <constraint firstItem="DUM-9j-12x" firstAttribute="leading" secondItem="zz1-ZP-C4h" secondAttribute="leading" id="cde-75-maB"/>
+                                    <constraint firstItem="oDm-bR-mta" firstAttribute="top" secondItem="zz1-ZP-C4h" secondAttribute="top" id="ddL-eN-gFI"/>
+                                    <constraint firstItem="DUM-9j-12x" firstAttribute="top" secondItem="oDm-bR-mta" secondAttribute="bottom" constant="20" id="e3r-mY-nYw"/>
+                                    <constraint firstAttribute="trailing" secondItem="DUM-9j-12x" secondAttribute="trailing" id="iqU-Po-Y49"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="La0-GZ-3eG">
+                                <rect key="frame" x="30" y="328" width="260" height="86"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are partisan contests in this election. Choose a party to view." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="DRW-zW-eMI">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hP-xP-Xzu">
-                                        <rect key="frame" x="0.0" y="61" width="260" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hP-xP-Xzu">
+                                        <rect key="frame" x="0.0" y="56" width="260" height="30"/>
                                         <accessibility key="accessibilityConfiguration" hint="Opens party picker."/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="All Selected Parties">
@@ -68,12 +142,21 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2hP-xP-Xzu" secondAttribute="trailing" id="21z-GI-X4w"/>
+                                    <constraint firstAttribute="bottom" secondItem="2hP-xP-Xzu" secondAttribute="bottom" id="4EB-7F-RVG"/>
+                                    <constraint firstAttribute="trailing" secondItem="DRW-zW-eMI" secondAttribute="trailing" id="O2S-ua-cYe"/>
+                                    <constraint firstItem="2hP-xP-Xzu" firstAttribute="top" secondItem="DRW-zW-eMI" secondAttribute="bottom" constant="20" id="VLf-i3-YPQ"/>
+                                    <constraint firstItem="2hP-xP-Xzu" firstAttribute="leading" secondItem="La0-GZ-3eG" secondAttribute="leading" id="a4y-df-WAm"/>
+                                    <constraint firstItem="DRW-zW-eMI" firstAttribute="top" secondItem="La0-GZ-3eG" secondAttribute="top" id="eMy-Wx-tzq"/>
+                                    <constraint firstItem="DRW-zW-eMI" firstAttribute="leading" secondItem="La0-GZ-3eG" secondAttribute="leading" id="mfH-qZ-YuE"/>
+                                </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoW-nK-Iqg">
-                                <rect key="frame" x="30" y="418" width="260" height="90"/>
+                                <rect key="frame" x="30" y="428" width="260" height="80"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown Error" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-aA-QQc">
-                                        <rect key="frame" x="0.0" y="0.0" width="260" height="90"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -84,7 +167,7 @@
                                     <constraint firstItem="eMN-aA-QQc" firstAttribute="leading" secondItem="qoW-nK-Iqg" secondAttribute="leading" id="DMN-vk-Eoy"/>
                                     <constraint firstItem="eMN-aA-QQc" firstAttribute="top" secondItem="qoW-nK-Iqg" secondAttribute="top" id="KSy-3H-xxa"/>
                                     <constraint firstAttribute="trailing" secondItem="eMN-aA-QQc" secondAttribute="trailing" id="Vj8-L1-PK2"/>
-                                    <constraint firstAttribute="height" constant="90" id="bvh-nr-EDv"/>
+                                    <constraint firstAttribute="height" constant="80" id="bvh-nr-EDv"/>
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
@@ -110,49 +193,26 @@
                                     <segue destination="kuE-gb-sKk" kind="modal" identifier="AboutSegue" id="wmE-yX-fv4"/>
                                 </connections>
                             </button>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz1-ZP-C4h">
-                                <rect key="frame" x="30" y="209" width="260" height="82"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick an Election:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDm-bR-mta">
-                                        <rect key="frame" x="0.0" y="8" width="260" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUM-9j-12x">
-                                        <rect key="frame" x="0.0" y="44" width="260" height="30"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Opens election picker."/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showElectionPicker:" destination="NFr-cT-tr7" eventType="touchUpInside" id="Izd-4W-vQQ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="scO-Eb-RH4"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Your Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNR-wi-mkO">
-                                <rect key="frame" x="30" y="128" width="260" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="qoW-nK-Iqg" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="34l-BZ-zRH"/>
+                            <constraint firstItem="La0-GZ-3eG" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="3Gb-NB-yTj"/>
+                            <constraint firstAttribute="trailing" secondItem="Ks0-hI-a6K" secondAttribute="trailing" constant="30" id="462-QQ-aDp"/>
+                            <constraint firstItem="zz1-ZP-C4h" firstAttribute="top" secondItem="qO5-KM-2x7" secondAttribute="bottom" constant="30" id="8Ym-R9-0bY"/>
                             <constraint firstAttribute="trailing" secondItem="qoW-nK-Iqg" secondAttribute="trailing" constant="30" id="Ayg-KY-iFf"/>
+                            <constraint firstItem="Ks0-hI-a6K" firstAttribute="top" secondItem="vPq-SJ-gnq" secondAttribute="bottom" constant="20" id="DOL-0M-0le"/>
                             <constraint firstItem="V8e-zO-oTj" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="80" id="Dca-E8-uNV"/>
+                            <constraint firstAttribute="trailing" secondItem="qO5-KM-2x7" secondAttribute="trailing" constant="30" id="Fuq-V3-CQ6"/>
+                            <constraint firstAttribute="trailing" secondItem="La0-GZ-3eG" secondAttribute="trailing" constant="30" id="KSk-t1-MSN"/>
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="V8e-zO-oTj" secondAttribute="bottom" constant="20" id="KW3-9p-B2w"/>
                             <constraint firstItem="V8e-zO-oTj" firstAttribute="top" secondItem="qoW-nK-Iqg" secondAttribute="bottom" constant="10" id="KZd-xi-c1U"/>
                             <constraint firstItem="zz1-ZP-C4h" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="RBu-wp-zpy"/>
+                            <constraint firstItem="zz1-ZP-C4h" firstAttribute="centerY" secondItem="hKW-vG-RYp" secondAttribute="centerY" constant="-20" id="SAL-3w-L9y"/>
                             <constraint firstAttribute="trailing" secondItem="V8e-zO-oTj" secondAttribute="trailing" constant="80" id="enK-QZ-XIL"/>
                             <constraint firstAttribute="trailing" secondItem="zz1-ZP-C4h" secondAttribute="trailing" constant="30" id="npc-nw-VA5"/>
-                            <constraint firstItem="zz1-ZP-C4h" firstAttribute="top" secondItem="hKW-vG-RYp" secondAttribute="top" constant="209" id="sch-4B-DQg"/>
+                            <constraint firstItem="La0-GZ-3eG" firstAttribute="top" secondItem="zz1-ZP-C4h" secondAttribute="bottom" constant="30" id="oWy-IY-GeO"/>
+                            <constraint firstItem="qO5-KM-2x7" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="pDF-sc-u54"/>
+                            <constraint firstItem="Ks0-hI-a6K" firstAttribute="leading" secondItem="hKW-vG-RYp" secondAttribute="leading" constant="30" id="vsF-W5-Hls"/>
                             <constraint firstAttribute="trailing" secondItem="62o-cQ-GfA" secondAttribute="trailing" constant="16" id="y4f-oU-Azf"/>
                             <constraint firstItem="SbJ-3I-o0Y" firstAttribute="top" secondItem="62o-cQ-GfA" secondAttribute="bottom" constant="24" id="z7D-Lv-P6l"/>
                         </constraints>
