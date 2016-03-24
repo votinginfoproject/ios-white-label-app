@@ -29,6 +29,7 @@
 
     // Set status bar to light globally
     // Also requires that View controller-based status bar appearance == NO in project info settings
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     // Sets color of navigation bars

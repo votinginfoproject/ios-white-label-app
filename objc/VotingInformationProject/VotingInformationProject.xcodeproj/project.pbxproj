@@ -947,7 +947,6 @@
 				ORGANIZATIONNAME = "The Pew Charitable Trusts";
 				TargetAttributes = {
 					53D3A7821889A05B00920A70 = {
-						DevelopmentTeam = SYZ2B4B9CC;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
