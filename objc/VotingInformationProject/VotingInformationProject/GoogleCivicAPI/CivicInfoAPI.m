@@ -22,6 +22,7 @@
         statusBlock(nil, error);
         return;
     }
+  
     NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"CivicAPIKey" ofType:@"plist"];
     NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingsPath];
 
@@ -33,6 +34,14 @@
     NSString *url = @"https://www.googleapis.com/civicinfo/v2/voterinfo";
     NSString *apiKey = [settings objectForKey:@"GoogleCivicInfoAPIKey"];
 
+#if DEBUG
+    // Stoplight is an API modeling tool. See "Using Stoplight API modeling tool" in the read me file.
+    NSString *stoplightAPIKey = [settings objectForKey:@"StoplightAPIKey"];
+    if (stoplightAPIKey != nil) {
+        url = [NSString stringWithFormat:@"https://%@.stoplight-proxy.io/civicinfo/v2/voterinfo",stoplightAPIKey];
+    }
+#endif
+  
     id official = [[AppSettings settings] objectForKey:@"OfficialOnly"];
     BOOL officialOnly = official ? [official boolValue] : YES;
     id testData = [[AppSettings settings] objectForKey:@"UseTestData"];

@@ -158,6 +158,36 @@ For the key _'Bundle display name'_ change the value _'$(PRODUCT_NAME)'_ to the 
 
 Save and compile the application to see the changes
 
+## Using Stoplight API modeling tool
+
+Due to the data from the Google Civic API changing frequently, it is beneficial to model responses to allow for uninterrupted development. 
+
+<b>This step is completely optional. If no spotlight API key is present the normal Google Civic API will be used instead</b>
+
+Stoplight is a service that allows you to capture responses and it will generate the model based on the actual response. 
+
+###Create the service
+
+
+```
+Create a Stoplight account at https://designer.stoplight.io/register 
+Create a new workspace 'Pew' 
+Create an API repo; name: VIP, initial protocol + host: https://www.googleapis.com, initial base path: /civicinfo/v2
+Add an endpoint; Name: Voter Information, HTTP Method: GET, Path: /voterinfo
+Authentication; API Key, add the key you obtained from 'Updating the Civic Info API Key'
+```
+###Add some data
+
+```
+Under 'Responses' select "Add +"
+Select the 'Example' tab and paste in a JSON response
+Click 'Generate definition from example'
+Click 'Save endpoint'
+Select 'Mocking' and pick the endpoint you created to activate
+```
+You can create as many endpoints as you need and choose to mock with them or not mock at all and simply pass the request through to the actual API.
+
+If you do not use a modeling service the code will use the actual API.
 
 ## Licenses
 
