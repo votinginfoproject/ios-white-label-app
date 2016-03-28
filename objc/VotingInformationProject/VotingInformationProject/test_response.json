@@ -1,0 +1,233 @@
+{
+ "kind": "civicinfo#voterInfoResponse",
+ "election": {
+  "id": "2000",
+  "name": "VIP Test Election",
+  "electionDay": "2017-06-06",
+  "ocdDivisionId": "ocd-division/country:us"
+ },
+ "normalizedInput": {
+  "line1": "123 e main st",
+  "city": "richmond",
+  "state": "VA",
+  "zip": "23219"
+ },
+ "pollingLocations": [
+  {
+   "id": "3212:82390",
+   "address": {
+    "locationName": "MAIN LIBRARY",
+    "line1": "101 East Franklin Street",
+    "city": "Richmond",
+    "state": "VA",
+    "zip": "23219-2107"
+   },
+   "notes": "",
+   "pollingHours": "6:00 AM - 7:00 PM",
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  }
+ ],
+ "contests": [
+  {
+   "id": "-8:2000_ocd-division/country:us/state:va;US Senate",
+   "type": "General",
+   "office": "US Senate",
+   "level": [
+    "country"
+   ],
+   "roles": [
+    "legislatorUpperBody"
+   ],
+   "district": {
+    "name": "Virginia",
+    "scope": "statewide",
+    "id": "ocd-division/country:us/state:va"
+   },
+   "candidates": [
+    {
+     "name": "Ed W. Gillespie",
+     "party": "Republican",
+     "candidateUrl": "http://edforsenate.com/",
+     "email": "contact@edforsenate.com",
+     "channels": [
+      {
+       "type": "Facebook",
+       "id": "https://www.facebook.com/edforsenate"
+      },
+      {
+       "type": "Twitter",
+       "id": "https://twitter.com/EdWGillespie"
+      },
+      {
+       "type": "YouTube",
+       "id": "https://www.youtube.com/user/edforsenate"
+      }
+     ]
+    },
+    {
+     "name": "Mark R. Warner",
+     "party": "Democratic",
+     "candidateUrl": "http://markwarnerva.com/",
+     "email": "mark@markwarnerva.com",
+     "channels": [
+      {
+       "type": "Facebook",
+       "id": "https://www.facebook.com/MarkWarnerVa"
+      },
+      {
+       "type": "Twitter",
+       "id": "https://twitter.com/MarkWarnerVA"
+      }
+     ]
+    },
+    {
+     "name": "Robert C. Sarvis",
+     "party": "Libertarian",
+     "candidateUrl": "http://www.robertsarvis.com/",
+     "email": "info@robertsarvis.com",
+     "channels": [
+      {
+       "type": "Facebook",
+       "id": "https://www.facebook.com/RobertSarvisVA"
+      },
+      {
+       "type": "Twitter",
+       "id": "https://twitter.com/RobertSarvisVA"
+      },
+      {
+       "type": "YouTube",
+       "id": "https://www.youtube.com/user/RobertSarvisVA"
+      }
+     ]
+    }
+   ],
+   "sources": [
+    {
+     "name": "Ballot Information Project",
+     "official": false
+    }
+   ]
+  },
+  {
+   "id": "3212:20021",
+   "type": "general",
+   "special": "no",
+   "office": "Member House of Delegates",
+   "district": {
+    "name": "071",
+    "scope": "stateLower",
+    "id": "71"
+   },
+   "ballotPlacement": "8",
+   "candidates": [
+    {
+     "name": "Matthew W. Fitch",
+     "party": "Republican",
+     "candidateUrl": "http://www.fitchfordelegate.com",
+     "phone": "8047310728",
+     "email": "matt@fitchfordelegate.com"
+    },
+    {
+     "name": "Jennifer L. McClellan",
+     "party": "Democrat",
+     "candidateUrl": "http://www.jennifermcclellan.com",
+     "phone": "8048783126",
+     "email": "info@jennifermcclellan.com"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  },
+  {
+   "id": "-8:2000_ocd-division/country:us/state:va;VA_Proposed Constitutional Amendment",
+   "type": "Referendum",
+   "district": {
+    "name": "Virginia",
+    "scope": "statewide",
+    "id": "ocd-division/country:us/state:va"
+   },
+   "referendumTitle": "Proposed Constitutional Amendment",
+   "referendumUrl": "http://elections.virginia.gov/index.php/election-law/proposed-constitutional-amendment/",
+   "sources": [
+    {
+     "name": "Ballot Information Project",
+     "official": false
+    }
+   ]
+  }
+ ],
+ "state": [
+  {
+   "id": "-10:51",
+   "name": "Virginia",
+   "electionAdministrationBody": {
+    "name": "Virginia State Board of Elections",
+    "electionInfoUrl": "http://sbe.virginia.gov",
+    "electionRegistrationUrl": "https://www.vote.virginia.gov/",
+    "electionRegistrationConfirmationUrl": "https://www.voterinfo.sbe.virginia.gov/PublicSite/Public/FT2/PublicLookup.aspx",
+    "absenteeVotingInfoUrl": "http://sbe.virginia.gov/index.php/casting-a-ballot/absentee-voting/",
+    "votingLocationFinderUrl": "https://voterinfo.sbe.virginia.gov/PublicSite/Public/FT2/PublicPollingPlace.aspx",
+    "ballotInfoUrl": "https://www.voterinfo.sbe.virginia.gov/PublicSite/Public/FT2/PublicElections.aspx",
+    "electionRulesUrl": "http://elections.virginia.gov/",
+    "correspondenceAddress": {
+     "line1": "1100 Bank St., 1st Floor",
+     "city": "Richmond",
+     "state": "Virginia",
+     "zip": "22319"
+    }
+   },
+   "local_jurisdiction": {
+    "id": "3212:70127",
+    "name": "RICHMOND CITY",
+    "electionAdministrationBody": {
+     "name": "OFFICE OF THE GENERAL REGISTRAR",
+     "electionInfoUrl": "http://www.richmondgov.com/departments/registrar/",
+     "electionRegistrationUrl": "http://www.vote.virginia.gov",
+     "electionRegistrationConfirmationUrl": "http://www.vote.virginia.gov",
+     "absenteeVotingInfoUrl": "http://www.vote.virginia.gov",
+     "votingLocationFinderUrl": "http://www.vote.virginia.gov",
+     "ballotInfoUrl": "http://www.vote.virginia.gov",
+     "electionRulesUrl": "http://www.vote.virginia.gov",
+     "hoursOfOperation": "8:00 AM to 5:00 PM",
+     "physicalAddress": {
+      "locationName": "OFFICE OF THE GENERAL REGISTRAR",
+      "line1": "CITY HALL, 900 EAST BROAD STREET, ROOM 105,",
+      "line2": "PO BOX 61037",
+      "city": "RICHMOND",
+      "state": "VA",
+      "zip": "23261-1037"
+     },
+     "electionOfficials": [
+      {
+       "name": "J. KIRK DE COURCEY SHOWALTER",
+       "title": "General Registrar Physical",
+       "officePhoneNumber": "8046465950",
+       "emailAddress": "showalkj@ci.richmond.va.us"
+      }
+     ]
+    },
+    "sources": [
+     {
+      "name": "Voting Information Project",
+      "official": true
+     }
+    ]
+   },
+   "sources": [
+    {
+     "name": "",
+     "official": false
+    }
+   ]
+  }
+ ]
+}

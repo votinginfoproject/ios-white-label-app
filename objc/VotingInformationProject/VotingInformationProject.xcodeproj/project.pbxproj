@@ -174,6 +174,7 @@
 		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; };
 		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; };
 		CBAF14311C92133300353F22 /* VIPPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAF14301C92133300353F22 /* VIPPickerViewController.m */; };
+		CBF4EFF71CA9DD2700E52A56 /* test_response.json in Resources */ = {isa = PBXBuildFile; fileRef = CBF4EFF61CA9DD2700E52A56 /* test_response.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -430,6 +431,7 @@
 		83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPContestPropertiesCell.m; sourceTree = "<group>"; };
 		CBAF142F1C92133300353F22 /* VIPPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPPickerViewController.h; sourceTree = "<group>"; };
 		CBAF14301C92133300353F22 /* VIPPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPPickerViewController.m; sourceTree = "<group>"; };
+		CBF4EFF61CA9DD2700E52A56 /* test_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_response.json; sourceTree = "<group>"; };
 		DEE015E866353F8C1F56091D /* Pods-VotingInformationProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingInformationProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-VotingInformationProject/Pods-VotingInformationProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -491,6 +493,7 @@
 		49273491188DE8DA00B25554 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CBF4EFF31CA9D7C100E52A56 /* Stoplight */,
 				495CB9BE18B2720300243ADB /* Images */,
 				498225E2189AEADC00FB8FC4 /* Localizable.strings */,
 				491EE5AE188EE0600018A060 /* settings.plist */,
@@ -893,6 +896,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CBF4EFF31CA9D7C100E52A56 /* Stoplight */ = {
+			isa = PBXGroup;
+			children = (
+				CBF4EFF61CA9DD2700E52A56 /* test_response.json */,
+			);
+			name = Stoplight;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1019,6 +1030,7 @@
 				4970E57518D37E6200104184 /* TabBar_more-active@2x.png in Resources */,
 				4970E55F18D37E6200104184 /* Candidate_web@2x.png in Resources */,
 				4970E57A18D37E6200104184 /* TabBar_polling.png in Resources */,
+				CBF4EFF71CA9DD2700E52A56 /* test_response.json in Resources */,
 				4970E54918D37E6200104184 /* iTunesArtwork.png in Resources */,
 				4970E55C18D37E6200104184 /* Candidate_twitter.png in Resources */,
 				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,

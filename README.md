@@ -187,7 +187,8 @@ Select 'Mocking' and pick the endpoint you created to activate
 ```
 You can create as many endpoints as you need and choose to mock with them or not mock at all and simply pass the request through to the actual API.
 
-If you do not use a modeling service the code will use the actual API.
+Example test data is located at:
+ VotingInformationProject/Resources/Stoplight/test_response.json
 
 ## Licenses
 
