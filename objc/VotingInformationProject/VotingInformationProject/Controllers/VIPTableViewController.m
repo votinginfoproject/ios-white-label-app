@@ -15,6 +15,10 @@
 
 @interface VIPTableViewController ()
 
+@property (strong, nonatomic) UIImageView *wallpaper;
+@property (strong, nonatomic) UIImageView *banner;
+@property (nonatomic) bool backgroundLayoutComplete;
+
 @end
 
 @implementation VIPTableViewController
@@ -32,17 +36,9 @@
 {
     [super viewDidLoad];
 
-    // Set background image, scaled to view size
-    NSString *imageName = @"Default_background";
-    if (IS_WIDESCREEN) {
-        imageName = @"Default_background-568";
-    }
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:imageName] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:image];
-    [self.tableView setOpaque:NO];
+    _wallpaper = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    _banner = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"stars"]];
+    _backgroundLayoutComplete = NO;
 
     self.navigationController.navigationBar.translucent = NO;
 }
@@ -54,10 +50,27 @@
     [self sendGAScreenHit];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)viewWillLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [self addBackground];
+}
+
+- (void)addBackground
+{
+  if (_backgroundLayoutComplete) { return; }
+  
+  CGSize framesize = self.view.frame.size;
+  CGRect frame = CGRectMake(0,0, framesize.width, framesize.height);
+  _wallpaper.frame = frame;
+  
+  // The banner height is 1/2 its width
+  frame = CGRectMake(0,  framesize.height - framesize.width / 2, framesize.width, framesize.width / 2);
+  _banner.frame = frame;
+  
+  [_wallpaper addSubview:_banner];
+  self.tableView.backgroundView = _wallpaper;
+  
+  _backgroundLayoutComplete = YES;
 }
 
 - (void)sendGAScreenHit
