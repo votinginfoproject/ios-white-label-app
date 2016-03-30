@@ -73,6 +73,12 @@
 + (UIColor*) secondaryTextColor;
 
 /*
+ * key: primaryButtonColor
+ * value: A hex string, i.e. '#FFFFFF'
+ */
++ (UIColor*) primaryButtonColor;
+
+/*
  * key: linkColor
  * value: A hex string, i.e. '#FFFFFF'
  */

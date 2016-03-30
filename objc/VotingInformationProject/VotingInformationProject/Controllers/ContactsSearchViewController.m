@@ -137,6 +137,7 @@
     UIColor *primaryTextColorWithAlpha25 = [VIPColor color:primaryTextColor
                                                  withAlpha:0.25];
     UIColor *secondaryTextColor = [VIPColor secondaryTextColor];
+    UIColor *primaryButtonColor = [VIPColor primaryButtonColor];
 
     self.addressTextField.textColor = primaryTextColor;
     self.addressTextField.backgroundColor = [VIPColor color:primaryTextColor withAlpha:0.35];
@@ -145,7 +146,7 @@
     [self.showElectionButton setTitleColor:primaryTextColor
                                   forState:UIControlStateNormal];
     self.showElectionButton.layer.cornerRadius = 5;
-    self.showElectionButton.backgroundColor = secondaryTextColor;
+    self.showElectionButton.backgroundColor = primaryButtonColor;
 
     self.brandNameLabel.textColor = secondaryTextColor;
     self.brandNameLabel.text = [[AppSettings UIStringForKey:@"BrandNameText"] uppercaseString];
@@ -157,12 +158,12 @@
                                                       @"App home page instruction text for the address text field and contacts picker");
 
     self.electionPickerButton.backgroundColor = primaryTextColorWithAlpha25;
-    [self.electionPickerButton setTitleColor:[VIPColor secondaryTextColor]
+    [self.electionPickerButton setTitleColor: primaryTextColor
                                  forState:UIControlStateNormal];
     self.electionPickerButton.layer.cornerRadius = 5;
 
     self.partyPickerButton.backgroundColor = primaryTextColorWithAlpha25;
-    [self.partyPickerButton setTitleColor:[VIPColor secondaryTextColor]
+    [self.partyPickerButton setTitleColor: primaryTextColor
                                  forState:UIControlStateNormal];
     self.partyPickerButton.layer.cornerRadius = 5;
 

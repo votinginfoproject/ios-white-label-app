@@ -54,6 +54,15 @@
     return [UIColor colorWithHexString:hexColor];
 }
 
++ (UIColor*)primaryButtonColor
+{
+  NSString *hexColor = [[AppSettings settings] valueForKey:@"primaryButtonColor"];
+  if (!hexColor) {
+    hexColor = @"0x01244C";
+  }
+  return [UIColor colorWithHexString:hexColor];
+}
+
 + (UIColor*)tableHeaderColor
 {
     NSString *hexColor = [[AppSettings settings] valueForKey:@"tableHeaderColor"];
