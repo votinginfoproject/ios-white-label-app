@@ -103,6 +103,10 @@
 		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; };
 		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; };
 		CBAF14311C92133300353F22 /* VIPPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAF14301C92133300353F22 /* VIPPickerViewController.m */; };
+		CBD6BFE71CAB048B00D40849 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBD6BFE61CAB048B00D40849 /* LaunchScreen.storyboard */; };
+		CBD74DE81CAC33D900DE1A5B /* SplashBallotBox.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD74DE51CAC33D900DE1A5B /* SplashBallotBox.png */; };
+		CBD74DE91CAC33D900DE1A5B /* SplashBallotBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD74DE61CAC33D900DE1A5B /* SplashBallotBox@2x.png */; };
+		CBD74DEA1CAC33D900DE1A5B /* SplashBallotBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD74DE71CAC33D900DE1A5B /* SplashBallotBox@3x.png */; };
 		CBF4F0EB1CAAC2D700E52A56 /* AppIcon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0DD1CAAC2D700E52A56 /* AppIcon-iPad.png */; };
 		CBF4F0EC1CAAC2D700E52A56 /* AppIcon-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0DE1CAAC2D700E52A56 /* AppIcon-iPad@2x.png */; };
 		CBF4F0ED1CAAC2D700E52A56 /* AppIcon-iPad@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0DF1CAAC2D700E52A56 /* AppIcon-iPad@3x.png */; };
@@ -391,6 +395,10 @@
 		83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPContestPropertiesCell.m; sourceTree = "<group>"; };
 		CBAF142F1C92133300353F22 /* VIPPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPPickerViewController.h; sourceTree = "<group>"; };
 		CBAF14301C92133300353F22 /* VIPPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPPickerViewController.m; sourceTree = "<group>"; };
+		CBD6BFE61CAB048B00D40849 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CBD74DE51CAC33D900DE1A5B /* SplashBallotBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SplashBallotBox.png; path = VotingInformationProject/Resources/Images/LaunchScreen/SplashBallotBox.png; sourceTree = SOURCE_ROOT; };
+		CBD74DE61CAC33D900DE1A5B /* SplashBallotBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashBallotBox@2x.png"; path = "VotingInformationProject/Resources/Images/LaunchScreen/SplashBallotBox@2x.png"; sourceTree = SOURCE_ROOT; };
+		CBD74DE71CAC33D900DE1A5B /* SplashBallotBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashBallotBox@3x.png"; path = "VotingInformationProject/Resources/Images/LaunchScreen/SplashBallotBox@3x.png"; sourceTree = SOURCE_ROOT; };
 		CBF4F0DD1CAAC2D700E52A56 /* AppIcon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPad.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPad.png"; sourceTree = SOURCE_ROOT; };
 		CBF4F0DE1CAAC2D700E52A56 /* AppIcon-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPad@2x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPad@2x.png"; sourceTree = SOURCE_ROOT; };
 		CBF4F0DF1CAAC2D700E52A56 /* AppIcon-iPad@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPad@3x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPad@3x.png"; sourceTree = SOURCE_ROOT; };
@@ -706,6 +714,9 @@
 		4970E54118D37E6200104184 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
+				CBD74DE51CAC33D900DE1A5B /* SplashBallotBox.png */,
+				CBD74DE61CAC33D900DE1A5B /* SplashBallotBox@2x.png */,
+				CBD74DE71CAC33D900DE1A5B /* SplashBallotBox@3x.png */,
 				CBF4F1991CAAC33C00E52A56 /* Default_launch-screen-568@2x.png */,
 				CBF4F19A1CAAC33C00E52A56 /* Default_launch-screen-667@2x.png */,
 				CBF4F19B1CAAC33C00E52A56 /* Default_launch-screen-736@3x.png */,
@@ -945,6 +956,7 @@
 				53D3A7971889A05B00920A70 /* AppDelegate.h */,
 				53D3A7981889A05B00920A70 /* AppDelegate.m */,
 				49196B8F189AED8D007DCBD9 /* VIPStoryBoard.storyboard */,
+				CBD6BFE61CAB048B00D40849 /* LaunchScreen.storyboard */,
 				53D3A79D1889A05B00920A70 /* Images.xcassets */,
 				53D3A78F1889A05B00920A70 /* Supporting Files */,
 				49273491188DE8DA00B25554 /* Resources */,
@@ -1091,6 +1103,7 @@
 				CBF4F0F61CAAC2D700E52A56 /* SpotlightIcon.png in Resources */,
 				CBF4F17D1CAAC32300E52A56 /* TabBar_about-active@3x.png in Resources */,
 				CBF4F18D1CAAC32300E52A56 /* TabBar_more-active.png in Resources */,
+				CBD74DE91CAC33D900DE1A5B /* SplashBallotBox@2x.png in Resources */,
 				CBF4F1AF1CAAC4D900E52A56 /* elections.json in Resources */,
 				CBF4F1751CAAC32300E52A56 /* Polling_location.png in Resources */,
 				CBF4F1791CAAC32300E52A56 /* Report_issue@2x.png in Resources */,
@@ -1125,6 +1138,7 @@
 				CBF4F0EB1CAAC2D700E52A56 /* AppIcon-iPad.png in Resources */,
 				CBF4F1501CAAC32300E52A56 /* Candidate_default-image@3x.png in Resources */,
 				CBF4F1A01CAAC33C00E52A56 /* Default_launch-screen-736@3x.png in Resources */,
+				CBD74DEA1CAC33D900DE1A5B /* SplashBallotBox@3x.png in Resources */,
 				CBF4F1561CAAC32300E52A56 /* Candidate_facebook@3x.png in Resources */,
 				CBF4F1521CAAC32300E52A56 /* Candidate_email@2x.png in Resources */,
 				CBF4F0EF1CAAC2D700E52A56 /* AppIcon-iPhone@2x.png in Resources */,
@@ -1182,6 +1196,7 @@
 				CBF4F1691CAAC32300E52A56 /* Homepage_contact.png in Resources */,
 				CBF4F16C1CAAC32300E52A56 /* NavigationBar_home.png in Resources */,
 				CBF4F0F21CAAC2D700E52A56 /* iTunesArtwork@2x.png in Resources */,
+				CBD6BFE71CAB048B00D40849 /* LaunchScreen.storyboard in Resources */,
 				CBF4F15A1CAAC32300E52A56 /* Candidate_phone.png in Resources */,
 				CBF4F1971CAAC32300E52A56 /* TabBar_polling@2x.png in Resources */,
 				4901593118DA126E0088BA23 /* VIPEmptyCell.xib in Resources */,
@@ -1195,6 +1210,7 @@
 				CBF4F1661CAAC32300E52A56 /* Homepage_about.png in Resources */,
 				CBF4F18E1CAAC32300E52A56 /* TabBar_more-active@2x.png in Resources */,
 				CBF4F15B1CAAC32300E52A56 /* Candidate_phone@2x.png in Resources */,
+				CBD74DE81CAC33D900DE1A5B /* SplashBallotBox.png in Resources */,
 				CBF4F1541CAAC32300E52A56 /* Candidate_facebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1520,7 +1536,6 @@
 			baseConfigurationReference = 12F2F615A0ADB7DDE7082231 /* Pods-VotingInformationProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1575,7 +1590,6 @@
 			baseConfigurationReference = DEE015E866353F8C1F56091D /* Pods-VotingInformationProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
 				ENABLE_BITCODE = NO;
