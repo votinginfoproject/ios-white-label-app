@@ -363,7 +363,6 @@
 		49E9814E1892F81600E26C5D /* FindElectionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FindElectionsCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		49E9814F1892F81600E26C5D /* FindElectionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FindElectionsCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49E981501892F81600E26C5D /* VIPUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPUserDefaultsKeys.h; sourceTree = "<group>"; };
-		49F5D28518D3979700BB352C /* ScreenMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenMacros.h; sourceTree = "<group>"; };
 		49F5D28618D399D600BB352C /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		49F5D28718D399D600BB352C /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 		4E6DD457780AD6B0120F34D0 /* libPods-VotingInformationProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VotingInformationProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -831,7 +830,6 @@
 				49265ACB18DA473A00F21083 /* VIPColor.m */,
 				49265ACD18DA4C1200F21083 /* UIColor+Hex.h */,
 				49265ACE18DA4C1200F21083 /* UIColor+Hex.m */,
-				49F5D28518D3979700BB352C /* ScreenMacros.h */,
 				5382558618CE61FA0026C82D /* PollingLocationCell.h */,
 				5382558718CE61FA0026C82D /* PollingLocationCell.m */,
 				4997542D18C6310A002F97FE /* VIPError.h */,

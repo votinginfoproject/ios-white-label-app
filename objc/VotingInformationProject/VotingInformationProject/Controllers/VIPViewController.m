@@ -6,7 +6,6 @@
 //
 
 #import "VIPViewController.h"
-#import "ScreenMacros.h"
 #import "VIPColor.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
