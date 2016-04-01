@@ -30,9 +30,9 @@ The project uses two plist files for configuration and they need to be copied fr
 files for use. From the objc/VotingInformationProject directory, do:
 
 ```
-cd VotingInformationProject
+cd VotingInformationProject/Resources
 // Your relative path should now be: 
-// objc/VotingInformationProject/VotingInformationProject
+// objc/VotingInformationProject/VotingInformationProject/Resources
 cp CivicAPIKey.plist.template CivicAPIKey.plist
 cp settings.plist.template settings.plist
 ```

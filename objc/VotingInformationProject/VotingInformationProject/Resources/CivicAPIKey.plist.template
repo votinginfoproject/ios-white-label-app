@@ -4,5 +4,7 @@
 <dict>
 	<key>GoogleCivicInfoAPIKey</key>
     <string>Insert your Civic Info API browser key here</string>
+	<key>StoplightAPIKey</key>
+	<string></string>
 </dict>
 </plist>
