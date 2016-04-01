@@ -1121,15 +1121,15 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-Ml-bIM">
-                                <rect key="frame" x="0.0" y="43" width="320" height="461"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-Ml-bIM">
+                                <rect key="frame" x="-4" y="44" width="328" height="460"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectionsCell" textLabel="QP9-Gq-bfF" detailTextLabel="EUE-y5-Mn3" rowHeight="64" style="IBUITableViewCellStyleSubtitle" id="Mx2-Zy-gE1">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="64"/>
+                                        <rect key="frame" x="0.0" y="22" width="328" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mx2-Zy-gE1" id="8mv-LI-CPd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="31" id="QP9-Gq-bfF">
@@ -1155,8 +1155,8 @@
                                     <outlet property="delegate" destination="vVt-pV-L1b" id="kjs-3e-avv"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="w6R-Cc-ZLj">
-                                <rect key="frame" x="40" y="7" width="240" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="w6R-Cc-ZLj">
+                                <rect key="frame" x="36" y="8" width="248" height="29"/>
                                 <segments>
                                     <segment title="Driving"/>
                                     <segment title="Transit"/>
@@ -1169,6 +1169,15 @@
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sjr-Ml-bIM" firstAttribute="top" secondItem="w6R-Cc-ZLj" secondAttribute="bottom" constant="8" id="1QC-lX-NTh"/>
+                            <constraint firstItem="Sjr-Ml-bIM" firstAttribute="leading" secondItem="Tc1-XB-qs0" secondAttribute="leadingMargin" constant="-20" id="8ia-6Y-Kzp"/>
+                            <constraint firstItem="w6R-Cc-ZLj" firstAttribute="top" secondItem="ta5-im-NMC" secondAttribute="bottom" constant="8" id="GpF-gD-9CE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Sjr-Ml-bIM" secondAttribute="trailing" constant="-20" id="dZM-Cf-7fU"/>
+                            <constraint firstItem="ABx-QK-pLE" firstAttribute="top" secondItem="Sjr-Ml-bIM" secondAttribute="bottom" id="qI3-ec-vzT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="w6R-Cc-ZLj" secondAttribute="trailing" constant="20" id="sGV-pP-BiM"/>
+                            <constraint firstItem="w6R-Cc-ZLj" firstAttribute="leading" secondItem="Tc1-XB-qs0" secondAttribute="leadingMargin" constant="20" id="vvP-zf-wGx"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Directions" id="uia-Wy-7kT">
@@ -1300,7 +1309,7 @@
         <image name="TabBar_polling.png" width="18" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5eW-1E-i5g"/>
-        <segue reference="eBc-MR-pin"/>
+        <segue reference="BSD-rg-h3n"/>
+        <segue reference="io9-4R-w0O"/>
     </inferredMetricsTieBreakers>
 </document>
