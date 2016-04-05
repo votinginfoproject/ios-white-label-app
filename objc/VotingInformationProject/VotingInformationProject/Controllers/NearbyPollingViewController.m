@@ -710,9 +710,11 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
     if ([self.cells count] > 0) {
         PollingLocationWrapper *plWrapper = (PollingLocationWrapper*)[self.cells objectAtIndex:indexPath.item];
+      
         CGFloat height = VIP_POLLING_TABLECELL_HEIGHT;
         height += [plWrapper.location.voterServices length] == 0 ? 0 : 20;
         height += [plWrapper.hours length] == 0 ? 0 : 20;
+      
         return height;
     } else {
         return VIP_EMPTY_TABLECELL_HEIGHT;
