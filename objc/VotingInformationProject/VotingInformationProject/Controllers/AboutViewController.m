@@ -63,7 +63,7 @@
 {
     static CGFloat heightPadding = 20;
     NSString *str = self.text[indexPath.section];
-    CGSize maximumSize = CGSizeMake(280, CGFLOAT_MAX);
+    CGSize maximumSize = CGSizeMake(self.view.frame.size.width - 40, CGFLOAT_MAX);
     NSDictionary *strAttributes = @{ NSFontAttributeName : [UIFont systemFontOfSize:15] };
     CGRect strSize = [str boundingRectWithSize:maximumSize
                                        options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
