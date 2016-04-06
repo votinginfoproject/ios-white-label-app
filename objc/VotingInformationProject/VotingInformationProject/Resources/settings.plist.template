@@ -11,7 +11,7 @@
     <key>BrandNameText</key>
     <string>Your Brand Name Here</string>
 	<key>OfficialOnly</key>
-	<true/>
+	<false/>
     <key>UseTestData</key>
     <false/>
 </dict>
