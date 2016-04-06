@@ -53,9 +53,6 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.emptyDataSource = [[VIPEmptyTableViewDataSource alloc]
-                            initWithEmptyMessage:NSLocalizedString(@"No Election Details Available",
-                                                                   @"Text displayed by the table view if there are no election details to display")];
 
     self.screenName = @"Ballot Details Screen";
     self.electionNameLabel.textColor = [VIPColor primaryTextColor];
@@ -71,11 +68,6 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
     self.election = (UserElection*) vipTabBarController.currentElection;
     [self updateUI];
-}
-
-- (id<UITableViewDataSource>)configureDataSource
-{
-    return ([self.tableData[0] count] > 0) ? self : self.emptyDataSource;
 }
 
 - (void) updateUI
@@ -94,7 +86,9 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         State *state = (State*)states[0];
         NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
         if (!eabProperties) {
-            eabProperties = [[NSMutableArray alloc] initWithCapacity:1];
+            NSString *noDataAvailable = NSLocalizedString(@"No Election Details Available",
+                                                          @"Text displayed by the table view if there are no election details to display");
+            eabProperties = [NSMutableArray arrayWithObject:@{@"data":@"", @"title":noDataAvailable}];
         }
         [self.tableData addObject:eabProperties];
         if (state.localJurisdiction) {
@@ -104,7 +98,7 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
                 [self.tableData addObject:localJurisdictionProperties];
             }
         }
-        self.tableView.dataSource = [self configureDataSource];
+        self.tableView.dataSource = self;
         [self.tableView reloadData];
     }
 }
