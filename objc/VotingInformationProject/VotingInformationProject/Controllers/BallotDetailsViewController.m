@@ -81,16 +81,20 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
 
     [self.tableData removeAllObjects];
     NSArray *states = self.election.state;
+    
     //TODO: Allow for multiple state selection. In US the states set will only ever have 0-1 entries
     if ([states count] == 1) {
         State *state = (State*)states[0];
         NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
+        
         if (!eabProperties) {
             NSString *noDataAvailable = NSLocalizedString(@"No Election Details Available",
                                                           @"Text displayed by the table view if there are no election details to display");
             eabProperties = [NSMutableArray arrayWithObject:@{@"data":@"", @"title":noDataAvailable}];
         }
+        
         [self.tableData addObject:eabProperties];
+        
         if (state.localJurisdiction) {
             NSMutableArray *localJurisdictionProperties =
             [state.localJurisdiction.electionAdministrationBody getProperties];
@@ -98,6 +102,7 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
                 [self.tableData addObject:localJurisdictionProperties];
             }
         }
+        
         self.tableView.dataSource = self;
         [self.tableView reloadData];
     }
@@ -160,9 +165,11 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     UIColor *primaryTextColor = [VIPColor primaryTextColor];
     cell.textLabel.text = property[@"title"];
     cell.textLabel.textColor = primaryTextColor;
+    
     cell.detailTextLabel.text = property[@"data"];
     cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:17];
     cell.detailTextLabel.textColor = primaryTextColor;
+    
     cell.userInteractionEnabled = NO;
 }
 
@@ -173,6 +180,7 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     } else if (section == BDVC_TABLE_SECTION_LOCAL) {
         return NSLocalizedString(@"Local Jurisdiction", @"Section title for Local Election Administration details");
     }
+    
     return @"";
 }
 
@@ -184,11 +192,14 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     UIColor *primaryTextColor = [VIPColor primaryTextColor];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, VIP_TABLE_HEADER_HEIGHT)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, VIP_TABLE_HEADER_HEIGHT)];
+    
     label.font = [UIFont systemFontOfSize:15];
     label.textColor = primaryTextColor;
     label.text = [self titleForHeaderInSection:section];
+    
     [view addSubview:label];
     [view setBackgroundColor:[VIPColor tableHeaderColor]];
+    
     return view;
 }
 
@@ -228,11 +239,13 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         ContestUrlCell *cell = (ContestUrlCell*)sender;
         webView.title = cell.textLabel.text;
         webView.url = cell.url;
+        
     } else if ([segue.identifier isEqualToString:@"HomeSegue"]) {
         ContactsSearchViewController *csvc = (ContactsSearchViewController*) segue.destinationViewController;
         csvc.delegate = self;
         VIPTabBarController *vipTabBarController = (VIPTabBarController*)self.tabBarController;
         csvc.currentElection = vipTabBarController.currentElection;
+        
     } else if ([segue.identifier isEqualToString:VIP_FEEDBACK_SEGUE]) {
         UIWebViewController *webView = (UIWebViewController*) segue.destinationViewController;
         webView.title = NSLocalizedString(@"Feedback", @"Title for web view displaying the VIP election feedback form");
@@ -252,6 +265,7 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     vipTabBarController.elections = elections;
     vipTabBarController.currentElection = election;
     vipTabBarController.currentParty = party;
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
