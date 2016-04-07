@@ -1014,6 +1014,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */;
 			buildPhases = (
+				CB87C6A01CB5B9B7000B6481 /* ShellScript */,
 				7F0CE0BC0C2E12A43E4A0ECB /* 📦 Check Pods Manifest.lock */,
 				53D3A77F1889A05B00920A70 /* Sources */,
 				53D3A7801889A05B00920A70 /* Frameworks */,
@@ -1314,6 +1315,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VotingInformationProject/Pods-VotingInformationProject-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CB87C6A01CB5B9B7000B6481 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION == Release ]; then\n  echo \"Bumping build number...\"\n  plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n  buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n  if [[ \"${buildnum}\" == \"\" ]]; then\n    echo \"No build number in $plist\"\n    exit 2\n  fi\n\n  buildnum=$(expr $buildnum + 1)\n  /usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n  echo \"Bumped build number to $buildnum\"\n\nelse\n  echo $CONFIGURATION \" build - Not bumping build number.\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1536,6 +1550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
@@ -1590,6 +1605,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Pew Charitable Trusts (LMU2729A2N)";
+				CURRENT_PROJECT_VERSION = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VotingInformationProject/VotingInformationProject-Prefix.pch";
