@@ -30,7 +30,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *partyPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *showElectionButton;
-@property (weak, nonatomic) IBOutlet UIButton *showPeoplePicker;
 
 @property (weak, nonatomic) IBOutlet UILabel *brandNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
@@ -254,63 +253,6 @@
     [self displayPartyPicker];
     [self displayGetElections];
 }
-
-#pragma mark - contacts picker
-
-- (IBAction)showPeoplePicker:(id)sender
-{
-    ABPeoplePickerNavigationController *picker =
-    [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    // Only want to allow the user to select address entries
-    picker.displayedProperties = @[[NSNumber numberWithInt:kABPersonAddressProperty]];
-
-    [self presentViewController:picker animated:YES completion:nil];
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
-    // return YES shows contact details view with list of contact properties
-    return YES;
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person
-                                property:(ABPropertyID)property
-                              identifier:(ABMultiValueIdentifier)identifier
-{
-    if (property == kABPersonAddressProperty) {
-        [peoplePicker dismissViewControllerAnimated:YES completion:nil];
-        NSString *address = [self getAddress:person atIdentifier:identifier];
-        self.userAddress = address;
-        self.addressTextField.text = address;
-        [self updateUI];
-      
-        return NO;
-    }
-  
-    return YES;
-}
-
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
-{
-    [peoplePicker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (NSString *) getAddress: (ABRecordRef) person
-          atIdentifier: (ABMultiValueIdentifier) identifier
-{
-    ABMultiValueRef addresses = ABRecordCopyValue(person, kABPersonAddressProperty);
-    NSArray *addressesArray = (__bridge_transfer NSArray *) ABMultiValueCopyArrayOfAllValues(addresses);
-    const NSUInteger addressIndex = ABMultiValueGetIndexForIdentifier(addresses, identifier);
-    NSDictionary *addressDict = [addressesArray objectAtIndex:addressIndex];
-    NSString *address = ABCreateStringWithAddressDictionary(addressDict, NO);
-    CFRelease(addresses);
-  
-    return address;
-}
-
 
 #pragma mark - showElectionButton
 

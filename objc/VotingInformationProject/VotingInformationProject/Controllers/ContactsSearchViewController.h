@@ -15,13 +15,9 @@
 
 @class ContactsSearchViewController;
 
-@interface ContactsSearchViewController : VIPViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface ContactsSearchViewController : VIPViewController
 
 @property (weak, nonatomic) id<ContactsSearchViewControllerDelegate>delegate;
-
-- (IBAction) showPeoplePicker:(id)sender;
-
-- (NSString *) getAddress: (ABRecordRef) person atIdentifier:(ABMultiValueIdentifier) identifier;
 
 @property (strong, nonatomic) UserElection *currentElection;
 
