@@ -107,25 +107,6 @@
 		CBD74DE81CAC33D900DE1A5B /* SplashBallotBox.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD74DE51CAC33D900DE1A5B /* SplashBallotBox.png */; };
 		CBD74DE91CAC33D900DE1A5B /* SplashBallotBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD74DE61CAC33D900DE1A5B /* SplashBallotBox@2x.png */; };
 		CBD74DEA1CAC33D900DE1A5B /* SplashBallotBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBD74DE71CAC33D900DE1A5B /* SplashBallotBox@3x.png */; };
-		CBF4F0EB1CAAC2D700E52A56 /* AppIcon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0DD1CAAC2D700E52A56 /* AppIcon-iPad.png */; };
-		CBF4F0EC1CAAC2D700E52A56 /* AppIcon-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0DE1CAAC2D700E52A56 /* AppIcon-iPad@2x.png */; };
-		CBF4F0ED1CAAC2D700E52A56 /* AppIcon-iPad@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0DF1CAAC2D700E52A56 /* AppIcon-iPad@3x.png */; };
-		CBF4F0EE1CAAC2D700E52A56 /* AppIcon-iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E01CAAC2D700E52A56 /* AppIcon-iPhone.png */; };
-		CBF4F0EF1CAAC2D700E52A56 /* AppIcon-iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E11CAAC2D700E52A56 /* AppIcon-iPhone@2x.png */; };
-		CBF4F0F01CAAC2D700E52A56 /* AppIcon-iPhone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E21CAAC2D700E52A56 /* AppIcon-iPhone@3x.png */; };
-		CBF4F0F11CAAC2D700E52A56 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E31CAAC2D700E52A56 /* iTunesArtwork.png */; };
-		CBF4F0F21CAAC2D700E52A56 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E41CAAC2D700E52A56 /* iTunesArtwork@2x.png */; };
-		CBF4F0F31CAAC2D700E52A56 /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E51CAAC2D700E52A56 /* SettingsIcon.png */; };
-		CBF4F0F41CAAC2D700E52A56 /* SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E61CAAC2D700E52A56 /* SettingsIcon@2x.png */; };
-		CBF4F0F51CAAC2D700E52A56 /* SettingsIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E71CAAC2D700E52A56 /* SettingsIcon@3x.png */; };
-		CBF4F0F61CAAC2D700E52A56 /* SpotlightIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E81CAAC2D700E52A56 /* SpotlightIcon.png */; };
-		CBF4F0F71CAAC2D700E52A56 /* SpotlightIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0E91CAAC2D700E52A56 /* SpotlightIcon@2x.png */; };
-		CBF4F0F81CAAC2D700E52A56 /* SpotlightIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0EA1CAAC2D700E52A56 /* SpotlightIcon@3x.png */; };
-		CBF4F0FE1CAAC2F100E52A56 /* Default_background-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0F91CAAC2F100E52A56 /* Default_background-568@2x.png */; };
-		CBF4F0FF1CAAC2F100E52A56 /* Default_background-667@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0FA1CAAC2F100E52A56 /* Default_background-667@2x.png */; };
-		CBF4F1001CAAC2F100E52A56 /* Default_background-736@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0FB1CAAC2F100E52A56 /* Default_background-736@3x.png */; };
-		CBF4F1011CAAC2F100E52A56 /* Default_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0FC1CAAC2F100E52A56 /* Default_background.png */; };
-		CBF4F1021CAAC2F100E52A56 /* Default_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F0FD1CAAC2F100E52A56 /* Default_background@2x.png */; };
 		CBF4F14E1CAAC32300E52A56 /* Candidate_default-image.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F1031CAAC32300E52A56 /* Candidate_default-image.png */; };
 		CBF4F14F1CAAC32300E52A56 /* Candidate_default-image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F1041CAAC32300E52A56 /* Candidate_default-image@2x.png */; };
 		CBF4F1501CAAC32300E52A56 /* Candidate_default-image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F1051CAAC32300E52A56 /* Candidate_default-image@3x.png */; };
@@ -398,25 +379,6 @@
 		CBD74DE51CAC33D900DE1A5B /* SplashBallotBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SplashBallotBox.png; path = VotingInformationProject/Resources/Images/LaunchScreen/SplashBallotBox.png; sourceTree = SOURCE_ROOT; };
 		CBD74DE61CAC33D900DE1A5B /* SplashBallotBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashBallotBox@2x.png"; path = "VotingInformationProject/Resources/Images/LaunchScreen/SplashBallotBox@2x.png"; sourceTree = SOURCE_ROOT; };
 		CBD74DE71CAC33D900DE1A5B /* SplashBallotBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashBallotBox@3x.png"; path = "VotingInformationProject/Resources/Images/LaunchScreen/SplashBallotBox@3x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0DD1CAAC2D700E52A56 /* AppIcon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPad.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPad.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0DE1CAAC2D700E52A56 /* AppIcon-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPad@2x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPad@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0DF1CAAC2D700E52A56 /* AppIcon-iPad@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPad@3x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPad@3x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E01CAAC2D700E52A56 /* AppIcon-iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPhone.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPhone.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E11CAAC2D700E52A56 /* AppIcon-iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPhone@2x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPhone@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E21CAAC2D700E52A56 /* AppIcon-iPhone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-iPhone@3x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/AppIcon-iPhone@3x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E31CAAC2D700E52A56 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = VotingInformationProject/Resources/Images/AppIcons/iTunesArtwork.png; sourceTree = SOURCE_ROOT; };
-		CBF4F0E41CAAC2D700E52A56 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/iTunesArtwork@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E51CAAC2D700E52A56 /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.png; path = VotingInformationProject/Resources/Images/AppIcons/SettingsIcon.png; sourceTree = SOURCE_ROOT; };
-		CBF4F0E61CAAC2D700E52A56 /* SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIcon@2x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/SettingsIcon@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E71CAAC2D700E52A56 /* SettingsIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIcon@3x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/SettingsIcon@3x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0E81CAAC2D700E52A56 /* SpotlightIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SpotlightIcon.png; path = VotingInformationProject/Resources/Images/AppIcons/SpotlightIcon.png; sourceTree = SOURCE_ROOT; };
-		CBF4F0E91CAAC2D700E52A56 /* SpotlightIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SpotlightIcon@2x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/SpotlightIcon@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0EA1CAAC2D700E52A56 /* SpotlightIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SpotlightIcon@3x.png"; path = "VotingInformationProject/Resources/Images/AppIcons/SpotlightIcon@3x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0F91CAAC2F100E52A56 /* Default_background-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default_background-568@2x.png"; path = "VotingInformationProject/Resources/Images/Background/Default_background-568@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0FA1CAAC2F100E52A56 /* Default_background-667@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default_background-667@2x.png"; path = "VotingInformationProject/Resources/Images/Background/Default_background-667@2x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0FB1CAAC2F100E52A56 /* Default_background-736@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default_background-736@3x.png"; path = "VotingInformationProject/Resources/Images/Background/Default_background-736@3x.png"; sourceTree = SOURCE_ROOT; };
-		CBF4F0FC1CAAC2F100E52A56 /* Default_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default_background.png; path = VotingInformationProject/Resources/Images/Background/Default_background.png; sourceTree = SOURCE_ROOT; };
-		CBF4F0FD1CAAC2F100E52A56 /* Default_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default_background@2x.png"; path = "VotingInformationProject/Resources/Images/Background/Default_background@2x.png"; sourceTree = SOURCE_ROOT; };
 		CBF4F1031CAAC32300E52A56 /* Candidate_default-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Candidate_default-image.png"; path = "VotingInformationProject/Resources/Images/Graphics/Candidate_default-image.png"; sourceTree = SOURCE_ROOT; };
 		CBF4F1041CAAC32300E52A56 /* Candidate_default-image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Candidate_default-image@2x.png"; path = "VotingInformationProject/Resources/Images/Graphics/Candidate_default-image@2x.png"; sourceTree = SOURCE_ROOT; };
 		CBF4F1051CAAC32300E52A56 /* Candidate_default-image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Candidate_default-image@3x.png"; path = "VotingInformationProject/Resources/Images/Graphics/Candidate_default-image@3x.png"; sourceTree = SOURCE_ROOT; };
@@ -584,47 +546,10 @@
 		495CB9BE18B2720300243ADB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				4970E50718D37E6200104184 /* AppIcons */,
-				4970E51218D37E6200104184 /* Background */,
 				4970E51618D37E6200104184 /* Graphics */,
 				4970E54118D37E6200104184 /* LaunchScreen */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		4970E50718D37E6200104184 /* AppIcons */ = {
-			isa = PBXGroup;
-			children = (
-				CBF4F0DD1CAAC2D700E52A56 /* AppIcon-iPad.png */,
-				CBF4F0DE1CAAC2D700E52A56 /* AppIcon-iPad@2x.png */,
-				CBF4F0DF1CAAC2D700E52A56 /* AppIcon-iPad@3x.png */,
-				CBF4F0E01CAAC2D700E52A56 /* AppIcon-iPhone.png */,
-				CBF4F0E11CAAC2D700E52A56 /* AppIcon-iPhone@2x.png */,
-				CBF4F0E21CAAC2D700E52A56 /* AppIcon-iPhone@3x.png */,
-				CBF4F0E31CAAC2D700E52A56 /* iTunesArtwork.png */,
-				CBF4F0E41CAAC2D700E52A56 /* iTunesArtwork@2x.png */,
-				CBF4F0E51CAAC2D700E52A56 /* SettingsIcon.png */,
-				CBF4F0E61CAAC2D700E52A56 /* SettingsIcon@2x.png */,
-				CBF4F0E71CAAC2D700E52A56 /* SettingsIcon@3x.png */,
-				CBF4F0E81CAAC2D700E52A56 /* SpotlightIcon.png */,
-				CBF4F0E91CAAC2D700E52A56 /* SpotlightIcon@2x.png */,
-				CBF4F0EA1CAAC2D700E52A56 /* SpotlightIcon@3x.png */,
-			);
-			name = AppIcons;
-			path = Images/AppIcons;
-			sourceTree = "<group>";
-		};
-		4970E51218D37E6200104184 /* Background */ = {
-			isa = PBXGroup;
-			children = (
-				CBF4F0F91CAAC2F100E52A56 /* Default_background-568@2x.png */,
-				CBF4F0FA1CAAC2F100E52A56 /* Default_background-667@2x.png */,
-				CBF4F0FB1CAAC2F100E52A56 /* Default_background-736@3x.png */,
-				CBF4F0FC1CAAC2F100E52A56 /* Default_background.png */,
-				CBF4F0FD1CAAC2F100E52A56 /* Default_background@2x.png */,
-			);
-			name = Background;
-			path = Images/Background;
 			sourceTree = "<group>";
 		};
 		4970E51618D37E6200104184 /* Graphics */ = {
@@ -1099,7 +1024,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBF4F0F61CAAC2D700E52A56 /* SpotlightIcon.png in Resources */,
 				CBF4F17D1CAAC32300E52A56 /* TabBar_about-active@3x.png in Resources */,
 				CBF4F18D1CAAC32300E52A56 /* TabBar_more-active.png in Resources */,
 				CBD74DE91CAC33D900DE1A5B /* SplashBallotBox@2x.png in Resources */,
@@ -1107,7 +1031,6 @@
 				CBF4F1751CAAC32300E52A56 /* Polling_location.png in Resources */,
 				CBF4F1791CAAC32300E52A56 /* Report_issue@2x.png in Resources */,
 				CBF4F16F1CAAC32300E52A56 /* Polling_dropoff.png in Resources */,
-				CBF4F1021CAAC2F100E52A56 /* Default_background@2x.png in Resources */,
 				CBF4F1531CAAC32300E52A56 /* Candidate_email@3x.png in Resources */,
 				CBF4F1611CAAC32300E52A56 /* Candidate_web@2x.png in Resources */,
 				CBF4F1831CAAC32300E52A56 /* TabBar_ballot-active@3x.png in Resources */,
@@ -1115,12 +1038,10 @@
 				CBF4F19F1CAAC33C00E52A56 /* Default_launch-screen-667@2x.png in Resources */,
 				CBF4F1721CAAC32300E52A56 /* Polling_earlyvoting.png in Resources */,
 				CBF4F15E1CAAC32300E52A56 /* Candidate_twitter@2x.png in Resources */,
-				CBF4F0FE1CAAC2F100E52A56 /* Default_background-568@2x.png in Resources */,
 				CBF4F1551CAAC32300E52A56 /* Candidate_facebook@2x.png in Resources */,
 				CBF4F1641CAAC32300E52A56 /* Candidate_youtube@2x.png in Resources */,
 				CBF4F16A1CAAC32300E52A56 /* Homepage_contact@2x.png in Resources */,
 				CBF4F1941CAAC32300E52A56 /* TabBar_polling-active@2x.png in Resources */,
-				CBF4F0EE1CAAC2D700E52A56 /* AppIcon-iPhone.png in Resources */,
 				CBF4F15F1CAAC32300E52A56 /* Candidate_twitter@3x.png in Resources */,
 				CBF4F1861CAAC32300E52A56 /* TabBar_ballot@3x.png in Resources */,
 				CBF4F1821CAAC32300E52A56 /* TabBar_ballot-active@2x.png in Resources */,
@@ -1134,34 +1055,24 @@
 				CBF4F1701CAAC32300E52A56 /* Polling_dropoff@2x.png in Resources */,
 				CBF4F15C1CAAC32300E52A56 /* Candidate_phone@3x.png in Resources */,
 				CBF4F1711CAAC32300E52A56 /* Polling_dropoff@3x.png in Resources */,
-				CBF4F0EB1CAAC2D700E52A56 /* AppIcon-iPad.png in Resources */,
 				CBF4F1501CAAC32300E52A56 /* Candidate_default-image@3x.png in Resources */,
 				CBF4F1A01CAAC33C00E52A56 /* Default_launch-screen-736@3x.png in Resources */,
 				CBD74DEA1CAC33D900DE1A5B /* SplashBallotBox@3x.png in Resources */,
 				CBF4F1561CAAC32300E52A56 /* Candidate_facebook@3x.png in Resources */,
 				CBF4F1521CAAC32300E52A56 /* Candidate_email@2x.png in Resources */,
-				CBF4F0EF1CAAC2D700E52A56 /* AppIcon-iPhone@2x.png in Resources */,
 				CBF4F16D1CAAC32300E52A56 /* NavigationBar_home@2x.png in Resources */,
-				CBF4F0F31CAAC2D700E52A56 /* SettingsIcon.png in Resources */,
 				CBF4F18A1CAAC32300E52A56 /* TabBar_details.png in Resources */,
 				CBF4F15D1CAAC32300E52A56 /* Candidate_twitter.png in Resources */,
-				CBF4F0F71CAAC2D700E52A56 /* SpotlightIcon@2x.png in Resources */,
 				CBF4F1AE1CAAC4D900E52A56 /* CivicAPIKey.plist in Resources */,
 				CBF4F1981CAAC32300E52A56 /* TabBar_polling@3x.png in Resources */,
-				CBF4F0F11CAAC2D700E52A56 /* iTunesArtwork.png in Resources */,
-				CBF4F0F01CAAC2D700E52A56 /* AppIcon-iPhone@3x.png in Resources */,
-				CBF4F0F41CAAC2D700E52A56 /* SettingsIcon@2x.png in Resources */,
 				CBF4F1741CAAC32300E52A56 /* Polling_earlyvoting@3x.png in Resources */,
 				CBF4F1801CAAC32300E52A56 /* TabBar_about@3x.png in Resources */,
-				CBF4F0FF1CAAC2F100E52A56 /* Default_background-667@2x.png in Resources */,
 				CBF4F19E1CAAC33C00E52A56 /* Default_launch-screen-568@2x.png in Resources */,
 				CBF4F1681CAAC32300E52A56 /* Homepage_about@3x.png in Resources */,
 				CBF4F1891CAAC32300E52A56 /* TabBar_details-active@3x.png in Resources */,
 				CBF4F1511CAAC32300E52A56 /* Candidate_email.png in Resources */,
 				CBF4F1771CAAC32300E52A56 /* Polling_location@3x.png in Resources */,
-				CBF4F0EC1CAAC2D700E52A56 /* AppIcon-iPad@2x.png in Resources */,
 				CBF4F17B1CAAC32300E52A56 /* TabBar_about-active.png in Resources */,
-				CBF4F1001CAAC2F100E52A56 /* Default_background-736@3x.png in Resources */,
 				CBF4F1581CAAC32300E52A56 /* Candidate_google@2x.png in Resources */,
 				CBF4F16E1CAAC32300E52A56 /* NavigationBar_home@3x.png in Resources */,
 				CBF4F1921CAAC32300E52A56 /* TabBar_more@3x.png in Resources */,
@@ -1169,16 +1080,13 @@
 				CBF4F1841CAAC32300E52A56 /* TabBar_ballot.png in Resources */,
 				CBF4F1931CAAC32300E52A56 /* TabBar_polling-active.png in Resources */,
 				CBF4F1601CAAC32300E52A56 /* Candidate_web.png in Resources */,
-				CBF4F0F51CAAC2D700E52A56 /* SettingsIcon@3x.png in Resources */,
 				CBF4F1781CAAC32300E52A56 /* Report_issue.png in Resources */,
-				CBF4F0ED1CAAC2D700E52A56 /* AppIcon-iPad@3x.png in Resources */,
 				CBF4F18C1CAAC32300E52A56 /* TabBar_details@3x.png in Resources */,
 				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,
 				CBF4F1B01CAAC4D900E52A56 /* settings.plist in Resources */,
 				CBF4F1A41CAAC3AF00E52A56 /* test_response.json in Resources */,
 				CBF4F1571CAAC32300E52A56 /* Candidate_google.png in Resources */,
 				CBF4F16B1CAAC32300E52A56 /* Homepage_contact@3x.png in Resources */,
-				CBF4F0F81CAAC2D700E52A56 /* SpotlightIcon@3x.png in Resources */,
 				CBF4F1901CAAC32300E52A56 /* TabBar_more.png in Resources */,
 				CBF4F1851CAAC32300E52A56 /* TabBar_ballot@2x.png in Resources */,
 				CBF4F1871CAAC32300E52A56 /* TabBar_details-active.png in Resources */,
@@ -1194,7 +1102,6 @@
 				CBF4F1811CAAC32300E52A56 /* TabBar_ballot-active.png in Resources */,
 				CBF4F1691CAAC32300E52A56 /* Homepage_contact.png in Resources */,
 				CBF4F16C1CAAC32300E52A56 /* NavigationBar_home.png in Resources */,
-				CBF4F0F21CAAC2D700E52A56 /* iTunesArtwork@2x.png in Resources */,
 				CBD6BFE71CAB048B00D40849 /* LaunchScreen.storyboard in Resources */,
 				CBF4F15A1CAAC32300E52A56 /* Candidate_phone.png in Resources */,
 				CBF4F1971CAAC32300E52A56 /* TabBar_polling@2x.png in Resources */,
@@ -1204,7 +1111,6 @@
 				49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */,
 				CBF4F1631CAAC32300E52A56 /* Candidate_youtube.png in Resources */,
 				CBF4F1591CAAC32300E52A56 /* Candidate_google@3x.png in Resources */,
-				CBF4F1011CAAC2F100E52A56 /* Default_background.png in Resources */,
 				CBF4F14E1CAAC32300E52A56 /* Candidate_default-image.png in Resources */,
 				CBF4F1661CAAC32300E52A56 /* Homepage_about.png in Resources */,
 				CBF4F18E1CAAC32300E52A56 /* TabBar_more-active@2x.png in Resources */,
