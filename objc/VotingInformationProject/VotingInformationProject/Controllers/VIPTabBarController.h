@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray *elections;
 @property (strong, nonatomic) UserElection *currentElection;
 @property (strong, nonatomic) NSString *currentParty;
+@property (nonatomic) int defaultIndex;
 
 /**
  *  Return YES if all data necessary to restore the app from a saved state

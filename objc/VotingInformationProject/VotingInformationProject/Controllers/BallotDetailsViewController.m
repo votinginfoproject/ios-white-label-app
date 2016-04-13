@@ -265,6 +265,7 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     vipTabBarController.elections = elections;
     vipTabBarController.currentElection = election;
     vipTabBarController.currentParty = party;
+    vipTabBarController.selectedIndex = vipTabBarController.defaultIndex;
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

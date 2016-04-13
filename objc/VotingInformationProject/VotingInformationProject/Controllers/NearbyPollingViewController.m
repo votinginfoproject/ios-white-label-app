@@ -766,7 +766,8 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
     vipTabBarController.elections = elections;
     vipTabBarController.currentElection = election;
     vipTabBarController.currentParty = party;
-  
+    vipTabBarController.selectedIndex = vipTabBarController.defaultIndex;
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
