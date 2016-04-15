@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,41 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="3xc-Tu-Y5d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3xc-Tu-Y5d">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stars" translatesAutoresizingMaskIntoConstraints="NO" id="vZk-Zh-NOf">
-                                <rect key="frame" x="0.0" y="205" width="600" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vZk-Zh-NOf" secondAttribute="height" multiplier="2:1" id="0dA-Lb-qTR"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBallotBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="aG5-Rh-beL">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="aG5-Rh-beL" secondAttribute="height" multiplier="1:1" id="DLZ-D4-q1L"/>
-                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vZk-Zh-NOf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="55" id="Ynh-uk-kED"/>
-                            <constraint firstItem="vZk-Zh-NOf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="aoc-Qn-Dto"/>
                             <constraint firstAttribute="trailing" secondItem="3xc-Tu-Y5d" secondAttribute="trailing" id="dH2-b6-M6a"/>
                             <constraint firstAttribute="bottom" secondItem="3xc-Tu-Y5d" secondAttribute="bottom" id="e2f-l0-0Nt"/>
-                            <constraint firstAttribute="trailing" secondItem="vZk-Zh-NOf" secondAttribute="trailing" id="fZH-Fm-NuR"/>
-                            <constraint firstAttribute="trailing" secondItem="aG5-Rh-beL" secondAttribute="trailing" id="j3T-it-TXg"/>
                             <constraint firstItem="3xc-Tu-Y5d" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="k3v-1k-b25"/>
-                            <constraint firstItem="aG5-Rh-beL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lkO-Rq-reN"/>
-                            <constraint firstItem="aG5-Rh-beL" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="pEX-VN-l9Y"/>
                             <constraint firstItem="3xc-Tu-Y5d" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="pcX-9Z-SPt"/>
-                            <constraint firstItem="aG5-Rh-beL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="y78-ec-zne"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="lkO-Rq-reN"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -61,8 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashBallotBox.png" width="320" height="320"/>
-        <image name="background" width="375" height="667"/>
-        <image name="stars" width="320" height="160"/>
+        <image name="LaunchImage.jpg" width="320" height="568"/>
     </resources>
 </document>

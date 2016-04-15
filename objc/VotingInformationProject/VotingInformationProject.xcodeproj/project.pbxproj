@@ -102,6 +102,8 @@
 		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; };
 		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; };
 		CB23CCEA1CBFF2EB002094E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A79D1889A05B00920A70 /* Images.xcassets */; };
+		CB7CFDAD1CC180E500C95538 /* LaunchImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB7CFDA91CC180E500C95538 /* LaunchImage@2x.jpg */; };
+		CB7CFDAE1CC180E500C95538 /* LaunchImage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB7CFDAA1CC180E500C95538 /* LaunchImage@3x.jpg */; };
 		CBAF14311C92133300353F22 /* VIPPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAF14301C92133300353F22 /* VIPPickerViewController.m */; };
 		CBD6BFE71CAB048B00D40849 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBD6BFE61CAB048B00D40849 /* LaunchScreen.storyboard */; };
 		CBF4F1A41CAAC3AF00E52A56 /* test_response.json in Resources */ = {isa = PBXBuildFile; fileRef = CBF4F1A31CAAC3AF00E52A56 /* test_response.json */; };
@@ -290,8 +292,10 @@
 		83AA58231BBA4AE20077C9FB /* VIPContestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPContestCell.m; path = Views/VIPContestCell.m; sourceTree = "<group>"; };
 		83CAB98D1BBAD32400611F0E /* VIPContestPropertiesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPContestPropertiesCell.h; sourceTree = "<group>"; };
 		83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPContestPropertiesCell.m; sourceTree = "<group>"; };
-		CB23CCEB1CBFF309002094E8 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/iTunesArtwork.png; sourceTree = "<group>"; };
-		CB23CCEC1CBFF309002094E8 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		CB7CFDA71CC180E500C95538 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/Images/iTunesArtwork.png; sourceTree = "<group>"; };
+		CB7CFDA81CC180E500C95538 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/Images/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		CB7CFDA91CC180E500C95538 /* LaunchImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "LaunchImage@2x.jpg"; path = "Resources/Images/LaunchImage@2x.jpg"; sourceTree = "<group>"; };
+		CB7CFDAA1CC180E500C95538 /* LaunchImage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "LaunchImage@3x.jpg"; path = "Resources/Images/LaunchImage@3x.jpg"; sourceTree = "<group>"; };
 		CBAF142F1C92133300353F22 /* VIPPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPPickerViewController.h; sourceTree = "<group>"; };
 		CBAF14301C92133300353F22 /* VIPPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPPickerViewController.m; sourceTree = "<group>"; };
 		CBD6BFE61CAB048B00D40849 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -360,13 +364,12 @@
 		49273491188DE8DA00B25554 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CB7CFDA61CC180DA00C95538 /* Images */,
 				CBF4EFF31CA9D7C100E52A56 /* Stoplight */,
 				498225E2189AEADC00FB8FC4 /* Localizable.strings */,
 				CBF4F1AB1CAAC4D900E52A56 /* CivicAPIKey.plist */,
 				CBF4F1AD1CAAC4D900E52A56 /* settings.plist */,
 				CBF4F1AC1CAAC4D900E52A56 /* elections.json */,
-				CB23CCEB1CBFF309002094E8 /* iTunesArtwork.png */,
-				CB23CCEC1CBFF309002094E8 /* iTunesArtwork@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -653,6 +656,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CB7CFDA61CC180DA00C95538 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CB7CFDA71CC180E500C95538 /* iTunesArtwork.png */,
+				CB7CFDA81CC180E500C95538 /* iTunesArtwork@2x.png */,
+				CB7CFDA91CC180E500C95538 /* LaunchImage@2x.jpg */,
+				CB7CFDAA1CC180E500C95538 /* LaunchImage@3x.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		CBF4EFF31CA9D7C100E52A56 /* Stoplight */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,9 +771,11 @@
 				CB23CCEA1CBFF2EB002094E8 /* Images.xcassets in Resources */,
 				498225E0189AEADC00FB8FC4 /* Localizable.strings in Resources */,
 				CBF4F1AE1CAAC4D900E52A56 /* CivicAPIKey.plist in Resources */,
+				CB7CFDAE1CC180E500C95538 /* LaunchImage@3x.jpg in Resources */,
 				53D3A7931889A05B00920A70 /* InfoPlist.strings in Resources */,
 				CBF4F1B01CAAC4D900E52A56 /* settings.plist in Resources */,
 				CBF4F1A41CAAC3AF00E52A56 /* test_response.json in Resources */,
+				CB7CFDAD1CC180E500C95538 /* LaunchImage@2x.jpg in Resources */,
 				CBD6BFE71CAB048B00D40849 /* LaunchScreen.storyboard in Resources */,
 				4901593118DA126E0088BA23 /* VIPEmptyCell.xib in Resources */,
 				49196B8D189AED8D007DCBD9 /* VIPStoryBoard.storyboard in Resources */,
