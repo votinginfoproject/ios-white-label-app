@@ -11,6 +11,7 @@
 #import "ContactsSearchViewController.h"
 #import "UIWebViewController.h"
 #import "Election+API.h"
+#import "VIPAddress+API.h"
 #import "State.h"
 #import "VIPColor.h"
 #import "VIPFeedbackView.h"
@@ -86,7 +87,13 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     if ([states count] == 1) {
         State *state = (State*)states[0];
         NSMutableArray *eabProperties = [state.electionAdministrationBody getProperties];
-        
+      
+        if (state.electionAdministrationBody.correspondenceAddress) {
+            NSString *address = [state.electionAdministrationBody.correspondenceAddress toABAddressString:false];
+            [eabProperties addObject:@{@"title": address,
+                                       @"data":@"" }];
+        }
+      
         if (!eabProperties) {
             NSString *noDataAvailable = NSLocalizedString(@"No Election Details Available",
                                                           @"Text displayed by the table view if there are no election details to display");
@@ -98,6 +105,13 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
         if (state.localJurisdiction) {
             NSMutableArray *localJurisdictionProperties =
             [state.localJurisdiction.electionAdministrationBody getProperties];
+          
+            if (state.localJurisdiction.electionAdministrationBody.physicalAddress) {
+                NSString *address = [state.localJurisdiction.electionAdministrationBody.physicalAddress toABAddressString:false];
+                [localJurisdictionProperties addObject:@{@"title": address,
+                                                         @"data":@"" }];
+            }
+          
             if (localJurisdictionProperties) {
                 [self.tableData addObject:localJurisdictionProperties];
             }
@@ -140,6 +154,7 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
     NSDictionary *property = (NSDictionary *)self.tableData[section][indexPath.item];
     // Check if we can make a url from the data property
     NSURL *dataUrl = nil;
+  
     if ([property isKindOfClass:[NSDictionary class]]) {
         dataUrl = [NSURL URLWithString:property[@"data"]];
     }
