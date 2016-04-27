@@ -43,7 +43,7 @@
 #endif
   
     id official = [[AppSettings settings] objectForKey:@"OfficialOnly"];
-    BOOL officialOnly = official ? [official boolValue] : YES;
+    BOOL officialOnly = official ? [official boolValue] : NO;
     id testData = [[AppSettings settings] objectForKey:@"UseTestData"];
     BOOL useTestData = testData ? [testData boolValue] : NO;
     NSString *officialOnlyString = officialOnly ? @"True" : @"False";
