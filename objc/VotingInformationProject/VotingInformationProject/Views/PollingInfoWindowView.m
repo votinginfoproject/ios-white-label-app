@@ -28,7 +28,7 @@
         NSUInteger xPadding = 10;
         NSUInteger yPadding = 5;
         NSUInteger labelWidth = infoWindowWidth - 2 * xPadding;
-        NSUInteger titleLabelHeight = 20;
+        NSUInteger titleLabelHeight = 60;
         NSUInteger directionsButtonHeight = 30;
         NSUInteger availableHeightForSnippet = infoWindowMaxHeight - (2 * yPadding + titleLabelHeight + directionsButtonHeight);
         CGSize maxSize = CGSizeMake(labelWidth, availableHeightForSnippet);
@@ -36,7 +36,8 @@
         UIFont *pollingHoursFont = [UIFont systemFontOfSize:10];
 
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPadding, yPadding, labelWidth, titleLabelHeight)];
-        titleLabel.text = [self.plWrapper.name capitalizedString];
+        titleLabel.numberOfLines = 0;
+        titleLabel.text = [NSString stringWithFormat:@"%@\r%@", [self.plWrapper.name capitalizedString], self.plWrapper.address];
         titleLabel.font = titleFont;
 
         NSString *snippet = self.plWrapper.location.pollingHours;

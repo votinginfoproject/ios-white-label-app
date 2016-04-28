@@ -61,7 +61,12 @@ const CLLocationCoordinate2D NullCoordinate = {-999, -999};
 
 - (NSString*) address
 {
-    return self.location && self.location.address ? [self.location.address toABAddressString:NO] : @"";
+  return self.location && self.location.address ? [self formattedAddress:self.location.address] : @"";
+}
+
+- (NSString*)formattedAddress:(VIPAddress*)addr
+{
+  return [NSString stringWithFormat:@"%@, %@, %@ %@",[addr.line1 capitalizedString], [addr.city capitalizedString], addr.state, addr.zip];
 }
 
 - (NSString*) hours
