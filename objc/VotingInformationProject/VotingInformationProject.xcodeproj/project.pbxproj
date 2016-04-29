@@ -101,6 +101,7 @@
 		839DD6131C2270D400A21AC6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839DD6121C2270D400A21AC6 /* MapKit.framework */; };
 		83AA58241BBA4AE20077C9FB /* VIPContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AA58231BBA4AE20077C9FB /* VIPContestCell.m */; };
 		83CAB98F1BBAD32400611F0E /* VIPContestPropertiesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */; };
+		CB15C3A61CD2C23B009210CC /* VIPBallotDetailsSort.m in Sources */ = {isa = PBXBuildFile; fileRef = CB15C3A51CD2C23B009210CC /* VIPBallotDetailsSort.m */; };
 		CB23CCEA1CBFF2EB002094E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53D3A79D1889A05B00920A70 /* Images.xcassets */; };
 		CB7CFDAD1CC180E500C95538 /* LaunchImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB7CFDA91CC180E500C95538 /* LaunchImage@2x.jpg */; };
 		CB7CFDAE1CC180E500C95538 /* LaunchImage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB7CFDAA1CC180E500C95538 /* LaunchImage@3x.jpg */; };
@@ -292,6 +293,8 @@
 		83AA58231BBA4AE20077C9FB /* VIPContestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPContestCell.m; path = Views/VIPContestCell.m; sourceTree = "<group>"; };
 		83CAB98D1BBAD32400611F0E /* VIPContestPropertiesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPContestPropertiesCell.h; sourceTree = "<group>"; };
 		83CAB98E1BBAD32400611F0E /* VIPContestPropertiesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPContestPropertiesCell.m; sourceTree = "<group>"; };
+		CB15C3A41CD2C23B009210CC /* VIPBallotDetailsSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIPBallotDetailsSort.h; path = DataSources/VIPBallotDetailsSort.h; sourceTree = "<group>"; };
+		CB15C3A51CD2C23B009210CC /* VIPBallotDetailsSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIPBallotDetailsSort.m; path = DataSources/VIPBallotDetailsSort.m; sourceTree = "<group>"; };
 		CB7CFDA71CC180E500C95538 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/Images/iTunesArtwork.png; sourceTree = "<group>"; };
 		CB7CFDA81CC180E500C95538 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Resources/Images/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		CB7CFDA91CC180E500C95538 /* LaunchImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "LaunchImage@2x.jpg"; path = "Resources/Images/LaunchImage@2x.jpg"; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 			children = (
 				4901592A18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.h */,
 				4901592B18D9FD6E0088BA23 /* VIPEmptyTableViewDataSource.m */,
+				CB15C3A41CD2C23B009210CC /* VIPBallotDetailsSort.h */,
+				CB15C3A51CD2C23B009210CC /* VIPBallotDetailsSort.m */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -917,6 +922,7 @@
 				496192151958DE66006773D2 /* UserElection+API.m in Sources */,
 				49A04BDA18AD419000BCDB0D /* ContestDetailsViewController.m in Sources */,
 				530BD3EB18D792BD00B845FA /* PollingLocationWrapper.m in Sources */,
+				CB15C3A61CD2C23B009210CC /* VIPBallotDetailsSort.m in Sources */,
 				53D3A7991889A05B00920A70 /* AppDelegate.m in Sources */,
 				49548E621959B50B00094AB1 /* Election.m in Sources */,
 				4901592418D8BBD20088BA23 /* VIPTableViewController.m in Sources */,

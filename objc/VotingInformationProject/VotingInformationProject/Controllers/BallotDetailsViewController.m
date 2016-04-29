@@ -15,6 +15,7 @@
 #import "State.h"
 #import "VIPColor.h"
 #import "VIPFeedbackView.h"
+#import "VIPBallotDetailsSort.h"
 
 #import "ContestUrlCell.h"
 
@@ -90,14 +91,16 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
       
         if (state.electionAdministrationBody.correspondenceAddress) {
             NSString *address = [state.electionAdministrationBody.correspondenceAddress toABAddressString:false];
-            [eabProperties addObject:@{@"title": address,
-                                       @"data":@"" }];
+            [eabProperties addObject:@{@"title": kAddress,
+                                       @"data": address }];
         }
       
         if (!eabProperties) {
             NSString *noDataAvailable = NSLocalizedString(@"No Election Details Available",
                                                           @"Text displayed by the table view if there are no election details to display");
             eabProperties = [NSMutableArray arrayWithObject:@{@"data":@"", @"title":noDataAvailable}];
+        } else {
+            eabProperties = [VIPBallotDetailsSort sortedStateList:eabProperties];
         }
         
         [self.tableData addObject:eabProperties];
@@ -108,11 +111,12 @@ const NSUInteger BDVC_TABLE_SECTION_LOCAL = 1;
           
             if (state.localJurisdiction.electionAdministrationBody.physicalAddress) {
                 NSString *address = [state.localJurisdiction.electionAdministrationBody.physicalAddress toABAddressString:false];
-                [localJurisdictionProperties addObject:@{@"title": address,
-                                                         @"data":@"" }];
+                [localJurisdictionProperties addObject:@{@"title": kAddress,
+                                                         @"data": address }];
             }
           
             if (localJurisdictionProperties) {
+                localJurisdictionProperties = [VIPBallotDetailsSort sortedLocalJurisdictionList:localJurisdictionProperties];
                 [self.tableData addObject:localJurisdictionProperties];
             }
         }
