@@ -75,7 +75,7 @@ NSString * const APIAddressUnparseable = @"parseError";
 NSString * const APIResponseNoAddressParameter = @"required";
 NSString * const APIResponseMultipleStreetSegmentsFound = @"conflict";
 NSString * const APIResponseElectionOver = @"invalidQuery";
-NSString * const APIResponseElectionUnknown = @"invalidValue";
+NSString * const APIResponseElectionUnknown = @"invalid";
 NSString * const APIInternalLookupFailure = @"backendError";
 
 NSDictionary *_stringToErrorCode;
@@ -143,6 +143,7 @@ NSDictionary *_stringToErrorCode;
         NSLog(@"Warning: Got nil argument for errorCode, this shouldn't happen!");
         errorCode = VIPError.GenericAPIError;
     }
+  
     return [NSError errorWithDomain:VIPErrorDomain
                                code:errorCode.code.intValue
                            userInfo:@{NSLocalizedDescriptionKey: errorCode.descriptionString}];
@@ -151,6 +152,7 @@ NSDictionary *_stringToErrorCode;
 + (NSError*) statusToError:(NSString*)status
 {
     VIPErrorCode *errorCode = [_stringToErrorCode objectForKey:status];
+  
     return errorCode == nil ? nil : [VIPError errorWithCode:errorCode];
 }
 
@@ -158,9 +160,11 @@ NSDictionary *_stringToErrorCode;
 {
     NSError *vipError = [VIPError errorWithCode:VIPError.GenericAPIError];
     NSArray *errors = response[@"error"][@"errors"];
+  
     if ([errors count] > 0) {
         vipError = [VIPError statusToError:errors[0][@"reason"]];
     }
+  
     return vipError;
 }
 

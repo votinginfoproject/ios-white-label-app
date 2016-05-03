@@ -147,10 +147,10 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoW-nK-Iqg">
-                                <rect key="frame" x="30" y="405" width="260" height="80"/>
+                                <rect key="frame" x="30" y="285" width="260" height="200"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown Error" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-aA-QQc">
-                                        <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="200"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -161,7 +161,7 @@
                                     <constraint firstItem="eMN-aA-QQc" firstAttribute="leading" secondItem="qoW-nK-Iqg" secondAttribute="leading" id="DMN-vk-Eoy"/>
                                     <constraint firstItem="eMN-aA-QQc" firstAttribute="top" secondItem="qoW-nK-Iqg" secondAttribute="top" id="KSy-3H-xxa"/>
                                     <constraint firstAttribute="trailing" secondItem="eMN-aA-QQc" secondAttribute="trailing" id="Vj8-L1-PK2"/>
-                                    <constraint firstAttribute="height" constant="80" id="bvh-nr-EDv"/>
+                                    <constraint firstAttribute="height" constant="200" id="bvh-nr-EDv"/>
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-zO-oTj">
