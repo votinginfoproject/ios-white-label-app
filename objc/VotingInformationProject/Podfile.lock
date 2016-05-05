@@ -22,9 +22,9 @@ PODS:
     - AFNetworking/NSURLSession
   - GoogleAnalytics (3.14.0)
   - GoogleMaps (1.12.3)
-  - JSONModel (1.0.1)
-  - Kiwi (2.3.0)
-  - libPhoneNumber-iOS (0.8.11)
+  - JSONModel (1.2.0)
+  - Kiwi (2.4.0)
+  - libPhoneNumber-iOS (0.8.12)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
@@ -42,11 +42,11 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
-  JSONModel: de5799179dd476f68e0de1be3a4a40c962cc535f
-  Kiwi: 4c3988bd551f80f6ca0009f302f7c1a2e3777bf2
-  libPhoneNumber-iOS: ded33fab2c51ee847979556aa504c9e70f32d703
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+  libPhoneNumber-iOS: 3f1889b70403cf7848c0e4136780a0d0aef9016d
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
 PODFILE CHECKSUM: 857e0dadabed0f1e2763ee51be62908be7f58509
 
-COCOAPODS: 1.0.0.beta.5
+COCOAPODS: 1.0.0.rc.2

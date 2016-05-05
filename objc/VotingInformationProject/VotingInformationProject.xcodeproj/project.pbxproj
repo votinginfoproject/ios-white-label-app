@@ -687,8 +687,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53D3A7B51889A05B00920A70 /* Build configuration list for PBXNativeTarget "VotingInformationProject" */;
 			buildPhases = (
-				CB87C6A01CB5B9B7000B6481 /* ShellScript */,
 				7F0CE0BC0C2E12A43E4A0ECB /* 📦 Check Pods Manifest.lock */,
+				CB87C6A01CB5B9B7000B6481 /* ShellScript */,
 				53D3A77F1889A05B00920A70 /* Sources */,
 				53D3A7801889A05B00920A70 /* Frameworks */,
 				53D3A7811889A05B00920A70 /* Resources */,
