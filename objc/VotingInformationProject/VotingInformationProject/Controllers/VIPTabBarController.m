@@ -32,11 +32,6 @@
     [self loadVIPDataFromCache];
 }
 
-- (int) defaultIndex
-{
-    return 2; // index of polling
-}
-
 - (void)setupTabBarImages
 {
     // Selected image names are at imageName + @"-active"

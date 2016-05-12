@@ -70,19 +70,17 @@ static UIFont *kSubtitleFont;
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     if (self.tabBarController) {
         self.tabBarController.title = NSLocalizedString(@"Ballot", @"Name for bottom-left tab (ballot)");
     }
 
     VIPTabBarController *vipTabBarController = (VIPTabBarController *)self.tabBarController;
 
-    if (![vipTabBarController isVIPDataAvailable]) {
-        [self presentContactsSearchViewController];
-    } else {
-        self.election = (UserElection*) vipTabBarController.currentElection;
-        self.party = vipTabBarController.currentParty;
-        [self updateUI];
-    }
+    self.election = (UserElection*) vipTabBarController.currentElection;
+    self.party = vipTabBarController.currentParty;
+  
+    [self updateUI];
 }
 
 - (void)setParty:(NSString *)party
@@ -271,15 +269,6 @@ static UIFont *kSubtitleFont;
         webView.title = NSLocalizedString(@"Feedback", @"Title for web view displaying the VIP election feedback form");
         webView.request = (NSMutableURLRequest*)sender;
     }
-}
-
-- (void)presentContactsSearchViewController
-{
-    UIStoryboard *storyboard = self.storyboard;
-    ContactsSearchViewController *csvc = [storyboard instantiateViewControllerWithIdentifier:@"ContactsSearchViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:csvc];
-    csvc.delegate = self;
-    [self presentViewController:navigationController animated:NO completion:nil];
 }
 
 @end

@@ -258,6 +258,10 @@
 
 - (IBAction)tappedShowElectionButton:(id)sender
 {
+    // Set view to list view for initial viewing
+    [[NSUserDefaults standardUserDefaults] setInteger:LIST_VIEW
+                                             forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
+  
     // Set the current selections to local store so we can pull them from CoreData
     //  on future app loads
 

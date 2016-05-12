@@ -261,9 +261,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
                     <connections>
+                        <segue destination="zjK-nE-Utk" kind="relationship" relationship="viewControllers" id="eY4-Yu-9aR"/>
                         <segue destination="oC0-78-SdT" kind="relationship" relationship="viewControllers" id="rb7-aO-Oso"/>
                         <segue destination="1WY-5C-VSE" kind="relationship" relationship="viewControllers" id="73D-Zt-YjH"/>
-                        <segue destination="zjK-nE-Utk" kind="relationship" relationship="viewControllers" id="eY4-Yu-9aR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDG-VB-KDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1315,7 +1315,7 @@
         <image name="TabBar_polling.png" width="18" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Sg3-NH-JMz"/>
-        <segue reference="7Fy-cK-Sdj"/>
+        <segue reference="io9-4R-w0O"/>
+        <segue reference="BSD-rg-h3n"/>
     </inferredMetricsTieBreakers>
 </document>

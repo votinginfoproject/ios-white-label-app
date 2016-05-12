@@ -70,9 +70,6 @@
     NSArray *_pollingOptions;
 }
 
-static const int MAP_VIEW = 0;
-static const int LIST_VIEW = 1;
-
 const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 
 - (NSMutableArray*)cells
@@ -281,6 +278,18 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
   
     [self.pollingPickerButton setTitleColor:secondaryTextColor
                                    forState:UIControlStateNormal];
+
+  // Set view to list view for initial viewing
+  [[NSUserDefaults standardUserDefaults] setInteger:LIST_VIEW
+                                             forKey:USER_DEFAULTS_POLLING_VIEW_KEY];
+
+  VIPTabBarController *tabBarController = (VIPTabBarController*)self.tabBarController;
+  
+  if (![tabBarController isVIPDataAvailable]) {
+    [self presentContactsSearchViewController];
+    
+    return;
+  }
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -722,6 +731,16 @@ const NSUInteger VIP_POLLING_TABLECELL_HEIGHT = 76;
 }
 
 #pragma mark - Segues
+- (void)presentContactsSearchViewController
+{
+    UIStoryboard *storyboard = self.storyboard;
+    ContactsSearchViewController *csvc = [storyboard instantiateViewControllerWithIdentifier:@"ContactsSearchViewController"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:csvc];
+    csvc.delegate = self;
+  
+    [self presentViewController:navigationController animated:NO completion:nil];
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"DirectionsViewSegue"]) {
