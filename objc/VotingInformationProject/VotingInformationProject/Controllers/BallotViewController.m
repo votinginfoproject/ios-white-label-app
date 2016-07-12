@@ -109,15 +109,26 @@ static UIFont *kSubtitleFont;
     NSSortDescriptor *contestsSort = [NSSortDescriptor sortDescriptorWithKey:@"ballotPlacement"
                                                                    ascending:YES];
     NSArray *contests = [self.election.contests sortedArrayUsingDescriptors:@[contestsSort]];
+    NSMutableArray *filteredContests = [NSMutableArray new];
 
-    if ([self.party length] > 0) {
-        NSString *predicateFormat = @"SELF.primaryParty = nil OR SELF.primaryParty CONTAINS[cd] %@";
-        NSPredicate *partyFilterPredicate = [NSPredicate
-                                             predicateWithFormat:predicateFormat, self.party];
-
-        contests = [contests filteredArrayUsingPredicate:partyFilterPredicate];
+    if ([self.party length] == 0) {
+        _contests = contests;
+    } else {
+        for (Contest *contest in contests) {
+            NSArray *candidates = contest.candidates;
+            NSString *predicateFormat = @"SELF.party CONTAINS[cd] %@";
+            NSPredicate *partyFilterPredicate = [NSPredicate
+                                               predicateWithFormat:predicateFormat, self.party];
+            candidates = [candidates filteredArrayUsingPredicate:partyFilterPredicate];
+        
+            if ([candidates count] > 0) {
+                contest.candidates = candidates;
+                [filteredContests addObject:contest];
+            }
+        }
+      
+        _contests = filteredContests;
     }
-    _contests = contests;
     self.tableView.dataSource = [self configureDataSource];
     [self.tableView reloadData];
 }

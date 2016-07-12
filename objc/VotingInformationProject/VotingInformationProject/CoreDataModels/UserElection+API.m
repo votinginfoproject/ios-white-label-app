@@ -17,9 +17,12 @@
 {
     NSMutableDictionary *parties = [NSMutableDictionary dictionary];
     for (Contest *contest in self.contests) {
-        NSString *party = contest.primaryParty;
-        if ([party length] > 0) {
-            parties[party] = party;
+        for (Candidate *candidate in contest.candidates) {
+            NSString *party = candidate.party;
+          
+            if ([party length] > 0) {
+                parties[party] = party;
+            }
         }
     }
     // Sort alphabetically to avoid appearing partisan by certain parties appearing first
