@@ -37,7 +37,7 @@
 #if DEBUG
     // Stoplight is an API modeling tool. See "Using Stoplight API modeling tool" in the read me file.
     NSString *stoplightAPIKey = [settings objectForKey:@"StoplightAPIKey"];
-    if (stoplightAPIKey != nil) {
+    if (stoplightAPIKey != nil && ![stoplightAPIKey isEqualToString:@""]) {
         url = [NSString stringWithFormat:@"https://%@.stoplight-proxy.io/civicinfo/v2/voterinfo",stoplightAPIKey];
     }
 #endif
