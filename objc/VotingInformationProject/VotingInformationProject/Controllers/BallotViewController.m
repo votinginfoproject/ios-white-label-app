@@ -214,7 +214,7 @@ static UIFont *kSubtitleFont;
     cell.detailTextLabel.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds);
 
     [cell setNeedsLayout];
-    [cell updateConstraintsIfNeeded];
+    [cell setNeedsUpdateConstraints];
 
     return cell;
 }
