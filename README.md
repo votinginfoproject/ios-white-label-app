@@ -1,3 +1,5 @@
+This app is no longer being supported by the Voting Information Project.
+
 # ios7-white-label-app
 
 Develop: [![Build Status](https://travis-ci.org/votinginfoproject/ios7-white-label-app.png?branch=develop)](https://travis-ci.org/votinginfoproject/ios7-white-label-app)
